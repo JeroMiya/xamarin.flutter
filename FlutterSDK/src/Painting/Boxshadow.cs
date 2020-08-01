@@ -444,11 +444,20 @@ namespace FlutterSDK.Painting.Boxshadow
     /// </Summary>
     public class BoxShadow : Shadow
     {
+        /// <Summary>
+        /// Creates a box shadow.
+        ///
+        /// By default, the shadow is solid black with zero [offset], [blurRadius],
+        /// and [spreadRadius].
+        /// </Summary>
         public BoxShadow(FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterBinding.UI.Offset offset = default(FlutterBinding.UI.Offset), double blurRadius = 0.0, double spreadRadius = 0.0)
         : base(color: color, offset: offset, blurRadius: blurRadius)
         {
             this.SpreadRadius = spreadRadius;
         }
+        /// <Summary>
+        /// The amount the box should be inflated prior to applying the blur.
+        /// </Summary>
         public virtual double SpreadRadius { get; set; }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 

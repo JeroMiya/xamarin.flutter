@@ -452,6 +452,11 @@ namespace FlutterSDK.Material.Inkwell
     /// </Summary>
     public class InteractiveInkFeature : FlutterSDK.Material.Material.InkFeature
     {
+        /// <Summary>
+        /// Creates an InteractiveInkFeature.
+        ///
+        /// The [controller] and [referenceBox] arguments must not be null.
+        /// </Summary>
         public InteractiveInkFeature(FlutterSDK.Material.Material.MaterialInkController controller = default(FlutterSDK.Material.Material.MaterialInkController), FlutterSDK.Rendering.Box.RenderBox referenceBox = default(FlutterSDK.Rendering.Box.RenderBox), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), VoidCallback onRemoved = default(VoidCallback))
         : base(controller: controller, referenceBox: referenceBox, onRemoved: onRemoved)
         {
@@ -579,6 +584,9 @@ namespace FlutterSDK.Material.Inkwell
     /// </Summary>
     public class InteractiveInkFeatureFactory
     {
+        /// <Summary>
+        /// Subclasses should provide a const constructor.
+        /// </Summary>
         public InteractiveInkFeatureFactory()
         {
 
@@ -683,6 +691,14 @@ namespace FlutterSDK.Material.Inkwell
     /// </Summary>
     public class InkResponse : FlutterSDK.Widgets.Framework.StatefulWidget
     {
+        /// <Summary>
+        /// Creates an area of a [Material] that responds to touch.
+        ///
+        /// Must have an ancestor [Material] widget in which to cause ink reactions.
+        ///
+        /// The [containedInkWell], [highlightShape], [enableFeedback], and
+        /// [excludeFromSemantics] arguments must not be null.
+        /// </Summary>
         public InkResponse(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Gestures.Tap.GestureTapCallback onTap = default(FlutterSDK.Gestures.Tap.GestureTapCallback), FlutterSDK.Gestures.Tap.GestureTapDownCallback onTapDown = default(FlutterSDK.Gestures.Tap.GestureTapDownCallback), FlutterSDK.Gestures.Tap.GestureTapCallback onTapCancel = default(FlutterSDK.Gestures.Tap.GestureTapCallback), FlutterSDK.Gestures.Tap.GestureTapCallback onDoubleTap = default(FlutterSDK.Gestures.Tap.GestureTapCallback), FlutterSDK.Gestures.Longpress.GestureLongPressCallback onLongPress = default(FlutterSDK.Gestures.Longpress.GestureLongPressCallback), FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onHighlightChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>), FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onHover = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>), bool containedInkWell = false, FlutterSDK.Painting.Boxborder.BoxShape highlightShape = default(FlutterSDK.Painting.Boxborder.BoxShape), double radius = default(double), FlutterSDK.Painting.Borderradius.BorderRadius borderRadius = default(FlutterSDK.Painting.Borderradius.BorderRadius), FlutterSDK.Painting.Borders.ShapeBorder customBorder = default(FlutterSDK.Painting.Borders.ShapeBorder), FlutterBinding.UI.Color focusColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color hoverColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color highlightColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color splashColor = default(FlutterBinding.UI.Color), FlutterSDK.Material.Inkwell.InteractiveInkFeatureFactory splashFactory = default(FlutterSDK.Material.Inkwell.InteractiveInkFeatureFactory), bool enableFeedback = true, bool excludeFromSemantics = false, FlutterSDK.Widgets.Focusmanager.FocusNode focusNode = default(FlutterSDK.Widgets.Focusmanager.FocusNode), bool canRequestFocus = true, FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onFocusChange = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>), bool autofocus = false)
         : base(key: key)
         {
@@ -711,29 +727,228 @@ namespace FlutterSDK.Material.Inkwell
             this.OnFocusChange = onFocusChange;
             this.Autofocus = autofocus;
         }
+        /// <Summary>
+        /// The widget below this widget in the tree.
+        ///
+        /// {@macro flutter.widgets.child}
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+        /// <Summary>
+        /// Called when the user taps this part of the material.
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Tap.GestureTapCallback OnTap { get; set; }
+        /// <Summary>
+        /// Called when the user taps down this part of the material.
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Tap.GestureTapDownCallback OnTapDown { get; set; }
+        /// <Summary>
+        /// Called when the user cancels a tap that was started on this part of the
+        /// material.
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Tap.GestureTapCallback OnTapCancel { get; set; }
+        /// <Summary>
+        /// Called when the user double taps this part of the material.
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Tap.GestureTapCallback OnDoubleTap { get; set; }
+        /// <Summary>
+        /// Called when the user long-presses on this part of the material.
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Longpress.GestureLongPressCallback OnLongPress { get; set; }
+        /// <Summary>
+        /// Called when this part of the material either becomes highlighted or stops
+        /// being highlighted.
+        ///
+        /// The value passed to the callback is true if this part of the material has
+        /// become highlighted and false if this part of the material has stopped
+        /// being highlighted.
+        ///
+        /// If all of [onTap], [onDoubleTap], and [onLongPress] become null while a
+        /// gesture is ongoing, then [onTapCancel] will be fired and
+        /// [onHighlightChanged] will be fired with the value false _during the
+        /// build_. This means, for instance, that in that scenario [State.setState]
+        /// cannot be called.
+        /// </Summary>
         public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<bool> OnHighlightChanged { get; set; }
+        /// <Summary>
+        /// Called when a pointer enters or exits the ink response area.
+        ///
+        /// The value passed to the callback is true if a pointer has entered this
+        /// part of the material and false if a pointer has exited this part of the
+        /// material.
+        /// </Summary>
         public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<bool> OnHover { get; set; }
+        /// <Summary>
+        /// Whether this ink response should be clipped its bounds.
+        ///
+        /// This flag also controls whether the splash migrates to the center of the
+        /// [InkResponse] or not. If [containedInkWell] is true, the splash remains
+        /// centered around the tap location. If it is false, the splash migrates to
+        /// the center of the [InkResponse] as it grows.
+        ///
+        /// See also:
+        ///
+        ///  * [highlightShape], the shape of the focus, hover, and pressed
+        ///    highlights.
+        ///  * [borderRadius], which controls the corners when the box is a rectangle.
+        ///  * [getRectCallback], which controls the size and position of the box when
+        ///    it is a rectangle.
+        /// </Summary>
         public virtual bool ContainedInkWell { get; set; }
+        /// <Summary>
+        /// The shape (e.g., circle, rectangle) to use for the highlight drawn around
+        /// this part of the material when pressed, hovered over, or focused.
+        ///
+        /// The same shape is used for the pressed highlight (see [highlightColor]),
+        /// the focus highlight (see [focusColor]), and the hover highlight (see
+        /// [hoverColor]).
+        ///
+        /// If the shape is [BoxShape.circle], then the highlight is centered on the
+        /// [InkResponse]. If the shape is [BoxShape.rectangle], then the highlight
+        /// fills the [InkResponse], or the rectangle provided by [getRectCallback] if
+        /// the callback is specified.
+        ///
+        /// See also:
+        ///
+        ///  * [containedInkWell], which controls clipping behavior.
+        ///  * [borderRadius], which controls the corners when the box is a rectangle.
+        ///  * [highlightColor], the color of the highlight.
+        ///  * [getRectCallback], which controls the size and position of the box when
+        ///    it is a rectangle.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Boxborder.BoxShape HighlightShape { get; set; }
+        /// <Summary>
+        /// The radius of the ink splash.
+        ///
+        /// Splashes grow up to this size. By default, this size is determined from
+        /// the size of the rectangle provided by [getRectCallback], or the size of
+        /// the [InkResponse] itself.
+        ///
+        /// See also:
+        ///
+        ///  * [splashColor], the color of the splash.
+        ///  * [splashFactory], which defines the appearance of the splash.
+        /// </Summary>
         public virtual double Radius { get; set; }
+        /// <Summary>
+        /// The clipping radius of the containing rect. This is effective only if
+        /// [customBorder] is null.
+        ///
+        /// If this is null, it is interpreted as [BorderRadius.zero].
+        /// </Summary>
         public virtual FlutterSDK.Painting.Borderradius.BorderRadius BorderRadius { get; set; }
+        /// <Summary>
+        /// The custom clip border which overrides [borderRadius].
+        /// </Summary>
         public virtual FlutterSDK.Painting.Borders.ShapeBorder CustomBorder { get; set; }
+        /// <Summary>
+        /// The color of the ink response when the parent widget is focused. If this
+        /// property is null then the focus color of the theme,
+        /// [ThemeData.focusColor], will be used.
+        ///
+        /// See also:
+        ///
+        ///  * [highlightShape], the shape of the focus, hover, and pressed
+        ///    highlights.
+        ///  * [hoverColor], the color of the hover highlight.
+        ///  * [splashColor], the color of the splash.
+        ///  * [splashFactory], which defines the appearance of the splash.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color FocusColor { get; set; }
+        /// <Summary>
+        /// The color of the ink response when a pointer is hovering over it. If this
+        /// property is null then the hover color of the theme,
+        /// [ThemeData.hoverColor], will be used.
+        ///
+        /// See also:
+        ///
+        ///  * [highlightShape], the shape of the focus, hover, and pressed
+        ///    highlights.
+        ///  * [highlightColor], the color of the pressed highlight.
+        ///  * [focusColor], the color of the focus highlight.
+        ///  * [splashColor], the color of the splash.
+        ///  * [splashFactory], which defines the appearance of the splash.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color HoverColor { get; set; }
+        /// <Summary>
+        /// The highlight color of the ink response when pressed. If this property is
+        /// null then the highlight color of the theme, [ThemeData.highlightColor],
+        /// will be used.
+        ///
+        /// See also:
+        ///
+        ///  * [hoverColor], the color of the hover highlight.
+        ///  * [focusColor], the color of the focus highlight.
+        ///  * [highlightShape], the shape of the focus, hover, and pressed
+        ///    highlights.
+        ///  * [splashColor], the color of the splash.
+        ///  * [splashFactory], which defines the appearance of the splash.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color HighlightColor { get; set; }
+        /// <Summary>
+        /// The splash color of the ink response. If this property is null then the
+        /// splash color of the theme, [ThemeData.splashColor], will be used.
+        ///
+        /// See also:
+        ///
+        ///  * [splashFactory], which defines the appearance of the splash.
+        ///  * [radius], the (maximum) size of the ink splash.
+        ///  * [highlightColor], the color of the highlight.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color SplashColor { get; set; }
+        /// <Summary>
+        /// Defines the appearance of the splash.
+        ///
+        /// Defaults to the value of the theme's splash factory: [ThemeData.splashFactory].
+        ///
+        /// See also:
+        ///
+        ///  * [radius], the (maximum) size of the ink splash.
+        ///  * [splashColor], the color of the splash.
+        ///  * [highlightColor], the color of the highlight.
+        ///  * [InkSplash.splashFactory], which defines the default splash.
+        ///  * [InkRipple.splashFactory], which defines a splash that spreads out
+        ///    more aggressively than the default.
+        /// </Summary>
         public virtual FlutterSDK.Material.Inkwell.InteractiveInkFeatureFactory SplashFactory { get; set; }
+        /// <Summary>
+        /// Whether detected gestures should provide acoustic and/or haptic feedback.
+        ///
+        /// For example, on Android a tap will produce a clicking sound and a
+        /// long-press will produce a short vibration, when feedback is enabled.
+        ///
+        /// See also:
+        ///
+        ///  * [Feedback] for providing platform-specific feedback to certain actions.
+        /// </Summary>
         public virtual bool EnableFeedback { get; set; }
+        /// <Summary>
+        /// Whether to exclude the gestures introduced by this widget from the
+        /// semantics tree.
+        ///
+        /// For example, a long-press gesture for showing a tooltip is usually
+        /// excluded because the tooltip itself is included in the semantics
+        /// tree directly and so having a gesture to show it would result in
+        /// duplication of information.
+        /// </Summary>
         public virtual bool ExcludeFromSemantics { get; set; }
+        /// <Summary>
+        /// Handler called when the focus changes.
+        ///
+        /// Called with true if this widget's node gains focus, and false if it loses
+        /// focus.
+        /// </Summary>
         public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<bool> OnFocusChange { get; set; }
+        /// <Summary>
+        /// {@macro flutter.widgets.Focus.autofocus}
+        /// </Summary>
         public virtual bool Autofocus { get; set; }
+        /// <Summary>
+        /// {@macro flutter.widgets.Focus.focusNode}
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Focusmanager.FocusNode FocusNode { get; set; }
+        /// <Summary>
+        /// {@template flutter.widgets.Focus.canRequestFocus}
+        /// </Summary>
         public virtual bool CanRequestFocus { get; set; }
 
         /// <Summary>
@@ -1239,6 +1454,14 @@ namespace FlutterSDK.Material.Inkwell
     /// </Summary>
     public class InkWell : FlutterSDK.Material.Inkwell.InkResponse
     {
+        /// <Summary>
+        /// Creates an ink well.
+        ///
+        /// Must have an ancestor [Material] widget in which to cause ink reactions.
+        ///
+        /// The [enableFeedback] and [excludeFromSemantics] arguments must not be
+        /// null.
+        /// </Summary>
         public InkWell(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Gestures.Tap.GestureTapCallback onTap = default(FlutterSDK.Gestures.Tap.GestureTapCallback), FlutterSDK.Gestures.Tap.GestureTapCallback onDoubleTap = default(FlutterSDK.Gestures.Tap.GestureTapCallback), FlutterSDK.Gestures.Longpress.GestureLongPressCallback onLongPress = default(FlutterSDK.Gestures.Longpress.GestureLongPressCallback), FlutterSDK.Gestures.Tap.GestureTapDownCallback onTapDown = default(FlutterSDK.Gestures.Tap.GestureTapDownCallback), FlutterSDK.Gestures.Tap.GestureTapCancelCallback onTapCancel = default(FlutterSDK.Gestures.Tap.GestureTapCancelCallback), FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onHighlightChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>), FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onHover = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>), FlutterBinding.UI.Color focusColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color hoverColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color highlightColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color splashColor = default(FlutterBinding.UI.Color), FlutterSDK.Material.Inkwell.InteractiveInkFeatureFactory splashFactory = default(FlutterSDK.Material.Inkwell.InteractiveInkFeatureFactory), double radius = default(double), FlutterSDK.Painting.Borderradius.BorderRadius borderRadius = default(FlutterSDK.Painting.Borderradius.BorderRadius), FlutterSDK.Painting.Borders.ShapeBorder customBorder = default(FlutterSDK.Painting.Borders.ShapeBorder), bool enableFeedback = true, bool excludeFromSemantics = false, FlutterSDK.Widgets.Focusmanager.FocusNode focusNode = default(FlutterSDK.Widgets.Focusmanager.FocusNode), bool canRequestFocus = true, FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onFocusChange = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>), bool autofocus = false)
         : base(key: key, child: child, onTap: onTap, onDoubleTap: onDoubleTap, onLongPress: onLongPress, onTapDown: onTapDown, onTapCancel: onTapCancel, onHighlightChanged: onHighlightChanged, onHover: onHover, containedInkWell: true, highlightShape: BoxShape.Rectangle, focusColor: focusColor, hoverColor: hoverColor, highlightColor: highlightColor, splashColor: splashColor, splashFactory: splashFactory, radius: radius, borderRadius: borderRadius, customBorder: customBorder, enableFeedback: enableFeedback ?? true, excludeFromSemantics: excludeFromSemantics ?? false, focusNode: focusNode, canRequestFocus: canRequestFocus ?? true, onFocusChange: onFocusChange, autofocus: autofocus ?? false)
         {

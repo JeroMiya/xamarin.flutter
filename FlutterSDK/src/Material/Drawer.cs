@@ -379,6 +379,10 @@ using FlutterSDK.Material.Dialogtheme;
 using FlutterSDK.Material.Dividertheme;
 namespace FlutterSDK.Material.Drawer
 {
+    /// <Summary>
+    /// Signature for the callback that's called when a [DrawerController] is
+    /// opened or closed.
+    /// </Summary>
     public delegate void DrawerCallback(bool isOpened);
     internal static class DrawerDefaultClass
     {
@@ -476,6 +480,13 @@ namespace FlutterSDK.Material.Drawer
     /// </Summary>
     public class Drawer : FlutterSDK.Widgets.Framework.StatelessWidget
     {
+        /// <Summary>
+        /// Creates a material design drawer.
+        ///
+        /// Typically used in the [Scaffold.drawer] property.
+        ///
+        /// The [elevation] must be non-negative.
+        /// </Summary>
         public Drawer(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), double elevation = 16.0, FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), string semanticLabel = default(string))
         : base(key: key)
         {
@@ -483,8 +494,35 @@ namespace FlutterSDK.Material.Drawer
             this.Child = child;
             this.SemanticLabel = semanticLabel;
         }
+        /// <Summary>
+        /// The z-coordinate at which to place this drawer relative to its parent.
+        ///
+        /// This controls the size of the shadow below the drawer.
+        ///
+        /// Defaults to 16, the appropriate elevation for drawers. The value is
+        /// always non-negative.
+        /// </Summary>
         public virtual double Elevation { get; set; }
+        /// <Summary>
+        /// The widget below this widget in the tree.
+        ///
+        /// Typically a [SliverList].
+        ///
+        /// {@macro flutter.widgets.child}
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+        /// <Summary>
+        /// The semantic label of the dialog used by accessibility frameworks to
+        /// announce screen transitions when the drawer is opened and closed.
+        ///
+        /// If this label is not provided, it will default to
+        /// [MaterialLocalizations.drawerLabel].
+        ///
+        /// See also:
+        ///
+        ///  * [SemanticsConfiguration.namesRoute], for a description of how this
+        ///    value is used.
+        /// </Summary>
         public virtual string SemanticLabel { get; set; }
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
@@ -518,6 +556,13 @@ namespace FlutterSDK.Material.Drawer
     /// </Summary>
     public class DrawerController : FlutterSDK.Widgets.Framework.StatefulWidget
     {
+        /// <Summary>
+        /// Creates a controller for a [Drawer].
+        ///
+        /// Rarely used directly.
+        ///
+        /// The [child] argument must not be null and is typically a [Drawer].
+        /// </Summary>
         public DrawerController(FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> key = default(FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>>), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Material.Drawer.DrawerAlignment alignment = default(FlutterSDK.Material.Drawer.DrawerAlignment), FlutterSDK.Material.Drawer.DrawerCallback drawerCallback = default(FlutterSDK.Material.Drawer.DrawerCallback), FlutterSDK.Gestures.Recognizer.DragStartBehavior dragStartBehavior = default(FlutterSDK.Gestures.Recognizer.DragStartBehavior), FlutterBinding.UI.Color scrimColor = default(FlutterBinding.UI.Color), double edgeDragWidth = default(double), bool enableOpenDragGesture = true)
         : base(key: key)
         {
@@ -529,12 +574,69 @@ namespace FlutterSDK.Material.Drawer
             this.EdgeDragWidth = edgeDragWidth;
             this.EnableOpenDragGesture = enableOpenDragGesture;
         }
+        /// <Summary>
+        /// The widget below this widget in the tree.
+        ///
+        /// Typically a [Drawer].
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+        /// <Summary>
+        /// The alignment of the [Drawer].
+        ///
+        /// This controls the direction in which the user should swipe to open and
+        /// close the drawer.
+        /// </Summary>
         public virtual FlutterSDK.Material.Drawer.DrawerAlignment Alignment { get; set; }
+        /// <Summary>
+        /// Optional callback that is called when a [Drawer] is opened or closed.
+        /// </Summary>
         public virtual FlutterSDK.Material.Drawer.DrawerCallback DrawerCallback { get; set; }
+        /// <Summary>
+        /// {@template flutter.material.drawer.dragStartBehavior}
+        /// Determines the way that drag start behavior is handled.
+        ///
+        /// If set to [DragStartBehavior.start], the drag behavior used for opening
+        /// and closing a drawer will begin upon the detection of a drag gesture. If
+        /// set to [DragStartBehavior.down] it will begin when a down event is first
+        /// detected.
+        ///
+        /// In general, setting this to [DragStartBehavior.start] will make drag
+        /// animation smoother and setting it to [DragStartBehavior.down] will make
+        /// drag behavior feel slightly more reactive.
+        ///
+        /// By default, the drag start behavior is [DragStartBehavior.start].
+        ///
+        /// See also:
+        ///
+        ///  * [DragGestureRecognizer.dragStartBehavior], which gives an example for
+        ///    the different behaviors.
+        ///
+        /// {@endtemplate}
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Recognizer.DragStartBehavior DragStartBehavior { get; set; }
+        /// <Summary>
+        /// The color to use for the scrim that obscures primary content while a drawer is open.
+        ///
+        /// By default, the color used is [Colors.black54]
+        /// </Summary>
         public virtual FlutterBinding.UI.Color ScrimColor { get; set; }
+        /// <Summary>
+        /// Determines if the [Drawer] can be opened with a drag gesture.
+        ///
+        /// By default, the drag gesture is enabled.
+        /// </Summary>
         public virtual bool EnableOpenDragGesture { get; set; }
+        /// <Summary>
+        /// The width of the area within which a horizontal swipe will open the
+        /// drawer.
+        ///
+        /// By default, the value used is 20.0 added to the padding edge of
+        /// `MediaQuery.of(context).padding` that corresponds to [alignment].
+        /// This ensures that the drag area for notched devices is not obscured. For
+        /// example, if [alignment] is set to [DrawerAlignment.start] and
+        /// `TextDirection.of(context)` is set to [TextDirection.ltr],
+        /// 20.0 will be added to `MediaQuery.of(context).padding.left`.
+        /// </Summary>
         public virtual double EdgeDragWidth { get; set; }
 
         public new FlutterSDK.Material.Drawer.DrawerControllerState CreateState() => new DrawerControllerState();

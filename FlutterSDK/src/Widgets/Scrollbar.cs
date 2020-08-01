@@ -463,6 +463,9 @@ namespace FlutterSDK.Widgets.Scrollbar
     /// </Summary>
     public class ScrollbarPainter : FlutterSDK.Foundation.Changenotifier.ChangeNotifier, ICustomPainter
     {
+        /// <Summary>
+        /// Creates a scrollbar with customizations given by construction arguments.
+        /// </Summary>
         public ScrollbarPainter(FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), TextDirection textDirection = default(TextDirection), double thickness = default(double), FlutterSDK.Animation.Animation.Animation<double> fadeoutOpacityAnimation = default(FlutterSDK.Animation.Animation.Animation<double>), FlutterSDK.Painting.Edgeinsets.EdgeInsets padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets), double mainAxisMargin = 0.0, double crossAxisMargin = 0.0, Radius radius = default(Radius), double minLength = default(double), double minOverscrollLength = default(double))
         : base()
         {
@@ -478,13 +481,62 @@ namespace FlutterSDK.Widgets.Scrollbar
 
         internal virtual FlutterBinding.UI.Color _Color { get; set; }
         internal virtual TextDirection _TextDirection { get; set; }
+        /// <Summary>
+        /// Thickness of the scrollbar in its cross-axis in logical pixels. Mustn't be null.
+        /// </Summary>
         public virtual double Thickness { get; set; }
+        /// <Summary>
+        /// An opacity [Animation] that dictates the opacity of the thumb.
+        /// Changes in value of this [Listenable] will automatically trigger repaints.
+        /// Mustn't be null.
+        /// </Summary>
         public virtual FlutterSDK.Animation.Animation.Animation<double> FadeoutOpacityAnimation { get; set; }
+        /// <Summary>
+        /// Distance from the scrollbar's start and end to the edge of the viewport
+        /// in logical pixels. It affects the amount of available paint area.
+        ///
+        /// Mustn't be null and defaults to 0.
+        /// </Summary>
         public virtual double MainAxisMargin { get; set; }
+        /// <Summary>
+        /// Distance from the scrollbar's side to the nearest edge in logical pixels.
+        ///
+        /// Must not be null and defaults to 0.
+        /// </Summary>
         public virtual double CrossAxisMargin { get; set; }
+        /// <Summary>
+        /// [Radius] of corners if the scrollbar should have rounded corners.
+        ///
+        /// Scrollbar will be rectangular if [radius] is null.
+        /// </Summary>
         public virtual Radius Radius { get; set; }
         internal virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets _Padding { get; set; }
+        /// <Summary>
+        /// The preferred smallest size the scrollbar can shrink to when the total
+        /// scrollable extent is large, the current visible viewport is small, and the
+        /// viewport is not overscrolled.
+        ///
+        /// The size of the scrollbar may shrink to a smaller size than [minLength]
+        /// to fit in the available paint area. E.g., when [minLength] is
+        /// `double.infinity`, it will not be respected if [viewportDimension] and
+        /// [mainAxisMargin] are finite.
+        ///
+        /// Mustn't be null and the value has to be within the range of 0 to
+        /// [minOverscrollLength], inclusive. Defaults to 18.0.
+        /// </Summary>
         public virtual double MinLength { get; set; }
+        /// <Summary>
+        /// The preferred smallest size the scrollbar can shrink to when viewport is
+        /// overscrolled.
+        ///
+        /// When overscrolling, the size of the scrollbar may shrink to a smaller size
+        /// than [minOverscrollLength] to fit in the available paint area. E.g., when
+        /// [minOverscrollLength] is `double.infinity`, it will not be respected if
+        /// the [viewportDimension] and [mainAxisMargin] are finite.
+        ///
+        /// The value is less than or equal to [minLength] and greater than or equal to 0.
+        /// If unspecified or set to null, it will defaults to the value of [minLength].
+        /// </Summary>
         public virtual double MinOverscrollLength { get; set; }
         internal virtual FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics _LastMetrics { get; set; }
         internal virtual FlutterSDK.Painting.Basictypes.AxisDirection _LastAxisDirection { get; set; }

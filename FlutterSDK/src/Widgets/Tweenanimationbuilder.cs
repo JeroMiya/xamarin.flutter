@@ -536,6 +536,17 @@ namespace FlutterSDK.Widgets.Tweenanimationbuilder
     /// </Summary>
     public class TweenAnimationBuilder<T> : FlutterSDK.Widgets.Implicitanimations.ImplicitlyAnimatedWidget
     {
+        /// <Summary>
+        /// Creates a [TweenAnimationBuilder].
+        ///
+        /// The properties [tween], [duration], and [builder] are required. The values
+        /// for [tween], [curve], and [builder] must not be null.
+        ///
+        /// The [TweenAnimationBuilder] takes full ownership of the provided [tween]
+        /// instance and mutates it. Once a [Tween] has been passed to a
+        /// [TweenAnimationBuilder], its properties should not be accessed or changed
+        /// anymore to avoid interference with the [TweenAnimationBuilder].
+        /// </Summary>
         public TweenAnimationBuilder(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Animation.Tween.Tween<T> tween = default(FlutterSDK.Animation.Tween.Tween<T>), TimeSpan duration = default(TimeSpan), FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve), FlutterSDK.Widgets.Valuelistenablebuilder.ValueWidgetBuilder<T> builder = default(FlutterSDK.Widgets.Valuelistenablebuilder.ValueWidgetBuilder<T>), VoidCallback onEnd = default(VoidCallback), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, duration: duration, curve: curve, onEnd: onEnd)
         {
@@ -543,8 +554,60 @@ namespace FlutterSDK.Widgets.Tweenanimationbuilder
             this.Builder = builder;
             this.Child = child;
         }
+        /// <Summary>
+        /// Defines the target value for the animation.
+        ///
+        /// When the widget first builds, the animation runs from [Tween.begin] to
+        /// [Tween.end], if [Tween.begin] is non-null. A new animation can be
+        /// triggered at anytime by providing a new [Tween] with a new [Tween.end]
+        /// value. The new animation runs from the current animation value (which may
+        /// be [Tween.end] of the old [tween], if that animation completed) to
+        /// [Tween.end] of the new [tween]. The [Tween.begin] value is ignored except
+        /// for the initial animation that is triggered when the widget builds for the
+        /// first time.
+        ///
+        /// Any (subclass of) [Tween] is accepted as an argument. For example, to
+        /// animate the height or width of a [Widget], use a [Tween<double>], or
+        /// check out the [ColorTween] to animate the color property of a [Widget].
+        ///
+        /// Any [Tween] provided must have a non-null [Tween.end] value.
+        ///
+        /// ## Ownership
+        ///
+        /// The [TweenAnimationBuilder] takes full ownership of the provided [Tween]
+        /// and it will mutate the [Tween]. Once a [Tween] instance has been passed
+        /// to [TweenAnimationBuilder] its properties should not be accessed or
+        /// changed anymore to avoid any interference with the
+        /// [TweenAnimationBuilder]. If you need to change the [Tween], create a
+        /// **new instance** with the new values.
+        ///
+        /// It is good practice to never store a [Tween] provided to a
+        /// [TweenAnimationBuilder] in an instance variable to avoid accidental
+        /// modifications of the [Tween].
+        /// </Summary>
         public virtual FlutterSDK.Animation.Tween.Tween<T> Tween { get; set; }
+        /// <Summary>
+        /// Called every time the animation value changes.
+        ///
+        /// The current animation value is passed to the builder along with the
+        /// [child]. The builder should build a [Widget] based on the current
+        /// animation value and incorporate the [child] into it, if it is non-null.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Valuelistenablebuilder.ValueWidgetBuilder<T> Builder { get; set; }
+        /// <Summary>
+        /// The child widget to pass to the builder.
+        ///
+        /// If a builder callback's return value contains a subtree that does not
+        /// depend on the animation, it's more efficient to build that subtree once
+        /// instead of rebuilding it on every animation tick.
+        ///
+        /// If the pre-built subtree is passed as the child parameter, the
+        /// [TweenAnimationBuilder] will pass it back to the [builder] function so
+        /// that it can be incorporated into the build.
+        ///
+        /// Using this pre-built child is entirely optional, but can improve
+        /// performance significantly in some cases and is therefore a good practice.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
 
         public new FlutterSDK.Widgets.Implicitanimations.ImplicitlyAnimatedWidgetState<FlutterSDK.Widgets.Implicitanimations.ImplicitlyAnimatedWidget> CreateState()

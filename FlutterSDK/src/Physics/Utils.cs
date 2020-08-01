@@ -425,6 +425,13 @@ namespace FlutterSDK.Physics.Utils
 {
     internal static class UtilsDefaultClass
     {
+        /// <Summary>
+        /// Whether two doubles are within a given distance of each other.
+        ///
+        /// The `epsilon` argument must be positive and not null.
+        /// The `a` and `b` arguments may be null. A null value is only considered
+        /// near-equal to another null value.
+        /// </Summary>
         internal static bool NearEqual(double a, double b, double epsilon)
         {
 
@@ -435,6 +442,11 @@ namespace FlutterSDK.Physics.Utils
 
 
 
+        /// <Summary>
+        /// Whether a double is within a given distance of zero.
+        ///
+        /// The epsilon argument must be positive.
+        /// </Summary>
         internal static bool NearZero(double a, double epsilon) => UtilsDefaultClass.NearEqual(a, 0.0, epsilon);
 
 

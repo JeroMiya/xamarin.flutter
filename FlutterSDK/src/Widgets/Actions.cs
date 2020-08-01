@@ -423,7 +423,15 @@ using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
 namespace FlutterSDK.Widgets.Actions
 {
+    /// <Summary>
+    /// Creates actions for use in defining shortcuts.
+    ///
+    /// Used by clients of [ShortcutMap] to define shortcut maps.
+    /// </Summary>
     public delegate FlutterSDK.Widgets.Actions.Action ActionFactory();
+    /// <Summary>
+    /// The signature of a callback accepted by [CallbackAction].
+    /// </Summary>
     public delegate void OnInvokeCallback(FlutterSDK.Widgets.Focusmanager.FocusNode node, FlutterSDK.Widgets.Actions.Intent tag);
     internal static class ActionsDefaultClass
     {
@@ -495,12 +503,27 @@ namespace FlutterSDK.Widgets.Actions
     /// </Summary>
     public class Intent : IDiagnosticable
     {
+        /// <Summary>
+        /// A const constructor for an [Intent].
+        ///
+        /// The [key] argument must not be null.
+        /// </Summary>
         public Intent(FlutterSDK.Foundation.Key.LocalKey key)
         : base()
         {
             this.Key = key;
         }
+        /// <Summary>
+        /// An intent that can't be mapped to an action.
+        ///
+        /// This Intent is mapped to an action in the [WidgetsApp] that does nothing,
+        /// so that it can be bound to a key in a [Shortcuts] widget in order to
+        /// disable a key binding made above it in the hierarchy.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Actions.Intent DoNothing { get; set; }
+        /// <Summary>
+        /// The key for the action this intent is associated with.
+        /// </Summary>
         public virtual FlutterSDK.Foundation.Key.LocalKey Key { get; set; }
 
         /// <Summary>
@@ -547,11 +570,21 @@ namespace FlutterSDK.Widgets.Actions
     /// </Summary>
     public class Action : IDiagnosticable
     {
+        /// <Summary>
+        /// A const constructor for an [Action].
+        ///
+        /// The [intentKey] parameter must not be null.
+        /// </Summary>
         public Action(FlutterSDK.Foundation.Key.LocalKey intentKey)
         : base()
         {
             this.IntentKey = intentKey;
         }
+        /// <Summary>
+        /// The unique key for this action.
+        ///
+        /// This key will be used to map to this action in an [ActionDispatcher].
+        /// </Summary>
         public virtual FlutterSDK.Foundation.Key.LocalKey IntentKey { get; set; }
 
         /// <Summary>
@@ -599,11 +632,22 @@ namespace FlutterSDK.Widgets.Actions
     /// </Summary>
     public class CallbackAction : FlutterSDK.Widgets.Actions.Action
     {
+        /// <Summary>
+        /// A const constructor for an [Action].
+        ///
+        /// The `intentKey` and [onInvoke] parameters must not be null.
+        /// The [onInvoke] parameter is required.
+        /// </Summary>
         public CallbackAction(FlutterSDK.Foundation.Key.LocalKey intentKey, FlutterSDK.Widgets.Actions.OnInvokeCallback onInvoke = default(FlutterSDK.Widgets.Actions.OnInvokeCallback))
         : base(intentKey)
         {
             this.OnInvoke = onInvoke;
         }
+        /// <Summary>
+        /// The callback to be called when invoked.
+        ///
+        /// Must not be null.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Actions.OnInvokeCallback OnInvoke { get; set; }
 
         public new void Invoke(FlutterSDK.Widgets.Focusmanager.FocusNode node, FlutterSDK.Widgets.Actions.Intent intent) => OnInvoke.OnInvoke(node, intent);
@@ -617,6 +661,9 @@ namespace FlutterSDK.Widgets.Actions
     /// </Summary>
     public class ActionDispatcher : IDiagnosticable
     {
+        /// <Summary>
+        /// Const constructor so that subclasses can be const.
+        /// </Summary>
         public ActionDispatcher()
         {
 
@@ -670,13 +717,38 @@ namespace FlutterSDK.Widgets.Actions
     /// </Summary>
     public class Actions : FlutterSDK.Widgets.Framework.InheritedWidget
     {
+        /// <Summary>
+        /// Creates an [Actions] widget.
+        ///
+        /// The [child], [actions], and [dispatcher] arguments must not be null.
+        /// </Summary>
         public Actions(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Actions.ActionDispatcher dispatcher = default(FlutterSDK.Widgets.Actions.ActionDispatcher), Dictionary<FlutterSDK.Foundation.Key.LocalKey, object> actions = default(Dictionary<FlutterSDK.Foundation.Key.LocalKey, object>), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
             this.Dispatcher = dispatcher;
             this.ActionsValue = actions;
         }
+        /// <Summary>
+        /// The [ActionDispatcher] object that invokes actions.
+        ///
+        /// This is what is returned from [Actions.of], and used by [Actions.invoke].
+        ///
+        /// If this [dispatcher] is null, then [Actions.of] and [Actions.invoke] will
+        /// look up the tree until they find an Actions widget that has a dispatcher
+        /// set. If not such widget is found, then they will return/use a
+        /// default-constructed [ActionDispatcher].
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Actions.ActionDispatcher Dispatcher { get; set; }
+        /// <Summary>
+        /// {@template flutter.widgets.actions.actions}
+        /// A map of [Intent] keys to [ActionFactory] factory methods that defines
+        /// which actions this widget knows about.
+        ///
+        /// For performance reasons, it is recommended that a pre-built map is
+        /// passed in here (e.g. a final variable from your widget class) instead of
+        /// defining it inline in the build function.
+        /// {@endtemplate}
+        /// </Summary>
         public virtual Dictionary<FlutterSDK.Foundation.Key.LocalKey, object> ActionsValue { get; set; }
 
         private FlutterSDK.Widgets.Actions.ActionDispatcher _FindDispatcher(FlutterSDK.Widgets.Framework.Element element)
@@ -965,6 +1037,11 @@ namespace FlutterSDK.Widgets.Actions
     /// </Summary>
     public class FocusableActionDetector : FlutterSDK.Widgets.Framework.StatefulWidget
     {
+        /// <Summary>
+        /// Create a const [FocusableActionDetector].
+        ///
+        /// The [enabled], [autofocus], and [child] arguments must not be null.
+        /// </Summary>
         public FocusableActionDetector(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), bool enabled = true, FlutterSDK.Widgets.Focusmanager.FocusNode focusNode = default(FlutterSDK.Widgets.Focusmanager.FocusNode), bool autofocus = false, Dictionary<FlutterSDK.Widgets.Shortcuts.LogicalKeySet, FlutterSDK.Widgets.Actions.Intent> shortcuts = default(Dictionary<FlutterSDK.Widgets.Shortcuts.LogicalKeySet, FlutterSDK.Widgets.Actions.Intent>), Dictionary<FlutterSDK.Foundation.Key.LocalKey, object> actions = default(Dictionary<FlutterSDK.Foundation.Key.LocalKey, object>), FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onShowFocusHighlight = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>), FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onShowHoverHighlight = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>), FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onFocusChange = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key)
         {
@@ -978,14 +1055,56 @@ namespace FlutterSDK.Widgets.Actions
             this.OnFocusChange = onFocusChange;
             this.Child = child;
         }
+        /// <Summary>
+        /// Is this widget enabled or not.
+        ///
+        /// If disabled, will not send any notifications needed to update highlight or
+        /// focus state, and will not define or respond to any actions or shortcuts.
+        ///
+        /// When disabled, adds [Focus] to the widget tree, but sets
+        /// [Focus.canRequestFocus] to false.
+        /// </Summary>
         public virtual bool Enabled { get; set; }
+        /// <Summary>
+        /// {@macro flutter.widgets.Focus.focusNode}
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Focusmanager.FocusNode FocusNode { get; set; }
+        /// <Summary>
+        /// {@macro flutter.widgets.Focus.autofocus}
+        /// </Summary>
         public virtual bool Autofocus { get; set; }
+        /// <Summary>
+        /// {@macro flutter.widgets.actions.actions}
+        /// </Summary>
         public virtual Dictionary<FlutterSDK.Foundation.Key.LocalKey, object> Actions { get; set; }
+        /// <Summary>
+        /// {@macro flutter.widgets.shortcuts.shortcuts}
+        /// </Summary>
         public virtual Dictionary<FlutterSDK.Widgets.Shortcuts.LogicalKeySet, FlutterSDK.Widgets.Actions.Intent> Shortcuts { get; set; }
+        /// <Summary>
+        /// A function that will be called when the focus highlight should be shown or
+        /// hidden.
+        ///
+        /// This method is not triggered at the unmount of the widget.
+        /// </Summary>
         public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<bool> OnShowFocusHighlight { get; set; }
+        /// <Summary>
+        /// A function that will be called when the hover highlight should be shown or hidden.
+        ///
+        /// This method is not triggered at the unmount of the widget.
+        /// </Summary>
         public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<bool> OnShowHoverHighlight { get; set; }
+        /// <Summary>
+        /// A function that will be called when the focus changes.
+        ///
+        /// Called with true if the [focusNode] has primary focus.
+        /// </Summary>
         public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<bool> OnFocusChange { get; set; }
+        /// <Summary>
+        /// The child widget for this [FocusableActionDetector] widget.
+        ///
+        /// {@macro flutter.widgets.child}
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
 
         public new FlutterSDK.Widgets.Actions._FocusableActionDetectorState CreateState() => new _FocusableActionDetectorState();
@@ -1174,11 +1293,18 @@ namespace FlutterSDK.Widgets.Actions
     /// </Summary>
     public class DoNothingAction : FlutterSDK.Widgets.Actions.Action
     {
+        /// <Summary>
+        /// Const constructor for [DoNothingAction].
+        /// </Summary>
         public DoNothingAction()
         : base(Key)
         {
 
         }
+        /// <Summary>
+        /// The Key used for the [DoNothingIntent] intent, and registered at the top
+        /// level actions in [WidgetsApp.build].
+        /// </Summary>
         public virtual FlutterSDK.Foundation.Key.LocalKey Key { get; set; }
 
         public new void Invoke(FlutterSDK.Widgets.Focusmanager.FocusNode node, FlutterSDK.Widgets.Actions.Intent intent)
@@ -1199,11 +1325,17 @@ namespace FlutterSDK.Widgets.Actions
     /// </Summary>
     public class ActivateAction : FlutterSDK.Widgets.Actions.Action
     {
+        /// <Summary>
+        /// Creates a [ActivateAction] with a fixed [key];
+        /// </Summary>
         public ActivateAction()
         : base(Key)
         {
 
         }
+        /// <Summary>
+        /// The [LocalKey] that uniquely identifies this action.
+        /// </Summary>
         public virtual FlutterSDK.Foundation.Key.LocalKey Key { get; set; }
     }
 
@@ -1216,11 +1348,17 @@ namespace FlutterSDK.Widgets.Actions
     /// </Summary>
     public class SelectAction : FlutterSDK.Widgets.Actions.Action
     {
+        /// <Summary>
+        /// Creates a [SelectAction] with a fixed [key];
+        /// </Summary>
         public SelectAction()
         : base(Key)
         {
 
         }
+        /// <Summary>
+        /// The [LocalKey] that uniquely identifies this action.
+        /// </Summary>
         public virtual FlutterSDK.Foundation.Key.LocalKey Key { get; set; }
     }
 

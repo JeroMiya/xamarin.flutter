@@ -538,6 +538,14 @@ namespace FlutterSDK.Painting.Imageresolution
     /// </Summary>
     public class AssetImage : FlutterSDK.Painting.Imageprovider.AssetBundleImageProvider
     {
+        /// <Summary>
+        /// Creates an object that fetches an image from an asset bundle.
+        ///
+        /// The [assetName] argument must not be null. It should name the main asset
+        /// from the set of images to choose from. The [package] argument must be
+        /// non-null when fetching an asset that is included in package. See the
+        /// documentation for the [AssetImage] class itself for details.
+        /// </Summary>
         public AssetImage(string assetName, FlutterSDK.Services.Assetbundle.AssetBundle bundle = default(FlutterSDK.Services.Assetbundle.AssetBundle), string package = default(string))
         : base()
         {
@@ -545,8 +553,26 @@ namespace FlutterSDK.Painting.Imageresolution
             this.Bundle = bundle;
             this.Package = package;
         }
+        /// <Summary>
+        /// The name of the main asset from the set of images to choose from. See the
+        /// documentation for the [AssetImage] class itself for details.
+        /// </Summary>
         public virtual string AssetName { get; set; }
+        /// <Summary>
+        /// The bundle from which the image will be obtained.
+        ///
+        /// If the provided [bundle] is null, the bundle provided in the
+        /// [ImageConfiguration] passed to the [resolve] call will be used instead. If
+        /// that is also null, the [rootBundle] is used.
+        ///
+        /// The image is obtained by calling [AssetBundle.load] on the given [bundle]
+        /// using the key given by [keyName].
+        /// </Summary>
         public virtual FlutterSDK.Services.Assetbundle.AssetBundle Bundle { get; set; }
+        /// <Summary>
+        /// The name of the package from which the image is included. See the
+        /// documentation for the [AssetImage] class itself for details.
+        /// </Summary>
         public virtual string Package { get; set; }
         internal virtual double _NaturalResolution { get; set; }
         internal virtual RegExp _ExtractRatioRegExp { get; set; }

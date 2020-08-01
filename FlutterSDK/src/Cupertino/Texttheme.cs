@@ -316,6 +316,17 @@ namespace FlutterSDK.Cupertino.Texttheme
     /// </Summary>
     public class CupertinoTextThemeData : IDiagnosticable
     {
+        /// <Summary>
+        /// Create a [CupertinoTextThemeData].
+        ///
+        /// The [primaryColor] is used to derive TextStyle defaults of other attributes
+        /// such as [navActionTextStyle] and [actionTextStyle], it must not be null when
+        /// either [navActionTextStyle] or [actionTextStyle] is null. Defaults to
+        /// [CupertinoColors.systemBlue].
+        ///
+        /// Other [TextStyle] parameters default to default iOS text styles when
+        /// unspecified.
+        /// </Summary>
         public CupertinoTextThemeData(FlutterBinding.UI.Color primaryColor = default(FlutterBinding.UI.Color), Brightness brightness = default(Brightness), FlutterSDK.Painting.Textstyle.TextStyle textStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle actionTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle tabLabelTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle navTitleTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle navLargeTitleTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle navActionTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle pickerTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle dateTimePickerTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle))
         : base()
         {

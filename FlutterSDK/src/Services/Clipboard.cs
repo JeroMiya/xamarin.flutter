@@ -435,10 +435,16 @@ namespace FlutterSDK.Services.Clipboard
     /// </Summary>
     public class ClipboardData
     {
+        /// <Summary>
+        /// Creates data for the system clipboard.
+        /// </Summary>
         public ClipboardData(string text = default(string))
         {
             this.Text = text;
         }
+        /// <Summary>
+        /// Plain text variant of this clipboard data.
+        /// </Summary>
         public virtual string Text { get; set; }
     }
 
@@ -452,6 +458,11 @@ namespace FlutterSDK.Services.Clipboard
         {
 
         }
+        /// <Summary>
+        /// Plain text data format string.
+        ///
+        /// Used with [getData].
+        /// </Summary>
         public virtual string KTextPlain { get; set; }
 
         /// <Summary>

@@ -423,6 +423,9 @@ using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
 namespace FlutterSDK.Rendering.Debug
 {
+    /// <Summary>
+    /// Signature for [debugOnProfilePaint] implementations.
+    /// </Summary>
     public delegate void ProfilePaintCallback(FlutterSDK.Rendering.@object.RenderObject renderObject);
     internal static class DebugDefaultClass
     {
@@ -455,6 +458,12 @@ namespace FlutterSDK.Rendering.Debug
 
 
 
+        /// <Summary>
+        /// Paint a diagram showing the given area as padding.
+        ///
+        /// Called by [RenderPadding.debugPaintSize] when [debugPaintSizeEnabled] is
+        /// true.
+        /// </Summary>
         internal static void DebugPaintPadding(Canvas canvas, FlutterBinding.UI.Rect outerRect, FlutterBinding.UI.Rect innerRect, double outlineWidth = 2.0)
         {
 
@@ -462,6 +471,19 @@ namespace FlutterSDK.Rendering.Debug
 
 
 
+        /// <Summary>
+        /// Returns true if none of the rendering library debug variables have been changed.
+        ///
+        /// This function is used by the test framework to ensure that debug variables
+        /// haven't been inadvertently changed.
+        ///
+        /// See [the rendering library](rendering/rendering-library.html) for a complete
+        /// list.
+        ///
+        /// The `debugCheckIntrinsicSizesOverride` argument can be provided to override
+        /// the expected value for [debugCheckIntrinsicSizes]. (This exists because the
+        /// test framework itself overrides this value in some cases.)
+        /// </Summary>
         internal static bool DebugAssertAllRenderVarsUnset(string reason, bool debugCheckIntrinsicSizesOverride = false)
         {
 

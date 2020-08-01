@@ -440,6 +440,12 @@ namespace FlutterSDK.Services.Rawkeyboardandroid
     /// </Summary>
     public class RawKeyEventDataAndroid : FlutterSDK.Services.Rawkeyboard.RawKeyEventData
     {
+        /// <Summary>
+        /// Creates a key event data structure specific for Android.
+        ///
+        /// The [flags], [codePoint], [keyCode], [scanCode], and [metaState] arguments
+        /// must not be null.
+        /// </Summary>
         public RawKeyEventDataAndroid(int flags = 0, int codePoint = 0, int plainCodePoint = 0, int keyCode = 0, int scanCode = 0, int metaState = 0, int eventSource = 0, int vendorId = 0, int productId = 0, int deviceId = 0, int repeatCount = 0)
         : base()
         {
@@ -455,35 +461,274 @@ namespace FlutterSDK.Services.Rawkeyboardandroid
             this.DeviceId = deviceId;
             this.RepeatCount = repeatCount;
         }
+        /// <Summary>
+        /// The current set of additional flags for this event.
+        ///
+        /// Flags indicate things like repeat state, etc.
+        ///
+        /// See <https://developer.android.com/reference/android/view/KeyEvent.html#getFlags()>
+        /// for more information.
+        /// </Summary>
         public virtual int Flags { get; set; }
+        /// <Summary>
+        /// The Unicode code point represented by the key event, if any.
+        ///
+        /// If there is no Unicode code point, this value is zero.
+        ///
+        /// Dead keys are represented as Unicode combining characters.
+        ///
+        /// See <https://developer.android.com/reference/android/view/KeyEvent.html#getUnicodeChar()>
+        /// for more information.
+        /// </Summary>
         public virtual int CodePoint { get; set; }
+        /// <Summary>
+        /// The Unicode code point represented by the key event, if any, without
+        /// regard to any modifier keys which are currently pressed.
+        ///
+        /// If there is no Unicode code point, this value is zero.
+        ///
+        /// Dead keys are represented as Unicode combining characters.
+        ///
+        /// This is the result of calling KeyEvent.getUnicodeChar(0) on Android.
+        ///
+        /// See <https://developer.android.com/reference/android/view/KeyEvent.html#getUnicodeChar(int)>
+        /// for more information.
+        /// </Summary>
         public virtual int PlainCodePoint { get; set; }
+        /// <Summary>
+        /// The hardware key code corresponding to this key event.
+        ///
+        /// This is the physical key that was pressed, not the Unicode character.
+        /// See [codePoint] for the Unicode character.
+        ///
+        /// See <https://developer.android.com/reference/android/view/KeyEvent.html#getKeyCode()>
+        /// for more information.
+        /// </Summary>
         public virtual int KeyCode { get; set; }
+        /// <Summary>
+        /// The hardware scan code id corresponding to this key event.
+        ///
+        /// These values are not reliable and vary from device to device, so this
+        /// information is mainly useful for debugging.
+        ///
+        /// See <https://developer.android.com/reference/android/view/KeyEvent.html#getScanCode()>
+        /// for more information.
+        /// </Summary>
         public virtual int ScanCode { get; set; }
+        /// <Summary>
+        /// The modifiers that were present when the key event occurred.
+        ///
+        /// See <https://developer.android.com/reference/android/view/KeyEvent.html#getMetaState()>
+        /// for the numerical values of the `metaState`. Many of these constants are
+        /// also replicated as static constants in this class.
+        ///
+        /// See also:
+        ///
+        ///  * [modifiersPressed], which returns a Map of currently pressed modifiers
+        ///    and their keyboard side.
+        ///  * [isModifierPressed], to see if a specific modifier is pressed.
+        ///  * [isControlPressed], to see if a CTRL key is pressed.
+        ///  * [isShiftPressed], to see if a SHIFT key is pressed.
+        ///  * [isAltPressed], to see if an ALT key is pressed.
+        ///  * [isMetaPressed], to see if a META key is pressed.
+        /// </Summary>
         public virtual int MetaState { get; set; }
+        /// <Summary>
+        /// The source of the event.
+        ///
+        /// See <https://developer.android.com/reference/android/view/KeyEvent.html#getSource()>
+        /// for the numerical values of the `source`. Many of these constants are also
+        /// replicated as static constants in this class.
+        /// </Summary>
         public virtual int EventSource { get; set; }
+        /// <Summary>
+        /// The vendor ID of the device that produced the event.
+        ///
+        /// See <https://developer.android.com/reference/android/view/InputDevice.html#getVendorId()>
+        /// for the numerical values of the `vendorId`.
+        /// </Summary>
         public virtual int VendorId { get; set; }
+        /// <Summary>
+        /// The product ID of the device that produced the event.
+        ///
+        /// See <https://developer.android.com/reference/android/view/InputDevice.html#getProductId()>
+        /// for the numerical values of the `productId`.
+        /// </Summary>
         public virtual int ProductId { get; set; }
+        /// <Summary>
+        /// The ID of the device that produced the event.
+        ///
+        /// See https://developer.android.com/reference/android/view/InputDevice.html#getId()
+        /// </Summary>
         public virtual int DeviceId { get; set; }
+        /// <Summary>
+        /// The repeat count of the event.
+        ///
+        /// See <https://developer.android.com/reference/android/view/KeyEvent#getRepeatCount()>
+        /// for more information.
+        /// </Summary>
         public virtual int RepeatCount { get; set; }
         internal virtual int _SourceJoystick { get; set; }
+        /// <Summary>
+        /// No modifier keys are pressed in the [metaState] field.
+        ///
+        /// Use this value if you need to decode the [metaState] field yourself, but
+        /// it's much easier to use [isModifierPressed] if you just want to know if
+        /// a modifier is pressed.
+        /// </Summary>
         public virtual int ModifierNone { get; set; }
+        /// <Summary>
+        /// This mask is used to check the [metaState] field to test whether one of
+        /// the ALT modifier keys is pressed.
+        ///
+        /// Use this value if you need to decode the [metaState] field yourself, but
+        /// it's much easier to use [isModifierPressed] if you just want to know if
+        /// a modifier is pressed.
+        /// </Summary>
         public virtual int ModifierAlt { get; set; }
+        /// <Summary>
+        /// This mask is used to check the [metaState] field to test whether the left
+        /// ALT modifier key is pressed.
+        ///
+        /// Use this value if you need to decode the [metaState] field yourself, but
+        /// it's much easier to use [isModifierPressed] if you just want to know if
+        /// a modifier is pressed.
+        /// </Summary>
         public virtual int ModifierLeftAlt { get; set; }
+        /// <Summary>
+        /// This mask is used to check the [metaState] field to test whether the right
+        /// ALT modifier key is pressed.
+        ///
+        /// Use this value if you need to decode the [metaState] field yourself, but
+        /// it's much easier to use [isModifierPressed] if you just want to know if
+        /// a modifier is pressed.
+        /// </Summary>
         public virtual int ModifierRightAlt { get; set; }
+        /// <Summary>
+        /// This mask is used to check the [metaState] field to test whether one of
+        /// the SHIFT modifier keys is pressed.
+        ///
+        /// Use this value if you need to decode the [metaState] field yourself, but
+        /// it's much easier to use [isModifierPressed] if you just want to know if
+        /// a modifier is pressed.
+        /// </Summary>
         public virtual int ModifierShift { get; set; }
+        /// <Summary>
+        /// This mask is used to check the [metaState] field to test whether the left
+        /// SHIFT modifier key is pressed.
+        ///
+        /// Use this value if you need to decode the [metaState] field yourself, but
+        /// it's much easier to use [isModifierPressed] if you just want to know if
+        /// a modifier is pressed.
+        /// </Summary>
         public virtual int ModifierLeftShift { get; set; }
+        /// <Summary>
+        /// This mask is used to check the [metaState] field to test whether the right
+        /// SHIFT modifier key is pressed.
+        ///
+        /// Use this value if you need to decode the [metaState] field yourself, but
+        /// it's much easier to use [isModifierPressed] if you just want to know if
+        /// a modifier is pressed.
+        /// </Summary>
         public virtual int ModifierRightShift { get; set; }
+        /// <Summary>
+        /// This mask is used to check the [metaState] field to test whether the SYM
+        /// modifier key is pressed.
+        ///
+        /// Use this value if you need to decode the [metaState] field yourself, but
+        /// it's much easier to use [isModifierPressed] if you just want to know if
+        /// a modifier is pressed.
+        /// </Summary>
         public virtual int ModifierSym { get; set; }
+        /// <Summary>
+        /// This mask is used to check the [metaState] field to test whether the
+        /// Function modifier key (Fn) is pressed.
+        ///
+        /// Use this value if you need to decode the [metaState] field yourself, but
+        /// it's much easier to use [isModifierPressed] if you just want to know if
+        /// a modifier is pressed.
+        /// </Summary>
         public virtual int ModifierFunction { get; set; }
+        /// <Summary>
+        /// This mask is used to check the [metaState] field to test whether one of
+        /// the CTRL modifier keys is pressed.
+        ///
+        /// Use this value if you need to decode the [metaState] field yourself, but
+        /// it's much easier to use [isModifierPressed] if you just want to know if
+        /// a modifier is pressed.
+        /// </Summary>
         public virtual int ModifierControl { get; set; }
+        /// <Summary>
+        /// This mask is used to check the [metaState] field to test whether the left
+        /// CTRL modifier key is pressed.
+        ///
+        /// Use this value if you need to decode the [metaState] field yourself, but
+        /// it's much easier to use [isModifierPressed] if you just want to know if
+        /// a modifier is pressed.
+        /// </Summary>
         public virtual int ModifierLeftControl { get; set; }
+        /// <Summary>
+        /// This mask is used to check the [metaState] field to test whether the right
+        /// CTRL modifier key is pressed.
+        ///
+        /// Use this value if you need to decode the [metaState] field yourself, but
+        /// it's much easier to use [isModifierPressed] if you just want to know if
+        /// a modifier is pressed.
+        /// </Summary>
         public virtual int ModifierRightControl { get; set; }
+        /// <Summary>
+        /// This mask is used to check the [metaState] field to test whether one of
+        /// the META modifier keys is pressed.
+        ///
+        /// Use this value if you need to decode the [metaState] field yourself, but
+        /// it's much easier to use [isModifierPressed] if you just want to know if
+        /// a modifier is pressed.
+        /// </Summary>
         public virtual int ModifierMeta { get; set; }
+        /// <Summary>
+        /// This mask is used to check the [metaState] field to test whether the left
+        /// META modifier key is pressed.
+        ///
+        /// Use this value if you need to decode the [metaState] field yourself, but
+        /// it's much easier to use [isModifierPressed] if you just want to know if
+        /// a modifier is pressed.
+        /// </Summary>
         public virtual int ModifierLeftMeta { get; set; }
+        /// <Summary>
+        /// This mask is used to check the [metaState] field to test whether the right
+        /// META modifier key is pressed.
+        ///
+        /// Use this value if you need to decode the [metaState] field yourself, but
+        /// it's much easier to use [isModifierPressed] if you just want to know if
+        /// a modifier is pressed.
+        /// </Summary>
         public virtual int ModifierRightMeta { get; set; }
+        /// <Summary>
+        /// This mask is used to check the [metaState] field to test whether the CAPS
+        /// LOCK modifier key is on.
+        ///
+        /// Use this value if you need to decode the [metaState] field yourself, but
+        /// it's much easier to use [isModifierPressed] if you just want to know if
+        /// a modifier is pressed.
+        /// </Summary>
         public virtual int ModifierCapsLock { get; set; }
+        /// <Summary>
+        /// This mask is used to check the [metaState] field to test whether the NUM
+        /// LOCK modifier key is on.
+        ///
+        /// Use this value if you need to decode the [metaState] field yourself, but
+        /// it's much easier to use [isModifierPressed] if you just want to know if
+        /// a modifier is pressed.
+        /// </Summary>
         public virtual int ModifierNumLock { get; set; }
+        /// <Summary>
+        /// This mask is used to check the [metaState] field to test whether the
+        /// SCROLL LOCK modifier key is on.
+        ///
+        /// Use this value if you need to decode the [metaState] field yourself, but
+        /// it's much easier to use [isModifierPressed] if you just want to know if
+        /// a modifier is pressed.
+        /// </Summary>
         public virtual int ModifierScrollLock { get; set; }
         public virtual string KeyLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey PhysicalKey { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }

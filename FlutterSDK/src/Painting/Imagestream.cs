@@ -423,8 +423,31 @@ using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
 namespace FlutterSDK.Painting.Imagestream
 {
+    /// <Summary>
+    /// Signature for callbacks reporting that an image is available.
+    ///
+    /// Used in [ImageStreamListener].
+    ///
+    /// The `synchronousCall` argument is true if the listener is being invoked
+    /// during the call to `addListener`. This can be useful if, for example,
+    /// [ImageStream.addListener] is invoked during a frame, so that a new rendering
+    /// frame is requested if the call was asynchronous (after the current frame)
+    /// and no rendering frame is requested if the call was synchronous (within the
+    /// same stack frame as the call to [ImageStream.addListener]).
+    /// </Summary>
     public delegate void ImageListener(FlutterSDK.Painting.Imagestream.ImageInfo image, bool synchronousCall);
+    /// <Summary>
+    /// Signature for listening to [ImageChunkEvent] events.
+    ///
+    /// Used in [ImageStreamListener].
+    /// </Summary>
     public delegate void ImageChunkListener(FlutterSDK.Painting.Imagestream.ImageChunkEvent @event);
+    /// <Summary>
+    /// Signature for reporting errors when resolving images.
+    ///
+    /// Used in [ImageStreamListener], as well as by [ImageCache.putIfAbsent] and
+    /// [precacheImage], to report errors.
+    /// </Summary>
     public delegate void ImageErrorListener(object exception, StackTrace stackTrace);
     internal static class ImagestreamDefaultClass
     {
@@ -459,13 +482,36 @@ namespace FlutterSDK.Painting.Imagestream
     /// </Summary>
     public class ImageInfo
     {
+        /// <Summary>
+        /// Creates an [ImageInfo] object for the given [image] and [scale].
+        ///
+        /// Both the image and the scale must not be null.
+        /// </Summary>
         public ImageInfo(SKImage image = default(SKImage), double scale = 1.0)
         : base()
         {
             this.Image = image;
             this.Scale = scale;
         }
+        /// <Summary>
+        /// The raw image pixels.
+        ///
+        /// This is the object to pass to the [Canvas.drawImage],
+        /// [Canvas.drawImageRect], or [Canvas.drawImageNine] methods when painting
+        /// the image.
+        /// </Summary>
         public virtual SKImage Image { get; set; }
+        /// <Summary>
+        /// The linear scale factor for drawing this image at its intended size.
+        ///
+        /// The scale factor applies to the width and the height.
+        ///
+        /// For example, if this is 2.0 it means that there are four image pixels for
+        /// every one logical pixel, and the image's actual width and height (as given
+        /// by the [dart:ui.Image.width] and [dart:ui.Image.height] properties) are
+        /// double the height and width that should be used when painting the image
+        /// (e.g. in the arguments given to [Canvas.drawImage]).
+        /// </Summary>
         public virtual double Scale { get; set; }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 
@@ -495,6 +541,11 @@ namespace FlutterSDK.Painting.Imagestream
     /// </Summary>
     public class ImageStreamListener
     {
+        /// <Summary>
+        /// Creates a new [ImageStreamListener].
+        ///
+        /// The [onImage] parameter must not be null.
+        /// </Summary>
         public ImageStreamListener(FlutterSDK.Painting.Imagestream.ImageListener onImage, FlutterSDK.Painting.Imagestream.ImageChunkListener onChunk = default(FlutterSDK.Painting.Imagestream.ImageChunkListener), FlutterSDK.Painting.Imagestream.ImageErrorListener onError = default(FlutterSDK.Painting.Imagestream.ImageErrorListener))
         : base()
         {
@@ -502,8 +553,43 @@ namespace FlutterSDK.Painting.Imagestream
             this.OnChunk = onChunk;
             this.OnError = onError;
         }
+        /// <Summary>
+        /// Callback for getting notified that an image is available.
+        ///
+        /// This callback may fire multiple times (e.g. if the [ImageStreamCompleter]
+        /// that drives the notifications fires multiple times). An example of such a
+        /// case would be an image with multiple frames within it (such as an animated
+        /// GIF).
+        ///
+        /// For more information on how to interpret the parameters to the callback,
+        /// see the documentation on [ImageListener].
+        ///
+        /// See also:
+        ///
+        ///  * [onError], which will be called instead of [onImage] if an error occurs
+        ///    during loading.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Imagestream.ImageListener OnImage { get; set; }
+        /// <Summary>
+        /// Callback for getting notified when a chunk of bytes has been received
+        /// during the loading of the image.
+        ///
+        /// This callback may fire many times (e.g. when used with a [NetworkImage],
+        /// where the image bytes are loaded incrementally over the wire) or not at
+        /// all (e.g. when used with a [MemoryImage], where the image bytes are
+        /// already available in memory).
+        ///
+        /// This callback may also continue to fire after the [onImage] callback has
+        /// fired (e.g. for multi-frame images that continue to load after the first
+        /// frame is available).
+        /// </Summary>
         public virtual FlutterSDK.Painting.Imagestream.ImageChunkListener OnChunk { get; set; }
+        /// <Summary>
+        /// Callback for getting notified when an error occurs while loading an image.
+        ///
+        /// If an error occurs during loading, [onError] will be called instead of
+        /// [onImage].
+        /// </Summary>
         public virtual FlutterSDK.Painting.Imagestream.ImageErrorListener OnError { get; set; }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 
@@ -531,13 +617,32 @@ namespace FlutterSDK.Painting.Imagestream
     /// </Summary>
     public class ImageChunkEvent : IDiagnosticable
     {
+        /// <Summary>
+        /// Creates a new chunk event.
+        /// </Summary>
         public ImageChunkEvent(int cumulativeBytesLoaded = default(int), int expectedTotalBytes = default(int))
         : base()
         {
             this.CumulativeBytesLoaded = cumulativeBytesLoaded;
             this.ExpectedTotalBytes = expectedTotalBytes;
         }
+        /// <Summary>
+        /// The number of bytes that have been received across the wire thus far.
+        /// </Summary>
         public virtual int CumulativeBytesLoaded { get; set; }
+        /// <Summary>
+        /// The expected number of bytes that need to be received to finish loading
+        /// the image.
+        ///
+        /// This value is not necessarily equal to the expected _size_ of the image
+        /// in bytes, as the bytes required to load the image may be compressed.
+        ///
+        /// This value will be null if the number is not known in advance.
+        ///
+        /// When this value is null, the chunk event may still be useful as an
+        /// indication that data is loading (and how much), but it cannot represent a
+        /// loading completion percentage.
+        /// </Summary>
         public virtual int ExpectedTotalBytes { get; set; }
 
         public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
@@ -577,6 +682,11 @@ namespace FlutterSDK.Painting.Imagestream
     /// </Summary>
     public class ImageStream : IDiagnosticable
     {
+        /// <Summary>
+        /// Create an initially unbound image stream.
+        ///
+        /// Once an [ImageStreamCompleter] is available, call [setCompleter].
+        /// </Summary>
         public ImageStream()
         {
 
@@ -908,6 +1018,22 @@ namespace FlutterSDK.Painting.Imagestream
     /// </Summary>
     public class OneFrameImageStreamCompleter : FlutterSDK.Painting.Imagestream.ImageStreamCompleter
     {
+        /// <Summary>
+        /// Creates a manager for one-frame [ImageStream]s.
+        ///
+        /// The image resource awaits the given [Future]. When the future resolves,
+        /// it notifies the [ImageListener]s that have been registered with
+        /// [addListener].
+        ///
+        /// The [InformationCollector], if provided, is invoked if the given [Future]
+        /// resolves with an error, and can be used to supplement the reported error
+        /// message (for example, giving the image's URL).
+        ///
+        /// Errors are reported using [FlutterError.reportError] with the `silent`
+        /// argument on [FlutterErrorDetails] set to true, meaning that by default the
+        /// message is only dumped to the console in debug mode (see [new
+        /// FlutterErrorDetails]).
+        /// </Summary>
         public OneFrameImageStreamCompleter(Future<FlutterSDK.Painting.Imagestream.ImageInfo> image, FlutterSDK.Foundation.Assertions.InformationCollector informationCollector = default(FlutterSDK.Foundation.Assertions.InformationCollector))
         : base()
         {
@@ -959,6 +1085,22 @@ namespace FlutterSDK.Painting.Imagestream
     /// </Summary>
     public class MultiFrameImageStreamCompleter : FlutterSDK.Painting.Imagestream.ImageStreamCompleter
     {
+        /// <Summary>
+        /// Creates a image stream completer.
+        ///
+        /// Immediately starts decoding the first image frame when the codec is ready.
+        ///
+        /// The `codec` parameter is a future for an initialized [ui.Codec] that will
+        /// be used to decode the image.
+        ///
+        /// The `scale` parameter is the linear scale factor for drawing this frames
+        /// of this image at their intended size.
+        ///
+        /// The `chunkEvents` parameter is an optional stream of notifications about
+        /// the loading progress of the image. If this stream is provided, the events
+        /// produced by the stream will be delivered to registered [ImageChunkListener]s
+        /// (see [addListener]).
+        /// </Summary>
         public MultiFrameImageStreamCompleter(Future<SKCodec> codec = default(Future<SKCodec>), double scale = default(double), Stream<FlutterSDK.Painting.Imagestream.ImageChunkEvent> chunkEvents = default(Stream<FlutterSDK.Painting.Imagestream.ImageChunkEvent>), FlutterSDK.Foundation.Assertions.InformationCollector informationCollector = default(FlutterSDK.Foundation.Assertions.InformationCollector))
         : base()
         {

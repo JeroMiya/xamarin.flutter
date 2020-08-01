@@ -636,6 +636,12 @@ namespace FlutterSDK.Material.Chip
     /// </Summary>
     public class Chip : FlutterSDK.Widgets.Framework.StatelessWidget, IChipAttributes, IDeletableChipAttributes
     {
+        /// <Summary>
+        /// Creates a material design chip.
+        ///
+        /// The [label], [autofocus], and [clipBehavior] arguments must not be null.
+        /// The [elevation] must be null or non-negative.
+        /// </Summary>
         public Chip(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget avatar = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget label = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Painting.Textstyle.TextStyle labelStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry labelPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Widgets.Framework.Widget deleteIcon = default(FlutterSDK.Widgets.Framework.Widget), VoidCallback onDeleted = default(VoidCallback), FlutterBinding.UI.Color deleteIconColor = default(FlutterBinding.UI.Color), string deleteButtonTooltipMessage = default(string), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip), FlutterSDK.Widgets.Focusmanager.FocusNode focusNode = default(FlutterSDK.Widgets.Focusmanager.FocusNode), bool autofocus = false, FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Material.Themedata.VisualDensity visualDensity = default(FlutterSDK.Material.Themedata.VisualDensity), FlutterSDK.Material.Themedata.MaterialTapTargetSize materialTapTargetSize = default(FlutterSDK.Material.Themedata.MaterialTapTargetSize), double elevation = default(double), FlutterBinding.UI.Color shadowColor = default(FlutterBinding.UI.Color))
         : base(key: key)
         {
@@ -737,6 +743,17 @@ namespace FlutterSDK.Material.Chip
     /// </Summary>
     public class InputChip : FlutterSDK.Widgets.Framework.StatelessWidget, IChipAttributes, IDeletableChipAttributes, ISelectableChipAttributes, ICheckmarkableChipAttributes, IDisabledChipAttributes, ITappableChipAttributes
     {
+        /// <Summary>
+        /// Creates an [InputChip].
+        ///
+        /// The [onPressed] and [onSelected] callbacks must not both be specified at
+        /// the same time.
+        ///
+        /// The [label], [isEnabled], [selected], [autofocus], and [clipBehavior]
+        /// arguments must not be null. The [pressElevation] and [elevation] must be
+        /// null or non-negative. Typically, [pressElevation] is greater than
+        /// [elevation].
+        /// </Summary>
         public InputChip(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget avatar = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget label = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Painting.Textstyle.TextStyle labelStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry labelPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), bool selected = false, bool isEnabled = true, FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onSelected = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>), FlutterSDK.Widgets.Framework.Widget deleteIcon = default(FlutterSDK.Widgets.Framework.Widget), VoidCallback onDeleted = default(VoidCallback), FlutterBinding.UI.Color deleteIconColor = default(FlutterBinding.UI.Color), string deleteButtonTooltipMessage = default(string), VoidCallback onPressed = default(VoidCallback), double pressElevation = default(double), FlutterBinding.UI.Color disabledColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color selectedColor = default(FlutterBinding.UI.Color), string tooltip = default(string), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip), FlutterSDK.Widgets.Focusmanager.FocusNode focusNode = default(FlutterSDK.Widgets.Focusmanager.FocusNode), bool autofocus = false, FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Material.Themedata.VisualDensity visualDensity = default(FlutterSDK.Material.Themedata.VisualDensity), FlutterSDK.Material.Themedata.MaterialTapTargetSize materialTapTargetSize = default(FlutterSDK.Material.Themedata.MaterialTapTargetSize), double elevation = default(double), FlutterBinding.UI.Color shadowColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color selectedShadowColor = default(FlutterBinding.UI.Color), bool showCheckmark = default(bool), FlutterBinding.UI.Color checkmarkColor = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Borders.ShapeBorder avatarBorder = default(FlutterSDK.Painting.Borders.ShapeBorder))
         : base(key: key)
         {
@@ -871,6 +888,13 @@ namespace FlutterSDK.Material.Chip
     /// </Summary>
     public class ChoiceChip : FlutterSDK.Widgets.Framework.StatelessWidget, IChipAttributes, ISelectableChipAttributes, IDisabledChipAttributes
     {
+        /// <Summary>
+        /// Create a chip that acts like a radio button.
+        ///
+        /// The [label], [selected], [autofocus], and [clipBehavior] arguments must
+        /// not be null. The [pressElevation] and [elevation] must be null or
+        /// non-negative. Typically, [pressElevation] is greater than [elevation].
+        /// </Summary>
         public ChoiceChip(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget avatar = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget label = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Painting.Textstyle.TextStyle labelStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry labelPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onSelected = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>), double pressElevation = default(double), bool selected = default(bool), FlutterBinding.UI.Color selectedColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color disabledColor = default(FlutterBinding.UI.Color), string tooltip = default(string), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip), FlutterSDK.Widgets.Focusmanager.FocusNode focusNode = default(FlutterSDK.Widgets.Focusmanager.FocusNode), bool autofocus = false, FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Material.Themedata.VisualDensity visualDensity = default(FlutterSDK.Material.Themedata.VisualDensity), FlutterSDK.Material.Themedata.MaterialTapTargetSize materialTapTargetSize = default(FlutterSDK.Material.Themedata.MaterialTapTargetSize), double elevation = default(double), FlutterBinding.UI.Color shadowColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color selectedShadowColor = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Borders.ShapeBorder avatarBorder = default(FlutterSDK.Painting.Borders.ShapeBorder))
         : base(key: key)
         {
@@ -1023,6 +1047,13 @@ namespace FlutterSDK.Material.Chip
     /// </Summary>
     public class FilterChip : FlutterSDK.Widgets.Framework.StatelessWidget, IChipAttributes, ISelectableChipAttributes, ICheckmarkableChipAttributes, IDisabledChipAttributes
     {
+        /// <Summary>
+        /// Create a chip that acts like a checkbox.
+        ///
+        /// The [selected], [label], [autofocus], and [clipBehavior] arguments must
+        /// not be null. The [pressElevation] and [elevation] must be null or
+        /// non-negative. Typically, [pressElevation] is greater than [elevation].
+        /// </Summary>
         public FilterChip(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget avatar = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget label = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Painting.Textstyle.TextStyle labelStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry labelPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), bool selected = false, FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onSelected = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>), double pressElevation = default(double), FlutterBinding.UI.Color disabledColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color selectedColor = default(FlutterBinding.UI.Color), string tooltip = default(string), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip), FlutterSDK.Widgets.Focusmanager.FocusNode focusNode = default(FlutterSDK.Widgets.Focusmanager.FocusNode), bool autofocus = false, FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Material.Themedata.VisualDensity visualDensity = default(FlutterSDK.Material.Themedata.VisualDensity), FlutterSDK.Material.Themedata.MaterialTapTargetSize materialTapTargetSize = default(FlutterSDK.Material.Themedata.MaterialTapTargetSize), double elevation = default(double), FlutterBinding.UI.Color shadowColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color selectedShadowColor = default(FlutterBinding.UI.Color), bool showCheckmark = default(bool), FlutterBinding.UI.Color checkmarkColor = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Borders.ShapeBorder avatarBorder = default(FlutterSDK.Painting.Borders.ShapeBorder))
         : base(key: key)
         {
@@ -1139,6 +1170,13 @@ namespace FlutterSDK.Material.Chip
     /// </Summary>
     public class ActionChip : FlutterSDK.Widgets.Framework.StatelessWidget, IChipAttributes, ITappableChipAttributes
     {
+        /// <Summary>
+        /// Create a chip that acts like a button.
+        ///
+        /// The [label], [onPressed], [autofocus], and [clipBehavior] arguments must
+        /// not be null. The [pressElevation] and [elevation] must be null or
+        /// non-negative. Typically, [pressElevation] is greater than [elevation].
+        /// </Summary>
         public ActionChip(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget avatar = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget label = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Painting.Textstyle.TextStyle labelStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry labelPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), VoidCallback onPressed = default(VoidCallback), double pressElevation = default(double), string tooltip = default(string), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip), FlutterSDK.Widgets.Focusmanager.FocusNode focusNode = default(FlutterSDK.Widgets.Focusmanager.FocusNode), bool autofocus = false, FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Material.Themedata.VisualDensity visualDensity = default(FlutterSDK.Material.Themedata.VisualDensity), FlutterSDK.Material.Themedata.MaterialTapTargetSize materialTapTargetSize = default(FlutterSDK.Material.Themedata.MaterialTapTargetSize), double elevation = default(double), FlutterBinding.UI.Color shadowColor = default(FlutterBinding.UI.Color))
         : base(key: key)
         {
@@ -1223,6 +1261,17 @@ namespace FlutterSDK.Material.Chip
     /// </Summary>
     public class RawChip : FlutterSDK.Widgets.Framework.StatefulWidget, IChipAttributes, IDeletableChipAttributes, ISelectableChipAttributes, ICheckmarkableChipAttributes, IDisabledChipAttributes, ITappableChipAttributes
     {
+        /// <Summary>
+        /// Creates a RawChip
+        ///
+        /// The [onPressed] and [onSelected] callbacks must not both be specified at
+        /// the same time.
+        ///
+        /// The [label], [isEnabled], [selected], [autofocus], and [clipBehavior]
+        /// arguments must not be null. The [pressElevation] and [elevation] must be
+        /// null or non-negative. Typically, [pressElevation] is greater than
+        /// [elevation].
+        /// </Summary>
         public RawChip(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget avatar = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget label = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Painting.Textstyle.TextStyle labelStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Material.Themedata.VisualDensity visualDensity = default(FlutterSDK.Material.Themedata.VisualDensity), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry labelPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Widgets.Framework.Widget deleteIcon = default(FlutterSDK.Widgets.Framework.Widget), VoidCallback onDeleted = default(VoidCallback), FlutterBinding.UI.Color deleteIconColor = default(FlutterBinding.UI.Color), string deleteButtonTooltipMessage = default(string), VoidCallback onPressed = default(VoidCallback), FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onSelected = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>), double pressElevation = default(double), bool tapEnabled = true, bool selected = false, bool isEnabled = true, FlutterBinding.UI.Color disabledColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color selectedColor = default(FlutterBinding.UI.Color), string tooltip = default(string), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip), FlutterSDK.Widgets.Focusmanager.FocusNode focusNode = default(FlutterSDK.Widgets.Focusmanager.FocusNode), bool autofocus = false, FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), FlutterSDK.Material.Themedata.MaterialTapTargetSize materialTapTargetSize = default(FlutterSDK.Material.Themedata.MaterialTapTargetSize), double elevation = default(double), FlutterBinding.UI.Color shadowColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color selectedShadowColor = default(FlutterBinding.UI.Color), bool showCheckmark = true, FlutterBinding.UI.Color checkmarkColor = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Borders.ShapeBorder avatarBorder = default(FlutterSDK.Painting.Borders.ShapeBorder))
         : base(key: key)
         {
@@ -1287,6 +1336,16 @@ namespace FlutterSDK.Material.Chip
         public new bool ShowCheckmark { get; set; }
         public new FlutterBinding.UI.Color CheckmarkColor { get; set; }
         public new FlutterSDK.Painting.Borders.ShapeBorder AvatarBorder { get; set; }
+        /// <Summary>
+        /// If set, this indicates that the chip should be disabled if all of the
+        /// tap callbacks ([onSelected], [onPressed]) are null.
+        ///
+        /// For example, the [Chip] class sets this to false because it can't be
+        /// disabled, even if no callbacks are set on it, since it is used for
+        /// displaying information only.
+        ///
+        /// Defaults to true.
+        /// </Summary>
         public virtual bool TapEnabled { get; set; }
 
         public new FlutterSDK.Material.Chip._RawChipState CreateState() => new _RawChipState();

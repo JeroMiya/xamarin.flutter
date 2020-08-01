@@ -1752,6 +1752,13 @@ namespace FlutterSDK.Material.Inputdecorator
     /// </Summary>
     public class InputDecorator : FlutterSDK.Widgets.Framework.StatefulWidget
     {
+        /// <Summary>
+        /// Creates a widget that displays a border, labels, and icons,
+        /// for a [TextField].
+        ///
+        /// The [isFocused], [isHovering], [expands], and [isEmpty] arguments must not
+        /// be null.
+        /// </Summary>
         public InputDecorator(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Material.Inputdecorator.InputDecoration decoration = default(FlutterSDK.Material.Inputdecorator.InputDecoration), FlutterSDK.Painting.Textstyle.TextStyle baseStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), TextAlign textAlign = default(TextAlign), FlutterSDK.Painting.Alignment.TextAlignVertical textAlignVertical = default(FlutterSDK.Painting.Alignment.TextAlignVertical), bool isFocused = false, bool isHovering = false, bool expands = false, bool isEmpty = false, FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key)
         {
@@ -1765,14 +1772,105 @@ namespace FlutterSDK.Material.Inputdecorator
             this.IsEmpty = isEmpty;
             this.Child = child;
         }
+        /// <Summary>
+        /// The text and styles to use when decorating the child.
+        ///
+        /// If null, `const InputDecoration()` is used. Null [InputDecoration]
+        /// properties are initialized with the corresponding values from
+        /// [ThemeData.inputDecorationTheme].
+        /// </Summary>
         public virtual FlutterSDK.Material.Inputdecorator.InputDecoration Decoration { get; set; }
+        /// <Summary>
+        /// The style on which to base the label, hint, counter, and error styles
+        /// if the [decoration] does not provide explicit styles.
+        ///
+        /// If null, `baseStyle` defaults to the `subtitle1` style from the
+        /// current [Theme], see [ThemeData.textTheme].
+        ///
+        /// The [TextStyle.textBaseline] of the [baseStyle] is used to determine
+        /// the baseline used for text alignment.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Textstyle.TextStyle BaseStyle { get; set; }
+        /// <Summary>
+        /// How the text in the decoration should be aligned horizontally.
+        /// </Summary>
         public virtual TextAlign TextAlign { get; set; }
+        /// <Summary>
+        /// {@template flutter.widgets.inputDecorator.textAlignVertical}
+        /// How the text should be aligned vertically.
+        ///
+        /// Determines the alignment of the baseline within the available space of
+        /// the input (typically a TextField). For example, TextAlignVertical.top will
+        /// place the baseline such that the text, and any attached decoration like
+        /// prefix and suffix, is as close to the top of the input as possible without
+        /// overflowing. The heights of the prefix and suffix are similarly included
+        /// for other alignment values. If the height is greater than the height
+        /// available, then the prefix and suffix will be allowed to overflow first
+        /// before the text scrolls.
+        /// {@endtemplate}
+        /// </Summary>
         public virtual FlutterSDK.Painting.Alignment.TextAlignVertical TextAlignVertical { get; set; }
+        /// <Summary>
+        /// Whether the input field has focus.
+        ///
+        /// Determines the position of the label text and the color and weight of the
+        /// border, as well as the container fill color, which is a blend of
+        /// [InputDecoration.focusColor] with [InputDecoration.fillColor] when
+        /// focused, and [InputDecoration.fillColor] when not.
+        ///
+        /// Defaults to false.
+        ///
+        /// See also:
+        ///
+        ///  * [InputDecoration.hoverColor], which is also blended into the focus
+        ///    color and fill color when the [isHovering] is true to produce the final
+        ///    color.
+        /// </Summary>
         public virtual bool IsFocused { get; set; }
+        /// <Summary>
+        /// Whether the input field is being hovered over by a mouse pointer.
+        ///
+        /// Determines the container fill color, which is a blend of
+        /// [InputDecoration.hoverColor] with [InputDecoration.fillColor] when
+        /// true, and [InputDecoration.fillColor] when not.
+        ///
+        /// Defaults to false.
+        ///
+        /// See also:
+        ///
+        ///  * [InputDecoration.focusColor], which is also blended into the hover
+        ///    color and fill color when [isFocused] is true to produce the final
+        ///    color.
+        /// </Summary>
         public virtual bool IsHovering { get; set; }
+        /// <Summary>
+        /// If true, the height of the input field will be as large as possible.
+        ///
+        /// If wrapped in a widget that constrains its child's height, like Expanded
+        /// or SizedBox, the input field will only be affected if [expands] is set to
+        /// true.
+        ///
+        /// See [TextField.minLines] and [TextField.maxLines] for related ways to
+        /// affect the height of an input. When [expands] is true, both must be null
+        /// in order to avoid ambiguity in determining the height.
+        ///
+        /// Defaults to false.
+        /// </Summary>
         public virtual bool Expands { get; set; }
+        /// <Summary>
+        /// Whether the input field is empty.
+        ///
+        /// Determines the position of the label text and whether to display the hint
+        /// text.
+        ///
+        /// Defaults to false.
+        /// </Summary>
         public virtual bool IsEmpty { get; set; }
+        /// <Summary>
+        /// The widget below this widget in the tree.
+        ///
+        /// Typically an [EditableText], [DropdownButton], or [InkWell].
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
         internal virtual bool _LabelShouldWithdraw { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 
@@ -2205,6 +2303,22 @@ namespace FlutterSDK.Material.Inputdecorator
     /// </Summary>
     public class InputDecoration
     {
+        /// <Summary>
+        /// Creates a bundle of the border, labels, icons, and styles used to
+        /// decorate a Material Design text field.
+        ///
+        /// Unless specified by [ThemeData.inputDecorationTheme],
+        /// [InputDecorator] defaults [isDense] to false, and [filled] to false,
+        /// and [maxLines] to 1. The default border is an instance
+        /// of [UnderlineInputBorder]. If [border] is [InputBorder.none] then
+        /// no border is drawn.
+        ///
+        /// The [enabled] argument must not be null.
+        ///
+        /// Only one of [prefix] and [prefixText] can be specified.
+        ///
+        /// Similarly, only one of [suffix] and [suffixText] can be specified.
+        /// </Summary>
         public InputDecoration(FlutterSDK.Widgets.Framework.Widget icon = default(FlutterSDK.Widgets.Framework.Widget), string labelText = default(string), FlutterSDK.Painting.Textstyle.TextStyle labelStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), string helperText = default(string), FlutterSDK.Painting.Textstyle.TextStyle helperStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), int helperMaxLines = default(int), string hintText = default(string), FlutterSDK.Painting.Textstyle.TextStyle hintStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), int hintMaxLines = default(int), string errorText = default(string), FlutterSDK.Painting.Textstyle.TextStyle errorStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), int errorMaxLines = default(int), bool hasFloatingPlaceholder = true, FlutterSDK.Material.Inputdecorator.FloatingLabelBehavior floatingLabelBehavior = default(FlutterSDK.Material.Inputdecorator.FloatingLabelBehavior), bool isDense = default(bool), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry contentPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Widgets.Framework.Widget prefixIcon = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Rendering.Box.BoxConstraints prefixIconConstraints = default(FlutterSDK.Rendering.Box.BoxConstraints), FlutterSDK.Widgets.Framework.Widget prefix = default(FlutterSDK.Widgets.Framework.Widget), string prefixText = default(string), FlutterSDK.Painting.Textstyle.TextStyle prefixStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Widgets.Framework.Widget suffixIcon = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget suffix = default(FlutterSDK.Widgets.Framework.Widget), string suffixText = default(string), FlutterSDK.Painting.Textstyle.TextStyle suffixStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Rendering.Box.BoxConstraints suffixIconConstraints = default(FlutterSDK.Rendering.Box.BoxConstraints), FlutterSDK.Widgets.Framework.Widget counter = default(FlutterSDK.Widgets.Framework.Widget), string counterText = default(string), FlutterSDK.Painting.Textstyle.TextStyle counterStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), bool filled = default(bool), FlutterBinding.UI.Color fillColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color focusColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color hoverColor = default(FlutterBinding.UI.Color), FlutterSDK.Material.Inputborder.InputBorder errorBorder = default(FlutterSDK.Material.Inputborder.InputBorder), FlutterSDK.Material.Inputborder.InputBorder focusedBorder = default(FlutterSDK.Material.Inputborder.InputBorder), FlutterSDK.Material.Inputborder.InputBorder focusedErrorBorder = default(FlutterSDK.Material.Inputborder.InputBorder), FlutterSDK.Material.Inputborder.InputBorder disabledBorder = default(FlutterSDK.Material.Inputborder.InputBorder), FlutterSDK.Material.Inputborder.InputBorder enabledBorder = default(FlutterSDK.Material.Inputborder.InputBorder), FlutterSDK.Material.Inputborder.InputBorder border = default(FlutterSDK.Material.Inputborder.InputBorder), bool enabled = true, string semanticCounterText = default(string), bool alignLabelWithHint = default(bool))
         : base()
         {
@@ -2251,6 +2365,13 @@ namespace FlutterSDK.Material.Inputdecorator
             this.SemanticCounterText = semanticCounterText;
             this.AlignLabelWithHint = alignLabelWithHint;
         }
+        /// <Summary>
+        /// Defines an [InputDecorator] that is the same size as the input field.
+        ///
+        /// This type of input decoration does not include a border by default.
+        ///
+        /// Sets the [isCollapsed] property to true.
+        /// </Summary>
         public static InputDecoration Collapsed(string hintText = default(string), bool hasFloatingPlaceholder = true, FlutterSDK.Material.Inputdecorator.FloatingLabelBehavior floatingLabelBehavior = default(FlutterSDK.Material.Inputdecorator.FloatingLabelBehavior), FlutterSDK.Painting.Textstyle.TextStyle hintStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), bool filled = false, FlutterBinding.UI.Color fillColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color focusColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color hoverColor = default(FlutterBinding.UI.Color), FlutterSDK.Material.Inputborder.InputBorder border = default(FlutterSDK.Material.Inputborder.InputBorder), bool enabled = true)
         {
             var instance = new InputDecoration(); instance.HintText = hintText;
@@ -2264,48 +2385,741 @@ namespace FlutterSDK.Material.Inputdecorator
             instance.Border = border;
             instance.Enabled = enabled;
         }
+        /// <Summary>
+        /// An icon to show before the input field and outside of the decoration's
+        /// container.
+        ///
+        /// The size and color of the icon is configured automatically using an
+        /// [IconTheme] and therefore does not need to be explicitly given in the
+        /// icon widget.
+        ///
+        /// The trailing edge of the icon is padded by 16dps.
+        ///
+        /// The decoration's container is the area which is filled if [filled] is
+        /// true and bordered per the [border]. It's the area adjacent to
+        /// [decoration.icon] and above the widgets that contain [helperText],
+        /// [errorText], and [counterText].
+        ///
+        /// See [Icon], [ImageIcon].
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Icon { get; set; }
+        /// <Summary>
+        /// Text that describes the input field.
+        ///
+        /// When the input field is empty and unfocused, the label is displayed on
+        /// top of the input field (i.e., at the same location on the screen where
+        /// text may be entered in the input field). When the input field receives
+        /// focus (or if the field is non-empty), the label moves above (i.e.,
+        /// vertically adjacent to) the input field.
+        /// </Summary>
         public virtual string LabelText { get; set; }
+        /// <Summary>
+        /// The style to use for the [labelText] when the label is above (i.e.,
+        /// vertically adjacent to) the input field.
+        ///
+        /// When the [labelText] is on top of the input field, the text uses the
+        /// [hintStyle] instead.
+        ///
+        /// If null, defaults to a value derived from the base [TextStyle] for the
+        /// input field and the current [Theme].
+        /// </Summary>
         public virtual FlutterSDK.Painting.Textstyle.TextStyle LabelStyle { get; set; }
+        /// <Summary>
+        /// Text that provides context about the input [child]'s value, such as how
+        /// the value will be used.
+        ///
+        /// If non-null, the text is displayed below the input [child], in the same
+        /// location as [errorText]. If a non-null [errorText] value is specified then
+        /// the helper text is not shown.
+        /// </Summary>
         public virtual string HelperText { get; set; }
+        /// <Summary>
+        /// The style to use for the [helperText].
+        /// </Summary>
         public virtual FlutterSDK.Painting.Textstyle.TextStyle HelperStyle { get; set; }
+        /// <Summary>
+        /// The maximum number of lines the [helperText] can occupy.
+        ///
+        /// Defaults to null, which means that the [helperText] will be limited
+        /// to a single line with [TextOverflow.ellipsis].
+        ///
+        /// This value is passed along to the [Text.maxLines] attribute
+        /// of the [Text] widget used to display the helper.
+        ///
+        /// See also:
+        ///
+        ///  * [errorMaxLines], the equivalent but for the [errorText].
+        /// </Summary>
         public virtual int HelperMaxLines { get; set; }
+        /// <Summary>
+        /// Text that suggests what sort of input the field accepts.
+        ///
+        /// Displayed on top of the input [child] (i.e., at the same location on the
+        /// screen where text may be entered in the input [child]) when the input
+        /// [isEmpty] and either (a) [labelText] is null or (b) the input has the focus.
+        /// </Summary>
         public virtual string HintText { get; set; }
+        /// <Summary>
+        /// The style to use for the [hintText].
+        ///
+        /// Also used for the [labelText] when the [labelText] is displayed on
+        /// top of the input field (i.e., at the same location on the screen where
+        /// text may be entered in the input [child]).
+        ///
+        /// If null, defaults to a value derived from the base [TextStyle] for the
+        /// input field and the current [Theme].
+        /// </Summary>
         public virtual FlutterSDK.Painting.Textstyle.TextStyle HintStyle { get; set; }
+        /// <Summary>
+        /// The maximum number of lines the [hintText] can occupy.
+        ///
+        /// Defaults to the value of [TextField.maxLines] attribute.
+        ///
+        /// This value is passed along to the [Text.maxLines] attribute
+        /// of the [Text] widget used to display the hint text. [TextOverflow.ellipsis] is
+        /// used to handle the overflow when it is limited to single line.
+        /// </Summary>
         public virtual int HintMaxLines { get; set; }
+        /// <Summary>
+        /// Text that appears below the input [child] and the border.
+        ///
+        /// If non-null, the border's color animates to red and the [helperText] is
+        /// not shown.
+        ///
+        /// In a [TextFormField], this is overridden by the value returned from
+        /// [TextFormField.validator], if that is not null.
+        /// </Summary>
         public virtual string ErrorText { get; set; }
+        /// <Summary>
+        /// The style to use for the [errorText].
+        ///
+        /// If null, defaults of a value derived from the base [TextStyle] for the
+        /// input field and the current [Theme].
+        /// </Summary>
         public virtual FlutterSDK.Painting.Textstyle.TextStyle ErrorStyle { get; set; }
+        /// <Summary>
+        /// The maximum number of lines the [errorText] can occupy.
+        ///
+        /// Defaults to null, which means that the [errorText] will be limited
+        /// to a single line with [TextOverflow.ellipsis].
+        ///
+        /// This value is passed along to the [Text.maxLines] attribute
+        /// of the [Text] widget used to display the error.
+        ///
+        /// See also:
+        ///
+        ///  * [helperMaxLines], the equivalent but for the [helperText].
+        /// </Summary>
         public virtual int ErrorMaxLines { get; set; }
+        /// <Summary>
+        /// Whether the label floats on focus.
+        ///
+        /// If this is false, the placeholder disappears when the input has focus or
+        /// text has been entered.
+        /// If this is true, the placeholder will rise to the top of the input when
+        /// the input has focus or text has been entered.
+        ///
+        /// Defaults to true.
+        ///
+        /// </Summary>
         public virtual bool HasFloatingPlaceholder { get; set; }
+        /// <Summary>
+        /// {@template flutter.material.inputDecoration.floatingLabelBehavior}
+        /// Defines how the floating label should be displayed.
+        ///
+        /// When [FloatingLabelBehavior.auto] the label will float to the top only when
+        /// the field is focused or has some text content, otherwise it will appear
+        /// in the field in place of the content.
+        ///
+        /// When [FloatingLabelBehavior.always] the label will always float at the top
+        /// of the field above the content.
+        ///
+        /// When [FloatingLabelBehavior.never] the label will always appear in an empty
+        /// field in place of the content.
+        ///
+        /// Defaults to [FloatingLabelBehavior.auto].
+        /// {@endtemplate}
+        /// </Summary>
         public virtual FlutterSDK.Material.Inputdecorator.FloatingLabelBehavior FloatingLabelBehavior { get; set; }
+        /// <Summary>
+        /// Whether the input [child] is part of a dense form (i.e., uses less vertical
+        /// space).
+        ///
+        /// Defaults to false.
+        /// </Summary>
         public virtual bool IsDense { get; set; }
+        /// <Summary>
+        /// The padding for the input decoration's container.
+        ///
+        /// The decoration's container is the area which is filled if [filled] is
+        /// true and bordered per the [border]. It's the area adjacent to
+        /// [decoration.icon] and above the widgets that contain [helperText],
+        /// [errorText], and [counterText].
+        ///
+        /// By default the `contentPadding` reflects [isDense] and the type of the
+        /// [border].
+        ///
+        /// If [isCollapsed] is true then `contentPadding` is [EdgeInsets.zero].
+        ///
+        /// If `isOutline` property of [border] is false and if [filled] is true then
+        /// `contentPadding` is `EdgeInsets.fromLTRB(12, 8, 12, 8)` when [isDense]
+        /// is true and `EdgeInsets.fromLTRB(12, 12, 12, 12)` when [isDense] is false`.
+        /// If `isOutline` property of [border] is false and if [filled] is false then
+        /// `contentPadding` is `EdgeInsets.fromLTRB(0, 8, 0, 8)` when [isDense] is
+        /// true and `EdgeInsets.fromLTRB(0, 12, 0, 12)` when [isDense] is false`.
+        ///
+        /// If `isOutline` property of [border] is true then `contentPaddding` is
+        /// `EdgeInsets.fromLTRB(12, 20, 12, 12)` when [isDense] is true
+        /// and `EdgeInsets.fromLTRB(12, 24, 12, 16)` when [isDense] is false.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry ContentPadding { get; set; }
+        /// <Summary>
+        /// Whether the decoration is the same size as the input field.
+        ///
+        /// A collapsed decoration cannot have [labelText], [errorText], an [icon].
+        ///
+        /// To create a collapsed input decoration, use [InputDecoration..collapsed].
+        /// </Summary>
         public virtual bool IsCollapsed { get; set; }
+        /// <Summary>
+        /// An icon that appears before the [prefix] or [prefixText] and before
+        /// the editable part of the text field, within the decoration's container.
+        ///
+        /// The size and color of the prefix icon is configured automatically using an
+        /// [IconTheme] and therefore does not need to be explicitly given in the
+        /// icon widget.
+        ///
+        /// The prefix icon is constrained with a minimum size of 48px by 48px, but
+        /// can be expanded beyond that. Anything larger than 24px will require
+        /// additional padding to ensure it matches the material spec of 12px padding
+        /// between the left edge of the input and leading edge of the prefix icon.
+        /// The following snippet shows how to pad the leading edge of the prefix
+        /// icon:
+        ///
+        /// ```dart
+        /// prefixIcon: Padding(
+        ///   padding: const EdgeInsetsDirectional.only(start: 12.0),
+        ///   child: myIcon, // myIcon is a 48px-wide widget.
+        /// )
+        /// ```
+        ///
+        /// The decoration's container is the area which is filled if [filled] is
+        /// true and bordered per the [border]. It's the area adjacent to
+        /// [decoration.icon] and above the widgets that contain [helperText],
+        /// [errorText], and [counterText].
+        ///
+        /// See also:
+        ///
+        ///  * [Icon] and [ImageIcon], which are typically used to show icons.
+        ///  * [prefix] and [prefixText], which are other ways to show content
+        ///    before the text field (but after the icon).
+        ///  * [suffixIcon], which is the same but on the trailing edge.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget PrefixIcon { get; set; }
+        /// <Summary>
+        /// The constraints for the prefix icon.
+        ///
+        /// This can be used to modify the [BoxConstraints] surrounding [prefixIcon].
+        ///
+        /// This property is particularly useful for getting the decoration's height
+        /// less than 48px. This can be achieved by setting [isDense] to true and
+        /// setting the constraints' minimum height and width to a value lower than
+        /// 48px.
+        ///
+        /// {@tool dartpad --template=stateless_widget_scaffold}
+        /// This example shows the differences between two `TextField` widgets when
+        /// [prefixIconConstraints] is set to the default value and when one is not.
+        ///
+        /// Note that [isDense] must be set to true to be able to
+        /// set the constraints smaller than 48px.
+        ///
+        /// If null, [BoxConstraints] with a minimum width and height of 48px is
+        /// used.
+        ///
+        /// ```dart
+        /// Widget build(BuildContext context) {
+        ///   return Padding(
+        ///     padding: const EdgeInsets.symmetric(horizontal: 8.0),
+        ///     child: Column(
+        ///       mainAxisAlignment: MainAxisAlignment.center,
+        ///       children: <Widget>[
+        ///         TextField(
+        ///           decoration: InputDecoration(
+        ///             hintText: 'Normal Icon Constraints',
+        ///             prefixIcon: Icon(Icons.search),
+        ///           ),
+        ///         ),
+        ///         SizedBox(height: 10),
+        ///         TextField(
+        ///           decoration: InputDecoration(
+        ///             isDense: true,
+        ///             hintText:'Smaller Icon Constraints',
+        ///             prefixIcon: Icon(Icons.search),
+        ///             prefixIconConstraints: BoxConstraints(
+        ///               minHeight: 32,
+        ///               minWidth: 32,
+        ///             ),
+        ///           ),
+        ///         ),
+        ///       ],
+        ///     ),
+        ///   );
+        /// }
+        /// ```
+        /// {@end-tool}
+        /// </Summary>
         public virtual FlutterSDK.Rendering.Box.BoxConstraints PrefixIconConstraints { get; set; }
+        /// <Summary>
+        /// Optional widget to place on the line before the input.
+        ///
+        /// This can be used, for example, to add some padding to text that would
+        /// otherwise be specified using [prefixText], or to add a custom widget in
+        /// front of the input. The widget's baseline is lined up with the input
+        /// baseline.
+        ///
+        /// Only one of [prefix] and [prefixText] can be specified.
+        ///
+        /// The [prefix] appears after the [prefixIcon], if both are specified.
+        ///
+        /// See also:
+        ///
+        ///  * [suffix], the equivalent but on the trailing edge.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Prefix { get; set; }
+        /// <Summary>
+        /// Optional text prefix to place on the line before the input.
+        ///
+        /// Uses the [prefixStyle]. Uses [hintStyle] if [prefixStyle] isn't specified.
+        /// The prefix text is not returned as part of the user's input.
+        ///
+        /// If a more elaborate prefix is required, consider using [prefix] instead.
+        /// Only one of [prefix] and [prefixText] can be specified.
+        ///
+        /// The [prefixText] appears after the [prefixIcon], if both are specified.
+        ///
+        /// See also:
+        ///
+        ///  * [suffixText], the equivalent but on the trailing edge.
+        /// </Summary>
         public virtual string PrefixText { get; set; }
+        /// <Summary>
+        /// The style to use for the [prefixText].
+        ///
+        /// If null, defaults to the [hintStyle].
+        ///
+        /// See also:
+        ///
+        ///  * [suffixStyle], the equivalent but on the trailing edge.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Textstyle.TextStyle PrefixStyle { get; set; }
+        /// <Summary>
+        /// An icon that appears after the editable part of the text field and
+        /// after the [suffix] or [suffixText], within the decoration's container.
+        ///
+        /// The size and color of the suffix icon is configured automatically using an
+        /// [IconTheme] and therefore does not need to be explicitly given in the
+        /// icon widget.
+        ///
+        /// The suffix icon is constrained with a minimum size of 48px by 48px, but
+        /// can be expanded beyond that. Anything larger than 24px will require
+        /// additional padding to ensure it matches the material spec of 12px padding
+        /// between the right edge of the input and trailing edge of the prefix icon.
+        /// The following snippet shows how to pad the trailing edge of the suffix
+        /// icon:
+        ///
+        /// ```dart
+        /// suffixIcon: Padding(
+        ///   padding: const EdgeInsetsDirectional.only(end: 12.0),
+        ///   child: myIcon, // myIcon is a 48px-wide widget.
+        /// )
+        /// ```
+        ///
+        /// The decoration's container is the area which is filled if [filled] is
+        /// true and bordered per the [border]. It's the area adjacent to
+        /// [decoration.icon] and above the widgets that contain [helperText],
+        /// [errorText], and [counterText].
+        ///
+        /// See also:
+        ///
+        ///  * [Icon] and [ImageIcon], which are typically used to show icons.
+        ///  * [suffix] and [suffixText], which are other ways to show content
+        ///    after the text field (but before the icon).
+        ///  * [prefixIcon], which is the same but on the leading edge.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget SuffixIcon { get; set; }
+        /// <Summary>
+        /// Optional widget to place on the line after the input.
+        ///
+        /// This can be used, for example, to add some padding to the text that would
+        /// otherwise be specified using [suffixText], or to add a custom widget after
+        /// the input. The widget's baseline is lined up with the input baseline.
+        ///
+        /// Only one of [suffix] and [suffixText] can be specified.
+        ///
+        /// The [suffix] appears before the [suffixIcon], if both are specified.
+        ///
+        /// See also:
+        ///
+        ///  * [prefix], the equivalent but on the leading edge.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Suffix { get; set; }
+        /// <Summary>
+        /// Optional text suffix to place on the line after the input.
+        ///
+        /// Uses the [suffixStyle]. Uses [hintStyle] if [suffixStyle] isn't specified.
+        /// The suffix text is not returned as part of the user's input.
+        ///
+        /// If a more elaborate suffix is required, consider using [suffix] instead.
+        /// Only one of [suffix] and [suffixText] can be specified.
+        ///
+        /// The [suffixText] appears before the [suffixIcon], if both are specified.
+        ///
+        /// See also:
+        ///
+        ///  * [prefixText], the equivalent but on the leading edge.
+        /// </Summary>
         public virtual string SuffixText { get; set; }
+        /// <Summary>
+        /// The style to use for the [suffixText].
+        ///
+        /// If null, defaults to the [hintStyle].
+        ///
+        /// See also:
+        ///
+        ///  * [prefixStyle], the equivalent but on the leading edge.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Textstyle.TextStyle SuffixStyle { get; set; }
+        /// <Summary>
+        /// The constraints for the suffix icon.
+        ///
+        /// This can be used to modify the [BoxConstraints] surrounding [suffixIcon].
+        ///
+        /// This property is particularly useful for getting the decoration's height
+        /// less than 48px. This can be achieved by setting [isDense] to true and
+        /// setting the constraints' minimum height and width to a value lower than
+        /// 48px.
+        ///
+        /// If null, a [BoxConstraints] with a minimum width and height of 48px is
+        /// used.
+        ///
+        /// {@tool dartpad --template=stateless_widget_scaffold}
+        /// This example shows the differences between two `TextField` widgets when
+        /// [suffixIconConstraints] is set to the default value and when one is not.
+        ///
+        /// Note that [isDense] must be set to true to be able to
+        /// set the constraints smaller than 48px.
+        ///
+        /// If null, [BoxConstraints] with a minimum width and height of 48px is
+        /// used.
+        ///
+        /// ```dart
+        /// Widget build(BuildContext context) {
+        ///   return Padding(
+        ///     padding: const EdgeInsets.symmetric(horizontal: 8.0),
+        ///     child: Column(
+        ///       mainAxisAlignment: MainAxisAlignment.center,
+        ///       children: <Widget>[
+        ///         TextField(
+        ///           decoration: InputDecoration(
+        ///             hintText: 'Normal Icon Constraints',
+        ///             suffixIcon: Icon(Icons.search),
+        ///           ),
+        ///         ),
+        ///         SizedBox(height: 10),
+        ///         TextField(
+        ///           decoration: InputDecoration(
+        ///             isDense: true,
+        ///             hintText:'Smaller Icon Constraints',
+        ///             suffixIcon: Icon(Icons.search),
+        ///             suffixIconConstraints: BoxConstraints(
+        ///               minHeight: 32,
+        ///               minWidth: 32,
+        ///             ),
+        ///           ),
+        ///         ),
+        ///       ],
+        ///     ),
+        ///   );
+        /// }
+        /// ```
+        /// {@end-tool}
+        /// </Summary>
         public virtual FlutterSDK.Rendering.Box.BoxConstraints SuffixIconConstraints { get; set; }
+        /// <Summary>
+        /// Optional text to place below the line as a character count.
+        ///
+        /// Rendered using [counterStyle]. Uses [helperStyle] if [counterStyle] is
+        /// null.
+        ///
+        /// The semantic label can be replaced by providing a [semanticCounterText].
+        ///
+        /// If null or an empty string and [counter] isn't specified, then nothing
+        /// will appear in the counter's location.
+        /// </Summary>
         public virtual string CounterText { get; set; }
+        /// <Summary>
+        /// Optional custom counter widget to go in the place otherwise occupied by
+        /// [counterText].  If this property is non null, then [counterText] is
+        /// ignored.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Counter { get; set; }
+        /// <Summary>
+        /// The style to use for the [counterText].
+        ///
+        /// If null, defaults to the [helperStyle].
+        /// </Summary>
         public virtual FlutterSDK.Painting.Textstyle.TextStyle CounterStyle { get; set; }
+        /// <Summary>
+        /// If true the decoration's container is filled with [fillColor].
+        ///
+        /// When [isFocused] is true, the [focusColor] is also blended into the final
+        /// fill color.  When [isHovering] is true, the [hoverColor] is also blended
+        /// into the final fill color.
+        ///
+        /// Typically this field set to true if [border] is an
+        /// [UnderlineInputBorder].
+        ///
+        /// The decoration's container is the area which is filled if [filled] is
+        /// true and bordered per the [border]. It's the area adjacent to
+        /// [decoration.icon] and above the widgets that contain [helperText],
+        /// [errorText], and [counterText].
+        ///
+        /// This property is false by default.
+        /// </Summary>
         public virtual bool Filled { get; set; }
+        /// <Summary>
+        /// The base fill color of the decoration's container color.
+        ///
+        /// When [isFocused] is true, the [focusColor] is also blended into the final
+        /// fill color.  When [isHovering] is true, the [hoverColor] is also blended
+        /// into the final fill color.
+        ///
+        /// By default the fillColor is based on the current [Theme].
+        ///
+        /// The decoration's container is the area which is filled if [filled] is
+        /// true and bordered per the [border]. It's the area adjacent to
+        /// [decoration.icon] and above the widgets that contain [helperText],
+        /// [errorText], and [counterText].
+        ///
+        /// This color is blended with [focusColor] if the decoration is focused.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color FillColor { get; set; }
+        /// <Summary>
+        /// The color to blend with [fillColor] and fill the decoration's container
+        /// with, if [filled] is true and the container has input focus.
+        ///
+        /// When [isHovering] is true, the [hoverColor] is also blended into the final
+        /// fill color.
+        ///
+        /// By default the [focusColor] is based on the current [Theme].
+        ///
+        /// The decoration's container is the area which is filled if [filled] is
+        /// true and bordered per the [border]. It's the area adjacent to
+        /// [decoration.icon] and above the widgets that contain [helperText],
+        /// [errorText], and [counterText].
+        /// </Summary>
         public virtual FlutterBinding.UI.Color FocusColor { get; set; }
+        /// <Summary>
+        /// The color of the focus highlight for the decoration shown if the container
+        /// is being hovered over by a mouse.
+        ///
+        /// If [filled] is true, the color is blended with [fillColor] and fills the
+        /// decoration's container. When [isFocused] is true, the [focusColor] is also
+        /// blended into the final fill color.
+        ///
+        /// If [filled] is false, and [isFocused] is false, the color is blended over
+        /// the [enabledBorder]'s color.
+        ///
+        /// By default the [hoverColor] is based on the current [Theme].
+        ///
+        /// The decoration's container is the area which is filled if [filled] is
+        /// true and bordered per the [border]. It's the area adjacent to
+        /// [decoration.icon] and above the widgets that contain [helperText],
+        /// [errorText], and [counterText].
+        /// </Summary>
         public virtual FlutterBinding.UI.Color HoverColor { get; set; }
+        /// <Summary>
+        /// The border to display when the [InputDecorator] does not have the focus and
+        /// is showing an error.
+        ///
+        /// See also:
+        ///
+        ///  * [InputDecorator.isFocused], which is true if the [InputDecorator]'s child
+        ///    has the focus.
+        ///  * [InputDecoration.errorText], the error shown by the [InputDecorator], if non-null.
+        ///  * [border], for a description of where the [InputDecorator] border appears.
+        ///  * [UnderlineInputBorder], an [InputDecorator] border which draws a horizontal
+        ///    line at the bottom of the input decorator's container.
+        ///  * [OutlineInputBorder], an [InputDecorator] border which draws a
+        ///    rounded rectangle around the input decorator's container.
+        ///  * [InputBorder.none], which doesn't draw a border.
+        ///  * [focusedBorder], displayed when [InputDecorator.isFocused] is true
+        ///    and [InputDecoration.errorText] is null.
+        ///  * [focusedErrorBorder], displayed when [InputDecorator.isFocused] is true
+        ///    and [InputDecoration.errorText] is non-null.
+        ///  * [disabledBorder], displayed when [InputDecoration.enabled] is false
+        ///    and [InputDecoration.errorText] is null.
+        ///  * [enabledBorder], displayed when [InputDecoration.enabled] is true
+        ///    and [InputDecoration.errorText] is null.
+        /// </Summary>
         public virtual FlutterSDK.Material.Inputborder.InputBorder ErrorBorder { get; set; }
+        /// <Summary>
+        /// The border to display when the [InputDecorator] has the focus and is not
+        /// showing an error.
+        ///
+        /// See also:
+        ///
+        ///  * [InputDecorator.isFocused], which is true if the [InputDecorator]'s child
+        ///    has the focus.
+        ///  * [InputDecoration.errorText], the error shown by the [InputDecorator], if non-null.
+        ///  * [border], for a description of where the [InputDecorator] border appears.
+        ///  * [UnderlineInputBorder], an [InputDecorator] border which draws a horizontal
+        ///    line at the bottom of the input decorator's container.
+        ///  * [OutlineInputBorder], an [InputDecorator] border which draws a
+        ///    rounded rectangle around the input decorator's container.
+        ///  * [InputBorder.none], which doesn't draw a border.
+        ///  * [errorBorder], displayed when [InputDecorator.isFocused] is false
+        ///    and [InputDecoration.errorText] is non-null.
+        ///  * [focusedErrorBorder], displayed when [InputDecorator.isFocused] is true
+        ///    and [InputDecoration.errorText] is non-null.
+        ///  * [disabledBorder], displayed when [InputDecoration.enabled] is false
+        ///    and [InputDecoration.errorText] is null.
+        ///  * [enabledBorder], displayed when [InputDecoration.enabled] is true
+        ///    and [InputDecoration.errorText] is null.
+        /// </Summary>
         public virtual FlutterSDK.Material.Inputborder.InputBorder FocusedBorder { get; set; }
+        /// <Summary>
+        /// The border to display when the [InputDecorator] has the focus and is
+        /// showing an error.
+        ///
+        /// See also:
+        ///
+        ///  * [InputDecorator.isFocused], which is true if the [InputDecorator]'s child
+        ///    has the focus.
+        ///  * [InputDecoration.errorText], the error shown by the [InputDecorator], if non-null.
+        ///  * [border], for a description of where the [InputDecorator] border appears.
+        ///  * [UnderlineInputBorder], an [InputDecorator] border which draws a horizontal
+        ///    line at the bottom of the input decorator's container.
+        ///  * [OutlineInputBorder], an [InputDecorator] border which draws a
+        ///    rounded rectangle around the input decorator's container.
+        ///  * [InputBorder.none], which doesn't draw a border.
+        ///  * [errorBorder], displayed when [InputDecorator.isFocused] is false
+        ///    and [InputDecoration.errorText] is non-null.
+        ///  * [focusedBorder], displayed when [InputDecorator.isFocused] is true
+        ///    and [InputDecoration.errorText] is null.
+        ///  * [disabledBorder], displayed when [InputDecoration.enabled] is false
+        ///    and [InputDecoration.errorText] is null.
+        ///  * [enabledBorder], displayed when [InputDecoration.enabled] is true
+        ///    and [InputDecoration.errorText] is null.
+        /// </Summary>
         public virtual FlutterSDK.Material.Inputborder.InputBorder FocusedErrorBorder { get; set; }
+        /// <Summary>
+        /// The border to display when the [InputDecorator] is disabled and is not
+        /// showing an error.
+        ///
+        /// See also:
+        ///
+        ///  * [InputDecoration.enabled], which is false if the [InputDecorator] is disabled.
+        ///  * [InputDecoration.errorText], the error shown by the [InputDecorator], if non-null.
+        ///  * [border], for a description of where the [InputDecorator] border appears.
+        ///  * [UnderlineInputBorder], an [InputDecorator] border which draws a horizontal
+        ///    line at the bottom of the input decorator's container.
+        ///  * [OutlineInputBorder], an [InputDecorator] border which draws a
+        ///    rounded rectangle around the input decorator's container.
+        ///  * [InputBorder.none], which doesn't draw a border.
+        ///  * [errorBorder], displayed when [InputDecorator.isFocused] is false
+        ///    and [InputDecoration.errorText] is non-null.
+        ///  * [focusedBorder], displayed when [InputDecorator.isFocused] is true
+        ///    and [InputDecoration.errorText] is null.
+        ///  * [focusedErrorBorder], displayed when [InputDecorator.isFocused] is true
+        ///    and [InputDecoration.errorText] is non-null.
+        ///  * [enabledBorder], displayed when [InputDecoration.enabled] is true
+        ///    and [InputDecoration.errorText] is null.
+        /// </Summary>
         public virtual FlutterSDK.Material.Inputborder.InputBorder DisabledBorder { get; set; }
+        /// <Summary>
+        /// The border to display when the [InputDecorator] is enabled and is not
+        /// showing an error.
+        ///
+        /// See also:
+        ///
+        ///  * [InputDecoration.enabled], which is false if the [InputDecorator] is disabled.
+        ///  * [InputDecoration.errorText], the error shown by the [InputDecorator], if non-null.
+        ///  * [border], for a description of where the [InputDecorator] border appears.
+        ///  * [UnderlineInputBorder], an [InputDecorator] border which draws a horizontal
+        ///    line at the bottom of the input decorator's container.
+        ///  * [OutlineInputBorder], an [InputDecorator] border which draws a
+        ///    rounded rectangle around the input decorator's container.
+        ///  * [InputBorder.none], which doesn't draw a border.
+        ///  * [errorBorder], displayed when [InputDecorator.isFocused] is false
+        ///    and [InputDecoration.errorText] is non-null.
+        ///  * [focusedBorder], displayed when [InputDecorator.isFocused] is true
+        ///    and [InputDecoration.errorText] is null.
+        ///  * [focusedErrorBorder], displayed when [InputDecorator.isFocused] is true
+        ///    and [InputDecoration.errorText] is non-null.
+        ///  * [disabledBorder], displayed when [InputDecoration.enabled] is false
+        ///    and [InputDecoration.errorText] is null.
+        /// </Summary>
         public virtual FlutterSDK.Material.Inputborder.InputBorder EnabledBorder { get; set; }
+        /// <Summary>
+        /// The shape of the border to draw around the decoration's container.
+        ///
+        /// This border's [InputBorder.borderSide], i.e. the border's color and width,
+        /// will be overridden to reflect the input decorator's state. Only the
+        /// border's shape is used. If custom  [BorderSide] values are desired for
+        /// a given state, all four borders – [errorBorder], [focusedBorder],
+        /// [enabledBorder], [disabledBorder] – must be set.
+        ///
+        /// The decoration's container is the area which is filled if [filled] is
+        /// true and bordered per the [border]. It's the area adjacent to
+        /// [InputDecoration.icon] and above the widgets that contain
+        /// [InputDecoration.helperText], [InputDecoration.errorText], and
+        /// [InputDecoration.counterText].
+        ///
+        /// The border's bounds, i.e. the value of `border.getOuterPath()`, define
+        /// the area to be filled.
+        ///
+        /// This property is only used when the appropriate one of [errorBorder],
+        /// [focusedBorder], [focusedErrorBorder], [disabledBorder], or [enabledBorder]
+        /// is not specified. This border's [InputBorder.borderSide] property is
+        /// configured by the InputDecorator, depending on the values of
+        /// [InputDecoration.errorText], [InputDecoration.enabled],
+        /// [InputDecorator.isFocused] and the current [Theme].
+        ///
+        /// Typically one of [UnderlineInputBorder] or [OutlineInputBorder].
+        /// If null, InputDecorator's default is `const UnderlineInputBorder()`.
+        ///
+        /// See also:
+        ///
+        ///  * [InputBorder.none], which doesn't draw a border.
+        ///  * [UnderlineInputBorder], which draws a horizontal line at the
+        ///    bottom of the input decorator's container.
+        ///  * [OutlineInputBorder], an [InputDecorator] border which draws a
+        ///    rounded rectangle around the input decorator's container.
+        /// </Summary>
         public virtual FlutterSDK.Material.Inputborder.InputBorder Border { get; set; }
+        /// <Summary>
+        /// If false [helperText],[errorText], and [counterText] are not displayed,
+        /// and the opacity of the remaining visual elements is reduced.
+        ///
+        /// This property is true by default.
+        /// </Summary>
         public virtual bool Enabled { get; set; }
+        /// <Summary>
+        /// A semantic label for the [counterText].
+        ///
+        /// Defaults to null.
+        ///
+        /// If provided, this replaces the semantic label of the [counterText].
+        /// </Summary>
         public virtual string SemanticCounterText { get; set; }
+        /// <Summary>
+        /// Typically set to true when the [InputDecorator] contains a multiline
+        /// [TextField] ([TextField.maxLines] is null or > 1) to override the default
+        /// behavior of aligning the label with the center of the [TextField].
+        ///
+        /// Defaults to false.
+        /// </Summary>
         public virtual bool AlignLabelWithHint { get; set; }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 
@@ -2364,6 +3178,13 @@ namespace FlutterSDK.Material.Inputdecorator
     /// </Summary>
     public class InputDecorationTheme : IDiagnosticable
     {
+        /// <Summary>
+        /// Creates a value for [ThemeData.inputDecorationTheme] that
+        /// defines default values for [InputDecorator].
+        ///
+        /// The values of [isDense], [isCollapsed], [filled], and [border] must
+        /// not be null.
+        /// </Summary>
         public InputDecorationTheme(FlutterSDK.Painting.Textstyle.TextStyle labelStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle helperStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), int helperMaxLines = default(int), FlutterSDK.Painting.Textstyle.TextStyle hintStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle errorStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), int errorMaxLines = default(int), bool hasFloatingPlaceholder = true, FlutterSDK.Material.Inputdecorator.FloatingLabelBehavior floatingLabelBehavior = default(FlutterSDK.Material.Inputdecorator.FloatingLabelBehavior), bool isDense = false, FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry contentPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), bool isCollapsed = false, FlutterSDK.Painting.Textstyle.TextStyle prefixStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle suffixStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle counterStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), bool filled = false, FlutterBinding.UI.Color fillColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color focusColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color hoverColor = default(FlutterBinding.UI.Color), FlutterSDK.Material.Inputborder.InputBorder errorBorder = default(FlutterSDK.Material.Inputborder.InputBorder), FlutterSDK.Material.Inputborder.InputBorder focusedBorder = default(FlutterSDK.Material.Inputborder.InputBorder), FlutterSDK.Material.Inputborder.InputBorder focusedErrorBorder = default(FlutterSDK.Material.Inputborder.InputBorder), FlutterSDK.Material.Inputborder.InputBorder disabledBorder = default(FlutterSDK.Material.Inputborder.InputBorder), FlutterSDK.Material.Inputborder.InputBorder enabledBorder = default(FlutterSDK.Material.Inputborder.InputBorder), FlutterSDK.Material.Inputborder.InputBorder border = default(FlutterSDK.Material.Inputborder.InputBorder), bool alignLabelWithHint = false)
         : base()
         {
@@ -2393,30 +3214,335 @@ namespace FlutterSDK.Material.Inputdecorator
             this.Border = border;
             this.AlignLabelWithHint = alignLabelWithHint;
         }
+        /// <Summary>
+        /// The style to use for [InputDecoration.labelText] when the label is
+        /// above (i.e., vertically adjacent to) the input field.
+        ///
+        /// When the [labelText] is on top of the input field, the text uses the
+        /// [hintStyle] instead.
+        ///
+        /// If null, defaults to a value derived from the base [TextStyle] for the
+        /// input field and the current [Theme].
+        /// </Summary>
         public virtual FlutterSDK.Painting.Textstyle.TextStyle LabelStyle { get; set; }
+        /// <Summary>
+        /// The style to use for [InputDecoration.helperText].
+        /// </Summary>
         public virtual FlutterSDK.Painting.Textstyle.TextStyle HelperStyle { get; set; }
+        /// <Summary>
+        /// The maximum number of lines the [helperText] can occupy.
+        ///
+        /// Defaults to null, which means that the [helperText] will be limited
+        /// to a single line with [TextOverflow.ellipsis].
+        ///
+        /// This value is passed along to the [Text.maxLines] attribute
+        /// of the [Text] widget used to display the helper.
+        ///
+        /// See also:
+        ///
+        ///  * [errorMaxLines], the equivalent but for the [errorText].
+        /// </Summary>
         public virtual int HelperMaxLines { get; set; }
+        /// <Summary>
+        /// The style to use for the [InputDecoration.hintText].
+        ///
+        /// Also used for the [labelText] when the [labelText] is displayed on
+        /// top of the input field (i.e., at the same location on the screen where
+        /// text may be entered in the input field).
+        ///
+        /// If null, defaults to a value derived from the base [TextStyle] for the
+        /// input field and the current [Theme].
+        /// </Summary>
         public virtual FlutterSDK.Painting.Textstyle.TextStyle HintStyle { get; set; }
+        /// <Summary>
+        /// The style to use for the [InputDecoration.errorText].
+        ///
+        /// If null, defaults of a value derived from the base [TextStyle] for the
+        /// input field and the current [Theme].
+        /// </Summary>
         public virtual FlutterSDK.Painting.Textstyle.TextStyle ErrorStyle { get; set; }
+        /// <Summary>
+        /// The maximum number of lines the [errorText] can occupy.
+        ///
+        /// Defaults to null, which means that the [errorText] will be limited
+        /// to a single line with [TextOverflow.ellipsis].
+        ///
+        /// This value is passed along to the [Text.maxLines] attribute
+        /// of the [Text] widget used to display the error.
+        ///
+        /// See also:
+        ///
+        ///  * [helperMaxLines], the equivalent but for the [helperText].
+        /// </Summary>
         public virtual int ErrorMaxLines { get; set; }
+        /// <Summary>
+        /// Whether the placeholder text floats to become a label on focus.
+        ///
+        /// If this is false, the placeholder disappears when the input has focus or
+        /// text has been entered.
+        /// If this is true, the placeholder will rise to the top of the input when
+        /// the input has focus or text has been entered.
+        ///
+        /// Defaults to true.
+        /// </Summary>
         public virtual bool HasFloatingPlaceholder { get; set; }
+        /// <Summary>
+        /// {@macro flutter.material.inputDecoration.floatingLabelBehavior}
+        /// </Summary>
         public virtual FlutterSDK.Material.Inputdecorator.FloatingLabelBehavior FloatingLabelBehavior { get; set; }
+        /// <Summary>
+        /// Whether the input decorator's child is part of a dense form (i.e., uses
+        /// less vertical space).
+        ///
+        /// Defaults to false.
+        /// </Summary>
         public virtual bool IsDense { get; set; }
+        /// <Summary>
+        /// The padding for the input decoration's container.
+        ///
+        /// The decoration's container is the area which is filled if
+        /// [InputDecoration.filled] is true and bordered per the [border].
+        /// It's the area adjacent to [InputDecoration.icon] and above the
+        /// [InputDecoration.icon] and above the widgets that contain
+        /// [InputDecoration.helperText], [InputDecoration.errorText], and
+        /// [InputDecoration.counterText].
+        ///
+        /// By default the `contentPadding` reflects [isDense] and the type of the
+        /// [border]. If [isCollapsed] is true then `contentPadding` is
+        /// [EdgeInsets.zero].
+        /// </Summary>
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry ContentPadding { get; set; }
+        /// <Summary>
+        /// Whether the decoration is the same size as the input field.
+        ///
+        /// A collapsed decoration cannot have [InputDecoration.labelText],
+        /// [InputDecoration.errorText], or an [InputDecoration.icon].
+        /// </Summary>
         public virtual bool IsCollapsed { get; set; }
+        /// <Summary>
+        /// The style to use for the [InputDecoration.prefixText].
+        ///
+        /// If null, defaults to the [hintStyle].
+        /// </Summary>
         public virtual FlutterSDK.Painting.Textstyle.TextStyle PrefixStyle { get; set; }
+        /// <Summary>
+        /// The style to use for the [InputDecoration.suffixText].
+        ///
+        /// If null, defaults to the [hintStyle].
+        /// </Summary>
         public virtual FlutterSDK.Painting.Textstyle.TextStyle SuffixStyle { get; set; }
+        /// <Summary>
+        /// The style to use for the [InputDecoration.counterText].
+        ///
+        /// If null, defaults to the [helperStyle].
+        /// </Summary>
         public virtual FlutterSDK.Painting.Textstyle.TextStyle CounterStyle { get; set; }
+        /// <Summary>
+        /// If true the decoration's container is filled with [fillColor].
+        ///
+        /// Typically this field set to true if [border] is an
+        /// [UnderlineInputBorder].
+        ///
+        /// The decoration's container is the area, defined by the border's
+        /// [InputBorder.getOuterPath], which is filled if [filled] is
+        /// true and bordered per the [border].
+        ///
+        /// This property is false by default.
+        /// </Summary>
         public virtual bool Filled { get; set; }
+        /// <Summary>
+        /// The color to fill the decoration's container with, if [filled] is true.
+        ///
+        /// By default the fillColor is based on the current [Theme].
+        ///
+        /// The decoration's container is the area, defined by the border's
+        /// [InputBorder.getOuterPath], which is filled if [filled] is
+        /// true and bordered per the [border].
+        /// </Summary>
         public virtual FlutterBinding.UI.Color FillColor { get; set; }
+        /// <Summary>
+        /// The color to blend with the decoration's [fillColor] with, if [filled] is
+        /// true and the container has the input focus.
+        ///
+        /// By default the [focusColor] is based on the current [Theme].
+        ///
+        /// The decoration's container is the area, defined by the border's
+        /// [InputBorder.getOuterPath], which is filled if [filled] is
+        /// true and bordered per the [border].
+        /// </Summary>
         public virtual FlutterBinding.UI.Color FocusColor { get; set; }
+        /// <Summary>
+        /// The color to blend with the decoration's [fillColor] with, if the
+        /// decoration is being hovered over by a mouse pointer.
+        ///
+        /// By default the [hoverColor] is based on the current [Theme].
+        ///
+        /// The decoration's container is the area, defined by the border's
+        /// [InputBorder.getOuterPath], which is filled if [filled] is
+        /// true and bordered per the [border].
+        ///
+        /// The container will be filled when hovered over even if [filled] is false.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color HoverColor { get; set; }
+        /// <Summary>
+        /// The border to display when the [InputDecorator] does not have the focus and
+        /// is showing an error.
+        ///
+        /// See also:
+        ///
+        ///  * [InputDecorator.isFocused], which is true if the [InputDecorator]'s child
+        ///    has the focus.
+        ///  * [InputDecoration.errorText], the error shown by the [InputDecorator], if non-null.
+        ///  * [border], for a description of where the [InputDecorator] border appears.
+        ///  * [UnderlineInputBorder], an [InputDecorator] border which draws a horizontal
+        ///    line at the bottom of the input decorator's container.
+        ///  * [OutlineInputBorder], an [InputDecorator] border which draws a
+        ///    rounded rectangle around the input decorator's container.
+        ///  * [InputBorder.none], which doesn't draw a border.
+        ///  * [focusedBorder], displayed when [InputDecorator.isFocused] is true
+        ///    and [InputDecoration.errorText] is null.
+        ///  * [focusedErrorBorder], displayed when [InputDecorator.isFocused] is true
+        ///    and [InputDecoration.errorText] is non-null.
+        ///  * [disabledBorder], displayed when [InputDecoration.enabled] is false
+        ///    and [InputDecoration.errorText] is null.
+        ///  * [enabledBorder], displayed when [InputDecoration.enabled] is true
+        ///    and [InputDecoration.errorText] is null.
+        /// </Summary>
         public virtual FlutterSDK.Material.Inputborder.InputBorder ErrorBorder { get; set; }
+        /// <Summary>
+        /// The border to display when the [InputDecorator] has the focus and is not
+        /// showing an error.
+        ///
+        /// See also:
+        ///
+        ///  * [InputDecorator.isFocused], which is true if the [InputDecorator]'s child
+        ///    has the focus.
+        ///  * [InputDecoration.errorText], the error shown by the [InputDecorator], if non-null.
+        ///  * [border], for a description of where the [InputDecorator] border appears.
+        ///  * [UnderlineInputBorder], an [InputDecorator] border which draws a horizontal
+        ///    line at the bottom of the input decorator's container.
+        ///  * [OutlineInputBorder], an [InputDecorator] border which draws a
+        ///    rounded rectangle around the input decorator's container.
+        ///  * [InputBorder.none], which doesn't draw a border.
+        ///  * [errorBorder], displayed when [InputDecorator.isFocused] is false
+        ///    and [InputDecoration.errorText] is non-null.
+        ///  * [focusedErrorBorder], displayed when [InputDecorator.isFocused] is true
+        ///    and [InputDecoration.errorText] is non-null.
+        ///  * [disabledBorder], displayed when [InputDecoration.enabled] is false
+        ///    and [InputDecoration.errorText] is null.
+        ///  * [enabledBorder], displayed when [InputDecoration.enabled] is true
+        ///    and [InputDecoration.errorText] is null.
+        /// </Summary>
         public virtual FlutterSDK.Material.Inputborder.InputBorder FocusedBorder { get; set; }
+        /// <Summary>
+        /// The border to display when the [InputDecorator] has the focus and is
+        /// showing an error.
+        ///
+        /// See also:
+        ///
+        ///  * [InputDecorator.isFocused], which is true if the [InputDecorator]'s child
+        ///    has the focus.
+        ///  * [InputDecoration.errorText], the error shown by the [InputDecorator], if non-null.
+        ///  * [border], for a description of where the [InputDecorator] border appears.
+        ///  * [UnderlineInputBorder], an [InputDecorator] border which draws a horizontal
+        ///    line at the bottom of the input decorator's container.
+        ///  * [OutlineInputBorder], an [InputDecorator] border which draws a
+        ///    rounded rectangle around the input decorator's container.
+        ///  * [InputBorder.none], which doesn't draw a border.
+        ///  * [errorBorder], displayed when [InputDecorator.isFocused] is false
+        ///    and [InputDecoration.errorText] is non-null.
+        ///  * [focusedBorder], displayed when [InputDecorator.isFocused] is true
+        ///    and [InputDecoration.errorText] is null.
+        ///  * [disabledBorder], displayed when [InputDecoration.enabled] is false
+        ///    and [InputDecoration.errorText] is null.
+        ///  * [enabledBorder], displayed when [InputDecoration.enabled] is true
+        ///    and [InputDecoration.errorText] is null.
+        /// </Summary>
         public virtual FlutterSDK.Material.Inputborder.InputBorder FocusedErrorBorder { get; set; }
+        /// <Summary>
+        /// The border to display when the [InputDecorator] is disabled and is not
+        /// showing an error.
+        ///
+        /// See also:
+        ///
+        ///  * [InputDecoration.enabled], which is false if the [InputDecorator] is disabled.
+        ///  * [InputDecoration.errorText], the error shown by the [InputDecorator], if non-null.
+        ///  * [border], for a description of where the [InputDecorator] border appears.
+        ///  * [UnderlineInputBorder], an [InputDecorator] border which draws a horizontal
+        ///    line at the bottom of the input decorator's container.
+        ///  * [OutlineInputBorder], an [InputDecorator] border which draws a
+        ///    rounded rectangle around the input decorator's container.
+        ///  * [InputBorder.none], which doesn't draw a border.
+        ///  * [errorBorder], displayed when [InputDecorator.isFocused] is false
+        ///    and [InputDecoration.errorText] is non-null.
+        ///  * [focusedBorder], displayed when [InputDecorator.isFocused] is true
+        ///    and [InputDecoration.errorText] is null.
+        ///  * [focusedErrorBorder], displayed when [InputDecorator.isFocused] is true
+        ///    and [InputDecoration.errorText] is non-null.
+        ///  * [enabledBorder], displayed when [InputDecoration.enabled] is true
+        ///    and [InputDecoration.errorText] is null.
+        /// </Summary>
         public virtual FlutterSDK.Material.Inputborder.InputBorder DisabledBorder { get; set; }
+        /// <Summary>
+        /// The border to display when the [InputDecorator] is enabled and is not
+        /// showing an error.
+        ///
+        /// See also:
+        ///
+        ///  * [InputDecoration.enabled], which is false if the [InputDecorator] is disabled.
+        ///  * [InputDecoration.errorText], the error shown by the [InputDecorator], if non-null.
+        ///  * [border], for a description of where the [InputDecorator] border appears.
+        ///  * [UnderlineInputBorder], an [InputDecorator] border which draws a horizontal
+        ///    line at the bottom of the input decorator's container.
+        ///  * [OutlineInputBorder], an [InputDecorator] border which draws a
+        ///    rounded rectangle around the input decorator's container.
+        ///  * [InputBorder.none], which doesn't draw a border.
+        ///  * [errorBorder], displayed when [InputDecorator.isFocused] is false
+        ///    and [InputDecoration.errorText] is non-null.
+        ///  * [focusedBorder], displayed when [InputDecorator.isFocused] is true
+        ///    and [InputDecoration.errorText] is null.
+        ///  * [focusedErrorBorder], displayed when [InputDecorator.isFocused] is true
+        ///    and [InputDecoration.errorText] is non-null.
+        ///  * [disabledBorder], displayed when [InputDecoration.enabled] is false
+        ///    and [InputDecoration.errorText] is null.
+        /// </Summary>
         public virtual FlutterSDK.Material.Inputborder.InputBorder EnabledBorder { get; set; }
+        /// <Summary>
+        /// The shape of the border to draw around the decoration's container.
+        ///
+        /// The decoration's container is the area which is filled if [filled] is
+        /// true and bordered per the [border]. It's the area adjacent to
+        /// [InputDecoration.icon] and above the widgets that contain
+        /// [InputDecoration.helperText], [InputDecoration.errorText], and
+        /// [InputDecoration.counterText].
+        ///
+        /// The border's bounds, i.e. the value of `border.getOuterPath()`, define
+        /// the area to be filled.
+        ///
+        /// This property is only used when the appropriate one of [errorBorder],
+        /// [focusedBorder], [focusedErrorBorder], [disabledBorder], or [enabledBorder]
+        /// is not specified. This border's [InputBorder.borderSide] property is
+        /// configured by the InputDecorator, depending on the values of
+        /// [InputDecoration.errorText], [InputDecoration.enabled],
+        /// [InputDecorator.isFocused] and the current [Theme].
+        ///
+        /// Typically one of [UnderlineInputBorder] or [OutlineInputBorder].
+        /// If null, InputDecorator's default is `const UnderlineInputBorder()`.
+        ///
+        /// See also:
+        ///
+        ///  * [InputBorder.none], which doesn't draw a border.
+        ///  * [UnderlineInputBorder], which draws a horizontal line at the
+        ///    bottom of the input decorator's container.
+        ///  * [OutlineInputBorder], an [InputDecorator] border which draws a
+        ///    rounded rectangle around the input decorator's container.
+        /// </Summary>
         public virtual FlutterSDK.Material.Inputborder.InputBorder Border { get; set; }
+        /// <Summary>
+        /// Typically set to true when the [InputDecorator] contains a multiline
+        /// [TextField] ([TextField.maxLines] is null or > 1) to override the default
+        /// behavior of aligning the label with the center of the [TextField].
+        /// </Summary>
         public virtual bool AlignLabelWithHint { get; set; }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 

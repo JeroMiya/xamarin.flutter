@@ -376,12 +376,25 @@ namespace FlutterSDK.Gestures.Lsqsolver
     /// </Summary>
     public class PolynomialFit
     {
+        /// <Summary>
+        /// Creates a polynomial fit of the given degree.
+        ///
+        /// There are n + 1 coefficients in a fit of degree n.
+        /// </Summary>
         public PolynomialFit(int degree)
         : base()
         {
 
         }
+        /// <Summary>
+        /// The polynomial coefficients of the fit.
+        /// </Summary>
         public virtual List<double> Coefficients { get; set; }
+        /// <Summary>
+        /// An indicator of the quality of the fit.
+        ///
+        /// Larger values indicate greater quality.
+        /// </Summary>
         public virtual double Confidence { get; set; }
     }
 
@@ -391,6 +404,11 @@ namespace FlutterSDK.Gestures.Lsqsolver
     /// </Summary>
     public class LeastSquaresSolver
     {
+        /// <Summary>
+        /// Creates a least-squares solver.
+        ///
+        /// The [x], [y], and [w] arguments must not be null.
+        /// </Summary>
         public LeastSquaresSolver(List<double> x, List<double> y, List<double> w)
         : base()
         {
@@ -398,8 +416,17 @@ namespace FlutterSDK.Gestures.Lsqsolver
             this.y = y;
             this.w = w;
         }
+        /// <Summary>
+        /// The x-coordinates of each data point.
+        /// </Summary>
         public virtual List<double> x { get; set; }
+        /// <Summary>
+        /// The y-coordinates of each data point.
+        /// </Summary>
         public virtual List<double> y { get; set; }
+        /// <Summary>
+        /// The weight to use for each data point.
+        /// </Summary>
         public virtual List<double> w { get; set; }
 
         /// <Summary>

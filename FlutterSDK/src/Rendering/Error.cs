@@ -448,6 +448,12 @@ namespace FlutterSDK.Rendering.Error
     /// </Summary>
     public class RenderErrorBox : FlutterSDK.Rendering.Box.RenderBox
     {
+        /// <Summary>
+        /// Creates a RenderErrorBox render object.
+        ///
+        /// A message can optionally be provided. If a message is provided, an attempt
+        /// will be made to render the message when the box paints.
+        /// </Summary>
         public RenderErrorBox(string message = default(string))
         {
             this.Message = message;
@@ -469,12 +475,48 @@ namespace FlutterSDK.Rendering.Error
         }
 
 
+        /// <Summary>
+        /// The message to attempt to display at paint time.
+        /// </Summary>
         public virtual string Message { get; set; }
         internal virtual FlutterBinding.UI.Paragraph _Paragraph { get; set; }
+        /// <Summary>
+        /// The distance to place around the text.
+        ///
+        /// This is intended to ensure that if the [RenderErrorBox] is placed at the top left
+        /// of the screen, under the system's status bar, the error text is still visible in
+        /// the area below the status bar.
+        ///
+        /// The padding is ignored if the error box is smaller than the padding.
+        ///
+        /// See also:
+        ///
+        ///  * [minimumWidth], which controls how wide the box must be before the
+        /// </Summary>
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets Padding { get; set; }
+        /// <Summary>
+        /// The width below which the horizontal padding is not applied.
+        ///
+        /// If the left and right padding would reduce the available width to less than
+        /// this value, then the text is rendered flush with the left edge.
+        /// </Summary>
         public virtual double MinimumWidth { get; set; }
+        /// <Summary>
+        /// The color to use when painting the background of [RenderErrorBox] objects.
+        ///
+        /// Defaults to red in debug mode, a light gray otherwise.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
+        /// <Summary>
+        /// The text style to use when painting [RenderErrorBox] objects.
+        ///
+        /// Defaults to a yellow monospace font in debug mode, and a dark gray
+        /// sans-serif font otherwise.
+        /// </Summary>
         public virtual FlutterBinding.UI.TextStyle TextStyle { get; set; }
+        /// <Summary>
+        /// The paragraph style to use when painting [RenderErrorBox] objects.
+        /// </Summary>
         public virtual ParagraphStyle ParagraphStyle { get; set; }
         public virtual bool SizedByParent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 

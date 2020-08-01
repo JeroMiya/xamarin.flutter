@@ -439,6 +439,10 @@ namespace FlutterSDK.Services.Messagecodecs
     /// </Summary>
     public class BinaryCodec : IMessageCodec<ByteData>
     {
+        /// <Summary>
+        /// Creates a [MessageCodec] with unencoded binary messages represented using
+        /// [ByteData].
+        /// </Summary>
         public BinaryCodec()
         {
 
@@ -462,6 +466,9 @@ namespace FlutterSDK.Services.Messagecodecs
     /// </Summary>
     public class StringCodec : IMessageCodec<string>
     {
+        /// <Summary>
+        /// Creates a [MessageCodec] with UTF-8 encoded String messages.
+        /// </Summary>
         public StringCodec()
         {
 
@@ -510,6 +517,9 @@ namespace FlutterSDK.Services.Messagecodecs
     /// </Summary>
     public class JSONMessageCodec : IMessageCodec<object>
     {
+        /// <Summary>
+        /// Creates a [MessageCodec] with UTF-8 encoded JSON messages.
+        /// </Summary>
         public JSONMessageCodec()
         {
 
@@ -543,6 +553,10 @@ namespace FlutterSDK.Services.Messagecodecs
     /// </Summary>
     public class JSONMethodCodec : IMethodCodec
     {
+        /// <Summary>
+        /// Creates a [MethodCodec] with UTF-8 encoded JSON method calls and result
+        /// envelopes.
+        /// </Summary>
         public JSONMethodCodec()
         {
 
@@ -655,6 +669,9 @@ namespace FlutterSDK.Services.Messagecodecs
     /// </Summary>
     public class StandardMessageCodec : IMessageCodec<object>
     {
+        /// <Summary>
+        /// Creates a [MessageCodec] using the Flutter standard binary encoding.
+        /// </Summary>
         public StandardMessageCodec()
         {
 
@@ -915,10 +932,16 @@ namespace FlutterSDK.Services.Messagecodecs
     /// </Summary>
     public class StandardMethodCodec : IMethodCodec
     {
+        /// <Summary>
+        /// Creates a [MethodCodec] using the Flutter standard binary encoding.
+        /// </Summary>
         public StandardMethodCodec(FlutterSDK.Services.Messagecodecs.StandardMessageCodec messageCodec = default(FlutterSDK.Services.Messagecodecs.StandardMessageCodec))
         {
             this.MessageCodec = messageCodec;
         }
+        /// <Summary>
+        /// The message codec that this method codec uses for encoding values.
+        /// </Summary>
         public virtual FlutterSDK.Services.Messagecodecs.StandardMessageCodec MessageCodec { get; set; }
 
         public new ByteData EncodeMethodCall(FlutterSDK.Services.Messagecodec.MethodCall call)

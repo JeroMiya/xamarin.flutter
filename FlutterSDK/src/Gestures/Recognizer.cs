@@ -296,6 +296,12 @@ using FlutterSDK.Foundation._Isolatesio;
 using FlutterSDK.Foundation._Platformio;
 namespace FlutterSDK.Gestures.Recognizer
 {
+    /// <Summary>
+    /// Generic signature for callbacks passed to
+    /// [GestureRecognizer.invokeCallback]. This allows the
+    /// [GestureRecognizer.invokeCallback] mechanism to be generically used with
+    /// anonymous functions that return objects of particular types.
+    /// </Summary>
     public delegate T RecognizerCallback<T>();
     internal static class RecognizerDefaultClass
     {
@@ -402,13 +408,39 @@ namespace FlutterSDK.Gestures.Recognizer
     /// </Summary>
     public class GestureRecognizer : FlutterSDK.Gestures.Arena.GestureArenaMember, IDiagnosticableTreeMixin
     {
+        /// <Summary>
+        /// Initializes the gesture recognizer.
+        ///
+        /// The argument is optional and is only used for debug purposes (e.g. in the
+        /// [toString] serialization).
+        ///
+        /// {@template flutter.gestures.gestureRecognizer.kind}
+        /// It's possible to limit this recognizer to a specific [PointerDeviceKind]
+        /// by providing the optional [kind] argument. If [kind] is null,
+        /// the recognizer will accept pointer events from all device kinds.
+        /// {@endtemplate}
+        /// </Summary>
         public GestureRecognizer(@Object debugOwner = default(@Object), PointerDeviceKind kind = default(PointerDeviceKind))
         : base()
         {
             this.DebugOwner = debugOwner;
         }
+        /// <Summary>
+        /// The recognizer's owner.
+        ///
+        /// This is used in the [toString] serialization to report the object for which
+        /// this gesture recognizer was created, to aid in debugging.
+        /// </Summary>
         public virtual @Object DebugOwner { get; set; }
+        /// <Summary>
+        /// The kind of device that's allowed to be recognized. If null, events from
+        /// all device kinds will be tracked and recognized.
+        /// </Summary>
         internal virtual PointerDeviceKind _KindFilter { get; set; }
+        /// <Summary>
+        /// Holds a mapping between pointer IDs and the kind of devices they are
+        /// coming from.
+        /// </Summary>
         internal virtual Dictionary<int, PointerDeviceKind> _PointerToKind { get; set; }
         public virtual string DebugDescription { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 
@@ -573,6 +605,11 @@ public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.Diagnostic
     /// </Summary>
     public class OneSequenceGestureRecognizer : FlutterSDK.Gestures.Recognizer.GestureRecognizer
     {
+        /// <Summary>
+        /// Initialize the object.
+        ///
+        /// {@macro flutter.gestures.gestureRecognizer.kind}
+        /// </Summary>
         public OneSequenceGestureRecognizer(@Object debugOwner = default(@Object), PointerDeviceKind kind = default(PointerDeviceKind))
         : base(debugOwner: debugOwner, kind: kind)
         {
@@ -747,6 +784,11 @@ public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.Diagnostic
     /// </Summary>
     public class PrimaryPointerGestureRecognizer : FlutterSDK.Gestures.Recognizer.OneSequenceGestureRecognizer
     {
+        /// <Summary>
+        /// Initializes the [deadline] field during construction of subclasses.
+        ///
+        /// {@macro flutter.gestures.gestureRecognizer.kind}
+        /// </Summary>
         public PrimaryPointerGestureRecognizer(TimeSpan deadline = default(TimeSpan), double preAcceptSlopTolerance = default(double), double postAcceptSlopTolerance = default(double), @Object debugOwner = default(@Object), PointerDeviceKind kind = default(PointerDeviceKind))
         : base(debugOwner: debugOwner, kind: kind)
         {
@@ -754,11 +796,48 @@ public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.Diagnostic
             this.PreAcceptSlopTolerance = preAcceptSlopTolerance;
             this.PostAcceptSlopTolerance = postAcceptSlopTolerance;
         }
+        /// <Summary>
+        /// If non-null, the recognizer will call [didExceedDeadline] after this
+        /// amount of time has elapsed since starting to track the primary pointer.
+        ///
+        /// The [didExceedDeadline] will not be called if the primary pointer is
+        /// accepted, rejected, or all pointers are up or canceled before [deadline].
+        /// </Summary>
         public virtual TimeSpan Deadline { get; set; }
+        /// <Summary>
+        /// The maximum distance in logical pixels the gesture is allowed to drift
+        /// from the initial touch down position before the gesture is accepted.
+        ///
+        /// Drifting past the allowed slop amount causes the gesture to be rejected.
+        ///
+        /// Can be null to indicate that the gesture can drift for any distance.
+        /// Defaults to 18 logical pixels.
+        /// </Summary>
         public virtual double PreAcceptSlopTolerance { get; set; }
+        /// <Summary>
+        /// The maximum distance in logical pixels the gesture is allowed to drift
+        /// after the gesture has been accepted.
+        ///
+        /// Drifting past the allowed slop amount causes the gesture to stop tracking
+        /// and signaling subsequent callbacks.
+        ///
+        /// Can be null to indicate that the gesture can drift for any distance.
+        /// Defaults to 18 logical pixels.
+        /// </Summary>
         public virtual double PostAcceptSlopTolerance { get; set; }
+        /// <Summary>
+        /// The current state of the recognizer.
+        ///
+        /// See [GestureRecognizerState] for a description of the states.
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Recognizer.GestureRecognizerState State { get; set; }
+        /// <Summary>
+        /// The ID of the primary pointer this recognizer is tracking.
+        /// </Summary>
         public virtual int PrimaryPointer { get; set; }
+        /// <Summary>
+        /// The location at which the primary pointer contacted the screen.
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Recognizer.OffsetPair InitialPosition { get; set; }
         internal virtual bool _GestureAccepted { get; set; }
         internal virtual Timer _Timer { get; set; }
@@ -928,11 +1007,18 @@ public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.Diagnostic
     /// </Summary>
     public class OffsetPair
     {
+        /// <Summary>
+        /// Creates a [OffsetPair] combining a [local] and [global] [Offset].
+        /// </Summary>
         public OffsetPair(FlutterBinding.UI.Offset local = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Offset global = default(FlutterBinding.UI.Offset))
         {
             this.Local = local;
             this.Global = global;
         }
+        /// <Summary>
+        /// Creates a [OffsetPair] from [PointerEvent.localPosition] and
+        /// [PointerEvent.position].
+        /// </Summary>
         public static OffsetPair FromEventPosition(FlutterSDK.Gestures.Events.PointerEvent @event)
         {
             var instance = new OffsetPair();
@@ -940,6 +1026,10 @@ public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.Diagnostic
         }
 
 
+        /// <Summary>
+        /// Creates a [OffsetPair] from [PointerEvent.localDelta] and
+        /// [PointerEvent.delta].
+        /// </Summary>
         public static OffsetPair FromEventDelta(FlutterSDK.Gestures.Events.PointerEvent @event)
         {
             var instance = new OffsetPair();
@@ -947,8 +1037,18 @@ public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.Diagnostic
         }
 
 
+        /// <Summary>
+        /// A [OffsetPair] where both [Offset]s are [Offset.zero].
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Recognizer.OffsetPair Zero { get; set; }
+        /// <Summary>
+        /// The [Offset] in the local coordinate space.
+        /// </Summary>
         public virtual FlutterBinding.UI.Offset Local { get; set; }
+        /// <Summary>
+        /// The [Offset] in the global coordinate space after conversion to logical
+        /// pixels.
+        /// </Summary>
         public virtual FlutterBinding.UI.Offset Global { get; set; }
 
         /// <Summary>

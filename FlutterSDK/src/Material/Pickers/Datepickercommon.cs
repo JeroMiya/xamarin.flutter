@@ -399,6 +399,11 @@ using FlutterSDK.Material.Pickers.Datepickercommon;
 using FlutterSDK.Material.Pickers.Dateutils;
 namespace FlutterSDK.Material.Pickers.Datepickercommon
 {
+    /// <Summary>
+    /// Signature for predicating dates for enabled date selections.
+    ///
+    /// See [showDatePicker].
+    /// </Summary>
     public delegate bool SelectableDayPredicate(DateTime day);
     internal static class DatepickercommonDefaultClass
     {

@@ -613,6 +613,11 @@ namespace FlutterSDK.Widgets.Inheritedmodel
     /// </Summary>
     public class InheritedModel<T> : FlutterSDK.Widgets.Framework.InheritedWidget
     {
+        /// <Summary>
+        /// Creates an inherited widget that supports dependencies qualified by
+        /// "aspects", i.e. a descendant widget can indicate that it should
+        /// only be rebuilt if a specific aspect of the model changes.
+        /// </Summary>
         public InheritedModel(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
@@ -716,6 +721,9 @@ namespace FlutterSDK.Widgets.Inheritedmodel
     /// </Summary>
     public class InheritedModelElement<T> : FlutterSDK.Widgets.Framework.InheritedElement
     {
+        /// <Summary>
+        /// Creates an element that uses the given widget as its configuration.
+        /// </Summary>
         public InheritedModelElement(FlutterSDK.Widgets.Inheritedmodel.InheritedModel<T> widget)
         : base(widget)
         {

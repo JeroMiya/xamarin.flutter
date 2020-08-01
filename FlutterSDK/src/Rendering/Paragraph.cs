@@ -435,6 +435,9 @@ namespace FlutterSDK.Rendering.Paragraph
     {
         public TextParentData()
         { }
+        /// <Summary>
+        /// The scaling of the text.
+        /// </Summary>
         public virtual double Scale { get; set; }
 
     }
@@ -445,6 +448,15 @@ namespace FlutterSDK.Rendering.Paragraph
     /// </Summary>
     public class RenderParagraph : FlutterSDK.Rendering.Box.RenderBox, IContainerRenderObjectMixin<FlutterSDK.Rendering.Box.RenderBox, FlutterSDK.Rendering.Paragraph.TextParentData>, IRenderBoxContainerDefaultsMixin<FlutterSDK.Rendering.Box.RenderBox, FlutterSDK.Rendering.Paragraph.TextParentData>, IRelayoutWhenSystemFontsChangeMixin
     {
+        /// <Summary>
+        /// Creates a paragraph render object.
+        ///
+        /// The [text], [textAlign], [textDirection], [overflow], [softWrap], and
+        /// [textScaleFactor] arguments must not be null.
+        ///
+        /// The [maxLines] property may be null (and indeed defaults to null), but if
+        /// it is not null, it must be greater than zero.
+        /// </Summary>
         public RenderParagraph(FlutterSDK.Painting.Inlinespan.InlineSpan text, TextAlign textAlign = default(TextAlign), TextDirection textDirection = default(TextDirection), bool softWrap = true, FlutterSDK.Rendering.Paragraph.TextOverflow overflow = default(FlutterSDK.Rendering.Paragraph.TextOverflow), double textScaleFactor = 1.0, int maxLines = default(int), Locale locale = default(Locale), FlutterSDK.Painting.Strutstyle.StrutStyle strutStyle = default(FlutterSDK.Painting.Strutstyle.StrutStyle), FlutterSDK.Painting.Textpainter.TextWidthBasis textWidthBasis = default(FlutterSDK.Painting.Textpainter.TextWidthBasis), TextHeightBehavior textHeightBehavior = default(TextHeightBehavior), List<FlutterSDK.Rendering.Box.RenderBox> children = default(List<FlutterSDK.Rendering.Box.RenderBox>))
         : base()
         {
@@ -461,6 +473,10 @@ namespace FlutterSDK.Rendering.Paragraph
         internal virtual bool _NeedsClipping { get; set; }
         internal virtual SKShader _OverflowShader { get; set; }
         internal virtual List<FlutterSDK.Painting.Textpainter.PlaceholderDimensions> _PlaceholderDimensions { get; set; }
+        /// <Summary>
+        /// Collected during [describeSemanticsConfiguration], used by
+        /// [assembleSemanticsNode] and [_combineSemanticsInfo].
+        /// </Summary>
         internal virtual List<FlutterSDK.Painting.Inlinespan.InlineSpanSemanticsInformation> _SemanticsInfo { get; set; }
         internal virtual Queue<FlutterSDK.Semantics.Semantics.SemanticsNode> _CachedChildNodes { get; set; }
         public virtual FlutterSDK.Painting.Inlinespan.InlineSpan Text { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }

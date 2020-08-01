@@ -295,6 +295,16 @@ using FlutterSDK.Foundation._Bitfieldio;
 using FlutterSDK.Foundation._Isolatesio;
 namespace FlutterSDK.Foundation.Isolates
 {
+    /// <Summary>
+    /// Signature for the callback passed to [compute].
+    ///
+    /// {@macro flutter.foundation.compute.types}
+    ///
+    /// Instances of [ComputeCallback] must be top-level functions or static methods
+    /// of classes, not closures or instance methods of objects.
+    ///
+    /// {@macro flutter.foundation.compute.limitations}
+    /// </Summary>
     public delegate FutureOr<R> ComputeCallback<Q, R>(Q message);
     public delegate Future<R> _ComputeImpl(FlutterSDK.Foundation.Isolates.ComputeCallback<Q, R> callback, Q message, string debugLabel = default(string));
     internal static class IsolatesDefaultClass

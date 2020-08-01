@@ -296,8 +296,19 @@ using FlutterSDK.Foundation._Isolatesio;
 using FlutterSDK.Foundation._Platformio;
 namespace FlutterSDK.Gestures.Scale
 {
+    /// <Summary>
+    /// Signature for when the pointers in contact with the screen have established
+    /// a focal point and initial scale of 1.0.
+    /// </Summary>
     public delegate void GestureScaleStartCallback(FlutterSDK.Gestures.Scale.ScaleStartDetails details);
+    /// <Summary>
+    /// Signature for when the pointers in contact with the screen have indicated a
+    /// new focal point and/or scale.
+    /// </Summary>
     public delegate void GestureScaleUpdateCallback(FlutterSDK.Gestures.Scale.ScaleUpdateDetails details);
+    /// <Summary>
+    /// Signature for when the pointers are no longer in contact with the screen.
+    /// </Summary>
     public delegate void GestureScaleEndCallback(FlutterSDK.Gestures.Scale.ScaleEndDetails details);
     internal static class ScaleDefaultClass
     {
@@ -317,12 +328,38 @@ namespace FlutterSDK.Gestures.Scale
     /// </Summary>
     public class ScaleStartDetails
     {
+        /// <Summary>
+        /// Creates details for [GestureScaleStartCallback].
+        ///
+        /// The [focalPoint] argument must not be null.
+        /// </Summary>
         public ScaleStartDetails(FlutterBinding.UI.Offset focalPoint = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Offset localFocalPoint = default(FlutterBinding.UI.Offset))
         : base()
         {
             this.FocalPoint = focalPoint;
         }
+        /// <Summary>
+        /// The initial focal point of the pointers in contact with the screen.
+        ///
+        /// Reported in global coordinates.
+        ///
+        /// See also:
+        ///
+        ///  * [localFocalPoint], which is the same value reported in local
+        ///    coordinates.
+        /// </Summary>
         public virtual FlutterBinding.UI.Offset FocalPoint { get; set; }
+        /// <Summary>
+        /// The initial focal point of the pointers in contact with the screen.
+        ///
+        /// Reported in local coordinates. Defaults to [focalPoint] if not set in the
+        /// constructor.
+        ///
+        /// See also:
+        ///
+        ///  * [focalPoint], which is the same value reported in global
+        ///    coordinates.
+        /// </Summary>
         public virtual FlutterBinding.UI.Offset LocalFocalPoint { get; set; }
 
     }
@@ -333,6 +370,13 @@ namespace FlutterSDK.Gestures.Scale
     /// </Summary>
     public class ScaleUpdateDetails
     {
+        /// <Summary>
+        /// Creates details for [GestureScaleUpdateCallback].
+        ///
+        /// The [focalPoint], [scale], [horizontalScale], [verticalScale], [rotation]
+        /// arguments must not be null. The [scale], [horizontalScale], and [verticalScale]
+        /// argument must be greater than or equal to zero.
+        /// </Summary>
         public ScaleUpdateDetails(FlutterBinding.UI.Offset focalPoint = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Offset localFocalPoint = default(FlutterBinding.UI.Offset), double scale = 1.0, double horizontalScale = 1.0, double verticalScale = 1.0, double rotation = 0.0)
         : base()
         {
@@ -342,11 +386,71 @@ namespace FlutterSDK.Gestures.Scale
             this.VerticalScale = verticalScale;
             this.Rotation = rotation;
         }
+        /// <Summary>
+        /// The focal point of the pointers in contact with the screen.
+        ///
+        /// Reported in global coordinates.
+        ///
+        /// See also:
+        ///
+        ///  * [localFocalPoint], which is the same value reported in local
+        ///    coordinates.
+        /// </Summary>
         public virtual FlutterBinding.UI.Offset FocalPoint { get; set; }
+        /// <Summary>
+        /// The focal point of the pointers in contact with the screen.
+        ///
+        /// Reported in local coordinates. Defaults to [focalPoint] if not set in the
+        /// constructor.
+        ///
+        /// See also:
+        ///
+        ///  * [focalPoint], which is the same value reported in global
+        ///    coordinates.
+        /// </Summary>
         public virtual FlutterBinding.UI.Offset LocalFocalPoint { get; set; }
+        /// <Summary>
+        /// The scale implied by the average distance between the pointers in contact
+        /// with the screen.
+        ///
+        /// This value must be greater than or equal to zero.
+        ///
+        /// See also:
+        ///
+        ///  * [horizontalScale], which is the scale along the horizontal axis.
+        ///  * [verticalScale], which is the scale along the vertical axis.
+        /// </Summary>
         public virtual double Scale { get; set; }
+        /// <Summary>
+        /// The scale implied by the average distance along the horizontal axis
+        /// between the pointers in contact with the screen.
+        ///
+        /// This value must be greater than or equal to zero.
+        ///
+        /// See also:
+        ///
+        ///  * [scale], which is the general scale implied by the pointers.
+        ///  * [verticalScale], which is the scale along the vertical axis.
+        /// </Summary>
         public virtual double HorizontalScale { get; set; }
+        /// <Summary>
+        /// The scale implied by the average distance along the vertical axis
+        /// between the pointers in contact with the screen.
+        ///
+        /// This value must be greater than or equal to zero.
+        ///
+        /// See also:
+        ///
+        ///  * [scale], which is the general scale implied by the pointers.
+        ///  * [horizontalScale], which is the scale along the horizontal axis.
+        /// </Summary>
         public virtual double VerticalScale { get; set; }
+        /// <Summary>
+        /// The angle implied by the first two pointers to enter in contact with
+        /// the screen.
+        ///
+        /// Expressed in radians.
+        /// </Summary>
         public virtual double Rotation { get; set; }
 
     }
@@ -357,11 +461,19 @@ namespace FlutterSDK.Gestures.Scale
     /// </Summary>
     public class ScaleEndDetails
     {
+        /// <Summary>
+        /// Creates details for [GestureScaleEndCallback].
+        ///
+        /// The [velocity] argument must not be null.
+        /// </Summary>
         public ScaleEndDetails(FlutterSDK.Gestures.Velocitytracker.Velocity velocity = default(FlutterSDK.Gestures.Velocitytracker.Velocity))
         : base()
         {
             this.Velocity = velocity;
         }
+        /// <Summary>
+        /// The velocity of the last pointer to be lifted off of the screen.
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Velocitytracker.Velocity Velocity { get; set; }
 
     }
@@ -375,6 +487,11 @@ namespace FlutterSDK.Gestures.Scale
     /// </Summary>
     public class _LineBetweenPointers
     {
+        /// <Summary>
+        /// Creates a [_LineBetweenPointers]. None of the [pointerStartLocation], [pointerStartId]
+        /// [pointerEndLocation] and [pointerEndId] must be null. [pointerStartId] and [pointerEndId]
+        /// should be different.
+        /// </Summary>
         public _LineBetweenPointers(FlutterBinding.UI.Offset pointerStartLocation = default(FlutterBinding.UI.Offset), int pointerStartId = 0, FlutterBinding.UI.Offset pointerEndLocation = default(FlutterBinding.UI.Offset), int pointerEndId = 1)
         : base()
         {
@@ -401,13 +518,29 @@ namespace FlutterSDK.Gestures.Scale
     /// </Summary>
     public class ScaleGestureRecognizer : FlutterSDK.Gestures.Recognizer.OneSequenceGestureRecognizer
     {
+        /// <Summary>
+        /// Create a gesture recognizer for interactions intended for scaling content.
+        ///
+        /// {@macro flutter.gestures.gestureRecognizer.kind}
+        /// </Summary>
         public ScaleGestureRecognizer(@Object debugOwner = default(@Object), PointerDeviceKind kind = default(PointerDeviceKind))
         : base(debugOwner: debugOwner, kind: kind)
         {
 
         }
+        /// <Summary>
+        /// The pointers in contact with the screen have established a focal point and
+        /// initial scale of 1.0.
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Scale.GestureScaleStartCallback OnStart { get; set; }
+        /// <Summary>
+        /// The pointers in contact with the screen have indicated a new focal point
+        /// and/or scale.
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Scale.GestureScaleUpdateCallback OnUpdate { get; set; }
+        /// <Summary>
+        /// The pointers are no longer in contact with the screen.
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Scale.GestureScaleEndCallback OnEnd { get; set; }
         internal virtual FlutterSDK.Gestures.Scale._ScaleState _State { get; set; }
         internal virtual Matrix4 _LastTransform { get; set; }

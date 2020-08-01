@@ -445,6 +445,12 @@ namespace FlutterSDK.Rendering.Performanceoverlay
     /// </Summary>
     public class RenderPerformanceOverlay : FlutterSDK.Rendering.Box.RenderBox
     {
+        /// <Summary>
+        /// Creates a performance overlay render object.
+        ///
+        /// The [optionsMask], [rasterizerThreshold], [checkerboardRasterCacheImages],
+        /// and [checkerboardOffscreenLayers] arguments must not be null.
+        /// </Summary>
         public RenderPerformanceOverlay(int optionsMask = 0, int rasterizerThreshold = 0, bool checkerboardRasterCacheImages = false, bool checkerboardOffscreenLayers = false)
         : base()
         {

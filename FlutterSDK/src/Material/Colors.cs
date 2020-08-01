@@ -392,6 +392,14 @@ namespace FlutterSDK.Material.Colors
     /// </Summary>
     public class MaterialColor : FlutterSDK.Painting.Colors.ColorSwatch<int>
     {
+        /// <Summary>
+        /// Creates a color swatch with a variety of shades.
+        ///
+        /// The `primary` argument should be the 32 bit ARGB value of one of the
+        /// values in the swatch, as would be passed to the [new Color] constructor
+        /// for that same color, and as is exposed by [value]. (This is distinct from
+        /// the specific index of the color in the swatch.)
+        /// </Summary>
         public MaterialColor(int primary, Dictionary<int, Color> swatch)
         : base(primary, swatch)
         {
@@ -426,6 +434,10 @@ namespace FlutterSDK.Material.Colors
     /// </Summary>
     public class MaterialAccentColor : FlutterSDK.Painting.Colors.ColorSwatch<int>
     {
+        /// <Summary>
+        /// Creates a color swatch with a variety of shades appropriate for accent
+        /// colors.
+        /// </Summary>
         public MaterialAccentColor(int primary, Dictionary<int, Color> swatch)
         : base(primary, swatch)
         {
@@ -550,94 +562,1352 @@ namespace FlutterSDK.Material.Colors
         {
 
         }
+        /// <Summary>
+        /// Completely invisible.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color Transparent { get; set; }
+        /// <Summary>
+        /// Completely opaque black.
+        ///
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.blacks.png)
+        ///
+        /// See also:
+        ///
+        ///  * [black87], [black54], [black45], [black38], [black26], [black12], which
+        ///    are variants on this color but with different opacities.
+        ///  * [white], a solid white color.
+        ///  * [transparent], a fully-transparent color.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color Black { get; set; }
+        /// <Summary>
+        /// Black with 87% opacity.
+        ///
+        /// This is a good contrasting color for text in light themes.
+        ///
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.blacks.png)
+        ///
+        /// See also:
+        ///
+        ///  * [Typography.black], which uses this color for its text styles.
+        ///  * [Theme.of], which allows you to select colors from the current theme
+        ///    rather than hard-coding colors in your build methods.
+        ///  * [black], [black54], [black45], [black38], [black26], [black12], which
+        ///    are variants on this color but with different opacities.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color Black87 { get; set; }
+        /// <Summary>
+        /// Black with 54% opacity.
+        ///
+        /// This is a color commonly used for headings in light themes. It's also used
+        /// as the mask color behind dialogs.
+        ///
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.blacks.png)
+        ///
+        /// See also:
+        ///
+        ///  * [Typography.black], which uses this color for its text styles.
+        ///  * [Theme.of], which allows you to select colors from the current theme
+        ///    rather than hard-coding colors in your build methods.
+        ///  * [black], [black87], [black45], [black38], [black26], [black12], which
+        ///    are variants on this color but with different opacities.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color Black54 { get; set; }
+        /// <Summary>
+        /// Black with 45% opacity.
+        ///
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.blacks.png)
+        ///
+        /// See also:
+        ///
+        ///  * [black], [black87], [black54], [black38], [black26], [black12], which
+        ///    are variants on this color but with different opacities.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color Black45 { get; set; }
+        /// <Summary>
+        /// Black with 38% opacity.
+        ///
+        /// For light themes, i.e. when the Theme's [ThemeData.brightness] is
+        /// [Brightness.light], this color is used for disabled icons and for
+        /// placeholder text in [DataTable].
+        ///
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.blacks.png)
+        ///
+        /// See also:
+        ///
+        ///  * [black], [black87], [black54], [black45], [black26], [black12], which
+        ///    are variants on this color but with different opacities.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color Black38 { get; set; }
+        /// <Summary>
+        /// Black with 26% opacity.
+        ///
+        /// Used for disabled radio buttons and the text of disabled flat buttons in light themes.
+        ///
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.blacks.png)
+        ///
+        /// See also:
+        ///
+        ///  * [ThemeData.disabledColor], which uses this color by default in light themes.
+        ///  * [Theme.of], which allows you to select colors from the current theme
+        ///    rather than hard-coding colors in your build methods.
+        ///  * [black], [black87], [black54], [black45], [black38], [black12], which
+        ///    are variants on this color but with different opacities.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color Black26 { get; set; }
+        /// <Summary>
+        /// Black with 12% opacity.
+        ///
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.blacks.png)
+        ///
+        /// Used for the background of disabled raised buttons in light themes.
+        ///
+        /// See also:
+        ///
+        ///  * [black], [black87], [black54], [black45], [black38], [black26], which
+        ///    are variants on this color but with different opacities.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color Black12 { get; set; }
+        /// <Summary>
+        /// Completely opaque white.
+        ///
+        /// This is a good contrasting color for the [ThemeData.primaryColor] in the
+        /// dark theme. See [ThemeData.brightness].
+        ///
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.whites.png)
+        ///
+        /// See also:
+        ///
+        ///  * [Typography.white], which uses this color for its text styles.
+        ///  * [Theme.of], which allows you to select colors from the current theme
+        ///    rather than hard-coding colors in your build methods.
+        ///  * [white70, white60, white54, white38, white30, white12, white10], which are variants on this color
+        ///    but with different opacities.
+        ///  * [black], a solid black color.
+        ///  * [transparent], a fully-transparent color.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color White { get; set; }
+        /// <Summary>
+        /// White with 70% opacity.
+        ///
+        /// This is a color commonly used for headings in dark themes.
+        ///
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.whites.png)
+        ///
+        /// See also:
+        ///
+        ///  * [Typography.white], which uses this color for its text styles.
+        ///  * [Theme.of], which allows you to select colors from the current theme
+        ///    rather than hard-coding colors in your build methods.
+        ///  * [white, white60, white54, white38, white30, white12, white10], which are variants on this color
+        ///    but with different opacities.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color White70 { get; set; }
+        /// <Summary>
+        /// White with 60% opacity.
+        ///
+        /// Used for medium-emphasis text and hint text when [Theme.brightness] is
+        /// set to [Brightness.dark].
+        ///
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.whites.png)
+        ///
+        /// See also:
+        ///
+        ///  * [ExpandIcon], which uses this color for dark themes.
+        ///  * [Theme.of], which allows you to select colors from the current theme
+        ///    rather than hard-coding colors in your build methods.
+        ///  * [white, white54, white30, white38, white12, white10], which are variants on this color
+        ///    but with different opacities.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color White60 { get; set; }
+        /// <Summary>
+        /// White with 54% opacity.
+        ///
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.whites.png)
+        ///
+        /// See also:
+        ///
+        ///  * [Theme.of], which allows you to select colors from the current theme
+        ///    rather than hard-coding colors in your build methods.
+        ///  * [white, white60, white38, white30, white12, white10], which are variants on this color
+        ///    but with different opacities.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color White54 { get; set; }
+        /// <Summary>
+        /// White with 38% opacity.
+        ///
+        /// Used for disabled radio buttons and the text of disabled flat buttons in dark themes.
+        ///
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.whites.png)
+        ///
+        /// See also:
+        ///
+        ///  * [ThemeData.disabledColor], which uses this color by default in dark themes.
+        ///  * [Theme.of], which allows you to select colors from the current theme
+        ///    rather than hard-coding colors in your build methods.
+        ///  * [white, white60, white54, white70, white30, white12, white10], which are variants on this color
+        ///    but with different opacities.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color White38 { get; set; }
+        /// <Summary>
+        /// White with 30% opacity.
+        ///
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.whites.png)
+        ///
+        /// See also:
+        ///
+        ///  * [Theme.of], which allows you to select colors from the current theme
+        ///    rather than hard-coding colors in your build methods.
+        ///  * [white, white60, white54, white70, white38, white12, white10], which are variants on this color
+        ///    but with different opacities.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color White30 { get; set; }
+        /// <Summary>
+        /// White with 24% opacity.
+        ///
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.whites.png)
+        ///
+        /// Used for the splash color for filled buttons.
+        ///
+        /// See also:
+        ///
+        ///  * [white, white60, white54, white70, white38, white30, white10], which are variants on this color
+        ///    but with different opacities.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color White24 { get; set; }
+        /// <Summary>
+        /// White with 12% opacity.
+        ///
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.whites.png)
+        ///
+        /// Used for the background of disabled raised buttons in dark themes.
+        ///
+        /// See also:
+        ///
+        ///  * [white, white60, white54, white70, white38, white30, white10], which are variants on this color
+        ///    but with different opacities.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color White12 { get; set; }
+        /// <Summary>
+        /// White with 10% opacity.
+        ///
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.whites.png)
+        ///
+        /// See also:
+        ///
+        ///  * [white, white60, white54, white70, white38, white30, white12], which are variants on this color
+        ///    but with different opacities.
+        ///  * [transparent], a fully-transparent color, not far from this one.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color White10 { get; set; }
+        /// <Summary>
+        /// The red primary color and swatch.
+        ///
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.red.png)
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.redAccent.png)
+        ///
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.deepOrange.png)
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.deepOrangeAccent.png)
+        ///
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.pink.png)
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.pinkAccent.png)
+        ///
+        /// {@tool snippet}
+        ///
+        /// ```dart
+        /// Icon(
+        ///   Icons.widgets,
+        ///   color: Colors.red[400],
+        /// )
+        /// ```
+        /// {@end-tool}
+        ///
+        /// See also:
+        ///
+        ///  * [redAccent], the corresponding accent colors.
+        ///  * [deepOrange] and [pink], similar colors.
+        ///  * [Theme.of], which allows you to select colors from the current theme
+        ///    rather than hard-coding colors in your build methods.
+        /// </Summary>
         public virtual FlutterSDK.Material.Colors.MaterialColor Red { get; set; }
         internal virtual int _RedPrimaryValue { get; set; }
+        /// <Summary>
+        /// The red accent swatch.
+        ///
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.red.png)
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.redAccent.png)
+        ///
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.deepOrange.png)
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.deepOrangeAccent.png)
+        ///
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.pink.png)
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.pinkAccent.png)
+        ///
+        /// {@tool snippet}
+        ///
+        /// ```dart
+        /// Icon(
+        ///   Icons.widgets,
+        ///   color: Colors.redAccent[400],
+        /// )
+        /// ```
+        /// {@end-tool}
+        ///
+        /// See also:
+        ///
+        ///  * [red], the corresponding primary colors.
+        ///  * [deepOrangeAccent] and [pinkAccent], similar colors.
+        ///  * [Theme.of], which allows you to select colors from the current theme
+        ///    rather than hard-coding colors in your build methods.
+        /// </Summary>
         public virtual FlutterSDK.Material.Colors.MaterialAccentColor RedAccent { get; set; }
         internal virtual int _RedAccentValue { get; set; }
+        /// <Summary>
+        /// The pink primary color and swatch.
+        ///
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.pink.png)
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.pinkAccent.png)
+        ///
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.red.png)
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.redAccent.png)
+        ///
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.purple.png)
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.purpleAccent.png)
+        ///
+        /// {@tool snippet}
+        ///
+        /// ```dart
+        /// Icon(
+        ///   Icons.widgets,
+        ///   color: Colors.pink[400],
+        /// )
+        /// ```
+        /// {@end-tool}
+        ///
+        /// See also:
+        ///
+        ///  * [pinkAccent], the corresponding accent colors.
+        ///  * [red] and [purple], similar colors.
+        ///  * [Theme.of], which allows you to select colors from the current theme
+        ///    rather than hard-coding colors in your build methods.
+        /// </Summary>
         public virtual FlutterSDK.Material.Colors.MaterialColor Pink { get; set; }
         internal virtual int _PinkPrimaryValue { get; set; }
+        /// <Summary>
+        /// The pink accent color swatch.
+        ///
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.pink.png)
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.pinkAccent.png)
+        ///
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.red.png)
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.redAccent.png)
+        ///
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.purple.png)
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.purpleAccent.png)
+        ///
+        /// {@tool snippet}
+        ///
+        /// ```dart
+        /// Icon(
+        ///   Icons.widgets,
+        ///   color: Colors.pinkAccent[400],
+        /// )
+        /// ```
+        /// {@end-tool}
+        ///
+        /// See also:
+        ///
+        ///  * [pink], the corresponding primary colors.
+        ///  * [redAccent] and [purpleAccent], similar colors.
+        ///  * [Theme.of], which allows you to select colors from the current theme
+        ///    rather than hard-coding colors in your build methods.
+        /// </Summary>
         public virtual FlutterSDK.Material.Colors.MaterialAccentColor PinkAccent { get; set; }
         internal virtual int _PinkAccentPrimaryValue { get; set; }
+        /// <Summary>
+        /// The purple primary color and swatch.
+        ///
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.purple.png)
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.purpleAccent.png)
+        ///
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.deepPurple.png)
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.deepPurpleAccent.png)
+        ///
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.pink.png)
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.pinkAccent.png)
+        ///
+        /// {@tool snippet}
+        ///
+        /// ```dart
+        /// Icon(
+        ///   Icons.widgets,
+        ///   color: Colors.purple[400],
+        /// )
+        /// ```
+        /// {@end-tool}
+        ///
+        /// See also:
+        ///
+        ///  * [purpleAccent], the corresponding accent colors.
+        ///  * [deepPurple] and [pink], similar colors.
+        ///  * [Theme.of], which allows you to select colors from the current theme
+        ///    rather than hard-coding colors in your build methods.
+        /// </Summary>
         public virtual FlutterSDK.Material.Colors.MaterialColor Purple { get; set; }
         internal virtual int _PurplePrimaryValue { get; set; }
+        /// <Summary>
+        /// The purple accent color and swatch.
+        ///
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.purple.png)
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.purpleAccent.png)
+        ///
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.deepPurple.png)
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.deepPurpleAccent.png)
+        ///
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.pink.png)
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.pinkAccent.png)
+        ///
+        /// {@tool snippet}
+        ///
+        /// ```dart
+        /// Icon(
+        ///   Icons.widgets,
+        ///   color: Colors.purpleAccent[400],
+        /// )
+        /// ```
+        /// {@end-tool}
+        ///
+        /// See also:
+        ///
+        ///  * [purple], the corresponding primary colors.
+        ///  * [deepPurpleAccent] and [pinkAccent], similar colors.
+        ///  * [Theme.of], which allows you to select colors from the current theme
+        ///    rather than hard-coding colors in your build methods.
+        /// </Summary>
         public virtual FlutterSDK.Material.Colors.MaterialAccentColor PurpleAccent { get; set; }
         internal virtual int _PurpleAccentPrimaryValue { get; set; }
+        /// <Summary>
+        /// The deep purple primary color and swatch.
+        ///
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.deepPurple.png)
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.deepPurpleAccent.png)
+        ///
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.purple.png)
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.purpleAccent.png)
+        ///
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.indigo.png)
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.indigoAccent.png)
+        ///
+        /// {@tool snippet}
+        ///
+        /// ```dart
+        /// Icon(
+        ///   Icons.widgets,
+        ///   color: Colors.deepPurple[400],
+        /// )
+        /// ```
+        /// {@end-tool}
+        ///
+        /// See also:
+        ///
+        ///  * [deepPurpleAccent], the corresponding accent colors.
+        ///  * [purple] and [indigo], similar colors.
+        ///  * [Theme.of], which allows you to select colors from the current theme
+        ///    rather than hard-coding colors in your build methods.
+        /// </Summary>
         public virtual FlutterSDK.Material.Colors.MaterialColor DeepPurple { get; set; }
         internal virtual int _DeepPurplePrimaryValue { get; set; }
+        /// <Summary>
+        /// The deep purple accent color and swatch.
+        ///
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.deepPurple.png)
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.deepPurpleAccent.png)
+        ///
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.purple.png)
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.purpleAccent.png)
+        ///
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.indigo.png)
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.indigoAccent.png)
+        ///
+        /// {@tool snippet}
+        ///
+        /// ```dart
+        /// Icon(
+        ///   Icons.widgets,
+        ///   color: Colors.deepPurpleAccent[400],
+        /// )
+        /// ```
+        /// {@end-tool}
+        ///
+        /// See also:
+        ///
+        ///  * [deepPurple], the corresponding primary colors.
+        ///  * [purpleAccent] and [indigoAccent], similar colors.
+        ///  * [Theme.of], which allows you to select colors from the current theme
+        ///    rather than hard-coding colors in your build methods.
+        /// </Summary>
         public virtual FlutterSDK.Material.Colors.MaterialAccentColor DeepPurpleAccent { get; set; }
         internal virtual int _DeepPurpleAccentPrimaryValue { get; set; }
+        /// <Summary>
+        /// The indigo primary color and swatch.
+        ///
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.indigo.png)
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.indigoAccent.png)
+        ///
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.blue.png)
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.blueAccent.png)
+        ///
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.deepPurple.png)
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.deepPurpleAccent.png)
+        ///
+        /// {@tool snippet}
+        ///
+        /// ```dart
+        /// Icon(
+        ///   Icons.widgets,
+        ///   color: Colors.indigo[400],
+        /// )
+        /// ```
+        /// {@end-tool}
+        ///
+        /// See also:
+        ///
+        ///  * [indigoAccent], the corresponding accent colors.
+        ///  * [blue] and [deepPurple], similar colors.
+        ///  * [Theme.of], which allows you to select colors from the current theme
+        ///    rather than hard-coding colors in your build methods.
+        /// </Summary>
         public virtual FlutterSDK.Material.Colors.MaterialColor Indigo { get; set; }
         internal virtual int _IndigoPrimaryValue { get; set; }
+        /// <Summary>
+        /// The indigo accent color and swatch.
+        ///
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.indigo.png)
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.indigoAccent.png)
+        ///
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.blue.png)
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.blueAccent.png)
+        ///
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.deepPurple.png)
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.deepPurpleAccent.png)
+        ///
+        /// {@tool snippet}
+        ///
+        /// ```dart
+        /// Icon(
+        ///   Icons.widgets,
+        ///   color: Colors.indigoAccent[400],
+        /// )
+        /// ```
+        /// {@end-tool}
+        ///
+        /// See also:
+        ///
+        ///  * [indigo], the corresponding primary colors.
+        ///  * [blueAccent] and [deepPurpleAccent], similar colors.
+        ///  * [Theme.of], which allows you to select colors from the current theme
+        ///    rather than hard-coding colors in your build methods.
+        /// </Summary>
         public virtual FlutterSDK.Material.Colors.MaterialAccentColor IndigoAccent { get; set; }
         internal virtual int _IndigoAccentPrimaryValue { get; set; }
+        /// <Summary>
+        /// The blue primary color and swatch.
+        ///
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.blue.png)
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.blueAccent.png)
+        ///
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.indigo.png)
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.indigoAccent.png)
+        ///
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.lightBlue.png)
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.lightBlueAccent.png)
+        ///
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.blueGrey.png)
+        ///
+        /// {@tool snippet}
+        ///
+        /// ```dart
+        /// Icon(
+        ///   Icons.widgets,
+        ///   color: Colors.blue[400],
+        /// )
+        /// ```
+        /// {@end-tool}
+        ///
+        /// See also:
+        ///
+        ///  * [blueAccent], the corresponding accent colors.
+        ///  * [indigo], [lightBlue], and [blueGrey], similar colors.
+        ///  * [Theme.of], which allows you to select colors from the current theme
+        ///    rather than hard-coding colors in your build methods.
+        /// </Summary>
         public virtual FlutterSDK.Material.Colors.MaterialColor Blue { get; set; }
         internal virtual int _BluePrimaryValue { get; set; }
+        /// <Summary>
+        /// The blue accent color and swatch.
+        ///
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.blue.png)
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.blueAccent.png)
+        ///
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.indigo.png)
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.indigoAccent.png)
+        ///
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.lightBlue.png)
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.lightBlueAccent.png)
+        ///
+        /// {@tool snippet}
+        ///
+        /// ```dart
+        /// Icon(
+        ///   Icons.widgets,
+        ///   color: Colors.blueAccent[400],
+        /// )
+        /// ```
+        /// {@end-tool}
+        ///
+        /// See also:
+        ///
+        ///  * [blue], the corresponding primary colors.
+        ///  * [indigoAccent] and [lightBlueAccent], similar colors.
+        ///  * [Theme.of], which allows you to select colors from the current theme
+        ///    rather than hard-coding colors in your build methods.
+        /// </Summary>
         public virtual FlutterSDK.Material.Colors.MaterialAccentColor BlueAccent { get; set; }
         internal virtual int _BlueAccentPrimaryValue { get; set; }
+        /// <Summary>
+        /// The light blue primary color and swatch.
+        ///
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.lightBlue.png)
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.lightBlueAccent.png)
+        ///
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.blue.png)
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.blueAccent.png)
+        ///
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.cyan.png)
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.cyanAccent.png)
+        ///
+        /// {@tool snippet}
+        ///
+        /// ```dart
+        /// Icon(
+        ///   Icons.widgets,
+        ///   color: Colors.lightBlue[400],
+        /// )
+        /// ```
+        /// {@end-tool}
+        ///
+        /// See also:
+        ///
+        ///  * [lightBlueAccent], the corresponding accent colors.
+        ///  * [blue] and [cyan], similar colors.
+        ///  * [Theme.of], which allows you to select colors from the current theme
+        ///    rather than hard-coding colors in your build methods.
+        /// </Summary>
         public virtual FlutterSDK.Material.Colors.MaterialColor LightBlue { get; set; }
         internal virtual int _LightBluePrimaryValue { get; set; }
+        /// <Summary>
+        /// The light blue accent swatch.
+        ///
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.lightBlue.png)
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.lightBlueAccent.png)
+        ///
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.blue.png)
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.blueAccent.png)
+        ///
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.cyan.png)
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.cyanAccent.png)
+        ///
+        /// {@tool snippet}
+        ///
+        /// ```dart
+        /// Icon(
+        ///   Icons.widgets,
+        ///   color: Colors.lightBlueAccent[400],
+        /// )
+        /// ```
+        /// {@end-tool}
+        ///
+        /// See also:
+        ///
+        ///  * [lightBlue], the corresponding primary colors.
+        ///  * [blueAccent] and [cyanAccent], similar colors.
+        ///  * [Theme.of], which allows you to select colors from the current theme
+        ///    rather than hard-coding colors in your build methods.
+        /// </Summary>
         public virtual FlutterSDK.Material.Colors.MaterialAccentColor LightBlueAccent { get; set; }
         internal virtual int _LightBlueAccentPrimaryValue { get; set; }
+        /// <Summary>
+        /// The cyan primary color and swatch.
+        ///
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.cyan.png)
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.cyanAccent.png)
+        ///
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.lightBlue.png)
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.lightBlueAccent.png)
+        ///
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.teal.png)
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.tealAccent.png)
+        ///
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.blueGrey.png)
+        ///
+        /// {@tool snippet}
+        ///
+        /// ```dart
+        /// Icon(
+        ///   Icons.widgets,
+        ///   color: Colors.cyan[400],
+        /// )
+        /// ```
+        /// {@end-tool}
+        ///
+        /// See also:
+        ///
+        ///  * [cyanAccent], the corresponding accent colors.
+        ///  * [lightBlue], [teal], and [blueGrey], similar colors.
+        ///  * [Theme.of], which allows you to select colors from the current theme
+        ///    rather than hard-coding colors in your build methods.
+        /// </Summary>
         public virtual FlutterSDK.Material.Colors.MaterialColor Cyan { get; set; }
         internal virtual int _CyanPrimaryValue { get; set; }
+        /// <Summary>
+        /// The cyan accent color and swatch.
+        ///
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.cyan.png)
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.cyanAccent.png)
+        ///
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.lightBlue.png)
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.lightBlueAccent.png)
+        ///
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.teal.png)
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.tealAccent.png)
+        ///
+        /// {@tool snippet}
+        ///
+        /// ```dart
+        /// Icon(
+        ///   Icons.widgets,
+        ///   color: Colors.cyanAccent[400],
+        /// )
+        /// ```
+        /// {@end-tool}
+        ///
+        /// See also:
+        ///
+        ///  * [cyan], the corresponding primary colors.
+        ///  * [lightBlueAccent] and [tealAccent], similar colors.
+        ///  * [Theme.of], which allows you to select colors from the current theme
+        ///    rather than hard-coding colors in your build methods.
+        /// </Summary>
         public virtual FlutterSDK.Material.Colors.MaterialAccentColor CyanAccent { get; set; }
         internal virtual int _CyanAccentPrimaryValue { get; set; }
+        /// <Summary>
+        /// The teal primary color and swatch.
+        ///
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.teal.png)
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.tealAccent.png)
+        ///
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.green.png)
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.greenAccent.png)
+        ///
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.cyan.png)
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.cyanAccent.png)
+        ///
+        /// {@tool snippet}
+        ///
+        /// ```dart
+        /// Icon(
+        ///   Icons.widgets,
+        ///   color: Colors.teal[400],
+        /// )
+        /// ```
+        /// {@end-tool}
+        ///
+        /// See also:
+        ///
+        ///  * [tealAccent], the corresponding accent colors.
+        ///  * [green] and [cyan], similar colors.
+        ///  * [Theme.of], which allows you to select colors from the current theme
+        ///    rather than hard-coding colors in your build methods.
+        /// </Summary>
         public virtual FlutterSDK.Material.Colors.MaterialColor Teal { get; set; }
         internal virtual int _TealPrimaryValue { get; set; }
+        /// <Summary>
+        /// The teal accent color and swatch.
+        ///
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.teal.png)
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.tealAccent.png)
+        ///
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.green.png)
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.greenAccent.png)
+        ///
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.cyan.png)
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.cyanAccent.png)
+        ///
+        /// {@tool snippet}
+        ///
+        /// ```dart
+        /// Icon(
+        ///   Icons.widgets,
+        ///   color: Colors.tealAccent[400],
+        /// )
+        /// ```
+        /// {@end-tool}
+        ///
+        /// See also:
+        ///
+        ///  * [teal], the corresponding primary colors.
+        ///  * [greenAccent] and [cyanAccent], similar colors.
+        ///  * [Theme.of], which allows you to select colors from the current theme
+        ///    rather than hard-coding colors in your build methods.
+        /// </Summary>
         public virtual FlutterSDK.Material.Colors.MaterialAccentColor TealAccent { get; set; }
         internal virtual int _TealAccentPrimaryValue { get; set; }
+        /// <Summary>
+        /// The green primary color and swatch.
+        ///
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.green.png)
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.greenAccent.png)
+        ///
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.teal.png)
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.tealAccent.png)
+        ///
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.lightGreen.png)
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.lightGreenAccent.png)
+        ///
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.lime.png)
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.limeAccent.png)
+        ///
+        /// {@tool snippet}
+        ///
+        /// ```dart
+        /// Icon(
+        ///   Icons.widgets,
+        ///   color: Colors.green[400],
+        /// )
+        /// ```
+        /// {@end-tool}
+        ///
+        /// See also:
+        ///
+        ///  * [greenAccent], the corresponding accent colors.
+        ///  * [teal], [lightGreen], and [lime], similar colors.
+        ///  * [Theme.of], which allows you to select colors from the current theme
+        ///    rather than hard-coding colors in your build methods.
+        /// </Summary>
         public virtual FlutterSDK.Material.Colors.MaterialColor Green { get; set; }
         internal virtual int _GreenPrimaryValue { get; set; }
+        /// <Summary>
+        /// The green accent color and swatch.
+        ///
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.green.png)
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.greenAccent.png)
+        ///
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.teal.png)
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.tealAccent.png)
+        ///
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.lightGreen.png)
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.lightGreenAccent.png)
+        ///
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.lime.png)
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.limeAccent.png)
+        ///
+        /// {@tool snippet}
+        ///
+        /// ```dart
+        /// Icon(
+        ///   Icons.widgets,
+        ///   color: Colors.greenAccent[400],
+        /// )
+        /// ```
+        /// {@end-tool}
+        ///
+        /// See also:
+        ///
+        ///  * [green], the corresponding primary colors.
+        ///  * [tealAccent], [lightGreenAccent], and [limeAccent], similar colors.
+        ///  * [Theme.of], which allows you to select colors from the current theme
+        ///    rather than hard-coding colors in your build methods.
+        /// </Summary>
         public virtual FlutterSDK.Material.Colors.MaterialAccentColor GreenAccent { get; set; }
         internal virtual int _GreenAccentPrimaryValue { get; set; }
+        /// <Summary>
+        /// The light green primary color and swatch.
+        ///
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.lightGreen.png)
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.lightGreenAccent.png)
+        ///
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.green.png)
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.greenAccent.png)
+        ///
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.lime.png)
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.limeAccent.png)
+        ///
+        /// {@tool snippet}
+        ///
+        /// ```dart
+        /// Icon(
+        ///   Icons.widgets,
+        ///   color: Colors.lightGreen[400],
+        /// )
+        /// ```
+        /// {@end-tool}
+        ///
+        /// See also:
+        ///
+        ///  * [lightGreenAccent], the corresponding accent colors.
+        ///  * [green] and [lime], similar colors.
+        ///  * [Theme.of], which allows you to select colors from the current theme
+        ///    rather than hard-coding colors in your build methods.
+        /// </Summary>
         public virtual FlutterSDK.Material.Colors.MaterialColor LightGreen { get; set; }
         internal virtual int _LightGreenPrimaryValue { get; set; }
+        /// <Summary>
+        /// The light green accent color and swatch.
+        ///
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.lightGreen.png)
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.lightGreenAccent.png)
+        ///
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.green.png)
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.greenAccent.png)
+        ///
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.lime.png)
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.limeAccent.png)
+        ///
+        /// {@tool snippet}
+        ///
+        /// ```dart
+        /// Icon(
+        ///   Icons.widgets,
+        ///   color: Colors.lightGreenAccent[400],
+        /// )
+        /// ```
+        /// {@end-tool}
+        ///
+        /// See also:
+        ///
+        ///  * [lightGreen], the corresponding primary colors.
+        ///  * [greenAccent] and [limeAccent], similar colors.
+        ///  * [Theme.of], which allows you to select colors from the current theme
+        ///    rather than hard-coding colors in your build methods.
+        /// </Summary>
         public virtual FlutterSDK.Material.Colors.MaterialAccentColor LightGreenAccent { get; set; }
         internal virtual int _LightGreenAccentPrimaryValue { get; set; }
+        /// <Summary>
+        /// The lime primary color and swatch.
+        ///
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.lime.png)
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.limeAccent.png)
+        ///
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.lightGreen.png)
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.lightGreenAccent.png)
+        ///
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.yellow.png)
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.yellowAccent.png)
+        ///
+        /// {@tool snippet}
+        ///
+        /// ```dart
+        /// Icon(
+        ///   Icons.widgets,
+        ///   color: Colors.lime[400],
+        /// )
+        /// ```
+        /// {@end-tool}
+        ///
+        /// See also:
+        ///
+        ///  * [limeAccent], the corresponding accent colors.
+        ///  * [lightGreen] and [yellow], similar colors.
+        ///  * [Theme.of], which allows you to select colors from the current theme
+        ///    rather than hard-coding colors in your build methods.
+        /// </Summary>
         public virtual FlutterSDK.Material.Colors.MaterialColor Lime { get; set; }
         internal virtual int _LimePrimaryValue { get; set; }
+        /// <Summary>
+        /// The lime accent primary color and swatch.
+        ///
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.lime.png)
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.limeAccent.png)
+        ///
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.lightGreen.png)
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.lightGreenAccent.png)
+        ///
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.yellow.png)
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.yellowAccent.png)
+        ///
+        /// {@tool snippet}
+        ///
+        /// ```dart
+        /// Icon(
+        ///   Icons.widgets,
+        ///   color: Colors.limeAccent[400],
+        /// )
+        /// ```
+        /// {@end-tool}
+        ///
+        /// See also:
+        ///
+        ///  * [lime], the corresponding primary colors.
+        ///  * [lightGreenAccent] and [yellowAccent], similar colors.
+        ///  * [Theme.of], which allows you to select colors from the current theme
+        ///    rather than hard-coding colors in your build methods.
+        /// </Summary>
         public virtual FlutterSDK.Material.Colors.MaterialAccentColor LimeAccent { get; set; }
         internal virtual int _LimeAccentPrimaryValue { get; set; }
+        /// <Summary>
+        /// The yellow primary color and swatch.
+        ///
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.yellow.png)
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.yellowAccent.png)
+        ///
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.lime.png)
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.limeAccent.png)
+        ///
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.amber.png)
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.amberAccent.png)
+        ///
+        /// {@tool snippet}
+        ///
+        /// ```dart
+        /// Icon(
+        ///   Icons.widgets,
+        ///   color: Colors.yellow[400],
+        /// )
+        /// ```
+        /// {@end-tool}
+        ///
+        /// See also:
+        ///
+        ///  * [yellowAccent], the corresponding accent colors.
+        ///  * [lime] and [amber], similar colors.
+        ///  * [Theme.of], which allows you to select colors from the current theme
+        ///    rather than hard-coding colors in your build methods.
+        /// </Summary>
         public virtual FlutterSDK.Material.Colors.MaterialColor Yellow { get; set; }
         internal virtual int _YellowPrimaryValue { get; set; }
+        /// <Summary>
+        /// The yellow accent color and swatch.
+        ///
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.yellow.png)
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.yellowAccent.png)
+        ///
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.lime.png)
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.limeAccent.png)
+        ///
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.amber.png)
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.amberAccent.png)
+        ///
+        /// {@tool snippet}
+        ///
+        /// ```dart
+        /// Icon(
+        ///   Icons.widgets,
+        ///   color: Colors.yellowAccent[400],
+        /// )
+        /// ```
+        /// {@end-tool}
+        ///
+        /// See also:
+        ///
+        ///  * [yellow], the corresponding primary colors.
+        ///  * [limeAccent] and [amberAccent], similar colors.
+        ///  * [Theme.of], which allows you to select colors from the current theme
+        ///    rather than hard-coding colors in your build methods.
+        /// </Summary>
         public virtual FlutterSDK.Material.Colors.MaterialAccentColor YellowAccent { get; set; }
         internal virtual int _YellowAccentPrimaryValue { get; set; }
+        /// <Summary>
+        /// The amber primary color and swatch.
+        ///
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.amber.png)
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.amberAccent.png)
+        ///
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.yellow.png)
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.yellowAccent.png)
+        ///
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.orange.png)
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.orangeAccent.png)
+        ///
+        /// {@tool snippet}
+        ///
+        /// ```dart
+        /// Icon(
+        ///   Icons.widgets,
+        ///   color: Colors.amber[400],
+        /// )
+        /// ```
+        /// {@end-tool}
+        ///
+        /// See also:
+        ///
+        ///  * [amberAccent], the corresponding accent colors.
+        ///  * [yellow] and [orange], similar colors.
+        ///  * [Theme.of], which allows you to select colors from the current theme
+        ///    rather than hard-coding colors in your build methods.
+        /// </Summary>
         public virtual FlutterSDK.Material.Colors.MaterialColor Amber { get; set; }
         internal virtual int _AmberPrimaryValue { get; set; }
+        /// <Summary>
+        /// The amber accent color and swatch.
+        ///
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.amber.png)
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.amberAccent.png)
+        ///
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.yellow.png)
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.yellowAccent.png)
+        ///
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.orange.png)
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.orangeAccent.png)
+        ///
+        /// {@tool snippet}
+        ///
+        /// ```dart
+        /// Icon(
+        ///   Icons.widgets,
+        ///   color: Colors.amberAccent[400],
+        /// )
+        /// ```
+        /// {@end-tool}
+        ///
+        /// See also:
+        ///
+        ///  * [amber], the corresponding primary colors.
+        ///  * [yellowAccent] and [orangeAccent], similar colors.
+        ///  * [Theme.of], which allows you to select colors from the current theme
+        ///    rather than hard-coding colors in your build methods.
+        /// </Summary>
         public virtual FlutterSDK.Material.Colors.MaterialAccentColor AmberAccent { get; set; }
         internal virtual int _AmberAccentPrimaryValue { get; set; }
+        /// <Summary>
+        /// The orange primary color and swatch.
+        ///
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.orange.png)
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.orangeAccent.png)
+        ///
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.amber.png)
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.amberAccent.png)
+        ///
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.deepOrange.png)
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.deepOrangeAccent.png)
+        ///
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.brown.png)
+        ///
+        /// {@tool snippet}
+        ///
+        /// ```dart
+        /// Icon(
+        ///   Icons.widgets,
+        ///   color: Colors.orange[400],
+        /// )
+        /// ```
+        /// {@end-tool}
+        ///
+        /// See also:
+        ///
+        ///  * [orangeAccent], the corresponding accent colors.
+        ///  * [amber], [deepOrange], and [brown], similar colors.
+        ///  * [Theme.of], which allows you to select colors from the current theme
+        ///    rather than hard-coding colors in your build methods.
+        /// </Summary>
         public virtual FlutterSDK.Material.Colors.MaterialColor Orange { get; set; }
         internal virtual int _OrangePrimaryValue { get; set; }
+        /// <Summary>
+        /// The orange accent color and swatch.
+        ///
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.orange.png)
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.orangeAccent.png)
+        ///
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.amber.png)
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.amberAccent.png)
+        ///
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.deepOrange.png)
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.deepOrangeAccent.png)
+        ///
+        /// {@tool snippet}
+        ///
+        /// ```dart
+        /// Icon(
+        ///   Icons.widgets,
+        ///   color: Colors.orangeAccent[400],
+        /// )
+        /// ```
+        /// {@end-tool}
+        ///
+        /// See also:
+        ///
+        ///  * [orange], the corresponding primary colors.
+        ///  * [amberAccent] and [deepOrangeAccent], similar colors.
+        ///  * [Theme.of], which allows you to select colors from the current theme
+        ///    rather than hard-coding colors in your build methods.
+        /// </Summary>
         public virtual FlutterSDK.Material.Colors.MaterialAccentColor OrangeAccent { get; set; }
         internal virtual int _OrangeAccentPrimaryValue { get; set; }
+        /// <Summary>
+        /// The deep orange primary color and swatch.
+        ///
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.deepOrange.png)
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.deepOrangeAccent.png)
+        ///
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.orange.png)
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.orangeAccent.png)
+        ///
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.red.png)
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.redAccent.png)
+        ///
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.brown.png)
+        ///
+        /// {@tool snippet}
+        ///
+        /// ```dart
+        /// Icon(
+        ///   Icons.widgets,
+        ///   color: Colors.deepOrange[400],
+        /// )
+        /// ```
+        /// {@end-tool}
+        ///
+        /// See also:
+        ///
+        ///  * [deepOrangeAccent], the corresponding accent colors.
+        ///  * [orange], [red], and [brown], similar colors.
+        ///  * [Theme.of], which allows you to select colors from the current theme
+        ///    rather than hard-coding colors in your build methods.
+        /// </Summary>
         public virtual FlutterSDK.Material.Colors.MaterialColor DeepOrange { get; set; }
         internal virtual int _DeepOrangePrimaryValue { get; set; }
+        /// <Summary>
+        /// The deep orange accent color and swatch.
+        ///
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.deepOrange.png)
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.deepOrangeAccent.png)
+        ///
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.orange.png)
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.orangeAccent.png)
+        ///
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.red.png)
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.redAccent.png)
+        ///
+        /// {@tool snippet}
+        ///
+        /// ```dart
+        /// Icon(
+        ///   Icons.widgets,
+        ///   color: Colors.deepOrangeAccent[400],
+        /// )
+        /// ```
+        /// {@end-tool}
+        ///
+        /// See also:
+        ///
+        ///  * [deepOrange], the corresponding primary colors.
+        ///  * [orangeAccent] [redAccent], similar colors.
+        ///  * [Theme.of], which allows you to select colors from the current theme
+        ///    rather than hard-coding colors in your build methods.
+        /// </Summary>
         public virtual FlutterSDK.Material.Colors.MaterialAccentColor DeepOrangeAccent { get; set; }
         internal virtual int _DeepOrangeAccentPrimaryValue { get; set; }
+        /// <Summary>
+        /// The brown primary color and swatch.
+        ///
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.brown.png)
+        ///
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.orange.png)
+        ///
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.blueGrey.png)
+        ///
+        /// This swatch has no corresponding accent color and swatch.
+        ///
+        /// {@tool snippet}
+        ///
+        /// ```dart
+        /// Icon(
+        ///   Icons.widgets,
+        ///   color: Colors.brown[400],
+        /// )
+        /// ```
+        /// {@end-tool}
+        ///
+        /// See also:
+        ///
+        ///  * [orange] and [blueGrey], vaguely similar colors.
+        ///  * [Theme.of], which allows you to select colors from the current theme
+        ///    rather than hard-coding colors in your build methods.
+        /// </Summary>
         public virtual FlutterSDK.Material.Colors.MaterialColor Brown { get; set; }
         internal virtual int _BrownPrimaryValue { get; set; }
+        /// <Summary>
+        /// The grey primary color and swatch.
+        ///
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.grey.png)
+        ///
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.blueGrey.png)
+        ///
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.brown.png)
+        ///
+        /// This swatch has no corresponding accent swatch.
+        ///
+        /// This swatch, in addition to the values 50 and 100 to 900 in 100
+        /// increments, also features the special values 350 and 850. The 350 value is
+        /// used for raised button while pressed in light themes, and 850 is used for
+        /// the background color of the dark theme. See [ThemeData.brightness].
+        ///
+        /// {@tool snippet}
+        ///
+        /// ```dart
+        /// Icon(
+        ///   Icons.widgets,
+        ///   color: Colors.grey[400],
+        /// )
+        /// ```
+        /// {@end-tool}
+        ///
+        /// See also:
+        ///
+        ///  * [blueGrey] and [brown], somewhat similar colors.
+        ///  * [black], [black87], [black54], [black45], [black38], [black26], [black12], which
+        ///    provide a different approach to showing shades of grey.
+        ///  * [Theme.of], which allows you to select colors from the current theme
+        ///    rather than hard-coding colors in your build methods.
+        /// </Summary>
         public virtual FlutterSDK.Material.Colors.MaterialColor Grey { get; set; }
         internal virtual int _GreyPrimaryValue { get; set; }
+        /// <Summary>
+        /// The blue-grey primary color and swatch.
+        ///
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.blueGrey.png)
+        ///
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.grey.png)
+        ///
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.cyan.png)
+        ///
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.blue.png)
+        ///
+        /// This swatch has no corresponding accent swatch.
+        ///
+        /// {@tool snippet}
+        ///
+        /// ```dart
+        /// Icon(
+        ///   Icons.widgets,
+        ///   color: Colors.blueGrey[400],
+        /// )
+        /// ```
+        /// {@end-tool}
+        ///
+        /// See also:
+        ///
+        ///  * [grey], [cyan], and [blue], similar colors.
+        ///  * [Theme.of], which allows you to select colors from the current theme
+        ///    rather than hard-coding colors in your build methods.
+        /// </Summary>
         public virtual FlutterSDK.Material.Colors.MaterialColor BlueGrey { get; set; }
         internal virtual int _BlueGreyPrimaryValue { get; set; }
+        /// <Summary>
+        /// The material design primary color swatches, excluding grey.
+        /// </Summary>
         public virtual List<FlutterSDK.Material.Colors.MaterialColor> Primaries { get; set; }
+        /// <Summary>
+        /// The material design accent color swatches.
+        /// </Summary>
         public virtual List<FlutterSDK.Material.Colors.MaterialAccentColor> Accents { get; set; }
     }
 

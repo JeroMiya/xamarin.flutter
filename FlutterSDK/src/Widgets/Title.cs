@@ -434,6 +434,13 @@ namespace FlutterSDK.Widgets.Title
     /// </Summary>
     public class Title : FlutterSDK.Widgets.Framework.StatelessWidget
     {
+        /// <Summary>
+        /// Creates a widget that describes this app to the Android operating system.
+        ///
+        /// [title] will default to the empty string if not supplied.
+        /// [color] must be an opaque color (i.e. color.alpha must be 255 (0xFF)).
+        /// [color] and [child] are required arguments.
+        /// </Summary>
         public Title(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), string title = default(string), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key)
         {
@@ -441,8 +448,22 @@ namespace FlutterSDK.Widgets.Title
             this.Color = color;
             this.Child = child;
         }
+        /// <Summary>
+        /// A one-line description of this app for use in the window manager.
+        /// Must not be null.
+        /// </Summary>
         public virtual string TitleValue { get; set; }
+        /// <Summary>
+        /// A color that the window manager should use to identify this app. Must be
+        /// an opaque color (i.e. color.alpha must be 255 (0xFF)), and must not be
+        /// null.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color Color { get; set; }
+        /// <Summary>
+        /// The widget below this widget in the tree.
+        ///
+        /// {@macro flutter.widgets.child}
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)

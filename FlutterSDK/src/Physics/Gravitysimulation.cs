@@ -460,6 +460,22 @@ namespace FlutterSDK.Physics.Gravitysimulation
     /// </Summary>
     public class GravitySimulation : FlutterSDK.Physics.Simulation.Simulation
     {
+        /// <Summary>
+        /// Creates a [GravitySimulation] using the given arguments, which are,
+        /// respectively: an acceleration that is to be applied continually over time;
+        /// an initial position relative to an origin; the magnitude of the distance
+        /// from that origin beyond which (in either direction) to consider the
+        /// simulation to be "done", which must be positive; and an initial velocity.
+        ///
+        /// The initial position and maximum distance are measured in arbitrary length
+        /// units L from an arbitrary origin. The units will match those used for [x].
+        ///
+        /// The time unit T used for the arguments to [x], [dx], and [isDone],
+        /// combined with the aforementioned length unit, together determine the units
+        /// that must be used for the velocity and acceleration arguments: L/T and
+        /// L/T² respectively. The same units of velocity are used for the velocity
+        /// obtained from [dx].
+        /// </Summary>
         public GravitySimulation(double acceleration, double distance, double endDistance, double velocity)
         : base()
         {

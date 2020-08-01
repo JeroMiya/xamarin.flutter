@@ -443,6 +443,10 @@ namespace FlutterSDK.Widgets.Navigationtoolbar
     /// </Summary>
     public class NavigationToolbar : FlutterSDK.Widgets.Framework.StatelessWidget
     {
+        /// <Summary>
+        /// Creates a widget that lays out its children in a manner suitable for a
+        /// toolbar.
+        /// </Summary>
         public NavigationToolbar(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget leading = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget middle = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget trailing = default(FlutterSDK.Widgets.Framework.Widget), bool centerMiddle = true, double middleSpacing = default(double))
         : base(key: key)
         {
@@ -452,11 +456,33 @@ namespace FlutterSDK.Widgets.Navigationtoolbar
             this.CenterMiddle = centerMiddle;
             this.MiddleSpacing = middleSpacing;
         }
+        /// <Summary>
+        /// The default spacing around the [middle] widget in dp.
+        /// </Summary>
         public virtual double KMiddleSpacing { get; set; }
+        /// <Summary>
+        /// Widget to place at the start of the horizontal toolbar.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Leading { get; set; }
+        /// <Summary>
+        /// Widget to place in the middle of the horizontal toolbar, occupying
+        /// as much remaining space as possible.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Middle { get; set; }
+        /// <Summary>
+        /// Widget to place at the end of the horizontal toolbar.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Trailing { get; set; }
+        /// <Summary>
+        /// Whether to align the [middle] widget to the center of this widget or
+        /// next to the [leading] widget when false.
+        /// </Summary>
         public virtual bool CenterMiddle { get; set; }
+        /// <Summary>
+        /// The spacing around the [middle] widget on horizontal axis.
+        ///
+        /// Defaults to [kMiddleSpacing].
+        /// </Summary>
         public virtual double MiddleSpacing { get; set; }
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
@@ -481,6 +507,9 @@ namespace FlutterSDK.Widgets.Navigationtoolbar
             this.TextDirection = textDirection;
         }
         public virtual bool CenterMiddle { get; set; }
+        /// <Summary>
+        /// The spacing around middle widget on horizontal axis.
+        /// </Summary>
         public virtual double MiddleSpacing { get; set; }
         public virtual TextDirection TextDirection { get; set; }
 

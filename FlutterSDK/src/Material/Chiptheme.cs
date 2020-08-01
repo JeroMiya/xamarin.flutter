@@ -411,11 +411,20 @@ namespace FlutterSDK.Material.Chiptheme
     /// </Summary>
     public class ChipTheme : FlutterSDK.Widgets.Inheritedtheme.InheritedTheme
     {
+        /// <Summary>
+        /// Applies the given theme [data] to [child].
+        ///
+        /// The [data] and [child] arguments must not be null.
+        /// </Summary>
         public ChipTheme(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Material.Chiptheme.ChipThemeData data = default(FlutterSDK.Material.Chiptheme.ChipThemeData), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
             this.Data = data;
         }
+        /// <Summary>
+        /// Specifies the color, shape, and text style values for descendant chip
+        /// widgets.
+        /// </Summary>
         public virtual FlutterSDK.Material.Chiptheme.ChipThemeData Data { get; set; }
 
         /// <Summary>
@@ -547,6 +556,14 @@ namespace FlutterSDK.Material.Chiptheme
     /// </Summary>
     public class ChipThemeData : IDiagnosticable
     {
+        /// <Summary>
+        /// Create a [ChipThemeData] given a set of exact values. All the values
+        /// must be specified except for [shadowColor], [selectedShadowColor],
+        /// [elevation], and [pressElevation], which may be null.
+        ///
+        /// This will rarely be used directly. It is used by [lerp] to
+        /// create intermediate themes based on two themes.
+        /// </Summary>
         public ChipThemeData(FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color deleteIconColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color disabledColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color selectedColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color secondarySelectedColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color shadowColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color selectedShadowColor = default(FlutterBinding.UI.Color), bool showCheckmark = default(bool), FlutterBinding.UI.Color checkmarkColor = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry labelPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), FlutterSDK.Painting.Textstyle.TextStyle labelStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle secondaryLabelStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), Brightness brightness = default(Brightness), double elevation = default(double), double pressElevation = default(double))
         : base()
         {
@@ -568,6 +585,25 @@ namespace FlutterSDK.Material.Chiptheme
             this.Elevation = elevation;
             this.PressElevation = pressElevation;
         }
+        /// <Summary>
+        /// Generates a ChipThemeData from a brightness, a primary color, and a text
+        /// style.
+        ///
+        /// The [brightness] is used to select a primary color from the default
+        /// values.
+        ///
+        /// The optional [primaryColor] is used as the base color for the other
+        /// colors. The opacity of the [primaryColor] is ignored. If a [primaryColor]
+        /// is specified, then the [brightness] is ignored, and the theme brightness
+        /// is determined from the [primaryColor].
+        ///
+        /// Only one of [primaryColor] or [brightness] may be specified.
+        ///
+        /// The [secondaryColor] is used for the selection colors needed by
+        /// [ChoiceChip].
+        ///
+        /// This is used to generate the default chip theme for a [ThemeData].
+        /// </Summary>
         public static ChipThemeData FromDefaults(Brightness brightness = default(Brightness), FlutterBinding.UI.Color primaryColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color secondaryColor = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Textstyle.TextStyle labelStyle = default(FlutterSDK.Painting.Textstyle.TextStyle))
         {
             var instance = new ChipThemeData();
@@ -600,22 +636,132 @@ namespace FlutterSDK.Material.Chiptheme
         }
 
 
+        /// <Summary>
+        /// Color to be used for the unselected, enabled chip's background.
+        ///
+        /// The default is light grey.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
+        /// <Summary>
+        /// The [Color] for the delete icon. The default is Color(0xde000000)
+        /// (slightly transparent black) for light themes, and Color(0xdeffffff)
+        /// (slightly transparent white) for dark themes.
+        ///
+        /// May be set to null, in which case the ambient [IconTheme.color] is used.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color DeleteIconColor { get; set; }
+        /// <Summary>
+        /// Color to be used for the chip's background indicating that it is disabled.
+        ///
+        /// The chip is disabled when [isEnabled] is false, or all three of
+        /// [SelectableChipAttributes.onSelected], [TappableChipAttributes.onPressed],
+        /// and [DeletableChipAttributes.onDelete] are null.
+        ///
+        /// It defaults to [Colors.black38].
+        /// </Summary>
         public virtual FlutterBinding.UI.Color DisabledColor { get; set; }
+        /// <Summary>
+        /// Color to be used for the chip's background, indicating that it is
+        /// selected.
+        ///
+        /// The chip is selected when [selected] is true.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color SelectedColor { get; set; }
+        /// <Summary>
+        /// An alternate color to be used for the chip's background, indicating that
+        /// it is selected. For example, this color is used by [ChoiceChip] when the
+        /// choice is selected.
+        ///
+        /// The chip is selected when [selected] is true.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color SecondarySelectedColor { get; set; }
+        /// <Summary>
+        /// Color of the chip's shadow when the elevation is greater than 0.
+        ///
+        /// If null, the chip defaults to [Colors.black].
+        ///
+        /// See also:
+        ///
+        ///  * [selectedShadowColor]
+        /// </Summary>
         public virtual FlutterBinding.UI.Color ShadowColor { get; set; }
+        /// <Summary>
+        /// Color of the chip's shadow when the elevation is greater than 0 and the
+        /// chip is selected.
+        ///
+        /// If null, the chip defaults to [Colors.black].
+        ///
+        /// See also:
+        ///
+        ///  * [shadowColor]
+        /// </Summary>
         public virtual FlutterBinding.UI.Color SelectedShadowColor { get; set; }
+        /// <Summary>
+        /// Whether or not to show a check mark when [selected] is true.
+        ///
+        /// For instance, the [ChoiceChip] sets this to false so that it can be
+        /// selected without showing the check mark.
+        ///
+        /// Defaults to true.
+        /// </Summary>
         public virtual bool ShowCheckmark { get; set; }
+        /// <Summary>
+        /// Color of the chip's check mark when a check mark is visible.
+        ///
+        /// This will override the color set by the platform's brightness setting.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color CheckmarkColor { get; set; }
+        /// <Summary>
+        /// The padding around the [label] widget.
+        ///
+        /// By default, this is 4 logical pixels at the beginning and the end of the
+        /// label, and zero on top and bottom.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry LabelPadding { get; set; }
+        /// <Summary>
+        /// The padding between the contents of the chip and the outside [shape].
+        ///
+        /// Defaults to 4 logical pixels on all sides.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Padding { get; set; }
+        /// <Summary>
+        /// The border to draw around the chip.
+        ///
+        /// Defaults to a [StadiumBorder]. Must not be null.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Borders.ShapeBorder Shape { get; set; }
+        /// <Summary>
+        /// The style to be applied to the chip's label.
+        ///
+        /// This only has an effect on label widgets that respect the
+        /// [DefaultTextStyle], such as [Text].
+        /// </Summary>
         public virtual FlutterSDK.Painting.Textstyle.TextStyle LabelStyle { get; set; }
+        /// <Summary>
+        /// An alternate style to be applied to the chip's label. For example, this
+        /// style is applied to the text of a selected [ChoiceChip].
+        ///
+        /// This only has an effect on label widgets that respect the
+        /// [DefaultTextStyle], such as [Text].
+        /// </Summary>
         public virtual FlutterSDK.Painting.Textstyle.TextStyle SecondaryLabelStyle { get; set; }
+        /// <Summary>
+        /// The brightness setting for this theme.
+        ///
+        /// This affects various base material color choices in the chip rendering.
+        /// </Summary>
         public virtual Brightness Brightness { get; set; }
+        /// <Summary>
+        /// The elevation to be applied to the chip.
+        ///
+        /// If null, the chip defaults to 0.
+        /// </Summary>
         public virtual double Elevation { get; set; }
+        /// <Summary>
+        /// The elevation to be applied to the chip during the press motion.
+        ///
+        /// If null, the chip defaults to 8.
+        /// </Summary>
         public virtual double PressElevation { get; set; }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 

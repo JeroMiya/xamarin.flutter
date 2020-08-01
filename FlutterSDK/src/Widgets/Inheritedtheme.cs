@@ -597,6 +597,10 @@ namespace FlutterSDK.Widgets.Inheritedtheme
     /// </Summary>
     public class InheritedTheme : FlutterSDK.Widgets.Framework.InheritedWidget
     {
+        /// <Summary>
+        /// Abstract const constructor. This constructor enables subclasses to provide
+        /// const constructors so that they can be used in const expressions.
+        /// </Summary>
         public InheritedTheme(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {

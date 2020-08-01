@@ -423,6 +423,10 @@ using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
 namespace FlutterSDK.Services.Textformatter
 {
+    /// <Summary>
+    /// Function signature expected for creating custom [TextInputFormatter]
+    /// shorthands via [TextInputFormatter.withFunction];
+    /// </Summary>
     public delegate FlutterSDK.Services.Textinput.TextEditingValue TextInputFormatFunction(FlutterSDK.Services.Textinput.TextEditingValue oldValue, FlutterSDK.Services.Textinput.TextEditingValue newValue);
     internal static class TextformatterDefaultClass
     {
@@ -550,14 +554,28 @@ namespace FlutterSDK.Services.Textformatter
     /// </Summary>
     public class BlacklistingTextInputFormatter : FlutterSDK.Services.Textformatter.TextInputFormatter
     {
+        /// <Summary>
+        /// Creates a formatter that prevents the insertion of blacklisted characters patterns.
+        ///
+        /// The [blacklistedPattern] must not be null.
+        /// </Summary>
         public BlacklistingTextInputFormatter(Pattern blacklistedPattern, string replacementString = default(string))
         : base()
         {
             this.BlacklistedPattern = blacklistedPattern;
             this.ReplacementString = replacementString;
         }
+        /// <Summary>
+        /// A [Pattern] to match and replace incoming [TextEditingValue]s.
+        /// </Summary>
         public virtual Pattern BlacklistedPattern { get; set; }
+        /// <Summary>
+        /// String used to replace found patterns.
+        /// </Summary>
         public virtual string ReplacementString { get; set; }
+        /// <Summary>
+        /// A [BlacklistingTextInputFormatter] that forces input to be a single line.
+        /// </Summary>
         public virtual FlutterSDK.Services.Textformatter.BlacklistingTextInputFormatter SingleLineFormatter { get; set; }
 
         public new FlutterSDK.Services.Textinput.TextEditingValue FormatEditUpdate(FlutterSDK.Services.Textinput.TextEditingValue oldValue, FlutterSDK.Services.Textinput.TextEditingValue newValue)
@@ -586,11 +604,45 @@ namespace FlutterSDK.Services.Textformatter
     /// </Summary>
     public class LengthLimitingTextInputFormatter : FlutterSDK.Services.Textformatter.TextInputFormatter
     {
+        /// <Summary>
+        /// Creates a formatter that prevents the insertion of more characters than a
+        /// limit.
+        ///
+        /// The [maxLength] must be null, -1 or greater than zero. If it is null or -1
+        /// then no limit is enforced.
+        /// </Summary>
         public LengthLimitingTextInputFormatter(int maxLength)
         : base()
         {
             this.MaxLength = maxLength;
         }
+        /// <Summary>
+        /// The limit on the number of characters (i.e. Unicode scalar values) this formatter
+        /// will allow.
+        ///
+        /// The value must be null or greater than zero. If it is null, then no limit
+        /// is enforced.
+        ///
+        /// This formatter does not currently count Unicode grapheme clusters (i.e.
+        /// characters visible to the user), it counts Unicode scalar values, which leaves
+        /// out a number of useful possible characters (like many emoji and composed
+        /// characters), so this will be inaccurate in the presence of those
+        /// characters. If you expect to encounter these kinds of characters, be
+        /// generous in the maxLength used.
+        ///
+        /// For instance, the character "ö" can be represented as '\u{006F}\u{0308}',
+        /// which is the letter "o" followed by a composed diaeresis "¨", or it can
+        /// be represented as '\u{00F6}', which is the Unicode scalar value "LATIN
+        /// SMALL LETTER O WITH DIAERESIS". In the first case, the text field will
+        /// count two characters, and the second case will be counted as one
+        /// character, even though the user can see no difference in the input.
+        ///
+        /// Similarly, some emoji are represented by multiple scalar values. The
+        /// Unicode "THUMBS UP SIGN + MEDIUM SKIN TONE MODIFIER", "👍🏽", should be
+        /// counted as a single character, but because it is a combination of two
+        /// Unicode scalar values, '\u{1F44D}\u{1F3FD}', it is counted as two
+        /// characters.
+        /// </Summary>
         public virtual int MaxLength { get; set; }
 
         /// <Summary>
@@ -643,12 +695,25 @@ namespace FlutterSDK.Services.Textformatter
     /// </Summary>
     public class WhitelistingTextInputFormatter : FlutterSDK.Services.Textformatter.TextInputFormatter
     {
+        /// <Summary>
+        /// Creates a formatter that allows only the insertion of whitelisted characters patterns.
+        ///
+        /// The [whitelistedPattern] must not be null.
+        /// </Summary>
         public WhitelistingTextInputFormatter(Pattern whitelistedPattern)
         : base()
         {
             this.WhitelistedPattern = whitelistedPattern;
         }
+        /// <Summary>
+        /// A [Pattern] to extract all instances of allowed characters.
+        ///
+        /// [RegExp] with multiple groups is not supported.
+        /// </Summary>
         public virtual Pattern WhitelistedPattern { get; set; }
+        /// <Summary>
+        /// A [WhitelistingTextInputFormatter] that takes in digits `[0-9]` only.
+        /// </Summary>
         public virtual FlutterSDK.Services.Textformatter.WhitelistingTextInputFormatter DigitsOnly { get; set; }
 
         public new FlutterSDK.Services.Textinput.TextEditingValue FormatEditUpdate(FlutterSDK.Services.Textinput.TextEditingValue oldValue, FlutterSDK.Services.Textinput.TextEditingValue newValue)

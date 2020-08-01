@@ -37,6 +37,9 @@ using FlutterSDK.Foundation.Basictypes;
 using FlutterSDK.Animation.Tween;
 namespace FlutterSDK.Animation.Animation
 {
+    /// <Summary>
+    /// Signature for listeners attached using [Animation.addStatusListener].
+    /// </Summary>
     public delegate void AnimationStatusListener(FlutterSDK.Animation.Animation.AnimationStatus status);
     internal static class AnimationDefaultClass
     {
@@ -102,6 +105,10 @@ namespace FlutterSDK.Animation.Animation
     /// </Summary>
     public class Animation<T> : FlutterSDK.Foundation.Changenotifier.Listenable, IValueListenable<T>
     {
+        /// <Summary>
+        /// Abstract const constructor. This constructor enables subclasses to provide
+        /// const constructors so that they can be used in const expressions.
+        /// </Summary>
         public Animation()
         {
 

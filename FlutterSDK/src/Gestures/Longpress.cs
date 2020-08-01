@@ -296,10 +296,43 @@ using FlutterSDK.Foundation._Isolatesio;
 using FlutterSDK.Foundation._Platformio;
 namespace FlutterSDK.Gestures.Longpress
 {
+    /// <Summary>
+    /// Callback signature for [LongPressGestureRecognizer.onLongPress].
+    ///
+    /// Called when a pointer has remained in contact with the screen at the
+    /// same location for a long period of time.
+    /// </Summary>
     public delegate void GestureLongPressCallback();
+    /// <Summary>
+    /// Callback signature for [LongPressGestureRecognizer.onLongPressUp].
+    ///
+    /// Called when a pointer stops contacting the screen after a long press
+    /// gesture was detected.
+    /// </Summary>
     public delegate void GestureLongPressUpCallback();
+    /// <Summary>
+    /// Callback signature for [LongPressGestureRecognizer.onLongPressStart].
+    ///
+    /// Called when a pointer has remained in contact with the screen at the
+    /// same location for a long period of time. Also reports the long press down
+    /// position.
+    /// </Summary>
     public delegate void GestureLongPressStartCallback(FlutterSDK.Gestures.Longpress.LongPressStartDetails details);
+    /// <Summary>
+    /// Callback signature for [LongPressGestureRecognizer.onLongPressMoveUpdate].
+    ///
+    /// Called when a pointer is moving after being held in contact at the same
+    /// location for a long period of time. Reports the new position and its offset
+    /// from the original down position.
+    /// </Summary>
     public delegate void GestureLongPressMoveUpdateCallback(FlutterSDK.Gestures.Longpress.LongPressMoveUpdateDetails details);
+    /// <Summary>
+    /// Callback signature for [LongPressGestureRecognizer.onLongPressEnd].
+    ///
+    /// Called when a pointer stops contacting the screen after a long press
+    /// gesture was detected. Also reports the position where the pointer stopped
+    /// contacting the screen.
+    /// </Summary>
     public delegate void GestureLongPressEndCallback(FlutterSDK.Gestures.Longpress.LongPressEndDetails details);
     internal static class LongpressDefaultClass
     {
@@ -316,12 +349,23 @@ namespace FlutterSDK.Gestures.Longpress
     /// </Summary>
     public class LongPressStartDetails
     {
+        /// <Summary>
+        /// Creates the details for a [GestureLongPressStartCallback].
+        ///
+        /// The [globalPosition] argument must not be null.
+        /// </Summary>
         public LongPressStartDetails(FlutterBinding.UI.Offset globalPosition = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Offset localPosition = default(FlutterBinding.UI.Offset))
         : base()
         {
             this.GlobalPosition = globalPosition;
         }
+        /// <Summary>
+        /// The global position at which the pointer contacted the screen.
+        /// </Summary>
         public virtual FlutterBinding.UI.Offset GlobalPosition { get; set; }
+        /// <Summary>
+        /// The local position at which the pointer contacted the screen.
+        /// </Summary>
         public virtual FlutterBinding.UI.Offset LocalPosition { get; set; }
     }
 
@@ -337,15 +381,36 @@ namespace FlutterSDK.Gestures.Longpress
     /// </Summary>
     public class LongPressMoveUpdateDetails
     {
+        /// <Summary>
+        /// Creates the details for a [GestureLongPressMoveUpdateCallback].
+        ///
+        /// The [globalPosition] and [offsetFromOrigin] arguments must not be null.
+        /// </Summary>
         public LongPressMoveUpdateDetails(FlutterBinding.UI.Offset globalPosition = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Offset localPosition = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Offset offsetFromOrigin = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Offset localOffsetFromOrigin = default(FlutterBinding.UI.Offset))
         : base()
         {
             this.GlobalPosition = globalPosition;
             this.OffsetFromOrigin = offsetFromOrigin;
         }
+        /// <Summary>
+        /// The global position of the pointer when it triggered this update.
+        /// </Summary>
         public virtual FlutterBinding.UI.Offset GlobalPosition { get; set; }
+        /// <Summary>
+        /// The local position of the pointer when it triggered this update.
+        /// </Summary>
         public virtual FlutterBinding.UI.Offset LocalPosition { get; set; }
+        /// <Summary>
+        /// A delta offset from the point where the long press drag initially contacted
+        /// the screen to the point where the pointer is currently located (the
+        /// present [globalPosition]) when this callback is triggered.
+        /// </Summary>
         public virtual FlutterBinding.UI.Offset OffsetFromOrigin { get; set; }
+        /// <Summary>
+        /// A local delta offset from the point where the long press drag initially contacted
+        /// the screen to the point where the pointer is currently located (the
+        /// present [localPosition]) when this callback is triggered.
+        /// </Summary>
         public virtual FlutterBinding.UI.Offset LocalOffsetFromOrigin { get; set; }
     }
 
@@ -361,14 +426,30 @@ namespace FlutterSDK.Gestures.Longpress
     /// </Summary>
     public class LongPressEndDetails
     {
+        /// <Summary>
+        /// Creates the details for a [GestureLongPressEndCallback].
+        ///
+        /// The [globalPosition] argument must not be null.
+        /// </Summary>
         public LongPressEndDetails(FlutterBinding.UI.Offset globalPosition = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Offset localPosition = default(FlutterBinding.UI.Offset), FlutterSDK.Gestures.Velocitytracker.Velocity velocity = default(FlutterSDK.Gestures.Velocitytracker.Velocity))
         : base()
         {
             this.GlobalPosition = globalPosition;
             this.Velocity = velocity;
         }
+        /// <Summary>
+        /// The global position at which the pointer lifted from the screen.
+        /// </Summary>
         public virtual FlutterBinding.UI.Offset GlobalPosition { get; set; }
+        /// <Summary>
+        /// The local position at which the pointer contacted the screen.
+        /// </Summary>
         public virtual FlutterBinding.UI.Offset LocalPosition { get; set; }
+        /// <Summary>
+        /// The pointer's velocity when it stopped contacting the screen.
+        ///
+        /// Defaults to zero if not specified in the constructor.
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Velocitytracker.Velocity Velocity { get; set; }
     }
 
@@ -388,6 +469,22 @@ namespace FlutterSDK.Gestures.Longpress
     /// </Summary>
     public class LongPressGestureRecognizer : FlutterSDK.Gestures.Recognizer.PrimaryPointerGestureRecognizer
     {
+        /// <Summary>
+        /// Creates a long-press gesture recognizer.
+        ///
+        /// Consider assigning the [onLongPressStart] callback after creating this
+        /// object.
+        ///
+        /// The [postAcceptSlopTolerance] argument can be used to specify a maximum
+        /// allowed distance for the gesture to deviate from the starting point once
+        /// the long press has triggered. If the gesture deviates past that point,
+        /// subsequent callbacks ([onLongPressMoveUpdate], [onLongPressUp],
+        /// [onLongPressEnd]) will stop. Defaults to null, which means the gesture
+        /// can be moved without limit once the long press is accepted.
+        ///
+        /// The [duration] argument can be used to overwrite the default duration
+        /// after which the long press will be recognized.
+        /// </Summary>
         public LongPressGestureRecognizer(TimeSpan duration = default(TimeSpan), double postAcceptSlopTolerance = default(double), PointerDeviceKind kind = default(PointerDeviceKind), @Object debugOwner = default(@Object))
         : base(deadline: duration ?? ConstantsDefaultClass.KLongPressTimeout, postAcceptSlopTolerance: postAcceptSlopTolerance, kind: kind, debugOwner: debugOwner)
         {
@@ -396,10 +493,58 @@ namespace FlutterSDK.Gestures.Longpress
         internal virtual bool _LongPressAccepted { get; set; }
         internal virtual FlutterSDK.Gestures.Recognizer.OffsetPair _LongPressOrigin { get; set; }
         internal virtual int _InitialButtons { get; set; }
+        /// <Summary>
+        /// Called when a long press gesture by a primary button has been recognized.
+        ///
+        /// See also:
+        ///
+        ///  * [kPrimaryButton], the button this callback responds to.
+        ///  * [onLongPressStart], which has the same timing but has data for the
+        ///    press location.
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Longpress.GestureLongPressCallback OnLongPress { get; set; }
+        /// <Summary>
+        /// Called when a long press gesture by a primary button has been recognized.
+        ///
+        /// See also:
+        ///
+        ///  * [kPrimaryButton], the button this callback responds to.
+        ///  * [onLongPress], which has the same timing but without details.
+        ///  * [LongPressStartDetails], which is passed as an argument to this callback.
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Longpress.GestureLongPressStartCallback OnLongPressStart { get; set; }
+        /// <Summary>
+        /// Called when moving after the long press by a primary button is recognized.
+        ///
+        /// See also:
+        ///
+        ///  * [kPrimaryButton], the button this callback responds to.
+        ///  * [LongPressMoveUpdateDetails], which is passed as an argument to this
+        ///    callback.
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Longpress.GestureLongPressMoveUpdateCallback OnLongPressMoveUpdate { get; set; }
+        /// <Summary>
+        /// Called when the pointer stops contacting the screen after a long-press
+        /// by a primary button.
+        ///
+        /// See also:
+        ///
+        ///  * [kPrimaryButton], the button this callback responds to.
+        ///  * [onLongPressEnd], which has the same timing but has data for the up
+        ///    gesture location.
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Longpress.GestureLongPressUpCallback OnLongPressUp { get; set; }
+        /// <Summary>
+        /// Called when the pointer stops contacting the screen after a long-press
+        /// by a primary button.
+        ///
+        /// See also:
+        ///
+        ///  * [kPrimaryButton], the button this callback responds to.
+        ///  * [onLongPressUp], which has the same timing, but without details.
+        ///  * [LongPressEndDetails], which is passed as an argument to this
+        ///    callback.
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Longpress.GestureLongPressEndCallback OnLongPressEnd { get; set; }
         internal virtual FlutterSDK.Gestures.Velocitytracker.VelocityTracker _VelocityTracker { get; set; }
         public virtual string DebugDescription { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }

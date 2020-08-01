@@ -437,13 +437,34 @@ namespace FlutterSDK.Widgets.Annotatedregion
     /// </Summary>
     public class AnnotatedRegion<T> : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
+        /// <Summary>
+        /// Creates a new annotated region to insert [value] into the layer tree.
+        ///
+        /// Neither [child] nor [value] may be null.
+        ///
+        /// [sized] defaults to true and controls whether the annotated region will
+        /// clip its child.
+        /// </Summary>
         public AnnotatedRegion(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), T value = default(T), bool sized = true)
         : base(key: key, child: child)
         {
             this.Value = value;
             this.Sized = sized;
         }
+        /// <Summary>
+        /// A value which can be retrieved using [Layer.find].
+        /// </Summary>
         public virtual T Value { get; set; }
+        /// <Summary>
+        /// If false, the layer pushed into the tree will not be provided with a size.
+        ///
+        /// An [AnnotatedRegionLayer] with a size checks that the offset provided in
+        /// [Layer.find] is within the bounds, returning null otherwise.
+        ///
+        /// See also:
+        ///
+        ///  * [AnnotatedRegionLayer], for a description of this behavior.
+        /// </Summary>
         public virtual bool Sized { get; set; }
 
         public new FlutterSDK.Rendering.@object.RenderObject CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)

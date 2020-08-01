@@ -390,6 +390,16 @@ namespace FlutterSDK.Material.Bottomappbar
     /// </Summary>
     public class BottomAppBar : FlutterSDK.Widgets.Framework.StatefulWidget
     {
+        /// <Summary>
+        /// Creates a bottom application bar.
+        ///
+        /// The [clipBehavior] argument defaults to [Clip.none] and must not be null.
+        /// Additionally, [elevation] must be non-negative.
+        ///
+        /// If [color], [elevation], or [shape] are null, their [BottomAppBarTheme] values will be used.
+        /// If the corresponding [BottomAppBarTheme] property is null, then the default
+        /// specified in the property's documentation will be used.
+        /// </Summary>
         public BottomAppBar(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), double elevation = default(double), FlutterSDK.Painting.Notchedshapes.NotchedShape shape = default(FlutterSDK.Painting.Notchedshapes.NotchedShape), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip), double notchMargin = 4.0, FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key)
         {
@@ -400,11 +410,52 @@ namespace FlutterSDK.Material.Bottomappbar
             this.NotchMargin = notchMargin;
             this.Child = child;
         }
+        /// <Summary>
+        /// The widget below this widget in the tree.
+        ///
+        /// {@macro flutter.widgets.child}
+        ///
+        /// Typically this the child will be a [Row], with the first child
+        /// being an [IconButton] with the [Icons.menu] icon.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+        /// <Summary>
+        /// The bottom app bar's background color.
+        ///
+        /// If this property is null then [ThemeData.bottomAppBarTheme.color] is used,
+        /// if that's null then [ThemeData.bottomAppBarColor] is used.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color Color { get; set; }
+        /// <Summary>
+        /// The z-coordinate at which to place this bottom app bar relative to its
+        /// parent.
+        ///
+        /// This controls the size of the shadow below the bottom app bar. The
+        /// value is non-negative.
+        ///
+        /// If this property is null then [ThemeData.bottomAppBarTheme.elevation] is used,
+        /// if that's null, the default value is 8.
+        /// </Summary>
         public virtual double Elevation { get; set; }
+        /// <Summary>
+        /// The notch that is made for the floating action button.
+        ///
+        /// If this property is null then [ThemeData.bottomAppBarTheme.shape] is used,
+        /// if that's null then the shape will be rectangular with no notch.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Notchedshapes.NotchedShape Shape { get; set; }
+        /// <Summary>
+        /// {@macro flutter.widgets.Clip}
+        ///
+        /// Defaults to [Clip.none], and must not be null.
+        /// </Summary>
         public virtual FlutterBinding.UI.Clip ClipBehavior { get; set; }
+        /// <Summary>
+        /// The margin between the [FloatingActionButton] and the [BottomAppBar]'s
+        /// notch.
+        ///
+        /// Not used if [shape] is null.
+        /// </Summary>
         public virtual double NotchMargin { get; set; }
 
         public new FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget> CreateState() => new _BottomAppBarState();

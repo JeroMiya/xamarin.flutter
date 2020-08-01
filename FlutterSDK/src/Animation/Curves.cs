@@ -272,6 +272,10 @@ namespace FlutterSDK.Animation.Curves
     /// </Summary>
     public class ParametricCurve<T>
     {
+        /// <Summary>
+        /// Abstract const constructor to enable subclasses to provide
+        /// const constructors so that they can be used in const expressions.
+        /// </Summary>
         public ParametricCurve()
         {
 
@@ -335,6 +339,10 @@ namespace FlutterSDK.Animation.Curves
     /// </Summary>
     public class Curve : FlutterSDK.Animation.Curves.ParametricCurve<double>
     {
+        /// <Summary>
+        /// Abstract const constructor to enable subclasses to provide
+        /// const constructors so that they can be used in const expressions.
+        /// </Summary>
         public Curve()
         {
 
@@ -397,11 +405,19 @@ namespace FlutterSDK.Animation.Curves
     /// </Summary>
     public class SawTooth : FlutterSDK.Animation.Curves.Curve
     {
+        /// <Summary>
+        /// Creates a sawtooth curve.
+        ///
+        /// The [count] argument must not be null.
+        /// </Summary>
         public SawTooth(int count)
         : base()
         {
             this.Count = count;
         }
+        /// <Summary>
+        /// The number of repetitions of the sawtooth pattern in the unit interval.
+        /// </Summary>
         public virtual int Count { get; set; }
 
         public new double TransformInternal(double t)
@@ -429,6 +445,11 @@ namespace FlutterSDK.Animation.Curves
     /// </Summary>
     public class Interval : FlutterSDK.Animation.Curves.Curve
     {
+        /// <Summary>
+        /// Creates an interval curve.
+        ///
+        /// The arguments must not be null.
+        /// </Summary>
         public Interval(double begin, double end, FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve))
         : base()
         {
@@ -436,8 +457,21 @@ namespace FlutterSDK.Animation.Curves
             this.End = end;
             this.Curve = curve;
         }
+        /// <Summary>
+        /// The largest value for which this interval is 0.0.
+        ///
+        /// From t=0.0 to t=`begin`, the interval's value is 0.0.
+        /// </Summary>
         public virtual double Begin { get; set; }
+        /// <Summary>
+        /// The smallest value for which this interval is 1.0.
+        ///
+        /// From t=`end` to t=1.0, the interval's value is 1.0.
+        /// </Summary>
         public virtual double End { get; set; }
+        /// <Summary>
+        /// The curve to apply between [begin] and [end].
+        /// </Summary>
         public virtual FlutterSDK.Animation.Curves.Curve Curve { get; set; }
 
         public new double TransformInternal(double t)
@@ -465,11 +499,21 @@ namespace FlutterSDK.Animation.Curves
     /// </Summary>
     public class Threshold : FlutterSDK.Animation.Curves.Curve
     {
+        /// <Summary>
+        /// Creates a threshold curve.
+        ///
+        /// The [threshold] argument must not be null.
+        /// </Summary>
         public Threshold(double threshold)
         : base()
         {
             this.ThresholdValue = threshold;
         }
+        /// <Summary>
+        /// The value before which the curve is 0.0 and after which the curve is 1.0.
+        ///
+        /// When t is exactly [threshold], the curve has the value 1.0.
+        /// </Summary>
         public virtual double ThresholdValue { get; set; }
 
         public new double TransformInternal(double t)
@@ -508,6 +552,14 @@ namespace FlutterSDK.Animation.Curves
     /// </Summary>
     public class Cubic : FlutterSDK.Animation.Curves.Curve
     {
+        /// <Summary>
+        /// Creates a cubic curve.
+        ///
+        /// Rather than creating a new instance, consider using one of the common
+        /// cubic curves in [Curves].
+        ///
+        /// The [a], [b], [c], and [d] arguments must not be null.
+        /// </Summary>
         public Cubic(double a, double b, double c, double d)
         : base()
         {
@@ -516,9 +568,33 @@ namespace FlutterSDK.Animation.Curves
             this.c = c;
             this.d = d;
         }
+        /// <Summary>
+        /// The x coordinate of the first control point.
+        ///
+        /// The line through the point (0, 0) and the first control point is tangent
+        /// to the curve at the point (0, 0).
+        /// </Summary>
         public virtual double a { get; set; }
+        /// <Summary>
+        /// The y coordinate of the first control point.
+        ///
+        /// The line through the point (0, 0) and the first control point is tangent
+        /// to the curve at the point (0, 0).
+        /// </Summary>
         public virtual double b { get; set; }
+        /// <Summary>
+        /// The x coordinate of the second control point.
+        ///
+        /// The line through the point (1, 1) and the second control point is tangent
+        /// to the curve at the point (1, 1).
+        /// </Summary>
         public virtual double c { get; set; }
+        /// <Summary>
+        /// The y coordinate of the second control point.
+        ///
+        /// The line through the point (1, 1) and the second control point is tangent
+        /// to the curve at the point (1, 1).
+        /// </Summary>
         public virtual double d { get; set; }
         internal virtual double _CubicErrorBound { get; set; }
 
@@ -673,6 +749,10 @@ namespace FlutterSDK.Animation.Curves
     /// </Summary>
     public class Curve2D : FlutterSDK.Animation.Curves.ParametricCurve<Offset>
     {
+        /// <Summary>
+        /// Abstract const constructor to enable subclasses to provide const
+        /// constructors so that they can be used in const expressions.
+        /// </Summary>
         public Curve2D()
         {
 
@@ -794,13 +874,24 @@ namespace FlutterSDK.Animation.Curves
     /// </Summary>
     public class Curve2DSample
     {
+        /// <Summary>
+        /// A const constructor for the sample so that subclasses can be const.
+        ///
+        /// All arguments must not be null.
+        /// </Summary>
         public Curve2DSample(double t, FlutterBinding.UI.Offset value)
         : base()
         {
             this.t = t;
             this.Value = value;
         }
+        /// <Summary>
+        /// The parametric location of this sample point along the curve.
+        /// </Summary>
         public virtual double t { get; set; }
+        /// <Summary>
+        /// The value (the X, Y coordinates) of the curve at parametric value [t].
+        /// </Summary>
         public virtual FlutterBinding.UI.Offset Value { get; set; }
 
     }
@@ -833,11 +924,46 @@ namespace FlutterSDK.Animation.Curves
     /// </Summary>
     public class CatmullRomSpline : FlutterSDK.Animation.Curves.Curve2D
     {
+        /// <Summary>
+        /// Constructs a centripetal Catmull-Rom spline curve.
+        ///
+        /// The `controlPoints` argument is a list of four or more points that
+        /// describe the points that the curve must pass through.
+        ///
+        /// The optional `tension` argument controls how tightly the curve approaches
+        /// the given `controlPoints`. It must be in the range 0.0 to 1.0, inclusive. It
+        /// defaults to 0.0, which provides the smoothest curve. A value of 1.0
+        /// produces a linear interpolation between points.
+        ///
+        /// The optional `endHandle` and `startHandle` points are the beginning and
+        /// ending handle positions. If not specified, they are created automatically
+        /// by extending the line formed by the first and/or last line segment in the
+        /// `controlPoints`, respectively. The spline will not go through these handle
+        /// points, but they will affect the slope of the line at the beginning and
+        /// end of the spline. The spline will attempt to match the slope of the line
+        /// formed by the start or end handle and the neighboring first or last
+        /// control point. The default is chosen so that the slope of the line at the
+        /// ends matches that of the first or last line segment in the control points.
+        ///
+        /// The `tension` and `controlPoints` arguments must not be null, and the
+        /// `controlPoints` list must contain at least four control points to
+        /// interpolate.
+        ///
+        /// The internal curve data structures are lazily computed the first time
+        /// [transform] is called.  If you would rather pre-compute the structures,
+        /// use [CatmullRomSpline.precompute] instead.
+        /// </Summary>
         public CatmullRomSpline(List<FlutterBinding.UI.Offset> controlPoints, double tension = 0.0, FlutterBinding.UI.Offset startHandle = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Offset endHandle = default(FlutterBinding.UI.Offset))
         : base()
         {
 
         }
+        /// <Summary>
+        /// Constructs a centripetal Catmull-Rom spline curve.
+        ///
+        /// The same as [new CatmullRomSpline], except that the internal data
+        /// structures are precomputed instead of being computed lazily.
+        /// </Summary>
         public static CatmullRomSpline Precompute(List<FlutterBinding.UI.Offset> controlPoints, double tension = 0.0, FlutterBinding.UI.Offset startHandle = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Offset endHandle = default(FlutterBinding.UI.Offset))
         {
             var instance = new CatmullRomSpline();
@@ -947,20 +1073,91 @@ namespace FlutterSDK.Animation.Curves
     /// </Summary>
     public class CatmullRomCurve : FlutterSDK.Animation.Curves.Curve
     {
+        /// <Summary>
+        /// Constructs a centripetal [CatmullRomCurve].
+        ///
+        /// It takes a list of two or more points that describe the points that the
+        /// curve must pass through. See [controlPoints] for a description of the
+        /// restrictions placed on control points. In addition to the given
+        /// [controlPoints], the curve will begin with an implicit control point at
+        /// (0.0, 0.0) and end with an implicit control point at (1.0, 1.0), so that
+        /// the curve begins and ends at those points.
+        ///
+        /// The optional [tension] argument controls how tightly the curve approaches
+        /// the given `controlPoints`. It must be in the range 0.0 to 1.0, inclusive. It
+        /// defaults to 0.0, which provides the smoothest curve. A value of 1.0
+        /// is equivalent to a linear interpolation between points.
+        ///
+        /// The internal curve data structures are lazily computed the first time
+        /// [transform] is called.  If you would rather pre-compute the curve, use
+        /// [CatmullRomCurve.precompute] instead.
+        ///
+        /// All of the arguments must not be null.
+        ///
+        /// See also:
+        ///
+        ///  * This [paper on using Catmull-Rom splines](http://faculty.cs.tamu.edu/schaefer/research/cr_cad.pdf).
+        /// </Summary>
         public CatmullRomCurve(List<FlutterBinding.UI.Offset> controlPoints, double tension = 0.0)
         : base()
         {
             this.ControlPoints = controlPoints;
             this.Tension = tension;
         }
+        /// <Summary>
+        /// Constructs a centripetal [CatmullRomCurve].
+        ///
+        /// Same as [new CatmullRomCurve], but it precomputes the internal curve data
+        /// structures for a more predictable computation load.
+        /// </Summary>
         public static CatmullRomCurve Precompute(List<FlutterBinding.UI.Offset> controlPoints, double tension = 0.0)
         {
             var instance = new CatmullRomCurve(); instance.ControlPoints = controlPoints;
             instance.Tension = tension;
         }
+        /// <Summary>
+        /// A static accumulator for assertion failures. Not used in release mode.
+        /// </Summary>
         internal virtual List<string> _DebugAssertReasons { get; set; }
         internal virtual List<FlutterSDK.Animation.Curves.Curve2DSample> _PrecomputedSamples { get; set; }
+        /// <Summary>
+        /// The control points used to create this curve.
+        ///
+        /// The `dx` value of each [Offset] in [controlPoints] represents the
+        /// animation value at which the curve should pass through the `dy` value of
+        /// the same control point.
+        ///
+        /// The [controlPoints] list must meet the following criteria:
+        ///
+        ///  * The list must contain at least two points.
+        ///  * The X value of each point must be greater than 0.0 and less then 1.0.
+        ///  * The X values of each point must be greater than the
+        ///    previous point's X value (i.e. monotonically increasing). The Y values
+        ///    are not constrained.
+        ///  * The resulting spline must be single-valued in X. That is, for each X
+        ///    value, there must be exactly one Y value. This means that the control
+        ///    points must not generated a spline that loops or overlaps itself.
+        ///
+        /// The static function [validateControlPoints] can be used to check that
+        /// these conditions are met, and will return true if they are. In debug mode,
+        /// it will also optionally return a list of reasons in text form. In debug
+        /// mode, the constructor will assert that these conditions are met and print
+        /// the reasons if the assert fires.
+        ///
+        /// When the curve is evaluated with [transform], the values will interpolate
+        /// smoothly from one control point to the next, passing through (0.0, 0.0), the
+        /// given control points, and (1.0, 1.0).
+        /// </Summary>
         public virtual List<Offset> ControlPoints { get; set; }
+        /// <Summary>
+        /// The "tension" of the curve.
+        ///
+        /// The `tension` attribute controls how tightly the curve approaches the
+        /// given [controlPoints]. It must be in the range 0.0 to 1.0, inclusive. It
+        /// is optional, and defaults to 0.0, which provides the smoothest curve. A
+        /// value of 1.0 is equivalent to a linear interpolation between control
+        /// points.
+        /// </Summary>
         public virtual double Tension { get; set; }
 
         private List<FlutterSDK.Animation.Curves.Curve2DSample> _ComputeSamples(List<FlutterBinding.UI.Offset> controlPoints, double tension)
@@ -1141,11 +1338,19 @@ namespace FlutterSDK.Animation.Curves
     /// </Summary>
     public class FlippedCurve : FlutterSDK.Animation.Curves.Curve
     {
+        /// <Summary>
+        /// Creates a flipped curve.
+        ///
+        /// The [curve] argument must not be null.
+        /// </Summary>
         public FlippedCurve(FlutterSDK.Animation.Curves.Curve curve)
         : base()
         {
             this.Curve = curve;
         }
+        /// <Summary>
+        /// The curve that is being flipped.
+        /// </Summary>
         public virtual FlutterSDK.Animation.Curves.Curve Curve { get; set; }
 
         public new double TransformInternal(double t) => 1.0 - Curve.Transform(1.0 - t);
@@ -1258,10 +1463,18 @@ namespace FlutterSDK.Animation.Curves
     /// </Summary>
     public class ElasticInCurve : FlutterSDK.Animation.Curves.Curve
     {
+        /// <Summary>
+        /// Creates an elastic-in curve.
+        ///
+        /// Rather than creating a new instance, consider using [Curves.elasticIn].
+        /// </Summary>
         public ElasticInCurve(double period = 0.4)
         {
             this.Period = period;
         }
+        /// <Summary>
+        /// The duration of the oscillation.
+        /// </Summary>
         public virtual double Period { get; set; }
 
         public new double TransformInternal(double t)
@@ -1287,10 +1500,18 @@ namespace FlutterSDK.Animation.Curves
     /// </Summary>
     public class ElasticOutCurve : FlutterSDK.Animation.Curves.Curve
     {
+        /// <Summary>
+        /// Creates an elastic-out curve.
+        ///
+        /// Rather than creating a new instance, consider using [Curves.elasticOut].
+        /// </Summary>
         public ElasticOutCurve(double period = 0.4)
         {
             this.Period = period;
         }
+        /// <Summary>
+        /// The duration of the oscillation.
+        /// </Summary>
         public virtual double Period { get; set; }
 
         public new double TransformInternal(double t)
@@ -1316,10 +1537,18 @@ namespace FlutterSDK.Animation.Curves
     /// </Summary>
     public class ElasticInOutCurve : FlutterSDK.Animation.Curves.Curve
     {
+        /// <Summary>
+        /// Creates an elastic-in-out curve.
+        ///
+        /// Rather than creating a new instance, consider using [Curves.elasticInOut].
+        /// </Summary>
         public ElasticInOutCurve(double period = 0.4)
         {
             this.Period = period;
         }
+        /// <Summary>
+        /// The duration of the oscillation.
+        /// </Summary>
         public virtual double Period { get; set; }
 
         public new double TransformInternal(double t)
@@ -1388,46 +1617,435 @@ namespace FlutterSDK.Animation.Curves
         {
 
         }
+        /// <Summary>
+        /// A linear animation curve.
+        ///
+        /// This is the identity map over the unit interval: its [Curve.transform]
+        /// method returns its input unmodified. This is useful as a default curve for
+        /// cases where a [Curve] is required but no actual curve is desired.
+        ///
+        /// {@animation 464 192 https://flutter.github.io/assets-for-api-docs/assets/animation/curve_linear.mp4}
+        /// </Summary>
         public virtual FlutterSDK.Animation.Curves.Curve Linear { get; set; }
+        /// <Summary>
+        /// A curve where the rate of change starts out quickly and then decelerates; an
+        /// upside-down `f(t) = t²` parabola.
+        ///
+        /// This is equivalent to the Android `DecelerateInterpolator` class with a unit
+        /// factor (the default factor).
+        ///
+        /// {@animation 464 192 https://flutter.github.io/assets-for-api-docs/assets/animation/curve_decelerate.mp4}
+        /// </Summary>
         public virtual FlutterSDK.Animation.Curves.Curve Decelerate { get; set; }
+        /// <Summary>
+        /// A curve that is very steep and linear at the beginning, but quickly flattens out
+        /// and very slowly eases in.
+        ///
+        /// By default is the curve used to animate pages on iOS back to their original
+        /// position if a swipe gesture is ended midway through a swipe.
+        ///
+        /// {@animation 464 192 https://flutter.github.io/assets-for-api-docs/assets/animation/curve_fast_linear_to_slow_ease_in.mp4}
+        /// </Summary>
         public virtual FlutterSDK.Animation.Curves.Cubic FastLinearToSlowEaseIn { get; set; }
+        /// <Summary>
+        /// A cubic animation curve that speeds up quickly and ends slowly.
+        ///
+        /// {@animation 464 192 https://flutter.github.io/assets-for-api-docs/assets/animation/curve_ease.mp4}
+        /// </Summary>
         public virtual FlutterSDK.Animation.Curves.Cubic Ease { get; set; }
+        /// <Summary>
+        /// A cubic animation curve that starts slowly and ends quickly.
+        ///
+        /// {@animation 464 192 https://flutter.github.io/assets-for-api-docs/assets/animation/curve_ease_in.mp4}
+        /// </Summary>
         public virtual FlutterSDK.Animation.Curves.Cubic EaseIn { get; set; }
+        /// <Summary>
+        /// A cubic animation curve that starts starts slowly and ends linearly.
+        ///
+        /// The symmetric animation to [linearToEaseOut].
+        ///
+        /// {@animation 464 192 https://flutter.github.io/assets-for-api-docs/assets/animation/curve_ease_in_to_linear.mp4}
+        /// </Summary>
         public virtual FlutterSDK.Animation.Curves.Cubic EaseInToLinear { get; set; }
+        /// <Summary>
+        /// A cubic animation curve that starts slowly and ends quickly. This is
+        /// similar to [Curves.easeIn], but with sinusoidal easing for a slightly less
+        /// abrupt beginning and end. Nonetheless, the result is quite gentle and is
+        /// hard to distinguish from [Curves.linear] at a glance.
+        ///
+        /// Derived from Robert Penner’s easing functions.
+        ///
+        /// {@animation 464 192 https://flutter.github.io/assets-for-api-docs/assets/animation/curve_ease_in_sine.mp4}
+        /// </Summary>
         public virtual FlutterSDK.Animation.Curves.Cubic EaseInSine { get; set; }
+        /// <Summary>
+        /// A cubic animation curve that starts slowly and ends quickly. Based on a
+        /// quadratic equation where `f(t) = t²`, this is effectively the inverse of
+        /// [Curves.decelerate].
+        ///
+        /// Compared to [Curves.easeInSine], this curve is slightly steeper.
+        ///
+        /// Derived from Robert Penner’s easing functions.
+        ///
+        /// {@animation 464 192 https://flutter.github.io/assets-for-api-docs/assets/animation/curve_ease_in_quad.mp4}
+        /// </Summary>
         public virtual FlutterSDK.Animation.Curves.Cubic EaseInQuad { get; set; }
+        /// <Summary>
+        /// A cubic animation curve that starts slowly and ends quickly. This curve is
+        /// based on a cubic equation where `f(t) = t³`. The result is a safe sweet
+        /// spot when choosing a curve for widgets animating off the viewport.
+        ///
+        /// Compared to [Curves.easeInQuad], this curve is slightly steeper.
+        ///
+        /// Derived from Robert Penner’s easing functions.
+        ///
+        /// {@animation 464 192 https://flutter.github.io/assets-for-api-docs/assets/animation/curve_ease_in_cubic.mp4}
+        /// </Summary>
         public virtual FlutterSDK.Animation.Curves.Cubic EaseInCubic { get; set; }
+        /// <Summary>
+        /// A cubic animation curve that starts slowly and ends quickly. This curve is
+        /// based on a quartic equation where `f(t) = t⁴`.
+        ///
+        /// Animations using this curve or steeper curves will benefit from a longer
+        /// duration to avoid motion feeling unnatural.
+        ///
+        /// Compared to [Curves.easeInCubic], this curve is slightly steeper.
+        ///
+        /// Derived from Robert Penner’s easing functions.
+        ///
+        /// {@animation 464 192 https://flutter.github.io/assets-for-api-docs/assets/animation/curve_ease_in_quart.mp4}
+        /// </Summary>
         public virtual FlutterSDK.Animation.Curves.Cubic EaseInQuart { get; set; }
+        /// <Summary>
+        /// A cubic animation curve that starts slowly and ends quickly. This curve is
+        /// based on a quintic equation where `f(t) = t⁵`.
+        ///
+        /// Compared to [Curves.easeInQuart], this curve is slightly steeper.
+        ///
+        /// Derived from Robert Penner’s easing functions.
+        ///
+        /// {@animation 464 192 https://flutter.github.io/assets-for-api-docs/assets/animation/curve_ease_in_quint.mp4}
+        /// </Summary>
         public virtual FlutterSDK.Animation.Curves.Cubic EaseInQuint { get; set; }
+        /// <Summary>
+        /// A cubic animation curve that starts slowly and ends quickly. This curve is
+        /// based on an exponential equation where `f(t) = 2¹⁰⁽ᵗ⁻¹⁾`.
+        ///
+        /// Using this curve can give your animations extra flare, but a longer
+        /// duration may need to be used to compensate for the steepness of the curve.
+        ///
+        /// Compared to [Curves.easeInQuint], this curve is slightly steeper.
+        ///
+        /// Derived from Robert Penner’s easing functions.
+        ///
+        /// {@animation 464 192 https://flutter.github.io/assets-for-api-docs/assets/animation/curve_ease_in_expo.mp4}
+        /// </Summary>
         public virtual FlutterSDK.Animation.Curves.Cubic EaseInExpo { get; set; }
+        /// <Summary>
+        /// A cubic animation curve that starts slowly and ends quickly. This curve is
+        /// effectively the bottom-right quarter of a circle.
+        ///
+        /// Like [Curves.easeInExpo], this curve is fairly dramatic and will reduce
+        /// the clarity of an animation if not given a longer duration.
+        ///
+        /// Derived from Robert Penner’s easing functions.
+        ///
+        /// {@animation 464 192 https://flutter.github.io/assets-for-api-docs/assets/animation/curve_ease_in_circ.mp4}
+        /// </Summary>
         public virtual FlutterSDK.Animation.Curves.Cubic EaseInCirc { get; set; }
+        /// <Summary>
+        /// A cubic animation curve that starts slowly and ends quickly. This curve
+        /// is similar to [Curves.elasticIn] in that it overshoots its bounds before
+        /// reaching its end. Instead of repeated swinging motions before ascending,
+        /// though, this curve overshoots once, then continues to ascend.
+        ///
+        /// Derived from Robert Penner’s easing functions.
+        ///
+        /// {@animation 464 192 https://flutter.github.io/assets-for-api-docs/assets/animation/curve_ease_in_back.mp4}
+        /// </Summary>
         public virtual FlutterSDK.Animation.Curves.Cubic EaseInBack { get; set; }
+        /// <Summary>
+        /// A cubic animation curve that starts quickly and ends slowly.
+        ///
+        /// {@animation 464 192 https://flutter.github.io/assets-for-api-docs/assets/animation/curve_ease_out.mp4}
+        /// </Summary>
         public virtual FlutterSDK.Animation.Curves.Cubic EaseOut { get; set; }
+        /// <Summary>
+        /// A cubic animation curve that starts linearly and ends slowly.
+        ///
+        /// A symmetric animation to [easeInToLinear].
+        ///
+        /// {@animation 464 192 https://flutter.github.io/assets-for-api-docs/assets/animation/curve_linear_to_ease_out.mp4}
+        /// </Summary>
         public virtual FlutterSDK.Animation.Curves.Cubic LinearToEaseOut { get; set; }
+        /// <Summary>
+        /// A cubic animation curve that starts quickly and ends slowly. This is
+        /// similar to [Curves.easeOut], but with sinusoidal easing for a slightly
+        /// less abrupt beginning and end. Nonetheless, the result is quite gentle and
+        /// is hard to distinguish from [Curves.linear] at a glance.
+        ///
+        /// Derived from Robert Penner’s easing functions.
+        ///
+        /// {@animation 464 192 https://flutter.github.io/assets-for-api-docs/assets/animation/curve_ease_out_sine.mp4}
+        /// </Summary>
         public virtual FlutterSDK.Animation.Curves.Cubic EaseOutSine { get; set; }
+        /// <Summary>
+        /// A cubic animation curve that starts quickly and ends slowly. This is
+        /// effectively the same as [Curves.decelerate], only simulated using a cubic
+        /// bezier function.
+        ///
+        /// Compared to [Curves.easeOutSine], this curve is slightly steeper.
+        ///
+        /// Derived from Robert Penner’s easing functions.
+        ///
+        /// {@animation 464 192 https://flutter.github.io/assets-for-api-docs/assets/animation/curve_ease_out_quad.mp4}
+        /// </Summary>
         public virtual FlutterSDK.Animation.Curves.Cubic EaseOutQuad { get; set; }
+        /// <Summary>
+        /// A cubic animation curve that starts quickly and ends slowly. This curve is
+        /// a flipped version of [Curves.easeInCubic].
+        ///
+        /// The result is a safe sweet spot when choosing a curve for animating a
+        /// widget's position entering or already inside the viewport.
+        ///
+        /// Compared to [Curves.easeOutQuad], this curve is slightly steeper.
+        ///
+        /// Derived from Robert Penner’s easing functions.
+        ///
+        /// {@animation 464 192 https://flutter.github.io/assets-for-api-docs/assets/animation/curve_ease_out_cubic.mp4}
+        /// </Summary>
         public virtual FlutterSDK.Animation.Curves.Cubic EaseOutCubic { get; set; }
+        /// <Summary>
+        /// A cubic animation curve that starts quickly and ends slowly. This curve is
+        /// a flipped version of [Curves.easeInQuart].
+        ///
+        /// Animations using this curve or steeper curves will benefit from a longer
+        /// duration to avoid motion feeling unnatural.
+        ///
+        /// Compared to [Curves.easeOutCubic], this curve is slightly steeper.
+        ///
+        /// Derived from Robert Penner’s easing functions.
+        ///
+        /// {@animation 464 192 https://flutter.github.io/assets-for-api-docs/assets/animation/curve_ease_out_quart.mp4}
+        /// </Summary>
         public virtual FlutterSDK.Animation.Curves.Cubic EaseOutQuart { get; set; }
+        /// <Summary>
+        /// A cubic animation curve that starts quickly and ends slowly. This curve is
+        /// a flipped version of [Curves.easeInQuint].
+        ///
+        /// Compared to [Curves.easeOutQuart], this curve is slightly steeper.
+        ///
+        /// Derived from Robert Penner’s easing functions.
+        ///
+        /// {@animation 464 192 https://flutter.github.io/assets-for-api-docs/assets/animation/curve_ease_out_quint.mp4}
+        /// </Summary>
         public virtual FlutterSDK.Animation.Curves.Cubic EaseOutQuint { get; set; }
+        /// <Summary>
+        /// A cubic animation curve that starts quickly and ends slowly. This curve is
+        /// a flipped version of [Curves.easeInExpo]. Using this curve can give your
+        /// animations extra flare, but a longer duration may need to be used to
+        /// compensate for the steepness of the curve.
+        ///
+        /// Derived from Robert Penner’s easing functions.
+        ///
+        /// {@animation 464 192 https://flutter.github.io/assets-for-api-docs/assets/animation/curve_ease_out_expo.mp4}
+        /// </Summary>
         public virtual FlutterSDK.Animation.Curves.Cubic EaseOutExpo { get; set; }
+        /// <Summary>
+        /// A cubic animation curve that starts quickly and ends slowly. This curve is
+        /// effectively the top-left quarter of a circle.
+        ///
+        /// Like [Curves.easeOutExpo], this curve is fairly dramatic and will reduce
+        /// the clarity of an animation if not given a longer duration.
+        ///
+        /// Derived from Robert Penner’s easing functions.
+        ///
+        /// {@animation 464 192 https://flutter.github.io/assets-for-api-docs/assets/animation/curve_ease_out_circ.mp4}
+        /// </Summary>
         public virtual FlutterSDK.Animation.Curves.Cubic EaseOutCirc { get; set; }
+        /// <Summary>
+        /// A cubic animation curve that starts quickly and ends slowly. This curve is
+        /// similar to [Curves.elasticOut] in that it overshoots its bounds before
+        /// reaching its end. Instead of repeated swinging motions after ascending,
+        /// though, this curve only overshoots once.
+        ///
+        /// Derived from Robert Penner’s easing functions.
+        ///
+        /// {@animation 464 192 https://flutter.github.io/assets-for-api-docs/assets/animation/curve_ease_out_back.mp4}
+        /// </Summary>
         public virtual FlutterSDK.Animation.Curves.Cubic EaseOutBack { get; set; }
+        /// <Summary>
+        /// A cubic animation curve that starts slowly, speeds up, and then ends
+        /// slowly.
+        ///
+        /// {@animation 464 192 https://flutter.github.io/assets-for-api-docs/assets/animation/curve_ease_in_out.mp4}
+        /// </Summary>
         public virtual FlutterSDK.Animation.Curves.Cubic EaseInOut { get; set; }
+        /// <Summary>
+        /// A cubic animation curve that starts slowly, speeds up, and then ends
+        /// slowly. This is similar to [Curves.easeInOut], but with sinusoidal easing
+        /// for a slightly less abrupt beginning and end.
+        ///
+        /// Derived from Robert Penner’s easing functions.
+        ///
+        /// {@animation 464 192 https://flutter.github.io/assets-for-api-docs/assets/animation/curve_ease_in_out_sine.mp4}
+        /// </Summary>
         public virtual FlutterSDK.Animation.Curves.Cubic EaseInOutSine { get; set; }
+        /// <Summary>
+        /// A cubic animation curve that starts slowly, speeds up, and then ends
+        /// slowly. This curve can be imagined as [Curves.easeInQuad] as the first
+        /// half, and [Curves.easeOutQuad] as the second.
+        ///
+        /// Compared to [Curves.easeInOutSine], this curve is slightly steeper.
+        ///
+        /// Derived from Robert Penner’s easing functions.
+        ///
+        /// {@animation 464 192 https://flutter.github.io/assets-for-api-docs/assets/animation/curve_ease_in_out_quad.mp4}
+        /// </Summary>
         public virtual FlutterSDK.Animation.Curves.Cubic EaseInOutQuad { get; set; }
+        /// <Summary>
+        /// A cubic animation curve that starts slowly, speeds up, and then ends
+        /// slowly. This curve can be imagined as [Curves.easeInCubic] as the first
+        /// half, and [Curves.easeOutCubic] as the second.
+        ///
+        /// The result is a safe sweet spot when choosing a curve for a widget whose
+        /// initial and final positions are both within the viewport.
+        ///
+        /// Compared to [Curves.easeInOutQuad], this curve is slightly steeper.
+        ///
+        /// Derived from Robert Penner’s easing functions.
+        ///
+        /// {@animation 464 192 https://flutter.github.io/assets-for-api-docs/assets/animation/curve_ease_in_out_cubic.mp4}
+        /// </Summary>
         public virtual FlutterSDK.Animation.Curves.Cubic EaseInOutCubic { get; set; }
+        /// <Summary>
+        /// A cubic animation curve that starts slowly, speeds up, and then ends
+        /// slowly. This curve can be imagined as [Curves.easeInQuart] as the first
+        /// half, and [Curves.easeOutQuart] as the second.
+        ///
+        /// Animations using this curve or steeper curves will benefit from a longer
+        /// duration to avoid motion feeling unnatural.
+        ///
+        /// Compared to [Curves.easeInOutCubic], this curve is slightly steeper.
+        ///
+        /// Derived from Robert Penner’s easing functions.
+        ///
+        /// {@animation 464 192 https://flutter.github.io/assets-for-api-docs/assets/animation/curve_ease_in_out_quart.mp4}
+        /// </Summary>
         public virtual FlutterSDK.Animation.Curves.Cubic EaseInOutQuart { get; set; }
+        /// <Summary>
+        /// A cubic animation curve that starts slowly, speeds up, and then ends
+        /// slowly. This curve can be imagined as [Curves.easeInQuint] as the first
+        /// half, and [Curves.easeOutQuint] as the second.
+        ///
+        /// Compared to [Curves.easeInOutQuart], this curve is slightly steeper.
+        ///
+        /// Derived from Robert Penner’s easing functions.
+        ///
+        /// {@animation 464 192 https://flutter.github.io/assets-for-api-docs/assets/animation/curve_ease_in_out_quint.mp4}
+        /// </Summary>
         public virtual FlutterSDK.Animation.Curves.Cubic EaseInOutQuint { get; set; }
+        /// <Summary>
+        /// A cubic animation curve that starts slowly, speeds up, and then ends
+        /// slowly.
+        ///
+        /// Since this curve is arrived at with an exponential function, the midpoint
+        /// is exceptionally steep. Extra consideration should be taken when designing
+        /// an animation using this.
+        ///
+        /// Compared to [Curves.easeInOutQuint], this curve is slightly steeper.
+        ///
+        /// Derived from Robert Penner’s easing functions.
+        ///
+        /// {@animation 464 192 https://flutter.github.io/assets-for-api-docs/assets/animation/curve_ease_in_out_expo.mp4}
+        /// </Summary>
         public virtual FlutterSDK.Animation.Curves.Cubic EaseInOutExpo { get; set; }
+        /// <Summary>
+        /// A cubic animation curve that starts slowly, speeds up, and then ends
+        /// slowly. This curve can be imagined as [Curves.easeInCirc] as the first
+        /// half, and [Curves.easeOutCirc] as the second.
+        ///
+        /// Like [Curves.easeInOutExpo], this curve is fairly dramatic and will reduce
+        /// the clarity of an animation if not given a longer duration.
+        ///
+        /// Compared to [Curves.easeInOutExpo], this curve is slightly steeper.
+        ///
+        /// Derived from Robert Penner’s easing functions.
+        ///
+        /// {@animation 464 192 https://flutter.github.io/assets-for-api-docs/assets/animation/curve_ease_in_out_circ.mp4}
+        /// </Summary>
         public virtual FlutterSDK.Animation.Curves.Cubic EaseInOutCirc { get; set; }
+        /// <Summary>
+        /// A cubic animation curve that starts slowly, speeds up, and then ends
+        /// slowly. This curve can be imagined as [Curves.easeInBack] as the first
+        /// half, and [Curves.easeOutBack] as the second.
+        ///
+        /// Since two curves are used as a basis for this curve, the resulting
+        /// animation will overshoot its bounds twice before reaching its end - first
+        /// by exceeding its lower bound, then exceeding its upper bound and finally
+        /// descending to its final position.
+        ///
+        /// Derived from Robert Penner’s easing functions.
+        ///
+        /// {@animation 464 192 https://flutter.github.io/assets-for-api-docs/assets/animation/curve_ease_in_out_back.mp4}
+        /// </Summary>
         public virtual FlutterSDK.Animation.Curves.Cubic EaseInOutBack { get; set; }
+        /// <Summary>
+        /// A curve that starts quickly and eases into its final position.
+        ///
+        /// Over the course of the animation, the object spends more time near its
+        /// final destination. As a result, the user isn’t left waiting for the
+        /// animation to finish, and the negative effects of motion are minimized.
+        ///
+        /// {@animation 464 192 https://flutter.github.io/assets-for-api-docs/assets/animation/curve_fast_out_slow_in.mp4}
+        ///
+        /// See also:
+        ///
+        ///  * [standardEasing], the name for this curve in the Material specification.
+        /// </Summary>
         public virtual FlutterSDK.Animation.Curves.Cubic FastOutSlowIn { get; set; }
+        /// <Summary>
+        /// A cubic animation curve that starts quickly, slows down, and then ends
+        /// quickly.
+        ///
+        /// {@animation 464 192 https://flutter.github.io/assets-for-api-docs/assets/animation/curve_slow_middle.mp4}
+        /// </Summary>
         public virtual FlutterSDK.Animation.Curves.Cubic SlowMiddle { get; set; }
+        /// <Summary>
+        /// An oscillating curve that grows in magnitude.
+        ///
+        /// {@animation 464 192 https://flutter.github.io/assets-for-api-docs/assets/animation/curve_bounce_in.mp4}
+        /// </Summary>
         public virtual FlutterSDK.Animation.Curves.Curve BounceIn { get; set; }
+        /// <Summary>
+        /// An oscillating curve that first grows and then shrink in magnitude.
+        ///
+        /// {@animation 464 192 https://flutter.github.io/assets-for-api-docs/assets/animation/curve_bounce_out.mp4}
+        /// </Summary>
         public virtual FlutterSDK.Animation.Curves.Curve BounceOut { get; set; }
+        /// <Summary>
+        /// An oscillating curve that first grows and then shrink in magnitude.
+        ///
+        /// {@animation 464 192 https://flutter.github.io/assets-for-api-docs/assets/animation/curve_bounce_in_out.mp4}
+        /// </Summary>
         public virtual FlutterSDK.Animation.Curves.Curve BounceInOut { get; set; }
+        /// <Summary>
+        /// An oscillating curve that grows in magnitude while overshooting its bounds.
+        ///
+        /// {@animation 464 192 https://flutter.github.io/assets-for-api-docs/assets/animation/curve_elastic_in.mp4}
+        /// </Summary>
         public virtual FlutterSDK.Animation.Curves.ElasticInCurve ElasticIn { get; set; }
+        /// <Summary>
+        /// An oscillating curve that shrinks in magnitude while overshooting its bounds.
+        ///
+        /// {@animation 464 192 https://flutter.github.io/assets-for-api-docs/assets/animation/curve_elastic_out.mp4}
+        /// </Summary>
         public virtual FlutterSDK.Animation.Curves.ElasticOutCurve ElasticOut { get; set; }
+        /// <Summary>
+        /// An oscillating curve that grows and then shrinks in magnitude while overshooting its bounds.
+        ///
+        /// {@animation 464 192 https://flutter.github.io/assets-for-api-docs/assets/animation/curve_elastic_in_out.mp4}
+        /// </Summary>
         public virtual FlutterSDK.Animation.Curves.ElasticInOutCurve ElasticInOut { get; set; }
     }
 

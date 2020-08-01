@@ -423,6 +423,17 @@ using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
 namespace FlutterSDK.Rendering.Custompaint
 {
+    /// <Summary>
+    /// Signature of the function returned by [CustomPainter.semanticsBuilder].
+    ///
+    /// Builds semantics information describing the picture drawn by a
+    /// [CustomPainter]. Each [CustomPainterSemantics] in the returned list is
+    /// converted into a [SemanticsNode] by copying its properties.
+    ///
+    /// The returned list must not be mutated after this function completes. To
+    /// change the semantic information, the function must return a new list
+    /// instead.
+    /// </Summary>
     public delegate List<FlutterSDK.Rendering.Custompaint.CustomPainterSemantics> SemanticsBuilderCallback(Size size);
     internal static class CustompaintDefaultClass
     {
@@ -655,6 +666,11 @@ namespace FlutterSDK.Rendering.Custompaint
     /// </Summary>
     public class CustomPainter : FlutterSDK.Foundation.Changenotifier.Listenable
     {
+        /// <Summary>
+        /// Creates a custom painter.
+        ///
+        /// The painter will repaint whenever `repaint` notifies its listeners.
+        /// </Summary>
         public CustomPainter(FlutterSDK.Foundation.Changenotifier.Listenable repaint = default(FlutterSDK.Foundation.Changenotifier.Listenable))
         : base()
         {
@@ -824,6 +840,11 @@ namespace FlutterSDK.Rendering.Custompaint
     /// </Summary>
     public class CustomPainterSemantics
     {
+        /// <Summary>
+        /// Creates semantics information describing a rectangle on a canvas.
+        ///
+        /// Arguments `rect` and `properties` must not be null.
+        /// </Summary>
         public CustomPainterSemantics(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterBinding.UI.Rect rect = default(FlutterBinding.UI.Rect), FlutterSDK.Semantics.Semantics.SemanticsProperties properties = default(FlutterSDK.Semantics.Semantics.SemanticsProperties), Matrix4 transform = default(Matrix4), HashSet<FlutterSDK.Semantics.Semantics.SemanticsTag> tags = default(HashSet<FlutterSDK.Semantics.Semantics.SemanticsTag>))
         : base()
         {
@@ -833,10 +854,49 @@ namespace FlutterSDK.Rendering.Custompaint
             this.Transform = transform;
             this.Tags = tags;
         }
+        /// <Summary>
+        /// Identifies this object in a list of siblings.
+        ///
+        /// [SemanticsNode] inherits this key, so that when the list of nodes is
+        /// updated, its nodes are updated from [CustomPainterSemantics] with matching
+        /// keys.
+        ///
+        /// If this is null, the update algorithm does not guarantee which
+        /// [SemanticsNode] will be updated using this instance.
+        ///
+        /// This value is assigned to [SemanticsNode.key] during update.
+        /// </Summary>
         public virtual FlutterSDK.Foundation.Key.Key Key { get; set; }
+        /// <Summary>
+        /// The location and size of the box on the canvas where this piece of semantic
+        /// information applies.
+        ///
+        /// This value is assigned to [SemanticsNode.rect] during update.
+        /// </Summary>
         public virtual FlutterBinding.UI.Rect Rect { get; set; }
+        /// <Summary>
+        /// The transform from the canvas' coordinate system to its parent's
+        /// coordinate system.
+        ///
+        /// This value is assigned to [SemanticsNode.transform] during update.
+        /// </Summary>
         public virtual Matrix4 Transform { get; set; }
+        /// <Summary>
+        /// Contains properties that are assigned to the [SemanticsNode] created or
+        /// updated from this object.
+        ///
+        /// See also:
+        ///
+        ///  * [Semantics], which is a widget that also uses [SemanticsProperties] to
+        ///    annotate.
+        /// </Summary>
         public virtual FlutterSDK.Semantics.Semantics.SemanticsProperties Properties { get; set; }
+        /// <Summary>
+        /// Tags used by the parent [SemanticsNode] to determine the layout of the
+        /// semantics tree.
+        ///
+        /// This value is assigned to [SemanticsNode.tags] during update.
+        /// </Summary>
         public virtual HashSet<FlutterSDK.Semantics.Semantics.SemanticsTag> Tags { get; set; }
     }
 
@@ -870,6 +930,9 @@ namespace FlutterSDK.Rendering.Custompaint
     /// </Summary>
     public class RenderCustomPaint : FlutterSDK.Rendering.Proxybox.RenderProxyBox
     {
+        /// <Summary>
+        /// Creates a render object that delegates its painting.
+        /// </Summary>
         public RenderCustomPaint(FlutterSDK.Rendering.Custompaint.CustomPainter painter = default(FlutterSDK.Rendering.Custompaint.CustomPainter), FlutterSDK.Rendering.Custompaint.CustomPainter foregroundPainter = default(FlutterSDK.Rendering.Custompaint.CustomPainter), Size preferredSize = default(Size), bool isComplex = false, bool willChange = false, FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox))
         : base(child)
         {
@@ -879,11 +942,36 @@ namespace FlutterSDK.Rendering.Custompaint
         internal virtual FlutterSDK.Rendering.Custompaint.CustomPainter _Painter { get; set; }
         internal virtual FlutterSDK.Rendering.Custompaint.CustomPainter _ForegroundPainter { get; set; }
         internal virtual Size _PreferredSize { get; set; }
+        /// <Summary>
+        /// Whether to hint that this layer's painting should be cached.
+        ///
+        /// The compositor contains a raster cache that holds bitmaps of layers in
+        /// order to avoid the cost of repeatedly rendering those layers on each
+        /// frame. If this flag is not set, then the compositor will apply its own
+        /// heuristics to decide whether the this layer is complex enough to benefit
+        /// from caching.
+        /// </Summary>
         public virtual bool IsComplex { get; set; }
+        /// <Summary>
+        /// Whether the raster cache should be told that this painting is likely
+        /// to change in the next frame.
+        /// </Summary>
         public virtual bool WillChange { get; set; }
+        /// <Summary>
+        /// Builds semantics for the picture drawn by [painter].
+        /// </Summary>
         internal virtual FlutterSDK.Rendering.Custompaint.SemanticsBuilderCallback _BackgroundSemanticsBuilder { get; set; }
+        /// <Summary>
+        /// Builds semantics for the picture drawn by [foregroundPainter].
+        /// </Summary>
         internal virtual FlutterSDK.Rendering.Custompaint.SemanticsBuilderCallback _ForegroundSemanticsBuilder { get; set; }
+        /// <Summary>
+        /// Describe the semantics of the picture painted by the [painter].
+        /// </Summary>
         internal virtual List<FlutterSDK.Semantics.Semantics.SemanticsNode> _BackgroundSemanticsNodes { get; set; }
+        /// <Summary>
+        /// Describe the semantics of the picture painted by the [foregroundPainter].
+        /// </Summary>
         internal virtual List<FlutterSDK.Semantics.Semantics.SemanticsNode> _ForegroundSemanticsNodes { get; set; }
         public virtual FlutterSDK.Rendering.Custompaint.CustomPainter Painter { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterSDK.Rendering.Custompaint.CustomPainter ForegroundPainter { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }

@@ -445,11 +445,19 @@ namespace FlutterSDK.Widgets.Statustransitions
     /// </Summary>
     public class StatusTransitionWidget : FlutterSDK.Widgets.Framework.StatefulWidget
     {
+        /// <Summary>
+        /// Initializes fields for subclasses.
+        ///
+        /// The [animation] argument must not be null.
+        /// </Summary>
         public StatusTransitionWidget(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Animation.Animation.Animation<double> animation = default(FlutterSDK.Animation.Animation.Animation<double>))
         : base(key: key)
         {
             this.Animation = animation;
         }
+        /// <Summary>
+        /// The animation to which this widget is listening.
+        /// </Summary>
         public virtual FlutterSDK.Animation.Animation.Animation<double> Animation { get; set; }
 
         /// <Summary>

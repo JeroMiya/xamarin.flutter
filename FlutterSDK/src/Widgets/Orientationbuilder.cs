@@ -425,6 +425,11 @@ using FlutterSDK.Widgets.Constants;
 using FlutterSDK.Widgets.Routenotificationmessages;
 namespace FlutterSDK.Widgets.Orientationbuilder
 {
+    /// <Summary>
+    /// Signature for a function that builds a widget given an [Orientation].
+    ///
+    /// Used by [OrientationBuilder.builder].
+    /// </Summary>
     public delegate FlutterSDK.Widgets.Framework.Widget OrientationWidgetBuilder(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Widgets.Mediaquery.Orientation orientation);
     internal static class OrientationbuilderDefaultClass
     {
@@ -446,11 +451,24 @@ namespace FlutterSDK.Widgets.Orientationbuilder
     /// </Summary>
     public class OrientationBuilder : FlutterSDK.Widgets.Framework.StatelessWidget
     {
+        /// <Summary>
+        /// Creates an orientation builder.
+        ///
+        /// The [builder] argument must not be null.
+        /// </Summary>
         public OrientationBuilder(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Orientationbuilder.OrientationWidgetBuilder builder = default(FlutterSDK.Widgets.Orientationbuilder.OrientationWidgetBuilder))
         : base(key: key)
         {
             this.Builder = builder;
         }
+        /// <Summary>
+        /// Builds the widgets below this widget given this widget's orientation.
+        ///
+        /// A widget's orientation is simply a factor of its width relative to its
+        /// height. For example, a [Column] widget will have a landscape orientation
+        /// if its width exceeds its height, even though it displays its children in
+        /// a vertical array.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Orientationbuilder.OrientationWidgetBuilder Builder { get; set; }
 
         private FlutterSDK.Widgets.Framework.Widget _BuildWithConstraints(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.Box.BoxConstraints constraints)

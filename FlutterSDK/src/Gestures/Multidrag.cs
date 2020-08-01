@@ -296,6 +296,9 @@ using FlutterSDK.Foundation._Isolatesio;
 using FlutterSDK.Foundation._Platformio;
 namespace FlutterSDK.Gestures.Multidrag
 {
+    /// <Summary>
+    /// Signature for when [MultiDragGestureRecognizer] recognizes the start of a drag gesture.
+    /// </Summary>
     public delegate FlutterSDK.Gestures.Drag.Drag GestureMultiDragStartCallback(FlutterBinding.UI.Offset position);
     internal static class MultidragDefaultClass
     {
@@ -360,11 +363,19 @@ namespace FlutterSDK.Gestures.Multidrag
     /// </Summary>
     public class MultiDragPointerState
     {
+        /// <Summary>
+        /// Creates per-pointer state for a [MultiDragGestureRecognizer].
+        ///
+        /// The [initialPosition] argument must not be null.
+        /// </Summary>
         public MultiDragPointerState(FlutterBinding.UI.Offset initialPosition)
         : base()
         {
             this.InitialPosition = initialPosition;
         }
+        /// <Summary>
+        /// The global coordinates of the pointer when the pointer contacted the screen.
+        /// </Summary>
         public virtual FlutterBinding.UI.Offset InitialPosition { get; set; }
         internal virtual FlutterSDK.Gestures.Velocitytracker.VelocityTracker _VelocityTracker { get; set; }
         internal virtual FlutterSDK.Gestures.Drag.Drag _Client { get; set; }
@@ -558,11 +569,20 @@ namespace FlutterSDK.Gestures.Multidrag
     /// </Summary>
     public class MultiDragGestureRecognizer<T> : FlutterSDK.Gestures.Recognizer.GestureRecognizer
     {
+        /// <Summary>
+        /// Initialize the object.
+        /// </Summary>
         public MultiDragGestureRecognizer(@Object debugOwner = default(@Object), PointerDeviceKind kind = default(PointerDeviceKind))
         : base(debugOwner: debugOwner, kind: kind)
         {
 
         }
+        /// <Summary>
+        /// Called when this class recognizes the start of a drag gesture.
+        ///
+        /// The remaining notifications for this drag gesture are delivered to the
+        /// [Drag] object returned by this callback.
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Multidrag.GestureMultiDragStartCallback OnStart { get; set; }
         internal virtual Dictionary<int, T> _Pointers { get; set; }
 
@@ -750,6 +770,9 @@ namespace FlutterSDK.Gestures.Multidrag
     /// </Summary>
     public class ImmediateMultiDragGestureRecognizer : FlutterSDK.Gestures.Multidrag.MultiDragGestureRecognizer<FlutterSDK.Gestures.Multidrag._ImmediatePointerState>
     {
+        /// <Summary>
+        /// Create a gesture recognizer for tracking multiple pointers at once.
+        /// </Summary>
         public ImmediateMultiDragGestureRecognizer(@Object debugOwner = default(@Object), PointerDeviceKind kind = default(PointerDeviceKind))
         : base(debugOwner: debugOwner, kind: kind)
         {
@@ -813,6 +836,10 @@ namespace FlutterSDK.Gestures.Multidrag
     /// </Summary>
     public class HorizontalMultiDragGestureRecognizer : FlutterSDK.Gestures.Multidrag.MultiDragGestureRecognizer<FlutterSDK.Gestures.Multidrag._HorizontalPointerState>
     {
+        /// <Summary>
+        /// Create a gesture recognizer for tracking multiple pointers at once
+        /// but only if they first move horizontally.
+        /// </Summary>
         public HorizontalMultiDragGestureRecognizer(@Object debugOwner = default(@Object), PointerDeviceKind kind = default(PointerDeviceKind))
         : base(debugOwner: debugOwner, kind: kind)
         {
@@ -876,6 +903,10 @@ namespace FlutterSDK.Gestures.Multidrag
     /// </Summary>
     public class VerticalMultiDragGestureRecognizer : FlutterSDK.Gestures.Multidrag.MultiDragGestureRecognizer<FlutterSDK.Gestures.Multidrag._VerticalPointerState>
     {
+        /// <Summary>
+        /// Create a gesture recognizer for tracking multiple pointers at once
+        /// but only if they first move vertically.
+        /// </Summary>
         public VerticalMultiDragGestureRecognizer(@Object debugOwner = default(@Object), PointerDeviceKind kind = default(PointerDeviceKind))
         : base(debugOwner: debugOwner, kind: kind)
         {
@@ -999,11 +1030,23 @@ namespace FlutterSDK.Gestures.Multidrag
     /// </Summary>
     public class DelayedMultiDragGestureRecognizer : FlutterSDK.Gestures.Multidrag.MultiDragGestureRecognizer<FlutterSDK.Gestures.Multidrag._DelayedPointerState>
     {
+        /// <Summary>
+        /// Creates a drag recognizer that works on a per-pointer basis after a delay.
+        ///
+        /// In order for a drag to be recognized by this recognizer, the pointer must
+        /// remain in the same place for [delay] (up to [kTouchSlop]). The [delay]
+        /// defaults to [kLongPressTimeout] to match [LongPressGestureRecognizer] but
+        /// can be changed for specific behaviors.
+        /// </Summary>
         public DelayedMultiDragGestureRecognizer(TimeSpan delay = default(TimeSpan), @Object debugOwner = default(@Object), PointerDeviceKind kind = default(PointerDeviceKind))
         : base(debugOwner: debugOwner, kind: kind)
         {
             this.Delay = delay;
         }
+        /// <Summary>
+        /// The amount of time the pointer must remain in the same place for the drag
+        /// to be recognized.
+        /// </Summary>
         public virtual TimeSpan Delay { get; set; }
         public virtual string DebugDescription { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 

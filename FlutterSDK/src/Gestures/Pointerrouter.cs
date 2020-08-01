@@ -296,6 +296,9 @@ using FlutterSDK.Foundation._Isolatesio;
 using FlutterSDK.Foundation._Platformio;
 namespace FlutterSDK.Gestures.Pointerrouter
 {
+    /// <Summary>
+    /// A callback that receives a [PointerEvent]
+    /// </Summary>
     public delegate void PointerRoute(FlutterSDK.Gestures.Events.PointerEvent @event);
     internal static class PointerrouterDefaultClass
     {
@@ -469,6 +472,13 @@ namespace FlutterSDK.Gestures.Pointerrouter
     /// </Summary>
     public class FlutterErrorDetailsForPointerRouter : FlutterSDK.Foundation.Assertions.FlutterErrorDetails
     {
+        /// <Summary>
+        /// Creates a [FlutterErrorDetailsForPointerRouter] object with the given
+        /// arguments setting the object's properties.
+        ///
+        /// The gestures library calls this constructor when catching an exception
+        /// that will subsequently be reported using [FlutterError.onError].
+        /// </Summary>
         public FlutterErrorDetailsForPointerRouter(object exception = default(object), StackTrace stack = default(StackTrace), string library = default(string), FlutterSDK.Foundation.Diagnostics.DiagnosticsNode context = default(FlutterSDK.Foundation.Diagnostics.DiagnosticsNode), FlutterSDK.Gestures.Pointerrouter.PointerRouter router = default(FlutterSDK.Gestures.Pointerrouter.PointerRouter), FlutterSDK.Gestures.Pointerrouter.PointerRoute route = default(FlutterSDK.Gestures.Pointerrouter.PointerRoute), FlutterSDK.Gestures.Events.PointerEvent @event = default(FlutterSDK.Gestures.Events.PointerEvent), FlutterSDK.Foundation.Assertions.InformationCollector informationCollector = default(FlutterSDK.Foundation.Assertions.InformationCollector), bool silent = false)
         : base(exception: exception, stack: stack, library: library, context: context, informationCollector: informationCollector, silent: silent)
         {
@@ -476,8 +486,20 @@ namespace FlutterSDK.Gestures.Pointerrouter
             this.Route = route;
             this.@event = @event;
         }
+        /// <Summary>
+        /// The pointer router that caught the exception.
+        ///
+        /// In a typical application, this is the value of [GestureBinding.pointerRouter] on
+        /// the binding ([GestureBinding.instance]).
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Pointerrouter.PointerRouter Router { get; set; }
+        /// <Summary>
+        /// The callback that threw the exception.
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Pointerrouter.PointerRoute Route { get; set; }
+        /// <Summary>
+        /// The pointer event that was being routed when the exception was raised.
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Events.PointerEvent @event { get; set; }
     }
 

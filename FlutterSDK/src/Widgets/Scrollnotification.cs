@@ -425,9 +425,18 @@ using FlutterSDK.Widgets.Constants;
 using FlutterSDK.Widgets.Routenotificationmessages;
 namespace FlutterSDK.Widgets.Scrollnotification
 {
+    /// <Summary>
+    /// A predicate for [ScrollNotification], used to customize widgets that
+    /// listen to notifications from their children.
+    /// </Summary>
     public delegate bool ScrollNotificationPredicate(FlutterSDK.Widgets.Scrollnotification.ScrollNotification notification);
     internal static class ScrollnotificationDefaultClass
     {
+        /// <Summary>
+        /// A [ScrollNotificationPredicate] that checks whether
+        /// `notification.depth == 0`, which means that the notification did not bubble
+        /// through any intervening scrolling widgets.
+        /// </Summary>
         internal static bool DefaultScrollNotificationPredicate(FlutterSDK.Widgets.Scrollnotification.ScrollNotification notification)
         {
             return notification.Depth == 0;
@@ -570,12 +579,25 @@ namespace FlutterSDK.Widgets.Scrollnotification
     /// </Summary>
     public class ScrollNotification : FlutterSDK.Widgets.Notificationlistener.LayoutChangedNotification, IViewportNotificationMixin
     {
+        /// <Summary>
+        /// Initializes fields for subclasses.
+        /// </Summary>
         public ScrollNotification(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics metrics = default(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics), FlutterSDK.Widgets.Framework.BuildContext context = default(FlutterSDK.Widgets.Framework.BuildContext))
         {
             this.Metrics = metrics;
             this.Context = context;
         }
+        /// <Summary>
+        /// A description of a [Scrollable]'s contents, useful for modeling the state
+        /// of its viewport.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics Metrics { get; set; }
+        /// <Summary>
+        /// The build context of the widget that fired this notification.
+        ///
+        /// This can be used to find the scrollable's render objects to determine the
+        /// size of the viewport, for instance.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.BuildContext Context { get; set; }
 
         public new void DebugFillDescription(List<string> description)
@@ -599,11 +621,20 @@ namespace FlutterSDK.Widgets.Scrollnotification
     /// </Summary>
     public class ScrollStartNotification : FlutterSDK.Widgets.Scrollnotification.ScrollNotification
     {
+        /// <Summary>
+        /// Creates a notification that a [Scrollable] widget has started scrolling.
+        /// </Summary>
         public ScrollStartNotification(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics metrics = default(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics), FlutterSDK.Widgets.Framework.BuildContext context = default(FlutterSDK.Widgets.Framework.BuildContext), FlutterSDK.Gestures.Dragdetails.DragStartDetails dragDetails = default(FlutterSDK.Gestures.Dragdetails.DragStartDetails))
         : base(metrics: metrics, context: context)
         {
             this.DragDetails = dragDetails;
         }
+        /// <Summary>
+        /// If the [Scrollable] started scrolling because of a drag, the details about
+        /// that drag start.
+        ///
+        /// Otherwise, null.
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Dragdetails.DragStartDetails DragDetails { get; set; }
 
         public new void DebugFillDescription(List<string> description)
@@ -629,13 +660,26 @@ namespace FlutterSDK.Widgets.Scrollnotification
     /// </Summary>
     public class ScrollUpdateNotification : FlutterSDK.Widgets.Scrollnotification.ScrollNotification
     {
+        /// <Summary>
+        /// Creates a notification that a [Scrollable] widget has changed its scroll
+        /// position.
+        /// </Summary>
         public ScrollUpdateNotification(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics metrics = default(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics), FlutterSDK.Widgets.Framework.BuildContext context = default(FlutterSDK.Widgets.Framework.BuildContext), FlutterSDK.Gestures.Dragdetails.DragUpdateDetails dragDetails = default(FlutterSDK.Gestures.Dragdetails.DragUpdateDetails), double scrollDelta = default(double))
         : base(metrics: metrics, context: context)
         {
             this.DragDetails = dragDetails;
             this.ScrollDelta = scrollDelta;
         }
+        /// <Summary>
+        /// If the [Scrollable] changed its scroll position because of a drag, the
+        /// details about that drag update.
+        ///
+        /// Otherwise, null.
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Dragdetails.DragUpdateDetails DragDetails { get; set; }
+        /// <Summary>
+        /// The distance by which the [Scrollable] was scrolled, in logical pixels.
+        /// </Summary>
         public virtual double ScrollDelta { get; set; }
 
         public new void DebugFillDescription(List<string> description)
@@ -663,6 +707,10 @@ namespace FlutterSDK.Widgets.Scrollnotification
     /// </Summary>
     public class OverscrollNotification : FlutterSDK.Widgets.Scrollnotification.ScrollNotification
     {
+        /// <Summary>
+        /// Creates a notification that a [Scrollable] widget has changed its scroll
+        /// position outside of its scroll bounds.
+        /// </Summary>
         public OverscrollNotification(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics metrics = default(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics), FlutterSDK.Widgets.Framework.BuildContext context = default(FlutterSDK.Widgets.Framework.BuildContext), FlutterSDK.Gestures.Dragdetails.DragUpdateDetails dragDetails = default(FlutterSDK.Gestures.Dragdetails.DragUpdateDetails), double overscroll = default(double), double velocity = 0.0)
         : base(metrics: metrics, context: context)
         {
@@ -670,8 +718,28 @@ namespace FlutterSDK.Widgets.Scrollnotification
             this.Overscroll = overscroll;
             this.Velocity = velocity;
         }
+        /// <Summary>
+        /// If the [Scrollable] overscrolled because of a drag, the details about that
+        /// drag update.
+        ///
+        /// Otherwise, null.
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Dragdetails.DragUpdateDetails DragDetails { get; set; }
+        /// <Summary>
+        /// The number of logical pixels that the [Scrollable] avoided scrolling.
+        ///
+        /// This will be negative for overscroll on the "start" side and positive for
+        /// overscroll on the "end" side.
+        /// </Summary>
         public virtual double Overscroll { get; set; }
+        /// <Summary>
+        /// The velocity at which the [ScrollPosition] was changing when this
+        /// overscroll happened.
+        ///
+        /// This will typically be 0.0 for touch-driven overscrolls, and positive
+        /// for overscrolls that happened from a [BallisticScrollActivity] or
+        /// [DrivenScrollActivity].
+        /// </Summary>
         public virtual double Velocity { get; set; }
 
         public new void DebugFillDescription(List<string> description)
@@ -697,11 +765,27 @@ namespace FlutterSDK.Widgets.Scrollnotification
     /// </Summary>
     public class ScrollEndNotification : FlutterSDK.Widgets.Scrollnotification.ScrollNotification
     {
+        /// <Summary>
+        /// Creates a notification that a [Scrollable] widget has stopped scrolling.
+        /// </Summary>
         public ScrollEndNotification(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics metrics = default(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics), FlutterSDK.Widgets.Framework.BuildContext context = default(FlutterSDK.Widgets.Framework.BuildContext), FlutterSDK.Gestures.Dragdetails.DragEndDetails dragDetails = default(FlutterSDK.Gestures.Dragdetails.DragEndDetails))
         : base(metrics: metrics, context: context)
         {
             this.DragDetails = dragDetails;
         }
+        /// <Summary>
+        /// If the [Scrollable] stopped scrolling because of a drag, the details about
+        /// that drag end.
+        ///
+        /// Otherwise, null.
+        ///
+        /// If a drag ends with some residual velocity, a typical [ScrollPhysics] will
+        /// start a ballistic scroll, which delays the [ScrollEndNotification] until
+        /// the ballistic simulation completes, at which time [dragDetails] will
+        /// be null. If the residual velocity is too small to trigger ballistic
+        /// scrolling, then the [ScrollEndNotification] will be dispatched immediately
+        /// and [dragDetails] will be non-null.
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Dragdetails.DragEndDetails DragDetails { get; set; }
 
         public new void DebugFillDescription(List<string> description)
@@ -725,11 +809,18 @@ namespace FlutterSDK.Widgets.Scrollnotification
     /// </Summary>
     public class UserScrollNotification : FlutterSDK.Widgets.Scrollnotification.ScrollNotification
     {
+        /// <Summary>
+        /// Creates a notification that the user has changed the direction in which
+        /// they are scrolling.
+        /// </Summary>
         public UserScrollNotification(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics metrics = default(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics), FlutterSDK.Widgets.Framework.BuildContext context = default(FlutterSDK.Widgets.Framework.BuildContext), FlutterSDK.Rendering.Viewportoffset.ScrollDirection direction = default(FlutterSDK.Rendering.Viewportoffset.ScrollDirection))
         : base(metrics: metrics, context: context)
         {
             this.Direction = direction;
         }
+        /// <Summary>
+        /// The direction in which the user is scrolling.
+        /// </Summary>
         public virtual FlutterSDK.Rendering.Viewportoffset.ScrollDirection Direction { get; set; }
 
         public new void DebugFillDescription(List<string> description)

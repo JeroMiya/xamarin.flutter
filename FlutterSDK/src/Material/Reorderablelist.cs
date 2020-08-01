@@ -407,6 +407,36 @@ using FlutterSDK.Material.Radio;
 using FlutterSDK.Material.Slidertheme;
 namespace FlutterSDK.Material.Reorderablelist
 {
+    /// <Summary>
+    /// The callback used by [ReorderableListView] to move an item to a new
+    /// position in a list.
+    ///
+    /// Implementations should remove the corresponding list item at [oldIndex]
+    /// and reinsert it at [newIndex].
+    ///
+    /// If [oldIndex] is before [newIndex], removing the item at [oldIndex] from the
+    /// list will reduce the list's length by one. Implementations used by
+    /// [ReorderableListView] will need to account for this when inserting before
+    /// [newIndex].
+    ///
+    /// {@youtube 560 315 https://www.youtube.com/watch?v=3fB1mxOsqJE}
+    ///
+    /// {@tool snippet}
+    ///
+    /// ```dart
+    /// final List<MyDataObject> backingList = <MyDataObject>[/* ... */];
+    ///
+    /// void handleReorder(int oldIndex, int newIndex) {
+    ///   if (oldIndex < newIndex) {
+    ///     // removing the item at oldIndex will shorten the list by 1.
+    ///     newIndex -= 1;
+    ///   }
+    ///   final MyDataObject element = backingList.removeAt(oldIndex);
+    ///   backingList.insert(newIndex, element);
+    /// }
+    /// ```
+    /// {@end-tool}
+    /// </Summary>
     public delegate void ReorderCallback(int oldIndex, int newIndex);
     internal static class ReorderablelistDefaultClass
     {
@@ -426,6 +456,9 @@ namespace FlutterSDK.Material.Reorderablelist
     /// </Summary>
     public class ReorderableListView : FlutterSDK.Widgets.Framework.StatefulWidget
     {
+        /// <Summary>
+        /// Creates a reorderable list.
+        /// </Summary>
         public ReorderableListView(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget header = default(FlutterSDK.Widgets.Framework.Widget), List<FlutterSDK.Widgets.Framework.Widget> children = default(List<FlutterSDK.Widgets.Framework.Widget>), FlutterSDK.Material.Reorderablelist.ReorderCallback onReorder = default(FlutterSDK.Material.Reorderablelist.ReorderCallback), FlutterSDK.Widgets.Scrollcontroller.ScrollController scrollController = default(FlutterSDK.Widgets.Scrollcontroller.ScrollController), FlutterSDK.Painting.Basictypes.Axis scrollDirection = default(FlutterSDK.Painting.Basictypes.Axis), FlutterSDK.Painting.Edgeinsets.EdgeInsets padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets), bool reverse = false)
         : base(key: key)
         {
@@ -437,12 +470,58 @@ namespace FlutterSDK.Material.Reorderablelist
             this.Padding = padding;
             this.Reverse = reverse;
         }
+        /// <Summary>
+        /// A non-reorderable header widget to show before the list.
+        ///
+        /// If null, no header will appear before the list.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Header { get; set; }
+        /// <Summary>
+        /// The widgets to display.
+        /// </Summary>
         public virtual List<FlutterSDK.Widgets.Framework.Widget> Children { get; set; }
+        /// <Summary>
+        /// The [Axis] along which the list scrolls.
+        ///
+        /// List [children] can only drag along this [Axis].
+        /// </Summary>
         public virtual FlutterSDK.Painting.Basictypes.Axis ScrollDirection { get; set; }
+        /// <Summary>
+        /// Creates a [ScrollPosition] to manage and determine which portion
+        /// of the content is visible in the scroll view.
+        ///
+        /// This can be used in many ways, such as setting an initial scroll offset,
+        /// (via [ScrollController.initialScrollOffset]), reading the current scroll position
+        /// (via [ScrollController.offset]), or changing it (via [ScrollController.jumpTo] or
+        /// [ScrollController.animateTo]).
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Scrollcontroller.ScrollController ScrollController { get; set; }
+        /// <Summary>
+        /// The amount of space by which to inset the [children].
+        /// </Summary>
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets Padding { get; set; }
+        /// <Summary>
+        /// Whether the scroll view scrolls in the reading direction.
+        ///
+        /// For example, if the reading direction is left-to-right and
+        /// [scrollDirection] is [Axis.horizontal], then the scroll view scrolls from
+        /// left to right when [reverse] is false and from right to left when
+        /// [reverse] is true.
+        ///
+        /// Similarly, if [scrollDirection] is [Axis.vertical], then the scroll view
+        /// scrolls from top to bottom when [reverse] is false and from bottom to top
+        /// when [reverse] is true.
+        ///
+        /// Defaults to false.
+        /// </Summary>
         public virtual bool Reverse { get; set; }
+        /// <Summary>
+        /// Called when a list child is dropped into a new position to shuffle the
+        /// underlying list.
+        ///
+        /// This [ReorderableListView] calls [onReorder] after a list child is dropped
+        /// into a new position.
+        /// </Summary>
         public virtual FlutterSDK.Material.Reorderablelist.ReorderCallback OnReorder { get; set; }
 
         public new FlutterSDK.Material.Reorderablelist._ReorderableListViewState CreateState() => new _ReorderableListViewState();

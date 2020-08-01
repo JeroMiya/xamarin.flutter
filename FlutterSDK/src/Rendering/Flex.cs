@@ -444,7 +444,24 @@ namespace FlutterSDK.Rendering.Flex
     {
         public FlexParentData()
         { }
+        /// <Summary>
+        /// The flex factor to use for this child
+        ///
+        /// If null or zero, the child is inflexible and determines its own size. If
+        /// non-zero, the amount of space the child's can occupy in the main axis is
+        /// determined by dividing the free space (after placing the inflexible
+        /// children) according to the flex factors of the flexible children.
+        /// </Summary>
         public virtual int Flex { get; set; }
+        /// <Summary>
+        /// How a flexible child is inscribed into the available space.
+        ///
+        /// If [flex] is non-zero, the [fit] determines whether the child fills the
+        /// space the parent makes available during layout. If the fit is
+        /// [FlexFit.tight], the child is required to fill the available space. If the
+        /// fit is [FlexFit.loose], the child can be at most as large as the available
+        /// space (but is allowed to be smaller).
+        /// </Summary>
         public virtual FlutterSDK.Rendering.Flex.FlexFit Fit { get; set; }
 
     }
@@ -501,6 +518,12 @@ namespace FlutterSDK.Rendering.Flex
     /// </Summary>
     public class RenderFlex : FlutterSDK.Rendering.Box.RenderBox, IContainerRenderObjectMixin<FlutterSDK.Rendering.Box.RenderBox, FlutterSDK.Rendering.Flex.FlexParentData>, IRenderBoxContainerDefaultsMixin<FlutterSDK.Rendering.Box.RenderBox, FlutterSDK.Rendering.Flex.FlexParentData>, IDebugOverflowIndicatorMixin
     {
+        /// <Summary>
+        /// Creates a flex render object.
+        ///
+        /// By default, the flex layout is horizontal and children are aligned to the
+        /// start of the main axis and the center of the cross axis.
+        /// </Summary>
         public RenderFlex(List<FlutterSDK.Rendering.Box.RenderBox> children = default(List<FlutterSDK.Rendering.Box.RenderBox>), FlutterSDK.Painting.Basictypes.Axis direction = default(FlutterSDK.Painting.Basictypes.Axis), FlutterSDK.Rendering.Flex.MainAxisSize mainAxisSize = default(FlutterSDK.Rendering.Flex.MainAxisSize), FlutterSDK.Rendering.Flex.MainAxisAlignment mainAxisAlignment = default(FlutterSDK.Rendering.Flex.MainAxisAlignment), FlutterSDK.Rendering.Flex.CrossAxisAlignment crossAxisAlignment = default(FlutterSDK.Rendering.Flex.CrossAxisAlignment), TextDirection textDirection = default(TextDirection), FlutterSDK.Painting.Basictypes.VerticalDirection verticalDirection = default(FlutterSDK.Painting.Basictypes.VerticalDirection), TextBaseline textBaseline = default(TextBaseline))
         : base()
         {

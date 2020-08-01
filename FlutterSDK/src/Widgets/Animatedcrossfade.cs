@@ -423,6 +423,43 @@ using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
 namespace FlutterSDK.Widgets.Animatedcrossfade
 {
+    /// <Summary>
+    /// Signature for the [AnimatedCrossFade.layoutBuilder] callback.
+    ///
+    /// The `topChild` is the child fading in, which is normally drawn on top. The
+    /// `bottomChild` is the child fading out, normally drawn on the bottom.
+    ///
+    /// For good performance, the returned widget tree should contain both the
+    /// `topChild` and the `bottomChild`; the depth of the tree, and the types of
+    /// the widgets in the tree, from the returned widget to each of the children
+    /// should be the same; and where there is a widget with multiple children, the
+    /// top child and the bottom child should be keyed using the provided
+    /// `topChildKey` and `bottomChildKey` keys respectively.
+    ///
+    /// {@tool snippet}
+    ///
+    /// ```dart
+    /// Widget defaultLayoutBuilder(Widget topChild, Key topChildKey, Widget bottomChild, Key bottomChildKey) {
+    ///   return Stack(
+    ///     fit: StackFit.loose,
+    ///     children: <Widget>[
+    ///       Positioned(
+    ///         key: bottomChildKey,
+    ///         left: 0.0,
+    ///         top: 0.0,
+    ///         right: 0.0,
+    ///         child: bottomChild,
+    ///       ),
+    ///       Positioned(
+    ///         key: topChildKey,
+    ///         child: topChild,
+    ///       )
+    ///     ],
+    ///   );
+    /// }
+    /// ```
+    /// {@end-tool}
+    /// </Summary>
     public delegate FlutterSDK.Widgets.Framework.Widget AnimatedCrossFadeBuilder(FlutterSDK.Widgets.Framework.Widget topChild, FlutterSDK.Foundation.Key.Key topChildKey, FlutterSDK.Widgets.Framework.Widget bottomChild, FlutterSDK.Foundation.Key.Key bottomChildKey);
     internal static class AnimatedcrossfadeDefaultClass
     {
@@ -478,6 +515,15 @@ namespace FlutterSDK.Widgets.Animatedcrossfade
     /// </Summary>
     public class AnimatedCrossFade : FlutterSDK.Widgets.Framework.StatefulWidget
     {
+        /// <Summary>
+        /// Creates a cross-fade animation widget.
+        ///
+        /// The [duration] of the animation is the same for all components (fade in,
+        /// fade out, and size), and you can pass [Interval]s instead of [Curve]s in
+        /// order to have finer control, e.g., creating an overlap between the fades.
+        ///
+        /// All the arguments other than [key] must be non-null.
+        /// </Summary>
         public AnimatedCrossFade(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget firstChild = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget secondChild = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Animation.Curves.Curve firstCurve = default(FlutterSDK.Animation.Curves.Curve), FlutterSDK.Animation.Curves.Curve secondCurve = default(FlutterSDK.Animation.Curves.Curve), FlutterSDK.Animation.Curves.Curve sizeCurve = default(FlutterSDK.Animation.Curves.Curve), FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), FlutterSDK.Widgets.Animatedcrossfade.CrossFadeState crossFadeState = default(FlutterSDK.Widgets.Animatedcrossfade.CrossFadeState), TimeSpan duration = default(TimeSpan), TimeSpan reverseDuration = default(TimeSpan), FlutterSDK.Widgets.Animatedcrossfade.AnimatedCrossFadeBuilder layoutBuilder = default(FlutterSDK.Widgets.Animatedcrossfade.AnimatedCrossFadeBuilder))
         : base(key: key)
         {
@@ -492,15 +538,80 @@ namespace FlutterSDK.Widgets.Animatedcrossfade
             this.ReverseDuration = reverseDuration;
             this.LayoutBuilder = layoutBuilder;
         }
+        /// <Summary>
+        /// The child that is visible when [crossFadeState] is
+        /// [CrossFadeState.showFirst]. It fades out when transitioning
+        /// [crossFadeState] from [CrossFadeState.showFirst] to
+        /// [CrossFadeState.showSecond] and vice versa.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget FirstChild { get; set; }
+        /// <Summary>
+        /// The child that is visible when [crossFadeState] is
+        /// [CrossFadeState.showSecond]. It fades in when transitioning
+        /// [crossFadeState] from [CrossFadeState.showFirst] to
+        /// [CrossFadeState.showSecond] and vice versa.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget SecondChild { get; set; }
+        /// <Summary>
+        /// The child that will be shown when the animation has completed.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Animatedcrossfade.CrossFadeState CrossFadeState { get; set; }
+        /// <Summary>
+        /// The duration of the whole orchestrated animation.
+        /// </Summary>
         public virtual TimeSpan Duration { get; set; }
+        /// <Summary>
+        /// The duration of the whole orchestrated animation when running in reverse.
+        ///
+        /// If not supplied, this defaults to [duration].
+        /// </Summary>
         public virtual TimeSpan ReverseDuration { get; set; }
+        /// <Summary>
+        /// The fade curve of the first child.
+        ///
+        /// Defaults to [Curves.linear].
+        /// </Summary>
         public virtual FlutterSDK.Animation.Curves.Curve FirstCurve { get; set; }
+        /// <Summary>
+        /// The fade curve of the second child.
+        ///
+        /// Defaults to [Curves.linear].
+        /// </Summary>
         public virtual FlutterSDK.Animation.Curves.Curve SecondCurve { get; set; }
+        /// <Summary>
+        /// The curve of the animation between the two children's sizes.
+        ///
+        /// Defaults to [Curves.linear].
+        /// </Summary>
         public virtual FlutterSDK.Animation.Curves.Curve SizeCurve { get; set; }
+        /// <Summary>
+        /// How the children should be aligned while the size is animating.
+        ///
+        /// Defaults to [Alignment.topCenter].
+        ///
+        /// See also:
+        ///
+        ///  * [Alignment], a class with convenient constants typically used to
+        ///    specify an [AlignmentGeometry].
+        ///  * [AlignmentDirectional], like [Alignment] for specifying alignments
+        ///    relative to text direction.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Alignment.AlignmentGeometry Alignment { get; set; }
+        /// <Summary>
+        /// A builder that positions the [firstChild] and [secondChild] widgets.
+        ///
+        /// The widget returned by this method is wrapped in an [AnimatedSize].
+        ///
+        /// By default, this uses [AnimatedCrossFade.defaultLayoutBuilder], which uses
+        /// a [Stack] and aligns the `bottomChild` to the top of the stack while
+        /// providing the `topChild` as the non-positioned child to fill the provided
+        /// constraints. This works well when the [AnimatedCrossFade] is in a position
+        /// to change size and when the children are not flexible. However, if the
+        /// children are less fussy about their sizes (for example a
+        /// [CircularProgressIndicator] inside a [Center]), or if the
+        /// [AnimatedCrossFade] is being forced to a particular size, then it can
+        /// result in the widgets jumping about when the cross-fade state is changed.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Animatedcrossfade.AnimatedCrossFadeBuilder LayoutBuilder { get; set; }
 
         /// <Summary>

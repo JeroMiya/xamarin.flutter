@@ -437,11 +437,30 @@ namespace FlutterSDK.Physics.Frictionsimulation
     /// </Summary>
     public class FrictionSimulation : FlutterSDK.Physics.Simulation.Simulation
     {
+        /// <Summary>
+        /// Creates a [FrictionSimulation] with the given arguments, namely: the fluid
+        /// drag coefficient, a unitless value; the initial position, in the same
+        /// length units as used for [x]; and the initial velocity, in the same
+        /// velocity units as used for [dx].
+        /// </Summary>
         public FrictionSimulation(double drag, double position, double velocity, FlutterSDK.Physics.Tolerance.Tolerance tolerance = default(FlutterSDK.Physics.Tolerance.Tolerance))
         : base(tolerance: tolerance)
         {
 
         }
+        /// <Summary>
+        /// Creates a new friction simulation with its fluid drag coefficient set so
+        /// as to ensure that the simulation starts and ends at the specified
+        /// positions and velocities.
+        ///
+        /// The positions must use the same units as expected from [x], and the
+        /// velocities must use the same units as expected from [dx].
+        ///
+        /// The sign of the start and end velocities must be the same, the magnitude
+        /// of the start velocity must be greater than the magnitude of the end
+        /// velocity, and the velocities must be in the direction appropriate for the
+        /// particle to start from the start position and reach the end position.
+        /// </Summary>
         public static FrictionSimulation Through(double startPosition, double endPosition, double startVelocity, double endVelocity)
         {
             var instance = new FrictionSimulation();
@@ -501,6 +520,15 @@ namespace FlutterSDK.Physics.Frictionsimulation
     /// </Summary>
     public class BoundedFrictionSimulation : FlutterSDK.Physics.Frictionsimulation.FrictionSimulation
     {
+        /// <Summary>
+        /// Creates a [BoundedFrictionSimulation] with the given arguments, namely:
+        /// the fluid drag coefficient, a unitless value; the initial position, in the
+        /// same length units as used for [x]; the initial velocity, in the same
+        /// velocity units as used for [dx], the minimum value for the position, and
+        /// the maximum value for the position. The minimum and maximum values must be
+        /// in the same units as the initial position, and the initial position must
+        /// be within the given range.
+        /// </Summary>
         public BoundedFrictionSimulation(double drag, double position, double velocity, double _minX, double _maxX)
         : base(drag, position, velocity)
         {

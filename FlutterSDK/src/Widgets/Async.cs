@@ -423,6 +423,17 @@ using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
 namespace FlutterSDK.Widgets.Async
 {
+    /// <Summary>
+    /// Signature for strategies that build widgets based on asynchronous
+    /// interaction.
+    ///
+    /// See also:
+    ///
+    ///  * [StreamBuilder], which delegates to an [AsyncWidgetBuilder] to build
+    ///    itself based on a snapshot from interacting with a [Stream].
+    ///  * [FutureBuilder], which delegates to an [AsyncWidgetBuilder] to build
+    ///    itself based on a snapshot from interacting with a [Future].
+    /// </Summary>
     public delegate FlutterSDK.Widgets.Framework.Widget AsyncWidgetBuilder<T>(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Widgets.Async.AsyncSnapshot<T> snapshot);
     internal static class AsyncDefaultClass
     {
@@ -508,11 +519,20 @@ namespace FlutterSDK.Widgets.Async
     /// </Summary>
     public class StreamBuilderBase<T, S> : FlutterSDK.Widgets.Framework.StatefulWidget
     {
+        /// <Summary>
+        /// Creates a [StreamBuilderBase] connected to the specified [stream].
+        /// </Summary>
         public StreamBuilderBase(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), Stream<T> stream = default(Stream<T>))
         : base(key: key)
         {
             this.Stream = stream;
         }
+        /// <Summary>
+        /// The asynchronous computation to which this builder is currently connected,
+        /// possibly null. When changed, the current summary is updated using
+        /// [afterDisconnected], if the previous stream was not null, followed by
+        /// [afterConnected], if the new stream is not null.
+        /// </Summary>
         public virtual Stream<T> Stream { get; set; }
 
         /// <Summary>
@@ -711,6 +731,10 @@ namespace FlutterSDK.Widgets.Async
     /// </Summary>
     public class AsyncSnapshot<T>
     {
+        /// <Summary>
+        /// Creates an [AsyncSnapshot] with the specified [connectionState],
+        /// and optionally either [data] or [error] (but not both).
+        /// </Summary>
         internal AsyncSnapshot(FlutterSDK.Widgets.Async.ConnectionState connectionState, T data, @Object error)
         : base()
         {
@@ -718,20 +742,50 @@ namespace FlutterSDK.Widgets.Async
             this.Data = data;
             this.Error = error;
         }
+        /// <Summary>
+        /// Creates an [AsyncSnapshot] in [ConnectionState.none] with null data and error.
+        /// </Summary>
         public static AsyncSnapshot<T> Nothing()
         {
             var instance = new AsyncSnapshot<T>();
         }
+        /// <Summary>
+        /// Creates an [AsyncSnapshot] in the specified [state] and with the specified [data].
+        /// </Summary>
         public static AsyncSnapshot<T> WithData(FlutterSDK.Widgets.Async.ConnectionState state, T data)
         {
             var instance = new AsyncSnapshot<T>();
         }
+        /// <Summary>
+        /// Creates an [AsyncSnapshot] in the specified [state] and with the specified [error].
+        /// </Summary>
         public static AsyncSnapshot<T> WithError(FlutterSDK.Widgets.Async.ConnectionState state, @Object error)
         {
             var instance = new AsyncSnapshot<T>();
         }
+        /// <Summary>
+        /// Current state of connection to the asynchronous computation.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Async.ConnectionState ConnectionState { get; set; }
+        /// <Summary>
+        /// The latest data received by the asynchronous computation.
+        ///
+        /// If this is non-null, [hasData] will be true.
+        ///
+        /// If [error] is not null, this will be null. See [hasError].
+        ///
+        /// If the asynchronous computation has never returned a value, this may be
+        /// set to an initial data value specified by the relevant widget. See
+        /// [FutureBuilder.initialData] and [StreamBuilder.initialData].
+        /// </Summary>
         public virtual T Data { get; set; }
+        /// <Summary>
+        /// The latest error object received by the asynchronous computation.
+        ///
+        /// If this is non-null, [hasError] will be true.
+        ///
+        /// If [data] is not null, this will be null.
+        /// </Summary>
         public virtual @Object Error { get; set; }
         public virtual T RequireData { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool HasData { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
@@ -926,13 +980,35 @@ namespace FlutterSDK.Widgets.Async
     /// </Summary>
     public class StreamBuilder<T> : FlutterSDK.Widgets.Async.StreamBuilderBase<T, FlutterSDK.Widgets.Async.AsyncSnapshot<T>>
     {
+        /// <Summary>
+        /// Creates a new [StreamBuilder] that builds itself based on the latest
+        /// snapshot of interaction with the specified [stream] and whose build
+        /// strategy is given by [builder].
+        ///
+        /// The [initialData] is used to create the initial snapshot.
+        ///
+        /// The [builder] must not be null.
+        /// </Summary>
         public StreamBuilder(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), T initialData = default(T), Stream<T> stream = default(Stream<T>), FlutterSDK.Widgets.Async.AsyncWidgetBuilder<T> builder = default(FlutterSDK.Widgets.Async.AsyncWidgetBuilder<T>))
         : base(key: key, stream: stream)
         {
             this.InitialData = initialData;
             this.Builder = builder;
         }
+        /// <Summary>
+        /// The build strategy currently used by this builder.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Async.AsyncWidgetBuilder<T> Builder { get; set; }
+        /// <Summary>
+        /// The data that will be used to create the initial snapshot.
+        ///
+        /// Providing this value (presumably obtained synchronously somehow when the
+        /// [Stream] was created) ensures that the first frame will show useful data.
+        /// Otherwise, the first frame will be built with the value null, regardless
+        /// of whether a value is available on the stream: since streams are
+        /// asynchronous, no events from the stream can be obtained before the initial
+        /// build.
+        /// </Summary>
         public virtual T InitialData { get; set; }
 
         public new AsyncSnapshot<T> Initial() => AsyncSnapshot<T>.WithData(ConnectionState.None, InitialData);
@@ -1113,6 +1189,12 @@ namespace FlutterSDK.Widgets.Async
     /// </Summary>
     public class FutureBuilder<T> : FlutterSDK.Widgets.Framework.StatefulWidget
     {
+        /// <Summary>
+        /// Creates a widget that builds itself based on the latest snapshot of
+        /// interaction with a [Future].
+        ///
+        /// The [builder] must not be null.
+        /// </Summary>
         public FutureBuilder(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), Future<T> future = default(Future<T>), T initialData = default(T), FlutterSDK.Widgets.Async.AsyncWidgetBuilder<T> builder = default(FlutterSDK.Widgets.Async.AsyncWidgetBuilder<T>))
         : base(key: key)
         {
@@ -1120,8 +1202,46 @@ namespace FlutterSDK.Widgets.Async
             this.InitialData = initialData;
             this.Builder = builder;
         }
+        /// <Summary>
+        /// The asynchronous computation to which this builder is currently connected,
+        /// possibly null.
+        ///
+        /// If no future has yet completed, including in the case where [future] is
+        /// null, the data provided to the [builder] will be set to [initialData].
+        /// </Summary>
         public virtual Future<T> Future { get; set; }
+        /// <Summary>
+        /// The build strategy currently used by this builder.
+        ///
+        /// The builder is provided with an [AsyncSnapshot] object whose
+        /// [AsyncSnapshot.connectionState] property will be one of the following
+        /// values:
+        ///
+        ///  * [ConnectionState.none]: [future] is null. The [AsyncSnapshot.data] will
+        ///    be set to [initialData], unless a future has previously completed, in
+        ///    which case the previous result persists.
+        ///
+        ///  * [ConnectionState.waiting]: [future] is not null, but has not yet
+        ///    completed. The [AsyncSnapshot.data] will be set to [initialData],
+        ///    unless a future has previously completed, in which case the previous
+        ///    result persists.
+        ///
+        ///  * [ConnectionState.done]: [future] is not null, and has completed. If the
+        ///    future completed successfully, the [AsyncSnapshot.data] will be set to
+        ///    the value to which the future completed. If it completed with an error,
+        ///    [AsyncSnapshot.hasError] will be true and [AsyncSnapshot.error] will be
+        ///    set to the error object.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Async.AsyncWidgetBuilder<T> Builder { get; set; }
+        /// <Summary>
+        /// The data that will be used to create the snapshots provided until a
+        /// non-null [future] has completed.
+        ///
+        /// If the future completes with an error, the data in the [AsyncSnapshot]
+        /// provided to the [builder] will become null, regardless of [initialData].
+        /// (The error itself will be available in [AsyncSnapshot.error], and
+        /// [AsyncSnapshot.hasError] will be true.)
+        /// </Summary>
         public virtual T InitialData { get; set; }
 
         public new FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Async.FutureBuilder<T>> CreateState() => new _FutureBuilderState<T>();
@@ -1137,6 +1257,11 @@ namespace FlutterSDK.Widgets.Async
     {
         public _FutureBuilderState()
         { }
+        /// <Summary>
+        /// An object that identifies the currently active callbacks. Used to avoid
+        /// calling setState from stale callbacks, e.g. after disposal of this state,
+        /// or after widget reconfiguration to a new Future.
+        /// </Summary>
         internal virtual @Object _ActiveCallbackIdentity { get; set; }
         internal virtual FlutterSDK.Widgets.Async.AsyncSnapshot<T> _Snapshot { get; set; }
 

@@ -692,6 +692,21 @@ namespace FlutterSDK.Material.Radiolisttile
     /// </Summary>
     public class RadioListTile<T> : FlutterSDK.Widgets.Framework.StatelessWidget
     {
+        /// <Summary>
+        /// Creates a combination of a list tile and a radio button.
+        ///
+        /// The radio tile itself does not maintain any state. Instead, when the radio
+        /// button is selected, the widget calls the [onChanged] callback. Most
+        /// widgets that use a radio button will listen for the [onChanged] callback
+        /// and rebuild the radio tile with a new [groupValue] to update the visual
+        /// appearance of the radio button.
+        ///
+        /// The following arguments are required:
+        ///
+        /// * [value] and [groupValue] together determine whether the radio button is
+        ///   selected.
+        /// * [onChanged] is called when the user selects this radio button.
+        /// </Summary>
         public RadioListTile(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), T value = default(T), T groupValue = default(T), FlutterSDK.Foundation.Basictypes.ValueChanged<T> onChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<T>), FlutterBinding.UI.Color activeColor = default(FlutterBinding.UI.Color), FlutterSDK.Widgets.Framework.Widget title = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget subtitle = default(FlutterSDK.Widgets.Framework.Widget), bool isThreeLine = false, bool dense = default(bool), FlutterSDK.Widgets.Framework.Widget secondary = default(FlutterSDK.Widgets.Framework.Widget), bool selected = false, FlutterSDK.Material.Listtile.ListTileControlAffinity controlAffinity = default(FlutterSDK.Material.Listtile.ListTileControlAffinity))
         : base(key: key)
         {
@@ -707,16 +722,98 @@ namespace FlutterSDK.Material.Radiolisttile
             this.Selected = selected;
             this.ControlAffinity = controlAffinity;
         }
+        /// <Summary>
+        /// The value represented by this radio button.
+        /// </Summary>
         public virtual T Value { get; set; }
+        /// <Summary>
+        /// The currently selected value for this group of radio buttons.
+        ///
+        /// This radio button is considered selected if its [value] matches the
+        /// [groupValue].
+        /// </Summary>
         public virtual T GroupValue { get; set; }
+        /// <Summary>
+        /// Called when the user selects this radio button.
+        ///
+        /// The radio button passes [value] as a parameter to this callback. The radio
+        /// button does not actually change state until the parent widget rebuilds the
+        /// radio tile with the new [groupValue].
+        ///
+        /// If null, the radio button will be displayed as disabled.
+        ///
+        /// The provided callback will not be invoked if this radio button is already
+        /// selected.
+        ///
+        /// The callback provided to [onChanged] should update the state of the parent
+        /// [StatefulWidget] using the [State.setState] method, so that the parent
+        /// gets rebuilt; for example:
+        ///
+        /// ```dart
+        /// RadioListTile<SingingCharacter>(
+        ///   title: const Text('Lafayette'),
+        ///   value: SingingCharacter.lafayette,
+        ///   groupValue: _character,
+        ///   onChanged: (SingingCharacter newValue) {
+        ///     setState(() {
+        ///       _character = newValue;
+        ///     });
+        ///   },
+        /// )
+        /// ```
+        /// </Summary>
         public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<T> OnChanged { get; set; }
+        /// <Summary>
+        /// The color to use when this radio button is selected.
+        ///
+        /// Defaults to accent color of the current [Theme].
+        /// </Summary>
         public virtual FlutterBinding.UI.Color ActiveColor { get; set; }
+        /// <Summary>
+        /// The primary content of the list tile.
+        ///
+        /// Typically a [Text] widget.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Title { get; set; }
+        /// <Summary>
+        /// Additional content displayed below the title.
+        ///
+        /// Typically a [Text] widget.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Subtitle { get; set; }
+        /// <Summary>
+        /// A widget to display on the opposite side of the tile from the radio button.
+        ///
+        /// Typically an [Icon] widget.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Secondary { get; set; }
+        /// <Summary>
+        /// Whether this list tile is intended to display three lines of text.
+        ///
+        /// If false, the list tile is treated as having one line if the subtitle is
+        /// null and treated as having two lines if the subtitle is non-null.
+        /// </Summary>
         public virtual bool IsThreeLine { get; set; }
+        /// <Summary>
+        /// Whether this list tile is part of a vertically dense list.
+        ///
+        /// If this property is null then its value is based on [ListTileTheme.dense].
+        /// </Summary>
         public virtual bool Dense { get; set; }
+        /// <Summary>
+        /// Whether to render icons and text in the [activeColor].
+        ///
+        /// No effort is made to automatically coordinate the [selected] state and the
+        /// [checked] state. To have the list tile appear selected when the radio
+        /// button is the selected radio button, set [selected] to true when [value]
+        /// matches [groupValue].
+        ///
+        /// Normally, this property is left to its default value, false.
+        /// </Summary>
         public virtual bool Selected { get; set; }
+        /// <Summary>
+        /// Where to place the control relative to the text.
+        /// </Summary>
         public virtual FlutterSDK.Material.Listtile.ListTileControlAffinity ControlAffinity { get; set; }
         public virtual bool @checked { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 

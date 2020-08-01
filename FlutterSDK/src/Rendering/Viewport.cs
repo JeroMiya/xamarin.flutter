@@ -522,7 +522,14 @@ namespace FlutterSDK.Rendering.Viewport
         {
             null;
 
-public virtual double DefaultCacheExtent { get; set; }
+/// <Summary>
+/// The default value for the cache extent of the viewport.
+///
+/// See also:
+///
+///  * [RenderViewportBase.cacheExtent] for a definition of the cache extent.
+/// </Summary>
+        public virtual double DefaultCacheExtent { get; set; }
 
         /// <Summary>
         /// Returns the [RenderAbstractViewport] that most tightly encloses the given
@@ -591,13 +598,50 @@ public virtual double DefaultCacheExtent { get; set; }
     /// </Summary>
     public class RevealedOffset
     {
+        /// <Summary>
+        /// Instantiates a return value for [RenderAbstractViewport.getOffsetToReveal].
+        /// </Summary>
         public RevealedOffset(double offset = default(double), FlutterBinding.UI.Rect rect = default(FlutterBinding.UI.Rect))
         : base()
         {
             this.Offset = offset;
             this.Rect = rect;
         }
+        /// <Summary>
+        /// Offset for the viewport to reveal a specific element in the viewport.
+        ///
+        /// See also:
+        ///
+        ///  * [RenderAbstractViewport.getOffsetToReveal], which calculates this
+        ///    value for a specific element.
+        /// </Summary>
         public virtual double Offset { get; set; }
+        /// <Summary>
+        /// The [Rect] in the outer coordinate system of the viewport at which the
+        /// to-be-revealed element would be located if the viewport's offset is set
+        /// to [offset].
+        ///
+        /// A viewport usually has two coordinate systems and works as an adapter
+        /// between the two:
+        ///
+        /// The inner coordinate system has its origin at the top left corner of the
+        /// content that moves inside the viewport. The origin of this coordinate
+        /// system usually moves around relative to the leading edge of the viewport
+        /// when the viewport offset changes.
+        ///
+        /// The outer coordinate system has its origin at the top left corner of the
+        /// visible part of the viewport. This origin stays at the same position
+        /// regardless of the current viewport offset.
+        ///
+        /// In other words: [rect] describes where the revealed element would be
+        /// located relative to the top left corner of the visible part of the
+        /// viewport if the viewport's offset is set to [offset].
+        ///
+        /// See also:
+        ///
+        ///  * [RenderAbstractViewport.getOffsetToReveal], which calculates this
+        ///    value for a specific element.
+        /// </Summary>
         public virtual FlutterBinding.UI.Rect Rect { get; set; }
 
     }
@@ -626,6 +670,9 @@ public virtual double DefaultCacheExtent { get; set; }
     /// </Summary>
     public class RenderViewportBase<ParentDataClass> : FlutterSDK.Rendering.Box.RenderBox, IRenderAbstractViewport, IContainerRenderObjectMixin<FlutterSDK.Rendering.Sliver.RenderSliver, ParentDataClass>
     {
+        /// <Summary>
+        /// Initializes fields for subclasses.
+        /// </Summary>
         public RenderViewportBase(FlutterSDK.Painting.Basictypes.AxisDirection axisDirection = default(FlutterSDK.Painting.Basictypes.AxisDirection), FlutterSDK.Painting.Basictypes.AxisDirection crossAxisDirection = default(FlutterSDK.Painting.Basictypes.AxisDirection), FlutterSDK.Rendering.Viewportoffset.ViewportOffset offset = default(FlutterSDK.Rendering.Viewportoffset.ViewportOffset), double cacheExtent = default(double), FlutterSDK.Rendering.Viewport.CacheExtentStyle cacheExtentStyle = default(FlutterSDK.Rendering.Viewport.CacheExtentStyle))
         : base()
         {
@@ -635,6 +682,13 @@ public virtual double DefaultCacheExtent { get; set; }
         internal virtual FlutterSDK.Painting.Basictypes.AxisDirection _CrossAxisDirection { get; set; }
         internal virtual FlutterSDK.Rendering.Viewportoffset.ViewportOffset _Offset { get; set; }
         internal virtual double _CacheExtent { get; set; }
+        /// <Summary>
+        /// This value is set during layout based on the [CacheExtentStyle].
+        ///
+        /// When the style is [CacheExtentStyle.viewport], it is the main axis extent
+        /// of the viewport multiplied by the requested cache extent, which is still
+        /// expressed in pixels.
+        /// </Summary>
         internal virtual double _CalculatedCacheExtent { get; set; }
         internal virtual FlutterSDK.Rendering.Viewport.CacheExtentStyle _CacheExtentStyle { get; set; }
         public virtual FlutterSDK.Painting.Basictypes.AxisDirection AxisDirection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
@@ -1322,6 +1376,15 @@ public virtual double DefaultCacheExtent { get; set; }
     /// </Summary>
     public class RenderViewport : FlutterSDK.Rendering.Viewport.RenderViewportBase<FlutterSDK.Rendering.Sliver.SliverPhysicalContainerParentData>
     {
+        /// <Summary>
+        /// Creates a viewport for [RenderSliver] objects.
+        ///
+        /// If the [center] is not specified, then the first child in the `children`
+        /// list, if any, is used.
+        ///
+        /// The [offset] must be specified. For testing purposes, consider passing a
+        /// [new ViewportOffset.zero] or [new ViewportOffset.fixed].
+        /// </Summary>
         public RenderViewport(FlutterSDK.Painting.Basictypes.AxisDirection axisDirection = default(FlutterSDK.Painting.Basictypes.AxisDirection), FlutterSDK.Painting.Basictypes.AxisDirection crossAxisDirection = default(FlutterSDK.Painting.Basictypes.AxisDirection), FlutterSDK.Rendering.Viewportoffset.ViewportOffset offset = default(FlutterSDK.Rendering.Viewportoffset.ViewportOffset), double anchor = 0.0, List<FlutterSDK.Rendering.Sliver.RenderSliver> children = default(List<FlutterSDK.Rendering.Sliver.RenderSliver>), FlutterSDK.Rendering.Sliver.RenderSliver center = default(FlutterSDK.Rendering.Sliver.RenderSliver), double cacheExtent = default(double), FlutterSDK.Rendering.Viewport.CacheExtentStyle cacheExtentStyle = default(FlutterSDK.Rendering.Viewport.CacheExtentStyle))
         : base(axisDirection: axisDirection, crossAxisDirection: crossAxisDirection, offset: offset, cacheExtent: cacheExtent, cacheExtentStyle: cacheExtentStyle)
         {
@@ -1331,7 +1394,37 @@ public virtual double DefaultCacheExtent { get; set; }
         }
 
 
+        /// <Summary>
+        /// If a [RenderAbstractViewport] overrides
+        /// [RenderObject.describeSemanticsConfiguration] to add the [SemanticsTag]
+        /// [useTwoPaneSemantics] to its [SemanticsConfiguration], two semantics nodes
+        /// will be used to represent the viewport with its associated scrolling
+        /// actions in the semantics tree.
+        ///
+        /// Two semantics nodes (an inner and an outer node) are necessary to exclude
+        /// certain child nodes (via the [excludeFromScrolling] tag) from the
+        /// scrollable area for semantic purposes: The [SemanticsNode]s of children
+        /// that should be excluded from scrolling will be attached to the outer node.
+        /// The semantic scrolling actions and the [SemanticsNode]s of scrollable
+        /// children will be attached to the inner node, which itself is a child of
+        /// the outer node.
+        /// </Summary>
         public virtual FlutterSDK.Semantics.Semantics.SemanticsTag UseTwoPaneSemantics { get; set; }
+        /// <Summary>
+        /// When a top-level [SemanticsNode] below a [RenderAbstractViewport] is
+        /// tagged with [excludeFromScrolling] it will not be part of the scrolling
+        /// area for semantic purposes.
+        ///
+        /// This behavior is only active if the [RenderAbstractViewport]
+        /// tagged its [SemanticsConfiguration] with [useTwoPaneSemantics].
+        /// Otherwise, the [excludeFromScrolling] tag is ignored.
+        ///
+        /// As an example, a [RenderSliver] that stays on the screen within a
+        /// [Scrollable] even though the user has scrolled past it (e.g. a pinned app
+        /// bar) can tag its [SemanticsNode] with [excludeFromScrolling] to indicate
+        /// that it should no longer be considered for semantic actions related to
+        /// scrolling.
+        /// </Summary>
         public virtual FlutterSDK.Semantics.Semantics.SemanticsTag ExcludeFromScrolling { get; set; }
         internal virtual double _Anchor { get; set; }
         internal virtual FlutterSDK.Rendering.Sliver.RenderSliver _Center { get; set; }
@@ -1591,6 +1684,13 @@ public virtual double DefaultCacheExtent { get; set; }
     /// </Summary>
     public class RenderShrinkWrappingViewport : FlutterSDK.Rendering.Viewport.RenderViewportBase<FlutterSDK.Rendering.Sliver.SliverLogicalContainerParentData>
     {
+        /// <Summary>
+        /// Creates a viewport (for [RenderSliver] objects) that shrink-wraps its
+        /// contents.
+        ///
+        /// The [offset] must be specified. For testing purposes, consider passing a
+        /// [new ViewportOffset.zero] or [new ViewportOffset.fixed].
+        /// </Summary>
         public RenderShrinkWrappingViewport(FlutterSDK.Painting.Basictypes.AxisDirection axisDirection = default(FlutterSDK.Painting.Basictypes.AxisDirection), FlutterSDK.Painting.Basictypes.AxisDirection crossAxisDirection = default(FlutterSDK.Painting.Basictypes.AxisDirection), FlutterSDK.Rendering.Viewportoffset.ViewportOffset offset = default(FlutterSDK.Rendering.Viewportoffset.ViewportOffset), List<FlutterSDK.Rendering.Sliver.RenderSliver> children = default(List<FlutterSDK.Rendering.Sliver.RenderSliver>))
         : base(axisDirection: axisDirection, crossAxisDirection: crossAxisDirection, offset: offset)
         {

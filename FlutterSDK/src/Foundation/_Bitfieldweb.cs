@@ -306,10 +306,16 @@ namespace FlutterSDK.Foundation._Bitfieldweb
     /// </Summary>
     public class BitField<T> : IBitField<T>
     {
+        /// <Summary>
+        /// The dart:html implementation of [bitfield.Bitfield].
+        /// </Summary>
         public BitField(int length)
         {
 
         }
+        /// <Summary>
+        /// The dart:html implementation of [bitfield.Bitfield.filled].
+        /// </Summary>
         public static BitField<T> Filled(int length, bool value)
         {
             var instance = new BitField<T>();

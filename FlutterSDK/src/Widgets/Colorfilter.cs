@@ -432,11 +432,19 @@ namespace FlutterSDK.Widgets.Colorfilter
     /// </Summary>
     public class ColorFiltered : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
+        /// <Summary>
+        /// Creates a widget that applies a [ColorFilter] to its child.
+        ///
+        /// The [colorFilter] must not be null.
+        /// </Summary>
         public ColorFiltered(ColorFilter colorFilter = default(ColorFilter), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key))
         : base(key: key, child: child)
         {
             this.ColorFilter = colorFilter;
         }
+        /// <Summary>
+        /// The color filter to apply to the child of this widget.
+        /// </Summary>
         public virtual ColorFilter ColorFilter { get; set; }
 
         public new FlutterSDK.Rendering.@object.RenderObject CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context) => new _ColorFilterRenderObject(ColorFilter);

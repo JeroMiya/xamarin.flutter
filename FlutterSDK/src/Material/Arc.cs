@@ -400,6 +400,13 @@ namespace FlutterSDK.Material.Arc
     /// </Summary>
     public class MaterialPointArcTween : FlutterSDK.Animation.Tween.Tween<Offset>
     {
+        /// <Summary>
+        /// Creates a [Tween] for animating [Offset]s along a circular arc.
+        ///
+        /// The [begin] and [end] properties must be non-null before the tween is
+        /// first used, but the arguments can be null if the values are going to be
+        /// filled in later.
+        /// </Summary>
         public MaterialPointArcTween(FlutterBinding.UI.Offset begin = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Offset end = default(FlutterBinding.UI.Offset))
         : base(begin: begin, end: end)
         {
@@ -530,6 +537,13 @@ namespace FlutterSDK.Material.Arc
     /// </Summary>
     public class MaterialRectArcTween : FlutterSDK.Animation.Tween.RectTween
     {
+        /// <Summary>
+        /// Creates a [Tween] for animating [Rect]s along a circular arc.
+        ///
+        /// The [begin] and [end] properties must be non-null before the tween is
+        /// first used, but the arguments can be null if the values are going to be
+        /// filled in later.
+        /// </Summary>
         public MaterialRectArcTween(FlutterBinding.UI.Rect begin = default(FlutterBinding.UI.Rect), FlutterBinding.UI.Rect end = default(FlutterBinding.UI.Rect))
         : base(begin: begin, end: end)
         {
@@ -610,6 +624,13 @@ namespace FlutterSDK.Material.Arc
     /// </Summary>
     public class MaterialRectCenterArcTween : FlutterSDK.Animation.Tween.RectTween
     {
+        /// <Summary>
+        /// Creates a [Tween] for animating [Rect]s along a circular arc.
+        ///
+        /// The [begin] and [end] properties must be non-null before the tween is
+        /// first used, but the arguments can be null if the values are going to be
+        /// filled in later.
+        /// </Summary>
         public MaterialRectCenterArcTween(FlutterBinding.UI.Rect begin = default(FlutterBinding.UI.Rect), FlutterBinding.UI.Rect end = default(FlutterBinding.UI.Rect))
         : base(begin: begin, end: end)
         {

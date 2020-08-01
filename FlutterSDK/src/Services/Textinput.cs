@@ -545,22 +545,93 @@ namespace FlutterSDK.Services.Textinput
         {
             this.Index = index;
         }
+        /// <Summary>
+        /// Optimize for numerical information.
+        ///
+        /// Requests a numeric keyboard with additional settings.
+        /// The [signed] and [decimal] parameters are optional.
+        /// </Summary>
         public static TextInputType NumberWithOptions(bool signed = false, bool @decimal = false)
         {
             var instance = new TextInputType(); instance.Signed = signed;
             instance.@decimal = @decimal;
         }
+        /// <Summary>
+        /// Enum value index, corresponds to one of the [values].
+        /// </Summary>
         public virtual int Index { get; set; }
+        /// <Summary>
+        /// The number is signed, allowing a positive or negative sign at the start.
+        ///
+        /// This flag is only used for the [number] input type, otherwise `null`.
+        /// Use `const TextInputType.numberWithOptions(signed: true)` to set this.
+        /// </Summary>
         public virtual bool Signed { get; set; }
+        /// <Summary>
+        /// The number is decimal, allowing a decimal point to provide fractional.
+        ///
+        /// This flag is only used for the [number] input type, otherwise `null`.
+        /// Use `const TextInputType.numberWithOptions(decimal: true)` to set this.
+        /// </Summary>
         public virtual bool @decimal { get; set; }
+        /// <Summary>
+        /// Optimize for textual information.
+        ///
+        /// Requests the default platform keyboard.
+        /// </Summary>
         public virtual FlutterSDK.Services.Textinput.TextInputType Text { get; set; }
+        /// <Summary>
+        /// Optimize for multiline textual information.
+        ///
+        /// Requests the default platform keyboard, but accepts newlines when the
+        /// enter key is pressed. This is the input type used for all multiline text
+        /// fields.
+        /// </Summary>
         public virtual FlutterSDK.Services.Textinput.TextInputType Multiline { get; set; }
+        /// <Summary>
+        /// Optimize for unsigned numerical information without a decimal point.
+        ///
+        /// Requests a default keyboard with ready access to the number keys.
+        /// Additional options, such as decimal point and/or positive/negative
+        /// signs, can be requested using [new TextInputType.numberWithOptions].
+        /// </Summary>
         public virtual FlutterSDK.Services.Textinput.TextInputType Number { get; set; }
+        /// <Summary>
+        /// Optimize for telephone numbers.
+        ///
+        /// Requests a keyboard with ready access to the number keys, "*", and "#".
+        /// </Summary>
         public virtual FlutterSDK.Services.Textinput.TextInputType Phone { get; set; }
+        /// <Summary>
+        /// Optimize for date and time information.
+        ///
+        /// On iOS, requests the default keyboard.
+        ///
+        /// On Android, requests a keyboard with ready access to the number keys,
+        /// ":", and "-".
+        /// </Summary>
         public virtual FlutterSDK.Services.Textinput.TextInputType Datetime { get; set; }
+        /// <Summary>
+        /// Optimize for email addresses.
+        ///
+        /// Requests a keyboard with ready access to the "@" and "." keys.
+        /// </Summary>
         public virtual FlutterSDK.Services.Textinput.TextInputType EmailAddress { get; set; }
+        /// <Summary>
+        /// Optimize for URLs.
+        ///
+        /// Requests a keyboard with ready access to the "/" and "." keys.
+        /// </Summary>
         public virtual FlutterSDK.Services.Textinput.TextInputType Url { get; set; }
+        /// <Summary>
+        /// Optimize for passwords that are visible to the user.
+        ///
+        /// Requests a keyboard with ready access to both letters and numbers.
+        /// </Summary>
         public virtual FlutterSDK.Services.Textinput.TextInputType VisiblePassword { get; set; }
+        /// <Summary>
+        /// All possible enum values.
+        /// </Summary>
         public virtual List<FlutterSDK.Services.Textinput.TextInputType> Values { get; set; }
         internal virtual List<string> _Names { get; set; }
         internal virtual string _Name { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
@@ -608,6 +679,12 @@ namespace FlutterSDK.Services.Textinput
     /// </Summary>
     public class TextInputConfiguration
     {
+        /// <Summary>
+        /// Creates configuration information for a text input control.
+        ///
+        /// All arguments have default values, except [actionLabel]. Only
+        /// [actionLabel] may be null.
+        /// </Summary>
         public TextInputConfiguration(FlutterSDK.Services.Textinput.TextInputType inputType = default(FlutterSDK.Services.Textinput.TextInputType), bool obscureText = false, bool autocorrect = true, FlutterSDK.Services.Textinput.SmartDashesType smartDashesType = default(FlutterSDK.Services.Textinput.SmartDashesType), FlutterSDK.Services.Textinput.SmartQuotesType smartQuotesType = default(FlutterSDK.Services.Textinput.SmartQuotesType), bool enableSuggestions = true, string actionLabel = default(string), FlutterSDK.Services.Textinput.TextInputAction inputAction = default(FlutterSDK.Services.Textinput.TextInputAction), Brightness keyboardAppearance = default(Brightness), FlutterSDK.Services.Textinput.TextCapitalization textCapitalization = default(FlutterSDK.Services.Textinput.TextCapitalization))
         : base()
         {
@@ -620,15 +697,116 @@ namespace FlutterSDK.Services.Textinput
             this.KeyboardAppearance = keyboardAppearance;
             this.TextCapitalization = textCapitalization;
         }
+        /// <Summary>
+        /// The type of information for which to optimize the text input control.
+        /// </Summary>
         public virtual FlutterSDK.Services.Textinput.TextInputType InputType { get; set; }
+        /// <Summary>
+        /// Whether to hide the text being edited (e.g., for passwords).
+        ///
+        /// Defaults to false.
+        /// </Summary>
         public virtual bool ObscureText { get; set; }
+        /// <Summary>
+        /// Whether to enable autocorrection.
+        ///
+        /// Defaults to true.
+        /// </Summary>
         public virtual bool Autocorrect { get; set; }
+        /// <Summary>
+        /// {@template flutter.services.textInput.smartDashesType}
+        /// Whether to allow the platform to automatically format dashes.
+        ///
+        /// This flag only affects iOS versions 11 and above. It sets
+        /// [`UITextSmartDashesType`](https://developer.apple.com/documentation/uikit/uitextsmartdashestype?language=objc)
+        /// in the engine. When true, it passes
+        /// [`UITextSmartDashesTypeYes`](https://developer.apple.com/documentation/uikit/uitextsmartdashestype/uitextsmartdashestypeyes?language=objc),
+        /// and when false, it passes
+        /// [`UITextSmartDashesTypeNo`](https://developer.apple.com/documentation/uikit/uitextsmartdashestype/uitextsmartdashestypeno?language=objc).
+        ///
+        /// As an example of what this does, two consecutive hyphen characters will be
+        /// automatically replaced with one en dash, and three consecutive hyphens
+        /// will become one em dash.
+        ///
+        /// Defaults to true, unless [obscureText] is true, when it defaults to false.
+        /// This is to avoid the problem where password fields receive autoformatted
+        /// characters.
+        ///
+        /// See also:
+        ///
+        ///  * [smartQuotesType]
+        ///  * <https://developer.apple.com/documentation/uikit/uitextinputtraits>
+        /// {@endtemplate}
+        /// </Summary>
         public virtual FlutterSDK.Services.Textinput.SmartDashesType SmartDashesType { get; set; }
+        /// <Summary>
+        /// {@template flutter.services.textInput.smartQuotesType}
+        /// Whether to allow the platform to automatically format quotes.
+        ///
+        /// This flag only affects iOS. It sets
+        /// [`UITextSmartQuotesType`](https://developer.apple.com/documentation/uikit/uitextsmartquotestype?language=objc)
+        /// in the engine. When true, it passes
+        /// [`UITextSmartQuotesTypeYes`](https://developer.apple.com/documentation/uikit/uitextsmartquotestype/uitextsmartquotestypeyes?language=objc),
+        /// and when false, it passes
+        /// [`UITextSmartQuotesTypeNo`](https://developer.apple.com/documentation/uikit/uitextsmartquotestype/uitextsmartquotestypeno?language=objc).
+        ///
+        /// As an example of what this does, a standard vertical double quote
+        /// character will be automatically replaced by a left or right double quote
+        /// depending on its position in a word.
+        ///
+        /// Defaults to true, unless [obscureText] is true, when it defaults to false.
+        /// This is to avoid the problem where password fields receive autoformatted
+        /// characters.
+        ///
+        /// See also:
+        ///
+        ///  * [smartDashesType]
+        ///  * <https://developer.apple.com/documentation/uikit/uitextinputtraits>
+        /// {@endtemplate}
+        /// </Summary>
         public virtual FlutterSDK.Services.Textinput.SmartQuotesType SmartQuotesType { get; set; }
+        /// <Summary>
+        /// {@template flutter.services.textInput.enableSuggestions}
+        /// Whether to show input suggestions as the user types.
+        ///
+        /// This flag only affects Android. On iOS, suggestions are tied directly to
+        /// [autocorrect], so that suggestions are only shown when [autocorrect] is
+        /// true. On Android autocorrection and suggestion are controlled separately.
+        ///
+        /// Defaults to true. Cannot be null.
+        ///
+        /// See also:
+        ///
+        ///  * <https://developer.android.com/reference/android/text/InputType.html#TYPE_TEXT_FLAG_NO_SUGGESTIONS>
+        /// {@endtemplate}
+        /// </Summary>
         public virtual bool EnableSuggestions { get; set; }
+        /// <Summary>
+        /// What text to display in the text input control's action button.
+        /// </Summary>
         public virtual string ActionLabel { get; set; }
+        /// <Summary>
+        /// What kind of action to request for the action button on the IME.
+        /// </Summary>
         public virtual FlutterSDK.Services.Textinput.TextInputAction InputAction { get; set; }
+        /// <Summary>
+        /// Specifies how platforms may automatically capitalize text entered by the
+        /// user.
+        ///
+        /// Defaults to [TextCapitalization.none].
+        ///
+        /// See also:
+        ///
+        ///  * [TextCapitalization], for a description of each capitalization behavior.
+        /// </Summary>
         public virtual FlutterSDK.Services.Textinput.TextCapitalization TextCapitalization { get; set; }
+        /// <Summary>
+        /// The appearance of the keyboard.
+        ///
+        /// This setting is only honored on iOS devices.
+        ///
+        /// Defaults to [Brightness.light].
+        /// </Summary>
         public virtual Brightness KeyboardAppearance { get; set; }
 
         /// <Summary>
@@ -649,13 +827,26 @@ namespace FlutterSDK.Services.Textinput
     /// </Summary>
     public class RawFloatingCursorPoint
     {
+        /// <Summary>
+        /// Creates information for setting the position and state of a floating
+        /// cursor.
+        ///
+        /// [state] must not be null and [offset] must not be null if the state is
+        /// [FloatingCursorDragState.Update].
+        /// </Summary>
         public RawFloatingCursorPoint(FlutterBinding.UI.Offset offset = default(FlutterBinding.UI.Offset), FlutterSDK.Services.Textinput.FloatingCursorDragState state = default(FlutterSDK.Services.Textinput.FloatingCursorDragState))
         : base()
         {
             this.Offset = offset;
             this.State = state;
         }
+        /// <Summary>
+        /// The raw position of the floating cursor as determined by the iOS sdk.
+        /// </Summary>
         public virtual FlutterBinding.UI.Offset Offset { get; set; }
+        /// <Summary>
+        /// The state of the floating cursor.
+        /// </Summary>
         public virtual FlutterSDK.Services.Textinput.FloatingCursorDragState State { get; set; }
     }
 
@@ -665,6 +856,14 @@ namespace FlutterSDK.Services.Textinput
     /// </Summary>
     public class TextEditingValue
     {
+        /// <Summary>
+        /// Creates information for editing a run of text.
+        ///
+        /// The selection and composing range must be within the text.
+        ///
+        /// The [text], [selection], and [composing] arguments must not be null but
+        /// each have default values.
+        /// </Summary>
         public TextEditingValue(string text = default(string), FlutterSDK.Services.Textediting.TextSelection selection = default(FlutterSDK.Services.Textediting.TextSelection), TextRange composing = default(TextRange))
         : base()
         {
@@ -672,6 +871,9 @@ namespace FlutterSDK.Services.Textinput
             this.Selection = selection;
             this.Composing = composing;
         }
+        /// <Summary>
+        /// Creates an instance of this class from a JSON object.
+        /// </Summary>
         public static TextEditingValue FromJSON(Dictionary<string, object> encoded)
         {
             var instance = new TextEditingValue();
@@ -679,9 +881,21 @@ namespace FlutterSDK.Services.Textinput
         }
 
 
+        /// <Summary>
+        /// The current text being edited.
+        /// </Summary>
         public virtual string Text { get; set; }
+        /// <Summary>
+        /// The range of text that is currently selected.
+        /// </Summary>
         public virtual FlutterSDK.Services.Textediting.TextSelection Selection { get; set; }
+        /// <Summary>
+        /// The range of text that is still being composed.
+        /// </Summary>
         public virtual TextRange Composing { get; set; }
+        /// <Summary>
+        /// A value that corresponds to the empty string with no selection and no composing range.
+        /// </Summary>
         public virtual FlutterSDK.Services.Textinput.TextEditingValue Empty { get; set; }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 
@@ -728,6 +942,10 @@ namespace FlutterSDK.Services.Textinput
     /// </Summary>
     public class TextInputClient
     {
+        /// <Summary>
+        /// Abstract const constructor. This constructor enables subclasses to provide
+        /// const constructors so that they can be used in const expressions.
+        /// </Summary>
         public TextInputClient()
         {
 

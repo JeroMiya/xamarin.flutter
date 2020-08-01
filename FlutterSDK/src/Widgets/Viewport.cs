@@ -464,6 +464,14 @@ namespace FlutterSDK.Widgets.Viewport
     /// </Summary>
     public class Viewport : FlutterSDK.Widgets.Framework.MultiChildRenderObjectWidget
     {
+        /// <Summary>
+        /// Creates a widget that is bigger on the inside.
+        ///
+        /// The viewport listens to the [offset], which means you do not need to
+        /// rebuild this widget when the [offset] changes.
+        ///
+        /// The [offset] argument must not be null.
+        /// </Summary>
         public Viewport(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Basictypes.AxisDirection axisDirection = default(FlutterSDK.Painting.Basictypes.AxisDirection), FlutterSDK.Painting.Basictypes.AxisDirection crossAxisDirection = default(FlutterSDK.Painting.Basictypes.AxisDirection), double anchor = 0.0, FlutterSDK.Rendering.Viewportoffset.ViewportOffset offset = default(FlutterSDK.Rendering.Viewportoffset.ViewportOffset), FlutterSDK.Foundation.Key.Key center = default(FlutterSDK.Foundation.Key.Key), double cacheExtent = default(double), FlutterSDK.Rendering.Viewport.CacheExtentStyle cacheExtentStyle = default(FlutterSDK.Rendering.Viewport.CacheExtentStyle), List<FlutterSDK.Widgets.Framework.Widget> slivers = default(List<FlutterSDK.Widgets.Framework.Widget>))
         : base(key: key, children: slivers)
         {
@@ -475,12 +483,64 @@ namespace FlutterSDK.Widgets.Viewport
             this.CacheExtent = cacheExtent;
             this.CacheExtentStyle = cacheExtentStyle;
         }
+        /// <Summary>
+        /// The direction in which the [offset]'s [ViewportOffset.pixels] increases.
+        ///
+        /// For example, if the [axisDirection] is [AxisDirection.down], a scroll
+        /// offset of zero is at the top of the viewport and increases towards the
+        /// bottom of the viewport.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Basictypes.AxisDirection AxisDirection { get; set; }
+        /// <Summary>
+        /// The direction in which child should be laid out in the cross axis.
+        ///
+        /// If the [axisDirection] is [AxisDirection.down] or [AxisDirection.up], this
+        /// property defaults to [AxisDirection.left] if the ambient [Directionality]
+        /// is [TextDirection.rtl] and [AxisDirection.right] if the ambient
+        /// [Directionality] is [TextDirection.ltr].
+        ///
+        /// If the [axisDirection] is [AxisDirection.left] or [AxisDirection.right],
+        /// this property defaults to [AxisDirection.down].
+        /// </Summary>
         public virtual FlutterSDK.Painting.Basictypes.AxisDirection CrossAxisDirection { get; set; }
+        /// <Summary>
+        /// The relative position of the zero scroll offset.
+        ///
+        /// For example, if [anchor] is 0.5 and the [axisDirection] is
+        /// [AxisDirection.down] or [AxisDirection.up], then the zero scroll offset is
+        /// vertically centered within the viewport. If the [anchor] is 1.0, and the
+        /// [axisDirection] is [AxisDirection.right], then the zero scroll offset is
+        /// on the left edge of the viewport.
+        /// </Summary>
         public virtual double Anchor { get; set; }
+        /// <Summary>
+        /// Which part of the content inside the viewport should be visible.
+        ///
+        /// The [ViewportOffset.pixels] value determines the scroll offset that the
+        /// viewport uses to select which part of its content to display. As the user
+        /// scrolls the viewport, this value changes, which changes the content that
+        /// is displayed.
+        ///
+        /// Typically a [ScrollPosition].
+        /// </Summary>
         public virtual FlutterSDK.Rendering.Viewportoffset.ViewportOffset Offset { get; set; }
+        /// <Summary>
+        /// The first child in the [GrowthDirection.forward] growth direction.
+        ///
+        /// Children after [center] will be placed in the [axisDirection] relative to
+        /// the [center]. Children before [center] will be placed in the opposite of
+        /// the [axisDirection] relative to the [center].
+        ///
+        /// The [center] must be the key of a child of the viewport.
+        /// </Summary>
         public virtual FlutterSDK.Foundation.Key.Key Center { get; set; }
+        /// <Summary>
+        /// {@macro flutter.rendering.viewport.cacheExtent}
+        /// </Summary>
         public virtual double CacheExtent { get; set; }
+        /// <Summary>
+        /// {@macro flutter.rendering.viewport.cacheExtentStyle}
+        /// </Summary>
         public virtual FlutterSDK.Rendering.Viewport.CacheExtentStyle CacheExtentStyle { get; set; }
 
         /// <Summary>
@@ -553,6 +613,9 @@ namespace FlutterSDK.Widgets.Viewport
 
     public class _ViewportElement : FlutterSDK.Widgets.Framework.MultiChildRenderObjectElement
     {
+        /// <Summary>
+        /// Creates an element that uses the given widget as its configuration.
+        /// </Summary>
         public _ViewportElement(FlutterSDK.Widgets.Viewport.Viewport widget)
         : base(widget)
         {
@@ -650,6 +713,15 @@ namespace FlutterSDK.Widgets.Viewport
     /// </Summary>
     public class ShrinkWrappingViewport : FlutterSDK.Widgets.Framework.MultiChildRenderObjectWidget
     {
+        /// <Summary>
+        /// Creates a widget that is bigger on the inside and shrink wraps its
+        /// children in the main axis.
+        ///
+        /// The viewport listens to the [offset], which means you do not need to
+        /// rebuild this widget when the [offset] changes.
+        ///
+        /// The [offset] argument must not be null.
+        /// </Summary>
         public ShrinkWrappingViewport(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Basictypes.AxisDirection axisDirection = default(FlutterSDK.Painting.Basictypes.AxisDirection), FlutterSDK.Painting.Basictypes.AxisDirection crossAxisDirection = default(FlutterSDK.Painting.Basictypes.AxisDirection), FlutterSDK.Rendering.Viewportoffset.ViewportOffset offset = default(FlutterSDK.Rendering.Viewportoffset.ViewportOffset), List<FlutterSDK.Widgets.Framework.Widget> slivers = default(List<FlutterSDK.Widgets.Framework.Widget>))
         : base(key: key, children: slivers)
         {
@@ -657,8 +729,36 @@ namespace FlutterSDK.Widgets.Viewport
             this.CrossAxisDirection = crossAxisDirection;
             this.Offset = offset;
         }
+        /// <Summary>
+        /// The direction in which the [offset]'s [ViewportOffset.pixels] increases.
+        ///
+        /// For example, if the [axisDirection] is [AxisDirection.down], a scroll
+        /// offset of zero is at the top of the viewport and increases towards the
+        /// bottom of the viewport.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Basictypes.AxisDirection AxisDirection { get; set; }
+        /// <Summary>
+        /// The direction in which child should be laid out in the cross axis.
+        ///
+        /// If the [axisDirection] is [AxisDirection.down] or [AxisDirection.up], this
+        /// property defaults to [AxisDirection.left] if the ambient [Directionality]
+        /// is [TextDirection.rtl] and [AxisDirection.right] if the ambient
+        /// [Directionality] is [TextDirection.ltr].
+        ///
+        /// If the [axisDirection] is [AxisDirection.left] or [AxisDirection.right],
+        /// this property defaults to [AxisDirection.down].
+        /// </Summary>
         public virtual FlutterSDK.Painting.Basictypes.AxisDirection CrossAxisDirection { get; set; }
+        /// <Summary>
+        /// Which part of the content inside the viewport should be visible.
+        ///
+        /// The [ViewportOffset.pixels] value determines the scroll offset that the
+        /// viewport uses to select which part of its content to display. As the user
+        /// scrolls the viewport, this value changes, which changes the content that
+        /// is displayed.
+        ///
+        /// Typically a [ScrollPosition].
+        /// </Summary>
         public virtual FlutterSDK.Rendering.Viewportoffset.ViewportOffset Offset { get; set; }
 
         public new FlutterSDK.Rendering.Viewport.RenderShrinkWrappingViewport CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)

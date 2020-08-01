@@ -451,6 +451,21 @@ namespace FlutterSDK.Material.Progressindicator
     /// </Summary>
     public class ProgressIndicator : FlutterSDK.Widgets.Framework.StatefulWidget
     {
+        /// <Summary>
+        /// Creates a progress indicator.
+        ///
+        /// {@template flutter.material.progressIndicator.parameters}
+        /// The [value] argument can either be null for an indeterminate
+        /// progress indicator, or non-null for a determinate progress
+        /// indicator.
+        ///
+        /// ## Accessibility
+        ///
+        /// The [semanticsLabel] can be used to identify the purpose of this progress
+        /// bar for screen reading software. The [semanticsValue] property may be used
+        /// for determinate progress indicators to indicate how much progress has been made.
+        /// {@endtemplate}
+        /// </Summary>
         public ProgressIndicator(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), double value = default(double), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), FlutterSDK.Animation.Animation.Animation<Color> valueColor = default(FlutterSDK.Animation.Animation.Animation<Color>), string semanticsLabel = default(string), string semanticsValue = default(string))
         : base(key: key)
         {
@@ -460,10 +475,54 @@ namespace FlutterSDK.Material.Progressindicator
             this.SemanticsLabel = semanticsLabel;
             this.SemanticsValue = semanticsValue;
         }
+        /// <Summary>
+        /// If non-null, the value of this progress indicator.
+        ///
+        /// A value of 0.0 means no progress and 1.0 means that progress is complete.
+        ///
+        /// If null, this progress indicator is indeterminate, which means the
+        /// indicator displays a predetermined animation that does not indicate how
+        /// much actual progress is being made.
+        /// </Summary>
         public virtual double Value { get; set; }
+        /// <Summary>
+        /// The progress indicator's background color.
+        ///
+        /// The current theme's [ThemeData.backgroundColor] by default.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
+        /// <Summary>
+        /// The progress indicator's color as an animated value.
+        ///
+        /// To specify a constant color use: `AlwaysStoppedAnimation<Color>(color)`.
+        ///
+        /// If null, the progress indicator is rendered with the current theme's
+        /// [ThemeData.accentColor].
+        /// </Summary>
         public virtual FlutterSDK.Animation.Animation.Animation<Color> ValueColor { get; set; }
+        /// <Summary>
+        /// {@template flutter.material.progressIndicator.semanticsLabel}
+        /// The [Semantics.label] for this progress indicator.
+        ///
+        /// This value indicates the purpose of the progress bar, and will be
+        /// read out by screen readers to indicate the purpose of this progress
+        /// indicator.
+        /// {@endtemplate}
+        /// </Summary>
         public virtual string SemanticsLabel { get; set; }
+        /// <Summary>
+        /// {@template flutter.material.progressIndicator.semanticsValue}
+        /// The [Semantics.value] for this progress indicator.
+        ///
+        /// This will be used in conjunction with the [semanticsLabel] by
+        /// screen reading software to identify the widget, and is primarily
+        /// intended for use with determinate progress indicators to announce
+        /// how far along they are.
+        ///
+        /// For determinate progress indicators, this will be defaulted to [value]
+        /// expressed as a percentage, i.e. `0.1` will become '10%'.
+        /// {@endtemplate}
+        /// </Summary>
         public virtual string SemanticsValue { get; set; }
 
         private Color _GetBackgroundColor(FlutterSDK.Widgets.Framework.BuildContext context) => BackgroundColor ?? ThemeDefaultClass.Theme.Of(context).BackgroundColor;
@@ -595,6 +654,11 @@ namespace FlutterSDK.Material.Progressindicator
     /// </Summary>
     public class LinearProgressIndicator : FlutterSDK.Material.Progressindicator.ProgressIndicator
     {
+        /// <Summary>
+        /// Creates a linear progress indicator.
+        ///
+        /// {@macro flutter.material.progressIndicator.parameters}
+        /// </Summary>
         public LinearProgressIndicator(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), double value = default(double), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), FlutterSDK.Animation.Animation.Animation<Color> valueColor = default(FlutterSDK.Animation.Animation.Animation<Color>), string semanticsLabel = default(string), string semanticsValue = default(string))
         : base(key: key, value: value, backgroundColor: backgroundColor, valueColor: valueColor, semanticsLabel: semanticsLabel, semanticsValue: semanticsValue)
         {
@@ -754,11 +818,19 @@ namespace FlutterSDK.Material.Progressindicator
     /// </Summary>
     public class CircularProgressIndicator : FlutterSDK.Material.Progressindicator.ProgressIndicator
     {
+        /// <Summary>
+        /// Creates a circular progress indicator.
+        ///
+        /// {@macro flutter.material.progressIndicator.parameters}
+        /// </Summary>
         public CircularProgressIndicator(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), double value = default(double), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), FlutterSDK.Animation.Animation.Animation<Color> valueColor = default(FlutterSDK.Animation.Animation.Animation<Color>), double strokeWidth = 4.0, string semanticsLabel = default(string), string semanticsValue = default(string))
         : base(key: key, value: value, backgroundColor: backgroundColor, valueColor: valueColor, semanticsLabel: semanticsLabel, semanticsValue: semanticsValue)
         {
             this.StrokeWidth = strokeWidth;
         }
+        /// <Summary>
+        /// The width of the line used to draw the circle.
+        /// </Summary>
         public virtual double StrokeWidth { get; set; }
 
         public new FlutterSDK.Material.Progressindicator._CircularProgressIndicatorState CreateState() => new _CircularProgressIndicatorState();
@@ -893,6 +965,14 @@ namespace FlutterSDK.Material.Progressindicator
     /// </Summary>
     public class RefreshProgressIndicator : FlutterSDK.Material.Progressindicator.CircularProgressIndicator
     {
+        /// <Summary>
+        /// Creates a refresh progress indicator.
+        ///
+        /// Rather than creating a refresh progress indicator directly, consider using
+        /// a [RefreshIndicator] together with a [Scrollable] widget.
+        ///
+        /// {@macro flutter.material.progressIndicator.parameters}
+        /// </Summary>
         public RefreshProgressIndicator(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), double value = default(double), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), FlutterSDK.Animation.Animation.Animation<Color> valueColor = default(FlutterSDK.Animation.Animation.Animation<Color>), double strokeWidth = 2.0, string semanticsLabel = default(string), string semanticsValue = default(string))
         : base(key: key, value: value, backgroundColor: backgroundColor, valueColor: valueColor, strokeWidth: strokeWidth, semanticsLabel: semanticsLabel, semanticsValue: semanticsValue)
         {

@@ -489,6 +489,16 @@ namespace FlutterSDK.Widgets.Overscrollindicator
     /// </Summary>
     public class GlowingOverscrollIndicator : FlutterSDK.Widgets.Framework.StatefulWidget
     {
+        /// <Summary>
+        /// Creates a visual indication that a scroll view has overscrolled.
+        ///
+        /// In order for this widget to display an overscroll indication, the [child]
+        /// widget must contain a widget that generates a [ScrollNotification], such
+        /// as a [ListView] or a [GridView].
+        ///
+        /// The [showLeading], [showTrailing], [axisDirection], [color], and
+        /// [notificationPredicate] arguments must not be null.
+        /// </Summary>
         public GlowingOverscrollIndicator(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), bool showLeading = true, bool showTrailing = true, FlutterSDK.Painting.Basictypes.AxisDirection axisDirection = default(FlutterSDK.Painting.Basictypes.AxisDirection), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterSDK.Widgets.Scrollnotification.ScrollNotificationPredicate notificationPredicate = default(FlutterSDK.Widgets.Scrollnotification.ScrollNotificationPredicate), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key)
         {
@@ -499,11 +509,57 @@ namespace FlutterSDK.Widgets.Overscrollindicator
             this.NotificationPredicate = notificationPredicate;
             this.Child = child;
         }
+        /// <Summary>
+        /// Whether to show the overscroll glow on the side with negative scroll
+        /// offsets.
+        ///
+        /// For a vertical downwards viewport, this is the top side.
+        ///
+        /// Defaults to true.
+        ///
+        /// See [showTrailing] for the corresponding control on the other side of the
+        /// viewport.
+        /// </Summary>
         public virtual bool ShowLeading { get; set; }
+        /// <Summary>
+        /// Whether to show the overscroll glow on the side with positive scroll
+        /// offsets.
+        ///
+        /// For a vertical downwards viewport, this is the bottom side.
+        ///
+        /// Defaults to true.
+        ///
+        /// See [showLeading] for the corresponding control on the other side of the
+        /// viewport.
+        /// </Summary>
         public virtual bool ShowTrailing { get; set; }
+        /// <Summary>
+        /// The direction of positive scroll offsets in the [Scrollable] whose
+        /// overscrolls are to be visualized.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Basictypes.AxisDirection AxisDirection { get; set; }
+        /// <Summary>
+        /// The color of the glow. The alpha channel is ignored.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color Color { get; set; }
+        /// <Summary>
+        /// A check that specifies whether a [ScrollNotification] should be
+        /// handled by this widget.
+        ///
+        /// By default, checks whether `notification.depth == 0`. Set it to something
+        /// else for more complicated layouts.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Scrollnotification.ScrollNotificationPredicate NotificationPredicate { get; set; }
+        /// <Summary>
+        /// The widget below this widget in the tree.
+        ///
+        /// The overscroll indicator will paint on top of this child. This child (and its
+        /// subtree) should include a source of [ScrollNotification] notifications.
+        ///
+        /// Typically a [GlowingOverscrollIndicator] is created by a
+        /// [ScrollBehavior.buildViewportChrome] method, in which case
+        /// the child is usually the one provided as an argument to that method.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
         public virtual FlutterSDK.Painting.Basictypes.Axis Axis { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 
@@ -900,8 +956,21 @@ namespace FlutterSDK.Widgets.Overscrollindicator
             this.TrailingController = trailingController;
             this.AxisDirection = axisDirection;
         }
+        /// <Summary>
+        /// The controller for the overscroll glow on the side with negative scroll offsets.
+        ///
+        /// For a vertical downwards viewport, this is the top side.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Overscrollindicator._GlowController LeadingController { get; set; }
+        /// <Summary>
+        /// The controller for the overscroll glow on the side with positive scroll offsets.
+        ///
+        /// For a vertical downwards viewport, this is the bottom side.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Overscrollindicator._GlowController TrailingController { get; set; }
+        /// <Summary>
+        /// The direction of the viewport.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Basictypes.AxisDirection AxisDirection { get; set; }
         public virtual double PiOver2 { get; set; }
 
@@ -952,10 +1021,20 @@ namespace FlutterSDK.Widgets.Overscrollindicator
     /// </Summary>
     public class OverscrollIndicatorNotification : FlutterSDK.Widgets.Notificationlistener.Notification, IViewportNotificationMixin
     {
+        /// <Summary>
+        /// Creates a notification that an [GlowingOverscrollIndicator] will start
+        /// showing an overscroll indication.
+        ///
+        /// The [leading] argument must not be null.
+        /// </Summary>
         public OverscrollIndicatorNotification(bool leading = default(bool))
         {
             this.Leading = leading;
         }
+        /// <Summary>
+        /// Whether the indication will be shown on the leading edge of the scroll
+        /// view.
+        /// </Summary>
         public virtual bool Leading { get; set; }
         internal virtual bool _Accepted { get; set; }
 

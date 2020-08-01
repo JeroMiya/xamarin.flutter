@@ -424,6 +424,20 @@ namespace FlutterSDK.Painting.Imagedecoder
 {
     internal static class ImagedecoderDefaultClass
     {
+        /// <Summary>
+        /// Creates an image from a list of bytes.
+        ///
+        /// This function attempts to interpret the given bytes an image. If successful,
+        /// the returned [Future] resolves to the decoded image. Otherwise, the [Future]
+        /// resolves to null.
+        ///
+        /// If the image is animated, this returns the first frame. Consider
+        /// [instantiateImageCodec] if support for animated images is necessary.
+        ///
+        /// This function differs from [ui.decodeImageFromList] in that it defers to
+        /// [PaintingBinding.instantiateImageCodec], and therefore can be mocked in
+        /// tests.
+        /// </Summary>
         internal static async Future<Image> DecodeImageFromList(Uint8List bytes)
         {
             Dart.UI.Codec codec = await BindingDefaultClass.PaintingBinding.Instance.InstantiateImageCodec(bytes);

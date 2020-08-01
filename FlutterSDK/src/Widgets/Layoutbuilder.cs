@@ -424,6 +424,9 @@ using FlutterSDK.Painting._Networkimageio;
 using FlutterSDK.Widgets.Constants;
 namespace FlutterSDK.Widgets.Layoutbuilder
 {
+    /// <Summary>
+    /// The signature of the [LayoutBuilder] builder function.
+    /// </Summary>
     public delegate FlutterSDK.Widgets.Framework.Widget LayoutWidgetBuilder(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.Box.BoxConstraints constraints);
     internal static class LayoutbuilderDefaultClass
     {
@@ -511,11 +514,22 @@ namespace FlutterSDK.Widgets.Layoutbuilder
     /// </Summary>
     public class ConstrainedLayoutBuilder<ConstraintType> : FlutterSDK.Widgets.Framework.RenderObjectWidget
     {
+        /// <Summary>
+        /// Creates a widget that defers its building until layout.
+        ///
+        /// The [builder] argument must not be null, and the returned widget should not
+        /// be null.
+        /// </Summary>
         public ConstrainedLayoutBuilder(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), Func<Widget, BuildContext, ConstraintType> builder = default(Func<Widget, BuildContext, ConstraintType>))
         : base(key: key)
         {
             this.Builder = builder;
         }
+        /// <Summary>
+        /// Called at layout time to construct the widget tree.
+        ///
+        /// The builder must not return null.
+        /// </Summary>
         public virtual Func<Widget, BuildContext, ConstraintType> Builder { get; set; }
 
         public new _LayoutBuilderElement<ConstraintType> CreateElement() => new _LayoutBuilderElement<ConstraintType>(this);
@@ -701,6 +715,11 @@ public new void RemoveChildRenderObject(FlutterSDK.Rendering.@object.RenderObjec
 /// </Summary>
 public class LayoutBuilder : FlutterSDK.Widgets.Layoutbuilder.ConstrainedLayoutBuilder<FlutterSDK.Rendering.Box.BoxConstraints>
 {
+    /// <Summary>
+    /// Creates a widget that defers its building until layout.
+    ///
+    /// The [builder] argument must not be null.
+    /// </Summary>
     public LayoutBuilder(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Layoutbuilder.LayoutWidgetBuilder builder = default(FlutterSDK.Widgets.Layoutbuilder.LayoutWidgetBuilder))
     : base(key: key, builder: builder)
     {

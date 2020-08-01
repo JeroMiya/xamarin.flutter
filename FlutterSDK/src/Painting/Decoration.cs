@@ -483,6 +483,10 @@ namespace FlutterSDK.Painting.Decoration
     /// </Summary>
     public class Decoration : IDiagnosticable
     {
+        /// <Summary>
+        /// Abstract const constructor. This constructor enables subclasses to provide
+        /// const constructors so that they can be used in const expressions.
+        /// </Summary>
         public Decoration()
         {
 
@@ -648,10 +652,22 @@ namespace FlutterSDK.Painting.Decoration
     /// </Summary>
     public class BoxPainter
     {
+        /// <Summary>
+        /// Abstract const constructor. This constructor enables subclasses to provide
+        /// const constructors so that they can be used in const expressions.
+        /// </Summary>
         public BoxPainter(VoidCallback onChanged = default(VoidCallback))
         {
             this.OnChanged = onChanged;
         }
+        /// <Summary>
+        /// Callback that is invoked if an asynchronously-loading resource used by the
+        /// decoration finishes loading. For example, an image. When this is invoked,
+        /// the [paint] method should be called again.
+        ///
+        /// Resources might not start to load until after [paint] has been called,
+        /// because they might depend on the configuration.
+        /// </Summary>
         public virtual VoidCallback OnChanged { get; set; }
 
         /// <Summary>

@@ -680,11 +680,31 @@ namespace FlutterSDK.Widgets.Inheritednotifier
     /// </Summary>
     public class InheritedNotifier<T> : FlutterSDK.Widgets.Framework.InheritedWidget
     {
+        /// <Summary>
+        /// Create an inherited widget that updates its dependents when [notifier]
+        /// sends notifications.
+        ///
+        /// The [child] argument must not be null.
+        /// </Summary>
         public InheritedNotifier(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), T notifier = default(T), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
             this.Notifier = notifier;
         }
+        /// <Summary>
+        /// The [Listenable] object to which to listen.
+        ///
+        /// Whenever this object sends change notifications, the dependents of this
+        /// widget are triggered.
+        ///
+        /// By default, whenever the [notifier] is changed (including when changing to
+        /// or from null), if the old notifier is not equal to the new notifier (as
+        /// determined by the `==` operator), notifications are sent. This behavior
+        /// can be overridden by overriding [updateShouldNotify].
+        ///
+        /// While the [notifier] is null, no notifications are sent, since the null
+        /// object cannot itself send notifications.
+        /// </Summary>
         public virtual T Notifier { get; set; }
 
         public new bool UpdateShouldNotify(FlutterSDK.Widgets.Inheritednotifier.InheritedNotifier<T> oldWidget)

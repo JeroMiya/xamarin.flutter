@@ -376,6 +376,9 @@ using FlutterSDK.Material.Tooltip;
 using FlutterSDK.Material.Dropdown;
 namespace FlutterSDK.Material.Datatable
 {
+    /// <Summary>
+    /// Signature for [DataColumn.onSort] callback.
+    /// </Summary>
     public delegate void DataColumnSortCallback(int columnIndex, bool ascending);
     internal static class DatatableDefaultClass
     {
@@ -390,6 +393,11 @@ namespace FlutterSDK.Material.Datatable
     /// </Summary>
     public class DataColumn
     {
+        /// <Summary>
+        /// Creates the configuration for a column of a [DataTable].
+        ///
+        /// The [label] argument must not be null.
+        /// </Summary>
         public DataColumn(FlutterSDK.Widgets.Framework.Widget label = default(FlutterSDK.Widgets.Framework.Widget), string tooltip = default(string), bool numeric = false, FlutterSDK.Material.Datatable.DataColumnSortCallback onSort = default(FlutterSDK.Material.Datatable.DataColumnSortCallback))
         : base()
         {
@@ -398,9 +406,42 @@ namespace FlutterSDK.Material.Datatable
             this.Numeric = numeric;
             this.OnSort = onSort;
         }
+        /// <Summary>
+        /// The column heading.
+        ///
+        /// Typically, this will be a [Text] widget. It could also be an
+        /// [Icon] (typically using size 18), or a [Row] with an icon and
+        /// some text.
+        ///
+        /// By default, this widget will only occupy the minimal space. If you want
+        /// it to take the entire remaining space, e.g. when you want to use [Center],
+        /// you can wrap it with an [Expanded].
+        ///
+        /// The label should not include the sort indicator.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Label { get; set; }
+        /// <Summary>
+        /// The column heading's tooltip.
+        ///
+        /// This is a longer description of the column heading, for cases
+        /// where the heading might have been abbreviated to keep the column
+        /// width to a reasonable size.
+        /// </Summary>
         public virtual string Tooltip { get; set; }
+        /// <Summary>
+        /// Whether this column represents numeric data or not.
+        ///
+        /// The contents of cells of columns containing numeric data are
+        /// right-aligned.
+        /// </Summary>
         public virtual bool Numeric { get; set; }
+        /// <Summary>
+        /// Called when the user asks to sort the table using this column.
+        ///
+        /// If null, the column will not be considered sortable.
+        ///
+        /// See [DataTable.sortColumnIndex] and [DataTable.sortAscending].
+        /// </Summary>
         public virtual FlutterSDK.Material.Datatable.DataColumnSortCallback OnSort { get; set; }
         internal virtual bool _DebugInteractive { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
     }
@@ -418,6 +459,11 @@ namespace FlutterSDK.Material.Datatable
     /// </Summary>
     public class DataRow
     {
+        /// <Summary>
+        /// Creates the configuration for a row of a [DataTable].
+        ///
+        /// The [cells] argument must not be null.
+        /// </Summary>
         public DataRow(FlutterSDK.Foundation.Key.LocalKey key = default(FlutterSDK.Foundation.Key.LocalKey), bool selected = false, FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onSelectChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>), List<FlutterSDK.Material.Datatable.DataCell> cells = default(List<FlutterSDK.Material.Datatable.DataCell>))
         : base()
         {
@@ -426,15 +472,60 @@ namespace FlutterSDK.Material.Datatable
             this.OnSelectChanged = onSelectChanged;
             this.Cells = cells;
         }
+        /// <Summary>
+        /// Creates the configuration for a row of a [DataTable], deriving
+        /// the key from a row index.
+        ///
+        /// The [cells] argument must not be null.
+        /// </Summary>
         public static DataRow ByIndex(int index = default(int), bool selected = false, FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onSelectChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>), List<FlutterSDK.Material.Datatable.DataCell> cells = default(List<FlutterSDK.Material.Datatable.DataCell>))
         {
             var instance = new DataRow(); instance.Selected = selected;
             instance.OnSelectChanged = onSelectChanged;
             instance.Cells = cells;
         }
+        /// <Summary>
+        /// A [Key] that uniquely identifies this row. This is used to
+        /// ensure that if a row is added or removed, any stateful widgets
+        /// related to this row (e.g. an in-progress checkbox animation)
+        /// remain on the right row visually.
+        ///
+        /// If the table never changes once created, no key is necessary.
+        /// </Summary>
         public virtual FlutterSDK.Foundation.Key.LocalKey Key { get; set; }
+        /// <Summary>
+        /// Called when the user selects or unselects a selectable row.
+        ///
+        /// If this is not null, then the row is selectable. The current
+        /// selection state of the row is given by [selected].
+        ///
+        /// If any row is selectable, then the table's heading row will have
+        /// a checkbox that can be checked to select all selectable rows
+        /// (and which is checked if all the rows are selected), and each
+        /// subsequent row will have a checkbox to toggle just that row.
+        ///
+        /// A row whose [onSelectChanged] callback is null is ignored for
+        /// the purposes of determining the state of the "all" checkbox,
+        /// and its checkbox is disabled.
+        /// </Summary>
         public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<bool> OnSelectChanged { get; set; }
+        /// <Summary>
+        /// Whether the row is selected.
+        ///
+        /// If [onSelectChanged] is non-null for any row in the table, then
+        /// a checkbox is shown at the start of each row. If the row is
+        /// selected (true), the checkbox will be checked and the row will
+        /// be highlighted.
+        ///
+        /// Otherwise, the checkbox, if present, will not be checked.
+        /// </Summary>
         public virtual bool Selected { get; set; }
+        /// <Summary>
+        /// The data for this row.
+        ///
+        /// There must be exactly as many cells as there are columns in the
+        /// table.
+        /// </Summary>
         public virtual List<FlutterSDK.Material.Datatable.DataCell> Cells { get; set; }
         internal virtual bool _DebugInteractive { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
     }
@@ -449,6 +540,17 @@ namespace FlutterSDK.Material.Datatable
     /// </Summary>
     public class DataCell
     {
+        /// <Summary>
+        /// Creates an object to hold the data for a cell in a [DataTable].
+        ///
+        /// The first argument is the widget to show for the cell, typically
+        /// a [Text] or [DropdownButton] widget; this becomes the [child]
+        /// property and must not be null.
+        ///
+        /// If the cell has no data, then a [Text] widget with placeholder
+        /// text should be provided instead, and then the [placeholder]
+        /// argument should be set to true.
+        /// </Summary>
         public DataCell(FlutterSDK.Widgets.Framework.Widget child, bool placeholder = false, bool showEditIcon = false, VoidCallback onTap = default(VoidCallback))
         : base()
         {
@@ -457,10 +559,47 @@ namespace FlutterSDK.Material.Datatable
             this.ShowEditIcon = showEditIcon;
             this.OnTap = onTap;
         }
+        /// <Summary>
+        /// A cell that has no content and has zero width and height.
+        /// </Summary>
         public virtual FlutterSDK.Material.Datatable.DataCell Empty { get; set; }
+        /// <Summary>
+        /// The data for the row.
+        ///
+        /// Typically a [Text] widget or a [DropdownButton] widget.
+        ///
+        /// If the cell has no data, then a [Text] widget with placeholder
+        /// text should be provided instead, and [placeholder] should be set
+        /// to true.
+        ///
+        /// {@macro flutter.widgets.child}
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+        /// <Summary>
+        /// Whether the [child] is actually a placeholder.
+        ///
+        /// If this is true, the default text style for the cell is changed
+        /// to be appropriate for placeholder text.
+        /// </Summary>
         public virtual bool Placeholder { get; set; }
+        /// <Summary>
+        /// Whether to show an edit icon at the end of the cell.
+        ///
+        /// This does not make the cell actually editable; the caller must
+        /// implement editing behavior if desired (initiated from the
+        /// [onTap] callback).
+        ///
+        /// If this is set, [onTap] should also be set, otherwise tapping
+        /// the icon will have no effect.
+        /// </Summary>
         public virtual bool ShowEditIcon { get; set; }
+        /// <Summary>
+        /// Called if the cell is tapped.
+        ///
+        /// If non-null, tapping the cell will call this callback. If
+        /// null, tapping the cell will attempt to select the row (if
+        /// [DataRow.onSelectChanged] is provided).
+        /// </Summary>
         public virtual VoidCallback OnTap { get; set; }
         internal virtual bool _DebugInteractive { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
     }
@@ -554,6 +693,32 @@ namespace FlutterSDK.Material.Datatable
     /// </Summary>
     public class DataTable : FlutterSDK.Widgets.Framework.StatelessWidget
     {
+        /// <Summary>
+        /// Creates a widget describing a data table.
+        ///
+        /// The [columns] argument must be a list of as many [DataColumn]
+        /// objects as the table is to have columns, ignoring the leading
+        /// checkbox column if any. The [columns] argument must have a
+        /// length greater than zero and must not be null.
+        ///
+        /// The [rows] argument must be a list of as many [DataRow] objects
+        /// as the table is to have rows, ignoring the leading heading row
+        /// that contains the column headings (derived from the [columns]
+        /// argument). There may be zero rows, but the rows argument must
+        /// not be null.
+        ///
+        /// Each [DataRow] object in [rows] must have as many [DataCell]
+        /// objects in the [DataRow.cells] list as the table has columns.
+        ///
+        /// If the table is sorted, the column that provides the current
+        /// primary key should be specified by index in [sortColumnIndex], 0
+        /// meaning the first column in [columns], 1 being the next one, and
+        /// so forth.
+        ///
+        /// The actual sort order can be specified using [sortAscending]; if
+        /// the sort order is ascending, this should be true (the default),
+        /// otherwise it should be false.
+        /// </Summary>
         public DataTable(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), List<FlutterSDK.Material.Datatable.DataColumn> columns = default(List<FlutterSDK.Material.Datatable.DataColumn>), int sortColumnIndex = default(int), bool sortAscending = true, FlutterSDK.Foundation.Basictypes.ValueSetter<bool> onSelectAll = default(FlutterSDK.Foundation.Basictypes.ValueSetter<bool>), double dataRowHeight = default(double), double headingRowHeight = 56.0, double horizontalMargin = 24.0, double columnSpacing = 56.0, bool showCheckboxColumn = true, double dividerThickness = 1.0, List<FlutterSDK.Material.Datatable.DataRow> rows = default(List<FlutterSDK.Material.Datatable.DataRow>))
         : base(key: key)
         {
@@ -569,15 +734,96 @@ namespace FlutterSDK.Material.Datatable
             this.DividerThickness = dividerThickness;
             this.Rows = rows;
         }
+        /// <Summary>
+        /// The configuration and labels for the columns in the table.
+        /// </Summary>
         public virtual List<FlutterSDK.Material.Datatable.DataColumn> Columns { get; set; }
+        /// <Summary>
+        /// The current primary sort key's column.
+        ///
+        /// If non-null, indicates that the indicated column is the column
+        /// by which the data is sorted. The number must correspond to the
+        /// index of the relevant column in [columns].
+        ///
+        /// Setting this will cause the relevant column to have a sort
+        /// indicator displayed.
+        ///
+        /// When this is null, it implies that the table's sort order does
+        /// not correspond to any of the columns.
+        /// </Summary>
         public virtual int SortColumnIndex { get; set; }
+        /// <Summary>
+        /// Whether the column mentioned in [sortColumnIndex], if any, is sorted
+        /// in ascending order.
+        ///
+        /// If true, the order is ascending (meaning the rows with the
+        /// smallest values for the current sort column are first in the
+        /// table).
+        ///
+        /// If false, the order is descending (meaning the rows with the
+        /// smallest values for the current sort column are last in the
+        /// table).
+        /// </Summary>
         public virtual bool SortAscending { get; set; }
+        /// <Summary>
+        /// Invoked when the user selects or unselects every row, using the
+        /// checkbox in the heading row.
+        ///
+        /// If this is null, then the [DataRow.onSelectChanged] callback of
+        /// every row in the table is invoked appropriately instead.
+        ///
+        /// To control whether a particular row is selectable or not, see
+        /// [DataRow.onSelectChanged]. This callback is only relevant if any
+        /// row is selectable.
+        /// </Summary>
         public virtual FlutterSDK.Foundation.Basictypes.ValueSetter<bool> OnSelectAll { get; set; }
+        /// <Summary>
+        /// The height of each row (excluding the row that contains column headings).
+        ///
+        /// This value defaults to kMinInteractiveDimension to adhere to the Material
+        /// Design specifications.
+        /// </Summary>
         public virtual double DataRowHeight { get; set; }
+        /// <Summary>
+        /// The height of the heading row.
+        ///
+        /// This value defaults to 56.0 to adhere to the Material Design specifications.
+        /// </Summary>
         public virtual double HeadingRowHeight { get; set; }
+        /// <Summary>
+        /// The horizontal margin between the edges of the table and the content
+        /// in the first and last cells of each row.
+        ///
+        /// When a checkbox is displayed, it is also the margin between the checkbox
+        /// the content in the first data column.
+        ///
+        /// This value defaults to 24.0 to adhere to the Material Design specifications.
+        /// </Summary>
         public virtual double HorizontalMargin { get; set; }
+        /// <Summary>
+        /// The horizontal margin between the contents of each data column.
+        ///
+        /// This value defaults to 56.0 to adhere to the Material Design specifications.
+        /// </Summary>
         public virtual double ColumnSpacing { get; set; }
+        /// <Summary>
+        /// {@template flutter.material.dataTable.showCheckboxColumn}
+        /// Whether the widget should display checkboxes for selectable rows.
+        ///
+        /// If true, a [CheckBox] will be placed at the beginning of each row that is
+        /// selectable. However, if [DataRow.onSelectChanged] is not set for any row,
+        /// checkboxes will not be placed, even if this value is true.
+        ///
+        /// If false, all rows will not display a [CheckBox].
+        /// {@endtemplate}
+        /// </Summary>
         public virtual bool ShowCheckboxColumn { get; set; }
+        /// <Summary>
+        /// The data to show in each row (excluding the row that contains
+        /// the column headings).
+        ///
+        /// Must be non-null, but may be empty.
+        /// </Summary>
         public virtual List<FlutterSDK.Material.Datatable.DataRow> Rows { get; set; }
         internal virtual int _OnlyTextColumn { get; set; }
         internal virtual FlutterSDK.Foundation.Key.LocalKey _HeadingRowKey { get; set; }
@@ -586,6 +832,12 @@ namespace FlutterSDK.Material.Datatable
         internal virtual TimeSpan _SortArrowAnimationDuration { get; set; }
         internal virtual FlutterBinding.UI.Color _Grey100Opacity { get; set; }
         internal virtual FlutterBinding.UI.Color _Grey300Opacity { get; set; }
+        /// <Summary>
+        /// The width of the divider that appears between [TableRow]s.
+        ///
+        /// Must be non-null and greater than or equal to zero.
+        /// This value defaults to 1.0.
+        /// </Summary>
         public virtual double DividerThickness { get; set; }
         internal virtual bool _DebugInteractive { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 
@@ -794,6 +1046,9 @@ namespace FlutterSDK.Material.Datatable
     /// </Summary>
     public class TableRowInkWell : FlutterSDK.Material.Inkwell.InkResponse
     {
+        /// <Summary>
+        /// Creates an ink well for a table row.
+        /// </Summary>
         public TableRowInkWell(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Gestures.Tap.GestureTapCallback onTap = default(FlutterSDK.Gestures.Tap.GestureTapCallback), FlutterSDK.Gestures.Tap.GestureTapCallback onDoubleTap = default(FlutterSDK.Gestures.Tap.GestureTapCallback), FlutterSDK.Gestures.Longpress.GestureLongPressCallback onLongPress = default(FlutterSDK.Gestures.Longpress.GestureLongPressCallback), FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onHighlightChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>))
         : base(key: key, child: child, onTap: onTap, onDoubleTap: onDoubleTap, onLongPress: onLongPress, onHighlightChanged: onHighlightChanged, containedInkWell: true, highlightShape: BoxShape.Rectangle)
         {

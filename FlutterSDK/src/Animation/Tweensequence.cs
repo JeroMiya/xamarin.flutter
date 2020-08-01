@@ -98,6 +98,15 @@ namespace FlutterSDK.Animation.Tweensequence
     /// </Summary>
     public class TweenSequence<T> : FlutterSDK.Animation.Tween.Animatable<T>
     {
+        /// <Summary>
+        /// Construct a TweenSequence.
+        ///
+        /// The [items] parameter must be a list of one or more [TweenSequenceItem]s.
+        ///
+        /// There's a small cost associated with building a `TweenSequence` so it's
+        /// best to reuse one, rather than rebuilding it on every frame, when that's
+        /// possible.
+        /// </Summary>
         public TweenSequence(List<FlutterSDK.Animation.Tweensequence.TweenSequenceItem<T>> items)
         : base()
         {
@@ -161,6 +170,15 @@ namespace FlutterSDK.Animation.Tweensequence
     /// </Summary>
     public class FlippedTweenSequence : FlutterSDK.Animation.Tweensequence.TweenSequence<double>
     {
+        /// <Summary>
+        /// Creates a flipped [TweenSequence].
+        ///
+        /// The [items] parameter must be a list of one or more [TweenSequenceItem]s.
+        ///
+        /// There's a small cost associated with building a `TweenSequence` so it's
+        /// best to reuse one, rather than rebuilding it on every frame, when that's
+        /// possible.
+        /// </Summary>
         public FlippedTweenSequence(List<FlutterSDK.Animation.Tweensequence.TweenSequenceItem<double>> items)
         : base(items)
         {
@@ -178,13 +196,41 @@ namespace FlutterSDK.Animation.Tweensequence
     /// </Summary>
     public class TweenSequenceItem<T>
     {
+        /// <Summary>
+        /// Construct a TweenSequenceItem.
+        ///
+        /// The [tween] must not be null and [weight] must be greater than 0.0.
+        /// </Summary>
         public TweenSequenceItem(FlutterSDK.Animation.Tween.Animatable<T> tween = default(FlutterSDK.Animation.Tween.Animatable<T>), double weight = default(double))
         : base()
         {
             this.Tween = tween;
             this.Weight = weight;
         }
+        /// <Summary>
+        /// Defines the value of the [TweenSequence] for the interval within the
+        /// animation's duration indicated by [weight] and this item's position
+        /// in the list of items.
+        ///
+        /// {@tool snippet}
+        ///
+        /// The value of this item can be "curved" by chaining it to a [CurveTween].
+        /// For example to create a tween that eases from 0.0 to 10.0:
+        ///
+        /// ```dart
+        /// Tween<double>(begin: 0.0, end: 10.0)
+        ///   .chain(CurveTween(curve: Curves.ease))
+        /// ```
+        /// {@end-tool}
+        /// </Summary>
         public virtual FlutterSDK.Animation.Tween.Animatable<T> Tween { get; set; }
+        /// <Summary>
+        /// An arbitrary value that indicates the relative percentage of a
+        /// [TweenSequence] animation's duration when [tween] will be used.
+        ///
+        /// The percentage for an individual item is the item's weight divided by the
+        /// sum of all of the items' weights.
+        /// </Summary>
         public virtual double Weight { get; set; }
     }
 

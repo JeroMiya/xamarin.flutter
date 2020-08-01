@@ -443,6 +443,10 @@ namespace FlutterSDK.Material.Togglebuttonstheme
     /// </Summary>
     public class ToggleButtonsThemeData : IDiagnosticable
     {
+        /// <Summary>
+        /// Creates the set of color and border properties used to configure
+        /// [ToggleButtons].
+        /// </Summary>
         public ToggleButtonsThemeData(FlutterSDK.Painting.Textstyle.TextStyle textStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Rendering.Box.BoxConstraints constraints = default(FlutterSDK.Rendering.Box.BoxConstraints), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color selectedColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color disabledColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color fillColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color focusColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color highlightColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color hoverColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color splashColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color borderColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color selectedBorderColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color disabledBorderColor = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Borderradius.BorderRadius borderRadius = default(FlutterSDK.Painting.Borderradius.BorderRadius), double borderWidth = default(double))
         {
             this.TextStyle = textStyle;
@@ -461,20 +465,81 @@ namespace FlutterSDK.Material.Togglebuttonstheme
             this.BorderRadius = borderRadius;
             this.BorderWidth = borderWidth;
         }
+        /// <Summary>
+        /// The default text style for [ToggleButtons.children].
+        ///
+        /// [TextStyle.color] will be ignored and substituted by [color],
+        /// [selectedColor] or [disabledColor] depending on whether the buttons
+        /// are active, selected, or disabled.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Textstyle.TextStyle TextStyle { get; set; }
+        /// <Summary>
+        /// Defines the button's size.
+        ///
+        /// Typically used to constrain the button's minimum size.
+        /// </Summary>
         public virtual FlutterSDK.Rendering.Box.BoxConstraints Constraints { get; set; }
+        /// <Summary>
+        /// The color for descendant [Text] and [Icon] widgets if the toggle button
+        /// is enabled.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color Color { get; set; }
+        /// <Summary>
+        /// The color for descendant [Text] and [Icon] widgets if the toggle button
+        /// is selected.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color SelectedColor { get; set; }
+        /// <Summary>
+        /// The color for descendant [Text] and [Icon] widgets if the toggle button
+        /// is disabled.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color DisabledColor { get; set; }
+        /// <Summary>
+        /// The fill color for selected toggle buttons.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color FillColor { get; set; }
+        /// <Summary>
+        /// The color to use for filling the button when the button has input focus.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color FocusColor { get; set; }
+        /// <Summary>
+        /// The highlight color for the toggle button's [InkWell].
+        /// </Summary>
         public virtual FlutterBinding.UI.Color HighlightColor { get; set; }
+        /// <Summary>
+        /// The splash color for the toggle button's [InkWell].
+        /// </Summary>
         public virtual FlutterBinding.UI.Color SplashColor { get; set; }
+        /// <Summary>
+        /// The color to use for filling the toggle button when the button has a
+        /// pointer hovering over it.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color HoverColor { get; set; }
+        /// <Summary>
+        /// The border color to display when the toggle button is enabled.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color BorderColor { get; set; }
+        /// <Summary>
+        /// The border color to display when the toggle button is selected.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color SelectedBorderColor { get; set; }
+        /// <Summary>
+        /// The border color to display when the toggle button is disabled.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color DisabledBorderColor { get; set; }
+        /// <Summary>
+        /// The width of the border surrounding each toggle button.
+        ///
+        /// This applies to both the greater surrounding border, as well as the
+        /// borders dividing each toggle button.
+        ///
+        /// To render a hairline border (one physical pixel), set borderWidth to 0.0.
+        /// See [BorderSide.width] for more details on hairline borders.
+        /// </Summary>
         public virtual double BorderWidth { get; set; }
+        /// <Summary>
+        /// The radii of the border's corners.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Borderradius.BorderRadius BorderRadius { get; set; }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 
@@ -547,11 +612,20 @@ namespace FlutterSDK.Material.Togglebuttonstheme
     /// </Summary>
     public class ToggleButtonsTheme : FlutterSDK.Widgets.Inheritedtheme.InheritedTheme
     {
+        /// <Summary>
+        /// Creates a toggle buttons theme that controls the color and border
+        /// parameters for [ToggleButtons].
+        ///
+        /// The data argument must not be null.
+        /// </Summary>
         public ToggleButtonsTheme(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Material.Togglebuttonstheme.ToggleButtonsThemeData data = default(FlutterSDK.Material.Togglebuttonstheme.ToggleButtonsThemeData), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
             this.Data = data;
         }
+        /// <Summary>
+        /// Specifies the color and border values for descendant [ToggleButtons] widgets.
+        /// </Summary>
         public virtual FlutterSDK.Material.Togglebuttonstheme.ToggleButtonsThemeData Data { get; set; }
 
         /// <Summary>

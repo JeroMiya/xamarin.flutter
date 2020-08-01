@@ -569,6 +569,9 @@ namespace FlutterSDK.Widgets.Pagestorage
     /// </Summary>
     public class PageStorageKey<T> : FlutterSDK.Foundation.Key.ValueKey<T>
     {
+        /// <Summary>
+        /// Creates a [ValueKey] that defines where [PageStorage] values will be saved.
+        /// </Summary>
         public PageStorageKey(T value)
         : base(value)
         {
@@ -605,13 +608,26 @@ namespace FlutterSDK.Widgets.Pagestorage
     /// </Summary>
     public class PageStorage : FlutterSDK.Widgets.Framework.StatelessWidget
     {
+        /// <Summary>
+        /// Creates a widget that provides a storage bucket for its descendants.
+        ///
+        /// The [bucket] argument must not be null.
+        /// </Summary>
         public PageStorage(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Pagestorage.PageStorageBucket bucket = default(FlutterSDK.Widgets.Pagestorage.PageStorageBucket), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key)
         {
             this.Bucket = bucket;
             this.Child = child;
         }
+        /// <Summary>
+        /// The widget below this widget in the tree.
+        ///
+        /// {@macro flutter.widgets.child}
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+        /// <Summary>
+        /// The page storage bucket to use for this subtree.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Pagestorage.PageStorageBucket Bucket { get; set; }
 
         /// <Summary>

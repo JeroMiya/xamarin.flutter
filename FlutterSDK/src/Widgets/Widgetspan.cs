@@ -483,11 +483,25 @@ namespace FlutterSDK.Widgets.Widgetspan
     /// </Summary>
     public class WidgetSpan : FlutterSDK.Painting.Placeholderspan.PlaceholderSpan
     {
+        /// <Summary>
+        /// Creates a [WidgetSpan] with the given values.
+        ///
+        /// The [child] property must be non-null. [WidgetSpan] is a leaf node in
+        /// the [InlineSpan] tree. Child widgets are constrained by the width of the
+        /// paragraph they occupy. Child widget heights are unconstrained, and may
+        /// cause the text to overflow and be ellipsized/truncated.
+        ///
+        /// A [TextStyle] may be provided with the [style] property, but only the
+        /// decoration, foreground, background, and spacing options will be used.
+        /// </Summary>
         public WidgetSpan(FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), PlaceholderAlignment alignment = default(PlaceholderAlignment), TextBaseline baseline = default(TextBaseline), FlutterSDK.Painting.Textstyle.TextStyle style = default(FlutterSDK.Painting.Textstyle.TextStyle))
         : base(alignment: alignment, baseline: baseline, style: style)
         {
             this.Child = child;
         }
+        /// <Summary>
+        /// The widget to embed inline within text.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 

@@ -405,6 +405,11 @@ namespace FlutterSDK.Material.Gridtile
     /// </Summary>
     public class GridTile : FlutterSDK.Widgets.Framework.StatelessWidget
     {
+        /// <Summary>
+        /// Creates a grid tile.
+        ///
+        /// Must have a child. Does not typically have both a header and a footer.
+        /// </Summary>
         public GridTile(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget header = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget footer = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key)
         {
@@ -412,8 +417,23 @@ namespace FlutterSDK.Material.Gridtile
             this.Footer = footer;
             this.Child = child;
         }
+        /// <Summary>
+        /// The widget to show over the top of this grid tile.
+        ///
+        /// Typically a [GridTileBar].
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Header { get; set; }
+        /// <Summary>
+        /// The widget to show over the bottom of this grid tile.
+        ///
+        /// Typically a [GridTileBar].
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Footer { get; set; }
+        /// <Summary>
+        /// The widget that fills the tile.
+        ///
+        /// {@macro flutter.widgets.child}
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)

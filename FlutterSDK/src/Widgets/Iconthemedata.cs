@@ -440,18 +440,35 @@ namespace FlutterSDK.Widgets.Iconthemedata
     /// </Summary>
     public class IconThemeData : IDiagnosticable
     {
+        /// <Summary>
+        /// Creates an icon theme data.
+        ///
+        /// The opacity applies to both explicit and default icon colors. The value
+        /// is clamped between 0.0 and 1.0.
+        /// </Summary>
         public IconThemeData(FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), double opacity = default(double), double size = default(double))
         : base()
         {
             this.Color = color;
             this.Size = size;
         }
+        /// <Summary>
+        /// Creates an icon them with some reasonable default values.
+        ///
+        /// The [color] is black, the [opacity] is 1.0, and the [size] is 24.0.
+        /// </Summary>
         public static IconThemeData Fallback()
         {
             var instance = new IconThemeData();
         }
+        /// <Summary>
+        /// The default color for icons.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color Color { get; set; }
         internal virtual double _Opacity { get; set; }
+        /// <Summary>
+        /// The default size for icons.
+        /// </Summary>
         public virtual double Size { get; set; }
         public virtual bool IsConcrete { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual double Opacity { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }

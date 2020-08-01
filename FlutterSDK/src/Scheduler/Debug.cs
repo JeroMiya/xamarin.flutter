@@ -428,6 +428,15 @@ namespace FlutterSDK.Scheduler.Debug
         public static bool DebugPrintBeginFrameBanner = default(bool);
         public static bool DebugPrintEndFrameBanner = default(bool);
         public static bool DebugPrintScheduleFrameStacks = default(bool);
+        /// <Summary>
+        /// Returns true if none of the scheduler library debug variables have been changed.
+        ///
+        /// This function is used by the test framework to ensure that debug variables
+        /// haven't been inadvertently changed.
+        ///
+        /// See [the scheduler library](scheduler/scheduler-library.html) for a complete
+        /// list.
+        /// </Summary>
         internal static bool DebugAssertAllSchedulerVarsUnset(string reason)
         {
 

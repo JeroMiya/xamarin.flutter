@@ -425,8 +425,16 @@ using FlutterSDK.Widgets.Constants;
 using FlutterSDK.Widgets.Routenotificationmessages;
 namespace FlutterSDK.Widgets.Widgetinspector
 {
+    /// <Summary>
+    /// Signature for the builder callback used by
+    /// [WidgetInspector.selectButtonBuilder].
+    /// </Summary>
     public delegate FlutterSDK.Widgets.Framework.Widget InspectorSelectButtonBuilder(FlutterSDK.Widgets.Framework.BuildContext context, VoidCallback onPressed);
     public delegate void _RegisterServiceExtensionCallback(string name = default(string), FlutterSDK.Foundation.Binding.ServiceExtensionCallback callback = default(FlutterSDK.Foundation.Binding.ServiceExtensionCallback));
+    /// <Summary>
+    /// Signature for the selection change callback used by
+    /// [WidgetInspectorService.selectionChangedCallback].
+    /// </Summary>
     public delegate void InspectorSelectionChangedCallback();
     internal static class WidgetinspectorDefaultClass
     {
@@ -468,6 +476,9 @@ namespace FlutterSDK.Widgets.Widgetinspector
 
 
 
+        /// <Summary>
+        /// Calculate bounds for a render object and all of its descendants.
+        /// </Summary>
         internal static Rect _CalculateSubtreeBounds(FlutterSDK.Rendering.@object.RenderObject @object)
         {
             return WidgetinspectorDefaultClass._CalculateSubtreeBoundsHelper(object, Matrix4.Identity());
@@ -510,6 +521,12 @@ namespace FlutterSDK.Widgets.Widgetinspector
         internal static bool _IsDebugCreator(FlutterSDK.Foundation.Diagnostics.DiagnosticsNode node) => node is DiagnosticsDebugCreator;
 
 
+        /// <Summary>
+        /// Transformer to parse and gather information about [DiagnosticsDebugCreator].
+        ///
+        /// This function will be registered to [FlutterErrorDetails.propertiesTransformers]
+        /// in [WidgetsBinding.initInstances].
+        /// </Summary>
         internal static Iterable<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> TransformDebugCreator(Iterable<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> properties)
         {
             List<DiagnosticsNode> pending = new List<DiagnosticsNode>() { };
@@ -541,6 +558,11 @@ namespace FlutterSDK.Widgets.Widgetinspector
 
 
 
+        /// <Summary>
+        /// Transform the input [DiagnosticsNode].
+        ///
+        /// Return null if input [DiagnosticsNode] is not applicable.
+        /// </Summary>
         internal static Iterable<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> _ParseDiagnosticsNode(FlutterSDK.Foundation.Diagnostics.DiagnosticsNode node)
         {
             if (!WidgetinspectorDefaultClass._IsDebugCreator(node)) return null;
@@ -577,6 +599,17 @@ namespace FlutterSDK.Widgets.Widgetinspector
 
 
 
+        /// <Summary>
+        /// Returns if an object is user created.
+        ///
+        /// This function will only work in debug mode builds when
+        /// the `--track-widget-creation` flag is passed to `flutter_tool`. Dart 2.0 is
+        /// required as injecting creation locations requires a
+        /// [Dart Kernel Transformer](https://github.com/dart-lang/sdk/wiki/Kernel-Documentation).
+        ///
+        /// Currently is local creation locations are only available for
+        /// [Widget] and [Element].
+        /// </Summary>
         internal static bool _IsLocalCreationLocation(@Object @object)
         {
             _Location location = WidgetinspectorDefaultClass._GetCreationLocation(object);
@@ -586,6 +619,18 @@ namespace FlutterSDK.Widgets.Widgetinspector
 
 
 
+        /// <Summary>
+        /// Returns the creation location of an object in String format if one is available.
+        ///
+        /// ex: "file:///path/to/main.dart:4:3"
+        ///
+        /// Creation locations are only available for debug mode builds when
+        /// the `--track-widget-creation` flag is passed to `flutter_tool`. Dart 2.0 is
+        /// required as injecting creation locations requires a
+        /// [Dart Kernel Transformer](https://github.com/dart-lang/sdk/wiki/Kernel-Documentation).
+        ///
+        /// Currently creation locations are only available for [Widget] and [Element].
+        /// </Summary>
         internal static string _DescribeCreationLocation(@Object @object)
         {
             _Location location = WidgetinspectorDefaultClass._GetCreationLocation(object);
@@ -594,6 +639,16 @@ namespace FlutterSDK.Widgets.Widgetinspector
 
 
 
+        /// <Summary>
+        /// Returns the creation location of an object if one is available.
+        ///
+        /// Creation locations are only available for debug mode builds when
+        /// the `--track-widget-creation` flag is passed to `flutter_tool`. Dart 2.0 is
+        /// required as injecting creation locations requires a
+        /// [Dart Kernel Transformer](https://github.com/dart-lang/sdk/wiki/Kernel-Documentation).
+        ///
+        /// Currently creation locations are only available for [Widget] and [Element].
+        /// </Summary>
         internal static FlutterSDK.Widgets.Widgetinspector._Location _GetCreationLocation(@Object @object)
         {
             object candidate = object is Element ? object.Widget : object;
@@ -624,12 +679,34 @@ namespace FlutterSDK.Widgets.Widgetinspector
 
     public class WidgetInspectorService
     {
+        /// <Summary>
+        /// Ring of cached JSON values to prevent JSON from being garbage
+        /// collected before it can be requested over the Observatory protocol.
+        /// </Summary>
         internal virtual List<string> _SerializeRing { get; set; }
         internal virtual int _SerializeRingIndex { get; set; }
         internal virtual FlutterSDK.Widgets.Widgetinspector.WidgetInspectorService _Instance { get; set; }
         internal virtual bool _DebugServiceExtensionsRegistered { get; set; }
+        /// <Summary>
+        /// Ground truth tracking what object(s) are currently selected used by both
+        /// GUI tools such as the Flutter IntelliJ Plugin and the [WidgetInspector]
+        /// displayed on the device.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Widgetinspector.InspectorSelection Selection { get; set; }
+        /// <Summary>
+        /// Callback typically registered by the [WidgetInspector] to receive
+        /// notifications when [selection] changes.
+        ///
+        /// The Flutter IntelliJ Plugin does not need to listen for this event as it
+        /// instead listens for `dart:developer` `inspect` events which also trigger
+        /// when the inspection target changes on device.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Widgetinspector.InspectorSelectionChangedCallback SelectionChangedCallback { get; set; }
+        /// <Summary>
+        /// The Observatory protocol does not keep alive object references so this
+        /// class needs to manually manage groups of objects that should be kept
+        /// alive.
+        /// </Summary>
         internal virtual Dictionary<string, HashSet<FlutterSDK.Widgets.Widgetinspector._InspectorReferenceData>> _Groups { get; set; }
         internal virtual Dictionary<string, FlutterSDK.Widgets.Widgetinspector._InspectorReferenceData> _IdToReferenceData { get; set; }
         internal virtual Dictionary<@Object, string> _ObjectToId { get; set; }
@@ -2025,7 +2102,16 @@ namespace FlutterSDK.Widgets.Widgetinspector
     public class _ElementLocationStatsTracker
     {
         internal virtual List<FlutterSDK.Widgets.Widgetinspector._LocationCount> _Stats { get; set; }
+        /// <Summary>
+        /// Locations with a non-zero count.
+        /// </Summary>
         public virtual List<FlutterSDK.Widgets.Widgetinspector._LocationCount> Active { get; set; }
+        /// <Summary>
+        /// Locations that were added since stats were last exported.
+        ///
+        /// Only locations local to the current project are included as a performance
+        /// optimization.
+        /// </Summary>
         public virtual List<FlutterSDK.Widgets.Widgetinspector._LocationCount> NewLocations { get; set; }
 
         /// <Summary>
@@ -2616,10 +2702,35 @@ namespace FlutterSDK.Widgets.Widgetinspector
         {
             this.Target = target;
         }
+        /// <Summary>
+        /// Target to take a screenshot of.
+        /// </Summary>
         public virtual FlutterSDK.Rendering.@object.RenderObject Target { get; set; }
+        /// <Summary>
+        /// Root of the layer tree containing the screenshot.
+        /// </Summary>
         public virtual FlutterSDK.Rendering.Layer.OffsetLayer ContainerLayer { get; set; }
+        /// <Summary>
+        /// Whether the screenshot target has already been found in the render tree.
+        /// </Summary>
         public virtual bool FoundTarget { get; set; }
+        /// <Summary>
+        /// Whether paint operations should record to the screenshot.
+        ///
+        /// At least one of [includeInScreenshot] and [includeInRegularContext] must
+        /// be true.
+        /// </Summary>
         public virtual bool IncludeInScreenshot { get; set; }
+        /// <Summary>
+        /// Whether paint operations should record to the regular context.
+        ///
+        /// This should only be set to false before paint operations that should only
+        /// apply to the screenshot such rendering debug information about the
+        /// [target].
+        ///
+        /// At least one of [includeInScreenshot] and [includeInRegularContext] must
+        /// be true.
+        /// </Summary>
         public virtual bool IncludeInRegularContext { get; set; }
         public virtual FlutterBinding.UI.Offset ScreenshotOffset { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
     }
@@ -2851,6 +2962,12 @@ namespace FlutterSDK.Widgets.Widgetinspector
     /// </Summary>
     public class _DiagnosticsPathNode
     {
+        /// <Summary>
+        /// Creates a full description of a step in a path through a tree of
+        /// [DiagnosticsNode] objects.
+        ///
+        /// The [node] and [child] arguments must not be null.
+        /// </Summary>
         public _DiagnosticsPathNode(FlutterSDK.Foundation.Diagnostics.DiagnosticsNode node = default(FlutterSDK.Foundation.Diagnostics.DiagnosticsNode), List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> children = default(List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode>), int childIndex = default(int))
         : base()
         {
@@ -2858,8 +2975,24 @@ namespace FlutterSDK.Widgets.Widgetinspector
             this.Children = children;
             this.ChildIndex = childIndex;
         }
+        /// <Summary>
+        /// Node at the point in the path this [_DiagnosticsPathNode] is describing.
+        /// </Summary>
         public virtual FlutterSDK.Foundation.Diagnostics.DiagnosticsNode Node { get; set; }
+        /// <Summary>
+        /// Children of the [node] being described.
+        ///
+        /// This value is cached instead of relying on `node.getChildren()` as that
+        /// method call might create new [DiagnosticsNode] objects for each child
+        /// and we would prefer to use the identical [DiagnosticsNode] for each time
+        /// a node exists in the path.
+        /// </Summary>
         public virtual List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> Children { get; set; }
+        /// <Summary>
+        /// Index of the child that the path continues on.
+        ///
+        /// Equal to null if the path does not continue.
+        /// </Summary>
         public virtual int ChildIndex { get; set; }
     }
 
@@ -2893,7 +3026,13 @@ namespace FlutterSDK.Widgets.Widgetinspector
             this.Id = id;
             this.Local = local;
         }
+        /// <Summary>
+        /// Location id.
+        /// </Summary>
         public virtual int Id { get; set; }
+        /// <Summary>
+        /// Whether the location is local to the current project.
+        /// </Summary>
         public virtual bool Local { get; set; }
         public virtual FlutterSDK.Widgets.Widgetinspector._Location Location { get; set; }
         internal virtual int _Count { get; set; }
@@ -2960,13 +3099,27 @@ namespace FlutterSDK.Widgets.Widgetinspector
     /// </Summary>
     public class WidgetInspector : FlutterSDK.Widgets.Framework.StatefulWidget
     {
+        /// <Summary>
+        /// Creates a widget that enables inspection for the child.
+        ///
+        /// The [child] argument must not be null.
+        /// </Summary>
         public WidgetInspector(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Widgetinspector.InspectorSelectButtonBuilder selectButtonBuilder = default(FlutterSDK.Widgets.Widgetinspector.InspectorSelectButtonBuilder))
         : base(key: key)
         {
             this.Child = child;
             this.SelectButtonBuilder = selectButtonBuilder;
         }
+        /// <Summary>
+        /// The widget that is being inspected.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+        /// <Summary>
+        /// A builder that is called to create the select button.
+        ///
+        /// The `onPressed` callback passed as an argument to the builder should be
+        /// hooked up to the returned widget.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Widgetinspector.InspectorSelectButtonBuilder SelectButtonBuilder { get; set; }
 
         public new FlutterSDK.Widgets.Widgetinspector._WidgetInspectorState CreateState() => new _WidgetInspectorState();
@@ -2984,8 +3137,19 @@ namespace FlutterSDK.Widgets.Widgetinspector
         }
         internal virtual FlutterBinding.UI.Offset _LastPointerLocation { get; set; }
         public virtual FlutterSDK.Widgets.Widgetinspector.InspectorSelection Selection { get; set; }
+        /// <Summary>
+        /// Whether the inspector is in select mode.
+        ///
+        /// In select mode, pointer interactions trigger widget selection instead of
+        /// normal interactions. Otherwise the previously selected widget is
+        /// highlighted but the application can be interacted with normally.
+        /// </Summary>
         public virtual bool IsSelectMode { get; set; }
         internal virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> _IgnorePointerKey { get; set; }
+        /// <Summary>
+        /// Distance from the edge of the bounding box for an element to consider
+        /// as selecting the edge of the bounding box.
+        /// </Summary>
         internal virtual double _EdgeHitMargin { get; set; }
         internal virtual FlutterSDK.Widgets.Widgetinspector.InspectorSelectionChangedCallback _SelectionChangedCallback { get; set; }
 
@@ -3216,6 +3380,9 @@ namespace FlutterSDK.Widgets.Widgetinspector
 
     public class _RenderInspectorOverlay : FlutterSDK.Rendering.Box.RenderBox
     {
+        /// <Summary>
+        /// The arguments must not be null.
+        /// </Summary>
         public _RenderInspectorOverlay(FlutterSDK.Widgets.Widgetinspector.InspectorSelection selection = default(FlutterSDK.Widgets.Widgetinspector.InspectorSelection))
         : base()
         {
@@ -3310,6 +3477,9 @@ namespace FlutterSDK.Widgets.Widgetinspector
     /// </Summary>
     public class _InspectorOverlayLayer : FlutterSDK.Rendering.Layer.Layer
     {
+        /// <Summary>
+        /// Creates a layer that displays the inspector overlay.
+        /// </Summary>
         public _InspectorOverlayLayer(FlutterBinding.UI.Rect overlayRect = default(FlutterBinding.UI.Rect), FlutterSDK.Widgets.Widgetinspector.InspectorSelection selection = default(FlutterSDK.Widgets.Widgetinspector.InspectorSelection))
         : base()
         {
@@ -3326,8 +3496,18 @@ namespace FlutterSDK.Widgets.Widgetinspector
 
 
         public virtual FlutterSDK.Widgets.Widgetinspector.InspectorSelection Selection { get; set; }
+        /// <Summary>
+        /// The rectangle in this layer's coordinate system that the overlay should
+        /// occupy.
+        ///
+        /// The scene must be explicitly recomposited after this property is changed
+        /// (as described at [Layer]).
+        /// </Summary>
         public virtual FlutterBinding.UI.Rect OverlayRect { get; set; }
         internal virtual FlutterSDK.Widgets.Widgetinspector._InspectorOverlayRenderState _LastState { get; set; }
+        /// <Summary>
+        /// Picture generated from _lastState.
+        /// </Summary>
         internal virtual SKPicture _Picture { get; set; }
         internal virtual FlutterSDK.Painting.Textpainter.TextPainter _TextPainter { get; set; }
         internal virtual double _TextPainterMaxWidth { get; set; }
@@ -3446,10 +3626,25 @@ namespace FlutterSDK.Widgets.Widgetinspector
             this.Name = name;
             this.ParameterLocations = parameterLocations;
         }
+        /// <Summary>
+        /// File path of the location.
+        /// </Summary>
         public virtual string File { get; set; }
+        /// <Summary>
+        /// 1-based line number.
+        /// </Summary>
         public virtual int Line { get; set; }
+        /// <Summary>
+        /// 1-based column number.
+        /// </Summary>
         public virtual int Column { get; set; }
+        /// <Summary>
+        /// Optional name of the parameter or function at this location.
+        /// </Summary>
         public virtual string Name { get; set; }
+        /// <Summary>
+        /// Optional locations of the parameters of the member at this location.
+        /// </Summary>
         public virtual List<FlutterSDK.Widgets.Widgetinspector._Location> ParameterLocations { get; set; }
 
         public virtual Dictionary<string, @Object> ToJsonMap()
@@ -3480,6 +3675,10 @@ namespace FlutterSDK.Widgets.Widgetinspector
     /// </Summary>
     public class InspectorSerializationDelegate : IDiagnosticsSerializationDelegate
     {
+        /// <Summary>
+        /// Creates an [InspectorSerializationDelegate] that serialize [DiagnosticsNode]
+        /// for Flutter Inspector service.
+        /// </Summary>
         public InspectorSerializationDelegate(string groupName = default(string), bool summaryTree = false, int maxDescendentsTruncatableNode = -1, bool expandPropertyValues = true, int subtreeDepth = 1, bool includeProperties = false, FlutterSDK.Widgets.Widgetinspector.WidgetInspectorService service = default(FlutterSDK.Widgets.Widgetinspector.WidgetInspectorService), Func<Map<string, object>, DiagnosticsNode, InspectorSerializationDelegate> addAdditionalPropertiesCallback = default(Func<Map<string, object>, DiagnosticsNode, InspectorSerializationDelegate>))
         {
             this.GroupName = groupName;
@@ -3491,13 +3690,75 @@ namespace FlutterSDK.Widgets.Widgetinspector
             this.Service = service;
             this.AddAdditionalPropertiesCallback = addAdditionalPropertiesCallback;
         }
+        /// <Summary>
+        /// Service used by GUI tools to interact with the [WidgetInspector].
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Widgetinspector.WidgetInspectorService Service { get; set; }
+        /// <Summary>
+        /// Optional `groupName` parameter which indicates that the json should
+        /// contain live object ids.
+        ///
+        /// Object ids returned as part of the json will remain live at least until
+        /// [WidgetInspectorService.disposeGroup()] is called on [groupName].
+        /// </Summary>
         public virtual string GroupName { get; set; }
+        /// <Summary>
+        /// Whether the tree should only include nodes created by the local project.
+        /// </Summary>
         public virtual bool SummaryTree { get; set; }
+        /// <Summary>
+        /// Maximum descendents of [DiagnosticsNode] before truncating.
+        /// </Summary>
         public virtual int MaxDescendentsTruncatableNode { get; set; }
         public new bool IncludeProperties { get; set; }
         public new int SubtreeDepth { get; set; }
         public new bool ExpandPropertyValues { get; set; }
+        /// <Summary>
+        /// Callback to add additional experimental serialization properties.
+        ///
+        /// This callback can be used to customize the serialization of DiagnosticsNode
+        /// objects for experimental features in widget inspector clients such as
+        /// [Dart DevTools](https://github.com/flutter/devtools).
+        /// For example, [Dart DevTools](https://github.com/flutter/devtools)
+        /// can evaluate the following expression to register a VM Service API
+        /// with a custom serialization to experiment with visualizing layouts.
+        ///
+        /// The following code samples demonstrates adding the [RenderObject] associated
+        /// with an [Element] to the serialized data for all elements in the tree:
+        ///
+        /// ```dart
+        /// Map<String, Object> getDetailsSubtreeWithRenderObject(
+        ///   String id,
+        ///   String groupName,
+        ///   int subtreeDepth,
+        /// ) {
+        ///   return _nodeToJson(
+        ///     root,
+        ///     InspectorSerializationDelegate(
+        ///       groupName: groupName,
+        ///       summaryTree: false,
+        ///       subtreeDepth: subtreeDepth,
+        ///       includeProperties: true,
+        ///       service: this,
+        ///       addAdditionalPropertiesCallback: (DiagnosticsNode node, _SerializationDelegate delegate) {
+        ///         final Map<String, Object> additionalJson = <String, Object>{};
+        ///         final Object value = node.value;
+        ///         if (value is Element) {
+        ///           final renderObject = value.renderObject;
+        ///           additionalJson['renderObject'] = renderObject?.toDiagnosticsNode()?.toJsonMap(
+        ///             delegate.copyWith(
+        ///               subtreeDepth: 0,
+        ///               includeProperties: true,
+        ///             ),
+        ///           );
+        ///         }
+        ///         return additionalJson;
+        ///       },
+        ///     ),
+        ///  );
+        /// }
+        /// ```
+        /// </Summary>
         public virtual Func<Map<string, object>, DiagnosticsNode, InspectorSerializationDelegate> AddAdditionalPropertiesCallback { get; set; }
         internal virtual List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> _NodesCreatedByLocalProject { get; set; }
         internal virtual bool _Interactive { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }

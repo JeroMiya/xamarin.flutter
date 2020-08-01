@@ -490,6 +490,20 @@ namespace FlutterSDK.Material.Inkdecoration
     /// </Summary>
     public class Ink : FlutterSDK.Widgets.Framework.StatefulWidget
     {
+        /// <Summary>
+        /// Paints a decoration (which can be a simple color) on a [Material].
+        ///
+        /// The [height] and [width] values include the [padding].
+        ///
+        /// The `color` argument is a shorthand for
+        /// `decoration: BoxDecoration(color: color)`, which means you cannot supply
+        /// both a `color` and a `decoration` argument. If you want to have both a
+        /// `color` and a `decoration`, you can pass the color as the `color`
+        /// argument to the `BoxDecoration`.
+        ///
+        /// If there is no intention to render anything on this decoration, consider
+        /// using a [Container] with a [BoxDecoration] instead.
+        /// </Summary>
         public Ink(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Decoration.Decoration decoration = default(FlutterSDK.Painting.Decoration.Decoration), double width = default(double), double height = default(double), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key)
         {
@@ -498,6 +512,25 @@ namespace FlutterSDK.Material.Inkdecoration
             this.Height = height;
             this.Child = child;
         }
+        /// <Summary>
+        /// Creates a widget that shows an image (obtained from an [ImageProvider]) on
+        /// a [Material].
+        ///
+        /// This argument is a shorthand for passing a [BoxDecoration] that has only
+        /// its [BoxDecoration.image] property set to the [Ink] constructor. The
+        /// properties of the [DecorationImage] of that [BoxDecoration] are set
+        /// according to the arguments passed to this method.
+        ///
+        /// The `image` argument must not be null. If there is no
+        /// intention to render anything on this image, consider using a
+        /// [Container] with a [BoxDecoration.image] instead. The `onImageError`
+        /// argument may be provided to listen for errors when resolving the image.
+        ///
+        /// The `alignment`, `repeat`, and `matchTextDirection` arguments must not
+        /// be null either, but they have default values.
+        ///
+        /// See [paintImage] for a description of the meaning of these arguments.
+        /// </Summary>
         public static Ink Image(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Painting.Imageprovider.ImageProvider<object> image = default(FlutterSDK.Painting.Imageprovider.ImageProvider<object>), FlutterSDK.Painting.Imagestream.ImageErrorListener onImageError = default(FlutterSDK.Painting.Imagestream.ImageErrorListener), ColorFilter colorFilter = default(ColorFilter), FlutterSDK.Painting.Boxfit.BoxFit fit = default(FlutterSDK.Painting.Boxfit.BoxFit), FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), FlutterBinding.UI.Rect centerSlice = default(FlutterBinding.UI.Rect), FlutterSDK.Painting.Decorationimage.ImageRepeat repeat = default(FlutterSDK.Painting.Decorationimage.ImageRepeat), bool matchTextDirection = false, double width = default(double), double height = default(double), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         {
             var instance = new Ink(key: key); instance.Padding = padding;
@@ -505,10 +538,40 @@ namespace FlutterSDK.Material.Inkdecoration
             instance.Height = height;
             instance.Child = child;
         }
+        /// <Summary>
+        /// The [child] contained by the container.
+        ///
+        /// {@macro flutter.widgets.child}
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+        /// <Summary>
+        /// Empty space to inscribe inside the [decoration]. The [child], if any, is
+        /// placed inside this padding.
+        ///
+        /// This padding is in addition to any padding inherent in the [decoration];
+        /// see [Decoration.padding].
+        /// </Summary>
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Padding { get; set; }
+        /// <Summary>
+        /// The decoration to paint on the nearest ancestor [Material] widget.
+        ///
+        /// A shorthand for specifying just a solid color is available in the
+        /// constructor: set the `color` argument instead of the `decoration`
+        /// argument.
+        ///
+        /// A shorthand for specifying just an image is also available using the
+        /// [Ink.image] constructor.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Decoration.Decoration Decoration { get; set; }
+        /// <Summary>
+        /// A width to apply to the [decoration] and the [child]. The width includes
+        /// any [padding].
+        /// </Summary>
         public virtual double Width { get; set; }
+        /// <Summary>
+        /// A height to apply to the [decoration] and the [child]. The height includes
+        /// any [padding].
+        /// </Summary>
         public virtual double Height { get; set; }
         internal virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry _PaddingIncludingDecoration { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 
@@ -609,6 +672,9 @@ namespace FlutterSDK.Material.Inkdecoration
     /// </Summary>
     public class InkDecoration : FlutterSDK.Material.Material.InkFeature
     {
+        /// <Summary>
+        /// Draws a decoration on a [Material].
+        /// </Summary>
         public InkDecoration(FlutterSDK.Painting.Decoration.Decoration decoration = default(FlutterSDK.Painting.Decoration.Decoration), FlutterSDK.Painting.Imageprovider.ImageConfiguration configuration = default(FlutterSDK.Painting.Imageprovider.ImageConfiguration), FlutterSDK.Material.Material.MaterialInkController controller = default(FlutterSDK.Material.Material.MaterialInkController), FlutterSDK.Rendering.Box.RenderBox referenceBox = default(FlutterSDK.Rendering.Box.RenderBox), VoidCallback onRemoved = default(VoidCallback))
         : base(controller: controller, referenceBox: referenceBox, onRemoved: onRemoved)
         {

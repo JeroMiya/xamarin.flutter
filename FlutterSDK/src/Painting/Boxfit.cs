@@ -424,6 +424,59 @@ namespace FlutterSDK.Painting.Boxfit
 {
     internal static class BoxfitDefaultClass
     {
+        /// <Summary>
+        /// Apply a [BoxFit] value.
+        ///
+        /// The arguments to this method, in addition to the [BoxFit] value to apply,
+        /// are two sizes, ostensibly the sizes of an input box and an output box.
+        /// Specifically, the `inputSize` argument gives the size of the complete source
+        /// that is being fitted, and the `outputSize` gives the size of the rectangle
+        /// into which the source is to be drawn.
+        ///
+        /// This function then returns two sizes, combined into a single [FittedSizes]
+        /// object.
+        ///
+        /// The [FittedSizes.source] size is the subpart of the `inputSize` that is to
+        /// be shown. If the entire input source is shown, then this will equal the
+        /// `inputSize`, but if the input source is to be cropped down, this may be
+        /// smaller.
+        ///
+        /// The [FittedSizes.destination] size is the subpart of the `outputSize` in
+        /// which to paint the (possibly cropped) source. If the
+        /// [FittedSizes.destination] size is smaller than the `outputSize` then the
+        /// source is being letterboxed (or pillarboxed).
+        ///
+        /// This method does not express an opinion regarding the alignment of the
+        /// source and destination sizes within the input and output rectangles.
+        /// Typically they are centered (this is what [BoxDecoration] does, for
+        /// instance, and is how [BoxFit] is defined). The [Alignment] class provides a
+        /// convenience function, [Alignment.inscribe], for resolving the sizes to
+        /// rects, as shown in the example below.
+        ///
+        /// {@tool snippet}
+        ///
+        /// This function paints a [dart:ui.Image] `image` onto the [Rect] `outputRect` on a
+        /// [Canvas] `canvas`, using a [Paint] `paint`, applying the [BoxFit] algorithm
+        /// `fit`:
+        ///
+        /// ```dart
+        /// void paintImage(ui.Image image, Rect outputRect, Canvas canvas, Paint paint, BoxFit fit) {
+        ///   final Size imageSize = Size(image.width.toDouble(), image.height.toDouble());
+        ///   final FittedSizes sizes = applyBoxFit(fit, imageSize, outputRect.size);
+        ///   final Rect inputSubrect = Alignment.center.inscribe(sizes.source, Offset.zero & imageSize);
+        ///   final Rect outputSubrect = Alignment.center.inscribe(sizes.destination, outputRect);
+        ///   canvas.drawImageRect(image, inputSubrect, outputSubrect, paint);
+        /// }
+        /// ```
+        /// {@end-tool}
+        ///
+        /// See also:
+        ///
+        ///  * [FittedBox], a widget that applies this algorithm to another widget.
+        ///  * [paintImage], a function that applies this algorithm to images for painting.
+        ///  * [DecoratedBox], [BoxDecoration], and [DecorationImage], which together
+        ///    provide access to [paintImage] at the widgets layer.
+        /// </Summary>
         internal static FlutterSDK.Painting.Boxfit.FittedSizes ApplyBoxFit(FlutterSDK.Painting.Boxfit.BoxFit fit, Size inputSize, Size outputSize)
         {
             if (inputSize.Height <= 0.0 || inputSize.Width <= 0.0 || outputSize.Height <= 0.0 || outputSize.Width <= 0.0) return new FittedSizes(Dart.UiDefaultClass.Size.Zero, Dart.UiDefaultClass.Size.Zero);
@@ -459,12 +512,22 @@ namespace FlutterSDK.Painting.Boxfit
     /// </Summary>
     public class FittedSizes
     {
+        /// <Summary>
+        /// Creates an object to store a pair of sizes,
+        /// as would be returned by [applyBoxFit].
+        /// </Summary>
         public FittedSizes(Size source, Size destination)
         {
             this.Source = source;
             this.Destination = destination;
         }
+        /// <Summary>
+        /// The size of the part of the input to show on the output.
+        /// </Summary>
         public virtual Size Source { get; set; }
+        /// <Summary>
+        /// The size of the part of the output on which to show the input.
+        /// </Summary>
         public virtual Size Destination { get; set; }
     }
 

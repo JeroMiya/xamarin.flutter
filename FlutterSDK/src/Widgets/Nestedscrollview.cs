@@ -425,6 +425,14 @@ using FlutterSDK.Widgets.Constants;
 using FlutterSDK.Widgets.Routenotificationmessages;
 namespace FlutterSDK.Widgets.Nestedscrollview
 {
+    /// <Summary>
+    /// Signature used by [NestedScrollView] for building its header.
+    ///
+    /// The `innerBoxIsScrolled` argument is typically used to control the
+    /// [SliverAppBar.forceElevated] property to ensure that the app bar shows a
+    /// shadow, since it would otherwise not necessarily be aware that it had
+    /// content ostensibly below it.
+    /// </Summary>
     public delegate List<FlutterSDK.Widgets.Framework.Widget> NestedScrollViewHeaderSliversBuilder(FlutterSDK.Widgets.Framework.BuildContext context, bool innerBoxIsScrolled);
     public delegate FlutterSDK.Widgets.Scrollactivity.ScrollActivity _NestedScrollActivityGetter(FlutterSDK.Widgets.Nestedscrollview._NestedScrollPosition position);
     internal static class NestedscrollviewDefaultClass
@@ -576,6 +584,12 @@ namespace FlutterSDK.Widgets.Nestedscrollview
     /// </Summary>
     public class NestedScrollView : FlutterSDK.Widgets.Framework.StatefulWidget
     {
+        /// <Summary>
+        /// Creates a nested scroll view.
+        ///
+        /// The [reverse], [headerSliverBuilder], and [body] arguments must not be
+        /// null.
+        /// </Summary>
         public NestedScrollView(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Scrollcontroller.ScrollController controller = default(FlutterSDK.Widgets.Scrollcontroller.ScrollController), FlutterSDK.Painting.Basictypes.Axis scrollDirection = default(FlutterSDK.Painting.Basictypes.Axis), bool reverse = false, FlutterSDK.Widgets.Scrollphysics.ScrollPhysics physics = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics), FlutterSDK.Widgets.Nestedscrollview.NestedScrollViewHeaderSliversBuilder headerSliverBuilder = default(FlutterSDK.Widgets.Nestedscrollview.NestedScrollViewHeaderSliversBuilder), FlutterSDK.Widgets.Framework.Widget body = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Gestures.Recognizer.DragStartBehavior dragStartBehavior = default(FlutterSDK.Gestures.Recognizer.DragStartBehavior))
         : base(key: key)
         {
@@ -587,12 +601,73 @@ namespace FlutterSDK.Widgets.Nestedscrollview
             this.Body = body;
             this.DragStartBehavior = dragStartBehavior;
         }
+        /// <Summary>
+        /// An object that can be used to control the position to which the outer
+        /// scroll view is scrolled.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Scrollcontroller.ScrollController Controller { get; set; }
+        /// <Summary>
+        /// The axis along which the scroll view scrolls.
+        ///
+        /// Defaults to [Axis.vertical].
+        /// </Summary>
         public virtual FlutterSDK.Painting.Basictypes.Axis ScrollDirection { get; set; }
+        /// <Summary>
+        /// Whether the scroll view scrolls in the reading direction.
+        ///
+        /// For example, if the reading direction is left-to-right and
+        /// [scrollDirection] is [Axis.horizontal], then the scroll view scrolls from
+        /// left to right when [reverse] is false and from right to left when
+        /// [reverse] is true.
+        ///
+        /// Similarly, if [scrollDirection] is [Axis.vertical], then the scroll view
+        /// scrolls from top to bottom when [reverse] is false and from bottom to top
+        /// when [reverse] is true.
+        ///
+        /// Defaults to false.
+        /// </Summary>
         public virtual bool Reverse { get; set; }
+        /// <Summary>
+        /// How the scroll view should respond to user input.
+        ///
+        /// For example, determines how the scroll view continues to animate after the
+        /// user stops dragging the scroll view (providing a custom implementation of
+        /// [ScrollPhysics.createBallisticSimulation] allows this particular aspect of
+        /// the physics to be overridden).
+        ///
+        /// Defaults to matching platform conventions.
+        ///
+        /// The [ScrollPhysics.applyBoundaryConditions] implementation of the provided
+        /// object should not allow scrolling outside the scroll extent range
+        /// described by the [ScrollMetrics.minScrollExtent] and
+        /// [ScrollMetrics.maxScrollExtent] properties passed to that method. If that
+        /// invariant is not maintained, the nested scroll view may respond to user
+        /// scrolling erratically.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Scrollphysics.ScrollPhysics Physics { get; set; }
+        /// <Summary>
+        /// A builder for any widgets that are to precede the inner scroll views (as
+        /// given by [body]).
+        ///
+        /// Typically this is used to create a [SliverAppBar] with a [TabBar].
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Nestedscrollview.NestedScrollViewHeaderSliversBuilder HeaderSliverBuilder { get; set; }
+        /// <Summary>
+        /// The widget to show inside the [NestedScrollView].
+        ///
+        /// Typically this will be [TabBarView].
+        ///
+        /// The [body] is built in a context that provides a [PrimaryScrollController]
+        /// that interacts with the [NestedScrollView]'s scroll controller. Any
+        /// [ListView] or other [Scrollable]-based widget inside the [body] that is
+        /// intended to scroll with the [NestedScrollView] should therefore not be
+        /// given an explicit [ScrollController], instead allowing it to default to
+        /// the [PrimaryScrollController] provided by the [NestedScrollView].
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Body { get; set; }
+        /// <Summary>
+        /// {@macro flutter.widgets.scrollable.dragStartBehavior}
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Recognizer.DragStartBehavior DragStartBehavior { get; set; }
 
         /// <Summary>
@@ -1653,11 +1728,23 @@ namespace FlutterSDK.Widgets.Nestedscrollview
     /// </Summary>
     public class SliverOverlapAbsorber : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
+        /// <Summary>
+        /// Creates a sliver that absorbs overlap and reports it to a
+        /// [SliverOverlapAbsorberHandle].
+        ///
+        /// The [handle] must not be null.
+        /// </Summary>
         public SliverOverlapAbsorber(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Nestedscrollview.SliverOverlapAbsorberHandle handle = default(FlutterSDK.Widgets.Nestedscrollview.SliverOverlapAbsorberHandle), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget sliver = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: sliver ?? child)
         {
             this.Handle = handle;
         }
+        /// <Summary>
+        /// The object in which the absorbed overlap is recorded.
+        ///
+        /// A particular [SliverOverlapAbsorberHandle] can only be assigned to a
+        /// single [SliverOverlapAbsorber] at a time.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Nestedscrollview.SliverOverlapAbsorberHandle Handle { get; set; }
 
         public new FlutterSDK.Widgets.Nestedscrollview.RenderSliverOverlapAbsorber CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
@@ -1704,6 +1791,14 @@ namespace FlutterSDK.Widgets.Nestedscrollview
     /// </Summary>
     public class RenderSliverOverlapAbsorber : FlutterSDK.Rendering.Sliver.RenderSliver, IRenderObjectWithChildMixin<FlutterSDK.Rendering.Sliver.RenderSliver>
     {
+        /// <Summary>
+        /// Create a sliver that absorbs overlap and reports it to a
+        /// [SliverOverlapAbsorberHandle].
+        ///
+        /// The [handle] must not be null.
+        ///
+        /// The [sliver] must be a [RenderSliver].
+        /// </Summary>
         public RenderSliverOverlapAbsorber(FlutterSDK.Widgets.Nestedscrollview.SliverOverlapAbsorberHandle handle = default(FlutterSDK.Widgets.Nestedscrollview.SliverOverlapAbsorberHandle), FlutterSDK.Rendering.Sliver.RenderSliver child = default(FlutterSDK.Rendering.Sliver.RenderSliver), FlutterSDK.Rendering.Sliver.RenderSliver sliver = default(FlutterSDK.Rendering.Sliver.RenderSliver))
         : base()
         {
@@ -1808,11 +1903,23 @@ namespace FlutterSDK.Widgets.Nestedscrollview
     /// </Summary>
     public class SliverOverlapInjector : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
+        /// <Summary>
+        /// Creates a sliver that is as tall as the value of the given [handle]'s
+        /// layout extent.
+        ///
+        /// The [handle] must not be null.
+        /// </Summary>
         public SliverOverlapInjector(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Nestedscrollview.SliverOverlapAbsorberHandle handle = default(FlutterSDK.Widgets.Nestedscrollview.SliverOverlapAbsorberHandle), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget sliver = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: sliver ?? child)
         {
             this.Handle = handle;
         }
+        /// <Summary>
+        /// The handle to the [SliverOverlapAbsorber] that is feeding this injector.
+        ///
+        /// This should be a handle owned by a [SliverOverlapAbsorber] and a
+        /// [NestedScrollViewViewport].
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Nestedscrollview.SliverOverlapAbsorberHandle Handle { get; set; }
 
         public new FlutterSDK.Widgets.Nestedscrollview.RenderSliverOverlapInjector CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
@@ -1859,6 +1966,11 @@ namespace FlutterSDK.Widgets.Nestedscrollview
     /// </Summary>
     public class RenderSliverOverlapInjector : FlutterSDK.Rendering.Sliver.RenderSliver
     {
+        /// <Summary>
+        /// Creates a sliver that is as tall as the value of the given [handle]'s extent.
+        ///
+        /// The [handle] must not be null.
+        /// </Summary>
         public RenderSliverOverlapInjector(FlutterSDK.Widgets.Nestedscrollview.SliverOverlapAbsorberHandle handle = default(FlutterSDK.Widgets.Nestedscrollview.SliverOverlapAbsorberHandle))
         : base()
         {
@@ -1934,11 +2046,19 @@ namespace FlutterSDK.Widgets.Nestedscrollview
     /// </Summary>
     public class NestedScrollViewViewport : FlutterSDK.Widgets.Viewport.Viewport
     {
+        /// <Summary>
+        /// Creates a variant of [Viewport] that has a [SliverOverlapAbsorberHandle].
+        ///
+        /// The [handle] must not be null.
+        /// </Summary>
         public NestedScrollViewViewport(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Basictypes.AxisDirection axisDirection = default(FlutterSDK.Painting.Basictypes.AxisDirection), FlutterSDK.Painting.Basictypes.AxisDirection crossAxisDirection = default(FlutterSDK.Painting.Basictypes.AxisDirection), double anchor = 0.0, FlutterSDK.Rendering.Viewportoffset.ViewportOffset offset = default(FlutterSDK.Rendering.Viewportoffset.ViewportOffset), FlutterSDK.Foundation.Key.Key center = default(FlutterSDK.Foundation.Key.Key), List<FlutterSDK.Widgets.Framework.Widget> slivers = default(List<FlutterSDK.Widgets.Framework.Widget>), FlutterSDK.Widgets.Nestedscrollview.SliverOverlapAbsorberHandle handle = default(FlutterSDK.Widgets.Nestedscrollview.SliverOverlapAbsorberHandle))
         : base(key: key, axisDirection: axisDirection, crossAxisDirection: crossAxisDirection, anchor: anchor, offset: offset, center: center, slivers: slivers)
         {
             this.Handle = handle;
         }
+        /// <Summary>
+        /// The handle to the [SliverOverlapAbsorber] that is feeding this injector.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Nestedscrollview.SliverOverlapAbsorberHandle Handle { get; set; }
 
         public new FlutterSDK.Widgets.Nestedscrollview.RenderNestedScrollViewViewport CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
@@ -1982,6 +2102,12 @@ namespace FlutterSDK.Widgets.Nestedscrollview
     /// </Summary>
     public class RenderNestedScrollViewViewport : FlutterSDK.Rendering.Viewport.RenderViewport
     {
+        /// <Summary>
+        /// Create a variant of [RenderViewport] that has a
+        /// [SliverOverlapAbsorberHandle].
+        ///
+        /// The [handle] must not be null.
+        /// </Summary>
         public RenderNestedScrollViewViewport(FlutterSDK.Painting.Basictypes.AxisDirection axisDirection = default(FlutterSDK.Painting.Basictypes.AxisDirection), FlutterSDK.Painting.Basictypes.AxisDirection crossAxisDirection = default(FlutterSDK.Painting.Basictypes.AxisDirection), FlutterSDK.Rendering.Viewportoffset.ViewportOffset offset = default(FlutterSDK.Rendering.Viewportoffset.ViewportOffset), double anchor = 0.0, List<FlutterSDK.Rendering.Sliver.RenderSliver> children = default(List<FlutterSDK.Rendering.Sliver.RenderSliver>), FlutterSDK.Rendering.Sliver.RenderSliver center = default(FlutterSDK.Rendering.Sliver.RenderSliver), FlutterSDK.Widgets.Nestedscrollview.SliverOverlapAbsorberHandle handle = default(FlutterSDK.Widgets.Nestedscrollview.SliverOverlapAbsorberHandle))
         : base(axisDirection: axisDirection, crossAxisDirection: crossAxisDirection, offset: offset, anchor: anchor, children: children, center: center)
         {

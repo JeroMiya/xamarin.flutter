@@ -407,6 +407,14 @@ using FlutterSDK.Material.Radio;
 using FlutterSDK.Material.Slidertheme;
 namespace FlutterSDK.Material.Refreshindicator
 {
+    /// <Summary>
+    /// The signature for a function that's called when the user has dragged a
+    /// [RefreshIndicator] far enough to demonstrate that they want the app to
+    /// refresh. The returned [Future] must complete when the refresh operation is
+    /// finished.
+    ///
+    /// Used by [RefreshIndicator.onRefresh].
+    /// </Summary>
     public delegate Future<object> RefreshCallback();
     internal static class RefreshindicatorDefaultClass
     {
@@ -458,6 +466,18 @@ namespace FlutterSDK.Material.Refreshindicator
     /// </Summary>
     public class RefreshIndicator : FlutterSDK.Widgets.Framework.StatefulWidget
     {
+        /// <Summary>
+        /// Creates a refresh indicator.
+        ///
+        /// The [onRefresh], [child], and [notificationPredicate] arguments must be
+        /// non-null. The default
+        /// [displacement] is 40.0 logical pixels.
+        ///
+        /// The [semanticsLabel] is used to specify an accessibility label for this widget.
+        /// If it is null, it will be defaulted to [MaterialLocalizations.refreshIndicatorSemanticLabel].
+        /// An empty string may be passed to avoid having anything read by screen reading software.
+        /// The [semanticsValue] may be used to specify progress on the widget.
+        /// </Summary>
         public RefreshIndicator(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), double displacement = 40.0, FlutterSDK.Material.Refreshindicator.RefreshCallback onRefresh = default(FlutterSDK.Material.Refreshindicator.RefreshCallback), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), FlutterSDK.Widgets.Scrollnotification.ScrollNotificationPredicate notificationPredicate = default(FlutterSDK.Widgets.Scrollnotification.ScrollNotificationPredicate), string semanticsLabel = default(string), string semanticsValue = default(string), double strokeWidth = 2.0)
         : base(key: key)
         {
@@ -471,14 +491,61 @@ namespace FlutterSDK.Material.Refreshindicator
             this.SemanticsValue = semanticsValue;
             this.StrokeWidth = strokeWidth;
         }
+        /// <Summary>
+        /// The widget below this widget in the tree.
+        ///
+        /// The refresh indicator will be stacked on top of this child. The indicator
+        /// will appear when child's Scrollable descendant is over-scrolled.
+        ///
+        /// Typically a [ListView] or [CustomScrollView].
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+        /// <Summary>
+        /// The distance from the child's top or bottom edge to where the refresh
+        /// indicator will settle. During the drag that exposes the refresh indicator,
+        /// its actual displacement may significantly exceed this value.
+        /// </Summary>
         public virtual double Displacement { get; set; }
+        /// <Summary>
+        /// A function that's called when the user has dragged the refresh indicator
+        /// far enough to demonstrate that they want the app to refresh. The returned
+        /// [Future] must complete when the refresh operation is finished.
+        /// </Summary>
         public virtual FlutterSDK.Material.Refreshindicator.RefreshCallback OnRefresh { get; set; }
+        /// <Summary>
+        /// The progress indicator's foreground color. The current theme's
+        /// [ThemeData.accentColor] by default.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color Color { get; set; }
+        /// <Summary>
+        /// The progress indicator's background color. The current theme's
+        /// [ThemeData.canvasColor] by default.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
+        /// <Summary>
+        /// A check that specifies whether a [ScrollNotification] should be
+        /// handled by this widget.
+        ///
+        /// By default, checks whether `notification.depth == 0`. Set it to something
+        /// else for more complicated layouts.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Scrollnotification.ScrollNotificationPredicate NotificationPredicate { get; set; }
+        /// <Summary>
+        /// {@macro flutter.material.progressIndicator.semanticsLabel}
+        ///
+        /// This will be defaulted to [MaterialLocalizations.refreshIndicatorSemanticLabel]
+        /// if it is null.
+        /// </Summary>
         public virtual string SemanticsLabel { get; set; }
+        /// <Summary>
+        /// {@macro flutter.material.progressIndicator.semanticsValue}
+        /// </Summary>
         public virtual string SemanticsValue { get; set; }
+        /// <Summary>
+        /// Defines `strokeWidth` for `RefreshIndicator`.
+        ///
+        /// By default, the value of `strokeWidth` is 2.0 pixels.
+        /// </Summary>
         public virtual double StrokeWidth { get; set; }
 
         public new FlutterSDK.Material.Refreshindicator.RefreshIndicatorState CreateState() => new RefreshIndicatorState();

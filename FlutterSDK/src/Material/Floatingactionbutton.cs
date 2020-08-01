@@ -488,6 +488,13 @@ namespace FlutterSDK.Material.Floatingactionbutton
     /// </Summary>
     public class FloatingActionButton : FlutterSDK.Widgets.Framework.StatelessWidget
     {
+        /// <Summary>
+        /// Creates a circular floating action button.
+        ///
+        /// The [mini] and [clipBehavior] arguments must not be null. Additionally,
+        /// [elevation], [highlightElevation], and [disabledElevation] (if specified)
+        /// must be non-negative.
+        /// </Summary>
         public FloatingActionButton(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), string tooltip = default(string), FlutterBinding.UI.Color foregroundColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color focusColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color hoverColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color splashColor = default(FlutterBinding.UI.Color), @Object heroTag = default(@Object), double elevation = default(double), double focusElevation = default(double), double hoverElevation = default(double), double highlightElevation = default(double), double disabledElevation = default(double), VoidCallback onPressed = default(VoidCallback), bool mini = false, FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip), FlutterSDK.Widgets.Focusmanager.FocusNode focusNode = default(FlutterSDK.Widgets.Focusmanager.FocusNode), bool autofocus = false, FlutterSDK.Material.Themedata.MaterialTapTargetSize materialTapTargetSize = default(FlutterSDK.Material.Themedata.MaterialTapTargetSize), bool isExtended = false)
         : base(key: key)
         {
@@ -513,6 +520,14 @@ namespace FlutterSDK.Material.Floatingactionbutton
             this.MaterialTapTargetSize = materialTapTargetSize;
             this.IsExtended = isExtended;
         }
+        /// <Summary>
+        /// Creates a wider [StadiumBorder]-shaped floating action button with
+        /// an optional [icon] and a [label].
+        ///
+        /// The [label], [autofocus], and [clipBehavior] arguments must not be null.
+        /// Additionally, [elevation], [highlightElevation], and [disabledElevation]
+        /// (if specified) must be non-negative.
+        /// </Summary>
         public static FloatingActionButton Extended(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), string tooltip = default(string), FlutterBinding.UI.Color foregroundColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color focusColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color hoverColor = default(FlutterBinding.UI.Color), @Object heroTag = default(@Object), double elevation = default(double), double focusElevation = default(double), double hoverElevation = default(double), FlutterBinding.UI.Color splashColor = default(FlutterBinding.UI.Color), double highlightElevation = default(double), double disabledElevation = default(double), VoidCallback onPressed = default(VoidCallback), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), bool isExtended = true, FlutterSDK.Material.Themedata.MaterialTapTargetSize materialTapTargetSize = default(FlutterSDK.Material.Themedata.MaterialTapTargetSize), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip), FlutterSDK.Widgets.Focusmanager.FocusNode focusNode = default(FlutterSDK.Widgets.Focusmanager.FocusNode), bool autofocus = false, FlutterSDK.Widgets.Framework.Widget icon = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget label = default(FlutterSDK.Widgets.Framework.Widget))
         {
             var instance = new FloatingActionButton(key: key); instance.Tooltip = tooltip;
@@ -535,26 +550,213 @@ namespace FlutterSDK.Material.Floatingactionbutton
             instance.FocusNode = focusNode;
             instance.Autofocus = autofocus;
         }
+        /// <Summary>
+        /// The widget below this widget in the tree.
+        ///
+        /// Typically an [Icon].
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+        /// <Summary>
+        /// Text that describes the action that will occur when the button is pressed.
+        ///
+        /// This text is displayed when the user long-presses on the button and is
+        /// used for accessibility.
+        /// </Summary>
         public virtual string Tooltip { get; set; }
+        /// <Summary>
+        /// The default foreground color for icons and text within the button.
+        ///
+        /// If this property is null, then the [Theme]'s
+        /// [ThemeData.floatingActionButtonTheme.foregroundColor] is used. If that
+        /// property is also null, then the [Theme]'s
+        /// [ThemeData.colorScheme.onSecondary] color is used.
+        ///
+        /// Although the color of theme's `accentIconTheme` currently provides a
+        /// default that supercedes the `onSecondary` color, this dependency
+        /// has been deprecated:  https://flutter.dev/go/remove-fab-accent-theme-dependency.
+        /// It will be removed in the future.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color ForegroundColor { get; set; }
+        /// <Summary>
+        /// The button's background color.
+        ///
+        /// If this property is null, then the [Theme]'s
+        /// [ThemeData.floatingActionButtonTheme.backgroundColor] is used. If that
+        /// property is also null, then the [Theme]'s
+        /// [ThemeData.colorScheme.secondary] color is used.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
+        /// <Summary>
+        /// The color to use for filling the button when the button has input focus.
+        ///
+        /// Defaults to [ThemeData.focusColor] for the current theme.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color FocusColor { get; set; }
+        /// <Summary>
+        /// The color to use for filling the button when the button has a pointer
+        /// hovering over it.
+        ///
+        /// Defaults to [ThemeData.hoverColor] for the current theme.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color HoverColor { get; set; }
+        /// <Summary>
+        /// The splash color for this [FloatingActionButton]'s [InkWell].
+        ///
+        /// If null, [FloatingActionButtonThemeData.splashColor] is used, if that is
+        /// null, [ThemeData.splashColor] is used.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color SplashColor { get; set; }
+        /// <Summary>
+        /// The tag to apply to the button's [Hero] widget.
+        ///
+        /// Defaults to a tag that matches other floating action buttons.
+        ///
+        /// Set this to null explicitly if you don't want the floating action button to
+        /// have a hero tag.
+        ///
+        /// If this is not explicitly set, then there can only be one
+        /// [FloatingActionButton] per route (that is, per screen), since otherwise
+        /// there would be a tag conflict (multiple heroes on one route can't have the
+        /// same tag). The material design specification recommends only using one
+        /// floating action button per screen.
+        /// </Summary>
         public virtual @Object HeroTag { get; set; }
+        /// <Summary>
+        /// The callback that is called when the button is tapped or otherwise activated.
+        ///
+        /// If this is set to null, the button will be disabled.
+        /// </Summary>
         public virtual VoidCallback OnPressed { get; set; }
+        /// <Summary>
+        /// The z-coordinate at which to place this button relative to its parent.
+        ///
+        /// This controls the size of the shadow below the floating action button.
+        ///
+        /// Defaults to 6, the appropriate elevation for floating action buttons. The
+        /// value is always non-negative.
+        ///
+        /// See also:
+        ///
+        ///  * [highlightElevation], the elevation when the button is pressed.
+        ///  * [disabledElevation], the elevation when the button is disabled.
+        /// </Summary>
         public virtual double Elevation { get; set; }
+        /// <Summary>
+        /// The z-coordinate at which to place this button relative to its parent when
+        /// the button has the input focus.
+        ///
+        /// This controls the size of the shadow below the floating action button.
+        ///
+        /// Defaults to 8, the appropriate elevation for floating action buttons
+        /// while they have focus. The value is always non-negative.
+        ///
+        /// See also:
+        ///
+        ///  * [elevation], the default elevation.
+        ///  * [highlightElevation], the elevation when the button is pressed.
+        ///  * [disabledElevation], the elevation when the button is disabled.
+        /// </Summary>
         public virtual double FocusElevation { get; set; }
+        /// <Summary>
+        /// The z-coordinate at which to place this button relative to its parent when
+        /// the button is enabled and has a pointer hovering over it.
+        ///
+        /// This controls the size of the shadow below the floating action button.
+        ///
+        /// Defaults to 8, the appropriate elevation for floating action buttons while
+        /// they have a pointer hovering over them. The value is always non-negative.
+        ///
+        /// See also:
+        ///
+        ///  * [elevation], the default elevation.
+        ///  * [highlightElevation], the elevation when the button is pressed.
+        ///  * [disabledElevation], the elevation when the button is disabled.
+        /// </Summary>
         public virtual double HoverElevation { get; set; }
+        /// <Summary>
+        /// The z-coordinate at which to place this button relative to its parent when
+        /// the user is touching the button.
+        ///
+        /// This controls the size of the shadow below the floating action button.
+        ///
+        /// Defaults to 12, the appropriate elevation for floating action buttons
+        /// while they are being touched. The value is always non-negative.
+        ///
+        /// See also:
+        ///
+        ///  * [elevation], the default elevation.
+        /// </Summary>
         public virtual double HighlightElevation { get; set; }
+        /// <Summary>
+        /// The z-coordinate at which to place this button when the button is disabled
+        /// ([onPressed] is null).
+        ///
+        /// This controls the size of the shadow below the floating action button.
+        ///
+        /// Defaults to the same value as [elevation]. Setting this to zero makes the
+        /// floating action button work similar to a [RaisedButton] but the titular
+        /// "floating" effect is lost. The value is always non-negative.
+        ///
+        /// See also:
+        ///
+        ///  * [elevation], the default elevation.
+        ///  * [highlightElevation], the elevation when the button is pressed.
+        /// </Summary>
         public virtual double DisabledElevation { get; set; }
+        /// <Summary>
+        /// Controls the size of this button.
+        ///
+        /// By default, floating action buttons are non-mini and have a height and
+        /// width of 56.0 logical pixels. Mini floating action buttons have a height
+        /// and width of 40.0 logical pixels with a layout width and height of 48.0
+        /// logical pixels. (The extra 4 pixels of padding on each side are added as a
+        /// result of the floating action button having [MaterialTapTargetSize.padded]
+        /// set on the underlying [RawMaterialButton.materialTapTargetSize].)
+        /// </Summary>
         public virtual bool Mini { get; set; }
+        /// <Summary>
+        /// The shape of the button's [Material].
+        ///
+        /// The button's highlight and splash are clipped to this shape. If the
+        /// button has an elevation, then its drop shadow is defined by this
+        /// shape as well.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Borders.ShapeBorder Shape { get; set; }
+        /// <Summary>
+        /// {@macro flutter.widgets.Clip}
+        ///
+        /// Defaults to [Clip.none], and must not be null.
+        /// </Summary>
         public virtual FlutterBinding.UI.Clip ClipBehavior { get; set; }
+        /// <Summary>
+        /// True if this is an "extended" floating action button.
+        ///
+        /// Typically [extended] buttons have a [StadiumBorder] [shape]
+        /// and have been created with the [FloatingActionButton.extended]
+        /// constructor.
+        ///
+        /// The [Scaffold] animates the appearance of ordinary floating
+        /// action buttons with scale and rotation transitions. Extended
+        /// floating action buttons are scaled and faded in.
+        /// </Summary>
         public virtual bool IsExtended { get; set; }
+        /// <Summary>
+        /// {@macro flutter.widgets.Focus.focusNode}
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Focusmanager.FocusNode FocusNode { get; set; }
+        /// <Summary>
+        /// {@macro flutter.widgets.Focus.autofocus}
+        /// </Summary>
         public virtual bool Autofocus { get; set; }
+        /// <Summary>
+        /// Configures the minimum size of the tap target.
+        ///
+        /// Defaults to [ThemeData.materialTapTargetSize].
+        ///
+        /// See also:
+        ///
+        ///  * [MaterialTapTargetSize], for a description of how this affects tap targets.
+        /// </Summary>
         public virtual FlutterSDK.Material.Themedata.MaterialTapTargetSize MaterialTapTargetSize { get; set; }
         internal virtual FlutterSDK.Rendering.Box.BoxConstraints _SizeConstraints { get; set; }
         internal virtual double _DefaultElevation { get; set; }

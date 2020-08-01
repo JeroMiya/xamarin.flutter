@@ -432,6 +432,11 @@ namespace FlutterSDK.Services.Textediting
     /// </Summary>
     public class TextSelection : TextRange
     {
+        /// <Summary>
+        /// Creates a text selection.
+        ///
+        /// The [baseOffset] and [extentOffset] arguments must not be null.
+        /// </Summary>
         public TextSelection(int baseOffset = default(int), int extentOffset = default(int), TextAffinity affinity = default(TextAffinity), bool isDirectional = false)
         : base(start: baseOffset < extentOffset ? baseOffset : extentOffset, end: baseOffset < extentOffset ? extentOffset : baseOffset)
         {
@@ -440,17 +445,60 @@ namespace FlutterSDK.Services.Textediting
             this.Affinity = affinity;
             this.IsDirectional = isDirectional;
         }
+        /// <Summary>
+        /// Creates a collapsed selection at the given offset.
+        ///
+        /// A collapsed selection starts and ends at the same offset, which means it
+        /// contains zero characters but instead serves as an insertion point in the
+        /// text.
+        ///
+        /// The [offset] argument must not be null.
+        /// </Summary>
         public static TextSelection Collapsed(int offset = default(int), TextAffinity affinity = default(TextAffinity))
         {
             var instance = new TextSelection(offset); instance.Affinity = affinity;
         }
+        /// <Summary>
+        /// Creates a collapsed selection at the given text position.
+        ///
+        /// A collapsed selection starts and ends at the same offset, which means it
+        /// contains zero characters but instead serves as an insertion point in the
+        /// text.
+        /// </Summary>
         public static TextSelection FromPosition(TextPosition position)
         {
             var instance = new TextSelection(position.Offset);
         }
+        /// <Summary>
+        /// The offset at which the selection originates.
+        ///
+        /// Might be larger than, smaller than, or equal to extent.
+        /// </Summary>
         public virtual int BaseOffset { get; set; }
+        /// <Summary>
+        /// The offset at which the selection terminates.
+        ///
+        /// When the user uses the arrow keys to adjust the selection, this is the
+        /// value that changes. Similarly, if the current theme paints a caret on one
+        /// side of the selection, this is the location at which to paint the caret.
+        ///
+        /// Might be larger than, smaller than, or equal to base.
+        /// </Summary>
         public virtual int ExtentOffset { get; set; }
+        /// <Summary>
+        /// If the text range is collapsed and has more than one visual location
+        /// (e.g., occurs at a line break), which of the two locations to use when
+        /// painting the caret.
+        /// </Summary>
         public virtual TextAffinity Affinity { get; set; }
+        /// <Summary>
+        /// Whether this selection has disambiguated its base and extent.
+        ///
+        /// On some platforms, the base and extent are not disambiguated until the
+        /// first time the user adjusts the selection. At that point, either the start
+        /// or the end of the selection becomes the base and the other one becomes the
+        /// extent and is adjusted.
+        /// </Summary>
         public virtual bool IsDirectional { get; set; }
         public virtual TextPosition @base { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual TextPosition Extent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }

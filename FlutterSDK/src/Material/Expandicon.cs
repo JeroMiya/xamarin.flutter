@@ -403,6 +403,10 @@ namespace FlutterSDK.Material.Expandicon
     /// </Summary>
     public class ExpandIcon : FlutterSDK.Widgets.Framework.StatefulWidget
     {
+        /// <Summary>
+        /// Creates an [ExpandIcon] with the given padding, and a callback that is
+        /// triggered when the icon is pressed.
+        /// </Summary>
         public ExpandIcon(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), bool isExpanded = false, double size = 24.0, FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onPressed = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color disabledColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color expandedColor = default(FlutterBinding.UI.Color))
         : base(key: key)
         {
@@ -414,12 +418,63 @@ namespace FlutterSDK.Material.Expandicon
             this.DisabledColor = disabledColor;
             this.ExpandedColor = expandedColor;
         }
+        /// <Summary>
+        /// Whether the icon is in an expanded state.
+        ///
+        /// Rebuilding the widget with a different [isExpanded] value will trigger
+        /// the animation, but will not trigger the [onPressed] callback.
+        /// </Summary>
         public virtual bool IsExpanded { get; set; }
+        /// <Summary>
+        /// The size of the icon.
+        ///
+        /// This property must not be null. It defaults to 24.0.
+        /// </Summary>
         public virtual double Size { get; set; }
+        /// <Summary>
+        /// The callback triggered when the icon is pressed and the state changes
+        /// between expanded and collapsed. The value passed to the current state.
+        ///
+        /// If this is set to null, the button will be disabled.
+        /// </Summary>
         public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<bool> OnPressed { get; set; }
+        /// <Summary>
+        /// The padding around the icon. The entire padded icon will react to input
+        /// gestures.
+        ///
+        /// This property must not be null. It defaults to 8.0 padding on all sides.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Padding { get; set; }
+        /// <Summary>
+        /// The color of the icon.
+        ///
+        /// Defaults to [Colors.black54] when the theme's
+        /// [ThemeData.brightness] is [Brightness.light] and to
+        /// [Colors.white60] when it is [Brightness.dark]. This adheres to the
+        /// Material Design specifications for [icons](https://material.io/design/iconography/system-icons.html#color)
+        /// and for [dark theme](https://material.io/design/color/dark-theme.html#ui-application)
+        /// </Summary>
         public virtual FlutterBinding.UI.Color Color { get; set; }
+        /// <Summary>
+        /// The color of the icon when it is disabled,
+        /// i.e. if [onPressed] is null.
+        ///
+        /// Defaults to [Colors.black38] when the theme's
+        /// [ThemeData.brightness] is [Brightness.light] and to
+        /// [Colors.white38] when it is [Brightness.dark]. This adheres to the
+        /// Material Design specifications for [icons](https://material.io/design/iconography/system-icons.html#color)
+        /// and for [dark theme](https://material.io/design/color/dark-theme.html#ui-application)
+        /// </Summary>
         public virtual FlutterBinding.UI.Color DisabledColor { get; set; }
+        /// <Summary>
+        /// The color of the icon when the icon is expanded.
+        ///
+        /// Defaults to [Colors.black54] when the theme's
+        /// [ThemeData.brightness] is [Brightness.light] and to
+        /// [Colors.white] when it is [Brightness.dark]. This adheres to the
+        /// Material Design specifications for [icons](https://material.io/design/iconography/system-icons.html#color)
+        /// and for [dark theme](https://material.io/design/color/dark-theme.html#ui-application)
+        /// </Summary>
         public virtual FlutterBinding.UI.Color ExpandedColor { get; set; }
 
         public new FlutterSDK.Material.Expandicon._ExpandIconState CreateState() => new _ExpandIconState();

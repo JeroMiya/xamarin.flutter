@@ -464,6 +464,10 @@ namespace FlutterSDK.Painting.Alignment
     /// </Summary>
     public class AlignmentGeometry
     {
+        /// <Summary>
+        /// Abstract const constructor. This constructor enables subclasses to provide
+        /// const constructors so that they can be used in const expressions.
+        /// </Summary>
         public AlignmentGeometry()
         {
 
@@ -651,22 +655,71 @@ namespace FlutterSDK.Painting.Alignment
     /// </Summary>
     public class Alignment : FlutterSDK.Painting.Alignment.AlignmentGeometry
     {
+        /// <Summary>
+        /// Creates an alignment.
+        ///
+        /// The [x] and [y] arguments must not be null.
+        /// </Summary>
         public Alignment(double x, double y)
         : base()
         {
             this.x = x;
             this.y = y;
         }
+        /// <Summary>
+        /// The distance fraction in the horizontal direction.
+        ///
+        /// A value of -1.0 corresponds to the leftmost edge. A value of 1.0
+        /// corresponds to the rightmost edge. Values are not limited to that range;
+        /// values less than -1.0 represent positions to the left of the left edge,
+        /// and values greater than 1.0 represent positions to the right of the right
+        /// edge.
+        /// </Summary>
         public virtual double x { get; set; }
+        /// <Summary>
+        /// The distance fraction in the vertical direction.
+        ///
+        /// A value of -1.0 corresponds to the topmost edge. A value of 1.0
+        /// corresponds to the bottommost edge. Values are not limited to that range;
+        /// values less than -1.0 represent positions above the top, and values
+        /// greater than 1.0 represent positions below the bottom.
+        /// </Summary>
         public virtual double y { get; set; }
+        /// <Summary>
+        /// The top left corner.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Alignment.Alignment TopLeft { get; set; }
+        /// <Summary>
+        /// The center point along the top edge.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Alignment.Alignment TopCenter { get; set; }
+        /// <Summary>
+        /// The top right corner.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Alignment.Alignment TopRight { get; set; }
+        /// <Summary>
+        /// The center point along the left edge.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Alignment.Alignment CenterLeft { get; set; }
+        /// <Summary>
+        /// The center point, both horizontally and vertically.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Alignment.Alignment Center { get; set; }
+        /// <Summary>
+        /// The center point along the right edge.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Alignment.Alignment CenterRight { get; set; }
+        /// <Summary>
+        /// The bottom left corner.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Alignment.Alignment BottomLeft { get; set; }
+        /// <Summary>
+        /// The center point along the bottom edge.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Alignment.Alignment BottomCenter { get; set; }
+        /// <Summary>
+        /// The bottom right corner.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Alignment.Alignment BottomRight { get; set; }
         internal virtual double _X { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         internal virtual double _Start { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
@@ -873,22 +926,87 @@ namespace FlutterSDK.Painting.Alignment
     /// </Summary>
     public class AlignmentDirectional : FlutterSDK.Painting.Alignment.AlignmentGeometry
     {
+        /// <Summary>
+        /// Creates a directional alignment.
+        ///
+        /// The [start] and [y] arguments must not be null.
+        /// </Summary>
         public AlignmentDirectional(double start, double y)
         : base()
         {
             this.Start = start;
             this.y = y;
         }
+        /// <Summary>
+        /// The distance fraction in the horizontal direction.
+        ///
+        /// A value of -1.0 corresponds to the edge on the "start" side, which is the
+        /// left side in [TextDirection.ltr] contexts and the right side in
+        /// [TextDirection.rtl] contexts. A value of 1.0 corresponds to the opposite
+        /// edge, the "end" side. Values are not limited to that range; values less
+        /// than -1.0 represent positions beyond the start edge, and values greater than
+        /// 1.0 represent positions beyond the end edge.
+        ///
+        /// This value is normalized into an [Alignment.x] value by the [resolve]
+        /// method.
+        /// </Summary>
         public virtual double Start { get; set; }
+        /// <Summary>
+        /// The distance fraction in the vertical direction.
+        ///
+        /// A value of -1.0 corresponds to the topmost edge. A value of 1.0
+        /// corresponds to the bottommost edge. Values are not limited to that range;
+        /// values less than -1.0 represent positions above the top, and values
+        /// greater than 1.0 represent positions below the bottom.
+        ///
+        /// This value is passed through to [Alignment.y] unmodified by the
+        /// [resolve] method.
+        /// </Summary>
         public virtual double y { get; set; }
+        /// <Summary>
+        /// The top corner on the "start" side.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Alignment.AlignmentDirectional TopStart { get; set; }
+        /// <Summary>
+        /// The center point along the top edge.
+        ///
+        /// Consider using [Alignment.topCenter] instead, as it does not need
+        /// to be [resolve]d to be used.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Alignment.AlignmentDirectional TopCenter { get; set; }
+        /// <Summary>
+        /// The top corner on the "end" side.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Alignment.AlignmentDirectional TopEnd { get; set; }
+        /// <Summary>
+        /// The center point along the "start" edge.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Alignment.AlignmentDirectional CenterStart { get; set; }
+        /// <Summary>
+        /// The center point, both horizontally and vertically.
+        ///
+        /// Consider using [Alignment.center] instead, as it does not need to
+        /// be [resolve]d to be used.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Alignment.AlignmentDirectional Center { get; set; }
+        /// <Summary>
+        /// The center point along the "end" edge.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Alignment.AlignmentDirectional CenterEnd { get; set; }
+        /// <Summary>
+        /// The bottom corner on the "start" side.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Alignment.AlignmentDirectional BottomStart { get; set; }
+        /// <Summary>
+        /// The center point along the bottom edge.
+        ///
+        /// Consider using [Alignment.bottomCenter] instead, as it does not
+        /// need to be [resolve]d to be used.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Alignment.AlignmentDirectional BottomCenter { get; set; }
+        /// <Summary>
+        /// The bottom corner on the "end" side.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Alignment.AlignmentDirectional BottomEnd { get; set; }
         internal virtual double _X { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         internal virtual double _Start { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
@@ -1112,14 +1230,32 @@ namespace FlutterSDK.Painting.Alignment
     /// </Summary>
     public class TextAlignVertical
     {
+        /// <Summary>
+        /// Creates a TextAlignVertical from any y value between -1.0 and 1.0.
+        /// </Summary>
         public TextAlignVertical(double y = default(double))
         : base()
         {
             this.y = y;
         }
+        /// <Summary>
+        /// A value ranging from -1.0 to 1.0 that defines the topmost and bottommost
+        /// locations of the top and bottom of the input box.
+        /// </Summary>
         public virtual double y { get; set; }
+        /// <Summary>
+        /// Aligns a TextField's input Text with the topmost location within a
+        /// TextField's input box.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Alignment.TextAlignVertical Top { get; set; }
+        /// <Summary>
+        /// Aligns a TextField's input Text to the center of the TextField.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Alignment.TextAlignVertical Center { get; set; }
+        /// <Summary>
+        /// Aligns a TextField's input Text with the bottommost location within a
+        /// TextField.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Alignment.TextAlignVertical Bottom { get; set; }
 
     }

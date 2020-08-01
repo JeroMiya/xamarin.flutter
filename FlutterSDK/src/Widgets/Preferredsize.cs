@@ -434,6 +434,30 @@ namespace FlutterSDK.Widgets.Preferredsize
     public class PreferredSizeWidget : IWidget
     {
         public virtual Size PreferredSize { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        /// <Summary>
+        /// Controls how one widget replaces another widget in the tree.
+        ///
+        /// If the [runtimeType] and [key] properties of the two widgets are
+        /// [operator==], respectively, then the new widget replaces the old widget by
+        /// updating the underlying element (i.e., by calling [Element.update] with the
+        /// new widget). Otherwise, the old element is removed from the tree, the new
+        /// widget is inflated into an element, and the new element is inserted into the
+        /// tree.
+        ///
+        /// In addition, using a [GlobalKey] as the widget's [key] allows the element
+        /// to be moved around the tree (changing parent) without losing state. When a
+        /// new widget is found (its key and type do not match a previous widget in
+        /// the same location), but there was a widget with that same global key
+        /// elsewhere in the tree in the previous frame, then that widget's element is
+        /// moved to the new location.
+        ///
+        /// Generally, a widget that is the only child of another widget does not need
+        /// an explicit key.
+        ///
+        /// See also:
+        ///
+        ///  * The discussions at [Key] and [GlobalKey].
+        /// </Summary>
         public virtual FlutterSDK.Foundation.Key.Key Key { get; set; }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 
@@ -537,12 +561,20 @@ namespace FlutterSDK.Widgets.Preferredsize
     /// </Summary>
     public class PreferredSize : FlutterSDK.Widgets.Framework.StatelessWidget, IPreferredSizeWidget
     {
+        /// <Summary>
+        /// Creates a widget that has a preferred size.
+        /// </Summary>
         public PreferredSize(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), Size preferredSize = default(Size))
         : base(key: key)
         {
             this.Child = child;
             this.PreferredSizeValue = preferredSize;
         }
+        /// <Summary>
+        /// The widget below this widget in the tree.
+        ///
+        /// {@macro flutter.widgets.child}
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
         public new Size PreferredSizeValue { get; set; }
 

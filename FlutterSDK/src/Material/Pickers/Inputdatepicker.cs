@@ -433,6 +433,21 @@ namespace FlutterSDK.Material.Pickers.Inputdatepicker
     /// </Summary>
     public class InputDatePickerFormField : FlutterSDK.Widgets.Framework.StatefulWidget
     {
+        /// <Summary>
+        /// Creates a [TextFormField] configured to accept and validate a date.
+        ///
+        /// If the optional [initialDate] is provided, then it will be used to populate
+        /// the text field. If the [fieldHintText] is provided, it will be shown.
+        ///
+        /// If [initialDate] is provided, it must not be before [firstDate] or after
+        /// [lastDate]. If [selectableDayPredicate] is provided, it must return `true`
+        /// for [initialDate].
+        ///
+        /// [firstDate] must be on or before [lastDate].
+        ///
+        /// [firstDate], [lastDate], and [autofocus] must be non-null.
+        ///
+        /// </Summary>
         public InputDatePickerFormField(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), DateTime initialDate = default(DateTime), DateTime firstDate = default(DateTime), DateTime lastDate = default(DateTime), FlutterSDK.Foundation.Basictypes.ValueChanged<DateTime> onDateSubmitted = default(FlutterSDK.Foundation.Basictypes.ValueChanged<DateTime>), FlutterSDK.Foundation.Basictypes.ValueChanged<DateTime> onDateSaved = default(FlutterSDK.Foundation.Basictypes.ValueChanged<DateTime>), FlutterSDK.Material.Pickers.Datepickercommon.SelectableDayPredicate selectableDayPredicate = default(FlutterSDK.Material.Pickers.Datepickercommon.SelectableDayPredicate), string errorFormatText = default(string), string errorInvalidText = default(string), string fieldHintText = default(string), string fieldLabelText = default(string), bool autofocus = false)
         : base(key: key)
         {
@@ -451,16 +466,62 @@ namespace FlutterSDK.Material.Pickers.Inputdatepicker
         }
 
 
+        /// <Summary>
+        /// If provided, it will be used as the default value of the field.
+        /// </Summary>
         public virtual DateTime InitialDate { get; set; }
+        /// <Summary>
+        /// The earliest allowable [DateTime] that the user can input.
+        /// </Summary>
         public virtual DateTime FirstDate { get; set; }
+        /// <Summary>
+        /// The latest allowable [DateTime] that the user can input.
+        /// </Summary>
         public virtual DateTime LastDate { get; set; }
+        /// <Summary>
+        /// An optional method to call when the user indicates they are done editing
+        /// the text in the field. Will only be called if the input represents a valid
+        /// [DateTime].
+        /// </Summary>
         public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<DateTime> OnDateSubmitted { get; set; }
+        /// <Summary>
+        /// An optional method to call with the final date when the form is
+        /// saved via [FormState.save]. Will only be called if the input represents
+        /// a valid [DateTime].
+        /// </Summary>
         public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<DateTime> OnDateSaved { get; set; }
+        /// <Summary>
+        /// Function to provide full control over which [DateTime] can be selected.
+        /// </Summary>
         public virtual FlutterSDK.Material.Pickers.Datepickercommon.SelectableDayPredicate SelectableDayPredicate { get; set; }
+        /// <Summary>
+        /// The error text displayed if the entered date is not in the correct format.
+        /// </Summary>
         public virtual string ErrorFormatText { get; set; }
+        /// <Summary>
+        /// The error text displayed if the date is not valid.
+        ///
+        /// A date is not valid if it is earlier than [firstDate], later than
+        /// [lastDate], or doesn't pass the [selectableDayPredicate].
+        /// </Summary>
         public virtual string ErrorInvalidText { get; set; }
+        /// <Summary>
+        /// The hint text displayed in the [TextField].
+        ///
+        /// If this is null, it will default to the date format string. For example,
+        /// 'mm/dd/yyyy' for en_US.
+        /// </Summary>
         public virtual string FieldHintText { get; set; }
+        /// <Summary>
+        /// The label text displayed in the [TextField].
+        ///
+        /// If this is null, it will default to the words representing the date format
+        /// string. For example, 'Month, Day, Year' for en_US.
+        /// </Summary>
         public virtual string FieldLabelText { get; set; }
+        /// <Summary>
+        /// {@macro flutter.widgets.editableText.autofocus}
+        /// </Summary>
         public virtual bool Autofocus { get; set; }
 
         public new FlutterSDK.Material.Pickers.Inputdatepicker._InputDatePickerFormFieldState CreateState() => new _InputDatePickerFormFieldState();

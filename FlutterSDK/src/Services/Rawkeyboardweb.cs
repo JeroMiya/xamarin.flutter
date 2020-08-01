@@ -436,6 +436,11 @@ namespace FlutterSDK.Services.Rawkeyboardweb
     /// </Summary>
     public class RawKeyEventDataWeb : FlutterSDK.Services.Rawkeyboard.RawKeyEventData
     {
+        /// <Summary>
+        /// Creates a key event data structure specific for Web.
+        ///
+        /// The [keyCode] and [metaState] arguments must not be null.
+        /// </Summary>
         public RawKeyEventDataWeb(string code = default(string), string key = default(string), int metaState = default(int))
         : base()
         {
@@ -443,16 +448,108 @@ namespace FlutterSDK.Services.Rawkeyboardweb
             this.Key = key;
             this.MetaState = metaState;
         }
+        /// <Summary>
+        /// The `KeyboardEvent.code` corresponding to this event.
+        ///
+        /// See <https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/code>
+        /// for more information.
+        /// </Summary>
         public virtual string Code { get; set; }
+        /// <Summary>
+        /// The `KeyboardEvent.key` corresponding to this event.
+        ///
+        /// See <https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/key>
+        /// for more information.
+        /// </Summary>
         public virtual string Key { get; set; }
+        /// <Summary>
+        /// The modifiers that were present when the key event occurred.
+        ///
+        /// See `lib/src/engine/keyboard.dart` in the web engine for the numerical
+        /// values of the `metaState`. These constants are also replicated as static
+        /// constants in this class.
+        ///
+        /// See also:
+        ///
+        ///  * [modifiersPressed], which returns a Map of currently pressed modifiers
+        ///    and their keyboard side.
+        ///  * [isModifierPressed], to see if a specific modifier is pressed.
+        ///  * [isControlPressed], to see if a CTRL key is pressed.
+        ///  * [isShiftPressed], to see if a SHIFT key is pressed.
+        ///  * [isAltPressed], to see if an ALT key is pressed.
+        ///  * [isMetaPressed], to see if a META key is pressed.
+        /// </Summary>
         public virtual int MetaState { get; set; }
+        /// <Summary>
+        /// No modifier keys are pressed in the [metaState] field.
+        ///
+        /// Use this value if you need to decode the [metaState] field yourself, but
+        /// it's much easier to use [isModifierPressed] if you just want to know if
+        /// a modifier is pressed.
+        /// </Summary>
         public virtual int ModifierNone { get; set; }
+        /// <Summary>
+        /// This mask is used to check the [metaState] field to test whether one of
+        /// the SHIFT modifier keys is pressed.
+        ///
+        /// Use this value if you need to decode the [metaState] field yourself, but
+        /// it's much easier to use [isModifierPressed] if you just want to know if
+        /// a modifier is pressed.
+        /// </Summary>
         public virtual int ModifierShift { get; set; }
+        /// <Summary>
+        /// This mask is used to check the [metaState] field to test whether one of
+        /// the ALT modifier keys is pressed.
+        ///
+        /// Use this value if you need to decode the [metaState] field yourself, but
+        /// it's much easier to use [isModifierPressed] if you just want to know if
+        /// a modifier is pressed.
+        /// </Summary>
         public virtual int ModifierAlt { get; set; }
+        /// <Summary>
+        /// This mask is used to check the [metaState] field to test whether one of
+        /// the CTRL modifier keys is pressed.
+        ///
+        /// Use this value if you need to decode the [metaState] field yourself, but
+        /// it's much easier to use [isModifierPressed] if you just want to know if
+        /// a modifier is pressed.
+        /// </Summary>
         public virtual int ModifierControl { get; set; }
+        /// <Summary>
+        /// This mask is used to check the [metaState] field to test whether one of
+        /// the META modifier keys is pressed.
+        ///
+        /// Use this value if you need to decode the [metaState] field yourself, but
+        /// it's much easier to use [isModifierPressed] if you just want to know if
+        /// a modifier is pressed.
+        /// </Summary>
         public virtual int ModifierMeta { get; set; }
+        /// <Summary>
+        /// This mask is used to check the [metaState] field to test whether the NUM
+        /// LOCK modifier key is on.
+        ///
+        /// Use this value if you need to decode the [metaState] field yourself, but
+        /// it's much easier to use [isModifierPressed] if you just want to know if
+        /// a modifier is pressed.
+        /// </Summary>
         public virtual int ModifierNumLock { get; set; }
+        /// <Summary>
+        /// This mask is used to check the [metaState] field to test whether the CAPS
+        /// LOCK modifier key is on.
+        ///
+        /// Use this value if you need to decode the [metaState] field yourself, but
+        /// it's much easier to use [isModifierPressed] if you just want to know if
+        /// a modifier is pressed.
+        /// </Summary>
         public virtual int ModifierCapsLock { get; set; }
+        /// <Summary>
+        /// This mask is used to check the [metaState] field to test whether the
+        /// SCROLL LOCK modifier key is on.
+        ///
+        /// Use this value if you need to decode the [metaState] field yourself, but
+        /// it's much easier to use [isModifierPressed] if you just want to know if
+        /// a modifier is pressed.
+        /// </Summary>
         public virtual int ModifierScrollLock { get; set; }
         public virtual string KeyLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey PhysicalKey { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }

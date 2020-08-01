@@ -437,9 +437,25 @@ namespace FlutterSDK.Scheduler.Priority
             this._Value = _value;
         }
         internal virtual int _Value { get; set; }
+        /// <Summary>
+        /// A task to run after all other tasks, when no animations are running.
+        /// </Summary>
         public virtual FlutterSDK.Scheduler.Priority.Priority Idle { get; set; }
+        /// <Summary>
+        /// A task to run even when animations are running.
+        /// </Summary>
         public virtual FlutterSDK.Scheduler.Priority.Priority Animation { get; set; }
+        /// <Summary>
+        /// A task to run even when the user is interacting with the device.
+        /// </Summary>
         public virtual FlutterSDK.Scheduler.Priority.Priority Touch { get; set; }
+        /// <Summary>
+        /// Maximum offset by which to clamp relative priorities.
+        ///
+        /// It is still possible to have priorities that are offset by more
+        /// than this amount by repeatedly taking relative offsets, but that
+        /// is generally discouraged.
+        /// </Summary>
         public virtual int KMaxOffset { get; set; }
         public virtual int Value { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 

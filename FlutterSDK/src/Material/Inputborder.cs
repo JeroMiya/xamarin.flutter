@@ -446,12 +446,33 @@ namespace FlutterSDK.Material.Inputborder
     /// </Summary>
     public class InputBorder : FlutterSDK.Painting.Borders.ShapeBorder
     {
+        /// <Summary>
+        /// Creates a border for an [InputDecorator].
+        ///
+        /// The [borderSide] parameter must not be null. Applications typically do
+        /// not specify a [borderSide] parameter because the input decorator
+        /// substitutes its own, using [copyWith], based on the current theme and
+        /// [InputDecorator.isFocused].
+        /// </Summary>
         public InputBorder(FlutterSDK.Painting.Borders.BorderSide borderSide = default(FlutterSDK.Painting.Borders.BorderSide))
         : base()
         {
             this.BorderSide = borderSide;
         }
+        /// <Summary>
+        /// No input border.
+        ///
+        /// Use this value with [InputDecoration.border] to specify that no border
+        /// should be drawn. The [InputDecoration.shrinkWrap] constructor sets
+        /// its border to this value.
+        /// </Summary>
         public virtual FlutterSDK.Material.Inputborder.InputBorder None { get; set; }
+        /// <Summary>
+        /// Defines the border line's color and weight.
+        ///
+        /// The [InputDecorator] creates copies of its input border, using [copyWith],
+        /// based on the current theme and [InputDecorator.isFocused].
+        /// </Summary>
         public virtual FlutterSDK.Painting.Borders.BorderSide BorderSide { get; set; }
         public virtual bool IsOutline { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 
@@ -542,11 +563,34 @@ namespace FlutterSDK.Material.Inputborder
     /// </Summary>
     public class UnderlineInputBorder : FlutterSDK.Material.Inputborder.InputBorder
     {
+        /// <Summary>
+        /// Creates an underline border for an [InputDecorator].
+        ///
+        /// The [borderSide] parameter defaults to [BorderSide.none] (it must not be
+        /// null). Applications typically do not specify a [borderSide] parameter
+        /// because the input decorator substitutes its own, using [copyWith], based
+        /// on the current theme and [InputDecorator.isFocused].
+        ///
+        /// The [borderRadius] parameter defaults to a value where the top left
+        /// and right corners have a circular radius of 4.0. The [borderRadius]
+        /// parameter must not be null.
+        /// </Summary>
         public UnderlineInputBorder(FlutterSDK.Painting.Borders.BorderSide borderSide = default(FlutterSDK.Painting.Borders.BorderSide), FlutterSDK.Painting.Borderradius.BorderRadius borderRadius = default(FlutterSDK.Painting.Borderradius.BorderRadius))
         : base(borderSide: borderSide)
         {
             this.BorderRadius = borderRadius;
         }
+        /// <Summary>
+        /// The radii of the border's rounded rectangle corners.
+        ///
+        /// When this border is used with a filled input decorator, see
+        /// [InputDecoration.filled], the border radius defines the shape
+        /// of the background fill as well as the bottom left and right
+        /// edges of the underline itself.
+        ///
+        /// By default the top right and top left corners have a circular radius
+        /// of 4.0.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Borderradius.BorderRadius BorderRadius { get; set; }
         public virtual bool IsOutline { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Dimensions { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
@@ -656,13 +700,48 @@ namespace FlutterSDK.Material.Inputborder
     /// </Summary>
     public class OutlineInputBorder : FlutterSDK.Material.Inputborder.InputBorder
     {
+        /// <Summary>
+        /// Creates a rounded rectangle outline border for an [InputDecorator].
+        ///
+        /// If the [borderSide] parameter is [BorderSide.none], it will not draw a
+        /// border. However, it will still define a shape (which you can see if
+        /// [InputDecoration.filled] is true).
+        ///
+        /// If an application does not specify a [borderSide] parameter of
+        /// value [BorderSide.none], the input decorator substitutes its own, using
+        /// [copyWith], based on the current theme and [InputDecorator.isFocused].
+        ///
+        /// The [borderRadius] parameter defaults to a value where all four
+        /// corners have a circular radius of 4.0. The [borderRadius] parameter
+        /// must not be null and the corner radii must be circular, i.e. their
+        /// [Radius.x] and [Radius.y] values must be the same.
+        ///
+        /// See also:
+        ///
+        ///  * [InputDecoration.hasFloatingPlaceholder], which should be set to false
+        ///    when the [borderSide] is [BorderSide.none]. If let as true, the label
+        ///    will extend beyond the container as if the border were still being
+        ///    drawn.
+        /// </Summary>
         public OutlineInputBorder(FlutterSDK.Painting.Borders.BorderSide borderSide = default(FlutterSDK.Painting.Borders.BorderSide), FlutterSDK.Painting.Borderradius.BorderRadius borderRadius = default(FlutterSDK.Painting.Borderradius.BorderRadius), double gapPadding = 4.0)
         : base(borderSide: borderSide)
         {
             this.BorderRadius = borderRadius;
             this.GapPadding = gapPadding;
         }
+        /// <Summary>
+        /// Horizontal padding on either side of the border's
+        /// [InputDecoration.labelText] width gap.
+        ///
+        /// This value is used by the [paint] method to compute the actual gap width.
+        /// </Summary>
         public virtual double GapPadding { get; set; }
+        /// <Summary>
+        /// The radii of the border's rounded rectangle corners.
+        ///
+        /// The corner radii must be circular, i.e. their [Radius.x] and [Radius.y]
+        /// values must be the same.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Borderradius.BorderRadius BorderRadius { get; set; }
         public virtual bool IsOutline { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Dimensions { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }

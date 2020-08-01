@@ -468,6 +468,12 @@ namespace FlutterSDK.Widgets.Uniquewidget
     /// </Summary>
     public class UniqueWidget<T> : FlutterSDK.Widgets.Framework.StatefulWidget
     {
+        /// <Summary>
+        /// Creates a widget that has exactly one inflated instance in the tree.
+        ///
+        /// The [key] argument must not be null because it identifies the unique
+        /// inflated instance of this widget.
+        /// </Summary>
         public UniqueWidget(FlutterSDK.Widgets.Framework.GlobalKey<T> key = default(FlutterSDK.Widgets.Framework.GlobalKey<T>))
         : base(key: key)
         {

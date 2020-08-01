@@ -479,13 +479,30 @@ namespace FlutterSDK.Painting.Placeholderspan
     /// </Summary>
     public class PlaceholderSpan : FlutterSDK.Painting.Inlinespan.InlineSpan
     {
+        /// <Summary>
+        /// Creates a [PlaceholderSpan] with the given values.
+        ///
+        /// A [TextStyle] may be provided with the [style] property, but only the
+        /// decoration, foreground, background, and spacing options will be used.
+        /// </Summary>
         public PlaceholderSpan(PlaceholderAlignment alignment = default(PlaceholderAlignment), TextBaseline baseline = default(TextBaseline), FlutterSDK.Painting.Textstyle.TextStyle style = default(FlutterSDK.Painting.Textstyle.TextStyle))
         : base(style: style)
         {
             this.Alignment = alignment;
             this.Baseline = baseline;
         }
+        /// <Summary>
+        /// How the placeholder aligns vertically with the text.
+        ///
+        /// See [ui.PlaceholderAlignment] for details on each mode.
+        /// </Summary>
         public virtual PlaceholderAlignment Alignment { get; set; }
+        /// <Summary>
+        /// The [TextBaseline] to align against when using [ui.PlaceholderAlignment.baseline],
+        /// [ui.PlaceholderAlignment.aboveBaseline], and [ui.PlaceholderAlignment.belowBaseline].
+        ///
+        /// This is ignored when using other alignment modes.
+        /// </Summary>
         public virtual TextBaseline Baseline { get; set; }
 
         /// <Summary>

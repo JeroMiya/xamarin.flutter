@@ -427,12 +427,23 @@ namespace FlutterSDK.Gestures.Velocitytracker
     /// </Summary>
     public class Velocity
     {
+        /// <Summary>
+        /// Creates a velocity.
+        ///
+        /// The [pixelsPerSecond] argument must not be null.
+        /// </Summary>
         public Velocity(FlutterBinding.UI.Offset pixelsPerSecond = default(FlutterBinding.UI.Offset))
         : base()
         {
             this.PixelsPerSecond = pixelsPerSecond;
         }
+        /// <Summary>
+        /// A velocity that isn't moving at all.
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Velocitytracker.Velocity Zero { get; set; }
+        /// <Summary>
+        /// The number of pixels per second of velocity in the x and y directions.
+        /// </Summary>
         public virtual FlutterBinding.UI.Offset PixelsPerSecond { get; set; }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 
@@ -518,6 +529,11 @@ namespace FlutterSDK.Gestures.Velocitytracker
     /// </Summary>
     public class VelocityEstimate
     {
+        /// <Summary>
+        /// Creates a dimensional velocity estimate.
+        ///
+        /// [pixelsPerSecond], [confidence], [duration], and [offset] must not be null.
+        /// </Summary>
         public VelocityEstimate(FlutterBinding.UI.Offset pixelsPerSecond = default(FlutterBinding.UI.Offset), double confidence = default(double), TimeSpan duration = default(TimeSpan), FlutterBinding.UI.Offset offset = default(FlutterBinding.UI.Offset))
         : base()
         {
@@ -526,9 +542,26 @@ namespace FlutterSDK.Gestures.Velocitytracker
             this.Duration = duration;
             this.Offset = offset;
         }
+        /// <Summary>
+        /// The number of pixels per second of velocity in the x and y directions.
+        /// </Summary>
         public virtual FlutterBinding.UI.Offset PixelsPerSecond { get; set; }
+        /// <Summary>
+        /// A value between 0.0 and 1.0 that indicates how well [VelocityTracker]
+        /// was able to fit a straight line to its position data.
+        ///
+        /// The value of this property is 1.0 for a perfect fit, 0.0 for a poor fit.
+        /// </Summary>
         public virtual double Confidence { get; set; }
+        /// <Summary>
+        /// The time that elapsed between the first and last position sample used
+        /// to compute [pixelsPerSecond].
+        /// </Summary>
         public virtual TimeSpan Duration { get; set; }
+        /// <Summary>
+        /// The difference between the first and last position sample used
+        /// to compute [pixelsPerSecond].
+        /// </Summary>
         public virtual FlutterBinding.UI.Offset Offset { get; set; }
 
     }

@@ -28,6 +28,7 @@ class Frame {
       var type = Types.getDartTypeName(topLevelVariable.type);
       var name = Naming.getTopLevelVariableName(topLevelVariable);
       name = Naming.upperCamelCase(name);
+      Comments.appendComment(code, element);
       code.writeln("public static $type $name = default(${type});");
     }
 

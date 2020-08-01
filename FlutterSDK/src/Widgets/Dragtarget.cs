@@ -423,11 +423,50 @@ using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
 namespace FlutterSDK.Widgets.Dragtarget
 {
+    /// <Summary>
+    /// Signature for determining whether the given data will be accepted by a [DragTarget].
+    ///
+    /// Used by [DragTarget.onWillAccept].
+    /// </Summary>
     public delegate bool DragTargetWillAccept<T>(T data);
+    /// <Summary>
+    /// Signature for causing a [DragTarget] to accept the given data.
+    ///
+    /// Used by [DragTarget.onAccept].
+    /// </Summary>
     public delegate void DragTargetAccept<T>(T data);
+    /// <Summary>
+    /// Signature for building children of a [DragTarget].
+    ///
+    /// The `candidateData` argument contains the list of drag data that is hovering
+    /// over this [DragTarget] and that has passed [DragTarget.onWillAccept]. The
+    /// `rejectedData` argument contains the list of drag data that is hovering over
+    /// this [DragTarget] and that will not be accepted by the [DragTarget].
+    ///
+    /// Used by [DragTarget.builder].
+    /// </Summary>
     public delegate FlutterSDK.Widgets.Framework.Widget DragTargetBuilder<T>(FlutterSDK.Widgets.Framework.BuildContext context, List<T> candidateData, List<object> rejectedData);
+    /// <Summary>
+    /// Signature for when a [Draggable] is dropped without being accepted by a [DragTarget].
+    ///
+    /// Used by [Draggable.onDraggableCanceled].
+    /// </Summary>
     public delegate void DraggableCanceledCallback(FlutterSDK.Gestures.Velocitytracker.Velocity velocity, FlutterBinding.UI.Offset offset);
+    /// <Summary>
+    /// Signature for when the draggable is dropped.
+    ///
+    /// The velocity and offset at which the pointer was moving when the draggable
+    /// was dropped is available in the [DraggableDetails]. Also included in the
+    /// `details` is whether the draggable's [DragTarget] accepted it.
+    ///
+    /// Used by [Draggable.onDragEnd]
+    /// </Summary>
     public delegate void DragEndCallback(FlutterSDK.Widgets.Dragtarget.DraggableDetails details);
+    /// <Summary>
+    /// Signature for when a [Draggable] leaves a [DragTarget].
+    ///
+    /// Used by [DragTarget.onLeave].
+    /// </Summary>
     public delegate void DragTargetLeave(@Object data);
     public delegate void _OnDragEnd(FlutterSDK.Gestures.Velocitytracker.Velocity velocity, FlutterBinding.UI.Offset offset, bool wasAccepted);
     internal static class DragtargetDefaultClass
@@ -468,6 +507,12 @@ namespace FlutterSDK.Widgets.Dragtarget
     /// </Summary>
     public class Draggable<T> : FlutterSDK.Widgets.Framework.StatefulWidget
     {
+        /// <Summary>
+        /// Creates a widget that can be dragged to a [DragTarget].
+        ///
+        /// The [child] and [feedback] arguments must not be null. If
+        /// [maxSimultaneousDrags] is non-null, it must be non-negative.
+        /// </Summary>
         public Draggable(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget feedback = default(FlutterSDK.Widgets.Framework.Widget), T data = default(T), FlutterSDK.Painting.Basictypes.Axis axis = default(FlutterSDK.Painting.Basictypes.Axis), FlutterSDK.Widgets.Framework.Widget childWhenDragging = default(FlutterSDK.Widgets.Framework.Widget), FlutterBinding.UI.Offset feedbackOffset = default(FlutterBinding.UI.Offset), FlutterSDK.Widgets.Dragtarget.DragAnchor dragAnchor = default(FlutterSDK.Widgets.Dragtarget.DragAnchor), FlutterSDK.Painting.Basictypes.Axis affinity = default(FlutterSDK.Painting.Basictypes.Axis), int maxSimultaneousDrags = default(int), VoidCallback onDragStarted = default(VoidCallback), FlutterSDK.Widgets.Dragtarget.DraggableCanceledCallback onDraggableCanceled = default(FlutterSDK.Widgets.Dragtarget.DraggableCanceledCallback), FlutterSDK.Widgets.Dragtarget.DragEndCallback onDragEnd = default(FlutterSDK.Widgets.Dragtarget.DragEndCallback), VoidCallback onDragCompleted = default(VoidCallback), bool ignoringFeedbackSemantics = true)
         : base(key: key)
         {
@@ -486,19 +531,149 @@ namespace FlutterSDK.Widgets.Dragtarget
             this.OnDragCompleted = onDragCompleted;
             this.IgnoringFeedbackSemantics = ignoringFeedbackSemantics;
         }
+        /// <Summary>
+        /// The data that will be dropped by this draggable.
+        /// </Summary>
         public virtual T Data { get; set; }
+        /// <Summary>
+        /// The [Axis] to restrict this draggable's movement, if specified.
+        ///
+        /// When axis is set to [Axis.horizontal], this widget can only be dragged
+        /// horizontally. Behavior is similar for [Axis.vertical].
+        ///
+        /// Defaults to allowing drag on both [Axis.horizontal] and [Axis.vertical].
+        ///
+        /// When null, allows drag on both [Axis.horizontal] and [Axis.vertical].
+        ///
+        /// For the direction of gestures this widget competes with to start a drag
+        /// event, see [Draggable.affinity].
+        /// </Summary>
         public virtual FlutterSDK.Painting.Basictypes.Axis Axis { get; set; }
+        /// <Summary>
+        /// The widget below this widget in the tree.
+        ///
+        /// This widget displays [child] when zero drags are under way. If
+        /// [childWhenDragging] is non-null, this widget instead displays
+        /// [childWhenDragging] when one or more drags are underway. Otherwise, this
+        /// widget always displays [child].
+        ///
+        /// The [feedback] widget is shown under the pointer when a drag is under way.
+        ///
+        /// To limit the number of simultaneous drags on multitouch devices, see
+        /// [maxSimultaneousDrags].
+        ///
+        /// {@macro flutter.widgets.child}
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+        /// <Summary>
+        /// The widget to display instead of [child] when one or more drags are under way.
+        ///
+        /// If this is null, then this widget will always display [child] (and so the
+        /// drag source representation will not change while a drag is under
+        /// way).
+        ///
+        /// The [feedback] widget is shown under the pointer when a drag is under way.
+        ///
+        /// To limit the number of simultaneous drags on multitouch devices, see
+        /// [maxSimultaneousDrags].
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget ChildWhenDragging { get; set; }
+        /// <Summary>
+        /// The widget to show under the pointer when a drag is under way.
+        ///
+        /// See [child] and [childWhenDragging] for information about what is shown
+        /// at the location of the [Draggable] itself when a drag is under way.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Feedback { get; set; }
+        /// <Summary>
+        /// The feedbackOffset can be used to set the hit test target point for the
+        /// purposes of finding a drag target. It is especially useful if the feedback
+        /// is transformed compared to the child.
+        /// </Summary>
         public virtual FlutterBinding.UI.Offset FeedbackOffset { get; set; }
+        /// <Summary>
+        /// Where this widget should be anchored during a drag.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Dragtarget.DragAnchor DragAnchor { get; set; }
+        /// <Summary>
+        /// Whether the semantics of the [feedback] widget is ignored when building
+        /// the semantics tree.
+        ///
+        /// This value should be set to false when the [feedback] widget is intended
+        /// to be the same object as the [child].  Placing a [GlobalKey] on this
+        /// widget will ensure semantic focus is kept on the element as it moves in
+        /// and out of the feedback position.
+        ///
+        /// Defaults to true.
+        /// </Summary>
         public virtual bool IgnoringFeedbackSemantics { get; set; }
+        /// <Summary>
+        /// Controls how this widget competes with other gestures to initiate a drag.
+        ///
+        /// If affinity is null, this widget initiates a drag as soon as it recognizes
+        /// a tap down gesture, regardless of any directionality. If affinity is
+        /// horizontal (or vertical), then this widget will compete with other
+        /// horizontal (or vertical, respectively) gestures.
+        ///
+        /// For example, if this widget is placed in a vertically scrolling region and
+        /// has horizontal affinity, pointer motion in the vertical direction will
+        /// result in a scroll and pointer motion in the horizontal direction will
+        /// result in a drag. Conversely, if the widget has a null or vertical
+        /// affinity, pointer motion in any direction will result in a drag rather
+        /// than in a scroll because the draggable widget, being the more specific
+        /// widget, will out-compete the [Scrollable] for vertical gestures.
+        ///
+        /// For the directions this widget can be dragged in after the drag event
+        /// starts, see [Draggable.axis].
+        /// </Summary>
         public virtual FlutterSDK.Painting.Basictypes.Axis Affinity { get; set; }
+        /// <Summary>
+        /// How many simultaneous drags to support.
+        ///
+        /// When null, no limit is applied. Set this to 1 if you want to only allow
+        /// the drag source to have one item dragged at a time. Set this to 0 if you
+        /// want to prevent the draggable from actually being dragged.
+        ///
+        /// If you set this property to 1, consider supplying an "empty" widget for
+        /// [childWhenDragging] to create the illusion of actually moving [child].
+        /// </Summary>
         public virtual int MaxSimultaneousDrags { get; set; }
+        /// <Summary>
+        /// Called when the draggable starts being dragged.
+        /// </Summary>
         public virtual VoidCallback OnDragStarted { get; set; }
+        /// <Summary>
+        /// Called when the draggable is dropped without being accepted by a [DragTarget].
+        ///
+        /// This function might be called after this widget has been removed from the
+        /// tree. For example, if a drag was in progress when this widget was removed
+        /// from the tree and the drag ended up being canceled, this callback will
+        /// still be called. For this reason, implementations of this callback might
+        /// need to check [State.mounted] to check whether the state receiving the
+        /// callback is still in the tree.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Dragtarget.DraggableCanceledCallback OnDraggableCanceled { get; set; }
+        /// <Summary>
+        /// Called when the draggable is dropped and accepted by a [DragTarget].
+        ///
+        /// This function might be called after this widget has been removed from the
+        /// tree. For example, if a drag was in progress when this widget was removed
+        /// from the tree and the drag ended up completing, this callback will
+        /// still be called. For this reason, implementations of this callback might
+        /// need to check [State.mounted] to check whether the state receiving the
+        /// callback is still in the tree.
+        /// </Summary>
         public virtual VoidCallback OnDragCompleted { get; set; }
+        /// <Summary>
+        /// Called when the draggable is dropped.
+        ///
+        /// The velocity and offset at which the pointer was moving when it was
+        /// dropped is available in the [DraggableDetails]. Also included in the
+        /// `details` is whether the draggable's [DragTarget] accepted it.
+        ///
+        /// This function will only be called while this widget is still mounted to
+        /// the tree (i.e. [State.mounted] is true).
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Dragtarget.DragEndCallback OnDragEnd { get; set; }
 
         /// <Summary>
@@ -527,11 +702,20 @@ namespace FlutterSDK.Widgets.Dragtarget
     /// </Summary>
     public class LongPressDraggable<T> : FlutterSDK.Widgets.Dragtarget.Draggable<T>
     {
+        /// <Summary>
+        /// Creates a widget that can be dragged starting from long press.
+        ///
+        /// The [child] and [feedback] arguments must not be null. If
+        /// [maxSimultaneousDrags] is non-null, it must be non-negative.
+        /// </Summary>
         public LongPressDraggable(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget feedback = default(FlutterSDK.Widgets.Framework.Widget), T data = default(T), FlutterSDK.Painting.Basictypes.Axis axis = default(FlutterSDK.Painting.Basictypes.Axis), FlutterSDK.Widgets.Framework.Widget childWhenDragging = default(FlutterSDK.Widgets.Framework.Widget), FlutterBinding.UI.Offset feedbackOffset = default(FlutterBinding.UI.Offset), FlutterSDK.Widgets.Dragtarget.DragAnchor dragAnchor = default(FlutterSDK.Widgets.Dragtarget.DragAnchor), int maxSimultaneousDrags = default(int), VoidCallback onDragStarted = default(VoidCallback), FlutterSDK.Widgets.Dragtarget.DraggableCanceledCallback onDraggableCanceled = default(FlutterSDK.Widgets.Dragtarget.DraggableCanceledCallback), FlutterSDK.Widgets.Dragtarget.DragEndCallback onDragEnd = default(FlutterSDK.Widgets.Dragtarget.DragEndCallback), VoidCallback onDragCompleted = default(VoidCallback), bool hapticFeedbackOnStart = true, bool ignoringFeedbackSemantics = true)
         : base(key: key, child: child, feedback: feedback, data: data, axis: axis, childWhenDragging: childWhenDragging, feedbackOffset: feedbackOffset, dragAnchor: dragAnchor, maxSimultaneousDrags: maxSimultaneousDrags, onDragStarted: onDragStarted, onDraggableCanceled: onDraggableCanceled, onDragEnd: onDragEnd, onDragCompleted: onDragCompleted, ignoringFeedbackSemantics: ignoringFeedbackSemantics)
         {
             this.HapticFeedbackOnStart = hapticFeedbackOnStart;
         }
+        /// <Summary>
+        /// Whether haptic feedback should be triggered on drag start.
+        /// </Summary>
         public virtual bool HapticFeedbackOnStart { get; set; }
 
         public new FlutterSDK.Gestures.Multidrag.DelayedMultiDragGestureRecognizer CreateRecognizer(FlutterSDK.Gestures.Multidrag.GestureMultiDragStartCallback onStart)
@@ -660,6 +844,13 @@ namespace FlutterSDK.Widgets.Dragtarget
     /// </Summary>
     public class DraggableDetails
     {
+        /// <Summary>
+        /// Creates details for a [DraggableDetails].
+        ///
+        /// If [wasAccepted] is not specified, it will default to `false`.
+        ///
+        /// The [velocity] or [offset] arguments must not be `null`.
+        /// </Summary>
         public DraggableDetails(bool wasAccepted = false, FlutterSDK.Gestures.Velocitytracker.Velocity velocity = default(FlutterSDK.Gestures.Velocitytracker.Velocity), FlutterBinding.UI.Offset offset = default(FlutterBinding.UI.Offset))
         : base()
         {
@@ -667,8 +858,19 @@ namespace FlutterSDK.Widgets.Dragtarget
             this.Velocity = velocity;
             this.Offset = offset;
         }
+        /// <Summary>
+        /// Determines whether the [DragTarget] accepted this draggable.
+        /// </Summary>
         public virtual bool WasAccepted { get; set; }
+        /// <Summary>
+        /// The velocity at which the pointer was moving when the specific pointer
+        /// event occurred on the draggable.
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Velocitytracker.Velocity Velocity { get; set; }
+        /// <Summary>
+        /// The global position when the specific pointer event occurred on
+        /// the draggable.
+        /// </Summary>
         public virtual FlutterBinding.UI.Offset Offset { get; set; }
     }
 
@@ -689,6 +891,11 @@ namespace FlutterSDK.Widgets.Dragtarget
     /// </Summary>
     public class DragTarget<T> : FlutterSDK.Widgets.Framework.StatefulWidget
     {
+        /// <Summary>
+        /// Creates a widget that receives drags.
+        ///
+        /// The [builder] argument must not be null.
+        /// </Summary>
         public DragTarget(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Dragtarget.DragTargetBuilder<T> builder = default(FlutterSDK.Widgets.Dragtarget.DragTargetBuilder<T>), FlutterSDK.Widgets.Dragtarget.DragTargetWillAccept<T> onWillAccept = default(FlutterSDK.Widgets.Dragtarget.DragTargetWillAccept<T>), FlutterSDK.Widgets.Dragtarget.DragTargetAccept<T> onAccept = default(FlutterSDK.Widgets.Dragtarget.DragTargetAccept<T>), FlutterSDK.Widgets.Dragtarget.DragTargetLeave onLeave = default(FlutterSDK.Widgets.Dragtarget.DragTargetLeave))
         : base(key: key)
         {
@@ -697,9 +904,30 @@ namespace FlutterSDK.Widgets.Dragtarget
             this.OnAccept = onAccept;
             this.OnLeave = onLeave;
         }
+        /// <Summary>
+        /// Called to build the contents of this widget.
+        ///
+        /// The builder can build different widgets depending on what is being dragged
+        /// into this drag target.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Dragtarget.DragTargetBuilder<T> Builder { get; set; }
+        /// <Summary>
+        /// Called to determine whether this widget is interested in receiving a given
+        /// piece of data being dragged over this drag target.
+        ///
+        /// Called when a piece of data enters the target. This will be followed by
+        /// either [onAccept], if the data is dropped, or [onLeave], if the drag
+        /// leaves the target.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Dragtarget.DragTargetWillAccept<T> OnWillAccept { get; set; }
+        /// <Summary>
+        /// Called when an acceptable piece of data was dropped over this drag target.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Dragtarget.DragTargetAccept<T> OnAccept { get; set; }
+        /// <Summary>
+        /// Called when a given piece of data being dragged over this target leaves
+        /// the target.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Dragtarget.DragTargetLeave OnLeave { get; set; }
 
         public new _DragTargetState<T> CreateState() => new _DragTargetState<T>();

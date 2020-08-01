@@ -293,11 +293,34 @@ using FlutterSDK.Widgets.Scrollview;
 using FlutterSDK.Foundation;
 namespace FlutterSDK.Foundation.Assertions
 {
+    /// <Summary>
+    /// Signature for [FlutterError.onError] handler.
+    /// </Summary>
     public delegate void FlutterExceptionHandler(FlutterSDK.Foundation.Assertions.FlutterErrorDetails details);
+    /// <Summary>
+    /// Signature for [DiagnosticPropertiesBuilder] transformer.
+    /// </Summary>
     public delegate Iterable<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> DiagnosticPropertiesTransformer(Iterable<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> properties);
+    /// <Summary>
+    /// Signature for [FlutterErrorDetails.informationCollector] callback
+    /// and other callbacks that collect information describing an error.
+    /// </Summary>
     public delegate Iterable<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> InformationCollector();
     internal static class AssertionsDefaultClass
     {
+        /// <Summary>
+        /// Dump the stack to the console using [debugPrint] and
+        /// [FlutterError.defaultStackFilter].
+        ///
+        /// If the `stackTrace` parameter is null, the [StackTrace.current] is used to
+        /// obtain the stack.
+        ///
+        /// The `maxFrames` argument can be given to limit the stack to the given number
+        /// of lines before filtering is applied. By default, all stack lines are
+        /// included.
+        ///
+        /// The `label` argument, if present, will be printed before the stack.
+        /// </Summary>
         internal static void DebugPrintStack(StackTrace stackTrace = default(StackTrace), string label = default(string), int maxFrames = default(int))
         {
             if (label != null) PrintDefaultClass.DebugPrint(label);
@@ -345,6 +368,10 @@ namespace FlutterSDK.Foundation.Assertions
     /// </Summary>
     public class PartialStackFrame
     {
+        /// <Summary>
+        /// Creates a new [PartialStackFrame] instance. All arguments are required and
+        /// must not be null.
+        /// </Summary>
         public PartialStackFrame(Pattern package = default(Pattern), string className = default(string), string method = default(string))
         : base()
         {
@@ -352,9 +379,28 @@ namespace FlutterSDK.Foundation.Assertions
             this.ClassName = className;
             this.Method = method;
         }
+        /// <Summary>
+        /// An `<asynchronous suspension>` line in a stack trace.
+        /// </Summary>
         public virtual FlutterSDK.Foundation.Assertions.PartialStackFrame AsynchronousSuspension { get; set; }
+        /// <Summary>
+        /// The package to match, e.g. `package:flutter/src/foundation/assertions.dart`,
+        /// or `dart:ui/window.dart`.
+        /// </Summary>
         public virtual Pattern Package { get; set; }
+        /// <Summary>
+        /// The class name for the method.
+        ///
+        /// On web, this is ignored, since class names are not available.
+        ///
+        /// On all platforms, top level methods should use the empty string.
+        /// </Summary>
         public virtual string ClassName { get; set; }
+        /// <Summary>
+        /// The method name for this frame line.
+        ///
+        /// On web, private methods are wrapped with `[]`.
+        /// </Summary>
         public virtual string Method { get; set; }
 
         /// <Summary>
@@ -383,6 +429,9 @@ namespace FlutterSDK.Foundation.Assertions
     /// </Summary>
     public class StackFilter
     {
+        /// <Summary>
+        /// A const constructor to allow subclasses to be const.
+        /// </Summary>
         public StackFilter()
         {
 
@@ -415,13 +464,27 @@ namespace FlutterSDK.Foundation.Assertions
     /// </Summary>
     public class RepetitiveStackFrameFilter : FlutterSDK.Foundation.Assertions.StackFilter
     {
+        /// <Summary>
+        /// Creates a new RepetitiveStackFrameFilter. All parameters are required and must not be
+        /// null.
+        /// </Summary>
         public RepetitiveStackFrameFilter(List<FlutterSDK.Foundation.Assertions.PartialStackFrame> frames = default(List<FlutterSDK.Foundation.Assertions.PartialStackFrame>), string replacement = default(string))
         : base()
         {
             this.Frames = frames;
             this.Replacement = replacement;
         }
+        /// <Summary>
+        /// The shape of this repetative stack pattern.
+        /// </Summary>
         public virtual List<FlutterSDK.Foundation.Assertions.PartialStackFrame> Frames { get; set; }
+        /// <Summary>
+        /// The string to replace the frames with.
+        ///
+        /// If the same replacement string is used multiple times in a row, the
+        /// [FlutterError.defaultStackFilter] will simply update a counter after this
+        /// line rather than repeating it.
+        /// </Summary>
         public virtual string Replacement { get; set; }
         public virtual int NumFrames { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         internal virtual List<string> _Replacements { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
@@ -469,11 +532,21 @@ namespace FlutterSDK.Foundation.Assertions
 
     public class _ErrorDiagnostic : FlutterSDK.Foundation.Diagnostics.DiagnosticsProperty<List<@Object>>
     {
+        /// <Summary>
+        /// This constructor provides a reliable hook for a kernel transformer to find
+        /// error messages that need to be rewritten to include object references for
+        /// interactive display of errors.
+        /// </Summary>
         public _ErrorDiagnostic(string message, FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle style = default(FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle), FlutterSDK.Foundation.Diagnostics.DiagnosticLevel level = default(FlutterSDK.Foundation.Diagnostics.DiagnosticLevel))
         : base(null, new List<object>() { message }, showName: false, showSeparator: false, defaultValue: null, style: style, level: level)
         {
 
         }
+        /// <Summary>
+        /// In debug builds, a kernel transformer rewrites calls to the default
+        /// constructors for [ErrorSummary], [ErrorDetails], and [ErrorHint] to use
+        /// this constructor.
+        /// </Summary>
         internal static _ErrorDiagnostic _FromParts(List<@Object> messageParts, FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle style = default(FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle), FlutterSDK.Foundation.Diagnostics.DiagnosticLevel level = default(FlutterSDK.Foundation.Diagnostics.DiagnosticLevel))
         {
             var instance = new _ErrorDiagnostic(null, messageParts, showName: false, showSeparator: false, defaultValue: null, style: style, level: level);
@@ -507,11 +580,26 @@ namespace FlutterSDK.Foundation.Assertions
     /// </Summary>
     public class ErrorDescription : FlutterSDK.Foundation.Assertions._ErrorDiagnostic
     {
+        /// <Summary>
+        /// A lint enforces that this constructor can only be called with a string
+        /// literal to match the limitations of the Dart Kernel transformer that
+        /// optionally extracts out objects referenced using string interpolation in
+        /// the message passed in.
+        ///
+        /// The message will display with the same text regardless of whether the
+        /// kernel transformer is used. The kernel transformer is required so that
+        /// debugging tools can provide interactive displays of objects described by
+        /// the error.
+        /// </Summary>
         public ErrorDescription(string message)
         : base(message, level: DiagnosticLevel.Info)
         {
 
         }
+        /// <Summary>
+        /// Calls to the default constructor may be rewritten to use this constructor
+        /// in debug mode using a kernel transformer.
+        /// </Summary>
         internal static ErrorDescription _FromParts(List<@Object> messageParts)
         {
             var instance = new ErrorDescription(messageParts, level: DiagnosticLevel.Info);
@@ -540,11 +628,26 @@ namespace FlutterSDK.Foundation.Assertions
     /// </Summary>
     public class ErrorSummary : FlutterSDK.Foundation.Assertions._ErrorDiagnostic
     {
+        /// <Summary>
+        /// A lint enforces that this constructor can only be called with a string
+        /// literal to match the limitations of the Dart Kernel transformer that
+        /// optionally extracts out objects referenced using string interpolation in
+        /// the message passed in.
+        ///
+        /// The message will display with the same text regardless of whether the
+        /// kernel transformer is used. The kernel transformer is required so that
+        /// debugging tools can provide interactive displays of objects described by
+        /// the error.
+        /// </Summary>
         public ErrorSummary(string message)
         : base(message, level: DiagnosticLevel.Summary)
         {
 
         }
+        /// <Summary>
+        /// Calls to the default constructor may be rewritten to use this constructor
+        /// in debug mode using a kernel transformer.
+        /// </Summary>
         internal static ErrorSummary _FromParts(List<@Object> messageParts)
         {
             var instance = new ErrorSummary(messageParts, level: DiagnosticLevel.Summary);
@@ -569,11 +672,26 @@ namespace FlutterSDK.Foundation.Assertions
     /// </Summary>
     public class ErrorHint : FlutterSDK.Foundation.Assertions._ErrorDiagnostic
     {
+        /// <Summary>
+        /// A lint enforces that this constructor can only be called with a string
+        /// literal to match the limitations of the Dart Kernel transformer that
+        /// optionally extracts out objects referenced using string interpolation in
+        /// the message passed in.
+        ///
+        /// The message will display with the same text regardless of whether the
+        /// kernel transformer is used. The kernel transformer is required so that
+        /// debugging tools can provide interactive displays of objects described by
+        /// the error.
+        /// </Summary>
         public ErrorHint(string message)
         : base(message, level: DiagnosticLevel.Hint)
         {
 
         }
+        /// <Summary>
+        /// Calls to the default constructor may be rewritten to use this constructor
+        /// in debug mode using a kernel transformer.
+        /// </Summary>
         internal static ErrorHint _FromParts(List<@Object> messageParts)
         {
             var instance = new ErrorHint(messageParts, level: DiagnosticLevel.Hint);
@@ -587,6 +705,10 @@ namespace FlutterSDK.Foundation.Assertions
     /// </Summary>
     public class ErrorSpacer : FlutterSDK.Foundation.Diagnostics.DiagnosticsProperty<object>
     {
+        /// <Summary>
+        /// Creates an empty space to insert into a list of [DiagnosticsNode] objects
+        /// typically within a [FlutterError] object.
+        /// </Summary>
         public ErrorSpacer()
         : base("", null, description: "", showName: false)
         {
@@ -602,6 +724,17 @@ namespace FlutterSDK.Foundation.Assertions
     /// </Summary>
     public class FlutterErrorDetails : IDiagnosticable
     {
+        /// <Summary>
+        /// Creates a [FlutterErrorDetails] object with the given arguments setting
+        /// the object's properties.
+        ///
+        /// The framework calls this constructor when catching an exception that will
+        /// subsequently be reported using [FlutterError.onError].
+        ///
+        /// The [exception] must not be null; other arguments can be left to
+        /// their default values. (`throw null` results in a
+        /// [NullThrownError] exception.)
+        /// </Summary>
         public FlutterErrorDetails(object exception = default(object), StackTrace stack = default(StackTrace), string library = default(string), FlutterSDK.Foundation.Diagnostics.DiagnosticsNode context = default(FlutterSDK.Foundation.Diagnostics.DiagnosticsNode), FlutterSDK.Foundation.Basictypes.IterableFilter<string> stackFilter = default(FlutterSDK.Foundation.Basictypes.IterableFilter<string>), FlutterSDK.Foundation.Assertions.InformationCollector informationCollector = default(FlutterSDK.Foundation.Assertions.InformationCollector), bool silent = false)
         {
             this.Exception = exception;
@@ -612,13 +745,99 @@ namespace FlutterSDK.Foundation.Assertions
             this.InformationCollector = informationCollector;
             this.Silent = silent;
         }
+        /// <Summary>
+        /// Transformers to transform [DiagnosticsNode] in [DiagnosticPropertiesBuilder]
+        /// into a more descriptive form.
+        ///
+        /// There are layers that attach certain [DiagnosticsNode] into
+        /// [FlutterErrorDetails] that require knowledge from other layers to parse.
+        /// To correctly interpret those [DiagnosticsNode], register transformers in
+        /// the layers that possess the knowledge.
+        ///
+        /// See also:
+        ///
+        ///  * [WidgetsBinding.initInstances], which registers its transformer.
+        /// </Summary>
         public virtual List<object> PropertiesTransformers { get; set; }
+        /// <Summary>
+        /// The exception. Often this will be an [AssertionError], maybe specifically
+        /// a [FlutterError]. However, this could be any value at all.
+        /// </Summary>
         public virtual object Exception { get; set; }
+        /// <Summary>
+        /// The stack trace from where the [exception] was thrown (as opposed to where
+        /// it was caught).
+        ///
+        /// StackTrace objects are opaque except for their [toString] function.
+        ///
+        /// If this field is not null, then the [stackFilter] callback, if any, will
+        /// be called with the result of calling [toString] on this object and
+        /// splitting that result on line breaks. If there's no [stackFilter]
+        /// callback, then [FlutterError.defaultStackFilter] is used instead. That
+        /// function expects the stack to be in the format used by
+        /// [StackTrace.toString].
+        /// </Summary>
         public virtual StackTrace Stack { get; set; }
+        /// <Summary>
+        /// A human-readable brief name describing the library that caught the error
+        /// message. This is used by the default error handler in the header dumped to
+        /// the console.
+        /// </Summary>
         public virtual string Library { get; set; }
+        /// <Summary>
+        /// A human-readable description of where the error was caught (as opposed to
+        /// where it was thrown).
+        ///
+        /// The string should be in a form that will make sense in English when
+        /// following the word "thrown", as in "thrown while obtaining the image from
+        /// the network" (for the context "while obtaining the image from the
+        /// network").
+        /// </Summary>
         public virtual FlutterSDK.Foundation.Diagnostics.DiagnosticsNode Context { get; set; }
+        /// <Summary>
+        /// A callback which filters the [stack] trace. Receives an iterable of
+        /// strings representing the frames encoded in the way that
+        /// [StackTrace.toString()] provides. Should return an iterable of lines to
+        /// output for the stack.
+        ///
+        /// If this is not provided, then [FlutterError.dumpErrorToConsole] will use
+        /// [FlutterError.defaultStackFilter] instead.
+        ///
+        /// If the [FlutterError.defaultStackFilter] behavior is desired, then the
+        /// callback should manually call that function. That function expects the
+        /// incoming list to be in the [StackTrace.toString()] format. The output of
+        /// that function, however, does not always follow this format.
+        ///
+        /// This won't be called if [stack] is null.
+        /// </Summary>
         public virtual FlutterSDK.Foundation.Basictypes.IterableFilter<string> StackFilter { get; set; }
+        /// <Summary>
+        /// A callback which, when called with a [StringBuffer] will write to that buffer
+        /// information that could help with debugging the problem.
+        ///
+        /// Information collector callbacks can be expensive, so the generated information
+        /// should be cached, rather than the callback being called multiple times.
+        ///
+        /// The text written to the information argument may contain newlines but should
+        /// not end with a newline.
+        /// </Summary>
         public virtual FlutterSDK.Foundation.Assertions.InformationCollector InformationCollector { get; set; }
+        /// <Summary>
+        /// Whether this error should be ignored by the default error reporting
+        /// behavior in release mode.
+        ///
+        /// If this is false, the default, then the default error handler will always
+        /// dump this error to the console.
+        ///
+        /// If this is true, then the default error handler would only dump this error
+        /// to the console in checked mode. In release mode, the error is ignored.
+        ///
+        /// This is used by certain exception handlers that catch errors that could be
+        /// triggered by environmental conditions (as opposed to logic errors). For
+        /// example, the HTTP library sets this flag so as to not report every 404
+        /// error to the console on end-user devices, while still allowing a custom
+        /// error handler to see the errors even in release builds.
+        /// </Summary>
         public virtual bool Silent { get; set; }
         public virtual FlutterSDK.Foundation.Diagnostics.DiagnosticsNode Summary { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 
@@ -805,6 +1024,29 @@ namespace FlutterSDK.Foundation.Assertions
     /// </Summary>
     public class FlutterError : Error, IAssertionError, IDiagnosticableTreeMixin
     {
+        /// <Summary>
+        /// Create an error message from a string.
+        ///
+        /// The message may have newlines in it. The first line should be a terse
+        /// description of the error, e.g. "Incorrect GlobalKey usage" or "setState()
+        /// or markNeedsBuild() called during build". Subsequent lines should contain
+        /// substantial additional information, ideally sufficient to develop a
+        /// correct solution to the problem.
+        ///
+        /// In some cases, when a FlutterError is reported to the user, only the first
+        /// line is included. For example, Flutter will typically only fully report
+        /// the first exception at runtime, displaying only the first line of
+        /// subsequent errors.
+        ///
+        /// All sentences in the error should be correctly punctuated (i.e.,
+        /// do end the error message with a period).
+        ///
+        /// This constructor defers to the [new FlutterError.fromParts] constructor.
+        /// The first line is wrapped in an implied [ErrorSummary], and subsequent
+        /// lines are wrapped in implied [ErrorDescription]s. Consider using the
+        /// [new FlutterError.fromParts] constructor to provide more detail, e.g.
+        /// using [ErrorHint]s or other [DiagnosticsNode]s.
+        /// </Summary>
         public FlutterError(string message)
         {
 
@@ -813,6 +1055,18 @@ namespace FlutterSDK.Foundation.Assertions
         }
 
 
+        /// <Summary>
+        /// Create an error message from a list of [DiagnosticsNode]s.
+        ///
+        /// By convention, there should be exactly one [ErrorSummary] in the list,
+        /// and it should be the first entry.
+        ///
+        /// Other entries are typically [ErrorDescription]s (for material that is
+        /// always applicable for this error) and [ErrorHint]s (for material that may
+        /// be sometimes useful, but may not always apply). Other [DiagnosticsNode]
+        /// subclasses, such as [DiagnosticsStackTrace], may
+        /// also be used.
+        /// </Summary>
         public static FlutterError FromParts(List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> diagnostics)
         {
             var instance = new FlutterError(); instance.Diagnostics = diagnostics;
@@ -821,9 +1075,41 @@ namespace FlutterSDK.Foundation.Assertions
         }
 
 
+        /// <Summary>
+        /// The information associated with this error, in structured form.
+        ///
+        /// The first node is typically an [ErrorSummary] giving a short description
+        /// of the problem, suitable for an index of errors, a log, etc.
+        ///
+        /// Subsequent nodes should give information specific to this error. Typically
+        /// these will be [ErrorDescription]s or [ErrorHint]s, but they could be other
+        /// objects also. For instance, an error relating to a timer could include a
+        /// stack trace of when the timer was scheduled using the
+        /// [DiagnosticsStackTrace] class.
+        /// </Summary>
         public virtual List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> Diagnostics { get; set; }
+        /// <Summary>
+        /// Called whenever the Flutter framework catches an error.
+        ///
+        /// The default behavior is to call [dumpErrorToConsole].
+        ///
+        /// You can set this to your own function to override this default behavior.
+        /// For example, you could report all errors to your server.
+        ///
+        /// If the error handler throws an exception, it will not be caught by the
+        /// Flutter framework.
+        ///
+        /// Set this to null to silently catch and ignore errors. This is not
+        /// recommended.
+        /// </Summary>
         public virtual FlutterSDK.Foundation.Assertions.FlutterExceptionHandler OnError { get; set; }
         internal virtual int _ErrorCount { get; set; }
+        /// <Summary>
+        /// The width to which [dumpErrorToConsole] will wrap lines.
+        ///
+        /// This can be used to ensure strings will not exceed the length at which
+        /// they will wrap, e.g. when placing ASCII art diagrams in messages.
+        /// </Summary>
         public virtual int WrapWidth { get; set; }
         internal virtual List<FlutterSDK.Foundation.Assertions.StackFilter> _StackFilters { get; set; }
         public virtual string Message { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
@@ -1028,11 +1314,24 @@ namespace FlutterSDK.Foundation.Assertions
     /// </Summary>
     public class DiagnosticsStackTrace : FlutterSDK.Foundation.Diagnostics.DiagnosticsBlock
     {
+        /// <Summary>
+        /// Creates a diagnostic for a stack trace.
+        ///
+        /// [name] describes a name the stacktrace is given, e.g.
+        /// `When the exception was thrown, this was the stack`.
+        /// [stackFilter] provides an optional filter to use to filter which frames
+        /// are included. If no filter is specified, [FlutterError.defaultStackFilter]
+        /// is used.
+        /// [showSeparator] indicates whether to include a ':' after the [name].
+        /// </Summary>
         public DiagnosticsStackTrace(string name, StackTrace stack, FlutterSDK.Foundation.Basictypes.IterableFilter<string> stackFilter = default(FlutterSDK.Foundation.Basictypes.IterableFilter<string>), bool showSeparator = true)
         : base(name: name, value: stack, properties: stack == null ? new List<DiagnosticsNode>() { } : (stackFilter ?? AssertionsDefaultClass.FlutterError.DefaultStackFilter)(stack.ToString().TrimEnd().Split('\n').ToList()).Map(_CreateStackFrame).ToList(), style: DiagnosticsTreeStyle.Flat, showSeparator: showSeparator, allowTruncate: true)
         {
 
         }
+        /// <Summary>
+        /// Creates a diagnostic describing a single frame from a StackTrace.
+        /// </Summary>
         public static DiagnosticsStackTrace SingleFrame(string name, string frame = default(string), bool showSeparator = true)
         {
             var instance = new DiagnosticsStackTrace(name: name, properties: new List<DiagnosticsNode>() { _CreateStackFrame(frame) }, style: DiagnosticsTreeStyle.Whitespace, showSeparator: showSeparator);

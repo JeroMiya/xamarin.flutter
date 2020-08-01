@@ -462,6 +462,23 @@ namespace FlutterSDK.Material.Inkripple
     /// </Summary>
     public class InkRipple : FlutterSDK.Material.Inkwell.InteractiveInkFeature
     {
+        /// <Summary>
+        /// Begin a ripple, centered at [position] relative to [referenceBox].
+        ///
+        /// The [controller] argument is typically obtained via
+        /// `Material.of(context)`.
+        ///
+        /// If [containedInkWell] is true, then the ripple will be sized to fit
+        /// the well rectangle, then clipped to it when drawn. The well
+        /// rectangle is the box returned by [rectCallback], if provided, or
+        /// otherwise is the bounds of the [referenceBox].
+        ///
+        /// If [containedInkWell] is false, then [rectCallback] should be null.
+        /// The ink ripple is clipped only to the edges of the [Material].
+        /// This is the default.
+        ///
+        /// When the ripple is removed, [onRemoved] will be called.
+        /// </Summary>
         public InkRipple(FlutterSDK.Material.Material.MaterialInkController controller = default(FlutterSDK.Material.Material.MaterialInkController), FlutterSDK.Rendering.Box.RenderBox referenceBox = default(FlutterSDK.Rendering.Box.RenderBox), FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), TextDirection textDirection = default(TextDirection), bool containedInkWell = false, FlutterSDK.Material.Material.RectCallback rectCallback = default(FlutterSDK.Material.Material.RectCallback), FlutterSDK.Painting.Borderradius.BorderRadius borderRadius = default(FlutterSDK.Painting.Borderradius.BorderRadius), FlutterSDK.Painting.Borders.ShapeBorder customBorder = default(FlutterSDK.Painting.Borders.ShapeBorder), double radius = default(double), VoidCallback onRemoved = default(VoidCallback))
         : base(controller: controller, referenceBox: referenceBox, color: color, onRemoved: onRemoved)
         {
@@ -495,6 +512,10 @@ namespace FlutterSDK.Material.Inkripple
         internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _FadeInController { get; set; }
         internal virtual FlutterSDK.Animation.Animation.Animation<int> _FadeOut { get; set; }
         internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _FadeOutController { get; set; }
+        /// <Summary>
+        /// Used to specify this type of ink splash for an [InkWell], [InkResponse]
+        /// or material [Theme].
+        /// </Summary>
         public virtual FlutterSDK.Material.Inkwell.InteractiveInkFeatureFactory SplashFactory { get; set; }
         internal virtual FlutterSDK.Animation.Tween.Animatable<double> _EaseCurveTween { get; set; }
         internal virtual FlutterSDK.Animation.Tween.Animatable<double> _FadeOutIntervalTween { get; set; }

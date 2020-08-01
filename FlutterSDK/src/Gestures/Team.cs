@@ -305,6 +305,13 @@ namespace FlutterSDK.Gestures.Team
     public class GestureArenaTeam
     {
         internal virtual Dictionary<int, FlutterSDK.Gestures.Team._CombiningGestureArenaMember> _Combiners { get; set; }
+        /// <Summary>
+        /// A member that wins on behalf of the entire team.
+        ///
+        /// If not null, when any one of the [GestureArenaTeam] members claims victory
+        /// the captain accepts the gesture.
+        /// If null, the member that claims a victory accepts the gesture.
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Arena.GestureArenaMember Captain { get; set; }
 
         /// <Summary>

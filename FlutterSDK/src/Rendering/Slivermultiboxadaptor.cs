@@ -490,6 +490,9 @@ namespace FlutterSDK.Rendering.Slivermultiboxadaptor
 
     public class KeepAliveParentDataMixin : IParentData
     {
+        /// <Summary>
+        /// Whether to keep the child alive even when it is no longer visible.
+        /// </Summary>
         public virtual bool KeepAlive { get; set; }
         public virtual bool KeptAlive { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 
@@ -1048,6 +1051,9 @@ namespace FlutterSDK.Rendering.Slivermultiboxadaptor
     {
         public SliverMultiBoxAdaptorParentData()
         { }
+        /// <Summary>
+        /// The index of this child according to the [RenderSliverBoxChildManager].
+        /// </Summary>
         public virtual int Index { get; set; }
         internal virtual bool _KeptAlive { get; set; }
         public virtual bool KeptAlive { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
@@ -1084,6 +1090,11 @@ namespace FlutterSDK.Rendering.Slivermultiboxadaptor
     /// </Summary>
     public class RenderSliverMultiBoxAdaptor : FlutterSDK.Rendering.Sliver.RenderSliver, IContainerRenderObjectMixin<FlutterSDK.Rendering.Box.RenderBox, FlutterSDK.Rendering.Slivermultiboxadaptor.SliverMultiBoxAdaptorParentData>, IRenderSliverHelpers, IRenderSliverWithKeepAliveMixin
     {
+        /// <Summary>
+        /// Creates a sliver with multiple box children.
+        ///
+        /// The [childManager] argument must not be null.
+        /// </Summary>
         public RenderSliverMultiBoxAdaptor(FlutterSDK.Rendering.Slivermultiboxadaptor.RenderSliverBoxChildManager childManager = default(FlutterSDK.Rendering.Slivermultiboxadaptor.RenderSliverBoxChildManager))
         : base()
         {
@@ -1093,6 +1104,9 @@ namespace FlutterSDK.Rendering.Slivermultiboxadaptor
 
 
         internal virtual FlutterSDK.Rendering.Slivermultiboxadaptor.RenderSliverBoxChildManager _ChildManager { get; set; }
+        /// <Summary>
+        /// The nodes being kept alive despite not being visible.
+        /// </Summary>
         internal virtual Dictionary<int, FlutterSDK.Rendering.Box.RenderBox> _KeepAliveBucket { get; set; }
         internal virtual List<FlutterSDK.Rendering.Box.RenderBox> _DebugDanglingKeepAlives { get; set; }
         internal virtual bool _DebugChildIntegrityEnabled { get; set; }

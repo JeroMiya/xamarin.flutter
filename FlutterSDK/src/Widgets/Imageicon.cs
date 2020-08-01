@@ -440,6 +440,11 @@ namespace FlutterSDK.Widgets.Imageicon
     /// </Summary>
     public class ImageIcon : FlutterSDK.Widgets.Framework.StatelessWidget
     {
+        /// <Summary>
+        /// Creates an image icon.
+        ///
+        /// The [size] and [color] default to the value given by the current [IconTheme].
+        /// </Summary>
         public ImageIcon(FlutterSDK.Painting.Imageprovider.ImageProvider<object> image, FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), double size = default(double), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), string semanticLabel = default(string))
         : base(key: key)
         {
@@ -448,9 +453,44 @@ namespace FlutterSDK.Widgets.Imageicon
             this.Color = color;
             this.SemanticLabel = semanticLabel;
         }
+        /// <Summary>
+        /// The image to display as the icon.
+        ///
+        /// The icon can be null, in which case the widget will render as an empty
+        /// space of the specified [size].
+        /// </Summary>
         public virtual FlutterSDK.Painting.Imageprovider.ImageProvider<object> Image { get; set; }
+        /// <Summary>
+        /// The size of the icon in logical pixels.
+        ///
+        /// Icons occupy a square with width and height equal to size.
+        ///
+        /// Defaults to the current [IconTheme] size, if any. If there is no
+        /// [IconTheme], or it does not specify an explicit size, then it defaults to
+        /// 24.0.
+        /// </Summary>
         public virtual double Size { get; set; }
+        /// <Summary>
+        /// The color to use when drawing the icon.
+        ///
+        /// Defaults to the current [IconTheme] color, if any. If there is
+        /// no [IconTheme], then it defaults to not recolorizing the image.
+        ///
+        /// The image will additionally be adjusted by the opacity of the current
+        /// [IconTheme], if any.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color Color { get; set; }
+        /// <Summary>
+        /// Semantic label for the icon.
+        ///
+        /// Announced in accessibility modes (e.g TalkBack/VoiceOver).
+        /// This label does not show in the UI.
+        ///
+        /// See also:
+        ///
+        ///  * [Semantics.label], which is set to [semanticLabel] in the underlying
+        ///    [Semantics] widget.
+        /// </Summary>
         public virtual string SemanticLabel { get; set; }
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)

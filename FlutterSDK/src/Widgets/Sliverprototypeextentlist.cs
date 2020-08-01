@@ -456,11 +456,24 @@ namespace FlutterSDK.Widgets.Sliverprototypeextentlist
     /// </Summary>
     public class SliverPrototypeExtentList : FlutterSDK.Widgets.Sliver.SliverMultiBoxAdaptorWidget
     {
+        /// <Summary>
+        /// Creates a sliver that places its box children in a linear array and
+        /// constrains them to have the same extent as a prototype item along
+        /// the main axis.
+        /// </Summary>
         public SliverPrototypeExtentList(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Sliver.SliverChildDelegate @delegate = default(FlutterSDK.Widgets.Sliver.SliverChildDelegate), FlutterSDK.Widgets.Framework.Widget prototypeItem = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, @delegate: @delegate)
         {
             this.PrototypeItem = prototypeItem;
         }
+        /// <Summary>
+        /// Defines the main axis extent of all of this sliver's children.
+        ///
+        /// The [prototypeItem] is laid out before the rest of the sliver's children
+        /// and its size along the main axis fixes the size of each child. The
+        /// [prototypeItem] is essentially [Offstage]: it is not painted and it
+        /// cannot respond to input.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget PrototypeItem { get; set; }
 
         public new FlutterSDK.Widgets.Sliverprototypeextentlist._RenderSliverPrototypeExtentList CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)

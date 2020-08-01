@@ -423,6 +423,9 @@ using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
 namespace FlutterSDK.Services.Binarymessenger
 {
+    /// <Summary>
+    /// A function which takes a platform message and asynchronously returns an encoded response.
+    /// </Summary>
     public delegate Future<ByteData> MessageHandler(ByteData message);
     internal static class BinarymessengerDefaultClass
     {
@@ -450,6 +453,9 @@ namespace FlutterSDK.Services.Binarymessenger
     /// </Summary>
     public class BinaryMessenger
     {
+        /// <Summary>
+        /// A const constructor to allow subclasses to be const.
+        /// </Summary>
         public BinaryMessenger()
         {
 

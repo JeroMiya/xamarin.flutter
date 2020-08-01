@@ -423,13 +423,46 @@ using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
 namespace FlutterSDK.Scheduler.Binding
 {
+    /// <Summary>
+    /// Signature for frame-related callbacks from the scheduler.
+    ///
+    /// The `timeStamp` is the number of milliseconds since the beginning of the
+    /// scheduler's epoch. Use timeStamp to determine how far to advance animation
+    /// timelines so that all the animations in the system are synchronized to a
+    /// common time base.
+    /// </Summary>
     public delegate void FrameCallback(TimeSpan timeStamp);
+    /// <Summary>
+    /// Signature for [Scheduler.scheduleTask] callbacks.
+    ///
+    /// The type argument `T` is the task's return value. Consider [void] if the
+    /// task does not return a value.
+    /// </Summary>
     public delegate T TaskCallback<T>();
+    /// <Summary>
+    /// Signature for the [SchedulerBinding.schedulingStrategy] callback. Called
+    /// whenever the system needs to decide whether a task at a given
+    /// priority needs to be run.
+    ///
+    /// Return true if a task with the given priority should be executed at this
+    /// time, false otherwise.
+    ///
+    /// See also:
+    ///
+    ///  * [defaultSchedulingStrategy], the default [SchedulingStrategy] for [SchedulerBinding.schedulingStrategy].
+    /// </Summary>
     public delegate bool SchedulingStrategy(int priority = default(int), FlutterSDK.Scheduler.Binding.SchedulerBinding scheduler = default(FlutterSDK.Scheduler.Binding.SchedulerBinding));
     internal static class BindingDefaultClass
     {
         public static double TimeDilation = default(double);
         public static double _TimeDilation = default(double);
+        /// <Summary>
+        /// The default [SchedulingStrategy] for [SchedulerBinding.schedulingStrategy].
+        ///
+        /// If there are any frame callbacks registered, only runs tasks with
+        /// a [Priority] of [Priority.animation] or higher. Otherwise, runs
+        /// all tasks.
+        /// </Summary>
         internal static bool DefaultSchedulingStrategy(int priority = default(int), FlutterSDK.Scheduler.Binding.SchedulerBinding scheduler = default(FlutterSDK.Scheduler.Binding.SchedulerBinding))
         {
             if (scheduler.TransientCallbackCount > 0) return priority >= PriorityDefaultClass.Priority.Animation.Value;
@@ -447,6 +480,11 @@ namespace FlutterSDK.Scheduler.Binding
         internal virtual List<object> _TimingsCallbacks { get; set; }
         internal virtual FlutterSDK.Scheduler.Binding.SchedulerBinding _Instance { get; set; }
         internal virtual AppLifecycleState _LifecycleState { get; set; }
+        /// <Summary>
+        /// The strategy to use when deciding whether to run a task or not.
+        ///
+        /// Defaults to [defaultSchedulingStrategy].
+        /// </Summary>
         public virtual FlutterSDK.Scheduler.Binding.SchedulingStrategy SchedulingStrategy { get; set; }
         internal virtual object _TaskQueue { get; set; }
         internal virtual bool _HasRequestedAnEventLoopCallback { get; set; }

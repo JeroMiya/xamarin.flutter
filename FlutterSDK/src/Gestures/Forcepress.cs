@@ -296,10 +296,32 @@ using FlutterSDK.Foundation._Isolatesio;
 using FlutterSDK.Foundation._Platformio;
 namespace FlutterSDK.Gestures.Forcepress
 {
+    /// <Summary>
+    /// Signature used by a [ForcePressGestureRecognizer] for when a pointer has
+    /// pressed with at least [ForcePressGestureRecognizer.startPressure].
+    /// </Summary>
     public delegate void GestureForcePressStartCallback(FlutterSDK.Gestures.Forcepress.ForcePressDetails details);
+    /// <Summary>
+    /// Signature used by [ForcePressGestureRecognizer] for when a pointer that has
+    /// pressed with at least [ForcePressGestureRecognizer.peakPressure].
+    /// </Summary>
     public delegate void GestureForcePressPeakCallback(FlutterSDK.Gestures.Forcepress.ForcePressDetails details);
+    /// <Summary>
+    /// Signature used by [ForcePressGestureRecognizer] during the frames
+    /// after the triggering of a [ForcePressGestureRecognizer.onStart] callback.
+    /// </Summary>
     public delegate void GestureForcePressUpdateCallback(FlutterSDK.Gestures.Forcepress.ForcePressDetails details);
+    /// <Summary>
+    /// Signature for when the pointer that previously triggered a
+    /// [ForcePressGestureRecognizer.onStart] callback is no longer in contact
+    /// with the screen.
+    /// </Summary>
     public delegate void GestureForcePressEndCallback(FlutterSDK.Gestures.Forcepress.ForcePressDetails details);
+    /// <Summary>
+    /// Signature used by [ForcePressGestureRecognizer] for interpolating the raw
+    /// device pressure to a value in the range [0, 1] given the device's pressure
+    /// min and pressure max.
+    /// </Summary>
     public delegate double GestureForceInterpolation(double pressureMin, double pressureMax, double pressure);
     internal static class ForcepressDefaultClass
     {
@@ -318,14 +340,29 @@ namespace FlutterSDK.Gestures.Forcepress
     /// </Summary>
     public class ForcePressDetails
     {
+        /// <Summary>
+        /// Creates details for a [GestureForcePressStartCallback],
+        /// [GestureForcePressPeakCallback] or [GestureForcePressEndCallback].
+        ///
+        /// The [globalPosition] argument must not be null.
+        /// </Summary>
         public ForcePressDetails(FlutterBinding.UI.Offset globalPosition = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Offset localPosition = default(FlutterBinding.UI.Offset), double pressure = default(double))
         : base()
         {
             this.GlobalPosition = globalPosition;
             this.Pressure = pressure;
         }
+        /// <Summary>
+        /// The global position at which the function was called.
+        /// </Summary>
         public virtual FlutterBinding.UI.Offset GlobalPosition { get; set; }
+        /// <Summary>
+        /// The local position at which the function was called.
+        /// </Summary>
         public virtual FlutterBinding.UI.Offset LocalPosition { get; set; }
+        /// <Summary>
+        /// The pressure of the pointer on the screen.
+        /// </Summary>
         public virtual double Pressure { get; set; }
     }
 
@@ -355,6 +392,20 @@ namespace FlutterSDK.Gestures.Forcepress
     /// </Summary>
     public class ForcePressGestureRecognizer : FlutterSDK.Gestures.Recognizer.OneSequenceGestureRecognizer
     {
+        /// <Summary>
+        /// Creates a force press gesture recognizer.
+        ///
+        /// The [startPressure] defaults to 0.4, and [peakPressure] defaults to 0.85
+        /// where a value of 0.0 is no pressure and a value of 1.0 is maximum pressure.
+        ///
+        /// The [startPressure], [peakPressure] and [interpolation] arguments must not
+        /// be null. The [peakPressure] argument must be greater than [startPressure].
+        /// The [interpolation] callback must always return a value in the range 0.0
+        /// to 1.0 for values of `pressure` that are between `pressureMin` and
+        /// `pressureMax`.
+        ///
+        /// {@macro flutter.gestures.gestureRecognizer.kind}
+        /// </Summary>
         public ForcePressGestureRecognizer(double startPressure = 0.4, double peakPressure = 0.85, FlutterSDK.Gestures.Forcepress.GestureForceInterpolation interpolation = default(FlutterSDK.Gestures.Forcepress.GestureForceInterpolation), @Object debugOwner = default(@Object), PointerDeviceKind kind = default(PointerDeviceKind))
         : base(debugOwner: debugOwner, kind: kind)
         {
@@ -362,12 +413,85 @@ namespace FlutterSDK.Gestures.Forcepress
             this.PeakPressure = peakPressure;
             this.Interpolation = interpolation;
         }
+        /// <Summary>
+        /// A pointer is in contact with the screen and has just pressed with a force
+        /// exceeding the [startPressure]. Consequently, if there were other gesture
+        /// detectors, only the force press gesture will be detected and all others
+        /// will be rejected.
+        ///
+        /// The position of the pointer is provided in the callback's `details`
+        /// argument, which is a [ForcePressDetails] object.
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Forcepress.GestureForcePressStartCallback OnStart { get; set; }
+        /// <Summary>
+        /// A pointer is in contact with the screen and is either moving on the plane
+        /// of the screen, pressing the screen with varying forces or both
+        /// simultaneously.
+        ///
+        /// This callback will be invoked for every pointer event after the invocation
+        /// of [onStart] and/or [onPeak] and before the invocation of [onEnd], no
+        /// matter what the pressure is during this time period. The position and
+        /// pressure of the pointer is provided in the callback's `details` argument,
+        /// which is a [ForcePressDetails] object.
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Forcepress.GestureForcePressUpdateCallback OnUpdate { get; set; }
+        /// <Summary>
+        /// A pointer is in contact with the screen and has just pressed with a force
+        /// exceeding the [peakPressure]. This is an arbitrary second level action
+        /// threshold and isn't necessarily the maximum possible device pressure
+        /// (which is 1.0).
+        ///
+        /// The position of the pointer is provided in the callback's `details`
+        /// argument, which is a [ForcePressDetails] object.
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Forcepress.GestureForcePressPeakCallback OnPeak { get; set; }
+        /// <Summary>
+        /// A pointer is no longer in contact with the screen.
+        ///
+        /// The position of the pointer is provided in the callback's `details`
+        /// argument, which is a [ForcePressDetails] object.
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Forcepress.GestureForcePressEndCallback OnEnd { get; set; }
+        /// <Summary>
+        /// The pressure of the press required to initiate a force press.
+        ///
+        /// A value of 0.0 is no pressure, and 1.0 is maximum pressure.
+        /// </Summary>
         public virtual double StartPressure { get; set; }
+        /// <Summary>
+        /// The pressure of the press required to peak a force press.
+        ///
+        /// A value of 0.0 is no pressure, and 1.0 is maximum pressure. This value
+        /// must be greater than [startPressure].
+        /// </Summary>
         public virtual double PeakPressure { get; set; }
+        /// <Summary>
+        /// The function used to convert the raw device pressure values into a value
+        /// in the range 0.0 to 1.0.
+        ///
+        /// The function takes in the device's minimum, maximum and raw touch pressure
+        /// and returns a value in the range 0.0 to 1.0 denoting the interpolated
+        /// touch pressure.
+        ///
+        /// This function must always return values in the range 0.0 to 1.0 given a
+        /// pressure that is between the minimum and maximum pressures. It may return
+        /// `double.NaN` for values that it does not want to support.
+        ///
+        /// By default, the function is a linear interpolation; however, changing the
+        /// function could be useful to accommodate variations in the way different
+        /// devices respond to pressure, or to change how animations from pressure
+        /// feedback are rendered.
+        ///
+        /// For example, an ease-in curve can be used to determine the interpolated
+        /// value:
+        ///
+        /// ```dart
+        /// static double interpolateWithEasing(double min, double max, double t) {
+        ///    final double lerp = (t - min) / (max - min);
+        ///    return Curves.easeIn.transform(lerp);
+        /// }
+        /// ```
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Forcepress.GestureForceInterpolation Interpolation { get; set; }
         internal virtual FlutterSDK.Gestures.Recognizer.OffsetPair _LastPosition { get; set; }
         internal virtual double _LastPressure { get; set; }

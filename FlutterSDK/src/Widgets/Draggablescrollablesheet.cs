@@ -423,6 +423,15 @@ using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
 namespace FlutterSDK.Widgets.Draggablescrollablesheet
 {
+    /// <Summary>
+    /// The signature of a method that provides a [BuildContext] and
+    /// [ScrollController] for building a widget that may overflow the draggable
+    /// [Axis] of the containing [DraggableScrollSheet].
+    ///
+    /// Users should apply the [scrollController] to a [ScrollView] subclass, such
+    /// as a [SingleChildScrollView], [ListView] or [GridView], to have the whole
+    /// sheet be draggable.
+    /// </Summary>
     public delegate FlutterSDK.Widgets.Framework.Widget ScrollableWidgetBuilder(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Widgets.Scrollcontroller.ScrollController scrollController);
     internal static class DraggablescrollablesheetDefaultClass
     {
@@ -495,6 +504,12 @@ namespace FlutterSDK.Widgets.Draggablescrollablesheet
     /// </Summary>
     public class DraggableScrollableSheet : FlutterSDK.Widgets.Framework.StatefulWidget
     {
+        /// <Summary>
+        /// Creates a widget that can be dragged and scrolled in a single gesture.
+        ///
+        /// The [builder], [initialChildSize], [minChildSize], [maxChildSize] and
+        /// [expand] parameters must not be null.
+        /// </Summary>
         public DraggableScrollableSheet(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), double initialChildSize = 0.5, double minChildSize = 0.25, double maxChildSize = 1.0, bool expand = true, FlutterSDK.Widgets.Draggablescrollablesheet.ScrollableWidgetBuilder builder = default(FlutterSDK.Widgets.Draggablescrollablesheet.ScrollableWidgetBuilder))
         : base(key: key)
         {
@@ -504,10 +519,43 @@ namespace FlutterSDK.Widgets.Draggablescrollablesheet
             this.Expand = expand;
             this.Builder = builder;
         }
+        /// <Summary>
+        /// The initial fractional value of the parent container's height to use when
+        /// displaying the widget.
+        ///
+        /// The default value is `0.5`.
+        /// </Summary>
         public virtual double InitialChildSize { get; set; }
+        /// <Summary>
+        /// The minimum fractional value of the parent container's height to use when
+        /// displaying the widget.
+        ///
+        /// The default value is `0.25`.
+        /// </Summary>
         public virtual double MinChildSize { get; set; }
+        /// <Summary>
+        /// The maximum fractional value of the parent container's height to use when
+        /// displaying the widget.
+        ///
+        /// The default value is `1.0`.
+        /// </Summary>
         public virtual double MaxChildSize { get; set; }
+        /// <Summary>
+        /// Whether the widget should expand to fill the available space in its parent
+        /// or not.
+        ///
+        /// In most cases, this should be true. However, in the case of a parent
+        /// widget that will position this one based on its desired size (such as a
+        /// [Center]), this should be set to false.
+        ///
+        /// The default value is true.
+        /// </Summary>
         public virtual bool Expand { get; set; }
+        /// <Summary>
+        /// The builder that creates a child to display in this widget, which will
+        /// use the provided [ScrollController] to enable dragging and scrolling
+        /// of the contents.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Draggablescrollablesheet.ScrollableWidgetBuilder Builder { get; set; }
 
         public new FlutterSDK.Widgets.Draggablescrollablesheet._DraggableScrollableSheetState CreateState() => new _DraggableScrollableSheetState();
@@ -540,6 +588,13 @@ namespace FlutterSDK.Widgets.Draggablescrollablesheet
     /// </Summary>
     public class DraggableScrollableNotification : FlutterSDK.Widgets.Notificationlistener.Notification, IViewportNotificationMixin
     {
+        /// <Summary>
+        /// Creates a notification that the extent of a [DraggableScrollableSheet] has
+        /// changed.
+        ///
+        /// All parameters are required. The [minExtent] must be >= 0.  The [maxExtent]
+        /// must be <= 1.0.  The [extent] must be between [minExtent] and [maxExtent].
+        /// </Summary>
         public DraggableScrollableNotification(double extent = default(double), double minExtent = default(double), double maxExtent = default(double), double initialExtent = default(double), FlutterSDK.Widgets.Framework.BuildContext context = default(FlutterSDK.Widgets.Framework.BuildContext))
         : base()
         {
@@ -549,10 +604,29 @@ namespace FlutterSDK.Widgets.Draggablescrollablesheet
             this.InitialExtent = initialExtent;
             this.Context = context;
         }
+        /// <Summary>
+        /// The current value of the extent, between [minExtent] and [maxExtent].
+        /// </Summary>
         public virtual double Extent { get; set; }
+        /// <Summary>
+        /// The minimum value of [extent], which is >= 0.
+        /// </Summary>
         public virtual double MinExtent { get; set; }
+        /// <Summary>
+        /// The maximum value of [extent].
+        /// </Summary>
         public virtual double MaxExtent { get; set; }
+        /// <Summary>
+        /// The initially requested value for [extent].
+        /// </Summary>
         public virtual double InitialExtent { get; set; }
+        /// <Summary>
+        /// The build context of the widget that fired this notification.
+        ///
+        /// This can be used to find the sheet's render objects to determine the size
+        /// of the viewport, for instance. A listener can only assume this context
+        /// is live when it first gets the notification.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.BuildContext Context { get; set; }
 
         public new void DebugFillDescription(List<string> description)
@@ -844,11 +918,23 @@ namespace FlutterSDK.Widgets.Draggablescrollablesheet
     /// </Summary>
     public class DraggableScrollableActuator : FlutterSDK.Widgets.Framework.StatelessWidget
     {
+        /// <Summary>
+        /// Creates a widget that can notify descendent [DraggableScrollableSheet]s
+        /// to reset to their initial position.
+        ///
+        /// The [child] parameter is required.
+        /// </Summary>
         public DraggableScrollableActuator(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key)
         {
             this.Child = child;
         }
+        /// <Summary>
+        /// This child's [DraggableScrollableSheet] descendant will be reset when the
+        /// [reset] method is applied to a context that includes it.
+        ///
+        /// Must not be null.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
         internal virtual FlutterSDK.Widgets.Draggablescrollablesheet._ResetNotifier _Notifier { get; set; }
 
@@ -892,6 +978,11 @@ namespace FlutterSDK.Widgets.Draggablescrollablesheet
     {
         public _ResetNotifier()
         { }
+        /// <Summary>
+        /// Whether someone called [sendReset] or not.
+        ///
+        /// This flag should be reset after checking it.
+        /// </Summary>
         internal virtual bool _WasCalled { get; set; }
 
         /// <Summary>
@@ -918,6 +1009,12 @@ namespace FlutterSDK.Widgets.Draggablescrollablesheet
 
     public class _InheritedResetNotifier : FlutterSDK.Widgets.Inheritednotifier.InheritedNotifier<FlutterSDK.Widgets.Draggablescrollablesheet._ResetNotifier>
     {
+        /// <Summary>
+        /// Creates an [InheritedNotifier] that the [DraggableScrollableSheet] will
+        /// listen to for an indication that it should change its extent.
+        ///
+        /// The [child] and [notifier] properties must not be null.
+        /// </Summary>
         public _InheritedResetNotifier(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Draggablescrollablesheet._ResetNotifier notifier = default(FlutterSDK.Widgets.Draggablescrollablesheet._ResetNotifier))
         : base(key: key, child: child, notifier: notifier)
         {

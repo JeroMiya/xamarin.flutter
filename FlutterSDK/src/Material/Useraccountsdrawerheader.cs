@@ -638,6 +638,11 @@ return new Padding(padding:EdgeInsetsDirectional.Only(start:8.0), child:new Sema
     /// </Summary>
     public class UserAccountsDrawerHeader : FlutterSDK.Widgets.Framework.StatefulWidget
     {
+        /// <Summary>
+        /// Creates a material design drawer header.
+        ///
+        /// Requires one of its ancestors to be a [Material] widget.
+        /// </Summary>
         public UserAccountsDrawerHeader(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Decoration.Decoration decoration = default(FlutterSDK.Painting.Decoration.Decoration), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry margin = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Widgets.Framework.Widget currentAccountPicture = default(FlutterSDK.Widgets.Framework.Widget), List<FlutterSDK.Widgets.Framework.Widget> otherAccountsPictures = default(List<FlutterSDK.Widgets.Framework.Widget>), FlutterSDK.Widgets.Framework.Widget accountName = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget accountEmail = default(FlutterSDK.Widgets.Framework.Widget), VoidCallback onDetailsPressed = default(VoidCallback), FlutterBinding.UI.Color arrowColor = default(FlutterBinding.UI.Color))
         : base(key: key)
         {
@@ -650,13 +655,44 @@ return new Padding(padding:EdgeInsetsDirectional.Only(start:8.0), child:new Sema
             this.OnDetailsPressed = onDetailsPressed;
             this.ArrowColor = arrowColor;
         }
+        /// <Summary>
+        /// The header's background. If decoration is null then a [BoxDecoration]
+        /// with its background color set to the current theme's primaryColor is used.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Decoration.Decoration Decoration { get; set; }
+        /// <Summary>
+        /// The margin around the drawer header.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Margin { get; set; }
+        /// <Summary>
+        /// A widget placed in the upper-left corner that represents the current
+        /// user's account. Normally a [CircleAvatar].
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget CurrentAccountPicture { get; set; }
+        /// <Summary>
+        /// A list of widgets that represent the current user's other accounts.
+        /// Up to three of these widgets will be arranged in a row in the header's
+        /// upper-right corner. Normally a list of [CircleAvatar] widgets.
+        /// </Summary>
         public virtual List<FlutterSDK.Widgets.Framework.Widget> OtherAccountsPictures { get; set; }
+        /// <Summary>
+        /// A widget that represents the user's current account name. It is
+        /// displayed on the left, below the [currentAccountPicture].
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget AccountName { get; set; }
+        /// <Summary>
+        /// A widget that represents the email address of the user's current account.
+        /// It is displayed on the left, below the [accountName].
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget AccountEmail { get; set; }
+        /// <Summary>
+        /// A callback that is called when the horizontal area which contains the
+        /// [accountName] and [accountEmail] is tapped.
+        /// </Summary>
         public virtual VoidCallback OnDetailsPressed { get; set; }
+        /// <Summary>
+        /// The [Color] of the arrow icon.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color ArrowColor { get; set; }
 
         public new FlutterSDK.Material.Useraccountsdrawerheader._UserAccountsDrawerHeaderState CreateState() => new _UserAccountsDrawerHeaderState();

@@ -510,6 +510,20 @@ namespace FlutterSDK.Material.Appbar
     /// </Summary>
     public class AppBar : FlutterSDK.Widgets.Framework.StatefulWidget, IPreferredSizeWidget
     {
+        /// <Summary>
+        /// Creates a material design app bar.
+        ///
+        /// The arguments [primary], [toolbarOpacity], [bottomOpacity]
+        /// and [automaticallyImplyLeading] must not be null. Additionally, if
+        /// [elevation] is specified, it must be non-negative.
+        ///
+        /// If [backgroundColor], [elevation], [brightness], [iconTheme],
+        /// [actionsIconTheme], or [textTheme] are null, then their [AppBarTheme]
+        /// values will be used. If the corresponding [AppBarTheme] property is null,
+        /// then the default specified in the property's documentation will be used.
+        ///
+        /// Typically used in the [Scaffold.appBar] property.
+        /// </Summary>
         public AppBar(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget leading = default(FlutterSDK.Widgets.Framework.Widget), bool automaticallyImplyLeading = true, FlutterSDK.Widgets.Framework.Widget title = default(FlutterSDK.Widgets.Framework.Widget), List<FlutterSDK.Widgets.Framework.Widget> actions = default(List<FlutterSDK.Widgets.Framework.Widget>), FlutterSDK.Widgets.Framework.Widget flexibleSpace = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Preferredsize.PreferredSizeWidget bottom = default(FlutterSDK.Widgets.Preferredsize.PreferredSizeWidget), double elevation = default(double), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), Brightness brightness = default(Brightness), FlutterSDK.Widgets.Iconthemedata.IconThemeData iconTheme = default(FlutterSDK.Widgets.Iconthemedata.IconThemeData), FlutterSDK.Widgets.Iconthemedata.IconThemeData actionsIconTheme = default(FlutterSDK.Widgets.Iconthemedata.IconThemeData), FlutterSDK.Material.Texttheme.TextTheme textTheme = default(FlutterSDK.Material.Texttheme.TextTheme), bool primary = true, bool centerTitle = default(bool), bool excludeHeaderSemantics = false, double titleSpacing = default(double), double toolbarOpacity = 1.0, double bottomOpacity = 1.0)
         : base(key: key)
         {
@@ -533,25 +547,243 @@ namespace FlutterSDK.Material.Appbar
             this.ToolbarOpacity = toolbarOpacity;
             this.BottomOpacity = bottomOpacity;
         }
+        /// <Summary>
+        /// A widget to display before the [title].
+        ///
+        /// Typically the [leading] widget is an [Icon] or an [IconButton].
+        ///
+        /// Becomes the leading component of the [NavigationToolBar] built
+        /// by this widget. The [leading] widget's width and height are constrained to
+        /// be no bigger than toolbar's height, which is [kToolbarHeight].
+        ///
+        /// If this is null and [automaticallyImplyLeading] is set to true, the
+        /// [AppBar] will imply an appropriate widget. For example, if the [AppBar] is
+        /// in a [Scaffold] that also has a [Drawer], the [Scaffold] will fill this
+        /// widget with an [IconButton] that opens the drawer (using [Icons.menu]). If
+        /// there's no [Drawer] and the parent [Navigator] can go back, the [AppBar]
+        /// will use a [BackButton] that calls [Navigator.maybePop].
+        ///
+        /// {@tool snippet}
+        ///
+        /// The following code shows how the drawer button could be manually specified
+        /// instead of relying on [automaticallyImplyLeading]:
+        ///
+        /// ```dart
+        /// AppBar(
+        ///   leading: Builder(
+        ///     builder: (BuildContext context) {
+        ///       return IconButton(
+        ///         icon: const Icon(Icons.menu),
+        ///         onPressed: () { Scaffold.of(context).openDrawer(); },
+        ///         tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
+        ///       );
+        ///     },
+        ///   ),
+        /// )
+        /// ```
+        /// {@end-tool}
+        ///
+        /// The [Builder] is used in this example to ensure that the `context` refers
+        /// to that part of the subtree. That way this code snippet can be used even
+        /// inside the very code that is creating the [Scaffold] (in which case,
+        /// without the [Builder], the `context` wouldn't be able to see the
+        /// [Scaffold], since it would refer to an ancestor of that widget).
+        ///
+        /// See also:
+        ///
+        ///  * [Scaffold.appBar], in which an [AppBar] is usually placed.
+        ///  * [Scaffold.drawer], in which the [Drawer] is usually placed.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Leading { get; set; }
+        /// <Summary>
+        /// Controls whether we should try to imply the leading widget if null.
+        ///
+        /// If true and [leading] is null, automatically try to deduce what the leading
+        /// widget should be. If false and [leading] is null, leading space is given to [title].
+        /// If leading widget is not null, this parameter has no effect.
+        /// </Summary>
         public virtual bool AutomaticallyImplyLeading { get; set; }
+        /// <Summary>
+        /// The primary widget displayed in the app bar.
+        ///
+        /// Typically a [Text] widget that contains a description of the current
+        /// contents of the app.
+        ///
+        /// Becomes the middle component of the [NavigationToolBar] built by this widget.
+        /// The [title]'s width is constrained to fit within the remaining space
+        /// between the toolbar's [leading] and [actions] widgets. Its height is
+        /// _not_ constrained. The [title] is vertically centered and clipped to fit
+        /// within the toolbar, whose height is [kToolbarHeight]. Typically this
+        /// isn't noticeable because a simple [Text] [title] will fit within the
+        /// toolbar by default. On the other hand, it is noticeable when a
+        /// widget with an intrinsic height that is greater than [kToolbarHeight]
+        /// is used as the [title]. For example, when the height of an Image used
+        /// as the [title] exceeds [kToolbarHeight], it will be centered and
+        /// clipped (top and bottom), which may be undesirable. In cases like this
+        /// the height of the [title] widget can be constrained. For example:
+        ///
+        /// ```dart
+        /// MaterialApp(
+        ///   home: Scaffold(
+        ///     appBar: AppBar(
+        ///        title: SizedBox(
+        ///        height: kToolbarHeight,
+        ///          child: child: Image.asset(logoAsset),
+        ///      ),
+        ///   ),
+        /// )
+        /// ```
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Title { get; set; }
+        /// <Summary>
+        /// Widgets to display in a row after the [title] widget.
+        ///
+        /// Typically these widgets are [IconButton]s representing common operations.
+        /// For less common operations, consider using a [PopupMenuButton] as the
+        /// last action.
+        ///
+        /// The [actions] become the trailing component of the [NavigationToolBar] built
+        /// by this widget. The height of each action is constrained to be no bigger
+        /// than the toolbar's height, which is [kToolbarHeight].
+        /// </Summary>
         public virtual List<FlutterSDK.Widgets.Framework.Widget> Actions { get; set; }
+        /// <Summary>
+        /// This widget is stacked behind the toolbar and the tab bar. It's height will
+        /// be the same as the app bar's overall height.
+        ///
+        /// A flexible space isn't actually flexible unless the [AppBar]'s container
+        /// changes the [AppBar]'s size. A [SliverAppBar] in a [CustomScrollView]
+        /// changes the [AppBar]'s height when scrolled.
+        ///
+        /// Typically a [FlexibleSpaceBar]. See [FlexibleSpaceBar] for details.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget FlexibleSpace { get; set; }
+        /// <Summary>
+        /// This widget appears across the bottom of the app bar.
+        ///
+        /// Typically a [TabBar]. Only widgets that implement [PreferredSizeWidget] can
+        /// be used at the bottom of an app bar.
+        ///
+        /// See also:
+        ///
+        ///  * [PreferredSize], which can be used to give an arbitrary widget a preferred size.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Preferredsize.PreferredSizeWidget Bottom { get; set; }
+        /// <Summary>
+        /// The z-coordinate at which to place this app bar relative to its parent.
+        ///
+        /// This controls the size of the shadow below the app bar.
+        ///
+        /// The value is non-negative.
+        ///
+        /// If this property is null, then [ThemeData.appBarTheme.elevation] is used,
+        /// if that is also null, the default value is 4, the appropriate elevation
+        /// for app bars.
+        /// </Summary>
         public virtual double Elevation { get; set; }
+        /// <Summary>
+        /// The material's shape as well its shadow.
+        ///
+        /// A shadow is only displayed if the [elevation] is greater than
+        /// zero.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Borders.ShapeBorder Shape { get; set; }
+        /// <Summary>
+        /// The color to use for the app bar's material. Typically this should be set
+        /// along with [brightness], [iconTheme], [textTheme].
+        ///
+        /// If this property is null, then [ThemeData.appBarTheme.color] is used,
+        /// if that is also null, then [ThemeData.primaryColor] is used.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
+        /// <Summary>
+        /// The brightness of the app bar's material. Typically this is set along
+        /// with [backgroundColor], [iconTheme], [textTheme].
+        ///
+        /// If this property is null, then [ThemeData.appBarTheme.brightness] is used,
+        /// if that is also null, then [ThemeData.primaryColorBrightness] is used.
+        /// </Summary>
         public virtual Brightness Brightness { get; set; }
+        /// <Summary>
+        /// The color, opacity, and size to use for app bar icons. Typically this
+        /// is set along with [backgroundColor], [brightness], [textTheme].
+        ///
+        /// If this property is null, then [ThemeData.appBarTheme.iconTheme] is used,
+        /// if that is also null, then [ThemeData.primaryIconTheme] is used.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Iconthemedata.IconThemeData IconTheme { get; set; }
+        /// <Summary>
+        /// The color, opacity, and size to use for the icons that appear in the app
+        /// bar's [actions]. This should only be used when the [actions] should be
+        /// themed differently than the icon that appears in the app bar's [leading]
+        /// widget.
+        ///
+        /// If this property is null, then [ThemeData.appBarTheme.actionsIconTheme] is
+        /// used, if that is also null, then this falls back to [iconTheme].
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Iconthemedata.IconThemeData ActionsIconTheme { get; set; }
+        /// <Summary>
+        /// The typographic styles to use for text in the app bar. Typically this is
+        /// set along with [brightness] [backgroundColor], [iconTheme].
+        ///
+        /// If this property is null, then [ThemeData.appBarTheme.textTheme] is used,
+        /// if that is also null, then [ThemeData.primaryTextTheme] is used.
+        /// </Summary>
         public virtual FlutterSDK.Material.Texttheme.TextTheme TextTheme { get; set; }
+        /// <Summary>
+        /// Whether this app bar is being displayed at the top of the screen.
+        ///
+        /// If true, the app bar's toolbar elements and [bottom] widget will be
+        /// padded on top by the height of the system status bar. The layout
+        /// of the [flexibleSpace] is not affected by the [primary] property.
+        /// </Summary>
         public virtual bool Primary { get; set; }
+        /// <Summary>
+        /// Whether the title should be centered.
+        ///
+        /// Defaults to being adapted to the current [TargetPlatform].
+        /// </Summary>
         public virtual bool CenterTitle { get; set; }
+        /// <Summary>
+        /// Whether the title should be wrapped with header [Semantics].
+        ///
+        /// Defaults to false.
+        /// </Summary>
         public virtual bool ExcludeHeaderSemantics { get; set; }
+        /// <Summary>
+        /// The spacing around [title] content on the horizontal axis. This spacing is
+        /// applied even if there is no [leading] content or [actions]. If you want
+        /// [title] to take all the space available, set this value to 0.0.
+        ///
+        /// Defaults to [NavigationToolbar.kMiddleSpacing].
+        /// </Summary>
         public virtual double TitleSpacing { get; set; }
+        /// <Summary>
+        /// How opaque the toolbar part of the app bar is.
+        ///
+        /// A value of 1.0 is fully opaque, and a value of 0.0 is fully transparent.
+        ///
+        /// Typically, this value is not changed from its default value (1.0). It is
+        /// used by [SliverAppBar] to animate the opacity of the toolbar when the app
+        /// bar is scrolled.
+        /// </Summary>
         public virtual double ToolbarOpacity { get; set; }
+        /// <Summary>
+        /// How opaque the bottom part of the app bar is.
+        ///
+        /// A value of 1.0 is fully opaque, and a value of 0.0 is fully transparent.
+        ///
+        /// Typically, this value is not changed from its default value (1.0). It is
+        /// used by [SliverAppBar] to animate the opacity of the toolbar when the app
+        /// bar is scrolled.
+        /// </Summary>
         public virtual double BottomOpacity { get; set; }
+        /// <Summary>
+        /// A size whose height is the sum of [kToolbarHeight] and the [bottom] widget's
+        /// preferred height.
+        ///
+        /// [Scaffold] uses this size to set its app bar's height.
+        /// </Summary>
         public new Size PreferredSize { get; set; }
 
         private bool _GetEffectiveCenterTitle(FlutterSDK.Material.Themedata.ThemeData theme)
@@ -929,6 +1161,12 @@ namespace FlutterSDK.Material.Appbar
     /// </Summary>
     public class SliverAppBar : FlutterSDK.Widgets.Framework.StatefulWidget
     {
+        /// <Summary>
+        /// Creates a material design app bar that can be placed in a [CustomScrollView].
+        ///
+        /// The arguments [forceElevated], [primary], [floating], [pinned], [snap]
+        /// and [automaticallyImplyLeading] must not be null.
+        /// </Summary>
         public SliverAppBar(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget leading = default(FlutterSDK.Widgets.Framework.Widget), bool automaticallyImplyLeading = true, FlutterSDK.Widgets.Framework.Widget title = default(FlutterSDK.Widgets.Framework.Widget), List<FlutterSDK.Widgets.Framework.Widget> actions = default(List<FlutterSDK.Widgets.Framework.Widget>), FlutterSDK.Widgets.Framework.Widget flexibleSpace = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Preferredsize.PreferredSizeWidget bottom = default(FlutterSDK.Widgets.Preferredsize.PreferredSizeWidget), double elevation = default(double), bool forceElevated = false, FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), Brightness brightness = default(Brightness), FlutterSDK.Widgets.Iconthemedata.IconThemeData iconTheme = default(FlutterSDK.Widgets.Iconthemedata.IconThemeData), FlutterSDK.Widgets.Iconthemedata.IconThemeData actionsIconTheme = default(FlutterSDK.Widgets.Iconthemedata.IconThemeData), FlutterSDK.Material.Texttheme.TextTheme textTheme = default(FlutterSDK.Material.Texttheme.TextTheme), bool primary = true, bool centerTitle = default(bool), bool excludeHeaderSemantics = false, double titleSpacing = default(double), double expandedHeight = default(double), bool floating = false, bool pinned = false, bool snap = false, bool stretch = false, double stretchTriggerOffset = 100.0, FlutterSDK.Foundation.Basictypes.AsyncCallback onStretchTrigger = default(FlutterSDK.Foundation.Basictypes.AsyncCallback), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder))
         : base(key: key)
         {
@@ -958,30 +1196,289 @@ namespace FlutterSDK.Material.Appbar
             this.OnStretchTrigger = onStretchTrigger;
             this.Shape = shape;
         }
+        /// <Summary>
+        /// A widget to display before the [title].
+        ///
+        /// If this is null and [automaticallyImplyLeading] is set to true, the [AppBar] will
+        /// imply an appropriate widget. For example, if the [AppBar] is in a [Scaffold]
+        /// that also has a [Drawer], the [Scaffold] will fill this widget with an
+        /// [IconButton] that opens the drawer. If there's no [Drawer] and the parent
+        /// [Navigator] can go back, the [AppBar] will use a [BackButton] that calls
+        /// [Navigator.maybePop].
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Leading { get; set; }
+        /// <Summary>
+        /// Controls whether we should try to imply the leading widget if null.
+        ///
+        /// If true and [leading] is null, automatically try to deduce what the leading
+        /// widget should be. If false and [leading] is null, leading space is given to [title].
+        /// If leading widget is not null, this parameter has no effect.
+        /// </Summary>
         public virtual bool AutomaticallyImplyLeading { get; set; }
+        /// <Summary>
+        /// The primary widget displayed in the app bar.
+        ///
+        /// Typically a [Text] widget containing a description of the current contents
+        /// of the app.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Title { get; set; }
+        /// <Summary>
+        /// Widgets to display after the [title] widget.
+        ///
+        /// Typically these widgets are [IconButton]s representing common operations.
+        /// For less common operations, consider using a [PopupMenuButton] as the
+        /// last action.
+        ///
+        /// {@tool snippet}
+        ///
+        /// ```dart
+        /// Scaffold(
+        ///   body: CustomScrollView(
+        ///     primary: true,
+        ///     slivers: <Widget>[
+        ///       SliverAppBar(
+        ///         title: Text('Hello World'),
+        ///         actions: <Widget>[
+        ///           IconButton(
+        ///             icon: Icon(Icons.shopping_cart),
+        ///             tooltip: 'Open shopping cart',
+        ///             onPressed: () {
+        ///               // handle the press
+        ///             },
+        ///           ),
+        ///         ],
+        ///       ),
+        ///       // ...rest of body...
+        ///     ],
+        ///   ),
+        /// )
+        /// ```
+        /// {@end-tool}
+        /// </Summary>
         public virtual List<FlutterSDK.Widgets.Framework.Widget> Actions { get; set; }
+        /// <Summary>
+        /// This widget is stacked behind the toolbar and the tab bar. It's height will
+        /// be the same as the app bar's overall height.
+        ///
+        /// Typically a [FlexibleSpaceBar]. See [FlexibleSpaceBar] for details.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget FlexibleSpace { get; set; }
+        /// <Summary>
+        /// This widget appears across the bottom of the app bar.
+        ///
+        /// Typically a [TabBar]. Only widgets that implement [PreferredSizeWidget] can
+        /// be used at the bottom of an app bar.
+        ///
+        /// See also:
+        ///
+        ///  * [PreferredSize], which can be used to give an arbitrary widget a preferred size.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Preferredsize.PreferredSizeWidget Bottom { get; set; }
+        /// <Summary>
+        /// The z-coordinate at which to place this app bar when it is above other
+        /// content. This controls the size of the shadow below the app bar.
+        ///
+        /// If this property is null, then [ThemeData.appBarTheme.elevation] is used,
+        /// if that is also null, the default value is 4, the appropriate elevation
+        /// for app bars.
+        ///
+        /// If [forceElevated] is false, the elevation is ignored when the app bar has
+        /// no content underneath it. For example, if the app bar is [pinned] but no
+        /// content is scrolled under it, or if it scrolls with the content, then no
+        /// shadow is drawn, regardless of the value of [elevation].
+        /// </Summary>
         public virtual double Elevation { get; set; }
+        /// <Summary>
+        /// Whether to show the shadow appropriate for the [elevation] even if the
+        /// content is not scrolled under the [AppBar].
+        ///
+        /// Defaults to false, meaning that the [elevation] is only applied when the
+        /// [AppBar] is being displayed over content that is scrolled under it.
+        ///
+        /// When set to true, the [elevation] is applied regardless.
+        ///
+        /// Ignored when [elevation] is zero.
+        /// </Summary>
         public virtual bool ForceElevated { get; set; }
+        /// <Summary>
+        /// The color to use for the app bar's material. Typically this should be set
+        /// along with [brightness], [iconTheme], [textTheme].
+        ///
+        /// If this property is null, then [ThemeData.appBarTheme.color] is used,
+        /// if that is also null, then [ThemeData.primaryColor] is used.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
+        /// <Summary>
+        /// The brightness of the app bar's material. Typically this is set along
+        /// with [backgroundColor], [iconTheme], [textTheme].
+        ///
+        /// If this property is null, then [ThemeData.appBarTheme.brightness] is used,
+        /// if that is also null, then [ThemeData.primaryColorBrightness] is used.
+        /// </Summary>
         public virtual Brightness Brightness { get; set; }
+        /// <Summary>
+        /// The color, opacity, and size to use for app bar icons. Typically this
+        /// is set along with [backgroundColor], [brightness], [textTheme].
+        ///
+        /// If this property is null, then [ThemeData.appBarTheme.iconTheme] is used,
+        /// if that is also null, then [ThemeData.primaryIconTheme] is used.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Iconthemedata.IconThemeData IconTheme { get; set; }
+        /// <Summary>
+        /// The color, opacity, and size to use for trailing app bar icons. This
+        /// should only be used when the trailing icons should be themed differently
+        /// than the leading icons.
+        ///
+        /// If this property is null, then [ThemeData.appBarTheme.actionsIconTheme] is
+        /// used, if that is also null, then this falls back to [iconTheme].
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Iconthemedata.IconThemeData ActionsIconTheme { get; set; }
+        /// <Summary>
+        /// The typographic styles to use for text in the app bar. Typically this is
+        /// set along with [brightness] [backgroundColor], [iconTheme].
+        ///
+        /// If this property is null, then [ThemeData.appBarTheme.textTheme] is used,
+        /// if that is also null, then [ThemeData.primaryTextTheme] is used.
+        /// </Summary>
         public virtual FlutterSDK.Material.Texttheme.TextTheme TextTheme { get; set; }
+        /// <Summary>
+        /// Whether this app bar is being displayed at the top of the screen.
+        ///
+        /// If this is true, the top padding specified by the [MediaQuery] will be
+        /// added to the top of the toolbar.
+        /// </Summary>
         public virtual bool Primary { get; set; }
+        /// <Summary>
+        /// Whether the title should be centered.
+        ///
+        /// Defaults to being adapted to the current [TargetPlatform].
+        /// </Summary>
         public virtual bool CenterTitle { get; set; }
+        /// <Summary>
+        /// Whether the title should be wrapped with header [Semantics].
+        ///
+        /// Defaults to false.
+        /// </Summary>
         public virtual bool ExcludeHeaderSemantics { get; set; }
+        /// <Summary>
+        /// The spacing around [title] content on the horizontal axis. This spacing is
+        /// applied even if there is no [leading] content or [actions]. If you want
+        /// [title] to take all the space available, set this value to 0.0.
+        ///
+        /// Defaults to [NavigationToolbar.kMiddleSpacing].
+        /// </Summary>
         public virtual double TitleSpacing { get; set; }
+        /// <Summary>
+        /// The size of the app bar when it is fully expanded.
+        ///
+        /// By default, the total height of the toolbar and the bottom widget (if
+        /// any). If a [flexibleSpace] widget is specified this height should be big
+        /// enough to accommodate whatever that widget contains.
+        ///
+        /// This does not include the status bar height (which will be automatically
+        /// included if [primary] is true).
+        /// </Summary>
         public virtual double ExpandedHeight { get; set; }
+        /// <Summary>
+        /// Whether the app bar should become visible as soon as the user scrolls
+        /// towards the app bar.
+        ///
+        /// Otherwise, the user will need to scroll near the top of the scroll view to
+        /// reveal the app bar.
+        ///
+        /// If [snap] is true then a scroll that exposes the app bar will trigger an
+        /// animation that slides the entire app bar into view. Similarly if a scroll
+        /// dismisses the app bar, the animation will slide it completely out of view.
+        ///
+        /// ## Animated Examples
+        ///
+        /// The following animations show how the app bar changes its scrolling
+        /// behavior based on the value of this property.
+        ///
+        /// * App bar with [floating] set to false:
+        ///   {@animation 476 400 https://flutter.github.io/assets-for-api-docs/assets/material/app_bar.mp4}
+        /// * App bar with [floating] set to true:
+        ///   {@animation 476 400 https://flutter.github.io/assets-for-api-docs/assets/material/app_bar_floating.mp4}
+        ///
+        /// See also:
+        ///
+        ///  * [SliverAppBar] for more animated examples of how this property changes the
+        ///    behavior of the app bar in combination with [pinned] and [snap].
+        /// </Summary>
         public virtual bool Floating { get; set; }
+        /// <Summary>
+        /// Whether the app bar should remain visible at the start of the scroll view.
+        ///
+        /// The app bar can still expand and contract as the user scrolls, but it will
+        /// remain visible rather than being scrolled out of view.
+        ///
+        /// ## Animated Examples
+        ///
+        /// The following animations show how the app bar changes its scrolling
+        /// behavior based on the value of this property.
+        ///
+        /// * App bar with [pinned] set to false:
+        ///   {@animation 476 400 https://flutter.github.io/assets-for-api-docs/assets/material/app_bar.mp4}
+        /// * App bar with [pinned] set to true:
+        ///   {@animation 476 400 https://flutter.github.io/assets-for-api-docs/assets/material/app_bar_pinned.mp4}
+        ///
+        /// See also:
+        ///
+        ///  * [SliverAppBar] for more animated examples of how this property changes the
+        ///    behavior of the app bar in combination with [floating].
+        /// </Summary>
         public virtual bool Pinned { get; set; }
+        /// <Summary>
+        /// The material's shape as well as its shadow.
+        ///
+        /// A shadow is only displayed if the [elevation] is greater than zero.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Borders.ShapeBorder Shape { get; set; }
+        /// <Summary>
+        /// If [snap] and [floating] are true then the floating app bar will "snap"
+        /// into view.
+        ///
+        /// If [snap] is true then a scroll that exposes the floating app bar will
+        /// trigger an animation that slides the entire app bar into view. Similarly if
+        /// a scroll dismisses the app bar, the animation will slide the app bar
+        /// completely out of view.
+        ///
+        /// Snapping only applies when the app bar is floating, not when the app bar
+        /// appears at the top of its scroll view.
+        ///
+        /// ## Animated Examples
+        ///
+        /// The following animations show how the app bar changes its scrolling
+        /// behavior based on the value of this property.
+        ///
+        /// * App bar with [snap] set to false:
+        ///   {@animation 476 400 https://flutter.github.io/assets-for-api-docs/assets/material/app_bar_floating.mp4}
+        /// * App bar with [snap] set to true:
+        ///   {@animation 476 400 https://flutter.github.io/assets-for-api-docs/assets/material/app_bar_floating_snap.mp4}
+        ///
+        /// See also:
+        ///
+        ///  * [SliverAppBar] for more animated examples of how this property changes the
+        ///    behavior of the app bar in combination with [pinned] and [floating].
+        /// </Summary>
         public virtual bool Snap { get; set; }
+        /// <Summary>
+        /// Whether the app bar should stretch to fill the over-scroll area.
+        ///
+        /// The app bar can still expand and contract as the user scrolls, but it will
+        /// also stretch when the user over-scrolls.
+        /// </Summary>
         public virtual bool Stretch { get; set; }
+        /// <Summary>
+        /// The offset of overscroll required to activate [onStretchTrigger].
+        ///
+        /// This defaults to 100.0.
+        /// </Summary>
         public virtual double StretchTriggerOffset { get; set; }
+        /// <Summary>
+        /// The callback function to be executed when a user over-scrolls to the
+        /// offset specified by [stretchTriggerOffset].
+        /// </Summary>
         public virtual FlutterSDK.Foundation.Basictypes.AsyncCallback OnStretchTrigger { get; set; }
 
         public new FlutterSDK.Material.Appbar._SliverAppBarState CreateState() => new _SliverAppBarState();

@@ -464,6 +464,11 @@ namespace FlutterSDK.Widgets.Scrollcontroller
     /// </Summary>
     public class ScrollController : FlutterSDK.Foundation.Changenotifier.ChangeNotifier
     {
+        /// <Summary>
+        /// Creates a controller for a scrollable widget.
+        ///
+        /// The values of `initialScrollOffset` and `keepScrollOffset` must not be null.
+        /// </Summary>
         public ScrollController(double initialScrollOffset = 0.0, bool keepScrollOffset = true, string debugLabel = default(string))
         : base()
         {
@@ -471,7 +476,28 @@ namespace FlutterSDK.Widgets.Scrollcontroller
             this.DebugLabel = debugLabel;
         }
         internal virtual double _InitialScrollOffset { get; set; }
+        /// <Summary>
+        /// Each time a scroll completes, save the current scroll [offset] with
+        /// [PageStorage] and restore it if this controller's scrollable is recreated.
+        ///
+        /// If this property is set to false, the scroll offset is never saved
+        /// and [initialScrollOffset] is always used to initialize the scroll
+        /// offset. If true (the default), the initial scroll offset is used the
+        /// first time the controller's scrollable is created, since there's no
+        /// scroll offset to restore yet. Subsequently the saved offset is
+        /// restored and [initialScrollOffset] is ignored.
+        ///
+        /// See also:
+        ///
+        ///  * [PageStorageKey], which should be used when more than one
+        ///    scrollable appears in the same route, to distinguish the [PageStorage]
+        ///    locations used to save scroll offsets.
+        /// </Summary>
         public virtual bool KeepScrollOffset { get; set; }
+        /// <Summary>
+        /// A label that is used in the [toString] output. Intended to aid with
+        /// identifying scroll controller instances in debug output.
+        /// </Summary>
         public virtual string DebugLabel { get; set; }
         internal virtual List<FlutterSDK.Widgets.Scrollposition.ScrollPosition> _Positions { get; set; }
         public virtual double InitialScrollOffset { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
@@ -699,6 +725,10 @@ namespace FlutterSDK.Widgets.Scrollcontroller
     /// </Summary>
     public class TrackingScrollController : FlutterSDK.Widgets.Scrollcontroller.ScrollController
     {
+        /// <Summary>
+        /// Creates a scroll controller that continually updates its
+        /// [initialScrollOffset] to match the last scroll notification it received.
+        /// </Summary>
         public TrackingScrollController(double initialScrollOffset = 0.0, bool keepScrollOffset = true, string debugLabel = default(string))
         : base(initialScrollOffset: initialScrollOffset, keepScrollOffset: keepScrollOffset, debugLabel: debugLabel)
         {

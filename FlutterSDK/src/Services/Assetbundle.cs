@@ -558,6 +558,10 @@ namespace FlutterSDK.Services.Assetbundle
     /// </Summary>
     public class NetworkAssetBundle : FlutterSDK.Services.Assetbundle.AssetBundle
     {
+        /// <Summary>
+        /// Creates an network asset bundle that resolves asset keys as URLs relative
+        /// to the given base URL.
+        /// </Summary>
         public NetworkAssetBundle(Uri baseUrl)
         : base()
         {

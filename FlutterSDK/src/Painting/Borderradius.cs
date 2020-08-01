@@ -465,6 +465,10 @@ namespace FlutterSDK.Painting.Borderradius
     /// </Summary>
     public class BorderRadiusGeometry
     {
+        /// <Summary>
+        /// Abstract const constructor. This constructor enables subclasses to provide
+        /// const constructors so that they can be used in const expressions.
+        /// </Summary>
         public BorderRadiusGeometry()
         {
 
@@ -659,22 +663,40 @@ namespace FlutterSDK.Painting.Borderradius
     /// </Summary>
     public class BorderRadius : FlutterSDK.Painting.Borderradius.BorderRadiusGeometry
     {
+        /// <Summary>
+        /// Creates a border radius where all radii are [radius].
+        /// </Summary>
         public static BorderRadius All(Radius radius)
         {
             var instance = new BorderRadius();
         }
+        /// <Summary>
+        /// Creates a border radius where all radii are [Radius.circular(radius)].
+        /// </Summary>
         public static BorderRadius Circular(double radius)
         {
             var instance = new BorderRadius();
         }
+        /// <Summary>
+        /// Creates a vertically symmetric border radius where the top and bottom
+        /// sides of the rectangle have the same radii.
+        /// </Summary>
         public static BorderRadius Vertical(Radius top = default(Radius), Radius bottom = default(Radius))
         {
             var instance = new BorderRadius();
         }
+        /// <Summary>
+        /// Creates a horizontally symmetrical border radius where the left and right
+        /// sides of the rectangle have the same radii.
+        /// </Summary>
         public static BorderRadius Horizontal(Radius left = default(Radius), Radius right = default(Radius))
         {
             var instance = new BorderRadius();
         }
+        /// <Summary>
+        /// Creates a border radius with only the given non-zero values. The other
+        /// corners will be right angles.
+        /// </Summary>
         public static BorderRadius Only(Radius topLeft = default(Radius), Radius topRight = default(Radius), Radius bottomLeft = default(Radius), Radius bottomRight = default(Radius))
         {
             var instance = new BorderRadius(); instance.TopLeft = topLeft;
@@ -682,10 +704,25 @@ namespace FlutterSDK.Painting.Borderradius
             instance.BottomLeft = bottomLeft;
             instance.BottomRight = bottomRight;
         }
+        /// <Summary>
+        /// A border radius with all zero radii.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Borderradius.BorderRadius Zero { get; set; }
+        /// <Summary>
+        /// The top-left [Radius].
+        /// </Summary>
         public virtual Radius TopLeft { get; set; }
+        /// <Summary>
+        /// The top-right [Radius].
+        /// </Summary>
         public virtual Radius TopRight { get; set; }
+        /// <Summary>
+        /// The bottom-left [Radius].
+        /// </Summary>
         public virtual Radius BottomLeft { get; set; }
+        /// <Summary>
+        /// The bottom-right [Radius].
+        /// </Summary>
         public virtual Radius BottomRight { get; set; }
         internal virtual Radius _TopLeft { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         internal virtual Radius _TopRight { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
@@ -845,22 +882,40 @@ namespace FlutterSDK.Painting.Borderradius
     /// </Summary>
     public class BorderRadiusDirectional : FlutterSDK.Painting.Borderradius.BorderRadiusGeometry
     {
+        /// <Summary>
+        /// Creates a border radius where all radii are [radius].
+        /// </Summary>
         public static BorderRadiusDirectional All(Radius radius)
         {
             var instance = new BorderRadiusDirectional();
         }
+        /// <Summary>
+        /// Creates a border radius where all radii are [Radius.circular(radius)].
+        /// </Summary>
         public static BorderRadiusDirectional Circular(double radius)
         {
             var instance = new BorderRadiusDirectional();
         }
+        /// <Summary>
+        /// Creates a vertically symmetric border radius where the top and bottom
+        /// sides of the rectangle have the same radii.
+        /// </Summary>
         public static BorderRadiusDirectional Vertical(Radius top = default(Radius), Radius bottom = default(Radius))
         {
             var instance = new BorderRadiusDirectional();
         }
+        /// <Summary>
+        /// Creates a horizontally symmetrical border radius where the start and end
+        /// sides of the rectangle have the same radii.
+        /// </Summary>
         public static BorderRadiusDirectional Horizontal(Radius start = default(Radius), Radius end = default(Radius))
         {
             var instance = new BorderRadiusDirectional();
         }
+        /// <Summary>
+        /// Creates a border radius with only the given non-zero values. The other
+        /// corners will be right angles.
+        /// </Summary>
         public static BorderRadiusDirectional Only(Radius topStart = default(Radius), Radius topEnd = default(Radius), Radius bottomStart = default(Radius), Radius bottomEnd = default(Radius))
         {
             var instance = new BorderRadiusDirectional(); instance.TopStart = topStart;
@@ -868,10 +923,28 @@ namespace FlutterSDK.Painting.Borderradius
             instance.BottomStart = bottomStart;
             instance.BottomEnd = bottomEnd;
         }
+        /// <Summary>
+        /// A border radius with all zero radii.
+        ///
+        /// Consider using [EdgeInsets.zero] instead, since that object has the same
+        /// effect, but will be cheaper to [resolve].
+        /// </Summary>
         public virtual FlutterSDK.Painting.Borderradius.BorderRadiusDirectional Zero { get; set; }
+        /// <Summary>
+        /// The top-start [Radius].
+        /// </Summary>
         public virtual Radius TopStart { get; set; }
+        /// <Summary>
+        /// The top-end [Radius].
+        /// </Summary>
         public virtual Radius TopEnd { get; set; }
+        /// <Summary>
+        /// The bottom-start [Radius].
+        /// </Summary>
         public virtual Radius BottomStart { get; set; }
+        /// <Summary>
+        /// The bottom-end [Radius].
+        /// </Summary>
         public virtual Radius BottomEnd { get; set; }
         internal virtual Radius _TopStart { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         internal virtual Radius _TopEnd { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }

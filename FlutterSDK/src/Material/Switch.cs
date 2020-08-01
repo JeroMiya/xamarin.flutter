@@ -452,6 +452,19 @@ namespace FlutterSDK.Material.Switch
     /// </Summary>
     public class Switch : FlutterSDK.Widgets.Framework.StatefulWidget
     {
+        /// <Summary>
+        /// Creates a material design switch.
+        ///
+        /// The switch itself does not maintain any state. Instead, when the state of
+        /// the switch changes, the widget calls the [onChanged] callback. Most widgets
+        /// that use a switch will listen for the [onChanged] callback and rebuild the
+        /// switch with a new [value] to update the visual appearance of the switch.
+        ///
+        /// The following arguments are required:
+        ///
+        /// * [value] determines whether this switch is on or off.
+        /// * [onChanged] is called when the user toggles the switch on or off.
+        /// </Summary>
         public Switch(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), bool value = default(bool), FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>), FlutterBinding.UI.Color activeColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color activeTrackColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color inactiveThumbColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color inactiveTrackColor = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Imageprovider.ImageProvider<object> activeThumbImage = default(FlutterSDK.Painting.Imageprovider.ImageProvider<object>), FlutterSDK.Painting.Imagestream.ImageErrorListener onActiveThumbImageError = default(FlutterSDK.Painting.Imagestream.ImageErrorListener), FlutterSDK.Painting.Imageprovider.ImageProvider<object> inactiveThumbImage = default(FlutterSDK.Painting.Imageprovider.ImageProvider<object>), FlutterSDK.Painting.Imagestream.ImageErrorListener onInactiveThumbImageError = default(FlutterSDK.Painting.Imagestream.ImageErrorListener), FlutterSDK.Material.Themedata.MaterialTapTargetSize materialTapTargetSize = default(FlutterSDK.Material.Themedata.MaterialTapTargetSize), FlutterSDK.Gestures.Recognizer.DragStartBehavior dragStartBehavior = default(FlutterSDK.Gestures.Recognizer.DragStartBehavior), FlutterBinding.UI.Color focusColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color hoverColor = default(FlutterBinding.UI.Color), FlutterSDK.Widgets.Focusmanager.FocusNode focusNode = default(FlutterSDK.Widgets.Focusmanager.FocusNode), bool autofocus = false)
         : base(key: key)
         {
@@ -472,6 +485,17 @@ namespace FlutterSDK.Material.Switch
             this.FocusNode = focusNode;
             this.Autofocus = autofocus;
         }
+        /// <Summary>
+        /// Creates a [CupertinoSwitch] if the target platform is iOS, creates a
+        /// material design switch otherwise.
+        ///
+        /// If a [CupertinoSwitch] is created, the following parameters are
+        /// ignored: [activeTrackColor], [inactiveThumbColor], [inactiveTrackColor],
+        /// [activeThumbImage], [onActiveThumbImageError], [inactiveThumbImage],
+        /// [onInactiveImageThumbError], [materialTapTargetSize].
+        ///
+        /// The target platform is based on the current [Theme]: [ThemeData.platform].
+        /// </Summary>
         public static Switch Adaptive(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), bool value = default(bool), FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>), FlutterBinding.UI.Color activeColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color activeTrackColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color inactiveThumbColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color inactiveTrackColor = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Imageprovider.ImageProvider<object> activeThumbImage = default(FlutterSDK.Painting.Imageprovider.ImageProvider<object>), FlutterSDK.Painting.Imagestream.ImageErrorListener onActiveThumbImageError = default(FlutterSDK.Painting.Imagestream.ImageErrorListener), FlutterSDK.Painting.Imageprovider.ImageProvider<object> inactiveThumbImage = default(FlutterSDK.Painting.Imageprovider.ImageProvider<object>), FlutterSDK.Painting.Imagestream.ImageErrorListener onInactiveThumbImageError = default(FlutterSDK.Painting.Imagestream.ImageErrorListener), FlutterSDK.Material.Themedata.MaterialTapTargetSize materialTapTargetSize = default(FlutterSDK.Material.Themedata.MaterialTapTargetSize), FlutterSDK.Gestures.Recognizer.DragStartBehavior dragStartBehavior = default(FlutterSDK.Gestures.Recognizer.DragStartBehavior), FlutterBinding.UI.Color focusColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color hoverColor = default(FlutterBinding.UI.Color), FlutterSDK.Widgets.Focusmanager.FocusNode focusNode = default(FlutterSDK.Widgets.Focusmanager.FocusNode), bool autofocus = false)
         {
             var instance = new Switch(key: key); instance.Value = value;
@@ -491,22 +515,119 @@ namespace FlutterSDK.Material.Switch
             instance.FocusNode = focusNode;
             instance.Autofocus = autofocus;
         }
+        /// <Summary>
+        /// Whether this switch is on or off.
+        ///
+        /// This property must not be null.
+        /// </Summary>
         public virtual bool Value { get; set; }
+        /// <Summary>
+        /// Called when the user toggles the switch on or off.
+        ///
+        /// The switch passes the new value to the callback but does not actually
+        /// change state until the parent widget rebuilds the switch with the new
+        /// value.
+        ///
+        /// If null, the switch will be displayed as disabled.
+        ///
+        /// The callback provided to [onChanged] should update the state of the parent
+        /// [StatefulWidget] using the [State.setState] method, so that the parent
+        /// gets rebuilt; for example:
+        ///
+        /// ```dart
+        /// Switch(
+        ///   value: _giveVerse,
+        ///   onChanged: (bool newValue) {
+        ///     setState(() {
+        ///       _giveVerse = newValue;
+        ///     });
+        ///   },
+        /// )
+        /// ```
+        /// </Summary>
         public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<bool> OnChanged { get; set; }
+        /// <Summary>
+        /// The color to use when this switch is on.
+        ///
+        /// Defaults to [ThemeData.toggleableActiveColor].
+        /// </Summary>
         public virtual FlutterBinding.UI.Color ActiveColor { get; set; }
+        /// <Summary>
+        /// The color to use on the track when this switch is on.
+        ///
+        /// Defaults to [ThemeData.toggleableActiveColor] with the opacity set at 50%.
+        ///
+        /// Ignored if this switch is created with [Switch.adaptive].
+        /// </Summary>
         public virtual FlutterBinding.UI.Color ActiveTrackColor { get; set; }
+        /// <Summary>
+        /// The color to use on the thumb when this switch is off.
+        ///
+        /// Defaults to the colors described in the Material design specification.
+        ///
+        /// Ignored if this switch is created with [Switch.adaptive].
+        /// </Summary>
         public virtual FlutterBinding.UI.Color InactiveThumbColor { get; set; }
+        /// <Summary>
+        /// The color to use on the track when this switch is off.
+        ///
+        /// Defaults to the colors described in the Material design specification.
+        ///
+        /// Ignored if this switch is created with [Switch.adaptive].
+        /// </Summary>
         public virtual FlutterBinding.UI.Color InactiveTrackColor { get; set; }
+        /// <Summary>
+        /// An image to use on the thumb of this switch when the switch is on.
+        ///
+        /// Ignored if this switch is created with [Switch.adaptive].
+        /// </Summary>
         public virtual FlutterSDK.Painting.Imageprovider.ImageProvider<object> ActiveThumbImage { get; set; }
+        /// <Summary>
+        /// An optional error callback for errors emitted when loading
+        /// [activeThumbImage].
+        /// </Summary>
         public virtual FlutterSDK.Painting.Imagestream.ImageErrorListener OnActiveThumbImageError { get; set; }
+        /// <Summary>
+        /// An image to use on the thumb of this switch when the switch is off.
+        ///
+        /// Ignored if this switch is created with [Switch.adaptive].
+        /// </Summary>
         public virtual FlutterSDK.Painting.Imageprovider.ImageProvider<object> InactiveThumbImage { get; set; }
+        /// <Summary>
+        /// An optional error callback for errors emitted when loading
+        /// [inactiveThumbImage].
+        /// </Summary>
         public virtual FlutterSDK.Painting.Imagestream.ImageErrorListener OnInactiveThumbImageError { get; set; }
+        /// <Summary>
+        /// Configures the minimum size of the tap target.
+        ///
+        /// Defaults to [ThemeData.materialTapTargetSize].
+        ///
+        /// See also:
+        ///
+        ///  * [MaterialTapTargetSize], for a description of how this affects tap targets.
+        /// </Summary>
         public virtual FlutterSDK.Material.Themedata.MaterialTapTargetSize MaterialTapTargetSize { get; set; }
         internal virtual FlutterSDK.Material.Switch._SwitchType _SwitchType { get; set; }
+        /// <Summary>
+        /// {@macro flutter.cupertino.switch.dragStartBehavior}
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Recognizer.DragStartBehavior DragStartBehavior { get; set; }
+        /// <Summary>
+        /// The color for the button's [Material] when it has the input focus.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color FocusColor { get; set; }
+        /// <Summary>
+        /// The color for the button's [Material] when a pointer is hovering over it.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color HoverColor { get; set; }
+        /// <Summary>
+        /// {@macro flutter.widgets.Focus.focusNode}
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Focusmanager.FocusNode FocusNode { get; set; }
+        /// <Summary>
+        /// {@macro flutter.widgets.Focus.autofocus}
+        /// </Summary>
         public virtual bool Autofocus { get; set; }
 
         public new FlutterSDK.Material.Switch._SwitchState CreateState() => new _SwitchState();

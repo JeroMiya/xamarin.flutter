@@ -644,11 +644,21 @@ namespace FlutterSDK.Widgets.Transitions
     /// </Summary>
     public class AnimatedWidget : FlutterSDK.Widgets.Framework.StatefulWidget
     {
+        /// <Summary>
+        /// Creates a widget that rebuilds when the given listenable changes.
+        ///
+        /// The [listenable] argument is required.
+        /// </Summary>
         public AnimatedWidget(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Foundation.Changenotifier.Listenable listenable = default(FlutterSDK.Foundation.Changenotifier.Listenable))
         : base(key: key)
         {
             this.Listenable = listenable;
         }
+        /// <Summary>
+        /// The [Listenable] to which this widget is listening.
+        ///
+        /// Commonly an [Animation] or a [ChangeNotifier].
+        /// </Summary>
         public virtual FlutterSDK.Foundation.Changenotifier.Listenable Listenable { get; set; }
 
         /// <Summary>
@@ -806,6 +816,11 @@ namespace FlutterSDK.Widgets.Transitions
     /// </Summary>
     public class SlideTransition : FlutterSDK.Widgets.Transitions.AnimatedWidget
     {
+        /// <Summary>
+        /// Creates a fractional translation transition.
+        ///
+        /// The [position] argument must not be null.
+        /// </Summary>
         public SlideTransition(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Animation.Animation.Animation<Offset> position = default(FlutterSDK.Animation.Animation.Animation<Offset>), bool transformHitTests = true, TextDirection textDirection = default(TextDirection), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, listenable: position)
         {
@@ -813,8 +828,34 @@ namespace FlutterSDK.Widgets.Transitions
             this.TextDirection = textDirection;
             this.Child = child;
         }
+        /// <Summary>
+        /// The direction to use for the x offset described by the [position].
+        ///
+        /// If [textDirection] is null, the x offset is applied in the coordinate
+        /// system of the canvas (so positive x offsets move the child towards the
+        /// right).
+        ///
+        /// If [textDirection] is [TextDirection.rtl], the x offset is applied in the
+        /// reading direction such that x offsets move the child towards the left.
+        ///
+        /// If [textDirection] is [TextDirection.ltr], the x offset is applied in the
+        /// reading direction such that x offsets move the child towards the right.
+        /// </Summary>
         public virtual TextDirection TextDirection { get; set; }
+        /// <Summary>
+        /// Whether hit testing should be affected by the slide animation.
+        ///
+        /// If false, hit testing will proceed as if the child was not translated at
+        /// all. Setting this value to false is useful for fast animations where you
+        /// expect the user to commonly interact with the child widget in its final
+        /// location and you want the user to benefit from "muscle memory".
+        /// </Summary>
         public virtual bool TransformHitTests { get; set; }
+        /// <Summary>
+        /// The widget below this widget in the tree.
+        ///
+        /// {@macro flutter.widgets.child}
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
         public virtual FlutterSDK.Animation.Animation.Animation<Offset> Position { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 
@@ -848,13 +889,31 @@ namespace FlutterSDK.Widgets.Transitions
     /// </Summary>
     public class ScaleTransition : FlutterSDK.Widgets.Transitions.AnimatedWidget
     {
+        /// <Summary>
+        /// Creates a scale transition.
+        ///
+        /// The [scale] argument must not be null. The [alignment] argument defaults
+        /// to [Alignment.center].
+        /// </Summary>
         public ScaleTransition(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Animation.Animation.Animation<double> scale = default(FlutterSDK.Animation.Animation.Animation<double>), FlutterSDK.Painting.Alignment.Alignment alignment = default(FlutterSDK.Painting.Alignment.Alignment), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, listenable: scale)
         {
             this.Alignment = alignment;
             this.Child = child;
         }
+        /// <Summary>
+        /// The alignment of the origin of the coordinate system in which the scale
+        /// takes place, relative to the size of the box.
+        ///
+        /// For example, to set the origin of the scale to bottom middle, you can use
+        /// an alignment of (0.0, 1.0).
+        /// </Summary>
         public virtual FlutterSDK.Painting.Alignment.Alignment Alignment { get; set; }
+        /// <Summary>
+        /// The widget below this widget in the tree.
+        ///
+        /// {@macro flutter.widgets.child}
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
         public virtual FlutterSDK.Animation.Animation.Animation<double> Scale { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 
@@ -886,13 +945,30 @@ namespace FlutterSDK.Widgets.Transitions
     /// </Summary>
     public class RotationTransition : FlutterSDK.Widgets.Transitions.AnimatedWidget
     {
+        /// <Summary>
+        /// Creates a rotation transition.
+        ///
+        /// The [turns] argument must not be null.
+        /// </Summary>
         public RotationTransition(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Animation.Animation.Animation<double> turns = default(FlutterSDK.Animation.Animation.Animation<double>), FlutterSDK.Painting.Alignment.Alignment alignment = default(FlutterSDK.Painting.Alignment.Alignment), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, listenable: turns)
         {
             this.Alignment = alignment;
             this.Child = child;
         }
+        /// <Summary>
+        /// The alignment of the origin of the coordinate system around which the
+        /// rotation occurs, relative to the size of the box.
+        ///
+        /// For example, to set the origin of the rotation to top right corner, use
+        /// an alignment of (1.0, -1.0) or use [Alignment.topRight]
+        /// </Summary>
         public virtual FlutterSDK.Painting.Alignment.Alignment Alignment { get; set; }
+        /// <Summary>
+        /// The widget below this widget in the tree.
+        ///
+        /// {@macro flutter.widgets.child}
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
         public virtual FlutterSDK.Animation.Animation.Animation<double> Turns { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 
@@ -938,6 +1014,14 @@ namespace FlutterSDK.Widgets.Transitions
     /// </Summary>
     public class SizeTransition : FlutterSDK.Widgets.Transitions.AnimatedWidget
     {
+        /// <Summary>
+        /// Creates a size transition.
+        ///
+        /// The [axis], [sizeFactor], and [axisAlignment] arguments must not be null.
+        /// The [axis] argument defaults to [Axis.vertical]. The [axisAlignment]
+        /// defaults to 0.0, which centers the child along the main axis during the
+        /// transition.
+        /// </Summary>
         public SizeTransition(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Basictypes.Axis axis = default(FlutterSDK.Painting.Basictypes.Axis), FlutterSDK.Animation.Animation.Animation<double> sizeFactor = default(FlutterSDK.Animation.Animation.Animation<double>), double axisAlignment = 0.0, FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, listenable: sizeFactor)
         {
@@ -945,8 +1029,30 @@ namespace FlutterSDK.Widgets.Transitions
             this.AxisAlignment = axisAlignment;
             this.Child = child;
         }
+        /// <Summary>
+        /// [Axis.horizontal] if [sizeFactor] modifies the width, otherwise
+        /// [Axis.vertical].
+        /// </Summary>
         public virtual FlutterSDK.Painting.Basictypes.Axis Axis { get; set; }
+        /// <Summary>
+        /// Describes how to align the child along the axis that [sizeFactor] is
+        /// modifying.
+        ///
+        /// A value of -1.0 indicates the top when [axis] is [Axis.vertical], and the
+        /// start when [axis] is [Axis.horizontal]. The start is on the left when the
+        /// text direction in effect is [TextDirection.ltr] and on the right when it
+        /// is [TextDirection.rtl].
+        ///
+        /// A value of 1.0 indicates the bottom or end, depending upon the [axis].
+        ///
+        /// A value of 0.0 (the default) indicates the center for either [axis] value.
+        /// </Summary>
         public virtual double AxisAlignment { get; set; }
+        /// <Summary>
+        /// The widget below this widget in the tree.
+        ///
+        /// {@macro flutter.widgets.child}
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
         public virtual FlutterSDK.Animation.Animation.Animation<double> SizeFactor { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 
@@ -983,13 +1089,36 @@ namespace FlutterSDK.Widgets.Transitions
     /// </Summary>
     public class FadeTransition : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
+        /// <Summary>
+        /// Creates an opacity transition.
+        ///
+        /// The [opacity] argument must not be null.
+        /// </Summary>
         public FadeTransition(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Animation.Animation.Animation<double> opacity = default(FlutterSDK.Animation.Animation.Animation<double>), bool alwaysIncludeSemantics = false, FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
             this.Opacity = opacity;
             this.AlwaysIncludeSemantics = alwaysIncludeSemantics;
         }
+        /// <Summary>
+        /// The animation that controls the opacity of the child.
+        ///
+        /// If the current value of the opacity animation is v, the child will be
+        /// painted with an opacity of v. For example, if v is 0.5, the child will be
+        /// blended 50% with its background. Similarly, if v is 0.0, the child will be
+        /// completely transparent.
+        /// </Summary>
         public virtual FlutterSDK.Animation.Animation.Animation<double> Opacity { get; set; }
+        /// <Summary>
+        /// Whether the semantic information of the children is always included.
+        ///
+        /// Defaults to false.
+        ///
+        /// When true, regardless of the opacity settings the child semantic
+        /// information is exposed as if the widget were fully visible. This is
+        /// useful in cases where labels may be hidden during animations that
+        /// would otherwise contribute relevant semantics.
+        /// </Summary>
         public virtual bool AlwaysIncludeSemantics { get; set; }
 
         public new FlutterSDK.Rendering.Proxybox.RenderAnimatedOpacity CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
@@ -1092,13 +1221,36 @@ namespace FlutterSDK.Widgets.Transitions
     /// </Summary>
     public class SliverFadeTransition : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
+        /// <Summary>
+        /// Creates an opacity transition.
+        ///
+        /// The [opacity] argument must not be null.
+        /// </Summary>
         public SliverFadeTransition(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Animation.Animation.Animation<double> opacity = default(FlutterSDK.Animation.Animation.Animation<double>), bool alwaysIncludeSemantics = false, FlutterSDK.Widgets.Framework.Widget sliver = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: sliver)
         {
             this.Opacity = opacity;
             this.AlwaysIncludeSemantics = alwaysIncludeSemantics;
         }
+        /// <Summary>
+        /// The animation that controls the opacity of the sliver child.
+        ///
+        /// If the current value of the opacity animation is v, the child will be
+        /// painted with an opacity of v. For example, if v is 0.5, the child will be
+        /// blended 50% with its background. Similarly, if v is 0.0, the child will be
+        /// completely transparent.
+        /// </Summary>
         public virtual FlutterSDK.Animation.Animation.Animation<double> Opacity { get; set; }
+        /// <Summary>
+        /// Whether the semantic information of the sliver child is always included.
+        ///
+        /// Defaults to false.
+        ///
+        /// When true, regardless of the opacity settings the sliver child's semantic
+        /// information is exposed as if the widget were fully visible. This is
+        /// useful in cases where labels may be hidden during animations that
+        /// would otherwise contribute relevant semantics.
+        /// </Summary>
         public virtual bool AlwaysIncludeSemantics { get; set; }
 
         public new FlutterSDK.Rendering.Proxysliver.RenderSliverAnimatedOpacity CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
@@ -1145,6 +1297,12 @@ namespace FlutterSDK.Widgets.Transitions
     /// </Summary>
     public class RelativeRectTween : FlutterSDK.Animation.Tween.Tween<FlutterSDK.Rendering.Stack.RelativeRect>
     {
+        /// <Summary>
+        /// Creates a [RelativeRect] tween.
+        ///
+        /// The [begin] and [end] properties may be null; the null value
+        /// is treated as [RelativeRect.fill].
+        /// </Summary>
         public RelativeRectTween(FlutterSDK.Rendering.Stack.RelativeRect begin = default(FlutterSDK.Rendering.Stack.RelativeRect), FlutterSDK.Rendering.Stack.RelativeRect end = default(FlutterSDK.Rendering.Stack.RelativeRect))
         : base(begin: begin, end: end)
         {
@@ -1188,11 +1346,21 @@ namespace FlutterSDK.Widgets.Transitions
     /// </Summary>
     public class PositionedTransition : FlutterSDK.Widgets.Transitions.AnimatedWidget
     {
+        /// <Summary>
+        /// Creates a transition for [Positioned].
+        ///
+        /// The [rect] argument must not be null.
+        /// </Summary>
         public PositionedTransition(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Animation.Animation.Animation<FlutterSDK.Rendering.Stack.RelativeRect> rect = default(FlutterSDK.Animation.Animation.Animation<FlutterSDK.Rendering.Stack.RelativeRect>), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, listenable: rect)
         {
             this.Child = child;
         }
+        /// <Summary>
+        /// The widget below this widget in the tree.
+        ///
+        /// {@macro flutter.widgets.child}
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
         public virtual FlutterSDK.Animation.Animation.Animation<FlutterSDK.Rendering.Stack.RelativeRect> Rect { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 
@@ -1232,13 +1400,29 @@ namespace FlutterSDK.Widgets.Transitions
     /// </Summary>
     public class RelativePositionedTransition : FlutterSDK.Widgets.Transitions.AnimatedWidget
     {
+        /// <Summary>
+        /// Create an animated version of [Positioned].
+        ///
+        /// Each frame, the [Positioned] widget will be configured to represent the
+        /// current value of the [rect] argument assuming that the stack has the given
+        /// [size]. Both [rect] and [size] must not be null.
+        /// </Summary>
         public RelativePositionedTransition(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Animation.Animation.Animation<Rect> rect = default(FlutterSDK.Animation.Animation.Animation<Rect>), Size size = default(Size), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, listenable: rect)
         {
             this.Size = size;
             this.Child = child;
         }
+        /// <Summary>
+        /// The [Positioned] widget's offsets are relative to a box of this
+        /// size whose origin is 0,0.
+        /// </Summary>
         public virtual Size Size { get; set; }
+        /// <Summary>
+        /// The widget below this widget in the tree.
+        ///
+        /// {@macro flutter.widgets.child}
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
         public virtual FlutterSDK.Animation.Animation.Animation<Rect> Rect { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 
@@ -1269,6 +1453,16 @@ namespace FlutterSDK.Widgets.Transitions
     /// </Summary>
     public class DecoratedBoxTransition : FlutterSDK.Widgets.Transitions.AnimatedWidget
     {
+        /// <Summary>
+        /// Creates an animated [DecoratedBox] whose [Decoration] animation updates
+        /// the widget.
+        ///
+        /// The [decoration] and [position] must not be null.
+        ///
+        /// See also:
+        ///
+        ///  * [new DecoratedBox]
+        /// </Summary>
         public DecoratedBoxTransition(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Animation.Animation.Animation<FlutterSDK.Painting.Decoration.Decoration> decoration = default(FlutterSDK.Animation.Animation.Animation<FlutterSDK.Painting.Decoration.Decoration>), FlutterSDK.Rendering.Proxybox.DecorationPosition position = default(FlutterSDK.Rendering.Proxybox.DecorationPosition), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, listenable: decoration)
         {
@@ -1276,8 +1470,22 @@ namespace FlutterSDK.Widgets.Transitions
             this.Position = position;
             this.Child = child;
         }
+        /// <Summary>
+        /// Animation of the decoration to paint.
+        ///
+        /// Can be created using a [DecorationTween] interpolating typically between
+        /// two [BoxDecoration].
+        /// </Summary>
         public virtual FlutterSDK.Animation.Animation.Animation<FlutterSDK.Painting.Decoration.Decoration> Decoration { get; set; }
+        /// <Summary>
+        /// Whether to paint the box decoration behind or in front of the child.
+        /// </Summary>
         public virtual FlutterSDK.Rendering.Proxybox.DecorationPosition Position { get; set; }
+        /// <Summary>
+        /// The widget below this widget in the tree.
+        ///
+        /// {@macro flutter.widgets.child}
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
@@ -1312,6 +1520,14 @@ namespace FlutterSDK.Widgets.Transitions
     /// </Summary>
     public class AlignTransition : FlutterSDK.Widgets.Transitions.AnimatedWidget
     {
+        /// <Summary>
+        /// Creates an animated [Align] whose [AlignmentGeometry] animation updates
+        /// the widget.
+        ///
+        /// See also:
+        ///
+        ///  * [new Align].
+        /// </Summary>
         public AlignTransition(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Animation.Animation.Animation<FlutterSDK.Painting.Alignment.AlignmentGeometry> alignment = default(FlutterSDK.Animation.Animation.Animation<FlutterSDK.Painting.Alignment.AlignmentGeometry>), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), double widthFactor = default(double), double heightFactor = default(double))
         : base(key: key, listenable: alignment)
         {
@@ -1319,8 +1535,19 @@ namespace FlutterSDK.Widgets.Transitions
             this.WidthFactor = widthFactor;
             this.HeightFactor = heightFactor;
         }
+        /// <Summary>
+        /// If non-null, the child's width factor, see [Align.widthFactor].
+        /// </Summary>
         public virtual double WidthFactor { get; set; }
+        /// <Summary>
+        /// If non-null, the child's height factor, see [Align.heightFactor].
+        /// </Summary>
         public virtual double HeightFactor { get; set; }
+        /// <Summary>
+        /// The widget below this widget in the tree.
+        ///
+        /// {@macro flutter.widgets.child}
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
         public virtual FlutterSDK.Animation.Animation.Animation<FlutterSDK.Painting.Alignment.AlignmentGeometry> Alignment { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 
@@ -1347,6 +1574,10 @@ namespace FlutterSDK.Widgets.Transitions
     /// </Summary>
     public class DefaultTextStyleTransition : FlutterSDK.Widgets.Transitions.AnimatedWidget
     {
+        /// <Summary>
+        /// Creates an animated [DefaultTextStyle] whose [TextStyle] animation updates
+        /// the widget.
+        /// </Summary>
         public DefaultTextStyleTransition(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Animation.Animation.Animation<FlutterSDK.Painting.Textstyle.TextStyle> style = default(FlutterSDK.Animation.Animation.Animation<FlutterSDK.Painting.Textstyle.TextStyle>), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), TextAlign textAlign = default(TextAlign), bool softWrap = true, FlutterSDK.Rendering.Paragraph.TextOverflow overflow = default(FlutterSDK.Rendering.Paragraph.TextOverflow), int maxLines = default(int))
         : base(key: key, listenable: style)
         {
@@ -1356,10 +1587,32 @@ namespace FlutterSDK.Widgets.Transitions
             this.Overflow = overflow;
             this.MaxLines = maxLines;
         }
+        /// <Summary>
+        /// How the text should be aligned horizontally.
+        /// </Summary>
         public virtual TextAlign TextAlign { get; set; }
+        /// <Summary>
+        /// Whether the text should break at soft line breaks.
+        ///
+        /// See [DefaultTextStyle.softWrap] for more details.
+        /// </Summary>
         public virtual bool SoftWrap { get; set; }
+        /// <Summary>
+        /// How visual overflow should be handled.
+        ///
+        /// </Summary>
         public virtual FlutterSDK.Rendering.Paragraph.TextOverflow Overflow { get; set; }
+        /// <Summary>
+        /// An optional maximum number of lines for the text to span, wrapping if necessary.
+        ///
+        /// See [DefaultTextStyle.maxLines] for more details.
+        /// </Summary>
         public virtual int MaxLines { get; set; }
+        /// <Summary>
+        /// The widget below this widget in the tree.
+        ///
+        /// {@macro flutter.widgets.child}
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
         public virtual FlutterSDK.Animation.Animation.Animation<FlutterSDK.Painting.Textstyle.TextStyle> Style { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 
@@ -1456,13 +1709,35 @@ namespace FlutterSDK.Widgets.Transitions
     /// </Summary>
     public class AnimatedBuilder : FlutterSDK.Widgets.Transitions.AnimatedWidget
     {
+        /// <Summary>
+        /// Creates an animated builder.
+        ///
+        /// The [animation] and [builder] arguments must not be null.
+        /// </Summary>
         public AnimatedBuilder(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Foundation.Changenotifier.Listenable animation = default(FlutterSDK.Foundation.Changenotifier.Listenable), FlutterSDK.Widgets.Framework.TransitionBuilder builder = default(FlutterSDK.Widgets.Framework.TransitionBuilder), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, listenable: animation)
         {
             this.Builder = builder;
             this.Child = child;
         }
+        /// <Summary>
+        /// Called every time the animation changes value.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.TransitionBuilder Builder { get; set; }
+        /// <Summary>
+        /// The child widget to pass to the [builder].
+        ///
+        /// If a [builder] callback's return value contains a subtree that does not
+        /// depend on the animation, it's more efficient to build that subtree once
+        /// instead of rebuilding it on every animation tick.
+        ///
+        /// If the pre-built subtree is passed as the [child] parameter, the
+        /// [AnimatedBuilder] will pass it back to the [builder] function so that it
+        /// can be incorporated into the build.
+        ///
+        /// Using this pre-built child is entirely optional, but can improve
+        /// performance significantly in some cases and is therefore a good practice.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)

@@ -446,6 +446,14 @@ namespace FlutterSDK.Widgets.Disposablebuildcontext
     /// </Summary>
     public class DisposableBuildContext<T>
     {
+        /// <Summary>
+        /// Creates an object that provides access to a [BuildContext] without leaking
+        /// a [State].
+        ///
+        /// Creators must call [dispose] when the [State] is disposed.
+        ///
+        /// The [State] must not be null, and [State.mounted] must be true.
+        /// </Summary>
         public DisposableBuildContext(T _state)
         : base()
         {

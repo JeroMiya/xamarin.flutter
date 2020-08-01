@@ -409,6 +409,17 @@ namespace FlutterSDK.Material.Inkhighlight
     /// </Summary>
     public class InkHighlight : FlutterSDK.Material.Inkwell.InteractiveInkFeature
     {
+        /// <Summary>
+        /// Begin a highlight animation.
+        ///
+        /// The [controller] argument is typically obtained via
+        /// `Material.of(context)`.
+        ///
+        /// If a `rectCallback` is given, then it provides the highlight rectangle,
+        /// otherwise, the highlight rectangle is coincident with the [referenceBox].
+        ///
+        /// When the highlight is removed, `onRemoved` will be called.
+        /// </Summary>
         public InkHighlight(FlutterSDK.Material.Material.MaterialInkController controller = default(FlutterSDK.Material.Material.MaterialInkController), FlutterSDK.Rendering.Box.RenderBox referenceBox = default(FlutterSDK.Rendering.Box.RenderBox), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), TextDirection textDirection = default(TextDirection), FlutterSDK.Painting.Boxborder.BoxShape shape = default(FlutterSDK.Painting.Boxborder.BoxShape), FlutterSDK.Painting.Borderradius.BorderRadius borderRadius = default(FlutterSDK.Painting.Borderradius.BorderRadius), FlutterSDK.Painting.Borders.ShapeBorder customBorder = default(FlutterSDK.Painting.Borders.ShapeBorder), FlutterSDK.Material.Material.RectCallback rectCallback = default(FlutterSDK.Material.Material.RectCallback), VoidCallback onRemoved = default(VoidCallback), TimeSpan fadeDuration = default(TimeSpan))
         : base(controller: controller, referenceBox: referenceBox, color: color, onRemoved: onRemoved)
         {

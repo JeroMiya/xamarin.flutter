@@ -460,11 +460,17 @@ namespace FlutterSDK.Widgets.Texture
     /// </Summary>
     public class Texture : FlutterSDK.Widgets.Framework.LeafRenderObjectWidget
     {
+        /// <Summary>
+        /// Creates a widget backed by the texture identified by [textureId].
+        /// </Summary>
         public Texture(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), int textureId = default(int))
         : base(key: key)
         {
             this.TextureId = textureId;
         }
+        /// <Summary>
+        /// The identity of the backend texture.
+        /// </Summary>
         public virtual int TextureId { get; set; }
 
         public new FlutterSDK.Rendering.Texture.TextureBox CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context) => new TextureBox(textureId: TextureId);

@@ -437,6 +437,11 @@ namespace FlutterSDK.Rendering.Rotatedbox
     /// </Summary>
     public class RenderRotatedBox : FlutterSDK.Rendering.Box.RenderBox, IRenderObjectWithChildMixin<FlutterSDK.Rendering.Box.RenderBox>
     {
+        /// <Summary>
+        /// Creates a rotated render box.
+        ///
+        /// The [quarterTurns] argument must not be null.
+        /// </Summary>
         public RenderRotatedBox(int quarterTurns = default(int), FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox))
         : base()
         {

@@ -497,6 +497,20 @@ namespace FlutterSDK.Material.Iconbutton
     /// </Summary>
     public class IconButton : FlutterSDK.Widgets.Framework.StatelessWidget
     {
+        /// <Summary>
+        /// Creates an icon button.
+        ///
+        /// Icon buttons are commonly used in the [AppBar.actions] field, but they can
+        /// be used in many other places as well.
+        ///
+        /// Requires one of its ancestors to be a [Material] widget.
+        ///
+        /// The [iconSize], [padding], [autofocus], and [alignment] arguments must not
+        /// be null (though they each have default values).
+        ///
+        /// The [icon] argument must be specified, and is typically either an [Icon]
+        /// or an [ImageIcon].
+        /// </Summary>
         public IconButton(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), double iconSize = 24.0, FlutterSDK.Material.Themedata.VisualDensity visualDensity = default(FlutterSDK.Material.Themedata.VisualDensity), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), FlutterSDK.Widgets.Framework.Widget icon = default(FlutterSDK.Widgets.Framework.Widget), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color focusColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color hoverColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color highlightColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color splashColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color disabledColor = default(FlutterBinding.UI.Color), VoidCallback onPressed = default(VoidCallback), FlutterSDK.Widgets.Focusmanager.FocusNode focusNode = default(FlutterSDK.Widgets.Focusmanager.FocusNode), bool autofocus = false, string tooltip = default(string), bool enableFeedback = true, FlutterSDK.Rendering.Box.BoxConstraints constraints = default(FlutterSDK.Rendering.Box.BoxConstraints))
         : base(key: key)
         {
@@ -518,22 +532,169 @@ namespace FlutterSDK.Material.Iconbutton
             this.EnableFeedback = enableFeedback;
             this.Constraints = constraints;
         }
+        /// <Summary>
+        /// The size of the icon inside the button.
+        ///
+        /// This property must not be null. It defaults to 24.0.
+        ///
+        /// The size given here is passed down to the widget in the [icon] property
+        /// via an [IconTheme]. Setting the size here instead of in, for example, the
+        /// [Icon.size] property allows the [IconButton] to size the splash area to
+        /// fit the [Icon]. If you were to set the size of the [Icon] using
+        /// [Icon.size] instead, then the [IconButton] would default to 24.0 and then
+        /// the [Icon] itself would likely get clipped.
+        /// </Summary>
         public virtual double IconSize { get; set; }
+        /// <Summary>
+        /// Defines how compact the icon button's layout will be.
+        ///
+        /// {@macro flutter.material.themedata.visualDensity}
+        ///
+        /// See also:
+        ///
+        ///  * [ThemeData.visualDensity], which specifies the [density] for all widgets
+        ///    within a [Theme].
+        /// </Summary>
         public virtual FlutterSDK.Material.Themedata.VisualDensity VisualDensity { get; set; }
+        /// <Summary>
+        /// The padding around the button's icon. The entire padded icon will react
+        /// to input gestures.
+        ///
+        /// This property must not be null. It defaults to 8.0 padding on all sides.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Padding { get; set; }
+        /// <Summary>
+        /// Defines how the icon is positioned within the IconButton.
+        ///
+        /// This property must not be null. It defaults to [Alignment.center].
+        ///
+        /// See also:
+        ///
+        ///  * [Alignment], a class with convenient constants typically used to
+        ///    specify an [AlignmentGeometry].
+        ///  * [AlignmentDirectional], like [Alignment] for specifying alignments
+        ///    relative to text direction.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Alignment.AlignmentGeometry Alignment { get; set; }
+        /// <Summary>
+        /// The icon to display inside the button.
+        ///
+        /// The [Icon.size] and [Icon.color] of the icon is configured automatically
+        /// based on the [iconSize] and [color] properties of _this_ widget using an
+        /// [IconTheme] and therefore should not be explicitly given in the icon
+        /// widget.
+        ///
+        /// This property must not be null.
+        ///
+        /// See [Icon], [ImageIcon].
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Icon { get; set; }
+        /// <Summary>
+        /// The color for the button's icon when it has the input focus.
+        ///
+        /// Defaults to [ThemeData.focusColor] of the ambient theme.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color FocusColor { get; set; }
+        /// <Summary>
+        /// The color for the button's icon when a pointer is hovering over it.
+        ///
+        /// Defaults to [ThemeData.hoverColor] of the ambient theme.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color HoverColor { get; set; }
+        /// <Summary>
+        /// The color to use for the icon inside the button, if the icon is enabled.
+        /// Defaults to leaving this up to the [icon] widget.
+        ///
+        /// The icon is enabled if [onPressed] is not null.
+        ///
+        /// ```dart
+        /// IconButton(
+        ///   color: Colors.blue,
+        ///   onPressed: _handleTap,
+        ///   icon: Icons.widgets,
+        /// )
+        /// ```
+        /// </Summary>
         public virtual FlutterBinding.UI.Color Color { get; set; }
+        /// <Summary>
+        /// The primary color of the button when the button is in the down (pressed) state.
+        /// The splash is represented as a circular overlay that appears above the
+        /// [highlightColor] overlay. The splash overlay has a center point that matches
+        /// the hit point of the user touch event. The splash overlay will expand to
+        /// fill the button area if the touch is held for long enough time. If the splash
+        /// color has transparency then the highlight and button color will show through.
+        ///
+        /// Defaults to the Theme's splash color, [ThemeData.splashColor].
+        /// </Summary>
         public virtual FlutterBinding.UI.Color SplashColor { get; set; }
+        /// <Summary>
+        /// The secondary color of the button when the button is in the down (pressed)
+        /// state. The highlight color is represented as a solid color that is overlaid over the
+        /// button color (if any). If the highlight color has transparency, the button color
+        /// will show through. The highlight fades in quickly as the button is held down.
+        ///
+        /// Defaults to the Theme's highlight color, [ThemeData.highlightColor].
+        /// </Summary>
         public virtual FlutterBinding.UI.Color HighlightColor { get; set; }
+        /// <Summary>
+        /// The color to use for the icon inside the button, if the icon is disabled.
+        /// Defaults to the [ThemeData.disabledColor] of the current [Theme].
+        ///
+        /// The icon is disabled if [onPressed] is null.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color DisabledColor { get; set; }
+        /// <Summary>
+        /// The callback that is called when the button is tapped or otherwise activated.
+        ///
+        /// If this is set to null, the button will be disabled.
+        /// </Summary>
         public virtual VoidCallback OnPressed { get; set; }
+        /// <Summary>
+        /// {@macro flutter.widgets.Focus.focusNode}
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Focusmanager.FocusNode FocusNode { get; set; }
+        /// <Summary>
+        /// {@macro flutter.widgets.Focus.autofocus}
+        /// </Summary>
         public virtual bool Autofocus { get; set; }
+        /// <Summary>
+        /// Text that describes the action that will occur when the button is pressed.
+        ///
+        /// This text is displayed when the user long-presses on the button and is
+        /// used for accessibility.
+        /// </Summary>
         public virtual string Tooltip { get; set; }
+        /// <Summary>
+        /// Whether detected gestures should provide acoustic and/or haptic feedback.
+        ///
+        /// For example, on Android a tap will produce a clicking sound and a
+        /// long-press will produce a short vibration, when feedback is enabled.
+        ///
+        /// See also:
+        ///
+        ///  * [Feedback] for providing platform-specific feedback to certain actions.
+        /// </Summary>
         public virtual bool EnableFeedback { get; set; }
+        /// <Summary>
+        /// Optional size constraints for the button.
+        ///
+        /// When unspecified, defaults to:
+        /// ```dart
+        /// const BoxConstraints(
+        ///   minWidth: kMinInteractiveDimension,
+        ///   minHeight: kMinInteractiveDimension,
+        /// )
+        /// ```
+        /// where [kMinInteractiveDimension] is 48.0, and then with visual density
+        /// applied.
+        ///
+        /// The default constraints ensure that the button is accessible.
+        /// Specifying this parameter enables creation of buttons smaller than
+        /// the minimum size, but it is not recommended.
+        ///
+        /// The visual density uses the [visualDensity] parameter if specified,
+        /// and `Theme.of(context).visualDensity` otherwise.
+        /// </Summary>
         public virtual FlutterSDK.Rendering.Box.BoxConstraints Constraints { get; set; }
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)

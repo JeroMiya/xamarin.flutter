@@ -5,6 +5,7 @@ import 'package:analyzer/src/dart/element/type.dart';
 import 'package:analyzer/src/dart/element/member.dart';
 import '../implementation/implementation.dart';
 import '../naming.dart';
+import '../comments.dart';
 import '../types.dart';
 
 class Fields {
@@ -51,7 +52,7 @@ class Fields {
   static String printField(FieldElement element) {
     var baseField = getBaseFieldInClass(element);
     var code = new StringBuffer();
-
+    Comments.appendComment(code, element);
     if (element.hasProtected == true) code.write("protected ");
     if (element.isPublic == true) code.write("public ");
     if (element.isPrivate == true) code.write("internal ");

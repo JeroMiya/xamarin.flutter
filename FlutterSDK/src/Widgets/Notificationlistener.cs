@@ -425,6 +425,14 @@ using FlutterSDK.Widgets.Constants;
 using FlutterSDK.Widgets.Routenotificationmessages;
 namespace FlutterSDK.Widgets.Notificationlistener
 {
+    /// <Summary>
+    /// Signature for [Notification] listeners.
+    ///
+    /// Return true to cancel the notification bubbling. Return false to allow the
+    /// notification to continue to be dispatched to further ancestors.
+    ///
+    /// Used by [NotificationListener.onNotification].
+    /// </Summary>
     public delegate bool NotificationListenerCallback<T>(T notification);
     internal static class NotificationlistenerDefaultClass
     {
@@ -467,6 +475,10 @@ namespace FlutterSDK.Widgets.Notificationlistener
     /// </Summary>
     public class Notification
     {
+        /// <Summary>
+        /// Abstract const constructor. This constructor enables subclasses to provide
+        /// const constructors so that they can be used in const expressions.
+        /// </Summary>
         public Notification()
         {
 
@@ -547,13 +559,42 @@ namespace FlutterSDK.Widgets.Notificationlistener
     /// </Summary>
     public class NotificationListener<T> : FlutterSDK.Widgets.Framework.StatelessWidget
     {
+        /// <Summary>
+        /// Creates a widget that listens for notifications.
+        /// </Summary>
         public NotificationListener(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Notificationlistener.NotificationListenerCallback<T> onNotification = default(FlutterSDK.Widgets.Notificationlistener.NotificationListenerCallback<T>))
         : base(key: key)
         {
             this.Child = child;
             this.OnNotification = onNotification;
         }
+        /// <Summary>
+        /// The widget directly below this widget in the tree.
+        ///
+        /// This is not necessarily the widget that dispatched the notification.
+        ///
+        /// {@macro flutter.widgets.child}
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+        /// <Summary>
+        /// Called when a notification of the appropriate type arrives at this
+        /// location in the tree.
+        ///
+        /// Return true to cancel the notification bubbling. Return false (or null) to
+        /// allow the notification to continue to be dispatched to further ancestors.
+        ///
+        /// The notification's [Notification.visitAncestor] method is called for each
+        /// ancestor, and invokes this callback as appropriate.
+        ///
+        /// Notifications vary in terms of when they are dispatched. There are two
+        /// main possibilities: dispatch between frames, and dispatch during layout.
+        ///
+        /// For notifications that dispatch during layout, such as those that inherit
+        /// from [LayoutChangedNotification], it is too late to call [State.setState]
+        /// in response to the notification (as layout is currently happening in a
+        /// descendant, by definition, since notifications bubble up the tree). For
+        /// widgets that depend on layout, consider a [LayoutBuilder] instead.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Notificationlistener.NotificationListenerCallback<T> OnNotification { get; set; }
 
         private bool _Dispatch(FlutterSDK.Widgets.Notificationlistener.Notification notification, FlutterSDK.Widgets.Framework.Element element)

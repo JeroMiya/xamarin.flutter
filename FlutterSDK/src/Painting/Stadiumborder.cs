@@ -442,11 +442,19 @@ namespace FlutterSDK.Painting.Stadiumborder
     /// </Summary>
     public class StadiumBorder : FlutterSDK.Painting.Borders.ShapeBorder
     {
+        /// <Summary>
+        /// Create a stadium border.
+        ///
+        /// The [side] argument must not be null.
+        /// </Summary>
         public StadiumBorder(FlutterSDK.Painting.Borders.BorderSide side = default(FlutterSDK.Painting.Borders.BorderSide))
         : base()
         {
             this.Side = side;
         }
+        /// <Summary>
+        /// The style of this border.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Borders.BorderSide Side { get; set; }
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Dimensions { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }

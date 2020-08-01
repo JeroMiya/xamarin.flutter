@@ -497,6 +497,17 @@ namespace FlutterSDK.Material.Tabcontroller
     /// </Summary>
     public class TabController : FlutterSDK.Foundation.Changenotifier.ChangeNotifier
     {
+        /// <Summary>
+        /// Creates an object that manages the state required by [TabBar] and a
+        /// [TabBarView].
+        ///
+        /// The [length] must not be null or negative. Typically it's a value greater
+        /// than one, i.e. typically there are two or more tabs. The [length] must
+        /// match [TabBar.tabs]'s and [TabBarView.children]'s length.
+        ///
+        /// The `initialIndex` must be valid given [length] and must not be null. If
+        /// [length] is zero, then `initialIndex` must be 0 (the default).
+        /// </Summary>
         public TabController(int initialIndex = 0, int length = default(int), FlutterSDK.Scheduler.Ticker.TickerProvider vsync = default(FlutterSDK.Scheduler.Ticker.TickerProvider))
         : base()
         {
@@ -508,6 +519,12 @@ namespace FlutterSDK.Material.Tabcontroller
             this.Length = length;
         }
         internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _AnimationController { get; set; }
+        /// <Summary>
+        /// The total number of tabs.
+        ///
+        /// Typically greater than one. Must match [TabBar.tabs]'s and
+        /// [TabBarView.children]'s length.
+        /// </Summary>
         public virtual int Length { get; set; }
         internal virtual int _Index { get; set; }
         internal virtual int _PreviousIndex { get; set; }
@@ -670,6 +687,14 @@ namespace FlutterSDK.Material.Tabcontroller
     /// </Summary>
     public class DefaultTabController : FlutterSDK.Widgets.Framework.StatefulWidget
     {
+        /// <Summary>
+        /// Creates a default tab controller for the given [child] widget.
+        ///
+        /// The [length] argument is typically greater than one. The [length] must
+        /// match [TabBar.tabs]'s and [TabBarView.children]'s length.
+        ///
+        /// The [initialIndex] argument must not be null.
+        /// </Summary>
         public DefaultTabController(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), int length = default(int), int initialIndex = 0, FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key)
         {
@@ -677,8 +702,26 @@ namespace FlutterSDK.Material.Tabcontroller
             this.InitialIndex = initialIndex;
             this.Child = child;
         }
+        /// <Summary>
+        /// The total number of tabs.
+        ///
+        /// Typically greater than one. Must match [TabBar.tabs]'s and
+        /// [TabBarView.children]'s length.
+        /// </Summary>
         public virtual int Length { get; set; }
+        /// <Summary>
+        /// The initial index of the selected tab.
+        ///
+        /// Defaults to zero.
+        /// </Summary>
         public virtual int InitialIndex { get; set; }
+        /// <Summary>
+        /// The widget below this widget in the tree.
+        ///
+        /// Typically a [Scaffold] whose [AppBar] includes a [TabBar].
+        ///
+        /// {@macro flutter.widgets.child}
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
 
         /// <Summary>

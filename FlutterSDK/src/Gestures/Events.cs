@@ -309,15 +309,75 @@ namespace FlutterSDK.Gestures.Events
         public static int KBackMouseButton = default(int);
         public static int KForwardMouseButton = default(int);
         public static int KTouchContact = default(int);
+        /// <Summary>
+        /// The bit of [PointerEvent.buttons] that corresponds to the nth mouse button.
+        ///
+        /// The `number` argument can be at most 62 in Flutter for mobile and desktop,
+        /// and at most 32 on Flutter for web.
+        ///
+        /// See [kPrimaryMouseButton], [kSecondaryMouseButton], [kMiddleMouseButton],
+        /// [kBackMouseButton], and [kForwardMouseButton] for semantic names for some
+        /// mouse buttons.
+        /// </Summary>
         internal static int NthMouseButton(int number) => (EventsDefaultClass.KPrimaryMouseButton << (number - 1)) & BitfieldDefaultClass.KMaxUnsignedSMI;
 
 
+        /// <Summary>
+        /// The bit of [PointerEvent.buttons] that corresponds to the nth stylus button.
+        ///
+        /// The `number` argument can be at most 62 in Flutter for mobile and desktop,
+        /// and at most 32 on Flutter for web.
+        ///
+        /// See [kPrimaryStylusButton] and [kSecondaryStylusButton] for semantic names
+        /// for some stylus buttons.
+        /// </Summary>
         internal static int NthStylusButton(int number) => (EventsDefaultClass.KPrimaryStylusButton << (number - 1)) & BitfieldDefaultClass.KMaxUnsignedSMI;
 
 
+        /// <Summary>
+        /// Returns the button of `buttons` with the smallest integer.
+        ///
+        /// The `buttons` parameter is a bit field where each set bit represents a button.
+        /// This function returns the set bit closest to the least significant bit.
+        ///
+        /// It returns zero when `buttons` is zero.
+        ///
+        /// Example:
+        ///
+        /// ```dart
+        ///   assert(rightmostButton(0x1) == 0x1);
+        ///   assert(rightmostButton(0x11) == 0x1);
+        ///   assert(rightmostButton(0) == 0);
+        /// ```
+        ///
+        /// See also:
+        ///
+        ///  * [isSingleButton], which checks if a `buttons` contains exactly one button.
+        /// </Summary>
         internal static int SmallestButton(int buttons) => buttons & (-buttons);
 
 
+        /// <Summary>
+        /// Returns whether `buttons` contains one and only one button.
+        ///
+        /// The `buttons` parameter is a bit field where each set bit represents a button.
+        /// This function returns whether there is only one set bit in the given integer.
+        ///
+        /// It returns false when `buttons` is zero.
+        ///
+        /// Example:
+        ///
+        /// ```dart
+        ///   assert(isSingleButton(0x1) == true);
+        ///   assert(isSingleButton(0x11) == false);
+        ///   assert(isSingleButton(0) == false);
+        /// ```
+        ///
+        /// See also:
+        ///
+        ///  * [smallestButton], which returns the button in a `buttons` bit field with
+        ///    the smallest integer button.
+        /// </Summary>
         internal static bool IsSingleButton(int buttons) => buttons != 0 && (EventsDefaultClass.SmallestButton(buttons) == buttons);
 
 
@@ -422,6 +482,10 @@ namespace FlutterSDK.Gestures.Events
     /// </Summary>
     public class PointerEvent : IDiagnosticable
     {
+        /// <Summary>
+        /// Abstract const constructor. This constructor enables subclasses to provide
+        /// const constructors so that they can be used in const expressions.
+        /// </Summary>
         public PointerEvent(TimeSpan timeStamp = default(TimeSpan), int pointer = 0, PointerDeviceKind kind = default(PointerDeviceKind), int device = 0, FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Offset localPosition = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Offset delta = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Offset localDelta = default(FlutterBinding.UI.Offset), int buttons = 0, bool down = false, bool obscured = false, double pressure = 1.0, double pressureMin = 1.0, double pressureMax = 1.0, double distance = 0.0, double distanceMax = 0.0, double size = 0.0, double radiusMajor = 0.0, double radiusMinor = 0.0, double radiusMin = 0.0, double radiusMax = 0.0, double orientation = 0.0, double tilt = 0.0, int platformData = 0, bool synthesized = false, Matrix4 transform = default(Matrix4), FlutterSDK.Gestures.Events.PointerEvent original = default(FlutterSDK.Gestures.Events.PointerEvent))
         : base()
         {
@@ -451,32 +515,255 @@ namespace FlutterSDK.Gestures.Events
             this.Transform = transform;
             this.Original = original;
         }
+        /// <Summary>
+        /// Time of event dispatch, relative to an arbitrary timeline.
+        /// </Summary>
         public virtual TimeSpan TimeStamp { get; set; }
+        /// <Summary>
+        /// Unique identifier for the pointer, not reused. Changes for each new
+        /// pointer down event.
+        /// </Summary>
         public virtual int Pointer { get; set; }
+        /// <Summary>
+        /// The kind of input device for which the event was generated.
+        /// </Summary>
         public virtual PointerDeviceKind Kind { get; set; }
+        /// <Summary>
+        /// Unique identifier for the pointing device, reused across interactions.
+        /// </Summary>
         public virtual int Device { get; set; }
+        /// <Summary>
+        /// Coordinate of the position of the pointer, in logical pixels in the global
+        /// coordinate space.
+        ///
+        /// See also:
+        ///
+        ///  * [localPosition], which is the [position] transformed into the local
+        ///    coordinate system of the event receiver.
+        /// </Summary>
         public virtual FlutterBinding.UI.Offset Position { get; set; }
+        /// <Summary>
+        /// The [position] transformed into the event receiver's local coordinate
+        /// system according to [transform].
+        ///
+        /// If this event has not been transformed, [position] is returned as-is.
+        /// See also:
+        ///
+        ///  * [position], which is the position in the global coordinate system of
+        ///    the screen.
+        /// </Summary>
         public virtual FlutterBinding.UI.Offset LocalPosition { get; set; }
+        /// <Summary>
+        /// Distance in logical pixels that the pointer moved since the last
+        /// [PointerMoveEvent] or [PointerHoverEvent].
+        ///
+        /// This value is always 0.0 for down, up, and cancel events.
+        ///
+        /// See also:
+        ///
+        ///  * [localDelta], which is the [delta] transformed into the local
+        ///    coordinate space of the event receiver.
+        /// </Summary>
         public virtual FlutterBinding.UI.Offset Delta { get; set; }
+        /// <Summary>
+        /// The [delta] transformed into the event receiver's local coordinate
+        /// system according to [transform].
+        ///
+        /// If this event has not been transformed, [delta] is returned as-is.
+        ///
+        /// See also:
+        ///
+        ///  * [delta], which is the distance the pointer moved in the global
+        ///    coordinate system of the screen.
+        /// </Summary>
         public virtual FlutterBinding.UI.Offset LocalDelta { get; set; }
+        /// <Summary>
+        /// Bit field using the *Button constants such as [kPrimaryMouseButton],
+        /// [kSecondaryStylusButton], etc.
+        ///
+        /// For example, if this has the value 6 and the
+        /// [kind] is [PointerDeviceKind.invertedStylus], then this indicates an
+        /// upside-down stylus with both its primary and secondary buttons pressed.
+        /// </Summary>
         public virtual int Buttons { get; set; }
+        /// <Summary>
+        /// Set if the pointer is currently down.
+        ///
+        /// For touch and stylus pointers, this means the object (finger, pen) is in
+        /// contact with the input surface. For mice, it means a button is pressed.
+        /// </Summary>
         public virtual bool Down { get; set; }
+        /// <Summary>
+        /// Set if an application from a different security domain is in any way
+        /// obscuring this application's window.
+        ///
+        /// This is not currently implemented.
+        /// </Summary>
         public virtual bool Obscured { get; set; }
+        /// <Summary>
+        /// The pressure of the touch.
+        ///
+        /// This value is a number ranging from 0.0, indicating a touch with no
+        /// discernible pressure, to 1.0, indicating a touch with "normal" pressure,
+        /// and possibly beyond, indicating a stronger touch. For devices that do not
+        /// detect pressure (e.g. mice), returns 1.0.
+        /// </Summary>
         public virtual double Pressure { get; set; }
+        /// <Summary>
+        /// The minimum value that [pressure] can return for this pointer.
+        ///
+        /// For devices that do not detect pressure (e.g. mice), returns 1.0.
+        /// This will always be a number less than or equal to 1.0.
+        /// </Summary>
         public virtual double PressureMin { get; set; }
+        /// <Summary>
+        /// The maximum value that [pressure] can return for this pointer.
+        ///
+        /// For devices that do not detect pressure (e.g. mice), returns 1.0.
+        /// This will always be a greater than or equal to 1.0.
+        /// </Summary>
         public virtual double PressureMax { get; set; }
+        /// <Summary>
+        /// The distance of the detected object from the input surface.
+        ///
+        /// For instance, this value could be the distance of a stylus or finger
+        /// from a touch screen, in arbitrary units on an arbitrary (not necessarily
+        /// linear) scale. If the pointer is down, this is 0.0 by definition.
+        /// </Summary>
         public virtual double Distance { get; set; }
+        /// <Summary>
+        /// The maximum value that [distance] can return for this pointer.
+        ///
+        /// If this input device cannot detect "hover touch" input events,
+        /// then this will be 0.0.
+        /// </Summary>
         public virtual double DistanceMax { get; set; }
+        /// <Summary>
+        /// The area of the screen being pressed.
+        ///
+        /// This value is scaled to a range between 0 and 1. It can be used to
+        /// determine fat touch events. This value is only set on Android and is
+        /// a device specific approximation within the range of detectable values.
+        /// So, for example, the value of 0.1 could mean a touch with the tip of
+        /// the finger, 0.2 a touch with full finger, and 0.3 the full palm.
+        ///
+        /// Because this value uses device-specific range and is uncalibrated,
+        /// it is of limited use and is primarily retained in order to be able
+        /// to reconstruct original pointer events for [AndroidView].
+        /// </Summary>
         public virtual double Size { get; set; }
+        /// <Summary>
+        /// The radius of the contact ellipse along the major axis, in logical pixels.
+        /// </Summary>
         public virtual double RadiusMajor { get; set; }
+        /// <Summary>
+        /// The radius of the contact ellipse along the minor axis, in logical pixels.
+        /// </Summary>
         public virtual double RadiusMinor { get; set; }
+        /// <Summary>
+        /// The minimum value that could be reported for [radiusMajor] and [radiusMinor]
+        /// for this pointer, in logical pixels.
+        /// </Summary>
         public virtual double RadiusMin { get; set; }
+        /// <Summary>
+        /// The maximum value that could be reported for [radiusMajor] and [radiusMinor]
+        /// for this pointer, in logical pixels.
+        /// </Summary>
         public virtual double RadiusMax { get; set; }
+        /// <Summary>
+        /// The orientation angle of the detected object, in radians.
+        ///
+        /// For [PointerDeviceKind.touch] events:
+        ///
+        /// The angle of the contact ellipse, in radians in the range:
+        ///
+        ///    -pi/2 < orientation <= pi/2
+        ///
+        /// ...giving the angle of the major axis of the ellipse with the y-axis
+        /// (negative angles indicating an orientation along the top-left /
+        /// bottom-right diagonal, positive angles indicating an orientation along the
+        /// top-right / bottom-left diagonal, and zero indicating an orientation
+        /// parallel with the y-axis).
+        ///
+        /// For [PointerDeviceKind.stylus] and [PointerDeviceKind.invertedStylus] events:
+        ///
+        /// The angle of the stylus, in radians in the range:
+        ///
+        ///    -pi < orientation <= pi
+        ///
+        /// ...giving the angle of the axis of the stylus projected onto the input
+        /// surface, relative to the positive y-axis of that surface (thus 0.0
+        /// indicates the stylus, if projected onto that surface, would go from the
+        /// contact point vertically up in the positive y-axis direction, pi would
+        /// indicate that the stylus would go down in the negative y-axis direction;
+        /// pi/4 would indicate that the stylus goes up and to the right, -pi/2 would
+        /// indicate that the stylus goes to the left, etc).
+        /// </Summary>
         public virtual double Orientation { get; set; }
+        /// <Summary>
+        /// The tilt angle of the detected object, in radians.
+        ///
+        /// For [PointerDeviceKind.stylus] and [PointerDeviceKind.invertedStylus] events:
+        ///
+        /// The angle of the stylus, in radians in the range:
+        ///
+        ///    0 <= tilt <= pi/2
+        ///
+        /// ...giving the angle of the axis of the stylus, relative to the axis
+        /// perpendicular to the input surface (thus 0.0 indicates the stylus is
+        /// orthogonal to the plane of the input surface, while pi/2 indicates that
+        /// the stylus is flat on that surface).
+        /// </Summary>
         public virtual double Tilt { get; set; }
+        /// <Summary>
+        /// Opaque platform-specific data associated with the event.
+        /// </Summary>
         public virtual int PlatformData { get; set; }
+        /// <Summary>
+        /// Set if the event was synthesized by Flutter.
+        ///
+        /// We occasionally synthesize PointerEvents that aren't exact translations
+        /// of [PointerData] from the engine to cover small cross-OS discrepancies
+        /// in pointer behaviors.
+        ///
+        /// For instance, on end events, Android always drops any location changes
+        /// that happened between its reporting intervals when emitting the end events.
+        ///
+        /// On iOS, minor incorrect location changes from the previous move events
+        /// can be reported on end events. We synthesize a [PointerEvent] to cover
+        /// the difference between the 2 events in that case.
+        /// </Summary>
         public virtual bool Synthesized { get; set; }
+        /// <Summary>
+        /// The transformation used to transform this event from the global coordinate
+        /// space into the coordinate space of the event receiver.
+        ///
+        /// This value affects what is returned by [localPosition] and [localDelta].
+        /// If this value is null, it is treated as the identity transformation.
+        ///
+        /// Unlike a paint transform, this transform usually does not contain any
+        /// "perspective" components, meaning that the third row and the third column
+        /// of the matrix should be equal to "0, 0, 1, 0". This ensures that
+        /// [localPosition] describes the point in the local coordinate system of the
+        /// event receiver at which the user is actually touching the screen.
+        ///
+        /// See also:
+        ///
+        ///  * [transformed], which transforms this event into a different coordinate
+        ///    space.
+        /// </Summary>
         public virtual Matrix4 Transform { get; set; }
+        /// <Summary>
+        /// The original un-transformed [PointerEvent] before any [transform]s were
+        /// applied.
+        ///
+        /// If [transform] is null or the identity transformation this may be null.
+        ///
+        /// When multiple event receivers in different coordinate spaces receive an
+        /// event, they all receive the event transformed to their local coordinate
+        /// space. The [original] property can be used to determine if all those
+        /// transformed events actually originated from the same pointer interaction.
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Events.PointerEvent Original { get; set; }
         public virtual double DistanceMin { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 
@@ -622,6 +909,11 @@ namespace FlutterSDK.Gestures.Events
     /// </Summary>
     public class PointerAddedEvent : FlutterSDK.Gestures.Events.PointerEvent
     {
+        /// <Summary>
+        /// Creates a pointer added event.
+        ///
+        /// All of the arguments must be non-null.
+        /// </Summary>
         public PointerAddedEvent(TimeSpan timeStamp = default(TimeSpan), PointerDeviceKind kind = default(PointerDeviceKind), int device = 0, FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Offset localPosition = default(FlutterBinding.UI.Offset), bool obscured = false, double pressureMin = 1.0, double pressureMax = 1.0, double distance = 0.0, double distanceMax = 0.0, double radiusMin = 0.0, double radiusMax = 0.0, double orientation = 0.0, double tilt = 0.0, Matrix4 transform = default(Matrix4), FlutterSDK.Gestures.Events.PointerAddedEvent original = default(FlutterSDK.Gestures.Events.PointerAddedEvent))
         : base(timeStamp: timeStamp, kind: kind, device: device, position: position, localPosition: localPosition, obscured: obscured, pressure: 0.0, pressureMin: pressureMin, pressureMax: pressureMax, distance: distance, distanceMax: distanceMax, radiusMin: radiusMin, radiusMax: radiusMax, orientation: orientation, tilt: tilt, transform: transform, original: original)
         {
@@ -651,6 +943,11 @@ namespace FlutterSDK.Gestures.Events
     /// </Summary>
     public class PointerRemovedEvent : FlutterSDK.Gestures.Events.PointerEvent
     {
+        /// <Summary>
+        /// Creates a pointer removed event.
+        ///
+        /// All of the arguments must be non-null.
+        /// </Summary>
         public PointerRemovedEvent(TimeSpan timeStamp = default(TimeSpan), PointerDeviceKind kind = default(PointerDeviceKind), int device = 0, FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Offset localPosition = default(FlutterBinding.UI.Offset), bool obscured = false, double pressureMin = 1.0, double pressureMax = 1.0, double distanceMax = 0.0, double radiusMin = 0.0, double radiusMax = 0.0, Matrix4 transform = default(Matrix4), FlutterSDK.Gestures.Events.PointerRemovedEvent original = default(FlutterSDK.Gestures.Events.PointerRemovedEvent))
         : base(timeStamp: timeStamp, kind: kind, device: device, position: position, localPosition: localPosition, obscured: obscured, pressure: 0.0, pressureMin: pressureMin, pressureMax: pressureMax, distanceMax: distanceMax, radiusMin: radiusMin, radiusMax: radiusMax, transform: transform, original: original)
         {
@@ -686,6 +983,11 @@ namespace FlutterSDK.Gestures.Events
     /// </Summary>
     public class PointerHoverEvent : FlutterSDK.Gestures.Events.PointerEvent
     {
+        /// <Summary>
+        /// Creates a pointer hover event.
+        ///
+        /// All of the arguments must be non-null.
+        /// </Summary>
         public PointerHoverEvent(TimeSpan timeStamp = default(TimeSpan), PointerDeviceKind kind = default(PointerDeviceKind), int device = 0, FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Offset localPosition = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Offset delta = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Offset localDelta = default(FlutterBinding.UI.Offset), int buttons = 0, bool obscured = false, double pressureMin = 1.0, double pressureMax = 1.0, double distance = 0.0, double distanceMax = 0.0, double size = 0.0, double radiusMajor = 0.0, double radiusMinor = 0.0, double radiusMin = 0.0, double radiusMax = 0.0, double orientation = 0.0, double tilt = 0.0, bool synthesized = false, Matrix4 transform = default(Matrix4), FlutterSDK.Gestures.Events.PointerHoverEvent original = default(FlutterSDK.Gestures.Events.PointerHoverEvent))
         : base(timeStamp: timeStamp, kind: kind, device: device, position: position, localPosition: localPosition, delta: delta, localDelta: localDelta, buttons: buttons, down: false, obscured: obscured, pressure: 0.0, pressureMin: pressureMin, pressureMax: pressureMax, distance: distance, distanceMax: distanceMax, size: size, radiusMajor: radiusMajor, radiusMinor: radiusMinor, radiusMin: radiusMin, radiusMax: radiusMax, orientation: orientation, tilt: tilt, synthesized: synthesized, transform: transform, original: original)
         {
@@ -722,15 +1024,30 @@ namespace FlutterSDK.Gestures.Events
     /// </Summary>
     public class PointerEnterEvent : FlutterSDK.Gestures.Events.PointerEvent
     {
+        /// <Summary>
+        /// Creates a pointer enter event.
+        ///
+        /// All of the arguments must be non-null.
+        /// </Summary>
         public PointerEnterEvent(TimeSpan timeStamp = default(TimeSpan), PointerDeviceKind kind = default(PointerDeviceKind), int device = 0, FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Offset localPosition = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Offset delta = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Offset localDelta = default(FlutterBinding.UI.Offset), int buttons = 0, bool obscured = false, double pressureMin = 1.0, double pressureMax = 1.0, double distance = 0.0, double distanceMax = 0.0, double size = 0.0, double radiusMajor = 0.0, double radiusMinor = 0.0, double radiusMin = 0.0, double radiusMax = 0.0, double orientation = 0.0, double tilt = 0.0, bool down = false, bool synthesized = false, Matrix4 transform = default(Matrix4), FlutterSDK.Gestures.Events.PointerEnterEvent original = default(FlutterSDK.Gestures.Events.PointerEnterEvent))
         : base(timeStamp: timeStamp, kind: kind, device: device, position: position, localPosition: localPosition, delta: delta, localDelta: localDelta, buttons: buttons, down: down, obscured: obscured, pressure: 0.0, pressureMin: pressureMin, pressureMax: pressureMax, distance: distance, distanceMax: distanceMax, size: size, radiusMajor: radiusMajor, radiusMinor: radiusMinor, radiusMin: radiusMin, radiusMax: radiusMax, orientation: orientation, tilt: tilt, synthesized: synthesized, transform: transform, original: original)
         {
 
         }
+        /// <Summary>
+        /// Creates an enter event from a [PointerHoverEvent].
+        ///
+        /// Deprecated. Please use [PointerEnterEvent.fromMouseEvent] instead.
+        /// </Summary>
         public static PointerEnterEvent FromHoverEvent(FlutterSDK.Gestures.Events.PointerHoverEvent @event)
         {
             var instance = new PointerEnterEvent();
         }
+        /// <Summary>
+        /// Creates an enter event from a [PointerEvent].
+        ///
+        /// This is used by the [MouseTracker] to synthesize enter events.
+        /// </Summary>
         public static PointerEnterEvent FromMouseEvent(FlutterSDK.Gestures.Events.PointerEvent @event)
         {
             var instance = new PointerEnterEvent();
@@ -766,15 +1083,30 @@ namespace FlutterSDK.Gestures.Events
     /// </Summary>
     public class PointerExitEvent : FlutterSDK.Gestures.Events.PointerEvent
     {
+        /// <Summary>
+        /// Creates a pointer exit event.
+        ///
+        /// All of the arguments must be non-null.
+        /// </Summary>
         public PointerExitEvent(TimeSpan timeStamp = default(TimeSpan), PointerDeviceKind kind = default(PointerDeviceKind), int device = 0, FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Offset localPosition = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Offset delta = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Offset localDelta = default(FlutterBinding.UI.Offset), int buttons = 0, bool obscured = false, double pressureMin = 1.0, double pressureMax = 1.0, double distance = 0.0, double distanceMax = 0.0, double size = 0.0, double radiusMajor = 0.0, double radiusMinor = 0.0, double radiusMin = 0.0, double radiusMax = 0.0, double orientation = 0.0, double tilt = 0.0, bool down = false, bool synthesized = false, Matrix4 transform = default(Matrix4), FlutterSDK.Gestures.Events.PointerExitEvent original = default(FlutterSDK.Gestures.Events.PointerExitEvent))
         : base(timeStamp: timeStamp, kind: kind, device: device, position: position, localPosition: localPosition, delta: delta, localDelta: localDelta, buttons: buttons, down: down, obscured: obscured, pressure: 0.0, pressureMin: pressureMin, pressureMax: pressureMax, distance: distance, distanceMax: distanceMax, size: size, radiusMajor: radiusMajor, radiusMinor: radiusMinor, radiusMin: radiusMin, radiusMax: radiusMax, orientation: orientation, tilt: tilt, synthesized: synthesized, transform: transform, original: original)
         {
 
         }
+        /// <Summary>
+        /// Creates an exit event from a [PointerHoverEvent].
+        ///
+        /// Deprecated. Please use [PointerExitEvent.fromMouseEvent] instead.
+        /// </Summary>
         public static PointerExitEvent FromHoverEvent(FlutterSDK.Gestures.Events.PointerHoverEvent @event)
         {
             var instance = new PointerExitEvent();
         }
+        /// <Summary>
+        /// Creates an exit event from a [PointerEvent].
+        ///
+        /// This is used by the [MouseTracker] to synthesize exit events.
+        /// </Summary>
         public static PointerExitEvent FromMouseEvent(FlutterSDK.Gestures.Events.PointerEvent @event)
         {
             var instance = new PointerExitEvent();
@@ -801,6 +1133,11 @@ namespace FlutterSDK.Gestures.Events
     /// </Summary>
     public class PointerDownEvent : FlutterSDK.Gestures.Events.PointerEvent
     {
+        /// <Summary>
+        /// Creates a pointer down event.
+        ///
+        /// All of the arguments must be non-null.
+        /// </Summary>
         public PointerDownEvent(TimeSpan timeStamp = default(TimeSpan), int pointer = 0, PointerDeviceKind kind = default(PointerDeviceKind), int device = 0, FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Offset localPosition = default(FlutterBinding.UI.Offset), int buttons = default(int), bool obscured = false, double pressure = 1.0, double pressureMin = 1.0, double pressureMax = 1.0, double distanceMax = 0.0, double size = 0.0, double radiusMajor = 0.0, double radiusMinor = 0.0, double radiusMin = 0.0, double radiusMax = 0.0, double orientation = 0.0, double tilt = 0.0, Matrix4 transform = default(Matrix4), FlutterSDK.Gestures.Events.PointerDownEvent original = default(FlutterSDK.Gestures.Events.PointerDownEvent))
         : base(timeStamp: timeStamp, pointer: pointer, kind: kind, device: device, position: position, localPosition: localPosition, buttons: buttons, down: true, obscured: obscured, pressure: pressure, pressureMin: pressureMin, pressureMax: pressureMax, distance: 0.0, distanceMax: distanceMax, size: size, radiusMajor: radiusMajor, radiusMinor: radiusMinor, radiusMin: radiusMin, radiusMax: radiusMax, orientation: orientation, tilt: tilt, transform: transform, original: original)
         {
@@ -833,6 +1170,11 @@ namespace FlutterSDK.Gestures.Events
     /// </Summary>
     public class PointerMoveEvent : FlutterSDK.Gestures.Events.PointerEvent
     {
+        /// <Summary>
+        /// Creates a pointer move event.
+        ///
+        /// All of the arguments must be non-null.
+        /// </Summary>
         public PointerMoveEvent(TimeSpan timeStamp = default(TimeSpan), int pointer = 0, PointerDeviceKind kind = default(PointerDeviceKind), int device = 0, FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Offset localPosition = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Offset delta = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Offset localDelta = default(FlutterBinding.UI.Offset), int buttons = default(int), bool obscured = false, double pressure = 1.0, double pressureMin = 1.0, double pressureMax = 1.0, double distanceMax = 0.0, double size = 0.0, double radiusMajor = 0.0, double radiusMinor = 0.0, double radiusMin = 0.0, double radiusMax = 0.0, double orientation = 0.0, double tilt = 0.0, int platformData = 0, bool synthesized = false, Matrix4 transform = default(Matrix4), FlutterSDK.Gestures.Events.PointerMoveEvent original = default(FlutterSDK.Gestures.Events.PointerMoveEvent))
         : base(timeStamp: timeStamp, pointer: pointer, kind: kind, device: device, position: position, localPosition: localPosition, delta: delta, localDelta: localDelta, buttons: buttons, down: true, obscured: obscured, pressure: pressure, pressureMin: pressureMin, pressureMax: pressureMax, distance: 0.0, distanceMax: distanceMax, size: size, radiusMajor: radiusMajor, radiusMinor: radiusMinor, radiusMin: radiusMin, radiusMax: radiusMax, orientation: orientation, tilt: tilt, platformData: platformData, synthesized: synthesized, transform: transform, original: original)
         {
@@ -860,6 +1202,11 @@ namespace FlutterSDK.Gestures.Events
     /// </Summary>
     public class PointerUpEvent : FlutterSDK.Gestures.Events.PointerEvent
     {
+        /// <Summary>
+        /// Creates a pointer up event.
+        ///
+        /// All of the arguments must be non-null.
+        /// </Summary>
         public PointerUpEvent(TimeSpan timeStamp = default(TimeSpan), int pointer = 0, PointerDeviceKind kind = default(PointerDeviceKind), int device = 0, FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Offset localPosition = default(FlutterBinding.UI.Offset), int buttons = 0, bool obscured = false, double pressure = 0.0, double pressureMin = 1.0, double pressureMax = 1.0, double distance = 0.0, double distanceMax = 0.0, double size = 0.0, double radiusMajor = 0.0, double radiusMinor = 0.0, double radiusMin = 0.0, double radiusMax = 0.0, double orientation = 0.0, double tilt = 0.0, Matrix4 transform = default(Matrix4), FlutterSDK.Gestures.Events.PointerUpEvent original = default(FlutterSDK.Gestures.Events.PointerUpEvent))
         : base(timeStamp: timeStamp, pointer: pointer, kind: kind, device: device, position: position, localPosition: localPosition, buttons: buttons, down: false, obscured: obscured, pressure: pressure, pressureMin: pressureMin, pressureMax: pressureMax, distance: distance, distanceMax: distanceMax, size: size, radiusMajor: radiusMajor, radiusMinor: radiusMinor, radiusMin: radiusMin, radiusMax: radiusMax, orientation: orientation, tilt: tilt, transform: transform, original: original)
         {
@@ -890,6 +1237,10 @@ namespace FlutterSDK.Gestures.Events
     /// </Summary>
     public class PointerSignalEvent : FlutterSDK.Gestures.Events.PointerEvent
     {
+        /// <Summary>
+        /// Abstract const constructor. This constructor enables subclasses to provide
+        /// const constructors so that they can be used in const expressions.
+        /// </Summary>
         public PointerSignalEvent(TimeSpan timeStamp = default(TimeSpan), int pointer = 0, PointerDeviceKind kind = default(PointerDeviceKind), int device = 0, FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Offset localPosition = default(FlutterBinding.UI.Offset), Matrix4 transform = default(Matrix4), FlutterSDK.Gestures.Events.PointerSignalEvent original = default(FlutterSDK.Gestures.Events.PointerSignalEvent))
         : base(timeStamp: timeStamp, pointer: pointer, kind: kind, device: device, position: position, localPosition: localPosition, transform: transform, original: original)
         {
@@ -906,11 +1257,19 @@ namespace FlutterSDK.Gestures.Events
     /// </Summary>
     public class PointerScrollEvent : FlutterSDK.Gestures.Events.PointerSignalEvent
     {
+        /// <Summary>
+        /// Creates a pointer scroll event.
+        ///
+        /// All of the arguments must be non-null.
+        /// </Summary>
         public PointerScrollEvent(TimeSpan timeStamp = default(TimeSpan), PointerDeviceKind kind = default(PointerDeviceKind), int device = 0, FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Offset localPosition = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Offset scrollDelta = default(FlutterBinding.UI.Offset), Matrix4 transform = default(Matrix4), FlutterSDK.Gestures.Events.PointerScrollEvent original = default(FlutterSDK.Gestures.Events.PointerScrollEvent))
         : base(timeStamp: timeStamp, kind: kind, device: device, position: position, localPosition: localPosition, transform: transform, original: original)
         {
             this.ScrollDelta = scrollDelta;
         }
+        /// <Summary>
+        /// The amount to scroll, in logical pixels.
+        /// </Summary>
         public virtual FlutterBinding.UI.Offset ScrollDelta { get; set; }
 
         public new FlutterSDK.Gestures.Events.PointerScrollEvent Transformed(Matrix4 transform)
@@ -942,6 +1301,11 @@ namespace FlutterSDK.Gestures.Events
     /// </Summary>
     public class PointerCancelEvent : FlutterSDK.Gestures.Events.PointerEvent
     {
+        /// <Summary>
+        /// Creates a pointer cancel event.
+        ///
+        /// All of the arguments must be non-null.
+        /// </Summary>
         public PointerCancelEvent(TimeSpan timeStamp = default(TimeSpan), int pointer = 0, PointerDeviceKind kind = default(PointerDeviceKind), int device = 0, FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Offset localPosition = default(FlutterBinding.UI.Offset), int buttons = 0, bool obscured = false, double pressureMin = 1.0, double pressureMax = 1.0, double distance = 0.0, double distanceMax = 0.0, double size = 0.0, double radiusMajor = 0.0, double radiusMinor = 0.0, double radiusMin = 0.0, double radiusMax = 0.0, double orientation = 0.0, double tilt = 0.0, Matrix4 transform = default(Matrix4), FlutterSDK.Gestures.Events.PointerCancelEvent original = default(FlutterSDK.Gestures.Events.PointerCancelEvent))
         : base(timeStamp: timeStamp, pointer: pointer, kind: kind, device: device, position: position, localPosition: localPosition, buttons: buttons, down: false, obscured: obscured, pressure: 0.0, pressureMin: pressureMin, pressureMax: pressureMax, distance: distance, distanceMax: distanceMax, size: size, radiusMajor: radiusMajor, radiusMinor: radiusMinor, radiusMin: radiusMin, radiusMax: radiusMax, orientation: orientation, tilt: tilt, transform: transform, original: original)
         {

@@ -462,13 +462,34 @@ namespace FlutterSDK.Widgets.Scrollawareimageprovider
     /// </Summary>
     public class ScrollAwareImageProvider<T> : FlutterSDK.Painting.Imageprovider.ImageProvider<T>
     {
+        /// <Summary>
+        /// Creates a [ScrollingAwareImageProvider].
+        ///
+        /// The [context] object is the [BuildContext] of the [State] using this
+        /// provider. It is used to determine scrolling velocity during [resolve]. It
+        /// must not be null.
+        ///
+        /// The [imageProvider] is used to create a key and load the image. It must
+        /// not be null, and is assumed to interact with the cache in the normal way
+        /// that [ImageProvider.resolveStreamForKey] does.
+        /// </Summary>
         public ScrollAwareImageProvider(FlutterSDK.Widgets.Disposablebuildcontext.DisposableBuildContext<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> context = default(FlutterSDK.Widgets.Disposablebuildcontext.DisposableBuildContext<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>>), FlutterSDK.Painting.Imageprovider.ImageProvider<T> imageProvider = default(FlutterSDK.Painting.Imageprovider.ImageProvider<T>))
         : base()
         {
             this.Context = context;
             this.ImageProvider = imageProvider;
         }
+        /// <Summary>
+        /// The context that may or may not be enclosed by a [Scrollable].
+        ///
+        /// Once [DisposableBuildContext.dispose] is called on this context,
+        /// the provider will stop trying to resolve the image if it has not already
+        /// been resolved.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Disposablebuildcontext.DisposableBuildContext<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> Context { get; set; }
+        /// <Summary>
+        /// The wrapped image provider to delegate [obtainKey] and [load] to.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Imageprovider.ImageProvider<T> ImageProvider { get; set; }
 
         public new void ResolveStreamForKey(FlutterSDK.Painting.Imageprovider.ImageConfiguration configuration, FlutterSDK.Painting.Imagestream.ImageStream stream, T key, FlutterSDK.Painting.Imagestream.ImageErrorListener handleError)

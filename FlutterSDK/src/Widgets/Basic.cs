@@ -423,9 +423,35 @@ using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
 namespace FlutterSDK.Widgets.Basic
 {
+    /// <Summary>
+    /// Signature for the builder callback used by [StatefulBuilder].
+    ///
+    /// Call [setState] to schedule the [StatefulBuilder] to rebuild.
+    /// </Summary>
     public delegate FlutterSDK.Widgets.Framework.Widget StatefulWidgetBuilder(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Widgets.Framework.StateSetter setState);
     internal static class BasicDefaultClass
     {
+        /// <Summary>
+        /// Returns the [AxisDirection] in the given [Axis] in the current
+        /// [Directionality] (or the reverse if `reverse` is true).
+        ///
+        /// If `axis` is [Axis.vertical], this function returns [AxisDirection.down]
+        /// unless `reverse` is true, in which case this function returns
+        /// [AxisDirection.up].
+        ///
+        /// If `axis` is [Axis.horizontal], this function checks the current
+        /// [Directionality]. If the current [Directionality] is right-to-left, then
+        /// this function returns [AxisDirection.left] (unless `reverse` is true, in
+        /// which case it returns [AxisDirection.right]). Similarly, if the current
+        /// [Directionality] is left-to-right, then this function returns
+        /// [AxisDirection.right] (unless `reverse` is true, in which case it returns
+        /// [AxisDirection.left]).
+        ///
+        /// This function is used by a number of scrolling widgets (e.g., [ListView],
+        /// [GridView], [PageView], and [SingleChildScrollView]) as well as [ListBody]
+        /// to translate their [Axis] and `reverse` properties into a concrete
+        /// [AxisDirection].
+        /// </Summary>
         internal static FlutterSDK.Painting.Basictypes.AxisDirection GetAxisDirectionFromAxisReverseAndDirectionality(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Painting.Basictypes.Axis axis, bool reverse)
         {
             switch (axis) { case Axis.Horizontal: TextDirection textDirection = BasicDefaultClass.Directionality.Of(context); AxisDirection axisDirection = BasictypesDefaultClass.TextDirectionToAxisDirection(textDirection); return reverse ? BasictypesDefaultClass.FlipAxisDirection(axisDirection) : axisDirection; case Axis.Vertical: return reverse ? AxisDirection.Up : AxisDirection.Down; }
@@ -445,11 +471,20 @@ namespace FlutterSDK.Widgets.Basic
     /// </Summary>
     public class Directionality : FlutterSDK.Widgets.Framework.InheritedWidget
     {
+        /// <Summary>
+        /// Creates a widget that determines the directionality of text and
+        /// text-direction-sensitive render objects.
+        ///
+        /// The [textDirection] and [child] arguments must not be null.
+        /// </Summary>
         public Directionality(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), TextDirection textDirection = default(TextDirection), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
             this.TextDirection = textDirection;
         }
+        /// <Summary>
+        /// The text direction for this subtree.
+        /// </Summary>
         public virtual TextDirection TextDirection { get; set; }
 
         /// <Summary>
@@ -573,13 +608,41 @@ namespace FlutterSDK.Widgets.Basic
     /// </Summary>
     public class Opacity : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
+        /// <Summary>
+        /// Creates a widget that makes its child partially transparent.
+        ///
+        /// The [opacity] argument must not be null and must be between 0.0 and 1.0
+        /// (inclusive).
+        /// </Summary>
         public Opacity(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), double opacity = default(double), bool alwaysIncludeSemantics = false, FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
             this.OpacityValue = opacity;
             this.AlwaysIncludeSemantics = alwaysIncludeSemantics;
         }
+        /// <Summary>
+        /// The fraction to scale the child's alpha value.
+        ///
+        /// An opacity of 1.0 is fully opaque. An opacity of 0.0 is fully transparent
+        /// (i.e., invisible).
+        ///
+        /// The opacity must not be null.
+        ///
+        /// Values 1.0 and 0.0 are painted with a fast path. Other values
+        /// require painting the child into an intermediate buffer, which is
+        /// expensive.
+        /// </Summary>
         public virtual double OpacityValue { get; set; }
+        /// <Summary>
+        /// Whether the semantic information of the children is always included.
+        ///
+        /// Defaults to false.
+        ///
+        /// When true, regardless of the opacity settings the child semantic
+        /// information is exposed as if the widget were fully visible. This is
+        /// useful in cases where labels may be hidden during animations that
+        /// would otherwise contribute relevant semantics.
+        /// </Summary>
         public virtual bool AlwaysIncludeSemantics { get; set; }
 
         public new FlutterSDK.Rendering.Proxybox.RenderOpacity CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
@@ -650,13 +713,34 @@ namespace FlutterSDK.Widgets.Basic
     /// </Summary>
     public class ShaderMask : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
+        /// <Summary>
+        /// Creates a widget that applies a mask generated by a [Shader] to its child.
+        ///
+        /// The [shaderCallback] and [blendMode] arguments must not be null.
+        /// </Summary>
         public ShaderMask(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Rendering.Proxybox.ShaderCallback shaderCallback = default(FlutterSDK.Rendering.Proxybox.ShaderCallback), FlutterBinding.UI.BlendMode blendMode = default(FlutterBinding.UI.BlendMode), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
             this.ShaderCallback = shaderCallback;
             this.BlendMode = blendMode;
         }
+        /// <Summary>
+        /// Called to create the [dart:ui.Shader] that generates the mask.
+        ///
+        /// The shader callback is called with the current size of the child so that
+        /// it can customize the shader to the size and location of the child.
+        ///
+        /// Typically this will use a [LinearGradient], [RadialGradient], or
+        /// [SweepGradient] to create the [dart:ui.Shader], though the
+        /// [dart:ui.ImageShader] class could also be used.
+        /// </Summary>
         public virtual FlutterSDK.Rendering.Proxybox.ShaderCallback ShaderCallback { get; set; }
+        /// <Summary>
+        /// The [BlendMode] to use when applying the shader to the child.
+        ///
+        /// The default, [BlendMode.modulate], is useful for applying an alpha blend
+        /// to the child. Other blend modes can be used to create other effects.
+        /// </Summary>
         public virtual FlutterBinding.UI.BlendMode BlendMode { get; set; }
 
         public new FlutterSDK.Rendering.Proxybox.RenderShaderMask CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
@@ -734,11 +818,22 @@ namespace FlutterSDK.Widgets.Basic
     /// </Summary>
     public class BackdropFilter : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
+        /// <Summary>
+        /// Creates a backdrop filter.
+        ///
+        /// The [filter] argument must not be null.
+        /// </Summary>
         public BackdropFilter(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), ImageFilter filter = default(ImageFilter), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
             this.Filter = filter;
         }
+        /// <Summary>
+        /// The image filter to apply to the existing painted content before painting the child.
+        ///
+        /// For example, consider using [ImageFilter.blur] to create a backdrop
+        /// blur effect
+        /// </Summary>
         public virtual ImageFilter Filter { get; set; }
 
         public new FlutterSDK.Rendering.Proxybox.RenderBackdropFilter CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
@@ -824,6 +919,9 @@ namespace FlutterSDK.Widgets.Basic
     /// </Summary>
     public class CustomPaint : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
+        /// <Summary>
+        /// Creates a widget that delegates its painting.
+        /// </Summary>
         public CustomPaint(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Rendering.Custompaint.CustomPainter painter = default(FlutterSDK.Rendering.Custompaint.CustomPainter), FlutterSDK.Rendering.Custompaint.CustomPainter foregroundPainter = default(FlutterSDK.Rendering.Custompaint.CustomPainter), Size size = default(Size), bool isComplex = false, bool willChange = false, FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
@@ -833,10 +931,44 @@ namespace FlutterSDK.Widgets.Basic
             this.IsComplex = isComplex;
             this.WillChange = willChange;
         }
+        /// <Summary>
+        /// The painter that paints before the children.
+        /// </Summary>
         public virtual FlutterSDK.Rendering.Custompaint.CustomPainter Painter { get; set; }
+        /// <Summary>
+        /// The painter that paints after the children.
+        /// </Summary>
         public virtual FlutterSDK.Rendering.Custompaint.CustomPainter ForegroundPainter { get; set; }
+        /// <Summary>
+        /// The size that this [CustomPaint] should aim for, given the layout
+        /// constraints, if there is no child.
+        ///
+        /// Defaults to [Size.zero].
+        ///
+        /// If there's a child, this is ignored, and the size of the child is used
+        /// instead.
+        /// </Summary>
         public virtual Size Size { get; set; }
+        /// <Summary>
+        /// Whether the painting is complex enough to benefit from caching.
+        ///
+        /// The compositor contains a raster cache that holds bitmaps of layers in
+        /// order to avoid the cost of repeatedly rendering those layers on each
+        /// frame. If this flag is not set, then the compositor will apply its own
+        /// heuristics to decide whether the this layer is complex enough to benefit
+        /// from caching.
+        ///
+        /// This flag can't be set to true if both [painter] and [foregroundPainter]
+        /// are null because this flag will be ignored in such case.
+        /// </Summary>
         public virtual bool IsComplex { get; set; }
+        /// <Summary>
+        /// Whether the raster cache should be told that this painting is likely
+        /// to change in the next frame.
+        ///
+        /// This flag can't be set to true if both [painter] and [foregroundPainter]
+        /// are null because this flag will be ignored in such case.
+        /// </Summary>
         public virtual bool WillChange { get; set; }
 
         public new FlutterSDK.Rendering.Custompaint.RenderCustomPaint CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
@@ -920,13 +1052,29 @@ namespace FlutterSDK.Widgets.Basic
     /// </Summary>
     public class ClipRect : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
+        /// <Summary>
+        /// Creates a rectangular clip.
+        ///
+        /// If [clipper] is null, the clip will match the layout size and position of
+        /// the child.
+        ///
+        /// The [clipBehavior] argument must not be null or [Clip.none].
+        /// </Summary>
         public ClipRect(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Rendering.Proxybox.CustomClipper<Rect> clipper = default(FlutterSDK.Rendering.Proxybox.CustomClipper<Rect>), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
             this.Clipper = clipper;
             this.ClipBehavior = clipBehavior;
         }
+        /// <Summary>
+        /// If non-null, determines which clip to use.
+        /// </Summary>
         public virtual FlutterSDK.Rendering.Proxybox.CustomClipper<Rect> Clipper { get; set; }
+        /// <Summary>
+        /// {@macro flutter.clipper.clipBehavior}
+        ///
+        /// Defaults to [Clip.hardEdge].
+        /// </Summary>
         public virtual FlutterBinding.UI.Clip ClipBehavior { get; set; }
 
         public new FlutterSDK.Rendering.Proxybox.RenderClipRect CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
@@ -997,6 +1145,16 @@ namespace FlutterSDK.Widgets.Basic
     /// </Summary>
     public class ClipRRect : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
+        /// <Summary>
+        /// Creates a rounded-rectangular clip.
+        ///
+        /// The [borderRadius] defaults to [BorderRadius.zero], i.e. a rectangle with
+        /// right-angled corners.
+        ///
+        /// If [clipper] is non-null, then [borderRadius] is ignored.
+        ///
+        /// The [clipBehavior] argument must not be null or [Clip.none].
+        /// </Summary>
         public ClipRRect(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Borderradius.BorderRadius borderRadius = default(FlutterSDK.Painting.Borderradius.BorderRadius), FlutterSDK.Rendering.Proxybox.CustomClipper<RRect> clipper = default(FlutterSDK.Rendering.Proxybox.CustomClipper<RRect>), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
@@ -1004,8 +1162,24 @@ namespace FlutterSDK.Widgets.Basic
             this.Clipper = clipper;
             this.ClipBehavior = clipBehavior;
         }
+        /// <Summary>
+        /// The border radius of the rounded corners.
+        ///
+        /// Values are clamped so that horizontal and vertical radii sums do not
+        /// exceed width/height.
+        ///
+        /// This value is ignored if [clipper] is non-null.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Borderradius.BorderRadius BorderRadius { get; set; }
+        /// <Summary>
+        /// If non-null, determines which clip to use.
+        /// </Summary>
         public virtual FlutterSDK.Rendering.Proxybox.CustomClipper<RRect> Clipper { get; set; }
+        /// <Summary>
+        /// {@macro flutter.clipper.clipBehavior}
+        ///
+        /// Defaults to [Clip.antiAlias].
+        /// </Summary>
         public virtual FlutterBinding.UI.Clip ClipBehavior { get; set; }
 
         public new FlutterSDK.Rendering.Proxybox.RenderClipRRect CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
@@ -1061,13 +1235,37 @@ namespace FlutterSDK.Widgets.Basic
     /// </Summary>
     public class ClipOval : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
+        /// <Summary>
+        /// Creates an oval-shaped clip.
+        ///
+        /// If [clipper] is null, the oval will be inscribed into the layout size and
+        /// position of the child.
+        ///
+        /// The [clipBehavior] argument must not be null or [Clip.none].
+        /// </Summary>
         public ClipOval(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Rendering.Proxybox.CustomClipper<Rect> clipper = default(FlutterSDK.Rendering.Proxybox.CustomClipper<Rect>), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
             this.Clipper = clipper;
             this.ClipBehavior = clipBehavior;
         }
+        /// <Summary>
+        /// If non-null, determines which clip to use.
+        ///
+        /// The delegate returns a rectangle that describes the axis-aligned
+        /// bounding box of the oval. The oval's axes will themselves also
+        /// be axis-aligned.
+        ///
+        /// If the [clipper] delegate is null, then the oval uses the
+        /// widget's bounding box (the layout dimensions of the render
+        /// object) instead.
+        /// </Summary>
         public virtual FlutterSDK.Rendering.Proxybox.CustomClipper<Rect> Clipper { get; set; }
+        /// <Summary>
+        /// {@macro flutter.clipper.clipBehavior}
+        ///
+        /// Defaults to [Clip.antiAlias].
+        /// </Summary>
         public virtual FlutterBinding.UI.Clip ClipBehavior { get; set; }
 
         public new FlutterSDK.Rendering.Proxybox.RenderClipOval CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
@@ -1140,13 +1338,35 @@ namespace FlutterSDK.Widgets.Basic
     /// </Summary>
     public class ClipPath : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
+        /// <Summary>
+        /// Creates a path clip.
+        ///
+        /// If [clipper] is null, the clip will be a rectangle that matches the layout
+        /// size and location of the child. However, rather than use this default,
+        /// consider using a [ClipRect], which can achieve the same effect more
+        /// efficiently.
+        ///
+        /// The [clipBehavior] argument must not be null or [Clip.none].
+        /// </Summary>
         public ClipPath(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Rendering.Proxybox.CustomClipper<Path> clipper = default(FlutterSDK.Rendering.Proxybox.CustomClipper<Path>), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
             this.Clipper = clipper;
             this.ClipBehavior = clipBehavior;
         }
+        /// <Summary>
+        /// If non-null, determines which clip to use.
+        ///
+        /// The default clip, which is used if this property is null, is the
+        /// bounding box rectangle of the widget. [ClipRect] is a more
+        /// efficient way of obtaining that effect.
+        /// </Summary>
         public virtual FlutterSDK.Rendering.Proxybox.CustomClipper<Path> Clipper { get; set; }
+        /// <Summary>
+        /// {@macro flutter.clipper.clipBehavior}
+        ///
+        /// Defaults to [Clip.antiAlias].
+        /// </Summary>
         public virtual FlutterBinding.UI.Clip ClipBehavior { get; set; }
 
         /// <Summary>
@@ -1238,6 +1458,14 @@ namespace FlutterSDK.Widgets.Basic
     /// </Summary>
     public class PhysicalModel : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
+        /// <Summary>
+        /// Creates a physical model with a rounded-rectangular clip.
+        ///
+        /// The [color] is required; physical things have a color.
+        ///
+        /// The [shape], [elevation], [color], [clipBehavior], and [shadowColor] must
+        /// not be null. Additionally, the [elevation] must be non-negative.
+        /// </Summary>
         public PhysicalModel(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Boxborder.BoxShape shape = default(FlutterSDK.Painting.Boxborder.BoxShape), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip), FlutterSDK.Painting.Borderradius.BorderRadius borderRadius = default(FlutterSDK.Painting.Borderradius.BorderRadius), double elevation = 0.0, FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color shadowColor = default(FlutterBinding.UI.Color), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
@@ -1248,11 +1476,39 @@ namespace FlutterSDK.Widgets.Basic
             this.Color = color;
             this.ShadowColor = shadowColor;
         }
+        /// <Summary>
+        /// The type of shape.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Boxborder.BoxShape Shape { get; set; }
+        /// <Summary>
+        /// {@macro flutter.widgets.Clip}
+        ///
+        /// Defaults to [Clip.none].
+        /// </Summary>
         public virtual FlutterBinding.UI.Clip ClipBehavior { get; set; }
+        /// <Summary>
+        /// The border radius of the rounded corners.
+        ///
+        /// Values are clamped so that horizontal and vertical radii sums do not
+        /// exceed width/height.
+        ///
+        /// This is ignored if the [shape] is not [BoxShape.rectangle].
+        /// </Summary>
         public virtual FlutterSDK.Painting.Borderradius.BorderRadius BorderRadius { get; set; }
+        /// <Summary>
+        /// The z-coordinate relative to the parent at which to place this physical
+        /// object.
+        ///
+        /// The value is non-negative.
+        /// </Summary>
         public virtual double Elevation { get; set; }
+        /// <Summary>
+        /// The background color.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color Color { get; set; }
+        /// <Summary>
+        /// The shadow color.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color ShadowColor { get; set; }
 
         public new FlutterSDK.Rendering.Proxybox.RenderPhysicalModel CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
@@ -1308,6 +1564,14 @@ namespace FlutterSDK.Widgets.Basic
     /// </Summary>
     public class PhysicalShape : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
+        /// <Summary>
+        /// Creates a physical model with an arbitrary shape clip.
+        ///
+        /// The [color] is required; physical things have a color.
+        ///
+        /// The [clipper], [elevation], [color], [clipBehavior], and [shadowColor]
+        /// must not be null. Additionally, the [elevation] must be non-negative.
+        /// </Summary>
         public PhysicalShape(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Rendering.Proxybox.CustomClipper<Path> clipper = default(FlutterSDK.Rendering.Proxybox.CustomClipper<Path>), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip), double elevation = 0.0, FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color shadowColor = default(FlutterBinding.UI.Color), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
@@ -1317,10 +1581,34 @@ namespace FlutterSDK.Widgets.Basic
             this.Color = color;
             this.ShadowColor = shadowColor;
         }
+        /// <Summary>
+        /// Determines which clip to use.
+        ///
+        /// If the path in question is expressed as a [ShapeBorder] subclass,
+        /// consider using the [ShapeBorderClipper] delegate class to adapt the
+        /// shape for use with this widget.
+        /// </Summary>
         public virtual FlutterSDK.Rendering.Proxybox.CustomClipper<Path> Clipper { get; set; }
+        /// <Summary>
+        /// {@macro flutter.widgets.Clip}
+        ///
+        /// Defaults to [Clip.none].
+        /// </Summary>
         public virtual FlutterBinding.UI.Clip ClipBehavior { get; set; }
+        /// <Summary>
+        /// The z-coordinate relative to the parent at which to place this physical
+        /// object.
+        ///
+        /// The value is non-negative.
+        /// </Summary>
         public virtual double Elevation { get; set; }
+        /// <Summary>
+        /// The background color.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color Color { get; set; }
+        /// <Summary>
+        /// When elevation is non zero the color to use for the shadow color.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color ShadowColor { get; set; }
 
         public new FlutterSDK.Rendering.Proxybox.RenderPhysicalShape CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
@@ -1402,6 +1690,11 @@ namespace FlutterSDK.Widgets.Basic
     /// </Summary>
     public class Transform : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
+        /// <Summary>
+        /// Creates a widget that transforms its child.
+        ///
+        /// The [transform] argument must not be null.
+        /// </Summary>
         public Transform(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), Matrix4 transform = default(Matrix4), FlutterBinding.UI.Offset origin = default(FlutterBinding.UI.Offset), FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), bool transformHitTests = true, FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
@@ -1410,25 +1703,132 @@ namespace FlutterSDK.Widgets.Basic
             this.Alignment = alignment;
             this.TransformHitTests = transformHitTests;
         }
+        /// <Summary>
+        /// Creates a widget that transforms its child using a rotation around the
+        /// center.
+        ///
+        /// The `angle` argument must not be null. It gives the rotation in clockwise
+        /// radians.
+        ///
+        /// {@tool snippet}
+        ///
+        /// This example rotates an orange box containing text around its center by
+        /// fifteen degrees.
+        ///
+        /// ```dart
+        /// Transform.rotate(
+        ///   angle: -math.pi / 12.0,
+        ///   child: Container(
+        ///     padding: const EdgeInsets.all(8.0),
+        ///     color: const Color(0xFFE8581C),
+        ///     child: const Text('Apartment for rent!'),
+        ///   ),
+        /// )
+        /// ```
+        /// {@end-tool}
+        ///
+        /// See also:
+        ///
+        ///  * [RotationTransition], which animates changes in rotation smoothly
+        ///    over a given duration.
+        /// </Summary>
         public static Transform Rotate(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), double angle = default(double), FlutterBinding.UI.Offset origin = default(FlutterBinding.UI.Offset), FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), bool transformHitTests = true, FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         {
             var instance = new Transform(key: key, child: child); instance.Origin = origin;
             instance.Alignment = alignment;
             instance.TransformHitTests = transformHitTests;
         }
+        /// <Summary>
+        /// Creates a widget that transforms its child using a translation.
+        ///
+        /// The `offset` argument must not be null. It specifies the translation.
+        ///
+        /// {@tool snippet}
+        ///
+        /// This example shifts the silver-colored child down by fifteen pixels.
+        ///
+        /// ```dart
+        /// Transform.translate(
+        ///   offset: const Offset(0.0, 15.0),
+        ///   child: Container(
+        ///     padding: const EdgeInsets.all(8.0),
+        ///     color: const Color(0xFF7F7F7F),
+        ///     child: const Text('Quarter'),
+        ///   ),
+        /// )
+        /// ```
+        /// {@end-tool}
+        /// </Summary>
         public static Transform Translate(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterBinding.UI.Offset offset = default(FlutterBinding.UI.Offset), bool transformHitTests = true, FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         {
             var instance = new Transform(key: key, child: child); instance.TransformHitTests = transformHitTests;
         }
+        /// <Summary>
+        /// Creates a widget that scales its child uniformly.
+        ///
+        /// The `scale` argument must not be null. It gives the scalar by which
+        /// to multiply the `x` and `y` axes.
+        ///
+        /// The [alignment] controls the origin of the scale; by default, this is
+        /// the center of the box.
+        ///
+        /// {@tool snippet}
+        ///
+        /// This example shrinks an orange box containing text such that each dimension
+        /// is half the size it would otherwise be.
+        ///
+        /// ```dart
+        /// Transform.scale(
+        ///   scale: 0.5,
+        ///   child: Container(
+        ///     padding: const EdgeInsets.all(8.0),
+        ///     color: const Color(0xFFE8581C),
+        ///     child: const Text('Bad Idea Bears'),
+        ///   ),
+        /// )
+        /// ```
+        /// {@end-tool}
+        ///
+        /// See also:
+        ///
+        ///  * [ScaleTransition], which animates changes in scale smoothly
+        ///    over a given duration.
+        /// </Summary>
         public static Transform Scale(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), double scale = default(double), FlutterBinding.UI.Offset origin = default(FlutterBinding.UI.Offset), FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), bool transformHitTests = true, FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         {
             var instance = new Transform(key: key, child: child); instance.Origin = origin;
             instance.Alignment = alignment;
             instance.TransformHitTests = transformHitTests;
         }
+        /// <Summary>
+        /// The matrix to transform the child by during painting.
+        /// </Summary>
         public virtual Matrix4 TransformValue { get; set; }
+        /// <Summary>
+        /// The origin of the coordinate system (relative to the upper left corner of
+        /// this render object) in which to apply the matrix.
+        ///
+        /// Setting an origin is equivalent to conjugating the transform matrix by a
+        /// translation. This property is provided just for convenience.
+        /// </Summary>
         public virtual FlutterBinding.UI.Offset Origin { get; set; }
+        /// <Summary>
+        /// The alignment of the origin, relative to the size of the box.
+        ///
+        /// This is equivalent to setting an origin based on the size of the box.
+        /// If it is specified at the same time as the [origin], both are applied.
+        ///
+        /// An [AlignmentDirectional.start] value is the same as an [Alignment]
+        /// whose [Alignment.x] value is `-1.0` if [textDirection] is
+        /// [TextDirection.ltr], and `1.0` if [textDirection] is [TextDirection.rtl].
+        /// Similarly [AlignmentDirectional.end] is the same as an [Alignment]
+        /// whose [Alignment.x] value is `1.0` if [textDirection] is
+        /// [TextDirection.ltr], and `-1.0` if [textDirection] is [TextDirection.rtl].
+        /// </Summary>
         public virtual FlutterSDK.Painting.Alignment.AlignmentGeometry Alignment { get; set; }
+        /// <Summary>
+        /// Whether to apply the transformation when performing hit tests.
+        /// </Summary>
         public virtual bool TransformHitTests { get; set; }
 
         public new FlutterSDK.Rendering.Proxybox.RenderTransform CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
@@ -1477,11 +1877,24 @@ namespace FlutterSDK.Widgets.Basic
     /// </Summary>
     public class CompositedTransformTarget : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
+        /// <Summary>
+        /// Creates a composited transform target widget.
+        ///
+        /// The [link] property must not be null, and must not be currently being used
+        /// by any other [CompositedTransformTarget] object that is in the tree.
+        /// </Summary>
         public CompositedTransformTarget(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Rendering.Layer.LayerLink link = default(FlutterSDK.Rendering.Layer.LayerLink), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
             this.Link = link;
         }
+        /// <Summary>
+        /// The link object that connects this [CompositedTransformTarget] with one or
+        /// more [CompositedTransformFollower]s.
+        ///
+        /// This property must not be null. The object must not be associated with
+        /// another [CompositedTransformTarget] that is also being painted.
+        /// </Summary>
         public virtual FlutterSDK.Rendering.Layer.LayerLink Link { get; set; }
 
         public new FlutterSDK.Rendering.Proxybox.RenderLeaderLayer CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
@@ -1537,6 +1950,15 @@ namespace FlutterSDK.Widgets.Basic
     /// </Summary>
     public class CompositedTransformFollower : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
+        /// <Summary>
+        /// Creates a composited transform target widget.
+        ///
+        /// The [link] property must not be null. If it was also provided to a
+        /// [CompositedTransformTarget], that widget must come earlier in the paint
+        /// order.
+        ///
+        /// The [showWhenUnlinked] and [offset] properties must also not be null.
+        /// </Summary>
         public CompositedTransformFollower(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Rendering.Layer.LayerLink link = default(FlutterSDK.Rendering.Layer.LayerLink), bool showWhenUnlinked = true, FlutterBinding.UI.Offset offset = default(FlutterBinding.UI.Offset), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
@@ -1544,8 +1966,29 @@ namespace FlutterSDK.Widgets.Basic
             this.ShowWhenUnlinked = showWhenUnlinked;
             this.Offset = offset;
         }
+        /// <Summary>
+        /// The link object that connects this [CompositedTransformFollower] with a
+        /// [CompositedTransformTarget].
+        ///
+        /// This property must not be null.
+        /// </Summary>
         public virtual FlutterSDK.Rendering.Layer.LayerLink Link { get; set; }
+        /// <Summary>
+        /// Whether to show the widget's contents when there is no corresponding
+        /// [CompositedTransformTarget] with the same [link].
+        ///
+        /// When the widget is linked, the child is positioned such that it has the
+        /// same global position as the linked [CompositedTransformTarget].
+        ///
+        /// When the widget is not linked, then: if [showWhenUnlinked] is true, the
+        /// child is visible and not repositioned; if it is false, then child is
+        /// hidden.
+        /// </Summary>
         public virtual bool ShowWhenUnlinked { get; set; }
+        /// <Summary>
+        /// The offset to apply to the origin of the linked
+        /// [CompositedTransformTarget] to obtain this widget's origin.
+        /// </Summary>
         public virtual FlutterBinding.UI.Offset Offset { get; set; }
 
         public new FlutterSDK.Rendering.Proxybox.RenderFollowerLayer CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
@@ -1585,13 +2028,37 @@ namespace FlutterSDK.Widgets.Basic
     /// </Summary>
     public class FittedBox : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
+        /// <Summary>
+        /// Creates a widget that scales and positions its child within itself according to [fit].
+        ///
+        /// The [fit] and [alignment] arguments must not be null.
+        /// </Summary>
         public FittedBox(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Boxfit.BoxFit fit = default(FlutterSDK.Painting.Boxfit.BoxFit), FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
             this.Fit = fit;
             this.Alignment = alignment;
         }
+        /// <Summary>
+        /// How to inscribe the child into the space allocated during layout.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Boxfit.BoxFit Fit { get; set; }
+        /// <Summary>
+        /// How to align the child within its parent's bounds.
+        ///
+        /// An alignment of (-1.0, -1.0) aligns the child to the top-left corner of its
+        /// parent's bounds. An alignment of (1.0, 0.0) aligns the child to the middle
+        /// of the right edge of its parent's bounds.
+        ///
+        /// Defaults to [Alignment.center].
+        ///
+        /// See also:
+        ///
+        ///  * [Alignment], a class with convenient constants typically used to
+        ///    specify an [AlignmentGeometry].
+        ///  * [AlignmentDirectional], like [Alignment] for specifying alignments
+        ///    relative to text direction.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Alignment.AlignmentGeometry Alignment { get; set; }
 
         public new FlutterSDK.Rendering.Proxybox.RenderFittedBox CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
@@ -1649,13 +2116,27 @@ namespace FlutterSDK.Widgets.Basic
     /// </Summary>
     public class FractionalTranslation : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
+        /// <Summary>
+        /// Creates a widget that translates its child's painting.
+        ///
+        /// The [translation] argument must not be null.
+        /// </Summary>
         public FractionalTranslation(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterBinding.UI.Offset translation = default(FlutterBinding.UI.Offset), bool transformHitTests = true, FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
             this.Translation = translation;
             this.TransformHitTests = transformHitTests;
         }
+        /// <Summary>
+        /// The translation to apply to the child, scaled to the child's size.
+        ///
+        /// For example, an [Offset] with a `dx` of 0.25 will result in a horizontal
+        /// translation of one quarter the width of the child.
+        /// </Summary>
         public virtual FlutterBinding.UI.Offset Translation { get; set; }
+        /// <Summary>
+        /// Whether to apply the translation when performing hit tests.
+        /// </Summary>
         public virtual bool TransformHitTests { get; set; }
 
         public new FlutterSDK.Rendering.Proxybox.RenderFractionalTranslation CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
@@ -1711,11 +2192,19 @@ namespace FlutterSDK.Widgets.Basic
     /// </Summary>
     public class RotatedBox : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
+        /// <Summary>
+        /// A widget that rotates its child.
+        ///
+        /// The [quarterTurns] argument must not be null.
+        /// </Summary>
         public RotatedBox(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), int quarterTurns = default(int), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
             this.QuarterTurns = quarterTurns;
         }
+        /// <Summary>
+        /// The number of clockwise quarter turns the child should be rotated.
+        /// </Summary>
         public virtual int QuarterTurns { get; set; }
 
         public new FlutterSDK.Rendering.Rotatedbox.RenderRotatedBox CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context) => new RenderRotatedBox(quarterTurns: QuarterTurns);
@@ -1792,11 +2281,19 @@ namespace FlutterSDK.Widgets.Basic
     /// </Summary>
     public class Padding : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
+        /// <Summary>
+        /// Creates a widget that insets its child.
+        ///
+        /// The [padding] argument must not be null.
+        /// </Summary>
         public Padding(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
             this.PaddingValue = padding;
         }
+        /// <Summary>
+        /// The amount of space by which to inset the child.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry PaddingValue { get; set; }
 
         public new FlutterSDK.Rendering.Shiftedbox.RenderPadding CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
@@ -1964,6 +2461,11 @@ namespace FlutterSDK.Widgets.Basic
     /// </Summary>
     public class Align : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
+        /// <Summary>
+        /// Creates an alignment widget.
+        ///
+        /// The alignment defaults to [Alignment.center].
+        /// </Summary>
         public Align(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), double widthFactor = default(double), double heightFactor = default(double), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
@@ -1971,8 +2473,36 @@ namespace FlutterSDK.Widgets.Basic
             this.WidthFactor = widthFactor;
             this.HeightFactor = heightFactor;
         }
+        /// <Summary>
+        /// How to align the child.
+        ///
+        /// The x and y values of the [Alignment] control the horizontal and vertical
+        /// alignment, respectively. An x value of -1.0 means that the left edge of
+        /// the child is aligned with the left edge of the parent whereas an x value
+        /// of 1.0 means that the right edge of the child is aligned with the right
+        /// edge of the parent. Other values interpolate (and extrapolate) linearly.
+        /// For example, a value of 0.0 means that the center of the child is aligned
+        /// with the center of the parent.
+        ///
+        /// See also:
+        ///
+        ///  * [Alignment], which has more details and some convenience constants for
+        ///    common positions.
+        ///  * [AlignmentDirectional], which has a horizontal coordinate orientation
+        ///    that depends on the [TextDirection].
+        /// </Summary>
         public virtual FlutterSDK.Painting.Alignment.AlignmentGeometry Alignment { get; set; }
+        /// <Summary>
+        /// If non-null, sets its width to the child's width multiplied by this factor.
+        ///
+        /// Can be both greater and less than 1.0 but must be positive.
+        /// </Summary>
         public virtual double WidthFactor { get; set; }
+        /// <Summary>
+        /// If non-null, sets its height to the child's height multiplied by this factor.
+        ///
+        /// Can be both greater and less than 1.0 but must be positive.
+        /// </Summary>
         public virtual double HeightFactor { get; set; }
 
         public new FlutterSDK.Rendering.Shiftedbox.RenderPositionedBox CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
@@ -2033,6 +2563,9 @@ namespace FlutterSDK.Widgets.Basic
     /// </Summary>
     public class Center : FlutterSDK.Widgets.Basic.Align
     {
+        /// <Summary>
+        /// Creates a widget that centers its child.
+        /// </Summary>
         public Center(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), double widthFactor = default(double), double heightFactor = default(double), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, widthFactor: widthFactor, heightFactor: heightFactor, child: child)
         {
@@ -2062,11 +2595,19 @@ namespace FlutterSDK.Widgets.Basic
     /// </Summary>
     public class CustomSingleChildLayout : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
+        /// <Summary>
+        /// Creates a custom single child layout.
+        ///
+        /// The [delegate] argument must not be null.
+        /// </Summary>
         public CustomSingleChildLayout(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Rendering.Shiftedbox.SingleChildLayoutDelegate @delegate = default(FlutterSDK.Rendering.Shiftedbox.SingleChildLayoutDelegate), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
             this.@delegate = @delegate;
         }
+        /// <Summary>
+        /// The delegate that controls the layout of the child.
+        /// </Summary>
         public virtual FlutterSDK.Rendering.Shiftedbox.SingleChildLayoutDelegate @delegate { get; set; }
 
         public new FlutterSDK.Rendering.Shiftedbox.RenderCustomSingleChildLayoutBox CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
@@ -2102,11 +2643,22 @@ namespace FlutterSDK.Widgets.Basic
     /// </Summary>
     public class LayoutId : FlutterSDK.Widgets.Framework.ParentDataWidget<FlutterSDK.Rendering.Customlayout.MultiChildLayoutParentData>
     {
+        /// <Summary>
+        /// Marks a child with a layout identifier.
+        ///
+        /// Both the child and the id arguments must not be null.
+        /// </Summary>
         public LayoutId(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), @Object id = default(@Object), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key ?? new ValueKey<object>(id), child: child)
         {
             this.Id = id;
         }
+        /// <Summary>
+        /// An object representing the identity of this child.
+        ///
+        /// The [id] needs to be unique among the children that the
+        /// [CustomMultiChildLayout] manages.
+        /// </Summary>
         public virtual @Object Id { get; set; }
         public virtual Type DebugTypicalAncestorWidgetClass { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 
@@ -2167,11 +2719,19 @@ namespace FlutterSDK.Widgets.Basic
     /// </Summary>
     public class CustomMultiChildLayout : FlutterSDK.Widgets.Framework.MultiChildRenderObjectWidget
     {
+        /// <Summary>
+        /// Creates a custom multi-child layout.
+        ///
+        /// The [delegate] argument must not be null.
+        /// </Summary>
         public CustomMultiChildLayout(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Rendering.Customlayout.MultiChildLayoutDelegate @delegate = default(FlutterSDK.Rendering.Customlayout.MultiChildLayoutDelegate), List<FlutterSDK.Widgets.Framework.Widget> children = default(List<FlutterSDK.Widgets.Framework.Widget>))
         : base(key: key, children: children)
         {
             this.@delegate = @delegate;
         }
+        /// <Summary>
+        /// The delegate that controls the layout of the children.
+        /// </Summary>
         public virtual FlutterSDK.Rendering.Customlayout.MultiChildLayoutDelegate @delegate { get; set; }
 
         public new FlutterSDK.Rendering.Customlayout.RenderCustomMultiChildLayoutBox CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
@@ -2247,25 +2807,45 @@ namespace FlutterSDK.Widgets.Basic
     /// </Summary>
     public class SizedBox : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
+        /// <Summary>
+        /// Creates a fixed size box. The [width] and [height] parameters can be null
+        /// to indicate that the size of the box should not be constrained in
+        /// the corresponding dimension.
+        /// </Summary>
         public SizedBox(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), double width = default(double), double height = default(double), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
             this.Width = width;
             this.Height = height;
         }
+        /// <Summary>
+        /// Creates a box that will become as large as its parent allows.
+        /// </Summary>
         public static SizedBox Expand(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         {
             var instance = new SizedBox(key: key, child: child);
         }
+        /// <Summary>
+        /// Creates a box that will become as small as its parent allows.
+        /// </Summary>
         public static SizedBox Shrink(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         {
             var instance = new SizedBox(key: key, child: child);
         }
+        /// <Summary>
+        /// Creates a box with the specified size.
+        /// </Summary>
         public static SizedBox FromSize(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), Size size = default(Size))
         {
             var instance = new SizedBox(key: key, child: child);
         }
+        /// <Summary>
+        /// If non-null, requires the child to have exactly this width.
+        /// </Summary>
         public virtual double Width { get; set; }
+        /// <Summary>
+        /// If non-null, requires the child to have exactly this height.
+        /// </Summary>
         public virtual double Height { get; set; }
         internal virtual FlutterSDK.Rendering.Box.BoxConstraints _AdditionalConstraints { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 
@@ -2374,11 +2954,19 @@ namespace FlutterSDK.Widgets.Basic
     /// </Summary>
     public class ConstrainedBox : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
+        /// <Summary>
+        /// Creates a widget that imposes additional constraints on its child.
+        ///
+        /// The [constraints] argument must not be null.
+        /// </Summary>
         public ConstrainedBox(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Rendering.Box.BoxConstraints constraints = default(FlutterSDK.Rendering.Box.BoxConstraints), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
             this.Constraints = constraints;
         }
+        /// <Summary>
+        /// The additional constraints to impose on the child.
+        /// </Summary>
         public virtual FlutterSDK.Rendering.Box.BoxConstraints Constraints { get; set; }
 
         public new FlutterSDK.Rendering.Proxybox.RenderConstrainedBox CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
@@ -2442,6 +3030,11 @@ namespace FlutterSDK.Widgets.Basic
     /// </Summary>
     public class UnconstrainedBox : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
+        /// <Summary>
+        /// Creates a widget that imposes no constraints on its child, allowing it to
+        /// render at its "natural" size. If the child overflows the parents
+        /// constraints, a warning will be given in debug mode.
+        /// </Summary>
         public UnconstrainedBox(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), TextDirection textDirection = default(TextDirection), FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), FlutterSDK.Painting.Basictypes.Axis constrainedAxis = default(FlutterSDK.Painting.Basictypes.Axis))
         : base(key: key, child: child)
         {
@@ -2449,8 +3042,31 @@ namespace FlutterSDK.Widgets.Basic
             this.Alignment = alignment;
             this.ConstrainedAxis = constrainedAxis;
         }
+        /// <Summary>
+        /// The text direction to use when interpreting the [alignment] if it is an
+        /// [AlignmentDirectional].
+        /// </Summary>
         public virtual TextDirection TextDirection { get; set; }
+        /// <Summary>
+        /// The alignment to use when laying out the child.
+        ///
+        /// If this is an [AlignmentDirectional], then [textDirection] must not be
+        /// null.
+        ///
+        /// See also:
+        ///
+        ///  * [Alignment] for non-[Directionality]-aware alignments.
+        ///  * [AlignmentDirectional] for [Directionality]-aware alignments.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Alignment.AlignmentGeometry Alignment { get; set; }
+        /// <Summary>
+        /// The axis to retain constraints on, if any.
+        ///
+        /// If not set, or set to null (the default), neither axis will retain its
+        /// constraints. If set to [Axis.vertical], then vertical constraints will
+        /// be retained, and if set to [Axis.horizontal], then horizontal constraints
+        /// will be retained.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Basictypes.Axis ConstrainedAxis { get; set; }
 
         public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.Shiftedbox.RenderUnconstrainedBox renderObject)
@@ -2502,6 +3118,12 @@ namespace FlutterSDK.Widgets.Basic
     /// </Summary>
     public class FractionallySizedBox : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
+        /// <Summary>
+        /// Creates a widget that sizes its child to a fraction of the total available space.
+        ///
+        /// If non-null, the [widthFactor] and [heightFactor] arguments must be
+        /// non-negative.
+        /// </Summary>
         public FractionallySizedBox(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), double widthFactor = default(double), double heightFactor = default(double), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
@@ -2509,8 +3131,46 @@ namespace FlutterSDK.Widgets.Basic
             this.WidthFactor = widthFactor;
             this.HeightFactor = heightFactor;
         }
+        /// <Summary>
+        /// If non-null, the fraction of the incoming width given to the child.
+        ///
+        /// If non-null, the child is given a tight width constraint that is the max
+        /// incoming width constraint multiplied by this factor.
+        ///
+        /// If null, the incoming width constraints are passed to the child
+        /// unmodified.
+        /// </Summary>
         public virtual double WidthFactor { get; set; }
+        /// <Summary>
+        /// If non-null, the fraction of the incoming height given to the child.
+        ///
+        /// If non-null, the child is given a tight height constraint that is the max
+        /// incoming height constraint multiplied by this factor.
+        ///
+        /// If null, the incoming height constraints are passed to the child
+        /// unmodified.
+        /// </Summary>
         public virtual double HeightFactor { get; set; }
+        /// <Summary>
+        /// How to align the child.
+        ///
+        /// The x and y values of the alignment control the horizontal and vertical
+        /// alignment, respectively. An x value of -1.0 means that the left edge of
+        /// the child is aligned with the left edge of the parent whereas an x value
+        /// of 1.0 means that the right edge of the child is aligned with the right
+        /// edge of the parent. Other values interpolate (and extrapolate) linearly.
+        /// For example, a value of 0.0 means that the center of the child is aligned
+        /// with the center of the parent.
+        ///
+        /// Defaults to [Alignment.center].
+        ///
+        /// See also:
+        ///
+        ///  * [Alignment], a class with convenient constants typically used to
+        ///    specify an [AlignmentGeometry].
+        ///  * [AlignmentDirectional], like [Alignment] for specifying alignments
+        ///    relative to text direction.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Alignment.AlignmentGeometry Alignment { get; set; }
 
         public new FlutterSDK.Rendering.Shiftedbox.RenderFractionallySizedOverflowBox CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
@@ -2577,13 +3237,27 @@ namespace FlutterSDK.Widgets.Basic
     /// </Summary>
     public class LimitedBox : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
+        /// <Summary>
+        /// Creates a box that limits its size only when it's unconstrained.
+        ///
+        /// The [maxWidth] and [maxHeight] arguments must not be null and must not be
+        /// negative.
+        /// </Summary>
         public LimitedBox(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), double maxWidth = default(double), double maxHeight = default(double), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
             this.MaxWidth = maxWidth;
             this.MaxHeight = maxHeight;
         }
+        /// <Summary>
+        /// The maximum width limit to apply in the absence of a
+        /// [BoxConstraints.maxWidth] constraint.
+        /// </Summary>
         public virtual double MaxWidth { get; set; }
+        /// <Summary>
+        /// The maximum height limit to apply in the absence of a
+        /// [BoxConstraints.maxHeight] constraint.
+        /// </Summary>
         public virtual double MaxHeight { get; set; }
 
         public new FlutterSDK.Rendering.Proxybox.RenderLimitedBox CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
@@ -2639,6 +3313,9 @@ namespace FlutterSDK.Widgets.Basic
     /// </Summary>
     public class OverflowBox : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
+        /// <Summary>
+        /// Creates a widget that lets its child overflow itself.
+        /// </Summary>
         public OverflowBox(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), double minWidth = default(double), double maxWidth = default(double), double minHeight = default(double), double maxHeight = default(double), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
@@ -2648,10 +3325,46 @@ namespace FlutterSDK.Widgets.Basic
             this.MinHeight = minHeight;
             this.MaxHeight = maxHeight;
         }
+        /// <Summary>
+        /// How to align the child.
+        ///
+        /// The x and y values of the alignment control the horizontal and vertical
+        /// alignment, respectively. An x value of -1.0 means that the left edge of
+        /// the child is aligned with the left edge of the parent whereas an x value
+        /// of 1.0 means that the right edge of the child is aligned with the right
+        /// edge of the parent. Other values interpolate (and extrapolate) linearly.
+        /// For example, a value of 0.0 means that the center of the child is aligned
+        /// with the center of the parent.
+        ///
+        /// Defaults to [Alignment.center].
+        ///
+        /// See also:
+        ///
+        ///  * [Alignment], a class with convenient constants typically used to
+        ///    specify an [AlignmentGeometry].
+        ///  * [AlignmentDirectional], like [Alignment] for specifying alignments
+        ///    relative to text direction.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Alignment.AlignmentGeometry Alignment { get; set; }
+        /// <Summary>
+        /// The minimum width constraint to give the child. Set this to null (the
+        /// default) to use the constraint from the parent instead.
+        /// </Summary>
         public virtual double MinWidth { get; set; }
+        /// <Summary>
+        /// The maximum width constraint to give the child. Set this to null (the
+        /// default) to use the constraint from the parent instead.
+        /// </Summary>
         public virtual double MaxWidth { get; set; }
+        /// <Summary>
+        /// The minimum height constraint to give the child. Set this to null (the
+        /// default) to use the constraint from the parent instead.
+        /// </Summary>
         public virtual double MinHeight { get; set; }
+        /// <Summary>
+        /// The maximum height constraint to give the child. Set this to null (the
+        /// default) to use the constraint from the parent instead.
+        /// </Summary>
         public virtual double MaxHeight { get; set; }
 
         public new FlutterSDK.Rendering.Shiftedbox.RenderConstrainedOverflowBox CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
@@ -2708,13 +3421,41 @@ namespace FlutterSDK.Widgets.Basic
     /// </Summary>
     public class SizedOverflowBox : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
+        /// <Summary>
+        /// Creates a widget of a given size that lets its child overflow.
+        ///
+        /// The [size] argument must not be null.
+        /// </Summary>
         public SizedOverflowBox(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), Size size = default(Size), FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
             this.Size = size;
             this.Alignment = alignment;
         }
+        /// <Summary>
+        /// How to align the child.
+        ///
+        /// The x and y values of the alignment control the horizontal and vertical
+        /// alignment, respectively. An x value of -1.0 means that the left edge of
+        /// the child is aligned with the left edge of the parent whereas an x value
+        /// of 1.0 means that the right edge of the child is aligned with the right
+        /// edge of the parent. Other values interpolate (and extrapolate) linearly.
+        /// For example, a value of 0.0 means that the center of the child is aligned
+        /// with the center of the parent.
+        ///
+        /// Defaults to [Alignment.center].
+        ///
+        /// See also:
+        ///
+        ///  * [Alignment], a class with convenient constants typically used to
+        ///    specify an [AlignmentGeometry].
+        ///  * [AlignmentDirectional], like [Alignment] for specifying alignments
+        ///    relative to text direction.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Alignment.AlignmentGeometry Alignment { get; set; }
+        /// <Summary>
+        /// The size this widget should attempt to be.
+        /// </Summary>
         public virtual Size Size { get; set; }
 
         public new FlutterSDK.Rendering.Shiftedbox.RenderSizedOverflowBox CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
@@ -2776,11 +3517,29 @@ namespace FlutterSDK.Widgets.Basic
     /// </Summary>
     public class Offstage : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
+        /// <Summary>
+        /// Creates a widget that visually hides its child.
+        /// </Summary>
         public Offstage(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), bool offstage = true, FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
             this.OffstageValue = offstage;
         }
+        /// <Summary>
+        /// Whether the child is hidden from the rest of the tree.
+        ///
+        /// If true, the child is laid out as if it was in the tree, but without
+        /// painting anything, without making the child available for hit testing, and
+        /// without taking any room in the parent.
+        ///
+        /// Offstage children are still active: they can receive focus and have keyboard
+        /// input directed to them.
+        ///
+        /// Animations continue to run in offstage children, and therefore use battery
+        /// and CPU time, regardless of whether the animations end up being visible.
+        ///
+        /// If false, the child is included in the tree as normal.
+        /// </Summary>
         public virtual bool OffstageValue { get; set; }
 
         public new FlutterSDK.Rendering.Proxybox.RenderOffstage CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context) => new RenderOffstage(offstage: Offstage);
@@ -2877,11 +3636,22 @@ namespace FlutterSDK.Widgets.Basic
     /// </Summary>
     public class AspectRatio : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
+        /// <Summary>
+        /// Creates a widget with a specific aspect ratio.
+        ///
+        /// The [aspectRatio] argument must not be null.
+        /// </Summary>
         public AspectRatio(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), double aspectRatio = default(double), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
             this.AspectRatioValue = aspectRatio;
         }
+        /// <Summary>
+        /// The aspect ratio to attempt to use.
+        ///
+        /// The aspect ratio is expressed as a ratio of width to height. For example,
+        /// a 16:9 width:height aspect ratio would have a value of 16.0/9.0.
+        /// </Summary>
         public virtual double AspectRatioValue { get; set; }
 
         public new FlutterSDK.Rendering.Proxybox.RenderAspectRatio CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context) => new RenderAspectRatio(aspectRatio: AspectRatio);
@@ -2936,13 +3706,38 @@ namespace FlutterSDK.Widgets.Basic
     /// </Summary>
     public class IntrinsicWidth : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
+        /// <Summary>
+        /// Creates a widget that sizes its child to the child's intrinsic width.
+        ///
+        /// This class is relatively expensive. Avoid using it where possible.
+        /// </Summary>
         public IntrinsicWidth(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), double stepWidth = default(double), double stepHeight = default(double), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
             this.StepWidth = stepWidth;
             this.StepHeight = stepHeight;
         }
+        /// <Summary>
+        /// If non-null, force the child's width to be a multiple of this value.
+        ///
+        /// If null or 0.0 the child's width will be the same as its maximum
+        /// intrinsic width.
+        ///
+        /// This value must not be negative.
+        ///
+        /// See also:
+        ///
+        ///  * [RenderBox.getMaxIntrinsicWidth], which defines a widget's max
+        ///    intrinsic width  in general.
+        /// </Summary>
         public virtual double StepWidth { get; set; }
+        /// <Summary>
+        /// If non-null, force the child's height to be a multiple of this value.
+        ///
+        /// If null or 0.0 the child's height will not be constrained.
+        ///
+        /// This value must not be negative.
+        /// </Summary>
         public virtual double StepHeight { get; set; }
         internal virtual double _StepWidth { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         internal virtual double _StepHeight { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
@@ -2989,6 +3784,11 @@ namespace FlutterSDK.Widgets.Basic
     /// </Summary>
     public class IntrinsicHeight : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
+        /// <Summary>
+        /// Creates a widget that sizes its child to the child's intrinsic height.
+        ///
+        /// This class is relatively expensive. Avoid using it where possible.
+        /// </Summary>
         public IntrinsicHeight(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
@@ -3020,13 +3820,25 @@ namespace FlutterSDK.Widgets.Basic
     /// </Summary>
     public class Baseline : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
+        /// <Summary>
+        /// Creates a widget that positions its child according to the child's baseline.
+        ///
+        /// The [baseline] and [baselineType] arguments must not be null.
+        /// </Summary>
         public Baseline(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), double baseline = default(double), TextBaseline baselineType = default(TextBaseline), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
             this.BaselineValue = baseline;
             this.BaselineType = baselineType;
         }
+        /// <Summary>
+        /// The number of logical pixels from the top of this box at which to position
+        /// the child's baseline.
+        /// </Summary>
         public virtual double BaselineValue { get; set; }
+        /// <Summary>
+        /// The type of baseline to use for positioning the child.
+        /// </Summary>
         public virtual TextBaseline BaselineType { get; set; }
 
         public new FlutterSDK.Rendering.Shiftedbox.RenderBaseline CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
@@ -3079,6 +3891,9 @@ namespace FlutterSDK.Widgets.Basic
     /// </Summary>
     public class SliverToBoxAdapter : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
+        /// <Summary>
+        /// Creates a sliver that contains a single box widget.
+        /// </Summary>
         public SliverToBoxAdapter(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
@@ -3111,11 +3926,19 @@ namespace FlutterSDK.Widgets.Basic
     /// </Summary>
     public class SliverPadding : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
+        /// <Summary>
+        /// Creates a sliver that applies padding on each side of another sliver.
+        ///
+        /// The [padding] argument must not be null.
+        /// </Summary>
         public SliverPadding(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Widgets.Framework.Widget sliver = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: sliver)
         {
             this.Padding = padding;
         }
+        /// <Summary>
+        /// The amount of space by which to inset the child sliver.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Padding { get; set; }
 
         public new FlutterSDK.Rendering.Sliverpadding.RenderSliverPadding CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
@@ -3174,13 +3997,36 @@ namespace FlutterSDK.Widgets.Basic
     /// </Summary>
     public class ListBody : FlutterSDK.Widgets.Framework.MultiChildRenderObjectWidget
     {
+        /// <Summary>
+        /// Creates a layout widget that arranges its children sequentially along a
+        /// given axis.
+        ///
+        /// By default, the [mainAxis] is [Axis.vertical].
+        /// </Summary>
         public ListBody(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Basictypes.Axis mainAxis = default(FlutterSDK.Painting.Basictypes.Axis), bool reverse = false, List<FlutterSDK.Widgets.Framework.Widget> children = default(List<FlutterSDK.Widgets.Framework.Widget>))
         : base(key: key, children: children)
         {
             this.MainAxis = mainAxis;
             this.Reverse = reverse;
         }
+        /// <Summary>
+        /// The direction to use as the main axis.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Basictypes.Axis MainAxis { get; set; }
+        /// <Summary>
+        /// Whether the list body positions children in the reading direction.
+        ///
+        /// For example, if the reading direction is left-to-right and
+        /// [mainAxis] is [Axis.horizontal], then the list body positions children
+        /// from left to right when [reverse] is false and from right to left when
+        /// [reverse] is true.
+        ///
+        /// Similarly, if [mainAxis] is [Axis.vertical], then the list body positions
+        /// from top to bottom when [reverse] is false and from bottom to top when
+        /// [reverse] is true.
+        ///
+        /// Defaults to false.
+        /// </Summary>
         public virtual bool Reverse { get; set; }
 
         private FlutterSDK.Painting.Basictypes.AxisDirection _GetDirection(FlutterSDK.Widgets.Framework.BuildContext context)
@@ -3334,6 +4180,12 @@ namespace FlutterSDK.Widgets.Basic
     /// </Summary>
     public class Stack : FlutterSDK.Widgets.Framework.MultiChildRenderObjectWidget
     {
+        /// <Summary>
+        /// Creates a stack layout widget.
+        ///
+        /// By default, the non-positioned children of the stack are aligned by their
+        /// top left corners.
+        /// </Summary>
         public Stack(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), TextDirection textDirection = default(TextDirection), FlutterSDK.Rendering.Stack.StackFit fit = default(FlutterSDK.Rendering.Stack.StackFit), FlutterSDK.Rendering.Stack.Overflow overflow = default(FlutterSDK.Rendering.Stack.Overflow), List<FlutterSDK.Widgets.Framework.Widget> children = default(List<FlutterSDK.Widgets.Framework.Widget>))
         : base(key: key, children: children)
         {
@@ -3342,9 +4194,50 @@ namespace FlutterSDK.Widgets.Basic
             this.Fit = fit;
             this.Overflow = overflow;
         }
+        /// <Summary>
+        /// How to align the non-positioned and partially-positioned children in the
+        /// stack.
+        ///
+        /// The non-positioned children are placed relative to each other such that
+        /// the points determined by [alignment] are co-located. For example, if the
+        /// [alignment] is [Alignment.topLeft], then the top left corner of
+        /// each non-positioned child will be located at the same global coordinate.
+        ///
+        /// Partially-positioned children, those that do not specify an alignment in a
+        /// particular axis (e.g. that have neither `top` nor `bottom` set), use the
+        /// alignment to determine how they should be positioned in that
+        /// under-specified axis.
+        ///
+        /// Defaults to [AlignmentDirectional.topStart].
+        ///
+        /// See also:
+        ///
+        ///  * [Alignment], a class with convenient constants typically used to
+        ///    specify an [AlignmentGeometry].
+        ///  * [AlignmentDirectional], like [Alignment] for specifying alignments
+        ///    relative to text direction.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Alignment.AlignmentGeometry Alignment { get; set; }
+        /// <Summary>
+        /// The text direction with which to resolve [alignment].
+        ///
+        /// Defaults to the ambient [Directionality].
+        /// </Summary>
         public virtual TextDirection TextDirection { get; set; }
+        /// <Summary>
+        /// How to size the non-positioned children in the stack.
+        ///
+        /// The constraints passed into the [Stack] from its parent are either
+        /// loosened ([StackFit.loose]) or tightened to their biggest size
+        /// ([StackFit.expand]).
+        /// </Summary>
         public virtual FlutterSDK.Rendering.Stack.StackFit Fit { get; set; }
+        /// <Summary>
+        /// Whether overflowing children should be clipped. See [Overflow].
+        ///
+        /// Some children in a stack might overflow its box. When this flag is set to
+        /// [Overflow.clip], children cannot paint outside of the stack's box.
+        /// </Summary>
         public virtual FlutterSDK.Rendering.Stack.Overflow Overflow { get; set; }
 
         public new FlutterSDK.Rendering.Stack.RenderStack CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
@@ -3400,11 +4293,19 @@ namespace FlutterSDK.Widgets.Basic
     /// </Summary>
     public class IndexedStack : FlutterSDK.Widgets.Basic.Stack
     {
+        /// <Summary>
+        /// Creates a [Stack] widget that paints a single child.
+        ///
+        /// The [index] argument must not be null.
+        /// </Summary>
         public IndexedStack(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), TextDirection textDirection = default(TextDirection), FlutterSDK.Rendering.Stack.StackFit sizing = default(FlutterSDK.Rendering.Stack.StackFit), int index = 0, List<FlutterSDK.Widgets.Framework.Widget> children = default(List<FlutterSDK.Widgets.Framework.Widget>))
         : base(key: key, alignment: alignment, textDirection: textDirection, fit: sizing, children: children)
         {
             this.Index = index;
         }
+        /// <Summary>
+        /// The index of the child to show.
+        /// </Summary>
         public virtual int Index { get; set; }
 
         public new FlutterSDK.Rendering.Stack.RenderIndexedStack CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
@@ -3469,6 +4370,21 @@ namespace FlutterSDK.Widgets.Basic
     /// </Summary>
     public class Positioned : FlutterSDK.Widgets.Framework.ParentDataWidget<FlutterSDK.Rendering.Stack.StackParentData>
     {
+        /// <Summary>
+        /// Creates a widget that controls where a child of a [Stack] is positioned.
+        ///
+        /// Only two out of the three horizontal values ([left], [right],
+        /// [width]), and only two out of the three vertical values ([top],
+        /// [bottom], [height]), can be set. In each case, at least one of
+        /// the three must be null.
+        ///
+        /// See also:
+        ///
+        ///  * [Positioned.directional], which specifies the widget's horizontal
+        ///    position using `start` and `end` rather than `left` and `right`.
+        ///  * [PositionedDirectional], which is similar to [Positioned.directional]
+        ///    but adapts to the ambient [Directionality].
+        /// </Summary>
         public Positioned(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), double left = default(double), double top = default(double), double right = default(double), double bottom = default(double), double width = default(double), double height = default(double), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
@@ -3479,14 +4395,31 @@ namespace FlutterSDK.Widgets.Basic
             this.Width = width;
             this.Height = height;
         }
+        /// <Summary>
+        /// Creates a Positioned object with the values from the given [Rect].
+        ///
+        /// This sets the [left], [top], [width], and [height] properties
+        /// from the given [Rect]. The [right] and [bottom] properties are
+        /// set to null.
+        /// </Summary>
         public static Positioned FromRect(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterBinding.UI.Rect rect = default(FlutterBinding.UI.Rect), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         {
             var instance = new Positioned(key: key, child: child);
         }
+        /// <Summary>
+        /// Creates a Positioned object with the values from the given [RelativeRect].
+        ///
+        /// This sets the [left], [top], [right], and [bottom] properties from the
+        /// given [RelativeRect]. The [height] and [width] properties are set to null.
+        /// </Summary>
         public static Positioned FromRelativeRect(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Rendering.Stack.RelativeRect rect = default(FlutterSDK.Rendering.Stack.RelativeRect), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         {
             var instance = new Positioned(key: key, child: child);
         }
+        /// <Summary>
+        /// Creates a Positioned object with [left], [top], [right], and [bottom] set
+        /// to 0.0 unless a value for them is passed.
+        /// </Summary>
         public static Positioned Fill(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), double left = 0.0, double top = 0.0, double right = 0.0, double bottom = 0.0, FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         {
             var instance = new Positioned(key: key, child: child); instance.Left = left;
@@ -3494,6 +4427,26 @@ namespace FlutterSDK.Widgets.Basic
             instance.Right = right;
             instance.Bottom = bottom;
         }
+        /// <Summary>
+        /// Creates a widget that controls where a child of a [Stack] is positioned.
+        ///
+        /// Only two out of the three horizontal values (`start`, `end`,
+        /// [width]), and only two out of the three vertical values ([top],
+        /// [bottom], [height]), can be set. In each case, at least one of
+        /// the three must be null.
+        ///
+        /// If `textDirection` is [TextDirection.rtl], then the `start` argument is
+        /// used for the [right] property and the `end` argument is used for the
+        /// [left] property. Otherwise, if `textDirection` is [TextDirection.ltr],
+        /// then the `start` argument is used for the [left] property and the `end`
+        /// argument is used for the [right] property.
+        ///
+        /// The `textDirection` argument must not be null.
+        ///
+        /// See also:
+        ///
+        ///  * [PositionedDirectional], which adapts to the ambient [Directionality].
+        /// </Summary>
         public static Positioned Directional(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), TextDirection textDirection = default(TextDirection), double start = default(double), double top = default(double), double end = default(double), double bottom = default(double), double width = default(double), double height = default(double), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         {
             var instance = new Positioned();
@@ -3505,11 +4458,65 @@ namespace FlutterSDK.Widgets.Basic
         }
 
 
+        /// <Summary>
+        /// The distance that the child's left edge is inset from the left of the stack.
+        ///
+        /// Only two out of the three horizontal values ([left], [right], [width]) can be
+        /// set. The third must be null.
+        ///
+        /// If all three are null, the [Stack.alignment] is used to position the child
+        /// horizontally.
+        /// </Summary>
         public virtual double Left { get; set; }
+        /// <Summary>
+        /// The distance that the child's top edge is inset from the top of the stack.
+        ///
+        /// Only two out of the three vertical values ([top], [bottom], [height]) can be
+        /// set. The third must be null.
+        ///
+        /// If all three are null, the [Stack.alignment] is used to position the child
+        /// vertically.
+        /// </Summary>
         public virtual double Top { get; set; }
+        /// <Summary>
+        /// The distance that the child's right edge is inset from the right of the stack.
+        ///
+        /// Only two out of the three horizontal values ([left], [right], [width]) can be
+        /// set. The third must be null.
+        ///
+        /// If all three are null, the [Stack.alignment] is used to position the child
+        /// horizontally.
+        /// </Summary>
         public virtual double Right { get; set; }
+        /// <Summary>
+        /// The distance that the child's bottom edge is inset from the bottom of the stack.
+        ///
+        /// Only two out of the three vertical values ([top], [bottom], [height]) can be
+        /// set. The third must be null.
+        ///
+        /// If all three are null, the [Stack.alignment] is used to position the child
+        /// vertically.
+        /// </Summary>
         public virtual double Bottom { get; set; }
+        /// <Summary>
+        /// The child's width.
+        ///
+        /// Only two out of the three horizontal values ([left], [right], [width]) can be
+        /// set. The third must be null.
+        ///
+        /// If all three are null, the [Stack.alignment] is used to position the child
+        /// horizontally.
+        /// </Summary>
         public virtual double Width { get; set; }
+        /// <Summary>
+        /// The child's height.
+        ///
+        /// Only two out of the three vertical values ([top], [bottom], [height]) can be
+        /// set. The third must be null.
+        ///
+        /// If all three are null, the [Stack.alignment] is used to position the child
+        /// vertically.
+        /// </Summary>
         public virtual double Height { get; set; }
         public virtual Type DebugTypicalAncestorWidgetClass { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 
@@ -3617,6 +4624,19 @@ namespace FlutterSDK.Widgets.Basic
     /// </Summary>
     public class PositionedDirectional : FlutterSDK.Widgets.Framework.StatelessWidget
     {
+        /// <Summary>
+        /// Creates a widget that controls where a child of a [Stack] is positioned.
+        ///
+        /// Only two out of the three horizontal values (`start`, `end`,
+        /// [width]), and only two out of the three vertical values ([top],
+        /// [bottom], [height]), can be set. In each case, at least one of
+        /// the three must be null.
+        ///
+        /// See also:
+        ///
+        ///  * [Positioned.directional], which also specifies the widget's horizontal
+        ///    position using [start] and [end] but has an explicit [TextDirection].
+        /// </Summary>
         public PositionedDirectional(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), double start = default(double), double top = default(double), double end = default(double), double bottom = default(double), double width = default(double), double height = default(double), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key)
         {
@@ -3628,12 +4648,55 @@ namespace FlutterSDK.Widgets.Basic
             this.Height = height;
             this.Child = child;
         }
+        /// <Summary>
+        /// The distance that the child's leading edge is inset from the leading edge
+        /// of the stack.
+        ///
+        /// Only two out of the three horizontal values ([start], [end], [width]) can be
+        /// set. The third must be null.
+        /// </Summary>
         public virtual double Start { get; set; }
+        /// <Summary>
+        /// The distance that the child's top edge is inset from the top of the stack.
+        ///
+        /// Only two out of the three vertical values ([top], [bottom], [height]) can be
+        /// set. The third must be null.
+        /// </Summary>
         public virtual double Top { get; set; }
+        /// <Summary>
+        /// The distance that the child's trailing edge is inset from the trailing
+        /// edge of the stack.
+        ///
+        /// Only two out of the three horizontal values ([start], [end], [width]) can be
+        /// set. The third must be null.
+        /// </Summary>
         public virtual double End { get; set; }
+        /// <Summary>
+        /// The distance that the child's bottom edge is inset from the bottom of the stack.
+        ///
+        /// Only two out of the three vertical values ([top], [bottom], [height]) can be
+        /// set. The third must be null.
+        /// </Summary>
         public virtual double Bottom { get; set; }
+        /// <Summary>
+        /// The child's width.
+        ///
+        /// Only two out of the three horizontal values ([start], [end], [width]) can be
+        /// set. The third must be null.
+        /// </Summary>
         public virtual double Width { get; set; }
+        /// <Summary>
+        /// The child's height.
+        ///
+        /// Only two out of the three vertical values ([top], [bottom], [height]) can be
+        /// set. The third must be null.
+        /// </Summary>
         public virtual double Height { get; set; }
+        /// <Summary>
+        /// The widget below this widget in the tree.
+        ///
+        /// {@macro flutter.widgets.child}
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
@@ -3716,6 +4779,21 @@ namespace FlutterSDK.Widgets.Basic
     /// </Summary>
     public class Flex : FlutterSDK.Widgets.Framework.MultiChildRenderObjectWidget
     {
+        /// <Summary>
+        /// Creates a flex layout.
+        ///
+        /// The [direction] is required.
+        ///
+        /// The [direction], [mainAxisAlignment], [crossAxisAlignment], and
+        /// [verticalDirection] arguments must not be null. If [crossAxisAlignment] is
+        /// [CrossAxisAlignment.baseline], then [textBaseline] must not be null.
+        ///
+        /// The [textDirection] argument defaults to the ambient [Directionality], if
+        /// any. If there is no ambient directionality, and a text direction is going
+        /// to be necessary to decide which direction to lay the children in or to
+        /// disambiguate `start` or `end` values for the main or cross axis
+        /// directions, the [textDirection] must not be null.
+        /// </Summary>
         public Flex(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Basictypes.Axis direction = default(FlutterSDK.Painting.Basictypes.Axis), FlutterSDK.Rendering.Flex.MainAxisAlignment mainAxisAlignment = default(FlutterSDK.Rendering.Flex.MainAxisAlignment), FlutterSDK.Rendering.Flex.MainAxisSize mainAxisSize = default(FlutterSDK.Rendering.Flex.MainAxisSize), FlutterSDK.Rendering.Flex.CrossAxisAlignment crossAxisAlignment = default(FlutterSDK.Rendering.Flex.CrossAxisAlignment), TextDirection textDirection = default(TextDirection), FlutterSDK.Painting.Basictypes.VerticalDirection verticalDirection = default(FlutterSDK.Painting.Basictypes.VerticalDirection), TextBaseline textBaseline = default(TextBaseline), List<FlutterSDK.Widgets.Framework.Widget> children = default(List<FlutterSDK.Widgets.Framework.Widget>))
         : base(key: key, children: children)
         {
@@ -3727,12 +4805,94 @@ namespace FlutterSDK.Widgets.Basic
             this.VerticalDirection = verticalDirection;
             this.TextBaseline = textBaseline;
         }
+        /// <Summary>
+        /// The direction to use as the main axis.
+        ///
+        /// If you know the axis in advance, then consider using a [Row] (if it's
+        /// horizontal) or [Column] (if it's vertical) instead of a [Flex], since that
+        /// will be less verbose. (For [Row] and [Column] this property is fixed to
+        /// the appropriate axis.)
+        /// </Summary>
         public virtual FlutterSDK.Painting.Basictypes.Axis Direction { get; set; }
+        /// <Summary>
+        /// How the children should be placed along the main axis.
+        ///
+        /// For example, [MainAxisAlignment.start], the default, places the children
+        /// at the start (i.e., the left for a [Row] or the top for a [Column]) of the
+        /// main axis.
+        /// </Summary>
         public virtual FlutterSDK.Rendering.Flex.MainAxisAlignment MainAxisAlignment { get; set; }
+        /// <Summary>
+        /// How much space should be occupied in the main axis.
+        ///
+        /// After allocating space to children, there might be some remaining free
+        /// space. This value controls whether to maximize or minimize the amount of
+        /// free space, subject to the incoming layout constraints.
+        ///
+        /// If some children have a non-zero flex factors (and none have a fit of
+        /// [FlexFit.loose]), they will expand to consume all the available space and
+        /// there will be no remaining free space to maximize or minimize, making this
+        /// value irrelevant to the final layout.
+        /// </Summary>
         public virtual FlutterSDK.Rendering.Flex.MainAxisSize MainAxisSize { get; set; }
+        /// <Summary>
+        /// How the children should be placed along the cross axis.
+        ///
+        /// For example, [CrossAxisAlignment.center], the default, centers the
+        /// children in the cross axis (e.g., horizontally for a [Column]).
+        /// </Summary>
         public virtual FlutterSDK.Rendering.Flex.CrossAxisAlignment CrossAxisAlignment { get; set; }
+        /// <Summary>
+        /// Determines the order to lay children out horizontally and how to interpret
+        /// `start` and `end` in the horizontal direction.
+        ///
+        /// Defaults to the ambient [Directionality].
+        ///
+        /// If the [direction] is [Axis.horizontal], this controls the order in which
+        /// the children are positioned (left-to-right or right-to-left), and the
+        /// meaning of the [mainAxisAlignment] property's [MainAxisAlignment.start] and
+        /// [MainAxisAlignment.end] values.
+        ///
+        /// If the [direction] is [Axis.horizontal], and either the
+        /// [mainAxisAlignment] is either [MainAxisAlignment.start] or
+        /// [MainAxisAlignment.end], or there's more than one child, then the
+        /// [textDirection] (or the ambient [Directionality]) must not be null.
+        ///
+        /// If the [direction] is [Axis.vertical], this controls the meaning of the
+        /// [crossAxisAlignment] property's [CrossAxisAlignment.start] and
+        /// [CrossAxisAlignment.end] values.
+        ///
+        /// If the [direction] is [Axis.vertical], and the [crossAxisAlignment] is
+        /// either [CrossAxisAlignment.start] or [CrossAxisAlignment.end], then the
+        /// [textDirection] (or the ambient [Directionality]) must not be null.
+        /// </Summary>
         public virtual TextDirection TextDirection { get; set; }
+        /// <Summary>
+        /// Determines the order to lay children out vertically and how to interpret
+        /// `start` and `end` in the vertical direction.
+        ///
+        /// Defaults to [VerticalDirection.down].
+        ///
+        /// If the [direction] is [Axis.vertical], this controls which order children
+        /// are painted in (down or up), the meaning of the [mainAxisAlignment]
+        /// property's [MainAxisAlignment.start] and [MainAxisAlignment.end] values.
+        ///
+        /// If the [direction] is [Axis.vertical], and either the [mainAxisAlignment]
+        /// is either [MainAxisAlignment.start] or [MainAxisAlignment.end], or there's
+        /// more than one child, then the [verticalDirection] must not be null.
+        ///
+        /// If the [direction] is [Axis.horizontal], this controls the meaning of the
+        /// [crossAxisAlignment] property's [CrossAxisAlignment.start] and
+        /// [CrossAxisAlignment.end] values.
+        ///
+        /// If the [direction] is [Axis.horizontal], and the [crossAxisAlignment] is
+        /// either [CrossAxisAlignment.start] or [CrossAxisAlignment.end], then the
+        /// [verticalDirection] must not be null.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Basictypes.VerticalDirection VerticalDirection { get; set; }
+        /// <Summary>
+        /// If aligning items according to their baseline, which baseline to use.
+        /// </Summary>
         public virtual TextBaseline TextBaseline { get; set; }
         internal virtual bool _NeedTextDirection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 
@@ -3958,6 +5118,21 @@ namespace FlutterSDK.Widgets.Basic
     /// </Summary>
     public class Row : FlutterSDK.Widgets.Basic.Flex
     {
+        /// <Summary>
+        /// Creates a horizontal array of children.
+        ///
+        /// The [direction], [mainAxisAlignment], [mainAxisSize],
+        /// [crossAxisAlignment], and [verticalDirection] arguments must not be null.
+        /// If [crossAxisAlignment] is [CrossAxisAlignment.baseline], then
+        /// [textBaseline] must not be null.
+        ///
+        /// The [textDirection] argument defaults to the ambient [Directionality], if
+        /// any. If there is no ambient directionality, and a text direction is going
+        /// to be necessary to determine the layout order (which is always the case
+        /// unless the row has no children or only one child) or to disambiguate
+        /// `start` or `end` values for the [mainAxisAlignment], the [textDirection]
+        /// must not be null.
+        /// </Summary>
         public Row(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Rendering.Flex.MainAxisAlignment mainAxisAlignment = default(FlutterSDK.Rendering.Flex.MainAxisAlignment), FlutterSDK.Rendering.Flex.MainAxisSize mainAxisSize = default(FlutterSDK.Rendering.Flex.MainAxisSize), FlutterSDK.Rendering.Flex.CrossAxisAlignment crossAxisAlignment = default(FlutterSDK.Rendering.Flex.CrossAxisAlignment), TextDirection textDirection = default(TextDirection), FlutterSDK.Painting.Basictypes.VerticalDirection verticalDirection = default(FlutterSDK.Painting.Basictypes.VerticalDirection), TextBaseline textBaseline = default(TextBaseline), List<FlutterSDK.Widgets.Framework.Widget> children = default(List<FlutterSDK.Widgets.Framework.Widget>))
         : base(children: children, key: key, direction: Axis.Horizontal, mainAxisAlignment: mainAxisAlignment, mainAxisSize: mainAxisSize, crossAxisAlignment: crossAxisAlignment, textDirection: textDirection, verticalDirection: verticalDirection, textBaseline: textBaseline)
         {
@@ -4136,6 +5311,19 @@ namespace FlutterSDK.Widgets.Basic
     /// </Summary>
     public class Column : FlutterSDK.Widgets.Basic.Flex
     {
+        /// <Summary>
+        /// Creates a vertical array of children.
+        ///
+        /// The [direction], [mainAxisAlignment], [mainAxisSize],
+        /// [crossAxisAlignment], and [verticalDirection] arguments must not be null.
+        /// If [crossAxisAlignment] is [CrossAxisAlignment.baseline], then
+        /// [textBaseline] must not be null.
+        ///
+        /// The [textDirection] argument defaults to the ambient [Directionality], if
+        /// any. If there is no ambient directionality, and a text direction is going
+        /// to be necessary to disambiguate `start` or `end` values for the
+        /// [crossAxisAlignment], the [textDirection] must not be null.
+        /// </Summary>
         public Column(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Rendering.Flex.MainAxisAlignment mainAxisAlignment = default(FlutterSDK.Rendering.Flex.MainAxisAlignment), FlutterSDK.Rendering.Flex.MainAxisSize mainAxisSize = default(FlutterSDK.Rendering.Flex.MainAxisSize), FlutterSDK.Rendering.Flex.CrossAxisAlignment crossAxisAlignment = default(FlutterSDK.Rendering.Flex.CrossAxisAlignment), TextDirection textDirection = default(TextDirection), FlutterSDK.Painting.Basictypes.VerticalDirection verticalDirection = default(FlutterSDK.Painting.Basictypes.VerticalDirection), TextBaseline textBaseline = default(TextBaseline), List<FlutterSDK.Widgets.Framework.Widget> children = default(List<FlutterSDK.Widgets.Framework.Widget>))
         : base(children: children, key: key, direction: Axis.Vertical, mainAxisAlignment: mainAxisAlignment, mainAxisSize: mainAxisSize, crossAxisAlignment: crossAxisAlignment, textDirection: textDirection, verticalDirection: verticalDirection, textBaseline: textBaseline)
         {
@@ -4168,13 +5356,34 @@ namespace FlutterSDK.Widgets.Basic
     /// </Summary>
     public class Flexible : FlutterSDK.Widgets.Framework.ParentDataWidget<FlutterSDK.Rendering.Flex.FlexParentData>
     {
+        /// <Summary>
+        /// Creates a widget that controls how a child of a [Row], [Column], or [Flex]
+        /// flexes.
+        /// </Summary>
         public Flexible(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), int flex = 1, FlutterSDK.Rendering.Flex.FlexFit fit = default(FlutterSDK.Rendering.Flex.FlexFit), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
             this.Flex = flex;
             this.Fit = fit;
         }
+        /// <Summary>
+        /// The flex factor to use for this child
+        ///
+        /// If null or zero, the child is inflexible and determines its own size. If
+        /// non-zero, the amount of space the child's can occupy in the main axis is
+        /// determined by dividing the free space (after placing the inflexible
+        /// children) according to the flex factors of the flexible children.
+        /// </Summary>
         public virtual int Flex { get; set; }
+        /// <Summary>
+        /// How a flexible child is inscribed into the available space.
+        ///
+        /// If [flex] is non-zero, the [fit] determines whether the child fills the
+        /// space the parent makes available during layout. If the fit is
+        /// [FlexFit.tight], the child is required to fill the available space. If the
+        /// fit is [FlexFit.loose], the child can be at most as large as the available
+        /// space (but is allowed to be smaller).
+        /// </Summary>
         public virtual FlutterSDK.Rendering.Flex.FlexFit Fit { get; set; }
         public virtual Type DebugTypicalAncestorWidgetClass { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 
@@ -4322,6 +5531,11 @@ namespace FlutterSDK.Widgets.Basic
     /// </Summary>
     public class Expanded : FlutterSDK.Widgets.Basic.Flexible
     {
+        /// <Summary>
+        /// Creates a widget that expands a child of a [Row], [Column], or [Flex]
+        /// so that the child fills the available space along the flex widget's
+        /// main axis.
+        /// </Summary>
         public Expanded(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), int flex = 1, FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, flex: flex, fit: FlexFit.Tight, child: child)
         {
@@ -4386,6 +5600,18 @@ namespace FlutterSDK.Widgets.Basic
     /// </Summary>
     public class Wrap : FlutterSDK.Widgets.Framework.MultiChildRenderObjectWidget
     {
+        /// <Summary>
+        /// Creates a wrap layout.
+        ///
+        /// By default, the wrap layout is horizontal and both the children and the
+        /// runs are aligned to the start.
+        ///
+        /// The [textDirection] argument defaults to the ambient [Directionality], if
+        /// any. If there is no ambient directionality, and a text direction is going
+        /// to be necessary to decide which direction to lay the children in or to
+        /// disambiguate `start` or `end` values for the main or cross axis
+        /// directions, the [textDirection] must not be null.
+        /// </Summary>
         public Wrap(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Basictypes.Axis direction = default(FlutterSDK.Painting.Basictypes.Axis), FlutterSDK.Rendering.Wrap.WrapAlignment alignment = default(FlutterSDK.Rendering.Wrap.WrapAlignment), double spacing = 0.0, FlutterSDK.Rendering.Wrap.WrapAlignment runAlignment = default(FlutterSDK.Rendering.Wrap.WrapAlignment), double runSpacing = 0.0, FlutterSDK.Rendering.Wrap.WrapCrossAlignment crossAxisAlignment = default(FlutterSDK.Rendering.Wrap.WrapCrossAlignment), TextDirection textDirection = default(TextDirection), FlutterSDK.Painting.Basictypes.VerticalDirection verticalDirection = default(FlutterSDK.Painting.Basictypes.VerticalDirection), List<FlutterSDK.Widgets.Framework.Widget> children = default(List<FlutterSDK.Widgets.Framework.Widget>))
         : base(key: key, children: children)
         {
@@ -4398,13 +5624,145 @@ namespace FlutterSDK.Widgets.Basic
             this.TextDirection = textDirection;
             this.VerticalDirection = verticalDirection;
         }
+        /// <Summary>
+        /// The direction to use as the main axis.
+        ///
+        /// For example, if [direction] is [Axis.horizontal], the default, the
+        /// children are placed adjacent to one another in a horizontal run until the
+        /// available horizontal space is consumed, at which point a subsequent
+        /// children are placed in a new run vertically adjacent to the previous run.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Basictypes.Axis Direction { get; set; }
+        /// <Summary>
+        /// How the children within a run should be placed in the main axis.
+        ///
+        /// For example, if [alignment] is [WrapAlignment.center], the children in
+        /// each run are grouped together in the center of their run in the main axis.
+        ///
+        /// Defaults to [WrapAlignment.start].
+        ///
+        /// See also:
+        ///
+        ///  * [runAlignment], which controls how the runs are placed relative to each
+        ///    other in the cross axis.
+        ///  * [crossAxisAlignment], which controls how the children within each run
+        ///    are placed relative to each other in the cross axis.
+        /// </Summary>
         public virtual FlutterSDK.Rendering.Wrap.WrapAlignment Alignment { get; set; }
+        /// <Summary>
+        /// How much space to place between children in a run in the main axis.
+        ///
+        /// For example, if [spacing] is 10.0, the children will be spaced at least
+        /// 10.0 logical pixels apart in the main axis.
+        ///
+        /// If there is additional free space in a run (e.g., because the wrap has a
+        /// minimum size that is not filled or because some runs are longer than
+        /// others), the additional free space will be allocated according to the
+        /// [alignment].
+        ///
+        /// Defaults to 0.0.
+        /// </Summary>
         public virtual double Spacing { get; set; }
+        /// <Summary>
+        /// How the runs themselves should be placed in the cross axis.
+        ///
+        /// For example, if [runAlignment] is [WrapAlignment.center], the runs are
+        /// grouped together in the center of the overall [Wrap] in the cross axis.
+        ///
+        /// Defaults to [WrapAlignment.start].
+        ///
+        /// See also:
+        ///
+        ///  * [alignment], which controls how the children within each run are placed
+        ///    relative to each other in the main axis.
+        ///  * [crossAxisAlignment], which controls how the children within each run
+        ///    are placed relative to each other in the cross axis.
+        /// </Summary>
         public virtual FlutterSDK.Rendering.Wrap.WrapAlignment RunAlignment { get; set; }
+        /// <Summary>
+        /// How much space to place between the runs themselves in the cross axis.
+        ///
+        /// For example, if [runSpacing] is 10.0, the runs will be spaced at least
+        /// 10.0 logical pixels apart in the cross axis.
+        ///
+        /// If there is additional free space in the overall [Wrap] (e.g., because
+        /// the wrap has a minimum size that is not filled), the additional free space
+        /// will be allocated according to the [runAlignment].
+        ///
+        /// Defaults to 0.0.
+        /// </Summary>
         public virtual double RunSpacing { get; set; }
+        /// <Summary>
+        /// How the children within a run should be aligned relative to each other in
+        /// the cross axis.
+        ///
+        /// For example, if this is set to [WrapCrossAlignment.end], and the
+        /// [direction] is [Axis.horizontal], then the children within each
+        /// run will have their bottom edges aligned to the bottom edge of the run.
+        ///
+        /// Defaults to [WrapCrossAlignment.start].
+        ///
+        /// See also:
+        ///
+        ///  * [alignment], which controls how the children within each run are placed
+        ///    relative to each other in the main axis.
+        ///  * [runAlignment], which controls how the runs are placed relative to each
+        ///    other in the cross axis.
+        /// </Summary>
         public virtual FlutterSDK.Rendering.Wrap.WrapCrossAlignment CrossAxisAlignment { get; set; }
+        /// <Summary>
+        /// Determines the order to lay children out horizontally and how to interpret
+        /// `start` and `end` in the horizontal direction.
+        ///
+        /// Defaults to the ambient [Directionality].
+        ///
+        /// If the [direction] is [Axis.horizontal], this controls order in which the
+        /// children are positioned (left-to-right or right-to-left), and the meaning
+        /// of the [alignment] property's [WrapAlignment.start] and
+        /// [WrapAlignment.end] values.
+        ///
+        /// If the [direction] is [Axis.horizontal], and either the
+        /// [alignment] is either [WrapAlignment.start] or [WrapAlignment.end], or
+        /// there's more than one child, then the [textDirection] (or the ambient
+        /// [Directionality]) must not be null.
+        ///
+        /// If the [direction] is [Axis.vertical], this controls the order in which
+        /// runs are positioned, the meaning of the [runAlignment] property's
+        /// [WrapAlignment.start] and [WrapAlignment.end] values, as well as the
+        /// [crossAxisAlignment] property's [WrapCrossAlignment.start] and
+        /// [WrapCrossAlignment.end] values.
+        ///
+        /// If the [direction] is [Axis.vertical], and either the
+        /// [runAlignment] is either [WrapAlignment.start] or [WrapAlignment.end], the
+        /// [crossAxisAlignment] is either [WrapCrossAlignment.start] or
+        /// [WrapCrossAlignment.end], or there's more than one child, then the
+        /// [textDirection] (or the ambient [Directionality]) must not be null.
+        /// </Summary>
         public virtual TextDirection TextDirection { get; set; }
+        /// <Summary>
+        /// Determines the order to lay children out vertically and how to interpret
+        /// `start` and `end` in the vertical direction.
+        ///
+        /// If the [direction] is [Axis.vertical], this controls which order children
+        /// are painted in (down or up), the meaning of the [alignment] property's
+        /// [WrapAlignment.start] and [WrapAlignment.end] values.
+        ///
+        /// If the [direction] is [Axis.vertical], and either the [alignment]
+        /// is either [WrapAlignment.start] or [WrapAlignment.end], or there's
+        /// more than one child, then the [verticalDirection] must not be null.
+        ///
+        /// If the [direction] is [Axis.horizontal], this controls the order in which
+        /// runs are positioned, the meaning of the [runAlignment] property's
+        /// [WrapAlignment.start] and [WrapAlignment.end] values, as well as the
+        /// [crossAxisAlignment] property's [WrapCrossAlignment.start] and
+        /// [WrapCrossAlignment.end] values.
+        ///
+        /// If the [direction] is [Axis.horizontal], and either the
+        /// [runAlignment] is either [WrapAlignment.start] or [WrapAlignment.end], the
+        /// [crossAxisAlignment] is either [WrapCrossAlignment.start] or
+        /// [WrapCrossAlignment.end], or there's more than one child, then the
+        /// [verticalDirection] must not be null.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Basictypes.VerticalDirection VerticalDirection { get; set; }
 
         public new FlutterSDK.Rendering.Wrap.RenderWrap CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
@@ -4606,15 +5964,35 @@ namespace FlutterSDK.Widgets.Basic
     /// </Summary>
     public class Flow : FlutterSDK.Widgets.Framework.MultiChildRenderObjectWidget
     {
+        /// <Summary>
+        /// Creates a flow layout.
+        ///
+        /// Wraps each of the given children in a [RepaintBoundary] to avoid
+        /// repainting the children when the flow repaints.
+        ///
+        /// The [delegate] argument must not be null.
+        /// </Summary>
         public Flow(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Rendering.Flow.FlowDelegate @delegate = default(FlutterSDK.Rendering.Flow.FlowDelegate), List<FlutterSDK.Widgets.Framework.Widget> children = default(List<FlutterSDK.Widgets.Framework.Widget>))
         : base(key: key, children: BasicDefaultClass.RepaintBoundary.WrapAll(children))
         {
             this.@delegate = @delegate;
         }
+        /// <Summary>
+        /// Creates a flow layout.
+        ///
+        /// Does not wrap the given children in repaint boundaries, unlike the default
+        /// constructor. Useful when the child is trivial to paint or already contains
+        /// a repaint boundary.
+        ///
+        /// The [delegate] argument must not be null.
+        /// </Summary>
         public static Flow Unwrapped(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Rendering.Flow.FlowDelegate @delegate = default(FlutterSDK.Rendering.Flow.FlowDelegate), List<FlutterSDK.Widgets.Framework.Widget> children = default(List<FlutterSDK.Widgets.Framework.Widget>))
         {
             var instance = new Flow(key: key, children: children); instance.@delegate = @delegate;
         }
+        /// <Summary>
+        /// The delegate that controls the transformation matrices of the children.
+        /// </Summary>
         public virtual FlutterSDK.Rendering.Flow.FlowDelegate @delegate { get; set; }
 
         public new FlutterSDK.Rendering.Flow.RenderFlow CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context) => new RenderFlow(@delegate: @Delegate);
@@ -4692,6 +6070,18 @@ namespace FlutterSDK.Widgets.Basic
     /// </Summary>
     public class RichText : FlutterSDK.Widgets.Framework.MultiChildRenderObjectWidget
     {
+        /// <Summary>
+        /// Creates a paragraph of rich text.
+        ///
+        /// The [text], [textAlign], [softWrap], [overflow], and [textScaleFactor]
+        /// arguments must not be null.
+        ///
+        /// The [maxLines] property may be null (and indeed defaults to null), but if
+        /// it is not null, it must be greater than zero.
+        ///
+        /// The [textDirection], if null, defaults to the ambient [Directionality],
+        /// which in that case must not be null.
+        /// </Summary>
         public RichText(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Inlinespan.InlineSpan text = default(FlutterSDK.Painting.Inlinespan.InlineSpan), TextAlign textAlign = default(TextAlign), TextDirection textDirection = default(TextDirection), bool softWrap = true, FlutterSDK.Rendering.Paragraph.TextOverflow overflow = default(FlutterSDK.Rendering.Paragraph.TextOverflow), double textScaleFactor = 1.0, int maxLines = default(int), Locale locale = default(Locale), FlutterSDK.Painting.Strutstyle.StrutStyle strutStyle = default(FlutterSDK.Painting.Strutstyle.StrutStyle), FlutterSDK.Painting.Textpainter.TextWidthBasis textWidthBasis = default(FlutterSDK.Painting.Textpainter.TextWidthBasis), TextHeightBehavior textHeightBehavior = default(TextHeightBehavior))
         : base(key: key, children: _ExtractChildren(text))
         {
@@ -4707,16 +6097,78 @@ namespace FlutterSDK.Widgets.Basic
             this.TextWidthBasis = textWidthBasis;
             this.TextHeightBehavior = textHeightBehavior;
         }
+        /// <Summary>
+        /// The text to display in this widget.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Inlinespan.InlineSpan Text { get; set; }
+        /// <Summary>
+        /// How the text should be aligned horizontally.
+        /// </Summary>
         public virtual TextAlign TextAlign { get; set; }
+        /// <Summary>
+        /// The directionality of the text.
+        ///
+        /// This decides how [textAlign] values like [TextAlign.start] and
+        /// [TextAlign.end] are interpreted.
+        ///
+        /// This is also used to disambiguate how to render bidirectional text. For
+        /// example, if the [text] is an English phrase followed by a Hebrew phrase,
+        /// in a [TextDirection.ltr] context the English phrase will be on the left
+        /// and the Hebrew phrase to its right, while in a [TextDirection.rtl]
+        /// context, the English phrase will be on the right and the Hebrew phrase on
+        /// its left.
+        ///
+        /// Defaults to the ambient [Directionality], if any. If there is no ambient
+        /// [Directionality], then this must not be null.
+        /// </Summary>
         public virtual TextDirection TextDirection { get; set; }
+        /// <Summary>
+        /// Whether the text should break at soft line breaks.
+        ///
+        /// If false, the glyphs in the text will be positioned as if there was unlimited horizontal space.
+        /// </Summary>
         public virtual bool SoftWrap { get; set; }
+        /// <Summary>
+        /// How visual overflow should be handled.
+        /// </Summary>
         public virtual FlutterSDK.Rendering.Paragraph.TextOverflow Overflow { get; set; }
+        /// <Summary>
+        /// The number of font pixels for each logical pixel.
+        ///
+        /// For example, if the text scale factor is 1.5, text will be 50% larger than
+        /// the specified font size.
+        /// </Summary>
         public virtual double TextScaleFactor { get; set; }
+        /// <Summary>
+        /// An optional maximum number of lines for the text to span, wrapping if necessary.
+        /// If the text exceeds the given number of lines, it will be truncated according
+        /// to [overflow].
+        ///
+        /// If this is 1, text will not wrap. Otherwise, text will be wrapped at the
+        /// edge of the box.
+        /// </Summary>
         public virtual int MaxLines { get; set; }
+        /// <Summary>
+        /// Used to select a font when the same Unicode character can
+        /// be rendered differently, depending on the locale.
+        ///
+        /// It's rarely necessary to set this property. By default its value
+        /// is inherited from the enclosing app with `Localizations.localeOf(context)`.
+        ///
+        /// See [RenderParagraph.locale] for more information.
+        /// </Summary>
         public virtual Locale Locale { get; set; }
+        /// <Summary>
+        /// {@macro flutter.painting.textPainter.strutStyle}
+        /// </Summary>
         public virtual FlutterSDK.Painting.Strutstyle.StrutStyle StrutStyle { get; set; }
+        /// <Summary>
+        /// {@macro flutter.widgets.text.DefaultTextStyle.textWidthBasis}
+        /// </Summary>
         public virtual FlutterSDK.Painting.Textpainter.TextWidthBasis TextWidthBasis { get; set; }
+        /// <Summary>
+        /// {@macro flutter.dart:ui.textHeightBehavior}
+        /// </Summary>
         public virtual TextHeightBehavior TextHeightBehavior { get; set; }
 
         private List<FlutterSDK.Widgets.Framework.Widget> _ExtractChildren(FlutterSDK.Painting.Inlinespan.InlineSpan span)
@@ -4791,6 +6243,12 @@ namespace FlutterSDK.Widgets.Basic
     /// </Summary>
     public class RawImage : FlutterSDK.Widgets.Framework.LeafRenderObjectWidget
     {
+        /// <Summary>
+        /// Creates a widget that displays an image.
+        ///
+        /// The [scale], [alignment], [repeat], [matchTextDirection] and [filterQuality] arguments must
+        /// not be null.
+        /// </Summary>
         public RawImage(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), SKImage image = default(SKImage), double width = default(double), double height = default(double), double scale = 1.0, FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterBinding.UI.BlendMode colorBlendMode = default(FlutterBinding.UI.BlendMode), FlutterSDK.Painting.Boxfit.BoxFit fit = default(FlutterSDK.Painting.Boxfit.BoxFit), FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), FlutterSDK.Painting.Decorationimage.ImageRepeat repeat = default(FlutterSDK.Painting.Decorationimage.ImageRepeat), FlutterBinding.UI.Rect centerSlice = default(FlutterBinding.UI.Rect), bool matchTextDirection = false, bool invertColors = false, FilterQuality filterQuality = default(FilterQuality))
         : base(key: key)
         {
@@ -4808,18 +6266,130 @@ namespace FlutterSDK.Widgets.Basic
             this.InvertColors = invertColors;
             this.FilterQuality = filterQuality;
         }
+        /// <Summary>
+        /// The image to display.
+        /// </Summary>
         public virtual SKImage Image { get; set; }
+        /// <Summary>
+        /// If non-null, require the image to have this width.
+        ///
+        /// If null, the image will pick a size that best preserves its intrinsic
+        /// aspect ratio.
+        /// </Summary>
         public virtual double Width { get; set; }
+        /// <Summary>
+        /// If non-null, require the image to have this height.
+        ///
+        /// If null, the image will pick a size that best preserves its intrinsic
+        /// aspect ratio.
+        /// </Summary>
         public virtual double Height { get; set; }
+        /// <Summary>
+        /// Specifies the image's scale.
+        ///
+        /// Used when determining the best display size for the image.
+        /// </Summary>
         public virtual double Scale { get; set; }
+        /// <Summary>
+        /// If non-null, this color is blended with each image pixel using [colorBlendMode].
+        /// </Summary>
         public virtual FlutterBinding.UI.Color Color { get; set; }
+        /// <Summary>
+        /// Used to set the filterQuality of the image
+        /// Use the "low" quality setting to scale the image, which corresponds to
+        /// bilinear interpolation, rather than the default "none" which corresponds
+        /// to nearest-neighbor.
+        /// </Summary>
         public virtual FilterQuality FilterQuality { get; set; }
+        /// <Summary>
+        /// Used to combine [color] with this image.
+        ///
+        /// The default is [BlendMode.srcIn]. In terms of the blend mode, [color] is
+        /// the source and this image is the destination.
+        ///
+        /// See also:
+        ///
+        ///  * [BlendMode], which includes an illustration of the effect of each blend mode.
+        /// </Summary>
         public virtual FlutterBinding.UI.BlendMode ColorBlendMode { get; set; }
+        /// <Summary>
+        /// How to inscribe the image into the space allocated during layout.
+        ///
+        /// The default varies based on the other fields. See the discussion at
+        /// [paintImage].
+        /// </Summary>
         public virtual FlutterSDK.Painting.Boxfit.BoxFit Fit { get; set; }
+        /// <Summary>
+        /// How to align the image within its bounds.
+        ///
+        /// The alignment aligns the given position in the image to the given position
+        /// in the layout bounds. For example, an [Alignment] alignment of (-1.0,
+        /// -1.0) aligns the image to the top-left corner of its layout bounds, while a
+        /// [Alignment] alignment of (1.0, 1.0) aligns the bottom right of the
+        /// image with the bottom right corner of its layout bounds. Similarly, an
+        /// alignment of (0.0, 1.0) aligns the bottom middle of the image with the
+        /// middle of the bottom edge of its layout bounds.
+        ///
+        /// To display a subpart of an image, consider using a [CustomPainter] and
+        /// [Canvas.drawImageRect].
+        ///
+        /// If the [alignment] is [TextDirection]-dependent (i.e. if it is a
+        /// [AlignmentDirectional]), then an ambient [Directionality] widget
+        /// must be in scope.
+        ///
+        /// Defaults to [Alignment.center].
+        ///
+        /// See also:
+        ///
+        ///  * [Alignment], a class with convenient constants typically used to
+        ///    specify an [AlignmentGeometry].
+        ///  * [AlignmentDirectional], like [Alignment] for specifying alignments
+        ///    relative to text direction.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Alignment.AlignmentGeometry Alignment { get; set; }
+        /// <Summary>
+        /// How to paint any portions of the layout bounds not covered by the image.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Decorationimage.ImageRepeat Repeat { get; set; }
+        /// <Summary>
+        /// The center slice for a nine-patch image.
+        ///
+        /// The region of the image inside the center slice will be stretched both
+        /// horizontally and vertically to fit the image into its destination. The
+        /// region of the image above and below the center slice will be stretched
+        /// only horizontally and the region of the image to the left and right of
+        /// the center slice will be stretched only vertically.
+        /// </Summary>
         public virtual FlutterBinding.UI.Rect CenterSlice { get; set; }
+        /// <Summary>
+        /// Whether to paint the image in the direction of the [TextDirection].
+        ///
+        /// If this is true, then in [TextDirection.ltr] contexts, the image will be
+        /// drawn with its origin in the top left (the "normal" painting direction for
+        /// images); and in [TextDirection.rtl] contexts, the image will be drawn with
+        /// a scaling factor of -1 in the horizontal direction so that the origin is
+        /// in the top right.
+        ///
+        /// This is occasionally used with images in right-to-left environments, for
+        /// images that were designed for left-to-right locales. Be careful, when
+        /// using this, to not flip images with integral shadows, text, or other
+        /// effects that will look incorrect when flipped.
+        ///
+        /// If this is true, there must be an ambient [Directionality] widget in
+        /// scope.
+        /// </Summary>
         public virtual bool MatchTextDirection { get; set; }
+        /// <Summary>
+        /// Whether the colors of the image are inverted when drawn.
+        ///
+        /// inverting the colors of an image applies a new color filter to the paint.
+        /// If there is another specified color filter, the invert will be applied
+        /// after it. This is primarily used for implementing smart invert on iOS.
+        ///
+        /// See also:
+        ///
+        ///  * [Paint.invertColors], for the dart:ui implementation.
+        /// </Summary>
         public virtual bool InvertColors { get; set; }
 
         public new FlutterSDK.Rendering.Image.RenderImage CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
@@ -4920,11 +6490,19 @@ namespace FlutterSDK.Widgets.Basic
     /// </Summary>
     public class DefaultAssetBundle : FlutterSDK.Widgets.Framework.InheritedWidget
     {
+        /// <Summary>
+        /// Creates a widget that determines the default asset bundle for its descendants.
+        ///
+        /// The [bundle] and [child] arguments must not be null.
+        /// </Summary>
         public DefaultAssetBundle(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Services.Assetbundle.AssetBundle bundle = default(FlutterSDK.Services.Assetbundle.AssetBundle), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
             this.Bundle = bundle;
         }
+        /// <Summary>
+        /// The bundle to use as a default.
+        /// </Summary>
         public virtual FlutterSDK.Services.Assetbundle.AssetBundle Bundle { get; set; }
 
         /// <Summary>
@@ -4966,13 +6544,27 @@ namespace FlutterSDK.Widgets.Basic
     /// </Summary>
     public class WidgetToRenderBoxAdapter : FlutterSDK.Widgets.Framework.LeafRenderObjectWidget
     {
+        /// <Summary>
+        /// Creates an adapter for placing a specific [RenderBox] in the widget tree.
+        ///
+        /// The [renderBox] argument must not be null.
+        /// </Summary>
         public WidgetToRenderBoxAdapter(FlutterSDK.Rendering.Box.RenderBox renderBox = default(FlutterSDK.Rendering.Box.RenderBox), VoidCallback onBuild = default(VoidCallback))
         : base(key: new GlobalObjectKey(renderBox))
         {
             this.RenderBox = renderBox;
             this.OnBuild = onBuild;
         }
+        /// <Summary>
+        /// The render box to place in the widget tree.
+        /// </Summary>
         public virtual FlutterSDK.Rendering.Box.RenderBox RenderBox { get; set; }
+        /// <Summary>
+        /// Called when it is safe to update the render box and its descendants. If
+        /// you update the RenderObject subtree under this widget outside of
+        /// invocations of this callback, features like hit-testing will fail as the
+        /// tree will be dirty.
+        /// </Summary>
         public virtual VoidCallback OnBuild { get; set; }
 
         public new FlutterSDK.Rendering.Box.RenderBox CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context) => RenderBox;
@@ -5080,6 +6672,11 @@ namespace FlutterSDK.Widgets.Basic
     /// </Summary>
     public class Listener : FlutterSDK.Widgets.Framework.StatelessWidget
     {
+        /// <Summary>
+        /// Creates a widget that forwards point events to callbacks.
+        ///
+        /// The [behavior] argument defaults to [HitTestBehavior.deferToChild].
+        /// </Summary>
         public Listener(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Rendering.Proxybox.PointerDownEventListener onPointerDown = default(FlutterSDK.Rendering.Proxybox.PointerDownEventListener), FlutterSDK.Rendering.Proxybox.PointerMoveEventListener onPointerMove = default(FlutterSDK.Rendering.Proxybox.PointerMoveEventListener), FlutterSDK.Rendering.Mousetracking.PointerEnterEventListener onPointerEnter = default(FlutterSDK.Rendering.Mousetracking.PointerEnterEventListener), FlutterSDK.Rendering.Mousetracking.PointerExitEventListener onPointerExit = default(FlutterSDK.Rendering.Mousetracking.PointerExitEventListener), FlutterSDK.Rendering.Mousetracking.PointerHoverEventListener onPointerHover = default(FlutterSDK.Rendering.Mousetracking.PointerHoverEventListener), FlutterSDK.Rendering.Proxybox.PointerUpEventListener onPointerUp = default(FlutterSDK.Rendering.Proxybox.PointerUpEventListener), FlutterSDK.Rendering.Proxybox.PointerCancelEventListener onPointerCancel = default(FlutterSDK.Rendering.Proxybox.PointerCancelEventListener), FlutterSDK.Rendering.Proxybox.PointerSignalEventListener onPointerSignal = default(FlutterSDK.Rendering.Proxybox.PointerSignalEventListener), FlutterSDK.Rendering.Proxybox.HitTestBehavior behavior = default(FlutterSDK.Rendering.Proxybox.HitTestBehavior), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key)
         {
@@ -5093,14 +6690,63 @@ namespace FlutterSDK.Widgets.Basic
             this.OnPointerSignal = onPointerSignal;
             this.Behavior = behavior;
         }
+        /// <Summary>
+        /// Called when a pointer comes into contact with the screen (for touch
+        /// pointers), or has its button pressed (for mouse pointers) at this widget's
+        /// location.
+        /// </Summary>
         public virtual FlutterSDK.Rendering.Proxybox.PointerDownEventListener OnPointerDown { get; set; }
+        /// <Summary>
+        /// Called when a pointer that triggered an [onPointerDown] changes position.
+        /// </Summary>
         public virtual FlutterSDK.Rendering.Proxybox.PointerMoveEventListener OnPointerMove { get; set; }
+        /// <Summary>
+        /// Called when a pointer enters the region for this widget.
+        ///
+        /// This is only fired for pointers which report their location when not down
+        /// (e.g. mouse pointers, but not most touch pointers).
+        ///
+        /// If this is a mouse pointer, this will fire when the mouse pointer enters
+        /// the region defined by this widget, or when the widget appears under the
+        /// pointer.
+        /// </Summary>
         public virtual FlutterSDK.Rendering.Mousetracking.PointerEnterEventListener OnPointerEnter { get; set; }
+        /// <Summary>
+        /// Called when a pointer that has not triggered an [onPointerDown] changes
+        /// position.
+        ///
+        /// This is only fired for pointers which report their location when not down
+        /// (e.g. mouse pointers, but not most touch pointers).
+        /// </Summary>
         public virtual FlutterSDK.Rendering.Mousetracking.PointerHoverEventListener OnPointerHover { get; set; }
+        /// <Summary>
+        /// Called when a pointer leaves the region for this widget.
+        ///
+        /// This is only fired for pointers which report their location when not down
+        /// (e.g. mouse pointers, but not most touch pointers).
+        ///
+        /// If this is a mouse pointer, this will fire when the mouse pointer leaves
+        /// the region defined by this widget, or when the widget disappears from
+        /// under the pointer.
+        /// </Summary>
         public virtual FlutterSDK.Rendering.Mousetracking.PointerExitEventListener OnPointerExit { get; set; }
+        /// <Summary>
+        /// Called when a pointer that triggered an [onPointerDown] is no longer in
+        /// contact with the screen.
+        /// </Summary>
         public virtual FlutterSDK.Rendering.Proxybox.PointerUpEventListener OnPointerUp { get; set; }
+        /// <Summary>
+        /// Called when the input from a pointer that triggered an [onPointerDown] is
+        /// no longer directed towards this receiver.
+        /// </Summary>
         public virtual FlutterSDK.Rendering.Proxybox.PointerCancelEventListener OnPointerCancel { get; set; }
+        /// <Summary>
+        /// Called when a pointer signal occurs over this object.
+        /// </Summary>
         public virtual FlutterSDK.Rendering.Proxybox.PointerSignalEventListener OnPointerSignal { get; set; }
+        /// <Summary>
+        /// How to behave during hit testing.
+        /// </Summary>
         public virtual FlutterSDK.Rendering.Proxybox.HitTestBehavior Behavior { get; set; }
         internal virtual FlutterSDK.Widgets.Framework.Widget _Child { get; set; }
 
@@ -5257,6 +6903,9 @@ namespace FlutterSDK.Widgets.Basic
     /// </Summary>
     public class MouseRegion : FlutterSDK.Widgets.Framework.StatefulWidget
     {
+        /// <Summary>
+        /// Creates a widget that forwards mouse events to callbacks.
+        /// </Summary>
         public MouseRegion(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Rendering.Mousetracking.PointerEnterEventListener onEnter = default(FlutterSDK.Rendering.Mousetracking.PointerEnterEventListener), FlutterSDK.Rendering.Mousetracking.PointerExitEventListener onExit = default(FlutterSDK.Rendering.Mousetracking.PointerExitEventListener), FlutterSDK.Rendering.Mousetracking.PointerHoverEventListener onHover = default(FlutterSDK.Rendering.Mousetracking.PointerHoverEventListener), bool opaque = true, FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key)
         {
@@ -5266,10 +6915,237 @@ namespace FlutterSDK.Widgets.Basic
             this.Opaque = opaque;
             this.Child = child;
         }
+        /// <Summary>
+        /// Called when a mouse pointer has entered this widget.
+        ///
+        /// This callback is triggered when the pointer, with or without buttons
+        /// pressed, has started to be contained by the region of this widget. More
+        /// specifically, the callback is triggered by the following cases:
+        ///
+        ///  * This widget has appeared under a pointer.
+        ///  * This widget has moved to under a pointer.
+        ///  * A new pointer has been added to somewhere within this widget.
+        ///  * An existing pointer has moved into this widget.
+        ///
+        /// This callback is not always matched by an [onExit]. If the [MouseRegion]
+        /// is unmounted while being hovered by a pointer, the [onExit] of the widget
+        /// callback will never called. For more details, see [onExit].
+        ///
+        /// {@template flutter.mouseRegion.triggerTime}
+        /// The time that this callback is triggered is always between frames: either
+        /// during the post-frame callbacks, or during the callback of a pointer
+        /// event.
+        /// {@endtemplate}
+        ///
+        /// See also:
+        ///
+        ///  * [onExit], which is triggered when a mouse pointer exits the region.
+        ///  * [MouseTrackerAnnotation.onEnter], which is how this callback is
+        ///    internally implemented.
+        /// </Summary>
         public virtual FlutterSDK.Rendering.Mousetracking.PointerEnterEventListener OnEnter { get; set; }
+        /// <Summary>
+        /// Called when a mouse pointer moves within this widget without buttons
+        /// pressed.
+        ///
+        /// This callback is not triggered when the [MouseRegion] has moved
+        /// while being hovered by the mouse pointer.
+        ///
+        /// {@macro flutter.mouseRegion.triggerTime}
+        /// </Summary>
         public virtual FlutterSDK.Rendering.Mousetracking.PointerHoverEventListener OnHover { get; set; }
+        /// <Summary>
+        /// Called when a mouse pointer has exited this widget when the widget is
+        /// still mounted.
+        ///
+        /// This callback is triggered when the pointer, with or without buttons
+        /// pressed, has stopped being contained by the region of this widget, except
+        /// when the exit is caused by the disappearance of this widget. More
+        /// specifically, this callback is triggered by the following cases:
+        ///
+        ///  * A pointer that is hovering this widget has moved away.
+        ///  * A pointer that is hovering this widget has been removed.
+        ///  * This widget, which is being hovered by a pointer, has moved away.
+        ///
+        /// And is __not__ triggered by the following case:
+        ///
+        ///  * This widget, which is being hovered by a pointer, has disappeared.
+        ///
+        /// This means that a [MouseRegion.onExit] might not be matched by a
+        /// [MouseRegion.onEnter].
+        ///
+        /// This restriction aims to prevent a common misuse: if [setState] is called
+        /// during [MouseRegion.onExit] without checking whether the widget is still
+        /// mounted, an exception will occur. This is because the callback is
+        /// triggered during the post-frame phase, at which point the widget has been
+        /// unmounted. Since [setState] is exclusive to widgets, the restriction is
+        /// specific to [MouseRegion], and does not apply to its lower-level
+        /// counterparts, [RenderMouseRegion] and [MouseTrackerAnnotation].
+        ///
+        /// There are a few ways to mitigate this restriction:
+        ///
+        ///  * If the hover state is completely contained within a widget that
+        ///    unconditionally creates this [MouseRegion], then this will not be a
+        ///    concern, since after the [MouseRegion] is unmounted the state is no
+        ///    longer used.
+        ///  * Otherwise, the outer widget very likely has access to the variable that
+        ///    controls whether this [MouseRegion] is present. If so, call [onExit] at
+        ///    the event that turns the condition from true to false.
+        ///  * In cases where the solutions above won't work, you can always
+        ///    override [State.dispose] and call [onExit], or create your own widget
+        ///    using [RenderMouseRegion].
+        ///
+        /// {@tool dartpad --template=stateful_widget_scaffold_center}
+        /// The following example shows a blue rectangular that turns yellow when
+        /// hovered. Since the hover state is completely contained within a widget
+        /// that unconditionally creates the `MouseRegion`, you can ignore the
+        /// aforementioned restriction.
+        ///
+        /// ```dart
+        ///   bool hovered = false;
+        ///
+        ///   @override
+        ///   Widget build(BuildContext context) {
+        ///     return Container(
+        ///       height: 100,
+        ///       width: 100,
+        ///       decoration: BoxDecoration(color: hovered ? Colors.yellow : Colors.blue),
+        ///       child: MouseRegion(
+        ///         onEnter: (_) {
+        ///           setState(() { hovered = true; });
+        ///         },
+        ///         onExit: (_) {
+        ///           setState(() { hovered = false; });
+        ///         },
+        ///       ),
+        ///     );
+        ///   }
+        /// ```
+        /// {@end-tool}
+        ///
+        /// {@tool dartpad --template=stateful_widget_scaffold_center}
+        /// The following example shows a widget that hides its content one second
+        /// after behing hovered, and also exposes the enter and exit callbacks.
+        /// Because the widget conditionally creates the `MouseRegion`, and leaks the
+        /// hover state, it needs to take the restriction into consideration. In this
+        /// case, since it has access to the event that triggers the disappearance of
+        /// the `MouseRegion`, it simply trigger the exit callback during that event
+        /// as well.
+        ///
+        /// ```dart preamble
+        /// // A region that hides its content one second after being hovered.
+        /// class MyTimedButton extends StatefulWidget {
+        ///   MyTimedButton({ Key key, this.onEnterButton, this.onExitButton })
+        ///     : super(key: key);
+        ///
+        ///   final VoidCallback onEnterButton;
+        ///   final VoidCallback onExitButton;
+        ///
+        ///   @override
+        ///   _MyTimedButton createState() => _MyTimedButton();
+        /// }
+        ///
+        /// class _MyTimedButton extends State<MyTimedButton> {
+        ///   bool regionIsHidden = false;
+        ///   bool hovered = false;
+        ///
+        ///   void startCountdown() async {
+        ///     await Future.delayed(const Duration(seconds: 1));
+        ///     hideButton();
+        ///   }
+        ///
+        ///   void hideButton() {
+        ///     setState(() { regionIsHidden = true; });
+        ///     // This statement is necessary.
+        ///     if (hovered)
+        ///       widget.onExitButton();
+        ///   }
+        ///
+        ///   @override
+        ///   Widget build(BuildContext context) {
+        ///     return Container(
+        ///       width: 100,
+        ///       height: 100,
+        ///       child: MouseRegion(
+        ///         child: regionIsHidden ? null : MouseRegion(
+        ///           onEnter: (_) {
+        ///             widget.onEnterButton();
+        ///             setState(() { hovered = true; });
+        ///             startCountdown();
+        ///           },
+        ///           onExit: (_) {
+        ///             setState(() { hovered = false; });
+        ///             widget.onExitButton();
+        ///           },
+        ///           child: Container(color: Colors.red),
+        ///         ),
+        ///       ),
+        ///     );
+        ///   }
+        /// }
+        /// ```
+        ///
+        /// ```dart
+        ///   Key key = UniqueKey();
+        ///   bool hovering = false;
+        ///
+        ///   @override
+        ///   Widget build(BuildContext context) {
+        ///     return Column(
+        ///       children: <Widget>[
+        ///         RaisedButton(
+        ///           onPressed: () {
+        ///             setState(() { key = UniqueKey(); });
+        ///           },
+        ///           child: Text('Refresh'),
+        ///         ),
+        ///         hovering ? Text('Hovering') : Text('Not hovering'),
+        ///         MyTimedButton(
+        ///           key: key,
+        ///           onEnterButton: () {
+        ///             setState(() { hovering = true; });
+        ///           },
+        ///           onExitButton: () {
+        ///             setState(() { hovering = false; });
+        ///           },
+        ///         ),
+        ///       ],
+        ///     );
+        ///   }
+        /// ```
+        /// {@end-tool}
+        ///
+        /// {@macro flutter.mouseRegion.triggerTime}
+        ///
+        /// See also:
+        ///
+        ///  * [onEnter], which is triggered when a mouse pointer enters the region.
+        ///  * [RenderMouseRegion] and [MouseTrackerAnnotation.onExit], which are how
+        ///    this callback is internally implemented, but without the restriction.
+        /// </Summary>
         public virtual FlutterSDK.Rendering.Mousetracking.PointerExitEventListener OnExit { get; set; }
+        /// <Summary>
+        /// Whether this widget should prevent other [MouseRegion]s visually behind it
+        /// from detecting the pointer, thus affecting how their [onHover], [onEnter],
+        /// and [onExit] behave.
+        ///
+        /// If [opaque] is true, this widget will absorb the mouse pointer and
+        /// prevent this widget's siblings (or any other widgets that are not
+        /// ancestors or descendants of this widget) from detecting the mouse
+        /// pointer even when the pointer is within their areas.
+        ///
+        /// If [opaque] is false, this object will not affect how [MouseRegion]s
+        /// behind it behave, which will detect the mouse pointer as long as the
+        /// pointer is within their areas.
+        ///
+        /// This defaults to true.
+        /// </Summary>
         public virtual bool Opaque { get; set; }
+        /// <Summary>
+        /// The widget below this widget in the tree.
+        ///
+        /// {@macro flutter.widgets.child}
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
 
         public new FlutterSDK.Widgets.Basic._MouseRegionState CreateState() => new _MouseRegionState();
@@ -5414,11 +7290,20 @@ namespace FlutterSDK.Widgets.Basic
     /// </Summary>
     public class RepaintBoundary : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
+        /// <Summary>
+        /// Creates a widget that isolates repaints.
+        /// </Summary>
         public RepaintBoundary(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
 
         }
+        /// <Summary>
+        /// Wraps the given child in a [RepaintBoundary].
+        ///
+        /// The key for the [RepaintBoundary] is derived either from the child's key
+        /// (if the child has a non-null key) or from the given `childIndex`.
+        /// </Summary>
         public static RepaintBoundary Wrap(FlutterSDK.Widgets.Framework.Widget child, int childIndex)
         {
             var instance = new RepaintBoundary();
@@ -5471,13 +7356,32 @@ namespace FlutterSDK.Widgets.Basic
     /// </Summary>
     public class IgnorePointer : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
+        /// <Summary>
+        /// Creates a widget that is invisible to hit testing.
+        ///
+        /// The [ignoring] argument must not be null. If [ignoringSemantics] is null,
+        /// this render object will be ignored for semantics if [ignoring] is true.
+        /// </Summary>
         public IgnorePointer(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), bool ignoring = true, bool ignoringSemantics = default(bool), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
             this.Ignoring = ignoring;
             this.IgnoringSemantics = ignoringSemantics;
         }
+        /// <Summary>
+        /// Whether this widget is ignored during hit testing.
+        ///
+        /// Regardless of whether this widget is ignored during hit testing, it will
+        /// still consume space during layout and be visible during painting.
+        /// </Summary>
         public virtual bool Ignoring { get; set; }
+        /// <Summary>
+        /// Whether the semantics of this widget is ignored when compiling the semantics tree.
+        ///
+        /// If null, defaults to value of [ignoring].
+        ///
+        /// See [SemanticsNode] for additional information about the semantics tree.
+        /// </Summary>
         public virtual bool IgnoringSemantics { get; set; }
 
         public new FlutterSDK.Rendering.Proxybox.RenderIgnorePointer CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
@@ -5532,13 +7436,33 @@ namespace FlutterSDK.Widgets.Basic
     /// </Summary>
     public class AbsorbPointer : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
+        /// <Summary>
+        /// Creates a widget that absorbs pointers during hit testing.
+        ///
+        /// The [absorbing] argument must not be null
+        /// </Summary>
         public AbsorbPointer(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), bool absorbing = true, FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), bool ignoringSemantics = default(bool))
         : base(key: key, child: child)
         {
             this.Absorbing = absorbing;
             this.IgnoringSemantics = ignoringSemantics;
         }
+        /// <Summary>
+        /// Whether this widget absorbs pointers during hit testing.
+        ///
+        /// Regardless of whether this render object absorbs pointers during hit
+        /// testing, it will still consume space during layout and be visible during
+        /// painting.
+        /// </Summary>
         public virtual bool Absorbing { get; set; }
+        /// <Summary>
+        /// Whether the semantics of this render object is ignored when compiling the
+        /// semantics tree.
+        ///
+        /// If null, defaults to the value of [absorbing].
+        ///
+        /// See [SemanticsNode] for additional information about the semantics tree.
+        /// </Summary>
         public virtual bool IgnoringSemantics { get; set; }
 
         public new FlutterSDK.Rendering.Proxybox.RenderAbsorbPointer CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
@@ -5585,13 +7509,24 @@ namespace FlutterSDK.Widgets.Basic
     /// </Summary>
     public class MetaData : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
+        /// <Summary>
+        /// Creates a widget that hold opaque meta data.
+        ///
+        /// The [behavior] argument defaults to [HitTestBehavior.deferToChild].
+        /// </Summary>
         public MetaData(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), object metaData = default(object), FlutterSDK.Rendering.Proxybox.HitTestBehavior behavior = default(FlutterSDK.Rendering.Proxybox.HitTestBehavior), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
             this.MetaDataValue = metaData;
             this.Behavior = behavior;
         }
+        /// <Summary>
+        /// Opaque meta data ignored by the render tree
+        /// </Summary>
         public virtual object MetaDataValue { get; set; }
+        /// <Summary>
+        /// How to behave during hit testing.
+        /// </Summary>
         public virtual FlutterSDK.Rendering.Proxybox.HitTestBehavior Behavior { get; set; }
 
         public new FlutterSDK.Rendering.Proxybox.RenderMetaData CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
@@ -5654,11 +7589,27 @@ namespace FlutterSDK.Widgets.Basic
     /// </Summary>
     public class Semantics : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
+        /// <Summary>
+        /// Creates a semantic annotation.
+        ///
+        /// The [container] argument must not be null. To create a `const` instance
+        /// of [Semantics], use the [Semantics.fromProperties] constructor.
+        ///
+        /// See also:
+        ///
+        ///  * [SemanticsSortKey] for a class that determines accessibility traversal
+        ///    order.
+        /// </Summary>
         public Semantics(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), bool container = false, bool explicitChildNodes = false, bool excludeSemantics = false, bool enabled = default(bool), bool @checked = default(bool), bool selected = default(bool), bool toggled = default(bool), bool button = default(bool), bool link = default(bool), bool header = default(bool), bool textField = default(bool), bool readOnly = default(bool), bool focusable = default(bool), bool focused = default(bool), bool inMutuallyExclusiveGroup = default(bool), bool obscured = default(bool), bool multiline = default(bool), bool scopesRoute = default(bool), bool namesRoute = default(bool), bool hidden = default(bool), bool image = default(bool), bool liveRegion = default(bool), int maxValueLength = default(int), int currentValueLength = default(int), string label = default(string), string value = default(string), string increasedValue = default(string), string decreasedValue = default(string), string hint = default(string), string onTapHint = default(string), string onLongPressHint = default(string), TextDirection textDirection = default(TextDirection), FlutterSDK.Semantics.Semantics.SemanticsSortKey sortKey = default(FlutterSDK.Semantics.Semantics.SemanticsSortKey), VoidCallback onTap = default(VoidCallback), VoidCallback onLongPress = default(VoidCallback), VoidCallback onScrollLeft = default(VoidCallback), VoidCallback onScrollRight = default(VoidCallback), VoidCallback onScrollUp = default(VoidCallback), VoidCallback onScrollDown = default(VoidCallback), VoidCallback onIncrease = default(VoidCallback), VoidCallback onDecrease = default(VoidCallback), VoidCallback onCopy = default(VoidCallback), VoidCallback onCut = default(VoidCallback), VoidCallback onPaste = default(VoidCallback), VoidCallback onDismiss = default(VoidCallback), FlutterSDK.Semantics.Semantics.MoveCursorHandler onMoveCursorForwardByCharacter = default(FlutterSDK.Semantics.Semantics.MoveCursorHandler), FlutterSDK.Semantics.Semantics.MoveCursorHandler onMoveCursorBackwardByCharacter = default(FlutterSDK.Semantics.Semantics.MoveCursorHandler), FlutterSDK.Semantics.Semantics.SetSelectionHandler onSetSelection = default(FlutterSDK.Semantics.Semantics.SetSelectionHandler), VoidCallback onDidGainAccessibilityFocus = default(VoidCallback), VoidCallback onDidLoseAccessibilityFocus = default(VoidCallback), Dictionary<FlutterSDK.Semantics.Semantics.CustomSemanticsAction, object> customSemanticsActions = default(Dictionary<FlutterSDK.Semantics.Semantics.CustomSemanticsAction, object>))
         : base()
         {
 
         }
+        /// <Summary>
+        /// Creates a semantic annotation using [SemanticsProperties].
+        ///
+        /// The [container] and [properties] arguments must not be null.
+        /// </Summary>
         public static Semantics FromProperties(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), bool container = false, bool explicitChildNodes = false, bool excludeSemantics = false, FlutterSDK.Semantics.Semantics.SemanticsProperties properties = default(FlutterSDK.Semantics.Semantics.SemanticsProperties))
         {
             var instance = new Semantics(key: key, child: child); instance.Container = container;
@@ -5666,9 +7617,49 @@ namespace FlutterSDK.Widgets.Basic
             instance.ExcludeSemantics = excludeSemantics;
             instance.Properties = properties;
         }
+        /// <Summary>
+        /// Contains properties used by assistive technologies to make the application
+        /// more accessible.
+        /// </Summary>
         public virtual FlutterSDK.Semantics.Semantics.SemanticsProperties Properties { get; set; }
+        /// <Summary>
+        /// If [container] is true, this widget will introduce a new
+        /// node in the semantics tree. Otherwise, the semantics will be
+        /// merged with the semantics of any ancestors (if the ancestor allows that).
+        ///
+        /// Whether descendants of this widget can add their semantic information to the
+        /// [SemanticsNode] introduced by this configuration is controlled by
+        /// [explicitChildNodes].
+        /// </Summary>
         public virtual bool Container { get; set; }
+        /// <Summary>
+        /// Whether descendants of this widget are allowed to add semantic information
+        /// to the [SemanticsNode] annotated by this widget.
+        ///
+        /// When set to false descendants are allowed to annotate [SemanticsNode]s of
+        /// their parent with the semantic information they want to contribute to the
+        /// semantic tree.
+        /// When set to true the only way for descendants to contribute semantic
+        /// information to the semantic tree is to introduce new explicit
+        /// [SemanticsNode]s to the tree.
+        ///
+        /// If the semantics properties of this node include
+        /// [SemanticsProperties.scopesRoute] set to true, then [explicitChildNodes]
+        /// must be true also.
+        ///
+        /// This setting is often used in combination with [SemanticsConfiguration.isSemanticBoundary]
+        /// to create semantic boundaries that are either writable or not for children.
+        /// </Summary>
         public virtual bool ExplicitChildNodes { get; set; }
+        /// <Summary>
+        /// Whether to replace all child semantics with this node.
+        ///
+        /// Defaults to false.
+        ///
+        /// When this flag is set to true, all child semantics nodes are ignored.
+        /// This can be used as a convenience for cases where a child is wrapped in
+        /// an [ExcludeSemantics] widget and then another [Semantics] widget.
+        /// </Summary>
         public virtual bool ExcludeSemantics { get; set; }
 
         public new FlutterSDK.Rendering.Proxybox.RenderSemanticsAnnotations CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
@@ -5740,6 +7731,9 @@ namespace FlutterSDK.Widgets.Basic
     /// </Summary>
     public class MergeSemantics : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
+        /// <Summary>
+        /// Creates a widget that merges the semantics of its descendants.
+        /// </Summary>
         public MergeSemantics(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
@@ -5768,11 +7762,19 @@ namespace FlutterSDK.Widgets.Basic
     /// </Summary>
     public class BlockSemantics : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
+        /// <Summary>
+        /// Creates a widget that excludes the semantics of all widgets painted before
+        /// it in the same semantic container.
+        /// </Summary>
         public BlockSemantics(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), bool blocking = true, FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
             this.Blocking = blocking;
         }
+        /// <Summary>
+        /// Whether this widget is blocking semantics of all widget that were painted
+        /// before it in the same semantic container.
+        /// </Summary>
         public virtual bool Blocking { get; set; }
 
         public new FlutterSDK.Rendering.Proxybox.RenderBlockSemantics CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context) => new RenderBlockSemantics(blocking: Blocking);
@@ -5821,11 +7823,17 @@ namespace FlutterSDK.Widgets.Basic
     /// </Summary>
     public class ExcludeSemantics : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
+        /// <Summary>
+        /// Creates a widget that drops all the semantics of its descendants.
+        /// </Summary>
         public ExcludeSemantics(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), bool excluding = true, FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
             this.Excluding = excluding;
         }
+        /// <Summary>
+        /// Whether this widget is excluded in the semantics tree.
+        /// </Summary>
         public virtual bool Excluding { get; set; }
 
         public new FlutterSDK.Rendering.Proxybox.RenderExcludeSemantics CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context) => new RenderExcludeSemantics(excluding: Excluding);
@@ -5893,11 +7901,19 @@ namespace FlutterSDK.Widgets.Basic
     /// </Summary>
     public class IndexedSemantics : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
+        /// <Summary>
+        /// Creates a widget that annotated the first child semantics node with an index.
+        ///
+        /// [index] must not be null.
+        /// </Summary>
         public IndexedSemantics(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), int index = default(int), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
             this.Index = index;
         }
+        /// <Summary>
+        /// The index used to annotate the first child semantics node.
+        /// </Summary>
         public virtual int Index { get; set; }
 
         public new FlutterSDK.Rendering.Proxybox.RenderIndexedSemantics CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context) => new RenderIndexedSemantics(index: Index);
@@ -5936,11 +7952,17 @@ namespace FlutterSDK.Widgets.Basic
     /// </Summary>
     public class KeyedSubtree : FlutterSDK.Widgets.Framework.StatelessWidget
     {
+        /// <Summary>
+        /// Creates a widget that builds its child.
+        /// </Summary>
         public KeyedSubtree(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key)
         {
             this.Child = child;
         }
+        /// <Summary>
+        /// Creates a KeyedSubtree for child with a key that's based on the child's existing key or childIndex.
+        /// </Summary>
         public static KeyedSubtree Wrap(FlutterSDK.Widgets.Framework.Widget child, int childIndex)
         {
             var instance = new KeyedSubtree();
@@ -5949,6 +7971,11 @@ namespace FlutterSDK.Widgets.Basic
         }
 
 
+        /// <Summary>
+        /// The widget below this widget in the tree.
+        ///
+        /// {@macro flutter.widgets.child}
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
 
         /// <Summary>
@@ -5988,11 +8015,25 @@ namespace FlutterSDK.Widgets.Basic
     /// </Summary>
     public class Builder : FlutterSDK.Widgets.Framework.StatelessWidget
     {
+        /// <Summary>
+        /// Creates a widget that delegates its build to a callback.
+        ///
+        /// The [builder] argument must not be null.
+        /// </Summary>
         public Builder(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.WidgetBuilder builder = default(FlutterSDK.Widgets.Framework.WidgetBuilder))
         : base(key: key)
         {
             this.BuilderValue = builder;
         }
+        /// <Summary>
+        /// Called to obtain the child widget.
+        ///
+        /// This function is called whenever this widget is included in its parent's
+        /// build and the old widget (if any) that it synchronizes with has a distinct
+        /// object identity. Typically the parent's build method will construct
+        /// a new tree of widgets and so a new Builder child will not be [identical]
+        /// to the corresponding old one.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.WidgetBuilder BuilderValue { get; set; }
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) => Builder(context);
@@ -6049,11 +8090,25 @@ namespace FlutterSDK.Widgets.Basic
     /// </Summary>
     public class StatefulBuilder : FlutterSDK.Widgets.Framework.StatefulWidget
     {
+        /// <Summary>
+        /// Creates a widget that both has state and delegates its build to a callback.
+        ///
+        /// The [builder] argument must not be null.
+        /// </Summary>
         public StatefulBuilder(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Basic.StatefulWidgetBuilder builder = default(FlutterSDK.Widgets.Basic.StatefulWidgetBuilder))
         : base(key: key)
         {
             this.Builder = builder;
         }
+        /// <Summary>
+        /// Called to obtain the child widget.
+        ///
+        /// This function is called whenever this widget is included in its parent's
+        /// build and the old widget (if any) that it synchronizes with has a distinct
+        /// object identity. Typically the parent's build method will construct
+        /// a new tree of widgets and so a new Builder child will not be [identical]
+        /// to the corresponding old one.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Basic.StatefulWidgetBuilder Builder { get; set; }
 
         public new FlutterSDK.Widgets.Basic._StatefulBuilderState CreateState() => new _StatefulBuilderState();
@@ -6079,11 +8134,19 @@ namespace FlutterSDK.Widgets.Basic
     /// </Summary>
     public class ColoredBox : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
+        /// <Summary>
+        /// Creates a widget that paints its area with the specified [Color].
+        ///
+        /// The [color] parameter must not be null.
+        /// </Summary>
         public ColoredBox(FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key))
         : base(key: key, child: child)
         {
             this.Color = color;
         }
+        /// <Summary>
+        /// The color to paint the background area with.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color Color { get; set; }
 
         public new FlutterSDK.Widgets.Basic._RenderColoredBox CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)

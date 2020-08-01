@@ -438,6 +438,13 @@ namespace FlutterSDK.Rendering.Image
     /// </Summary>
     public class RenderImage : FlutterSDK.Rendering.Box.RenderBox
     {
+        /// <Summary>
+        /// Creates a render box that displays an image.
+        ///
+        /// The [scale], [alignment], [repeat], [matchTextDirection] and [filterQuality] arguments
+        /// must not be null. The [textDirection] argument must not be null if
+        /// [alignment] will need resolving or if [matchTextDirection] is true.
+        /// </Summary>
         public RenderImage(SKImage image = default(SKImage), double width = default(double), double height = default(double), double scale = 1.0, FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterBinding.UI.BlendMode colorBlendMode = default(FlutterBinding.UI.BlendMode), FlutterSDK.Painting.Boxfit.BoxFit fit = default(FlutterSDK.Painting.Boxfit.BoxFit), FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), FlutterSDK.Painting.Decorationimage.ImageRepeat repeat = default(FlutterSDK.Painting.Decorationimage.ImageRepeat), FlutterBinding.UI.Rect centerSlice = default(FlutterBinding.UI.Rect), bool matchTextDirection = false, TextDirection textDirection = default(TextDirection), bool invertColors = false, FilterQuality filterQuality = default(FilterQuality))
         : base()
         {

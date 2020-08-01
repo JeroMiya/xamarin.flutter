@@ -425,6 +425,31 @@ namespace FlutterSDK.Widgets.Binding
 {
     internal static class BindingDefaultClass
     {
+        /// <Summary>
+        /// Inflate the given widget and attach it to the screen.
+        ///
+        /// The widget is given constraints during layout that force it to fill the
+        /// entire screen. If you wish to align your widget to one side of the screen
+        /// (e.g., the top), consider using the [Align] widget. If you wish to center
+        /// your widget, you can also use the [Center] widget
+        ///
+        /// Calling [runApp] again will detach the previous root widget from the screen
+        /// and attach the given widget in its place. The new widget tree is compared
+        /// against the previous widget tree and any differences are applied to the
+        /// underlying render tree, similar to what happens when a [StatefulWidget]
+        /// rebuilds after calling [State.setState].
+        ///
+        /// Initializes the binding using [WidgetsFlutterBinding] if necessary.
+        ///
+        /// See also:
+        ///
+        ///  * [WidgetsBinding.attachRootWidget], which creates the root widget for the
+        ///    widget hierarchy.
+        ///  * [RenderObjectToWidgetAdapter.attachToRenderTree], which creates the root
+        ///    element for the element hierarchy.
+        ///  * [WidgetsBinding.handleBeginFrame], which pumps the widget pipeline to
+        ///    ensure the widget, element, and render trees are all built.
+        /// </Summary>
         internal static void RunApp(FlutterSDK.Widgets.Framework.Widget app)
         {
             BindingDefaultClass.WidgetsFlutterBinding.EnsureInitialized();
@@ -434,6 +459,9 @@ namespace FlutterSDK.Widgets.Binding
 
 
 
+        /// <Summary>
+        /// Print a string representation of the currently running app.
+        /// </Summary>
         internal static void DebugDumpApp()
         {
 
@@ -464,6 +492,14 @@ namespace FlutterSDK.Widgets.Binding
         internal virtual List<FlutterSDK.Widgets.Binding.WidgetsBindingObserver> _Observers { get; set; }
         internal virtual bool _NeedToReportFirstFrame { get; set; }
         internal virtual Completer<object> _FirstFrameCompleter { get; set; }
+        /// <Summary>
+        /// Whether we are currently in a frame. This is used to verify
+        /// that frames are not scheduled redundantly.
+        ///
+        /// This is public so that test frameworks can change it.
+        ///
+        /// This flag is not used in release builds.
+        /// </Summary>
         public virtual bool DebugBuildingDirtyElements { get; set; }
         internal virtual FlutterSDK.Widgets.Framework.Element _RenderViewElement { get; set; }
         internal virtual bool _ReadyToProduceFrames { get; set; }
@@ -1348,6 +1384,11 @@ namespace FlutterSDK.Widgets.Binding
     /// </Summary>
     public class RenderObjectToWidgetAdapter<T> : FlutterSDK.Widgets.Framework.RenderObjectWidget
     {
+        /// <Summary>
+        /// Creates a bridge from a [RenderObject] to an [Element] tree.
+        ///
+        /// Used by [WidgetsBinding] to attach the root widget to the [RenderView].
+        /// </Summary>
         public RenderObjectToWidgetAdapter(FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Rendering.@object.RenderObjectWithChildMixin<T> container = default(FlutterSDK.Rendering.@object.RenderObjectWithChildMixin<T>), string debugShortDescription = default(string))
         : base(key: new GlobalObjectKey(container))
         {
@@ -1355,8 +1396,19 @@ namespace FlutterSDK.Widgets.Binding
             this.Container = container;
             this.DebugShortDescription = debugShortDescription;
         }
+        /// <Summary>
+        /// The widget below this widget in the tree.
+        ///
+        /// {@macro flutter.widgets.child}
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+        /// <Summary>
+        /// The [RenderObject] that is the parent of the [Element] created by this widget.
+        /// </Summary>
         public virtual FlutterSDK.Rendering.@object.RenderObjectWithChildMixin<T> Container { get; set; }
+        /// <Summary>
+        /// A short description of this widget used by debugging aids.
+        /// </Summary>
         public virtual string DebugShortDescription { get; set; }
 
         public new RenderObjectToWidgetElement<T> CreateElement() => new RenderObjectToWidgetElement<T>(this);
@@ -1433,6 +1485,13 @@ namespace FlutterSDK.Widgets.Binding
     /// </Summary>
     public class RenderObjectToWidgetElement<T> : FlutterSDK.Widgets.Framework.RootRenderObjectElement
     {
+        /// <Summary>
+        /// Creates an element that is hosted by a [RenderObject].
+        ///
+        /// The [RenderObject] created by this element is not automatically set as a
+        /// child of the hosting [RenderObject]. To actually attach this element to
+        /// the render tree, call [RenderObjectToWidgetAdapter.attachToRenderTree].
+        /// </Summary>
         public RenderObjectToWidgetElement(FlutterSDK.Widgets.Binding.RenderObjectToWidgetAdapter<T> widget)
         : base(widget)
         {

@@ -333,11 +333,22 @@ namespace FlutterSDK.Foundation.Annotations
     /// </Summary>
     public class Category
     {
+        /// <Summary>
+        /// Create an annotation to provide a categorization of a class.
+        /// </Summary>
         public Category(List<string> sections)
         : base()
         {
             this.Sections = sections;
         }
+        /// <Summary>
+        /// The strings the correspond to the section and subsection of the
+        /// category represented by this object.
+        ///
+        /// By convention, this list usually has two items. The allowed values
+        /// are defined by the team that owns the library to which the annotated
+        /// class belongs.
+        /// </Summary>
         public virtual List<string> Sections { get; set; }
     }
 
@@ -368,11 +379,17 @@ namespace FlutterSDK.Foundation.Annotations
     /// </Summary>
     public class DocumentationIcon
     {
+        /// <Summary>
+        /// Create an annotation to provide a URL to an image describing a class.
+        /// </Summary>
         public DocumentationIcon(string url)
         : base()
         {
             this.Url = url;
         }
+        /// <Summary>
+        /// The URL to an image that represents the annotated class.
+        /// </Summary>
         public virtual string Url { get; set; }
     }
 
@@ -410,11 +427,17 @@ namespace FlutterSDK.Foundation.Annotations
     /// </Summary>
     public class Summary
     {
+        /// <Summary>
+        /// Create an annotation to provide a short description of a class.
+        /// </Summary>
         public Summary(string text)
         : base()
         {
             this.Text = text;
         }
+        /// <Summary>
+        /// The text of the summary of the annotated class.
+        /// </Summary>
         public virtual string Text { get; set; }
     }
 

@@ -471,11 +471,31 @@ namespace FlutterSDK.Material.Typography
     /// </Summary>
     public class Typography : IDiagnosticable
     {
+        /// <Summary>
+        /// Creates a typography instance.
+        ///
+        /// This constructor is identical to [Typography.material2014]. It is
+        /// deprecated because the 2014 material design defaults used by that
+        /// constructor are obsolete. The current material design specification
+        /// recommendations are those reflected by [Typography.material2018].
+        /// </Summary>
         public Typography(FlutterSDK.Foundation.Platform.TargetPlatform platform = default(FlutterSDK.Foundation.Platform.TargetPlatform), FlutterSDK.Material.Texttheme.TextTheme black = default(FlutterSDK.Material.Texttheme.TextTheme), FlutterSDK.Material.Texttheme.TextTheme white = default(FlutterSDK.Material.Texttheme.TextTheme), FlutterSDK.Material.Texttheme.TextTheme englishLike = default(FlutterSDK.Material.Texttheme.TextTheme), FlutterSDK.Material.Texttheme.TextTheme dense = default(FlutterSDK.Material.Texttheme.TextTheme), FlutterSDK.Material.Texttheme.TextTheme tall = default(FlutterSDK.Material.Texttheme.TextTheme))
         : base()
         {
 
         }
+        /// <Summary>
+        /// Creates a typography instance using material design's 2014 defaults.
+        ///
+        /// If [platform] is [TargetPlatform.iOS] or [TargetPlatform.macOS], the
+        /// default values for [black] and [white] are [blackCupertino] and
+        /// [whiteCupertino] respectively. Otherwise they are [blackMountainView] and
+        /// [whiteMoutainView]. If [platform] is null then both [black] and [white]
+        /// must be specified.
+        ///
+        /// The default values for [englishLike], [dense], and [tall] are
+        /// [englishLike2014], [dense2014], and [tall2014].
+        /// </Summary>
         public static Typography Material2014(FlutterSDK.Foundation.Platform.TargetPlatform platform = default(FlutterSDK.Foundation.Platform.TargetPlatform), FlutterSDK.Material.Texttheme.TextTheme black = default(FlutterSDK.Material.Texttheme.TextTheme), FlutterSDK.Material.Texttheme.TextTheme white = default(FlutterSDK.Material.Texttheme.TextTheme), FlutterSDK.Material.Texttheme.TextTheme englishLike = default(FlutterSDK.Material.Texttheme.TextTheme), FlutterSDK.Material.Texttheme.TextTheme dense = default(FlutterSDK.Material.Texttheme.TextTheme), FlutterSDK.Material.Texttheme.TextTheme tall = default(FlutterSDK.Material.Texttheme.TextTheme))
         {
             var instance = new Typography();
@@ -484,6 +504,18 @@ namespace FlutterSDK.Material.Typography
         }
 
 
+        /// <Summary>
+        /// Creates a typography instance using material design's 2018 defaults.
+        ///
+        /// If [platform] is [TargetPlatform.iOS] or [TargetPlatform.macOS], the
+        /// default values for [black] and [white] are [blackCupertino] and
+        /// [whiteCupertino] respectively. Otherwise they are [blackMountainView] and
+        /// [whiteMoutainView]. If [platform] is null then both [black] and [white]
+        /// must be specified.
+        ///
+        /// The default values for [englishLike], [dense], and [tall] are
+        /// [englishLike2018], [dense2018], and [tall2018].
+        /// </Summary>
         public static Typography Material2018(FlutterSDK.Foundation.Platform.TargetPlatform platform = default(FlutterSDK.Foundation.Platform.TargetPlatform), FlutterSDK.Material.Texttheme.TextTheme black = default(FlutterSDK.Material.Texttheme.TextTheme), FlutterSDK.Material.Texttheme.TextTheme white = default(FlutterSDK.Material.Texttheme.TextTheme), FlutterSDK.Material.Texttheme.TextTheme englishLike = default(FlutterSDK.Material.Texttheme.TextTheme), FlutterSDK.Material.Texttheme.TextTheme dense = default(FlutterSDK.Material.Texttheme.TextTheme), FlutterSDK.Material.Texttheme.TextTheme tall = default(FlutterSDK.Material.Texttheme.TextTheme))
         {
             var instance = new Typography();
@@ -513,25 +545,152 @@ namespace FlutterSDK.Material.Typography
             this.Dense = dense;
             this.Tall = tall;
         }
+        /// <Summary>
+        /// A material design text theme with dark glyphs.
+        ///
+        /// This [TextTheme] should provide color but not geometry (font size,
+        /// weight, etc). A text theme's geometry depends on the locale. To look
+        /// up a localized [TextTheme], use the overall [Theme], for example:
+        /// `Theme.of(context).textTheme`.
+        ///
+        /// The [englishLike], [dense], and [tall] text theme's provide locale-specific
+        /// geometry.
+        /// </Summary>
         public virtual FlutterSDK.Material.Texttheme.TextTheme Black { get; set; }
+        /// <Summary>
+        /// A material design text theme with light glyphs.
+        ///
+        /// This [TextTheme] provides color but not geometry (font size, weight, etc).
+        /// A text theme's geometry depends on the locale. To look up a localized
+        /// [TextTheme], use the overall [Theme], for example:
+        /// `Theme.of(context).textTheme`.
+        ///
+        /// The [englishLike], [dense], and [tall] text theme's provide locale-specific
+        /// geometry.
+        /// </Summary>
         public virtual FlutterSDK.Material.Texttheme.TextTheme White { get; set; }
+        /// <Summary>
+        /// Defines text geometry for [ScriptCategory.englishLike] scripts, such as
+        /// English, French, Russian, etc.
+        ///
+        /// This text theme is merged with either [black] or [white], depending
+        /// on the overall [ThemeData.brightness], when the current locale's
+        /// [MaterialLocalizations.scriptCategory] is [ScriptCategory.englishLike].
+        ///
+        /// To look up a localized [TextTheme], use the overall [Theme], for
+        /// example: `Theme.of(context).textTheme`.
+        /// </Summary>
         public virtual FlutterSDK.Material.Texttheme.TextTheme EnglishLike { get; set; }
+        /// <Summary>
+        /// Defines text geometry for dense scripts, such as Chinese, Japanese
+        /// and Korean.
+        ///
+        /// This text theme is merged with either [black] or [white], depending
+        /// on the overall [ThemeData.brightness], when the current locale's
+        /// [MaterialLocalizations.scriptCategory] is [ScriptCategory.dense].
+        ///
+        /// To look up a localized [TextTheme], use the overall [Theme], for
+        /// example: `Theme.of(context).textTheme`.
+        /// </Summary>
         public virtual FlutterSDK.Material.Texttheme.TextTheme Dense { get; set; }
+        /// <Summary>
+        /// Defines text geometry for tall scripts, such as Farsi, Hindi, and Thai.
+        ///
+        /// This text theme is merged with either [black] or [white], depending
+        /// on the overall [ThemeData.brightness], when the current locale's
+        /// [MaterialLocalizations.scriptCategory] is [ScriptCategory.tall].
+        ///
+        /// To look up a localized [TextTheme], use the overall [Theme], for
+        /// example: `Theme.of(context).textTheme`.
+        /// </Summary>
         public virtual FlutterSDK.Material.Texttheme.TextTheme Tall { get; set; }
+        /// <Summary>
+        /// A material design text theme with dark glyphs based on Roboto.
+        ///
+        /// This [TextTheme] provides color but not geometry (font size, weight, etc).
+        /// </Summary>
         public virtual FlutterSDK.Material.Texttheme.TextTheme BlackMountainView { get; set; }
+        /// <Summary>
+        /// A material design text theme with light glyphs based on Roboto.
+        ///
+        /// This [TextTheme] provides color but not geometry (font size, weight, etc).
+        /// </Summary>
         public virtual FlutterSDK.Material.Texttheme.TextTheme WhiteMountainView { get; set; }
+        /// <Summary>
+        /// A material design text theme with dark glyphs based on Segoe UI.
+        ///
+        /// This [TextTheme] provides color but not geometry (font size, weight, etc).
+        /// </Summary>
         public virtual FlutterSDK.Material.Texttheme.TextTheme BlackRedmond { get; set; }
+        /// <Summary>
+        /// A material design text theme with light glyphs based on Segoe UI.
+        ///
+        /// This [TextTheme] provides color but not geometry (font size, weight, etc).
+        /// </Summary>
         public virtual FlutterSDK.Material.Texttheme.TextTheme WhiteRedmond { get; set; }
         internal virtual List<string> _HelsinkiFontFallbacks { get; set; }
+        /// <Summary>
+        /// A material design text theme with dark glyphs based on Roboto, with
+        /// fallback fonts that are likely (but not guaranteed) to be installed on
+        /// Linux.
+        ///
+        /// This [TextTheme] provides color but not geometry (font size, weight, etc).
+        /// </Summary>
         public virtual FlutterSDK.Material.Texttheme.TextTheme BlackHelsinki { get; set; }
+        /// <Summary>
+        /// A material design text theme with light glyphs based on Roboto, with fallbacks of DejaVu Sans, Liberation Sans and Arial.
+        ///
+        /// This [TextTheme] provides color but not geometry (font size, weight, etc).
+        /// </Summary>
         public virtual FlutterSDK.Material.Texttheme.TextTheme WhiteHelsinki { get; set; }
+        /// <Summary>
+        /// A material design text theme with dark glyphs based on San Francisco.
+        ///
+        /// This [TextTheme] provides color but not geometry (font size, weight, etc).
+        /// </Summary>
         public virtual FlutterSDK.Material.Texttheme.TextTheme BlackCupertino { get; set; }
+        /// <Summary>
+        /// A material design text theme with light glyphs based on San Francisco.
+        ///
+        /// This [TextTheme] provides color but not geometry (font size, weight, etc).
+        /// </Summary>
         public virtual FlutterSDK.Material.Texttheme.TextTheme WhiteCupertino { get; set; }
+        /// <Summary>
+        /// Defines text geometry for [ScriptCategory.englishLike] scripts, such as
+        /// English, French, Russian, etc.
+        /// </Summary>
         public virtual FlutterSDK.Material.Texttheme.TextTheme EnglishLike2014 { get; set; }
+        /// <Summary>
+        /// Defines text geometry for [ScriptCategory.englishLike] scripts, such as
+        /// English, French, Russian, etc.
+        ///
+        /// The font sizes, weights, and letter spacings in this version match the
+        /// [latest Material Design specification](https://material.io/go/design-typography#typography-styles).
+        /// </Summary>
         public virtual FlutterSDK.Material.Texttheme.TextTheme EnglishLike2018 { get; set; }
+        /// <Summary>
+        /// Defines text geometry for dense scripts, such as Chinese, Japanese
+        /// and Korean.
+        /// </Summary>
         public virtual FlutterSDK.Material.Texttheme.TextTheme Dense2014 { get; set; }
+        /// <Summary>
+        /// Defines text geometry for dense scripts, such as Chinese, Japanese
+        /// and Korean.
+        ///
+        /// The font sizes, weights, and letter spacings in this version match the
+        /// latest [Material Design specification](https://material.io/go/design-typography#typography-styles).
+        /// </Summary>
         public virtual FlutterSDK.Material.Texttheme.TextTheme Dense2018 { get; set; }
+        /// <Summary>
+        /// Defines text geometry for tall scripts, such as Farsi, Hindi, and Thai.
+        /// </Summary>
         public virtual FlutterSDK.Material.Texttheme.TextTheme Tall2014 { get; set; }
+        /// <Summary>
+        /// Defines text geometry for tall scripts, such as Farsi, Hindi, and Thai.
+        ///
+        /// The font sizes, weights, and letter spacings in this version match the
+        /// latest [Material Design specification](https://material.io/go/design-typography#typography-styles).
+        /// </Summary>
         public virtual FlutterSDK.Material.Texttheme.TextTheme Tall2018 { get; set; }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 

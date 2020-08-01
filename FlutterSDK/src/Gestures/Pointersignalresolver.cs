@@ -296,6 +296,10 @@ using FlutterSDK.Foundation._Isolatesio;
 using FlutterSDK.Foundation._Platformio;
 namespace FlutterSDK.Gestures.Pointersignalresolver
 {
+    /// <Summary>
+    /// The callback to register with a [PointerSignalResolver] to express
+    /// interest in a pointer signal event.
+    /// </Summary>
     public delegate void PointerSignalResolvedCallback(FlutterSDK.Gestures.Events.PointerSignalEvent @event);
     internal static class PointersignalresolverDefaultClass
     {

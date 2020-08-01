@@ -316,6 +316,10 @@ namespace FlutterSDK.Cupertino.Interfacelevel
     /// </Summary>
     public class CupertinoUserInterfaceLevel : FlutterSDK.Widgets.Framework.InheritedWidget
     {
+        /// <Summary>
+        /// Creates a [CupertinoUserInterfaceLevel] to change descendant Cupertino widget's
+        /// visual level.
+        /// </Summary>
         public CupertinoUserInterfaceLevel(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Cupertino.Interfacelevel.CupertinoUserInterfaceLevelData data = default(FlutterSDK.Cupertino.Interfacelevel.CupertinoUserInterfaceLevelData), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {

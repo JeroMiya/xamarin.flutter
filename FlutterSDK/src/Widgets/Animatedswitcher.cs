@@ -423,7 +423,29 @@ using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
 namespace FlutterSDK.Widgets.Animatedswitcher
 {
+    /// <Summary>
+    /// Signature for builders used to generate custom transitions for
+    /// [AnimatedSwitcher].
+    ///
+    /// The `child` should be transitioning in when the `animation` is running in
+    /// the forward direction.
+    ///
+    /// The function should return a widget which wraps the given `child`. It may
+    /// also use the `animation` to inform its transition. It must not return null.
+    /// </Summary>
     public delegate FlutterSDK.Widgets.Framework.Widget AnimatedSwitcherTransitionBuilder(FlutterSDK.Widgets.Framework.Widget child, FlutterSDK.Animation.Animation.Animation<double> animation);
+    /// <Summary>
+    /// Signature for builders used to generate custom layouts for
+    /// [AnimatedSwitcher].
+    ///
+    /// The builder should return a widget which contains the given children, laid
+    /// out as desired. It must not return null. The builder should be able to
+    /// handle an empty list of `previousChildren`, or a null `currentChild`.
+    ///
+    /// The `previousChildren` list is an unmodifiable list, sorted with the oldest
+    /// at the beginning and the newest at the end. It does not include the
+    /// `currentChild`.
+    /// </Summary>
     public delegate FlutterSDK.Widgets.Framework.Widget AnimatedSwitcherLayoutBuilder(FlutterSDK.Widgets.Framework.Widget currentChild, List<FlutterSDK.Widgets.Framework.Widget> previousChildren);
     internal static class AnimatedswitcherDefaultClass
     {
@@ -528,6 +550,12 @@ namespace FlutterSDK.Widgets.Animatedswitcher
     /// </Summary>
     public class AnimatedSwitcher : FlutterSDK.Widgets.Framework.StatefulWidget
     {
+        /// <Summary>
+        /// Creates an [AnimatedSwitcher].
+        ///
+        /// The [duration], [transitionBuilder], [layoutBuilder], [switchInCurve], and
+        /// [switchOutCurve] parameters must not be null.
+        /// </Summary>
         public AnimatedSwitcher(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), TimeSpan duration = default(TimeSpan), TimeSpan reverseDuration = default(TimeSpan), FlutterSDK.Animation.Curves.Curve switchInCurve = default(FlutterSDK.Animation.Curves.Curve), FlutterSDK.Animation.Curves.Curve switchOutCurve = default(FlutterSDK.Animation.Curves.Curve), FlutterSDK.Widgets.Animatedswitcher.AnimatedSwitcherTransitionBuilder transitionBuilder = default(FlutterSDK.Widgets.Animatedswitcher.AnimatedSwitcherTransitionBuilder), FlutterSDK.Widgets.Animatedswitcher.AnimatedSwitcherLayoutBuilder layoutBuilder = default(FlutterSDK.Widgets.Animatedswitcher.AnimatedSwitcherLayoutBuilder))
         : base(key: key)
         {
@@ -539,12 +567,99 @@ namespace FlutterSDK.Widgets.Animatedswitcher
             this.TransitionBuilder = transitionBuilder;
             this.LayoutBuilder = layoutBuilder;
         }
+        /// <Summary>
+        /// The current child widget to display. If there was a previous child, then
+        /// that child will be faded out using the [switchOutCurve], while the new
+        /// child is faded in with the [switchInCurve], over the [duration].
+        ///
+        /// If there was no previous child, then this child will fade in using the
+        /// [switchInCurve] over the [duration].
+        ///
+        /// The child is considered to be "new" if it has a different type or [Key]
+        /// (see [Widget.canUpdate]).
+        ///
+        /// To change the kind of transition used, see [transitionBuilder].
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+        /// <Summary>
+        /// The duration of the transition from the old [child] value to the new one.
+        ///
+        /// This duration is applied to the given [child] when that property is set to
+        /// a new child. The same duration is used when fading out, unless
+        /// [reverseDuration] is set. Changing [duration] will not affect the
+        /// durations of transitions already in progress.
+        /// </Summary>
         public virtual TimeSpan Duration { get; set; }
+        /// <Summary>
+        /// The duration of the transition from the new [child] value to the old one.
+        ///
+        /// This duration is applied to the given [child] when that property is set to
+        /// a new child. Changing [reverseDuration] will not affect the durations of
+        /// transitions already in progress.
+        ///
+        /// If not set, then the value of [duration] is used by default.
+        /// </Summary>
         public virtual TimeSpan ReverseDuration { get; set; }
+        /// <Summary>
+        /// The animation curve to use when transitioning in a new [child].
+        ///
+        /// This curve is applied to the given [child] when that property is set to a
+        /// new child. Changing [switchInCurve] will not affect the curve of a
+        /// transition already in progress.
+        ///
+        /// The [switchOutCurve] is used when fading out, except that if [child] is
+        /// changed while the current child is in the middle of fading in,
+        /// [switchInCurve] will be run in reverse from that point instead of jumping
+        /// to the corresponding point on [switchOutCurve].
+        /// </Summary>
         public virtual FlutterSDK.Animation.Curves.Curve SwitchInCurve { get; set; }
+        /// <Summary>
+        /// The animation curve to use when transitioning a previous [child] out.
+        ///
+        /// This curve is applied to the [child] when the child is faded in (or when
+        /// the widget is created, for the first child). Changing [switchOutCurve]
+        /// will not affect the curves of already-visible widgets, it only affects the
+        /// curves of future children.
+        ///
+        /// If [child] is changed while the current child is in the middle of fading
+        /// in, [switchInCurve] will be run in reverse from that point instead of
+        /// jumping to the corresponding point on [switchOutCurve].
+        /// </Summary>
         public virtual FlutterSDK.Animation.Curves.Curve SwitchOutCurve { get; set; }
+        /// <Summary>
+        /// A function that wraps a new [child] with an animation that transitions
+        /// the [child] in when the animation runs in the forward direction and out
+        /// when the animation runs in the reverse direction. This is only called
+        /// when a new [child] is set (not for each build), or when a new
+        /// [transitionBuilder] is set. If a new [transitionBuilder] is set, then
+        /// the transition is rebuilt for the current child and all previous children
+        /// using the new [transitionBuilder]. The function must not return null.
+        ///
+        /// The default is [AnimatedSwitcher.defaultTransitionBuilder].
+        ///
+        /// The animation provided to the builder has the [duration] and
+        /// [switchInCurve] or [switchOutCurve] applied as provided when the
+        /// corresponding [child] was first provided.
+        ///
+        /// See also:
+        ///
+        ///  * [AnimatedSwitcherTransitionBuilder] for more information about
+        ///    how a transition builder should function.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Animatedswitcher.AnimatedSwitcherTransitionBuilder TransitionBuilder { get; set; }
+        /// <Summary>
+        /// A function that wraps all of the children that are transitioning out, and
+        /// the [child] that's transitioning in, with a widget that lays all of them
+        /// out. This is called every time this widget is built. The function must not
+        /// return null.
+        ///
+        /// The default is [AnimatedSwitcher.defaultLayoutBuilder].
+        ///
+        /// See also:
+        ///
+        ///  * [AnimatedSwitcherLayoutBuilder] for more information about
+        ///    how a layout builder should function.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Animatedswitcher.AnimatedSwitcherLayoutBuilder LayoutBuilder { get; set; }
 
         public new FlutterSDK.Widgets.Animatedswitcher._AnimatedSwitcherState CreateState() => new _AnimatedSwitcherState();

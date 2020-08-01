@@ -437,13 +437,33 @@ namespace FlutterSDK.Painting.Beveledrectangleborder
     /// </Summary>
     public class BeveledRectangleBorder : FlutterSDK.Painting.Borders.ShapeBorder
     {
+        /// <Summary>
+        /// Creates a border like a [RoundedRectangleBorder] except that the corners
+        /// are joined by straight lines instead of arcs.
+        ///
+        /// The arguments must not be null.
+        /// </Summary>
         public BeveledRectangleBorder(FlutterSDK.Painting.Borders.BorderSide side = default(FlutterSDK.Painting.Borders.BorderSide), FlutterSDK.Painting.Borderradius.BorderRadiusGeometry borderRadius = default(FlutterSDK.Painting.Borderradius.BorderRadiusGeometry))
         : base()
         {
             this.Side = side;
             this.BorderRadius = borderRadius;
         }
+        /// <Summary>
+        /// The style of this border.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Borders.BorderSide Side { get; set; }
+        /// <Summary>
+        /// The radii for each corner.
+        ///
+        /// Each corner [Radius] defines the endpoints of a line segment that
+        /// spans the corner. The endpoints are located in the same place as
+        /// they would be for [RoundedRectangleBorder], but they're connected
+        /// by a straight line instead of an arc.
+        ///
+        /// Negative radius values are clamped to 0.0 by [getInnerPath] and
+        /// [getOuterPath].
+        /// </Summary>
         public virtual FlutterSDK.Painting.Borderradius.BorderRadiusGeometry BorderRadius { get; set; }
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Dimensions { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }

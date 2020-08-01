@@ -649,6 +649,20 @@ namespace FlutterSDK.Material.Switchlisttile
     /// </Summary>
     public class SwitchListTile : FlutterSDK.Widgets.Framework.StatelessWidget
     {
+        /// <Summary>
+        /// Creates a combination of a list tile and a switch.
+        ///
+        /// The switch tile itself does not maintain any state. Instead, when the
+        /// state of the switch changes, the widget calls the [onChanged] callback.
+        /// Most widgets that use a switch will listen for the [onChanged] callback
+        /// and rebuild the switch tile with a new [value] to update the visual
+        /// appearance of the switch.
+        ///
+        /// The following arguments are required:
+        ///
+        /// * [value] determines whether this switch is on or off.
+        /// * [onChanged] is called when the user toggles the switch on or off.
+        /// </Summary>
         public SwitchListTile(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), bool value = default(bool), FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>), FlutterBinding.UI.Color activeColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color activeTrackColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color inactiveThumbColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color inactiveTrackColor = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Imageprovider.ImageProvider<object> activeThumbImage = default(FlutterSDK.Painting.Imageprovider.ImageProvider<object>), FlutterSDK.Painting.Imageprovider.ImageProvider<object> inactiveThumbImage = default(FlutterSDK.Painting.Imageprovider.ImageProvider<object>), FlutterSDK.Widgets.Framework.Widget title = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget subtitle = default(FlutterSDK.Widgets.Framework.Widget), bool isThreeLine = false, bool dense = default(bool), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry contentPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Widgets.Framework.Widget secondary = default(FlutterSDK.Widgets.Framework.Widget), bool selected = false)
         : base(key: key)
         {
@@ -668,6 +682,16 @@ namespace FlutterSDK.Material.Switchlisttile
             this.Secondary = secondary;
             this.Selected = selected;
         }
+        /// <Summary>
+        /// Creates the wrapped switch with [Switch.adaptive].
+        ///
+        /// Creates a [CupertinoSwitch] if the target platform is iOS, creates a
+        /// material design switch otherwise.
+        ///
+        /// If a [CupertinoSwitch] is created, the following parameters are
+        /// ignored: [activeTrackColor], [inactiveThumbColor], [inactiveTrackColor],
+        /// [activeThumbImage], [inactiveThumbImage], [materialTapTargetSize].
+        /// </Summary>
         public static SwitchListTile Adaptive(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), bool value = default(bool), FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>), FlutterBinding.UI.Color activeColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color activeTrackColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color inactiveThumbColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color inactiveTrackColor = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Imageprovider.ImageProvider<object> activeThumbImage = default(FlutterSDK.Painting.Imageprovider.ImageProvider<object>), FlutterSDK.Painting.Imageprovider.ImageProvider<object> inactiveThumbImage = default(FlutterSDK.Painting.Imageprovider.ImageProvider<object>), FlutterSDK.Widgets.Framework.Widget title = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget subtitle = default(FlutterSDK.Widgets.Framework.Widget), bool isThreeLine = false, bool dense = default(bool), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry contentPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Widgets.Framework.Widget secondary = default(FlutterSDK.Widgets.Framework.Widget), bool selected = false)
         {
             var instance = new SwitchListTile(key: key); instance.Value = value;
@@ -686,21 +710,132 @@ namespace FlutterSDK.Material.Switchlisttile
             instance.Secondary = secondary;
             instance.Selected = selected;
         }
+        /// <Summary>
+        /// Whether this switch is checked.
+        ///
+        /// This property must not be null.
+        /// </Summary>
         public virtual bool Value { get; set; }
+        /// <Summary>
+        /// Called when the user toggles the switch on or off.
+        ///
+        /// The switch passes the new value to the callback but does not actually
+        /// change state until the parent widget rebuilds the switch tile with the
+        /// new value.
+        ///
+        /// If null, the switch will be displayed as disabled.
+        ///
+        /// The callback provided to [onChanged] should update the state of the parent
+        /// [StatefulWidget] using the [State.setState] method, so that the parent
+        /// gets rebuilt; for example:
+        ///
+        /// ```dart
+        /// SwitchListTile(
+        ///   value: _isSelected,
+        ///   onChanged: (bool newValue) {
+        ///     setState(() {
+        ///       _isSelected = newValue;
+        ///     });
+        ///   },
+        ///   title: Text('Selection'),
+        /// )
+        /// ```
+        /// </Summary>
         public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<bool> OnChanged { get; set; }
+        /// <Summary>
+        /// The color to use when this switch is on.
+        ///
+        /// Defaults to accent color of the current [Theme].
+        /// </Summary>
         public virtual FlutterBinding.UI.Color ActiveColor { get; set; }
+        /// <Summary>
+        /// The color to use on the track when this switch is on.
+        ///
+        /// Defaults to [ThemeData.toggleableActiveColor] with the opacity set at 50%.
+        ///
+        /// Ignored if created with [SwitchListTile.adaptive].
+        /// </Summary>
         public virtual FlutterBinding.UI.Color ActiveTrackColor { get; set; }
+        /// <Summary>
+        /// The color to use on the thumb when this switch is off.
+        ///
+        /// Defaults to the colors described in the Material design specification.
+        ///
+        /// Ignored if created with [SwitchListTile.adaptive].
+        /// </Summary>
         public virtual FlutterBinding.UI.Color InactiveThumbColor { get; set; }
+        /// <Summary>
+        /// The color to use on the track when this switch is off.
+        ///
+        /// Defaults to the colors described in the Material design specification.
+        ///
+        /// Ignored if created with [SwitchListTile.adaptive].
+        /// </Summary>
         public virtual FlutterBinding.UI.Color InactiveTrackColor { get; set; }
+        /// <Summary>
+        /// An image to use on the thumb of this switch when the switch is on.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Imageprovider.ImageProvider<object> ActiveThumbImage { get; set; }
+        /// <Summary>
+        /// An image to use on the thumb of this switch when the switch is off.
+        ///
+        /// Ignored if created with [SwitchListTile.adaptive].
+        /// </Summary>
         public virtual FlutterSDK.Painting.Imageprovider.ImageProvider<object> InactiveThumbImage { get; set; }
+        /// <Summary>
+        /// The primary content of the list tile.
+        ///
+        /// Typically a [Text] widget.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Title { get; set; }
+        /// <Summary>
+        /// Additional content displayed below the title.
+        ///
+        /// Typically a [Text] widget.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Subtitle { get; set; }
+        /// <Summary>
+        /// A widget to display on the opposite side of the tile from the switch.
+        ///
+        /// Typically an [Icon] widget.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Secondary { get; set; }
+        /// <Summary>
+        /// Whether this list tile is intended to display three lines of text.
+        ///
+        /// If false, the list tile is treated as having one line if the subtitle is
+        /// null and treated as having two lines if the subtitle is non-null.
+        /// </Summary>
         public virtual bool IsThreeLine { get; set; }
+        /// <Summary>
+        /// Whether this list tile is part of a vertically dense list.
+        ///
+        /// If this property is null then its value is based on [ListTileTheme.dense].
+        /// </Summary>
         public virtual bool Dense { get; set; }
+        /// <Summary>
+        /// The tile's internal padding.
+        ///
+        /// Insets a [SwitchListTile]'s contents: its [title], [subtitle],
+        /// [secondary], and [Switch] widgets.
+        ///
+        /// If null, [ListTile]'s default of `EdgeInsets.symmetric(horizontal: 16.0)`
+        /// is used.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry ContentPadding { get; set; }
+        /// <Summary>
+        /// Whether to render icons and text in the [activeColor].
+        ///
+        /// No effort is made to automatically coordinate the [selected] state and the
+        /// [value] state. To have the list tile appear selected when the switch is
+        /// on, pass the same value to both.
+        ///
+        /// Normally, this property is left to its default value, false.
+        /// </Summary>
         public virtual bool Selected { get; set; }
+        /// <Summary>
+        /// If adaptive, creates the switch with [Switch.adaptive].
+        /// </Summary>
         internal virtual FlutterSDK.Material.Switchlisttile._SwitchListTileType _SwitchListTileType { get; set; }
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)

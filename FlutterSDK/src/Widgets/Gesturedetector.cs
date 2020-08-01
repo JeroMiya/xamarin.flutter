@@ -424,7 +424,13 @@ using FlutterSDK.Painting._Networkimageio;
 using FlutterSDK.Widgets.Constants;
 namespace FlutterSDK.Widgets.Gesturedetector
 {
+    /// <Summary>
+    /// Signature for closures that implement [GestureRecognizerFactory.constructor].
+    /// </Summary>
     public delegate T GestureRecognizerFactoryConstructor<T>();
+    /// <Summary>
+    /// Signature for closures that implement [GestureRecognizerFactory.initializer].
+    /// </Summary>
     public delegate void GestureRecognizerFactoryInitializer<T>(T instance);
     public delegate void _AssignSemantics(FlutterSDK.Rendering.Proxybox.RenderSemanticsGestureHandler p1);
     internal static class GesturedetectorDefaultClass
@@ -467,6 +473,10 @@ namespace FlutterSDK.Widgets.Gesturedetector
     /// </Summary>
     public class GestureRecognizerFactory<T>
     {
+        /// <Summary>
+        /// Abstract const constructor. This constructor enables subclasses to provide
+        /// const constructors so that they can be used in const expressions.
+        /// </Summary>
         public GestureRecognizerFactory()
         {
 
@@ -510,6 +520,11 @@ namespace FlutterSDK.Widgets.Gesturedetector
     /// </Summary>
     public class GestureRecognizerFactoryWithHandlers<T> : FlutterSDK.Widgets.Gesturedetector.GestureRecognizerFactory<T>
     {
+        /// <Summary>
+        /// Creates a gesture recognizer factory with the given callbacks.
+        ///
+        /// The arguments must not be null.
+        /// </Summary>
         public GestureRecognizerFactoryWithHandlers(FlutterSDK.Widgets.Gesturedetector.GestureRecognizerFactoryConstructor<T> _constructor, FlutterSDK.Widgets.Gesturedetector.GestureRecognizerFactoryInitializer<T> _initializer)
         : base()
         {
@@ -597,6 +612,19 @@ namespace FlutterSDK.Widgets.Gesturedetector
     /// </Summary>
     public class GestureDetector : FlutterSDK.Widgets.Framework.StatelessWidget
     {
+        /// <Summary>
+        /// Creates a widget that detects gestures.
+        ///
+        /// Pan and scale callbacks cannot be used simultaneously because scale is a
+        /// superset of pan. Simply use the scale callbacks instead.
+        ///
+        /// Horizontal and vertical drag callbacks cannot be used simultaneously
+        /// because a combination of a horizontal and vertical drag is a pan. Simply
+        /// use the pan callbacks instead.
+        ///
+        /// By default, gesture detectors contribute semantic information to the tree
+        /// that is used by assistive technology.
+        /// </Summary>
         public GestureDetector(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Gestures.Tap.GestureTapDownCallback onTapDown = default(FlutterSDK.Gestures.Tap.GestureTapDownCallback), FlutterSDK.Gestures.Tap.GestureTapUpCallback onTapUp = default(FlutterSDK.Gestures.Tap.GestureTapUpCallback), FlutterSDK.Gestures.Tap.GestureTapCallback onTap = default(FlutterSDK.Gestures.Tap.GestureTapCallback), FlutterSDK.Gestures.Tap.GestureTapCancelCallback onTapCancel = default(FlutterSDK.Gestures.Tap.GestureTapCancelCallback), FlutterSDK.Gestures.Tap.GestureTapDownCallback onSecondaryTapDown = default(FlutterSDK.Gestures.Tap.GestureTapDownCallback), FlutterSDK.Gestures.Tap.GestureTapUpCallback onSecondaryTapUp = default(FlutterSDK.Gestures.Tap.GestureTapUpCallback), FlutterSDK.Gestures.Tap.GestureTapCancelCallback onSecondaryTapCancel = default(FlutterSDK.Gestures.Tap.GestureTapCancelCallback), FlutterSDK.Gestures.Tap.GestureTapCallback onDoubleTap = default(FlutterSDK.Gestures.Tap.GestureTapCallback), FlutterSDK.Gestures.Longpress.GestureLongPressCallback onLongPress = default(FlutterSDK.Gestures.Longpress.GestureLongPressCallback), FlutterSDK.Gestures.Longpress.GestureLongPressStartCallback onLongPressStart = default(FlutterSDK.Gestures.Longpress.GestureLongPressStartCallback), FlutterSDK.Gestures.Longpress.GestureLongPressMoveUpdateCallback onLongPressMoveUpdate = default(FlutterSDK.Gestures.Longpress.GestureLongPressMoveUpdateCallback), FlutterSDK.Gestures.Longpress.GestureLongPressUpCallback onLongPressUp = default(FlutterSDK.Gestures.Longpress.GestureLongPressUpCallback), FlutterSDK.Gestures.Longpress.GestureLongPressEndCallback onLongPressEnd = default(FlutterSDK.Gestures.Longpress.GestureLongPressEndCallback), FlutterSDK.Gestures.Dragdetails.GestureDragDownCallback onVerticalDragDown = default(FlutterSDK.Gestures.Dragdetails.GestureDragDownCallback), FlutterSDK.Gestures.Dragdetails.GestureDragStartCallback onVerticalDragStart = default(FlutterSDK.Gestures.Dragdetails.GestureDragStartCallback), FlutterSDK.Gestures.Dragdetails.GestureDragUpdateCallback onVerticalDragUpdate = default(FlutterSDK.Gestures.Dragdetails.GestureDragUpdateCallback), FlutterSDK.Gestures.Monodrag.GestureDragEndCallback onVerticalDragEnd = default(FlutterSDK.Gestures.Monodrag.GestureDragEndCallback), FlutterSDK.Gestures.Monodrag.GestureDragCancelCallback onVerticalDragCancel = default(FlutterSDK.Gestures.Monodrag.GestureDragCancelCallback), FlutterSDK.Gestures.Dragdetails.GestureDragDownCallback onHorizontalDragDown = default(FlutterSDK.Gestures.Dragdetails.GestureDragDownCallback), FlutterSDK.Gestures.Dragdetails.GestureDragStartCallback onHorizontalDragStart = default(FlutterSDK.Gestures.Dragdetails.GestureDragStartCallback), FlutterSDK.Gestures.Dragdetails.GestureDragUpdateCallback onHorizontalDragUpdate = default(FlutterSDK.Gestures.Dragdetails.GestureDragUpdateCallback), FlutterSDK.Gestures.Monodrag.GestureDragEndCallback onHorizontalDragEnd = default(FlutterSDK.Gestures.Monodrag.GestureDragEndCallback), FlutterSDK.Gestures.Monodrag.GestureDragCancelCallback onHorizontalDragCancel = default(FlutterSDK.Gestures.Monodrag.GestureDragCancelCallback), FlutterSDK.Gestures.Forcepress.GestureForcePressStartCallback onForcePressStart = default(FlutterSDK.Gestures.Forcepress.GestureForcePressStartCallback), FlutterSDK.Gestures.Forcepress.GestureForcePressPeakCallback onForcePressPeak = default(FlutterSDK.Gestures.Forcepress.GestureForcePressPeakCallback), FlutterSDK.Gestures.Forcepress.GestureForcePressUpdateCallback onForcePressUpdate = default(FlutterSDK.Gestures.Forcepress.GestureForcePressUpdateCallback), FlutterSDK.Gestures.Forcepress.GestureForcePressEndCallback onForcePressEnd = default(FlutterSDK.Gestures.Forcepress.GestureForcePressEndCallback), FlutterSDK.Gestures.Dragdetails.GestureDragDownCallback onPanDown = default(FlutterSDK.Gestures.Dragdetails.GestureDragDownCallback), FlutterSDK.Gestures.Dragdetails.GestureDragStartCallback onPanStart = default(FlutterSDK.Gestures.Dragdetails.GestureDragStartCallback), FlutterSDK.Gestures.Dragdetails.GestureDragUpdateCallback onPanUpdate = default(FlutterSDK.Gestures.Dragdetails.GestureDragUpdateCallback), FlutterSDK.Gestures.Monodrag.GestureDragEndCallback onPanEnd = default(FlutterSDK.Gestures.Monodrag.GestureDragEndCallback), FlutterSDK.Gestures.Monodrag.GestureDragCancelCallback onPanCancel = default(FlutterSDK.Gestures.Monodrag.GestureDragCancelCallback), FlutterSDK.Gestures.Scale.GestureScaleStartCallback onScaleStart = default(FlutterSDK.Gestures.Scale.GestureScaleStartCallback), FlutterSDK.Gestures.Scale.GestureScaleUpdateCallback onScaleUpdate = default(FlutterSDK.Gestures.Scale.GestureScaleUpdateCallback), FlutterSDK.Gestures.Scale.GestureScaleEndCallback onScaleEnd = default(FlutterSDK.Gestures.Scale.GestureScaleEndCallback), FlutterSDK.Rendering.Proxybox.HitTestBehavior behavior = default(FlutterSDK.Rendering.Proxybox.HitTestBehavior), bool excludeFromSemantics = false, FlutterSDK.Gestures.Recognizer.DragStartBehavior dragStartBehavior = default(FlutterSDK.Gestures.Recognizer.DragStartBehavior))
         : base(key: key)
         {
@@ -640,44 +668,383 @@ namespace FlutterSDK.Widgets.Gesturedetector
             this.ExcludeFromSemantics = excludeFromSemantics;
             this.DragStartBehavior = dragStartBehavior;
         }
+        /// <Summary>
+        /// The widget below this widget in the tree.
+        ///
+        /// {@macro flutter.widgets.child}
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+        /// <Summary>
+        /// A pointer that might cause a tap with a primary button has contacted the
+        /// screen at a particular location.
+        ///
+        /// This is called after a short timeout, even if the winning gesture has not
+        /// yet been selected. If the tap gesture wins, [onTapUp] will be called,
+        /// otherwise [onTapCancel] will be called.
+        ///
+        /// See also:
+        ///
+        ///  * [kPrimaryButton], the button this callback responds to.
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Tap.GestureTapDownCallback OnTapDown { get; set; }
+        /// <Summary>
+        /// A pointer that will trigger a tap with a primary button has stopped
+        /// contacting the screen at a particular location.
+        ///
+        /// This triggers immediately before [onTap] in the case of the tap gesture
+        /// winning. If the tap gesture did not win, [onTapCancel] is called instead.
+        ///
+        /// See also:
+        ///
+        ///  * [kPrimaryButton], the button this callback responds to.
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Tap.GestureTapUpCallback OnTapUp { get; set; }
+        /// <Summary>
+        /// A tap with a primary button has occurred.
+        ///
+        /// This triggers when the tap gesture wins. If the tap gesture did not win,
+        /// [onTapCancel] is called instead.
+        ///
+        /// See also:
+        ///
+        ///  * [kPrimaryButton], the button this callback responds to.
+        ///  * [onTapUp], which is called at the same time but includes details
+        ///    regarding the pointer position.
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Tap.GestureTapCallback OnTap { get; set; }
+        /// <Summary>
+        /// The pointer that previously triggered [onTapDown] will not end up causing
+        /// a tap.
+        ///
+        /// This is called after [onTapDown], and instead of [onTapUp] and [onTap], if
+        /// the tap gesture did not win.
+        ///
+        /// See also:
+        ///
+        ///  * [kPrimaryButton], the button this callback responds to.
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Tap.GestureTapCancelCallback OnTapCancel { get; set; }
+        /// <Summary>
+        /// A pointer that might cause a tap with a secondary button has contacted the
+        /// screen at a particular location.
+        ///
+        /// This is called after a short timeout, even if the winning gesture has not
+        /// yet been selected. If the tap gesture wins, [onSecondaryTapUp] will be
+        /// called, otherwise [onSecondaryTapCancel] will be called.
+        ///
+        /// See also:
+        ///
+        ///  * [kSecondaryButton], the button this callback responds to.
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Tap.GestureTapDownCallback OnSecondaryTapDown { get; set; }
+        /// <Summary>
+        /// A pointer that will trigger a tap with a secondary button has stopped
+        /// contacting the screen at a particular location.
+        ///
+        /// This triggers in the case of the tap gesture winning. If the tap gesture
+        /// did not win, [onSecondaryTapCancel] is called instead.
+        ///
+        /// See also:
+        ///
+        ///  * [kSecondaryButton], the button this callback responds to.
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Tap.GestureTapUpCallback OnSecondaryTapUp { get; set; }
+        /// <Summary>
+        /// The pointer that previously triggered [onSecondaryTapDown] will not end up
+        /// causing a tap.
+        ///
+        /// This is called after [onSecondaryTapDown], and instead of
+        /// [onSecondaryTapUp], if the tap gesture did not win.
+        ///
+        /// See also:
+        ///
+        ///  * [kSecondaryButton], the button this callback responds to.
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Tap.GestureTapCancelCallback OnSecondaryTapCancel { get; set; }
+        /// <Summary>
+        /// The user has tapped the screen with a primary button at the same location
+        /// twice in quick succession.
+        ///
+        /// See also:
+        ///
+        ///  * [kPrimaryButton], the button this callback responds to.
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Tap.GestureTapCallback OnDoubleTap { get; set; }
+        /// <Summary>
+        /// Called when a long press gesture with a primary button has been recognized.
+        ///
+        /// Triggered when a pointer has remained in contact with the screen at the
+        /// same location for a long period of time.
+        ///
+        /// See also:
+        ///
+        ///  * [kPrimaryButton], the button this callback responds to.
+        ///  * [onLongPressStart], which has the same timing but has gesture details.
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Longpress.GestureLongPressCallback OnLongPress { get; set; }
+        /// <Summary>
+        /// Called when a long press gesture with a primary button has been recognized.
+        ///
+        /// Triggered when a pointer has remained in contact with the screen at the
+        /// same location for a long period of time.
+        ///
+        /// See also:
+        ///
+        ///  * [kPrimaryButton], the button this callback responds to.
+        ///  * [onLongPress], which has the same timing but without the gesture details.
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Longpress.GestureLongPressStartCallback OnLongPressStart { get; set; }
+        /// <Summary>
+        /// A pointer has been drag-moved after a long press with a primary button.
+        ///
+        /// See also:
+        ///
+        ///  * [kPrimaryButton], the button this callback responds to.
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Longpress.GestureLongPressMoveUpdateCallback OnLongPressMoveUpdate { get; set; }
+        /// <Summary>
+        /// A pointer that has triggered a long-press with a primary button has
+        /// stopped contacting the screen.
+        ///
+        /// See also:
+        ///
+        ///  * [kPrimaryButton], the button this callback responds to.
+        ///  * [onLongPressEnd], which has the same timing but has gesture details.
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Longpress.GestureLongPressUpCallback OnLongPressUp { get; set; }
+        /// <Summary>
+        /// A pointer that has triggered a long-press with a primary button has
+        /// stopped contacting the screen.
+        ///
+        /// See also:
+        ///
+        ///  * [kPrimaryButton], the button this callback responds to.
+        ///  * [onLongPressUp], which has the same timing but without the gesture
+        ///    details.
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Longpress.GestureLongPressEndCallback OnLongPressEnd { get; set; }
+        /// <Summary>
+        /// A pointer has contacted the screen with a primary button and might begin
+        /// to move vertically.
+        ///
+        /// See also:
+        ///
+        ///  * [kPrimaryButton], the button this callback responds to.
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Dragdetails.GestureDragDownCallback OnVerticalDragDown { get; set; }
+        /// <Summary>
+        /// A pointer has contacted the screen with a primary button and has begun to
+        /// move vertically.
+        ///
+        /// See also:
+        ///
+        ///  * [kPrimaryButton], the button this callback responds to.
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Dragdetails.GestureDragStartCallback OnVerticalDragStart { get; set; }
+        /// <Summary>
+        /// A pointer that is in contact with the screen with a primary button and
+        /// moving vertically has moved in the vertical direction.
+        ///
+        /// See also:
+        ///
+        ///  * [kPrimaryButton], the button this callback responds to.
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Dragdetails.GestureDragUpdateCallback OnVerticalDragUpdate { get; set; }
+        /// <Summary>
+        /// A pointer that was previously in contact with the screen with a primary
+        /// button and moving vertically is no longer in contact with the screen and
+        /// was moving at a specific velocity when it stopped contacting the screen.
+        ///
+        /// See also:
+        ///
+        ///  * [kPrimaryButton], the button this callback responds to.
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Monodrag.GestureDragEndCallback OnVerticalDragEnd { get; set; }
+        /// <Summary>
+        /// The pointer that previously triggered [onVerticalDragDown] did not
+        /// complete.
+        ///
+        /// See also:
+        ///
+        ///  * [kPrimaryButton], the button this callback responds to.
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Monodrag.GestureDragCancelCallback OnVerticalDragCancel { get; set; }
+        /// <Summary>
+        /// A pointer has contacted the screen with a primary button and might begin
+        /// to move horizontally.
+        ///
+        /// See also:
+        ///
+        ///  * [kPrimaryButton], the button this callback responds to.
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Dragdetails.GestureDragDownCallback OnHorizontalDragDown { get; set; }
+        /// <Summary>
+        /// A pointer has contacted the screen with a primary button and has begun to
+        /// move horizontally.
+        ///
+        /// See also:
+        ///
+        ///  * [kPrimaryButton], the button this callback responds to.
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Dragdetails.GestureDragStartCallback OnHorizontalDragStart { get; set; }
+        /// <Summary>
+        /// A pointer that is in contact with the screen with a primary button and
+        /// moving horizontally has moved in the horizontal direction.
+        ///
+        /// See also:
+        ///
+        ///  * [kPrimaryButton], the button this callback responds to.
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Dragdetails.GestureDragUpdateCallback OnHorizontalDragUpdate { get; set; }
+        /// <Summary>
+        /// A pointer that was previously in contact with the screen with a primary
+        /// button and moving horizontally is no longer in contact with the screen and
+        /// was moving at a specific velocity when it stopped contacting the screen.
+        ///
+        /// See also:
+        ///
+        ///  * [kPrimaryButton], the button this callback responds to.
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Monodrag.GestureDragEndCallback OnHorizontalDragEnd { get; set; }
+        /// <Summary>
+        /// The pointer that previously triggered [onHorizontalDragDown] did not
+        /// complete.
+        ///
+        /// See also:
+        ///
+        ///  * [kPrimaryButton], the button this callback responds to.
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Monodrag.GestureDragCancelCallback OnHorizontalDragCancel { get; set; }
+        /// <Summary>
+        /// A pointer has contacted the screen with a primary button and might begin
+        /// to move.
+        ///
+        /// See also:
+        ///
+        ///  * [kPrimaryButton], the button this callback responds to.
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Dragdetails.GestureDragDownCallback OnPanDown { get; set; }
+        /// <Summary>
+        /// A pointer has contacted the screen with a primary button and has begun to
+        /// move.
+        ///
+        /// See also:
+        ///
+        ///  * [kPrimaryButton], the button this callback responds to.
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Dragdetails.GestureDragStartCallback OnPanStart { get; set; }
+        /// <Summary>
+        /// A pointer that is in contact with the screen with a primary button and
+        /// moving has moved again.
+        ///
+        /// See also:
+        ///
+        ///  * [kPrimaryButton], the button this callback responds to.
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Dragdetails.GestureDragUpdateCallback OnPanUpdate { get; set; }
+        /// <Summary>
+        /// A pointer that was previously in contact with the screen with a primary
+        /// button and moving is no longer in contact with the screen and was moving
+        /// at a specific velocity when it stopped contacting the screen.
+        ///
+        /// See also:
+        ///
+        ///  * [kPrimaryButton], the button this callback responds to.
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Monodrag.GestureDragEndCallback OnPanEnd { get; set; }
+        /// <Summary>
+        /// The pointer that previously triggered [onPanDown] did not complete.
+        ///
+        /// See also:
+        ///
+        ///  * [kPrimaryButton], the button this callback responds to.
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Monodrag.GestureDragCancelCallback OnPanCancel { get; set; }
+        /// <Summary>
+        /// The pointers in contact with the screen have established a focal point and
+        /// initial scale of 1.0.
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Scale.GestureScaleStartCallback OnScaleStart { get; set; }
+        /// <Summary>
+        /// The pointers in contact with the screen have indicated a new focal point
+        /// and/or scale.
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Scale.GestureScaleUpdateCallback OnScaleUpdate { get; set; }
+        /// <Summary>
+        /// The pointers are no longer in contact with the screen.
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Scale.GestureScaleEndCallback OnScaleEnd { get; set; }
+        /// <Summary>
+        /// The pointer is in contact with the screen and has pressed with sufficient
+        /// force to initiate a force press. The amount of force is at least
+        /// [ForcePressGestureRecognizer.startPressure].
+        ///
+        /// Note that this callback will only be fired on devices with pressure
+        /// detecting screens.
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Forcepress.GestureForcePressStartCallback OnForcePressStart { get; set; }
+        /// <Summary>
+        /// The pointer is in contact with the screen and has pressed with the maximum
+        /// force. The amount of force is at least
+        /// [ForcePressGestureRecognizer.peakPressure].
+        ///
+        /// Note that this callback will only be fired on devices with pressure
+        /// detecting screens.
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Forcepress.GestureForcePressPeakCallback OnForcePressPeak { get; set; }
+        /// <Summary>
+        /// A pointer is in contact with the screen, has previously passed the
+        /// [ForcePressGestureRecognizer.startPressure] and is either moving on the
+        /// plane of the screen, pressing the screen with varying forces or both
+        /// simultaneously.
+        ///
+        /// Note that this callback will only be fired on devices with pressure
+        /// detecting screens.
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Forcepress.GestureForcePressUpdateCallback OnForcePressUpdate { get; set; }
+        /// <Summary>
+        /// The pointer is no longer in contact with the screen.
+        ///
+        /// Note that this callback will only be fired on devices with pressure
+        /// detecting screens.
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Forcepress.GestureForcePressEndCallback OnForcePressEnd { get; set; }
+        /// <Summary>
+        /// How this gesture detector should behave during hit testing.
+        ///
+        /// This defaults to [HitTestBehavior.deferToChild] if [child] is not null and
+        /// [HitTestBehavior.translucent] if child is null.
+        /// </Summary>
         public virtual FlutterSDK.Rendering.Proxybox.HitTestBehavior Behavior { get; set; }
+        /// <Summary>
+        /// Whether to exclude these gestures from the semantics tree. For
+        /// example, the long-press gesture for showing a tooltip is
+        /// excluded because the tooltip itself is included in the semantics
+        /// tree directly and so having a gesture to show it would result in
+        /// duplication of information.
+        /// </Summary>
         public virtual bool ExcludeFromSemantics { get; set; }
+        /// <Summary>
+        /// Determines the way that drag start behavior is handled.
+        ///
+        /// If set to [DragStartBehavior.start], gesture drag behavior will
+        /// begin upon the detection of a drag gesture. If set to
+        /// [DragStartBehavior.down] it will begin when a down event is first detected.
+        ///
+        /// In general, setting this to [DragStartBehavior.start] will make drag
+        /// animation smoother and setting it to [DragStartBehavior.down] will make
+        /// drag behavior feel slightly more reactive.
+        ///
+        /// By default, the drag start behavior is [DragStartBehavior.start].
+        ///
+        /// Only the [onStart] callbacks for the [VerticalDragGestureRecognizer],
+        /// [HorizontalDragGestureRecognizer] and [PanGestureRecognizer] are affected
+        /// by this setting.
+        ///
+        /// See also:
+        ///
+        ///  * [DragGestureRecognizer.dragStartBehavior], which gives an example for the different behaviors.
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Recognizer.DragStartBehavior DragStartBehavior { get; set; }
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
@@ -816,6 +1183,13 @@ namespace FlutterSDK.Widgets.Gesturedetector
     /// </Summary>
     public class RawGestureDetector : FlutterSDK.Widgets.Framework.StatefulWidget
     {
+        /// <Summary>
+        /// Creates a widget that detects gestures.
+        ///
+        /// Gesture detectors can contribute semantic information to the tree that is
+        /// used by assistive technology. The behavior can be configured by
+        /// [semantics], or disabled with [excludeFromSemantics].
+        /// </Summary>
         public RawGestureDetector(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), Dictionary<Type, FlutterSDK.Widgets.Gesturedetector.GestureRecognizerFactory<FlutterSDK.Gestures.Recognizer.GestureRecognizer>> gestures = default(Dictionary<Type, FlutterSDK.Widgets.Gesturedetector.GestureRecognizerFactory<FlutterSDK.Gestures.Recognizer.GestureRecognizer>>), FlutterSDK.Rendering.Proxybox.HitTestBehavior behavior = default(FlutterSDK.Rendering.Proxybox.HitTestBehavior), bool excludeFromSemantics = false, FlutterSDK.Widgets.Gesturedetector.SemanticsGestureDelegate semantics = default(FlutterSDK.Widgets.Gesturedetector.SemanticsGestureDelegate))
         : base(key: key)
         {
@@ -825,10 +1199,103 @@ namespace FlutterSDK.Widgets.Gesturedetector
             this.ExcludeFromSemantics = excludeFromSemantics;
             this.Semantics = semantics;
         }
+        /// <Summary>
+        /// The widget below this widget in the tree.
+        ///
+        /// {@macro flutter.widgets.child}
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+        /// <Summary>
+        /// The gestures that this widget will attempt to recognize.
+        ///
+        /// This should be a map from [GestureRecognizer] subclasses to
+        /// [GestureRecognizerFactory] subclasses specialized with the same type.
+        ///
+        /// This value can be late-bound at layout time using
+        /// [RawGestureDetectorState.replaceGestureRecognizers].
+        /// </Summary>
         public virtual Dictionary<Type, FlutterSDK.Widgets.Gesturedetector.GestureRecognizerFactory<FlutterSDK.Gestures.Recognizer.GestureRecognizer>> Gestures { get; set; }
+        /// <Summary>
+        /// How this gesture detector should behave during hit testing.
+        ///
+        /// This defaults to [HitTestBehavior.deferToChild] if [child] is not null and
+        /// [HitTestBehavior.translucent] if child is null.
+        /// </Summary>
         public virtual FlutterSDK.Rendering.Proxybox.HitTestBehavior Behavior { get; set; }
+        /// <Summary>
+        /// Whether to exclude these gestures from the semantics tree. For
+        /// example, the long-press gesture for showing a tooltip is
+        /// excluded because the tooltip itself is included in the semantics
+        /// tree directly and so having a gesture to show it would result in
+        /// duplication of information.
+        /// </Summary>
         public virtual bool ExcludeFromSemantics { get; set; }
+        /// <Summary>
+        /// Describes the semantics notations that should be added to the underlying
+        /// render object [RenderSemanticsGestureHandler].
+        ///
+        /// It has no effect if [excludeFromSemantics] is true.
+        ///
+        /// When [semantics] is null, [RawGestureDetector] will fall back to a
+        /// default delegate which checks if the detector owns certain gesture
+        /// recognizers and calls their callbacks if they exist:
+        ///
+        ///  * During a semantic tap, it calls [TapGestureRecognizer]'s
+        ///    `onTapDown`, `onTapUp`, and `onTap`.
+        ///  * During a semantic long press, it calls [LongPressGestureRecognizer]'s
+        ///    `onLongPressStart`, `onLongPress`, `onLongPressEnd` and `onLongPressUp`.
+        ///  * During a semantic horizontal drag, it calls [HorizontalDragGestureRecognizer]'s
+        ///    `onDown`, `onStart`, `onUpdate` and `onEnd`, then
+        ///    [PanGestureRecognizer]'s `onDown`, `onStart`, `onUpdate` and `onEnd`.
+        ///  * During a semantic vertical drag, it calls [VerticalDragGestureRecognizer]'s
+        ///    `onDown`, `onStart`, `onUpdate` and `onEnd`, then
+        ///    [PanGestureRecognizer]'s `onDown`, `onStart`, `onUpdate` and `onEnd`.
+        ///
+        /// {@tool snippet}
+        /// This custom gesture detector listens to force presses, while also allows
+        /// the same callback to be triggered by semantic long presses.
+        ///
+        /// ```dart
+        /// class ForcePressGestureDetectorWithSemantics extends StatelessWidget {
+        ///   const ForcePressGestureDetectorWithSemantics({
+        ///     this.child,
+        ///     this.onForcePress,
+        ///   });
+        ///
+        ///   final Widget child;
+        ///   final VoidCallback onForcePress;
+        ///
+        ///   @override
+        ///   Widget build(BuildContext context) {
+        ///     return RawGestureDetector(
+        ///       gestures: <Type, GestureRecognizerFactory>{
+        ///         ForcePressGestureRecognizer: GestureRecognizerFactoryWithHandlers<ForcePressGestureRecognizer>(
+        ///           () => ForcePressGestureRecognizer(debugOwner: this),
+        ///           (ForcePressGestureRecognizer instance) {
+        ///             instance.onStart = (_) => onForcePress();
+        ///           }
+        ///         ),
+        ///       },
+        ///       behavior: HitTestBehavior.opaque,
+        ///       semantics: _LongPressSemanticsDelegate(onForcePress),
+        ///       child: child,
+        ///     );
+        ///   }
+        /// }
+        ///
+        /// class _LongPressSemanticsDelegate extends SemanticsGestureDelegate {
+        ///   _LongPressSemanticsDelegate(this.onLongPress);
+        ///
+        ///   VoidCallback onLongPress;
+        ///
+        ///   @override
+        ///   void assignSemantics(RenderSemanticsGestureHandler renderObject) {
+        ///     renderObject.onLongPress = onLongPress;
+        ///   }
+        /// }
+        /// ```
+        /// {@end-tool}
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Gesturedetector.SemanticsGestureDelegate Semantics { get; set; }
 
         public new FlutterSDK.Widgets.Gesturedetector.RawGestureDetectorState CreateState() => new RawGestureDetectorState();
@@ -1061,6 +1528,9 @@ namespace FlutterSDK.Widgets.Gesturedetector
     /// </Summary>
     public class SemanticsGestureDelegate
     {
+        /// <Summary>
+        /// Create a delegate of gesture semantics.
+        /// </Summary>
         public SemanticsGestureDelegate()
         {
 

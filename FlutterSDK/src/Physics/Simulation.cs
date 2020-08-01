@@ -493,10 +493,22 @@ namespace FlutterSDK.Physics.Simulation
     /// </Summary>
     public class Simulation
     {
+        /// <Summary>
+        /// Initializes the [tolerance] field for subclasses.
+        /// </Summary>
         public Simulation(FlutterSDK.Physics.Tolerance.Tolerance tolerance = default(FlutterSDK.Physics.Tolerance.Tolerance))
         {
             this.Tolerance = tolerance;
         }
+        /// <Summary>
+        /// How close to the actual end of the simulation a value at a particular time
+        /// must be before [isDone] considers the simulation to be "done".
+        ///
+        /// A simulation with an asymptotic curve would never technically be "done",
+        /// but once the difference from the value at a particular time and the
+        /// asymptote itself could not be seen, it would be pointless to continue. The
+        /// tolerance defines how to determine if the difference could not be seen.
+        /// </Summary>
         public virtual FlutterSDK.Physics.Tolerance.Tolerance Tolerance { get; set; }
 
         /// <Summary>

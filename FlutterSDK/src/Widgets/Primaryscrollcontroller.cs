@@ -442,15 +442,29 @@ namespace FlutterSDK.Widgets.Primaryscrollcontroller
     /// </Summary>
     public class PrimaryScrollController : FlutterSDK.Widgets.Framework.InheritedWidget
     {
+        /// <Summary>
+        /// Creates a widget that associates a [ScrollController] with a subtree.
+        /// </Summary>
         public PrimaryScrollController(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Scrollcontroller.ScrollController controller = default(FlutterSDK.Widgets.Scrollcontroller.ScrollController), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
             this.Controller = controller;
         }
+        /// <Summary>
+        /// Creates a subtree without an associated [ScrollController].
+        /// </Summary>
         public static PrimaryScrollController None(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         {
             var instance = new PrimaryScrollController(key: key, child: child);
         }
+        /// <Summary>
+        /// The [ScrollController] associated with the subtree.
+        ///
+        /// See also:
+        ///
+        ///  * [ScrollView.controller], which discusses the purpose of specifying a
+        ///    scroll controller.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Scrollcontroller.ScrollController Controller { get; set; }
 
         /// <Summary>

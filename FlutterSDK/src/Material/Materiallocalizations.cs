@@ -810,6 +810,13 @@ namespace FlutterSDK.Material.Materiallocalizations
     /// </Summary>
     public class DefaultMaterialLocalizations : IMaterialLocalizations
     {
+        /// <Summary>
+        /// Constructs an object that defines the material widgets' localized strings
+        /// for US English (only).
+        ///
+        /// [LocalizationsDelegate] implementations typically call the static [load]
+        /// function, rather than constructing this class directly.
+        /// </Summary>
         public DefaultMaterialLocalizations()
         {
 
@@ -819,6 +826,12 @@ namespace FlutterSDK.Material.Materiallocalizations
         internal virtual List<string> _NarrowWeekdays { get; set; }
         internal virtual List<string> _ShortMonths { get; set; }
         internal virtual List<string> _Months { get; set; }
+        /// <Summary>
+        /// A [LocalizationsDelegate] that uses [DefaultMaterialLocalizations.load]
+        /// to create an instance of this class.
+        ///
+        /// [MaterialApp] automatically adds this value to [MaterialApp.localizationsDelegates].
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Localizations.LocalizationsDelegate<FlutterSDK.Material.Materiallocalizations.MaterialLocalizations> @delegate { get; set; }
         public virtual List<string> NarrowWeekdays { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual int FirstDayOfWeekIndex { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }

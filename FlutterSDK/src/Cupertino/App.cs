@@ -342,6 +342,19 @@ namespace FlutterSDK.Cupertino.App
     /// </Summary>
     public class CupertinoApp : FlutterSDK.Widgets.Framework.StatefulWidget
     {
+        /// <Summary>
+        /// Creates a CupertinoApp.
+        ///
+        /// At least one of [home], [routes], [onGenerateRoute], or [builder] must be
+        /// non-null. If only [routes] is given, it must include an entry for the
+        /// [Navigator.defaultRouteName] (`/`), since that is the route used when the
+        /// application is launched with an intent that specifies an otherwise
+        /// unsupported route.
+        ///
+        /// This class creates an instance of [WidgetsApp].
+        ///
+        /// The boolean arguments, [routes], and [navigatorObservers], must not be null.
+        /// </Summary>
         public CupertinoApp(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Navigator.NavigatorState> navigatorKey = default(FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Navigator.NavigatorState>), FlutterSDK.Widgets.Framework.Widget home = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Cupertino.Theme.CupertinoThemeData theme = default(FlutterSDK.Cupertino.Theme.CupertinoThemeData), Dictionary<string, object> routes = default(Dictionary<string, object>), string initialRoute = default(string), FlutterSDK.Widgets.Navigator.RouteFactory onGenerateRoute = default(FlutterSDK.Widgets.Navigator.RouteFactory), FlutterSDK.Widgets.App.InitialRouteListFactory onGenerateInitialRoutes = default(FlutterSDK.Widgets.App.InitialRouteListFactory), FlutterSDK.Widgets.Navigator.RouteFactory onUnknownRoute = default(FlutterSDK.Widgets.Navigator.RouteFactory), List<FlutterSDK.Widgets.Navigator.NavigatorObserver> navigatorObservers = default(List<FlutterSDK.Widgets.Navigator.NavigatorObserver>), FlutterSDK.Widgets.Framework.TransitionBuilder builder = default(FlutterSDK.Widgets.Framework.TransitionBuilder), string title = default(string), FlutterSDK.Widgets.App.GenerateAppTitle onGenerateTitle = default(FlutterSDK.Widgets.App.GenerateAppTitle), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), Locale locale = default(Locale), Iterable<FlutterSDK.Widgets.Localizations.LocalizationsDelegate<object>> localizationsDelegates = default(Iterable<FlutterSDK.Widgets.Localizations.LocalizationsDelegate<object>>), FlutterSDK.Widgets.App.LocaleListResolutionCallback localeListResolutionCallback = default(FlutterSDK.Widgets.App.LocaleListResolutionCallback), FlutterSDK.Widgets.App.LocaleResolutionCallback localeResolutionCallback = default(FlutterSDK.Widgets.App.LocaleResolutionCallback), Iterable<Locale> supportedLocales = default(Iterable<Locale>), bool showPerformanceOverlay = false, bool checkerboardRasterCacheImages = false, bool checkerboardOffscreenLayers = false, bool showSemanticsDebugger = false, bool debugShowCheckedModeBanner = true, Dictionary<FlutterSDK.Widgets.Shortcuts.LogicalKeySet, FlutterSDK.Widgets.Actions.Intent> shortcuts = default(Dictionary<FlutterSDK.Widgets.Shortcuts.LogicalKeySet, FlutterSDK.Widgets.Actions.Intent>), Dictionary<FlutterSDK.Foundation.Key.LocalKey, object> actions = default(Dictionary<FlutterSDK.Foundation.Key.LocalKey, object>))
         : base(key: key)
         {
@@ -371,30 +384,185 @@ namespace FlutterSDK.Cupertino.App
             this.Shortcuts = shortcuts;
             this.Actions = actions;
         }
+        /// <Summary>
+        /// {@macro flutter.widgets.widgetsApp.navigatorKey}
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Navigator.NavigatorState> NavigatorKey { get; set; }
+        /// <Summary>
+        /// {@macro flutter.widgets.widgetsApp.home}
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Home { get; set; }
+        /// <Summary>
+        /// The top-level [CupertinoTheme] styling.
+        ///
+        /// A null [theme] or unspecified [theme] attributes will default to iOS
+        /// system values.
+        /// </Summary>
         public virtual FlutterSDK.Cupertino.Theme.CupertinoThemeData Theme { get; set; }
+        /// <Summary>
+        /// The application's top-level routing table.
+        ///
+        /// When a named route is pushed with [Navigator.pushNamed], the route name is
+        /// looked up in this map. If the name is present, the associated
+        /// [WidgetBuilder] is used to construct a [CupertinoPageRoute] that performs
+        /// an appropriate transition, including [Hero] animations, to the new route.
+        ///
+        /// {@macro flutter.widgets.widgetsApp.routes}
+        /// </Summary>
         public virtual Dictionary<string, object> Routes { get; set; }
+        /// <Summary>
+        /// {@macro flutter.widgets.widgetsApp.initialRoute}
+        /// </Summary>
         public virtual string InitialRoute { get; set; }
+        /// <Summary>
+        /// {@macro flutter.widgets.widgetsApp.onGenerateRoute}
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Navigator.RouteFactory OnGenerateRoute { get; set; }
+        /// <Summary>
+        /// {@macro flutter.widgets.widgetsApp.onGenerateInitialRoutes}
+        /// </Summary>
         public virtual FlutterSDK.Widgets.App.InitialRouteListFactory OnGenerateInitialRoutes { get; set; }
+        /// <Summary>
+        /// {@macro flutter.widgets.widgetsApp.onUnknownRoute}
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Navigator.RouteFactory OnUnknownRoute { get; set; }
+        /// <Summary>
+        /// {@macro flutter.widgets.widgetsApp.navigatorObservers}
+        /// </Summary>
         public virtual List<FlutterSDK.Widgets.Navigator.NavigatorObserver> NavigatorObservers { get; set; }
+        /// <Summary>
+        /// {@macro flutter.widgets.widgetsApp.builder}
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.TransitionBuilder Builder { get; set; }
+        /// <Summary>
+        /// {@macro flutter.widgets.widgetsApp.title}
+        ///
+        /// This value is passed unmodified to [WidgetsApp.title].
+        /// </Summary>
         public virtual string Title { get; set; }
+        /// <Summary>
+        /// {@macro flutter.widgets.widgetsApp.onGenerateTitle}
+        ///
+        /// This value is passed unmodified to [WidgetsApp.onGenerateTitle].
+        /// </Summary>
         public virtual FlutterSDK.Widgets.App.GenerateAppTitle OnGenerateTitle { get; set; }
+        /// <Summary>
+        /// {@macro flutter.widgets.widgetsApp.color}
+        /// </Summary>
         public virtual FlutterBinding.UI.Color Color { get; set; }
+        /// <Summary>
+        /// {@macro flutter.widgets.widgetsApp.locale}
+        /// </Summary>
         public virtual Locale Locale { get; set; }
+        /// <Summary>
+        /// {@macro flutter.widgets.widgetsApp.localizationsDelegates}
+        /// </Summary>
         public virtual Iterable<FlutterSDK.Widgets.Localizations.LocalizationsDelegate<object>> LocalizationsDelegates { get; set; }
+        /// <Summary>
+        /// {@macro flutter.widgets.widgetsApp.localeListResolutionCallback}
+        ///
+        /// This callback is passed along to the [WidgetsApp] built by this widget.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.App.LocaleListResolutionCallback LocaleListResolutionCallback { get; set; }
+        /// <Summary>
+        /// {@macro flutter.widgets.widgetsApp.localeResolutionCallback}
+        ///
+        /// This callback is passed along to the [WidgetsApp] built by this widget.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.App.LocaleResolutionCallback LocaleResolutionCallback { get; set; }
+        /// <Summary>
+        /// {@macro flutter.widgets.widgetsApp.supportedLocales}
+        ///
+        /// It is passed along unmodified to the [WidgetsApp] built by this widget.
+        /// </Summary>
         public virtual Iterable<Locale> SupportedLocales { get; set; }
+        /// <Summary>
+        /// Turns on a performance overlay.
+        ///
+        /// See also:
+        ///
+        ///  * <https://flutter.dev/debugging/#performanceoverlay>
+        /// </Summary>
         public virtual bool ShowPerformanceOverlay { get; set; }
+        /// <Summary>
+        /// Turns on checkerboarding of raster cache images.
+        /// </Summary>
         public virtual bool CheckerboardRasterCacheImages { get; set; }
+        /// <Summary>
+        /// Turns on checkerboarding of layers rendered to offscreen bitmaps.
+        /// </Summary>
         public virtual bool CheckerboardOffscreenLayers { get; set; }
+        /// <Summary>
+        /// Turns on an overlay that shows the accessibility information
+        /// reported by the framework.
+        /// </Summary>
         public virtual bool ShowSemanticsDebugger { get; set; }
+        /// <Summary>
+        /// {@macro flutter.widgets.widgetsApp.debugShowCheckedModeBanner}
+        /// </Summary>
         public virtual bool DebugShowCheckedModeBanner { get; set; }
+        /// <Summary>
+        /// {@macro flutter.widgets.widgetsApp.shortcuts}
+        /// {@tool snippet}
+        /// This example shows how to add a single shortcut for
+        /// [LogicalKeyboardKey.select] to the default shortcuts without needing to
+        /// add your own [Shortcuts] widget.
+        ///
+        /// Alternatively, you could insert a [Shortcuts] widget with just the mapping
+        /// you want to add between the [WidgetsApp] and its child and get the same
+        /// effect.
+        ///
+        /// ```dart
+        /// Widget build(BuildContext context) {
+        ///   return WidgetsApp(
+        ///     shortcuts: <LogicalKeySet, Intent>{
+        ///       ... WidgetsApp.defaultShortcuts,
+        ///       LogicalKeySet(LogicalKeyboardKey.select): const Intent(ActivateAction.key),
+        ///     },
+        ///     color: const Color(0xFFFF0000),
+        ///     builder: (BuildContext context, Widget child) {
+        ///       return const Placeholder();
+        ///     },
+        ///   );
+        /// }
+        /// ```
+        /// {@end-tool}
+        /// {@macro flutter.widgets.widgetsApp.shortcuts.seeAlso}
+        /// </Summary>
         public virtual Dictionary<FlutterSDK.Widgets.Shortcuts.LogicalKeySet, FlutterSDK.Widgets.Actions.Intent> Shortcuts { get; set; }
+        /// <Summary>
+        /// {@macro flutter.widgets.widgetsApp.actions}
+        /// {@tool snippet}
+        /// This example shows how to add a single action handling an
+        /// [ActivateAction] to the default actions without needing to
+        /// add your own [Actions] widget.
+        ///
+        /// Alternatively, you could insert a [Actions] widget with just the mapping
+        /// you want to add between the [WidgetsApp] and its child and get the same
+        /// effect.
+        ///
+        /// ```dart
+        /// Widget build(BuildContext context) {
+        ///   return WidgetsApp(
+        ///     actions: <LocalKey, ActionFactory>{
+        ///       ... WidgetsApp.defaultActions,
+        ///       ActivateAction.key: () => CallbackAction(
+        ///         ActivateAction.key,
+        ///         onInvoke: (FocusNode focusNode, Intent intent) {
+        ///           // Do something here...
+        ///         },
+        ///       ),
+        ///     },
+        ///     color: const Color(0xFFFF0000),
+        ///     builder: (BuildContext context, Widget child) {
+        ///       return const Placeholder();
+        ///     },
+        ///   );
+        /// }
+        /// ```
+        /// {@end-tool}
+        /// {@macro flutter.widgets.widgetsApp.actions.seeAlso}
+        /// </Summary>
         public virtual Dictionary<FlutterSDK.Foundation.Key.LocalKey, object> Actions { get; set; }
 
         public new FlutterSDK.Cupertino.App._CupertinoAppState CreateState() => new _CupertinoAppState();

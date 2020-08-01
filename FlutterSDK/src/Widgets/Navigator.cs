@@ -425,11 +425,48 @@ using FlutterSDK.Widgets.Constants;
 using FlutterSDK.Widgets.Routenotificationmessages;
 namespace FlutterSDK.Widgets.Navigator
 {
+    /// <Summary>
+    /// Creates a route for the given route settings.
+    ///
+    /// Used by [Navigator.onGenerateRoute].
+    ///
+    /// See also:
+    ///
+    ///  * [Navigator], which is where all the [Route]s end up.
+    /// </Summary>
     public delegate FlutterSDK.Widgets.Navigator.Route<object> RouteFactory(FlutterSDK.Widgets.Navigator.RouteSettings settings);
+    /// <Summary>
+    /// Creates a route for the given context and route settings.
+    ///
+    /// Used by [CustomBuilderPage.routeBuilder].
+    /// </Summary>
     public delegate FlutterSDK.Widgets.Navigator.Route<T> RouteBuilder<T>(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Widgets.Navigator.RouteSettings settings);
+    /// <Summary>
+    /// Creates a series of one or more routes.
+    ///
+    /// Used by [Navigator.onGenerateInitialRoutes].
+    /// </Summary>
     public delegate List<FlutterSDK.Widgets.Navigator.Route<object>> RouteListFactory(FlutterSDK.Widgets.Navigator.NavigatorState navigator, string initialRoute);
+    /// <Summary>
+    /// Signature for the [Navigator.popUntil] predicate argument.
+    /// </Summary>
     public delegate bool RoutePredicate(FlutterSDK.Widgets.Navigator.Route<object> route);
+    /// <Summary>
+    /// Signature for a callback that verifies that it's OK to call [Navigator.pop].
+    ///
+    /// Used by [Form.onWillPop], [ModalRoute.addScopedWillPopCallback],
+    /// [ModalRoute.removeScopedWillPopCallback], and [WillPopScope].
+    /// </Summary>
     public delegate Future<bool> WillPopCallback();
+    /// <Summary>
+    /// Signature for the [Navigator.onPopPage] callback.
+    ///
+    /// This callback must call [Route.didPop] on the specified route and must
+    /// properly update the pages list the next time it is passed into
+    /// [Navigator.pages] so that it no longer includes the corresponding [Page].
+    /// (Otherwise, the page will be interpreted as a new page to show when the
+    /// [Navigator.pages] list is next updated.)
+    /// </Summary>
     public delegate bool PopPageCallback(FlutterSDK.Widgets.Navigator.Route<object> route, object result);
     public delegate bool _RouteEntryPredicate(FlutterSDK.Widgets.Navigator._RouteEntry entry);
     internal static class NavigatorDefaultClass
@@ -801,6 +838,12 @@ namespace FlutterSDK.Widgets.Navigator
     /// </Summary>
     public class Route<T>
     {
+        /// <Summary>
+        /// Initialize the [Route].
+        ///
+        /// If the [settings] are not provided, an empty [RouteSettings] object is
+        /// used instead.
+        /// </Summary>
         public Route(FlutterSDK.Widgets.Navigator.RouteSettings settings = default(FlutterSDK.Widgets.Navigator.RouteSettings))
         : base()
         {
@@ -1116,12 +1159,25 @@ namespace FlutterSDK.Widgets.Navigator
     /// </Summary>
     public class RouteSettings
     {
+        /// <Summary>
+        /// Creates data used to construct routes.
+        /// </Summary>
         public RouteSettings(string name = default(string), @Object arguments = default(@Object))
         {
             this.Name = name;
             this.Arguments = arguments;
         }
+        /// <Summary>
+        /// The name of the route (e.g., "/settings").
+        ///
+        /// If null, the route is anonymous.
+        /// </Summary>
         public virtual string Name { get; set; }
+        /// <Summary>
+        /// The arguments passed to this route.
+        ///
+        /// May be used when building the route, e.g. in [Navigator.onGenerateRoute].
+        /// </Summary>
         public virtual @Object Arguments { get; set; }
 
         /// <Summary>
@@ -1154,11 +1210,21 @@ namespace FlutterSDK.Widgets.Navigator
     /// </Summary>
     public class Page<T> : FlutterSDK.Widgets.Navigator.RouteSettings
     {
+        /// <Summary>
+        /// Creates a page and initializes [key] for subclasses.
+        ///
+        /// The [arguments] argument must not be null.
+        /// </Summary>
         public Page(FlutterSDK.Foundation.Key.LocalKey key = default(FlutterSDK.Foundation.Key.LocalKey), string name = default(string), @Object arguments = default(@Object))
         : base(name: name, arguments: arguments)
         {
             this.Key = key;
         }
+        /// <Summary>
+        /// The key associated with this page.
+        ///
+        /// This key will be used for comparing pages in [canUpdate].
+        /// </Summary>
         public virtual FlutterSDK.Foundation.Key.LocalKey Key { get; set; }
 
         /// <Summary>
@@ -1197,11 +1263,23 @@ namespace FlutterSDK.Widgets.Navigator
     /// </Summary>
     public class CustomBuilderPage<T> : FlutterSDK.Widgets.Navigator.Page<T>
     {
+        /// <Summary>
+        /// Creates a page with a custom route builder.
+        ///
+        /// Use [routeBuilder] to specify the route that will be created from this
+        /// page.
+        /// </Summary>
         public CustomBuilderPage(FlutterSDK.Foundation.Key.LocalKey key = default(FlutterSDK.Foundation.Key.LocalKey), FlutterSDK.Widgets.Navigator.RouteBuilder<T> routeBuilder = default(FlutterSDK.Widgets.Navigator.RouteBuilder<T>), string name = default(string), @Object arguments = default(@Object))
         : base(key: key, name: name, arguments: arguments)
         {
             this.RouteBuilder = routeBuilder;
         }
+        /// <Summary>
+        /// A builder that will be called during [createRoute] to create a [Route].
+        ///
+        /// The routes returned from this builder must have their settings equal to
+        /// the input `settings`.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Navigator.RouteBuilder<T> RouteBuilder { get; set; }
 
         public new Route<T> CreateRoute(FlutterSDK.Widgets.Framework.BuildContext context)
@@ -1278,6 +1356,9 @@ namespace FlutterSDK.Widgets.Navigator
     /// </Summary>
     public class TransitionDelegate<T>
     {
+        /// <Summary>
+        /// Creates a delegate and enables subclass to create a constant class.
+        /// </Summary>
         public TransitionDelegate()
         {
 
@@ -1381,6 +1462,9 @@ namespace FlutterSDK.Widgets.Navigator
     /// </Summary>
     public class DefaultTransitionDelegate<T> : FlutterSDK.Widgets.Navigator.TransitionDelegate<T>
     {
+        /// <Summary>
+        /// Creates a default transition delegate.
+        /// </Summary>
         public DefaultTransitionDelegate()
         : base()
         {
@@ -1843,6 +1927,14 @@ namespace FlutterSDK.Widgets.Navigator
     /// </Summary>
     public class Navigator : FlutterSDK.Widgets.Framework.StatefulWidget
     {
+        /// <Summary>
+        /// Creates a widget that maintains a stack-based history of child widgets.
+        ///
+        /// The [onGenerateRoute], [pages], [onGenerateInitialRoutes],
+        /// [transitionDelegate], [observers]  arguments must not be null.
+        ///
+        /// If the [pages] is not empty, the [onPopPage] must not be null.
+        /// </Summary>
         public Navigator(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), List<FlutterSDK.Widgets.Navigator.Page<object>> pages = default(List<FlutterSDK.Widgets.Navigator.Page<object>>), FlutterSDK.Widgets.Navigator.PopPageCallback onPopPage = default(FlutterSDK.Widgets.Navigator.PopPageCallback), string initialRoute = default(string), FlutterSDK.Widgets.Navigator.RouteListFactory onGenerateInitialRoutes = default(FlutterSDK.Widgets.Navigator.RouteListFactory), FlutterSDK.Widgets.Navigator.RouteFactory onGenerateRoute = default(FlutterSDK.Widgets.Navigator.RouteFactory), FlutterSDK.Widgets.Navigator.RouteFactory onUnknownRoute = default(FlutterSDK.Widgets.Navigator.RouteFactory), FlutterSDK.Widgets.Navigator.TransitionDelegate<object> transitionDelegate = default(FlutterSDK.Widgets.Navigator.TransitionDelegate<object>), List<FlutterSDK.Widgets.Navigator.NavigatorObserver> observers = default(List<FlutterSDK.Widgets.Navigator.NavigatorObserver>))
         : base(key: key)
         {
@@ -1855,14 +1947,107 @@ namespace FlutterSDK.Widgets.Navigator
             this.TransitionDelegate = transitionDelegate;
             this.Observers = observers;
         }
+        /// <Summary>
+        /// The list of pages with which to populate the history.
+        ///
+        /// Pages are turned into routes using [Page.createRoute] in a manner
+        /// analogous to how [Widget]s are turned into [Element]s (and [State]s or
+        /// [RenderObject]s) using [Widget.createElement] (and
+        /// [StatefulWidget.createState] or [RenderObjectWidget.createRenderObject]).
+        ///
+        /// When this list is updated, the new list is compared to the previous
+        /// list and the set of routes is updated accordingly.
+        ///
+        /// Some [Route]s do not correspond to [Page] objects, namely, those that are
+        /// added to the history using the [Navigator] API ([push] and friends). A
+        /// [Route] that does not correspond to a [Page] object is called a pageless
+        /// route and is tied to the [Route] that _does_ correspond to a [Page] object
+        /// that is below it in the history.
+        ///
+        /// Pages that are added or removed may be animated as controlled by the
+        /// [transitionDelegate]. If a page is removed that had other pageless routes
+        /// pushed on top of it using [push] and friends, those pageless routes are
+        /// also removed with or without animation as determined by the
+        /// [transitionDelegate].
+        ///
+        /// To use this API, an [onPopPage] callback must also be provided to properly
+        /// clean up this list if a page has been popped.
+        ///
+        /// If [initialRoute] is non-null when the widget is first created, then
+        /// [onGenerateInitialRoutes] is used to generate routes that are above those
+        /// corresponding to [pages] in the initial history.
+        /// </Summary>
         public virtual List<FlutterSDK.Widgets.Navigator.Page<object>> Pages { get; set; }
+        /// <Summary>
+        /// Called when [pop] is invoked but the current [Route] corresponds to a
+        /// [Page] found in the [pages] list.
+        ///
+        /// The `result` argument is the value with which the route is to complete
+        /// (e.g. the value returned from a dialog).
+        ///
+        /// This callback is responsible for calling [Route.didPop] and returning
+        /// whether this pop is successful.
+        ///
+        /// The [Navigator] widget should be rebuilt with a [pages] list that does not
+        /// contain the [Page] for the given [Route]. The next time the [pages] list
+        /// is updated, if the [Page] corresponding to this [Route] is still present,
+        /// it will be interpreted as a new route to display.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Navigator.PopPageCallback OnPopPage { get; set; }
+        /// <Summary>
+        /// The delegate used for deciding how routes transition in or off the screen
+        /// during the [pages] updates.
+        ///
+        /// Defaults to [DefaultTransitionDelegate] if not specified, cannot be null.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Navigator.TransitionDelegate<object> TransitionDelegate { get; set; }
+        /// <Summary>
+        /// The name of the first route to show.
+        ///
+        /// Defaults to [Navigator.defaultRouteName].
+        ///
+        /// The value is interpreted according to [onGenerateInitialRoutes], which
+        /// defaults to [defaultGenerateInitialRoutes].
+        /// </Summary>
         public virtual string InitialRoute { get; set; }
+        /// <Summary>
+        /// Called to generate a route for a given [RouteSettings].
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Navigator.RouteFactory OnGenerateRoute { get; set; }
+        /// <Summary>
+        /// Called when [onGenerateRoute] fails to generate a route.
+        ///
+        /// This callback is typically used for error handling. For example, this
+        /// callback might always generate a "not found" page that describes the route
+        /// that wasn't found.
+        ///
+        /// Unknown routes can arise either from errors in the app or from external
+        /// requests to push routes, such as from Android intents.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Navigator.RouteFactory OnUnknownRoute { get; set; }
+        /// <Summary>
+        /// A list of observers for this navigator.
+        /// </Summary>
         public virtual List<FlutterSDK.Widgets.Navigator.NavigatorObserver> Observers { get; set; }
+        /// <Summary>
+        /// The name for the default route of the application.
+        ///
+        /// See also:
+        ///
+        ///  * [dart:ui.Window.defaultRouteName], which reflects the route that the
+        ///    application was started with.
+        /// </Summary>
         public virtual string DefaultRouteName { get; set; }
+        /// <Summary>
+        /// Called when the widget is created to generate the initial list of [Route]
+        /// objects if [initialRoute] is not null.
+        ///
+        /// Defaults to [defaultGenerateInitialRoutes].
+        ///
+        /// The [NavigatorState] and [initialRoute] will be passed to the callback.
+        /// The callback must return a list of [Route] objects with which the history
+        /// will be primed.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Navigator.RouteListFactory OnGenerateInitialRoutes { get; set; }
 
         /// <Summary>
@@ -2966,11 +3151,17 @@ namespace FlutterSDK.Widgets.Navigator
         { }
         internal virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Overlay.OverlayState> _OverlayKey { get; set; }
         internal virtual List<FlutterSDK.Widgets.Navigator._RouteEntry> _History { get; set; }
+        /// <Summary>
+        /// The [FocusScopeNode] for the [FocusScope] that encloses the routes.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Focusmanager.FocusScopeNode FocusScopeNode { get; set; }
         internal virtual bool _DebugLocked { get; set; }
         internal virtual string _LastAnnouncedRouteName { get; set; }
         internal virtual bool _DebugUpdatingPage { get; set; }
         internal virtual int _UserGesturesInProgressCount { get; set; }
+        /// <Summary>
+        /// Notifies its listeners if the value of [userGestureInProgress] changes.
+        /// </Summary>
         public virtual FlutterSDK.Foundation.Changenotifier.ValueNotifier<bool> UserGestureInProgressNotifier { get; set; }
         internal virtual HashSet<int> _ActivePointers { get; set; }
         public virtual FlutterSDK.Widgets.Overlay.OverlayState Overlay { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }

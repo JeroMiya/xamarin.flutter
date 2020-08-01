@@ -409,6 +409,65 @@ namespace FlutterSDK.Material.Pickers.Datepickerdialog
         public static Size _InputPortraitDialogSize = default(Size);
         public static Size _InputLandscapeDialogSize = default(Size);
         public static TimeSpan _DialogSizeAnimationDuration = default(TimeSpan);
+        /// <Summary>
+        /// Shows a dialog containing a Material Design date picker.
+        ///
+        /// The returned [Future] resolves to the date selected by the user when the
+        /// user confirms the dialog. If the user cancels the dialog, null is returned.
+        ///
+        /// When the date picker is first displayed, it will show the month of
+        /// [initialDate], with [initialDate] selected.
+        ///
+        /// The [firstDate] is the earliest allowable date. The [lastDate] is the latest
+        /// allowable date. [initialDate] must either fall between these dates,
+        /// or be equal to one of them. For each of these [DateTime] parameters, only
+        /// their dates are considered. Their time fields are ignored. They must all
+        /// be non-null.
+        ///
+        /// An optional [initialEntryMode] argument can be used to display the date
+        /// picker in the [DatePickerEntryMode.calendar] (a calendar month grid)
+        /// or [DatePickerEntryMode.input] (a text input field) mode.
+        /// It defaults to [DatePickerEntryMode.calendar] and must be non-null.
+        ///
+        /// An optional [selectableDayPredicate] function can be passed in to only allow
+        /// certain days for selection. If provided, only the days that
+        /// [selectableDayPredicate] returns true for will be selectable. For example,
+        /// this can be used to only allow weekdays for selection. If provided, it must
+        /// return true for [initialDate].
+        ///
+        /// Optional strings for the [cancelText], [confirmText], [errorFormatText],
+        /// [errorInvalidText], [fieldHintText], [fieldLabelText], and [helpText] allow
+        /// you to override the default text used for various parts of the dialog:
+        ///
+        ///   * [cancelText], label on the cancel button.
+        ///   * [confirmText], label on the ok button.
+        ///   * [errorFormatText], message used when the input text isn't in a proper date format.
+        ///   * [errorInvalidText], message used when the input text isn't a selectable date.
+        ///   * [fieldHintText], text used to prompt the user when no text has been entered in the field.
+        ///   * [fieldLabelText], label for the date text input field.
+        ///   * [helpText], label on the top of the dialog.
+        ///
+        /// An optional [locale] argument can be used to set the locale for the date
+        /// picker. It defaults to the ambient locale provided by [Localizations].
+        ///
+        /// An optional [textDirection] argument can be used to set the text direction
+        /// ([TextDirection.ltr] or [TextDirection.rtl]) for the date picker. It
+        /// defaults to the ambient text direction provided by [Directionality]. If both
+        /// [locale] and [textDirection] are non-null, [textDirection] overrides the
+        /// direction chosen for the [locale].
+        ///
+        /// The [context], [useRootNavigator] and [routeSettings] arguments are passed to
+        /// [showDialog], the documentation for which discusses how it is used. [context]
+        /// and [useRootNavigator] must be non-null.
+        ///
+        /// The [builder] parameter can be used to wrap the dialog widget
+        /// to add inherited widgets like [Theme].
+        ///
+        /// An optional [initialDatePickerMode] argument can be used to have the
+        /// calendar date picker initially appear in the [DatePickerMode.year] or
+        /// [DatePickerMode.day] mode. It defaults to [DatePickerMode.day], and
+        /// must be non-null.
+        /// </Summary>
         internal static async Future<DateTime> ShowDatePicker(FlutterSDK.Widgets.Framework.BuildContext context = default(FlutterSDK.Widgets.Framework.BuildContext), DateTime initialDate = default(DateTime), DateTime firstDate = default(DateTime), DateTime lastDate = default(DateTime), FlutterSDK.Material.Pickers.Datepickercommon.DatePickerEntryMode initialEntryMode = default(FlutterSDK.Material.Pickers.Datepickercommon.DatePickerEntryMode), FlutterSDK.Material.Pickers.Datepickercommon.SelectableDayPredicate selectableDayPredicate = default(FlutterSDK.Material.Pickers.Datepickercommon.SelectableDayPredicate), string helpText = default(string), string cancelText = default(string), string confirmText = default(string), Locale locale = default(Locale), bool useRootNavigator = true, FlutterSDK.Widgets.Navigator.RouteSettings routeSettings = default(FlutterSDK.Widgets.Navigator.RouteSettings), TextDirection textDirection = default(TextDirection), FlutterSDK.Widgets.Framework.TransitionBuilder builder = default(FlutterSDK.Widgets.Framework.TransitionBuilder), FlutterSDK.Material.Pickers.Datepickercommon.DatePickerMode initialDatePickerMode = default(FlutterSDK.Material.Pickers.Datepickercommon.DatePickerMode), string errorFormatText = default(string), string errorInvalidText = default(string), string fieldHintText = default(string), string fieldLabelText = default(string))
         {
 
@@ -470,14 +529,40 @@ namespace FlutterSDK.Material.Pickers.Datepickerdialog
         }
 
 
+        /// <Summary>
+        /// The initially selected [DateTime] that the picker should display.
+        /// </Summary>
         public virtual DateTime InitialDate { get; set; }
+        /// <Summary>
+        /// The earliest allowable [DateTime] that the user can select.
+        /// </Summary>
         public virtual DateTime FirstDate { get; set; }
+        /// <Summary>
+        /// The latest allowable [DateTime] that the user can select.
+        /// </Summary>
         public virtual DateTime LastDate { get; set; }
         public virtual FlutterSDK.Material.Pickers.Datepickercommon.DatePickerEntryMode InitialEntryMode { get; set; }
+        /// <Summary>
+        /// Function to provide full control over which [DateTime] can be selected.
+        /// </Summary>
         public virtual FlutterSDK.Material.Pickers.Datepickercommon.SelectableDayPredicate SelectableDayPredicate { get; set; }
+        /// <Summary>
+        /// The text that is displayed on the cancel button.
+        /// </Summary>
         public virtual string CancelText { get; set; }
+        /// <Summary>
+        /// The text that is displayed on the confirm button.
+        /// </Summary>
         public virtual string ConfirmText { get; set; }
+        /// <Summary>
+        /// The text that is displayed at the top of the header.
+        ///
+        /// This is used to indicate to the user what they are selecting a date for.
+        /// </Summary>
         public virtual string HelpText { get; set; }
+        /// <Summary>
+        /// The initial display of the calendar picker.
+        /// </Summary>
         public virtual FlutterSDK.Material.Pickers.Datepickercommon.DatePickerMode InitialCalendarMode { get; set; }
         public virtual string ErrorFormatText { get; set; }
         public virtual string ErrorInvalidText { get; set; }

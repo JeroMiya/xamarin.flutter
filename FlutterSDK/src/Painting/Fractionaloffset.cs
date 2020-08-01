@@ -471,11 +471,22 @@ namespace FlutterSDK.Painting.Fractionaloffset
     /// </Summary>
     public class FractionalOffset : FlutterSDK.Painting.Alignment.Alignment
     {
+        /// <Summary>
+        /// Creates a fractional offset.
+        ///
+        /// The [dx] and [dy] arguments must not be null.
+        /// </Summary>
         public FractionalOffset(double dx, double dy)
         : base(dx * 2.0 - 1.0, dy * 2.0 - 1.0)
         {
 
         }
+        /// <Summary>
+        /// Creates a fractional offset from a specific offset and size.
+        ///
+        /// The returned [FractionalOffset] describes the position of the
+        /// [Offset] in the [Size], as a fraction of the [Size].
+        /// </Summary>
         public static FractionalOffset FromOffsetAndSize(FlutterBinding.UI.Offset offset, Size size)
         {
             var instance = new FractionalOffset();
@@ -485,6 +496,17 @@ namespace FlutterSDK.Painting.Fractionaloffset
         }
 
 
+        /// <Summary>
+        /// Creates a fractional offset from a specific offset and rectangle.
+        ///
+        /// The offset is assumed to be relative to the same origin as the rectangle.
+        ///
+        /// If the offset is relative to the top left of the rectangle, use [new
+        /// FractionalOffset.fromOffsetAndSize] instead, passing `rect.size`.
+        ///
+        /// The returned [FractionalOffset] describes the position of the
+        /// [Offset] in the [Rect], as a fraction of the [Rect].
+        /// </Summary>
         public static FractionalOffset FromOffsetAndRect(FlutterBinding.UI.Offset offset, FlutterBinding.UI.Rect rect)
         {
             var instance = new FractionalOffset();
@@ -492,14 +514,41 @@ namespace FlutterSDK.Painting.Fractionaloffset
         }
 
 
+        /// <Summary>
+        /// The top left corner.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Fractionaloffset.FractionalOffset TopLeft { get; set; }
+        /// <Summary>
+        /// The center point along the top edge.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Fractionaloffset.FractionalOffset TopCenter { get; set; }
+        /// <Summary>
+        /// The top right corner.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Fractionaloffset.FractionalOffset TopRight { get; set; }
+        /// <Summary>
+        /// The center point along the left edge.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Fractionaloffset.FractionalOffset CenterLeft { get; set; }
+        /// <Summary>
+        /// The center point, both horizontally and vertically.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Fractionaloffset.FractionalOffset Center { get; set; }
+        /// <Summary>
+        /// The center point along the right edge.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Fractionaloffset.FractionalOffset CenterRight { get; set; }
+        /// <Summary>
+        /// The bottom left corner.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Fractionaloffset.FractionalOffset BottomLeft { get; set; }
+        /// <Summary>
+        /// The center point along the bottom edge.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Fractionaloffset.FractionalOffset BottomCenter { get; set; }
+        /// <Summary>
+        /// The bottom right corner.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Fractionaloffset.FractionalOffset BottomRight { get; set; }
         public virtual double Dx { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual double Dy { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }

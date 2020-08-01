@@ -384,6 +384,12 @@ namespace FlutterSDK.Material.Banner
     /// </Summary>
     public class MaterialBanner : FlutterSDK.Widgets.Framework.StatelessWidget
     {
+        /// <Summary>
+        /// Creates a [MaterialBanner].
+        ///
+        /// The [actions], [content], and [forceActionsBelow] must be non-null.
+        /// The [actions.length] must be greater than 0.
+        /// </Summary>
         public MaterialBanner(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget content = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Painting.Textstyle.TextStyle contentTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), List<FlutterSDK.Widgets.Framework.Widget> actions = default(List<FlutterSDK.Widgets.Framework.Widget>), FlutterSDK.Widgets.Framework.Widget leading = default(FlutterSDK.Widgets.Framework.Widget), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry leadingPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), bool forceActionsBelow = false)
         : base(key: key)
         {
@@ -396,13 +402,67 @@ namespace FlutterSDK.Material.Banner
             this.LeadingPadding = leadingPadding;
             this.ForceActionsBelow = forceActionsBelow;
         }
+        /// <Summary>
+        /// The content of the [MaterialBanner].
+        ///
+        /// Typically a [Text] widget.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Content { get; set; }
+        /// <Summary>
+        /// Style for the text in the [content] of the [MaterialBanner].
+        ///
+        /// If `null`, [MaterialBannerThemeData.contentTextStyle] is used. If that is
+        /// also `null`, [ThemeData.textTheme.bodyText2] is used.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Textstyle.TextStyle ContentTextStyle { get; set; }
+        /// <Summary>
+        /// The set of actions that are displayed at the bottom or trailing side of
+        /// the [MaterialBanner].
+        ///
+        /// Typically this is a list of [FlatButton] widgets.
+        ///
+        /// These widgets will be wrapped in a [ButtonBar], which introduces 8 pixels
+        /// of padding on each side.
+        /// </Summary>
         public virtual List<FlutterSDK.Widgets.Framework.Widget> Actions { get; set; }
+        /// <Summary>
+        /// The (optional) leading widget of the [MaterialBanner].
+        ///
+        /// Typically an [Icon] widget.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Leading { get; set; }
+        /// <Summary>
+        /// The color of the surface of this [MaterialBanner].
+        ///
+        /// If `null`, [MaterialBannerThemeData.backgroundColor] is used. If that is
+        /// also `null`, [ThemeData.colorScheme.surface] is used.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
+        /// <Summary>
+        /// The amount of space by which to inset the [content].
+        ///
+        /// If the [actions] are below the [content], this defaults to
+        /// `EdgeInsetsDirectional.only(start: 16.0, top: 24.0, end: 16.0, bottom: 4.0)`.
+        ///
+        /// If the [actions] are trailing the [content], this defaults to
+        /// `EdgeInsetsDirectional.only(start: 16.0, top: 2.0)`.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Padding { get; set; }
+        /// <Summary>
+        /// The amount of space by which to inset the [leading] widget.
+        ///
+        /// This defaults to `EdgeInsetsDirectional.only(end: 16.0)`.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry LeadingPadding { get; set; }
+        /// <Summary>
+        /// An override to force the [actions] to be below the [content] regardless of
+        /// how many there are.
+        ///
+        /// If this is `true`, the [actions] will be placed below the [content]. If
+        /// this is `false`, the [actions] will be placed on the trailing side of the
+        /// [content] if [actions.length] is `1` and below the [content] if greater
+        /// than `1`.
+        /// </Summary>
         public virtual bool ForceActionsBelow { get; set; }
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)

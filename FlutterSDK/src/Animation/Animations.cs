@@ -220,6 +220,15 @@ namespace FlutterSDK.Animation.Animations
     /// </Summary>
     public class AlwaysStoppedAnimation<T> : FlutterSDK.Animation.Animation.Animation<T>
     {
+        /// <Summary>
+        /// Creates an [AlwaysStoppedAnimation] with the given value.
+        ///
+        /// Since the [value] and [status] of an [AlwaysStoppedAnimation] can never
+        /// change, the listeners can never be called. It is therefore safe to reuse
+        /// an [AlwaysStoppedAnimation] instance in multiple places. If the [value] to
+        /// be used is known at compile time, the constructor should be called as a
+        /// `const` constructor.
+        /// </Summary>
         public AlwaysStoppedAnimation(T value)
         {
             this.Value = value;
@@ -275,6 +284,12 @@ namespace FlutterSDK.Animation.Animations
     /// </Summary>
     public class ProxyAnimation : FlutterSDK.Animation.Animation.Animation<double>, IAnimationLazyListenerMixin, IAnimationLocalListenersMixin, IAnimationLocalStatusListenersMixin
     {
+        /// <Summary>
+        /// Creates a proxy animation.
+        ///
+        /// If the animation argument is omitted, the proxy animation will have the
+        /// status [AnimationStatus.dismissed] and a value of 0.0.
+        /// </Summary>
         public ProxyAnimation(FlutterSDK.Animation.Animation.Animation<double> animation = default(FlutterSDK.Animation.Animation.Animation<double>))
         {
 
@@ -343,11 +358,19 @@ namespace FlutterSDK.Animation.Animations
     /// </Summary>
     public class ReverseAnimation : FlutterSDK.Animation.Animation.Animation<double>, IAnimationLazyListenerMixin, IAnimationLocalStatusListenersMixin
     {
+        /// <Summary>
+        /// Creates a reverse animation.
+        ///
+        /// The parent argument must not be null.
+        /// </Summary>
         public ReverseAnimation(FlutterSDK.Animation.Animation.Animation<double> parent)
         : base()
         {
             this.Parent = parent;
         }
+        /// <Summary>
+        /// The animation whose value and direction this animation is reversing.
+        /// </Summary>
         public virtual FlutterSDK.Animation.Animation.Animation<double> Parent { get; set; }
         public virtual FlutterSDK.Animation.Animation.AnimationStatus Status { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual double Value { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
@@ -462,6 +485,11 @@ namespace FlutterSDK.Animation.Animations
     /// </Summary>
     public class CurvedAnimation : FlutterSDK.Animation.Animation.Animation<double>, IAnimationWithParentMixin<double>
     {
+        /// <Summary>
+        /// Creates a curved animation.
+        ///
+        /// The parent and curve arguments must not be null.
+        /// </Summary>
         public CurvedAnimation(FlutterSDK.Animation.Animation.Animation<double> parent = default(FlutterSDK.Animation.Animation.Animation<double>), FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve), FlutterSDK.Animation.Curves.Curve reverseCurve = default(FlutterSDK.Animation.Curves.Curve))
         : base()
         {
@@ -473,9 +501,37 @@ namespace FlutterSDK.Animation.Animations
         }
 
 
+        /// <Summary>
+        /// The animation to which this animation applies a curve.
+        /// </Summary>
         public new FlutterSDK.Animation.Animation.Animation<double> Parent { get; set; }
+        /// <Summary>
+        /// The curve to use in the forward direction.
+        /// </Summary>
         public virtual FlutterSDK.Animation.Curves.Curve Curve { get; set; }
+        /// <Summary>
+        /// The curve to use in the reverse direction.
+        ///
+        /// If the parent animation changes direction without first reaching the
+        /// [AnimationStatus.completed] or [AnimationStatus.dismissed] status, the
+        /// [CurvedAnimation] stays on the same curve (albeit in the opposite
+        /// direction) to avoid visual discontinuities.
+        ///
+        /// If you use a non-null [reverseCurve], you might want to hold this object
+        /// in a [State] object rather than recreating it each time your widget builds
+        /// in order to take advantage of the state in this object that avoids visual
+        /// discontinuities.
+        ///
+        /// If this field is null, uses [curve] in both directions.
+        /// </Summary>
         public virtual FlutterSDK.Animation.Curves.Curve ReverseCurve { get; set; }
+        /// <Summary>
+        /// The direction used to select the current curve.
+        ///
+        /// The curve direction is only reset when we hit the beginning or the end of
+        /// the timeline to avoid discontinuities in the value of any variables this
+        /// animation is used to animate.
+        /// </Summary>
         internal virtual FlutterSDK.Animation.Animation.AnimationStatus _CurveDirection { get; set; }
         internal virtual bool _UseForwardCurve { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual double Value { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
@@ -513,6 +569,13 @@ namespace FlutterSDK.Animation.Animations
     /// </Summary>
     public class TrainHoppingAnimation : FlutterSDK.Animation.Animation.Animation<double>, IAnimationEagerListenerMixin, IAnimationLocalListenersMixin, IAnimationLocalStatusListenersMixin
     {
+        /// <Summary>
+        /// Creates a train-hopping animation.
+        ///
+        /// The current train argument must not be null but the next train argument
+        /// can be null. If the next train is null, then this object will just proxy
+        /// the first animation and never hop.
+        /// </Summary>
         public TrainHoppingAnimation(FlutterSDK.Animation.Animation.Animation<double> _currentTrain, FlutterSDK.Animation.Animation.Animation<double> _nextTrain, VoidCallback onSwitchedTrain = default(VoidCallback))
         : base()
         {
@@ -548,6 +611,13 @@ namespace FlutterSDK.Animation.Animations
         internal virtual FlutterSDK.Animation.Animation.Animation<double> _CurrentTrain { get; set; }
         internal virtual FlutterSDK.Animation.Animation.Animation<double> _NextTrain { get; set; }
         internal virtual FlutterSDK.Animation.Animations._TrainHoppingMode _Mode { get; set; }
+        /// <Summary>
+        /// Called when this animation switches to be driven by the second animation.
+        ///
+        /// This is not called if the two animations provided to the constructor have
+        /// the same value at the time of the call to the constructor. In that case,
+        /// the second animation is used from the start, and the first is ignored.
+        /// </Summary>
         public virtual VoidCallback OnSwitchedTrain { get; set; }
         internal virtual FlutterSDK.Animation.Animation.AnimationStatus _LastStatus { get; set; }
         internal virtual double _LastValue { get; set; }
@@ -640,13 +710,24 @@ namespace FlutterSDK.Animation.Animations
     /// </Summary>
     public class CompoundAnimation<T> : FlutterSDK.Animation.Animation.Animation<T>, IAnimationLazyListenerMixin, IAnimationLocalListenersMixin, IAnimationLocalStatusListenersMixin
     {
+        /// <Summary>
+        /// Creates a CompoundAnimation. Both arguments must be non-null. Either can
+        /// be a CompoundAnimation itself to combine multiple animations.
+        /// </Summary>
         public CompoundAnimation(FlutterSDK.Animation.Animation.Animation<T> first = default(FlutterSDK.Animation.Animation.Animation<T>), FlutterSDK.Animation.Animation.Animation<T> next = default(FlutterSDK.Animation.Animation.Animation<T>))
         : base()
         {
             this.First = first;
             this.Next = next;
         }
+        /// <Summary>
+        /// The first sub-animation. Its status takes precedence if neither are
+        /// animating.
+        /// </Summary>
         public virtual FlutterSDK.Animation.Animation.Animation<T> First { get; set; }
+        /// <Summary>
+        /// The second sub-animation.
+        /// </Summary>
         public virtual FlutterSDK.Animation.Animation.Animation<T> Next { get; set; }
         internal virtual FlutterSDK.Animation.Animation.AnimationStatus _LastStatus { get; set; }
         internal virtual T _LastValue { get; set; }
@@ -714,6 +795,9 @@ namespace FlutterSDK.Animation.Animations
     /// </Summary>
     public class AnimationMean : FlutterSDK.Animation.Animations.CompoundAnimation<double>
     {
+        /// <Summary>
+        /// Creates an animation that tracks the mean of two other animations.
+        /// </Summary>
         public AnimationMean(FlutterSDK.Animation.Animation.Animation<double> left = default(FlutterSDK.Animation.Animation.Animation<double>), FlutterSDK.Animation.Animation.Animation<double> right = default(FlutterSDK.Animation.Animation.Animation<double>))
         : base(first: left, next: right)
         {
@@ -731,6 +815,12 @@ namespace FlutterSDK.Animation.Animations
     /// </Summary>
     public class AnimationMax<T> : FlutterSDK.Animation.Animations.CompoundAnimation<T>
     {
+        /// <Summary>
+        /// Creates an [AnimationMax].
+        ///
+        /// Both arguments must be non-null. Either can be an [AnimationMax] itself
+        /// to combine multiple animations.
+        /// </Summary>
         public AnimationMax(FlutterSDK.Animation.Animation.Animation<T> first, FlutterSDK.Animation.Animation.Animation<T> next)
         : base(first: first, next: next)
         {
@@ -748,6 +838,12 @@ namespace FlutterSDK.Animation.Animations
     /// </Summary>
     public class AnimationMin<T> : FlutterSDK.Animation.Animations.CompoundAnimation<T>
     {
+        /// <Summary>
+        /// Creates an [AnimationMin].
+        ///
+        /// Both arguments must be non-null. Either can be an [AnimationMin] itself
+        /// to combine multiple animations.
+        /// </Summary>
         public AnimationMin(FlutterSDK.Animation.Animation.Animation<T> first, FlutterSDK.Animation.Animation.Animation<T> next)
         : base(first: first, next: next)
         {

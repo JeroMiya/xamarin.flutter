@@ -533,6 +533,17 @@ namespace FlutterSDK.Material.Textformfield
     /// </Summary>
     public class TextFormField : FlutterSDK.Widgets.Form.FormField<string>
     {
+        /// <Summary>
+        /// Creates a [FormField] that contains a [TextField].
+        ///
+        /// When a [controller] is specified, [initialValue] must be null (the
+        /// default). If [controller] is null, then a [TextEditingController]
+        /// will be constructed automatically and its `text` will be initialized
+        /// to [initialValue] or the empty string.
+        ///
+        /// For documentation about the various parameters, see the [TextField] class
+        /// and [new TextField], the constructor.
+        /// </Summary>
         public TextFormField(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Editabletext.TextEditingController controller = default(FlutterSDK.Widgets.Editabletext.TextEditingController), string initialValue = default(string), FlutterSDK.Widgets.Focusmanager.FocusNode focusNode = default(FlutterSDK.Widgets.Focusmanager.FocusNode), FlutterSDK.Material.Inputdecorator.InputDecoration decoration = default(FlutterSDK.Material.Inputdecorator.InputDecoration), FlutterSDK.Services.Textinput.TextInputType keyboardType = default(FlutterSDK.Services.Textinput.TextInputType), FlutterSDK.Services.Textinput.TextCapitalization textCapitalization = default(FlutterSDK.Services.Textinput.TextCapitalization), FlutterSDK.Services.Textinput.TextInputAction textInputAction = default(FlutterSDK.Services.Textinput.TextInputAction), FlutterSDK.Painting.Textstyle.TextStyle style = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Strutstyle.StrutStyle strutStyle = default(FlutterSDK.Painting.Strutstyle.StrutStyle), TextDirection textDirection = default(TextDirection), TextAlign textAlign = default(TextAlign), FlutterSDK.Painting.Alignment.TextAlignVertical textAlignVertical = default(FlutterSDK.Painting.Alignment.TextAlignVertical), bool autofocus = false, bool readOnly = false, FlutterSDK.Widgets.Editabletext.ToolbarOptions toolbarOptions = default(FlutterSDK.Widgets.Editabletext.ToolbarOptions), bool showCursor = default(bool), bool obscureText = false, bool autocorrect = true, FlutterSDK.Services.Textinput.SmartDashesType smartDashesType = default(FlutterSDK.Services.Textinput.SmartDashesType), FlutterSDK.Services.Textinput.SmartQuotesType smartQuotesType = default(FlutterSDK.Services.Textinput.SmartQuotesType), bool enableSuggestions = true, bool autovalidate = false, bool maxLengthEnforced = true, int maxLines = 1, int minLines = default(int), bool expands = false, int maxLength = default(int), FlutterSDK.Foundation.Basictypes.ValueChanged<string> onChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<string>), FlutterSDK.Gestures.Tap.GestureTapCallback onTap = default(FlutterSDK.Gestures.Tap.GestureTapCallback), VoidCallback onEditingComplete = default(VoidCallback), FlutterSDK.Foundation.Basictypes.ValueChanged<string> onFieldSubmitted = default(FlutterSDK.Foundation.Basictypes.ValueChanged<string>), FlutterSDK.Widgets.Form.FormFieldSetter<string> onSaved = default(FlutterSDK.Widgets.Form.FormFieldSetter<string>), FlutterSDK.Widgets.Form.FormFieldValidator<string> validator = default(FlutterSDK.Widgets.Form.FormFieldValidator<string>), List<FlutterSDK.Services.Textformatter.TextInputFormatter> inputFormatters = default(List<FlutterSDK.Services.Textformatter.TextInputFormatter>), bool enabled = true, double cursorWidth = 2.0, Radius cursorRadius = default(Radius), FlutterBinding.UI.Color cursorColor = default(FlutterBinding.UI.Color), Brightness keyboardAppearance = default(Brightness), FlutterSDK.Painting.Edgeinsets.EdgeInsets scrollPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets), bool enableInteractiveSelection = true, FlutterSDK.Material.Textfield.InputCounterWidgetBuilder buildCounter = default(FlutterSDK.Material.Textfield.InputCounterWidgetBuilder), FlutterSDK.Widgets.Scrollphysics.ScrollPhysics scrollPhysics = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics))
         : base(key: key, initialValue: controller != null ? controller.Text : (initialValue ?? ""), onSaved: onSaved, validator: validator, autovalidate: autovalidate, enabled: enabled, builder: (FormFieldState<string> field) =>
         {
@@ -553,6 +564,12 @@ namespace FlutterSDK.Material.Textformfield
         {
             this.Controller = controller;
         }
+        /// <Summary>
+        /// Controls the text being edited.
+        ///
+        /// If null, this widget will create its own [TextEditingController] and
+        /// initialize its [TextEditingController.text] with [initialValue].
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Editabletext.TextEditingController Controller { get; set; }
 
         public new FlutterSDK.Material.Textformfield._TextFormFieldState CreateState() => new _TextFormFieldState();

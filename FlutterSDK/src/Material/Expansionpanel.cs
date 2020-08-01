@@ -383,7 +383,18 @@ using FlutterSDK.Material.Expandicon;
 using FlutterSDK.Material.Mergeablematerial;
 namespace FlutterSDK.Material.Expansionpanel
 {
+    /// <Summary>
+    /// Signature for the callback that's called when an [ExpansionPanel] is
+    /// expanded or collapsed.
+    ///
+    /// The position of the panel within an [ExpansionPanelList] is given by
+    /// [panelIndex].
+    /// </Summary>
     public delegate void ExpansionPanelCallback(int panelIndex, bool isExpanded);
+    /// <Summary>
+    /// Signature for the callback that's called when the header of the
+    /// [ExpansionPanel] needs to rebuild.
+    /// </Summary>
     public delegate FlutterSDK.Widgets.Framework.Widget ExpansionPanelHeaderBuilder(FlutterSDK.Widgets.Framework.BuildContext context, bool isExpanded);
     internal static class ExpansionpanelDefaultClass
     {
@@ -431,6 +442,12 @@ namespace FlutterSDK.Material.Expansionpanel
     /// </Summary>
     public class ExpansionPanel
     {
+        /// <Summary>
+        /// Creates an expansion panel to be used as a child for [ExpansionPanelList].
+        /// See [ExpansionPanelList] for an example on how to use this widget.
+        ///
+        /// The [headerBuilder], [body], and [isExpanded] arguments must not be null.
+        /// </Summary>
         public ExpansionPanel(FlutterSDK.Material.Expansionpanel.ExpansionPanelHeaderBuilder headerBuilder = default(FlutterSDK.Material.Expansionpanel.ExpansionPanelHeaderBuilder), FlutterSDK.Widgets.Framework.Widget body = default(FlutterSDK.Widgets.Framework.Widget), bool isExpanded = false, bool canTapOnHeader = false)
         : base()
         {
@@ -439,9 +456,27 @@ namespace FlutterSDK.Material.Expansionpanel
             this.IsExpanded = isExpanded;
             this.CanTapOnHeader = canTapOnHeader;
         }
+        /// <Summary>
+        /// The widget builder that builds the expansion panels' header.
+        /// </Summary>
         public virtual FlutterSDK.Material.Expansionpanel.ExpansionPanelHeaderBuilder HeaderBuilder { get; set; }
+        /// <Summary>
+        /// The body of the expansion panel that's displayed below the header.
+        ///
+        /// This widget is visible only when the panel is expanded.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Body { get; set; }
+        /// <Summary>
+        /// Whether the panel is expanded.
+        ///
+        /// Defaults to false.
+        /// </Summary>
         public virtual bool IsExpanded { get; set; }
+        /// <Summary>
+        /// Whether tapping on the panel's header will expand/collapse it.
+        ///
+        /// Defaults to false.
+        /// </Summary>
         public virtual bool CanTapOnHeader { get; set; }
     }
 
@@ -459,11 +494,21 @@ namespace FlutterSDK.Material.Expansionpanel
     /// </Summary>
     public class ExpansionPanelRadio : FlutterSDK.Material.Expansionpanel.ExpansionPanel
     {
+        /// <Summary>
+        /// An expansion panel that allows for radio functionality.
+        ///
+        /// A unique [value] must be passed into the constructor. The
+        /// [headerBuilder], [body], [value] must not be null.
+        /// </Summary>
         public ExpansionPanelRadio(@Object value = default(@Object), FlutterSDK.Material.Expansionpanel.ExpansionPanelHeaderBuilder headerBuilder = default(FlutterSDK.Material.Expansionpanel.ExpansionPanelHeaderBuilder), FlutterSDK.Widgets.Framework.Widget body = default(FlutterSDK.Widgets.Framework.Widget), bool canTapOnHeader = false)
         : base(body: body, headerBuilder: headerBuilder, canTapOnHeader: canTapOnHeader)
         {
             this.Value = value;
         }
+        /// <Summary>
+        /// The value that uniquely identifies a radio panel so that the currently
+        /// selected radio panel can be identified.
+        /// </Summary>
         public virtual @Object Value { get; set; }
     }
 
@@ -555,6 +600,12 @@ namespace FlutterSDK.Material.Expansionpanel
     /// </Summary>
     public class ExpansionPanelList : FlutterSDK.Widgets.Framework.StatefulWidget
     {
+        /// <Summary>
+        /// Creates an expansion panel list widget. The [expansionCallback] is
+        /// triggered when an expansion panel expand/collapse button is pushed.
+        ///
+        /// The [children] and [animationDuration] arguments must not be null.
+        /// </Summary>
         public ExpansionPanelList(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), List<FlutterSDK.Material.Expansionpanel.ExpansionPanel> children = default(List<FlutterSDK.Material.Expansionpanel.ExpansionPanel>), FlutterSDK.Material.Expansionpanel.ExpansionPanelCallback expansionCallback = default(FlutterSDK.Material.Expansionpanel.ExpansionPanelCallback), TimeSpan animationDuration = default(TimeSpan), FlutterSDK.Painting.Edgeinsets.EdgeInsets expandedHeaderPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets))
         : base(key: key)
         {
@@ -563,6 +614,84 @@ namespace FlutterSDK.Material.Expansionpanel
             this.AnimationDuration = animationDuration;
             this.ExpandedHeaderPadding = expandedHeaderPadding;
         }
+        /// <Summary>
+        /// Creates a radio expansion panel list widget.
+        ///
+        /// This widget allows for at most one panel in the list to be open.
+        /// The expansion panel callback is triggered when an expansion panel
+        /// expand/collapse button is pushed. The [children] and [animationDuration]
+        /// arguments must not be null. The [children] objects must be instances
+        /// of [ExpansionPanelRadio].
+        ///
+        /// {@tool dartpad --template=stateful_widget_scaffold}
+        ///
+        /// Here is a simple example of how to implement ExpansionPanelList.radio.
+        ///
+        /// ```dart preamble
+        /// // stores ExpansionPanel state information
+        /// class Item {
+        ///   Item({
+        ///     this.id,
+        ///     this.expandedValue,
+        ///     this.headerValue,
+        ///   });
+        ///
+        ///   int id;
+        ///   String expandedValue;
+        ///   String headerValue;
+        /// }
+        ///
+        /// List<Item> generateItems(int numberOfItems) {
+        ///   return List.generate(numberOfItems, (int index) {
+        ///     return Item(
+        ///       id: index,
+        ///       headerValue: 'Panel $index',
+        ///       expandedValue: 'This is item number $index',
+        ///     );
+        ///   });
+        /// }
+        /// ```
+        ///
+        /// ```dart
+        /// List<Item> _data = generateItems(8);
+        ///
+        /// @override
+        /// Widget build(BuildContext context) {
+        ///   return SingleChildScrollView(
+        ///     child: Container(
+        ///       child: _buildPanel(),
+        ///     ),
+        ///   );
+        /// }
+        ///
+        /// Widget _buildPanel() {
+        ///   return ExpansionPanelList.radio(
+        ///     initialOpenPanelValue: 2,
+        ///     children: _data.map<ExpansionPanelRadio>((Item item) {
+        ///       return ExpansionPanelRadio(
+        ///         value: item.id,
+        ///         headerBuilder: (BuildContext context, bool isExpanded) {
+        ///           return ListTile(
+        ///             title: Text(item.headerValue),
+        ///           );
+        ///         },
+        ///         body: ListTile(
+        ///           title: Text(item.expandedValue),
+        ///           subtitle: Text('To delete this panel, tap the trash can icon'),
+        ///           trailing: Icon(Icons.delete),
+        ///           onTap: () {
+        ///             setState(() {
+        ///               _data.removeWhere((currentItem) => item == currentItem);
+        ///             });
+        ///           }
+        ///         )
+        ///       );
+        ///     }).toList(),
+        ///   );
+        /// }
+        /// ```
+        /// {@end-tool}
+        /// </Summary>
         public static ExpansionPanelList Radio(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), List<FlutterSDK.Material.Expansionpanel.ExpansionPanel> children = default(List<FlutterSDK.Material.Expansionpanel.ExpansionPanel>), FlutterSDK.Material.Expansionpanel.ExpansionPanelCallback expansionCallback = default(FlutterSDK.Material.Expansionpanel.ExpansionPanelCallback), TimeSpan animationDuration = default(TimeSpan), @Object initialOpenPanelValue = default(@Object), FlutterSDK.Painting.Edgeinsets.EdgeInsets expandedHeaderPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets))
         {
             var instance = new ExpansionPanelList(key: key); instance.Children = children;
@@ -571,11 +700,47 @@ namespace FlutterSDK.Material.Expansionpanel
             instance.InitialOpenPanelValue = initialOpenPanelValue;
             instance.ExpandedHeaderPadding = expandedHeaderPadding;
         }
+        /// <Summary>
+        /// The children of the expansion panel list. They are laid out in a similar
+        /// fashion to [ListBody].
+        /// </Summary>
         public virtual List<FlutterSDK.Material.Expansionpanel.ExpansionPanel> Children { get; set; }
+        /// <Summary>
+        /// The callback that gets called whenever one of the expand/collapse buttons
+        /// is pressed. The arguments passed to the callback are the index of the
+        /// pressed panel and whether the panel is currently expanded or not.
+        ///
+        /// If ExpansionPanelList.radio is used, the callback may be called a
+        /// second time if a different panel was previously open. The arguments
+        /// passed to the second callback are the index of the panel that will close
+        /// and false, marking that it will be closed.
+        ///
+        /// For ExpansionPanelList, the callback needs to setState when it's notified
+        /// about the closing/opening panel. On the other hand, the callback for
+        /// ExpansionPanelList.radio is simply meant to inform the parent widget of
+        /// changes, as the radio panels' open/close states are managed internally.
+        ///
+        /// This callback is useful in order to keep track of the expanded/collapsed
+        /// panels in a parent widget that may need to react to these changes.
+        /// </Summary>
         public virtual FlutterSDK.Material.Expansionpanel.ExpansionPanelCallback ExpansionCallback { get; set; }
+        /// <Summary>
+        /// The duration of the expansion animation.
+        /// </Summary>
         public virtual TimeSpan AnimationDuration { get; set; }
         internal virtual bool _AllowOnlyOnePanelOpen { get; set; }
+        /// <Summary>
+        /// The value of the panel that initially begins open. (This value is
+        /// only used when initializing with the [ExpansionPanelList.radio]
+        /// constructor.)
+        /// </Summary>
         public virtual @Object InitialOpenPanelValue { get; set; }
+        /// <Summary>
+        /// The padding that surrounds the panel header when expanded.
+        ///
+        /// By default, 16px of space is added to the header vertically (above and below)
+        /// during expansion.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets ExpandedHeaderPadding { get; set; }
 
         public new FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget> CreateState() => new _ExpansionPanelListState();

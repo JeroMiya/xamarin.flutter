@@ -294,6 +294,11 @@ using FlutterSDK.Foundation;
 namespace FlutterSDK.Cupertino.Contextmenu
 {
     public delegate void _DismissCallback(FlutterSDK.Widgets.Framework.BuildContext context, double scale, double opacity);
+    /// <Summary>
+    /// A function that produces the preview when the CupertinoContextMenu is open.
+    ///
+    /// Called every time the animation value changes.
+    /// </Summary>
     public delegate FlutterSDK.Widgets.Framework.Widget ContextMenuPreviewBuilder(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Animation.Animation.Animation<double> animation, FlutterSDK.Widgets.Framework.Widget child);
     public delegate FlutterSDK.Widgets.Framework.Widget _ContextMenuPreviewBuilderChildless(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Animation.Animation.Animation<double> animation);
     internal static class ContextmenuDefaultClass
@@ -379,6 +384,13 @@ namespace FlutterSDK.Cupertino.Contextmenu
     /// </Summary>
     public class CupertinoContextMenu : FlutterSDK.Widgets.Framework.StatefulWidget
     {
+        /// <Summary>
+        /// Create a context menu.
+        ///
+        /// [actions] is required and cannot be null or empty.
+        ///
+        /// [child] is required and cannot be null.
+        /// </Summary>
         public CupertinoContextMenu(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), List<FlutterSDK.Widgets.Framework.Widget> actions = default(List<FlutterSDK.Widgets.Framework.Widget>), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Cupertino.Contextmenu.ContextMenuPreviewBuilder previewBuilder = default(FlutterSDK.Cupertino.Contextmenu.ContextMenuPreviewBuilder))
         : base(key: key)
         {
@@ -386,8 +398,93 @@ namespace FlutterSDK.Cupertino.Contextmenu
             this.Child = child;
             this.PreviewBuilder = previewBuilder;
         }
+        /// <Summary>
+        /// The widget that can be "opened" with the [CupertinoContextMenu].
+        ///
+        /// When the [CupertinoContextMenu] is long-pressed, the menu will open and
+        /// this widget (or the widget returned by [previewBuilder], if provided) will
+        /// be moved to the new route and placed inside of an [Expanded] widget. This
+        /// allows the child to resize to fit in its place in the new route, if it
+        /// doesn't size itself.
+        ///
+        /// When the [CupertinoContextMenu] is "closed", this widget acts like a
+        /// [Container], i.e. it does not constrain its child's size or affect its
+        /// position.
+        ///
+        /// This parameter cannot be null.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+        /// <Summary>
+        /// The actions that are shown in the menu.
+        ///
+        /// These actions are typically [CupertinoContextMenuAction]s.
+        ///
+        /// This parameter cannot be null or empty.
+        /// </Summary>
         public virtual List<FlutterSDK.Widgets.Framework.Widget> Actions { get; set; }
+        /// <Summary>
+        /// A function that returns an alternative widget to show when the
+        /// [CupertinoContextMenu] is open.
+        ///
+        /// If not specified, [child] will be shown.
+        ///
+        /// The preview is often used to show a slight variation of the [child]. For
+        /// example, the child could be given rounded corners in the preview but have
+        /// sharp corners when in the page.
+        ///
+        /// In addition to the current [BuildContext], the function is also called
+        /// with an [Animation] and the [child]. The animation goes from 0 to 1 when
+        /// the CupertinoContextMenu opens, and from 1 to 0 when it closes, and it can
+        /// be used to animate the preview in sync with this opening and closing. The
+        /// child parameter provides access to the child displayed when the
+        /// CupertinoContextMenu is closed.
+        ///
+        /// {@tool snippet}
+        ///
+        /// Below is an example of using `previewBuilder` to show an image tile that's
+        /// similar to each tile in the iOS iPhoto app's context menu. Several of
+        /// these could be used in a GridView for a similar effect.
+        ///
+        /// When opened, the child animates to show its full aspect ratio and has
+        /// rounded corners. The larger size of the open CupertinoContextMenu allows
+        /// the FittedBox to fit the entire image, even when it has a very tall or
+        /// wide aspect ratio compared to the square of a GridView, so this animates
+        /// into view as the CupertinoContextMenu is opened. The preview is swapped in
+        /// right when the open animation begins, which includes the rounded corners.
+        ///
+        /// ```dart
+        /// CupertinoContextMenu(
+        ///   child: FittedBox(
+        ///     fit: BoxFit.cover,
+        ///     child: Image.asset('assets/photo.jpg'),
+        ///   ),
+        ///   // The FittedBox in the preview here allows the image to animate its
+        ///   // aspect ratio when the CupertinoContextMenu is animating its preview
+        ///   // widget open and closed.
+        ///   previewBuilder: (BuildContext context, Animation<double> animation, Widget child) {
+        ///     return FittedBox(
+        ///       fit: BoxFit.cover,
+        ///       // This ClipRRect rounds the corners of the image when the
+        ///       // CupertinoContextMenu is open, even though it's not rounded when
+        ///       // it's closed. It uses the given animation to animate the corners
+        ///       // in sync with the opening animation.
+        ///       child: ClipRRect(
+        ///         borderRadius: BorderRadius.circular(64.0 * animation.value),
+        ///         child: Image.asset('assets/photo.jpg'),
+        ///       ),
+        ///     );
+        ///   },
+        ///   actions: <Widget>[
+        ///     CupertinoContextMenuAction(
+        ///       child: const Text('Action one'),
+        ///       onPressed: () {},
+        ///     ),
+        ///   ],
+        /// ),
+        /// ```
+        ///
+        /// {@end-tool}
+        /// </Summary>
         public virtual FlutterSDK.Cupertino.Contextmenu.ContextMenuPreviewBuilder PreviewBuilder { get; set; }
 
         public new FlutterSDK.Cupertino.Contextmenu._CupertinoContextMenuState CreateState() => new _CupertinoContextMenuState();

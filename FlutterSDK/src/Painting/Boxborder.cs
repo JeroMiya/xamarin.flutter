@@ -477,6 +477,10 @@ namespace FlutterSDK.Painting.Boxborder
     /// </Summary>
     public class BoxBorder : FlutterSDK.Painting.Borders.ShapeBorder
     {
+        /// <Summary>
+        /// Abstract const constructor. This constructor enables subclasses to provide
+        /// const constructors so that they can be used in const expressions.
+        /// </Summary>
         public BoxBorder()
         {
 
@@ -705,6 +709,13 @@ namespace FlutterSDK.Painting.Boxborder
     /// </Summary>
     public class Border : FlutterSDK.Painting.Boxborder.BoxBorder
     {
+        /// <Summary>
+        /// Creates a border.
+        ///
+        /// All the sides of the border default to [BorderSide.none].
+        ///
+        /// The arguments must not be null.
+        /// </Summary>
         public Border(FlutterSDK.Painting.Borders.BorderSide top = default(FlutterSDK.Painting.Borders.BorderSide), FlutterSDK.Painting.Borders.BorderSide right = default(FlutterSDK.Painting.Borders.BorderSide), FlutterSDK.Painting.Borders.BorderSide bottom = default(FlutterSDK.Painting.Borders.BorderSide), FlutterSDK.Painting.Borders.BorderSide left = default(FlutterSDK.Painting.Borders.BorderSide))
         : base()
         {
@@ -713,14 +724,29 @@ namespace FlutterSDK.Painting.Boxborder
             this.Bottom = bottom;
             this.Left = left;
         }
+        /// <Summary>
+        /// Creates a border whose sides are all the same.
+        ///
+        /// The `side` argument must not be null.
+        /// </Summary>
         public static Border FromBorderSide(FlutterSDK.Painting.Borders.BorderSide side)
         {
             var instance = new Border();
         }
+        /// <Summary>
+        /// Creates a border with symmetrical vertical and horizontal sides.
+        ///
+        /// All arguments default to [BorderSide.none] and must not be null.
+        /// </Summary>
         public static Border Symmetric(FlutterSDK.Painting.Borders.BorderSide vertical = default(FlutterSDK.Painting.Borders.BorderSide), FlutterSDK.Painting.Borders.BorderSide horizontal = default(FlutterSDK.Painting.Borders.BorderSide))
         {
             var instance = new Border();
         }
+        /// <Summary>
+        /// A uniform border with all sides the same color and width.
+        ///
+        /// The sides default to black solid borders, one logical pixel wide.
+        /// </Summary>
         public static Border All(FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), double width = 1.0, FlutterSDK.Painting.Borders.BorderStyle style = default(FlutterSDK.Painting.Borders.BorderStyle))
         {
             var instance = new Border();
@@ -730,8 +756,14 @@ namespace FlutterSDK.Painting.Boxborder
 
 
         public new FlutterSDK.Painting.Borders.BorderSide Top { get; set; }
+        /// <Summary>
+        /// The right side of this border.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Borders.BorderSide Right { get; set; }
         public new FlutterSDK.Painting.Borders.BorderSide Bottom { get; set; }
+        /// <Summary>
+        /// The left side of this border.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Borders.BorderSide Left { get; set; }
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Dimensions { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool IsUniform { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
@@ -907,6 +939,17 @@ namespace FlutterSDK.Painting.Boxborder
     /// </Summary>
     public class BorderDirectional : FlutterSDK.Painting.Boxborder.BoxBorder
     {
+        /// <Summary>
+        /// Creates a border.
+        ///
+        /// The [start] and [end] sides represent the horizontal sides; the start side
+        /// is on the leading edge given the reading direction, and the end side is on
+        /// the trailing edge. They are resolved during [paint].
+        ///
+        /// All the sides of the border default to [BorderSide.none].
+        ///
+        /// The arguments must not be null.
+        /// </Summary>
         public BorderDirectional(FlutterSDK.Painting.Borders.BorderSide top = default(FlutterSDK.Painting.Borders.BorderSide), FlutterSDK.Painting.Borders.BorderSide start = default(FlutterSDK.Painting.Borders.BorderSide), FlutterSDK.Painting.Borders.BorderSide end = default(FlutterSDK.Painting.Borders.BorderSide), FlutterSDK.Painting.Borders.BorderSide bottom = default(FlutterSDK.Painting.Borders.BorderSide))
         : base()
         {
@@ -916,7 +959,27 @@ namespace FlutterSDK.Painting.Boxborder
             this.Bottom = bottom;
         }
         public new FlutterSDK.Painting.Borders.BorderSide Top { get; set; }
+        /// <Summary>
+        /// The start side of this border.
+        ///
+        /// This is the side on the left in left-to-right text and on the right in
+        /// right-to-left text.
+        ///
+        /// See also:
+        ///
+        ///  * [TextDirection], which is used to describe the reading direction.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Borders.BorderSide Start { get; set; }
+        /// <Summary>
+        /// The end side of this border.
+        ///
+        /// This is the side on the right in left-to-right text and on the left in
+        /// right-to-left text.
+        ///
+        /// See also:
+        ///
+        ///  * [TextDirection], which is used to describe the reading direction.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Borders.BorderSide End { get; set; }
         public new FlutterSDK.Painting.Borders.BorderSide Bottom { get; set; }
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Dimensions { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }

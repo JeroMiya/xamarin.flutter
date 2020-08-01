@@ -543,13 +543,24 @@ namespace FlutterSDK.Rendering.Layer
     /// </Summary>
     public class AnnotationEntry<T>
     {
+        /// <Summary>
+        /// Create an entry of found annotation by providing the object and related
+        /// information.
+        /// </Summary>
         public AnnotationEntry(T annotation = default(T), FlutterBinding.UI.Offset localPosition = default(FlutterBinding.UI.Offset))
         : base()
         {
             this.Annotation = annotation;
             this.LocalPosition = localPosition;
         }
+        /// <Summary>
+        /// The annotation object that is found.
+        /// </Summary>
         public virtual T Annotation { get; set; }
+        /// <Summary>
+        /// The target location described by the local coordinate space of the
+        /// annotation object.
+        /// </Summary>
         public virtual FlutterBinding.UI.Offset LocalPosition { get; set; }
 
     }
@@ -584,6 +595,12 @@ namespace FlutterSDK.Rendering.Layer
         internal virtual NativeEngineLayer _EngineLayer { get; set; }
         internal virtual FlutterSDK.Rendering.Layer.Layer _NextSibling { get; set; }
         internal virtual FlutterSDK.Rendering.Layer.Layer _PreviousSibling { get; set; }
+        /// <Summary>
+        /// The object responsible for creating this layer.
+        ///
+        /// Defaults to the value of [RenderObject.debugCreator] for the render object
+        /// that created this layer. Used in debug messages.
+        /// </Summary>
         public virtual object DebugCreator { get; set; }
         public virtual FlutterSDK.Rendering.Layer.ContainerLayer Parent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool AlwaysNeedsAddToScene { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
@@ -890,10 +907,21 @@ public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.Diagnostic
     /// </Summary>
     public class PictureLayer : FlutterSDK.Rendering.Layer.Layer
     {
+        /// <Summary>
+        /// Creates a leaf layer for the layer tree.
+        /// </Summary>
         public PictureLayer(FlutterBinding.UI.Rect canvasBounds)
         {
             this.CanvasBounds = canvasBounds;
         }
+        /// <Summary>
+        /// The bounds that were used for the canvas that drew this layer's [picture].
+        ///
+        /// This is purely advisory. It is included in the information dumped with
+        /// [debugDumpLayerTree] (which can be triggered by pressing "L" when using
+        /// "flutter run" at the console), which can help debug why certain drawing
+        /// commands are being culled.
+        /// </Summary>
         public virtual FlutterBinding.UI.Rect CanvasBounds { get; set; }
         internal virtual SKPicture _Picture { get; set; }
         internal virtual bool _IsComplexHint { get; set; }
@@ -961,6 +989,11 @@ public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.Diagnostic
     /// </Summary>
     public class TextureLayer : FlutterSDK.Rendering.Layer.Layer
     {
+        /// <Summary>
+        /// Creates a texture layer bounded by [rect] and with backend texture
+        /// identified by [textureId], if [freeze] is true new texture frames will not be
+        /// populated to the texture.
+        /// </Summary>
         public TextureLayer(FlutterBinding.UI.Rect rect = default(FlutterBinding.UI.Rect), int textureId = default(int), bool freeze = false)
         : base()
         {
@@ -968,8 +1001,23 @@ public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.Diagnostic
             this.TextureId = textureId;
             this.Freeze = freeze;
         }
+        /// <Summary>
+        /// Bounding rectangle of this layer.
+        /// </Summary>
         public virtual FlutterBinding.UI.Rect Rect { get; set; }
+        /// <Summary>
+        /// The identity of the backend texture.
+        /// </Summary>
         public virtual int TextureId { get; set; }
+        /// <Summary>
+        /// When true the texture that will not be updated with new frames.
+        ///
+        /// This is used when resizing an embedded  Android views: When resizing there
+        /// is a short period during which the framework cannot tell if the newest
+        /// texture frame has the previous or new size, to workaround this the
+        /// framework "freezes" the texture just before resizing the Android view and
+        /// un-freezes it when it is certain that a frame with the new size is ready.
+        /// </Summary>
         public virtual bool Freeze { get; set; }
 
         public new void AddToScene(SceneBuilder builder, FlutterBinding.UI.Offset layerOffset = default(FlutterBinding.UI.Offset))
@@ -997,6 +1045,11 @@ public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.Diagnostic
     /// </Summary>
     public class PlatformViewLayer : FlutterSDK.Rendering.Layer.Layer
     {
+        /// <Summary>
+        /// Creates a platform view layer.
+        ///
+        /// The `rect` and `viewId` parameters must not be null.
+        /// </Summary>
         public PlatformViewLayer(FlutterBinding.UI.Rect rect = default(FlutterBinding.UI.Rect), int viewId = default(int), FlutterSDK.Rendering.Mousetracking.MouseTrackerAnnotation hoverAnnotation = default(FlutterSDK.Rendering.Mousetracking.MouseTrackerAnnotation))
         : base()
         {
@@ -1004,8 +1057,35 @@ public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.Diagnostic
             this.ViewId = viewId;
             this.HoverAnnotation = hoverAnnotation;
         }
+        /// <Summary>
+        /// Bounding rectangle of this layer in the global coordinate space.
+        /// </Summary>
         public virtual FlutterBinding.UI.Rect Rect { get; set; }
+        /// <Summary>
+        /// The unique identifier of the UIView displayed on this layer.
+        ///
+        /// A UIView with this identifier must have been created by [PlatformViewsServices.initUiKitView].
+        /// </Summary>
         public virtual int ViewId { get; set; }
+        /// <Summary>
+        /// [MouseTrackerAnnotation] that handles mouse events for this layer.
+        ///
+        /// If [hoverAnnotation] is non-null, [PlatformViewLayer] will annotate the
+        /// region of this platform view such that annotation callbacks will receive
+        /// mouse events, including mouse enter, exit, and hover, but not including
+        /// mouse down, move, and up. The layer will be treated as opaque during an
+        /// annotation search, which will prevent layers behind it from receiving
+        /// these events.
+        ///
+        /// By default, [hoverAnnotation] is null, and [PlatformViewLayer] will not
+        /// receive mouse events, and will therefore appear translucent during the
+        /// annotation search.
+        ///
+        /// See also:
+        ///
+        ///  * [MouseRegion], which explains more about the mouse events and opacity
+        ///    during annotation search.
+        /// </Summary>
         public virtual FlutterSDK.Rendering.Mousetracking.MouseTrackerAnnotation HoverAnnotation { get; set; }
 
         public new void AddToScene(SceneBuilder builder, FlutterBinding.UI.Offset layerOffset = default(FlutterBinding.UI.Offset))
@@ -1048,6 +1128,9 @@ public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.Diagnostic
     /// </Summary>
     public class PerformanceOverlayLayer : FlutterSDK.Rendering.Layer.Layer
     {
+        /// <Summary>
+        /// Creates a layer that displays a performance overlay.
+        /// </Summary>
         public PerformanceOverlayLayer(FlutterBinding.UI.Rect overlayRect = default(FlutterBinding.UI.Rect), int optionsMask = default(int), int rasterizerThreshold = default(int), bool checkerboardRasterCacheImages = default(bool), bool checkerboardOffscreenLayers = default(bool))
         : base()
         {
@@ -1057,9 +1140,41 @@ public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.Diagnostic
             this.CheckerboardOffscreenLayers = checkerboardOffscreenLayers;
         }
         internal virtual FlutterBinding.UI.Rect _OverlayRect { get; set; }
+        /// <Summary>
+        /// The mask is created by shifting 1 by the index of the specific
+        /// [PerformanceOverlayOption] to enable.
+        /// </Summary>
         public virtual int OptionsMask { get; set; }
+        /// <Summary>
+        /// The rasterizer threshold is an integer specifying the number of frame
+        /// intervals that the rasterizer must miss before it decides that the frame
+        /// is suitable for capturing an SkPicture trace for further analysis.
+        /// </Summary>
         public virtual int RasterizerThreshold { get; set; }
+        /// <Summary>
+        /// Whether the raster cache should checkerboard cached entries.
+        ///
+        /// The compositor can sometimes decide to cache certain portions of the
+        /// widget hierarchy. Such portions typically don't change often from frame to
+        /// frame and are expensive to render. This can speed up overall rendering. However,
+        /// there is certain upfront cost to constructing these cache entries. And, if
+        /// the cache entries are not used very often, this cost may not be worth the
+        /// speedup in rendering of subsequent frames. If the developer wants to be certain
+        /// that populating the raster cache is not causing stutters, this option can be
+        /// set. Depending on the observations made, hints can be provided to the compositor
+        /// that aid it in making better decisions about caching.
+        /// </Summary>
         public virtual bool CheckerboardRasterCacheImages { get; set; }
+        /// <Summary>
+        /// Whether the compositor should checkerboard layers that are rendered to offscreen
+        /// bitmaps. This can be useful for debugging rendering performance.
+        ///
+        /// Render target switches are caused by using opacity layers (via a [FadeTransition] or
+        /// [Opacity] widget), clips, shader mask layers, etc. Selecting a new render target
+        /// and merging it with the rest of the scene has a performance cost. This can sometimes
+        /// be avoided by using equivalent widgets that do not require these layers (for example,
+        /// replacing an [Opacity] widget with an [widgets.Image] using a [BlendMode]).
+        /// </Summary>
         public virtual bool CheckerboardOffscreenLayers { get; set; }
         public virtual FlutterBinding.UI.Rect OverlayRect { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 
@@ -1540,6 +1655,12 @@ public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.Diagnostic
     /// </Summary>
     public class OffsetLayer : FlutterSDK.Rendering.Layer.ContainerLayer
     {
+        /// <Summary>
+        /// Creates an offset layer.
+        ///
+        /// By default, [offset] is zero. It must be non-null before the compositing
+        /// phase of the pipeline.
+        /// </Summary>
         public OffsetLayer(FlutterBinding.UI.Offset offset = default(FlutterBinding.UI.Offset))
         : base()
         {
@@ -1637,6 +1758,14 @@ public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.Diagnostic
     /// </Summary>
     public class ClipRectLayer : FlutterSDK.Rendering.Layer.ContainerLayer
     {
+        /// <Summary>
+        /// Creates a layer with a rectangular clip.
+        ///
+        /// The [clipRect] argument must not be null before the compositing phase of
+        /// the pipeline.
+        ///
+        /// The [clipBehavior] argument must not be null, and must not be [Clip.none].
+        /// </Summary>
         public ClipRectLayer(FlutterBinding.UI.Rect clipRect = default(FlutterBinding.UI.Rect), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip))
         : base()
         {
@@ -1700,6 +1829,12 @@ public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.Diagnostic
     /// </Summary>
     public class ClipRRectLayer : FlutterSDK.Rendering.Layer.ContainerLayer
     {
+        /// <Summary>
+        /// Creates a layer with a rounded-rectangular clip.
+        ///
+        /// The [clipRRect] and [clipBehavior] properties must be non-null before the
+        /// compositing phase of the pipeline.
+        /// </Summary>
         public ClipRRectLayer(FlutterBinding.UI.RRect clipRRect = default(FlutterBinding.UI.RRect), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip))
         : base()
         {
@@ -1763,6 +1898,12 @@ public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.Diagnostic
     /// </Summary>
     public class ClipPathLayer : FlutterSDK.Rendering.Layer.ContainerLayer
     {
+        /// <Summary>
+        /// Creates a layer with a path-based clip.
+        ///
+        /// The [clipPath] and [clipBehavior] properties must be non-null before the
+        /// compositing phase of the pipeline.
+        /// </Summary>
         public ClipPathLayer(Path clipPath = default(Path), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip))
         : base()
         {
@@ -1821,6 +1962,12 @@ public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.Diagnostic
     /// </Summary>
     public class ColorFilterLayer : FlutterSDK.Rendering.Layer.ContainerLayer
     {
+        /// <Summary>
+        /// Creates a layer that applies a [ColorFilter] to its children.
+        ///
+        /// The [colorFilter] property must be non-null before the compositing phase
+        /// of the pipeline.
+        /// </Summary>
         public ColorFilterLayer(ColorFilter colorFilter = default(ColorFilter))
         : base()
         {
@@ -1856,6 +2003,12 @@ public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.Diagnostic
     /// </Summary>
     public class ImageFilterLayer : FlutterSDK.Rendering.Layer.ContainerLayer
     {
+        /// <Summary>
+        /// Creates a layer that applies an [ImageFilter] to its children.
+        ///
+        /// The [imageFilter] property must be non-null before the compositing phase
+        /// of the pipeline.
+        /// </Summary>
         public ImageFilterLayer(ImageFilter imageFilter = default(ImageFilter))
         : base()
         {
@@ -1895,6 +2048,12 @@ public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.Diagnostic
     /// </Summary>
     public class TransformLayer : FlutterSDK.Rendering.Layer.OffsetLayer
     {
+        /// <Summary>
+        /// Creates a transform layer.
+        ///
+        /// The [transform] and [offset] properties must be non-null before the
+        /// compositing phase of the pipeline.
+        /// </Summary>
         public TransformLayer(Matrix4 transform = default(Matrix4), FlutterBinding.UI.Offset offset = default(FlutterBinding.UI.Offset))
         : base(offset: offset)
         {
@@ -1992,6 +2151,12 @@ public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.Diagnostic
     /// </Summary>
     public class OpacityLayer : FlutterSDK.Rendering.Layer.ContainerLayer
     {
+        /// <Summary>
+        /// Creates an opacity layer.
+        ///
+        /// The [alpha] property must be non-null before the compositing phase of
+        /// the pipeline.
+        /// </Summary>
         public OpacityLayer(int alpha = default(int), FlutterBinding.UI.Offset offset = default(FlutterBinding.UI.Offset))
         : base()
         {
@@ -2047,6 +2212,12 @@ public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.Diagnostic
     /// </Summary>
     public class ShaderMaskLayer : FlutterSDK.Rendering.Layer.ContainerLayer
     {
+        /// <Summary>
+        /// Creates a shader mask layer.
+        ///
+        /// The [shader], [maskRect], and [blendMode] properties must be non-null
+        /// before the compositing phase of the pipeline.
+        /// </Summary>
         public ShaderMaskLayer(SKShader shader = default(SKShader), FlutterBinding.UI.Rect maskRect = default(FlutterBinding.UI.Rect), FlutterBinding.UI.BlendMode blendMode = default(FlutterBinding.UI.BlendMode))
         : base()
         {
@@ -2092,6 +2263,12 @@ public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.Diagnostic
     /// </Summary>
     public class BackdropFilterLayer : FlutterSDK.Rendering.Layer.ContainerLayer
     {
+        /// <Summary>
+        /// Creates a backdrop filter layer.
+        ///
+        /// The [filter] property must be non-null before the compositing phase of the
+        /// pipeline.
+        /// </Summary>
         public BackdropFilterLayer(ImageFilter filter = default(ImageFilter))
         : base()
         {
@@ -2126,6 +2303,13 @@ public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.Diagnostic
     /// </Summary>
     public class PhysicalModelLayer : FlutterSDK.Rendering.Layer.ContainerLayer
     {
+        /// <Summary>
+        /// Creates a composited layer that uses a physical model to producing
+        /// lighting effects.
+        ///
+        /// The [clipPath], [clipBehavior], [elevation], [color], and [shadowColor]
+        /// arguments must be non-null before the compositing phase of the pipeline.
+        /// </Summary>
         public PhysicalModelLayer(Path clipPath = default(Path), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip), double elevation = default(double), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color shadowColor = default(FlutterBinding.UI.Color))
         : base()
         {
@@ -2198,13 +2382,39 @@ public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.Diagnostic
     /// </Summary>
     public class LeaderLayer : FlutterSDK.Rendering.Layer.ContainerLayer
     {
+        /// <Summary>
+        /// Creates a leader layer.
+        ///
+        /// The [link] property must not be null, and must not have been provided to
+        /// any other [LeaderLayer] layers that are [attached] to the layer tree at
+        /// the same time.
+        ///
+        /// The [offset] property must be non-null before the compositing phase of the
+        /// pipeline.
+        /// </Summary>
         public LeaderLayer(FlutterSDK.Rendering.Layer.LayerLink link = default(FlutterSDK.Rendering.Layer.LayerLink), FlutterBinding.UI.Offset offset = default(FlutterBinding.UI.Offset))
         : base()
         {
             this.Offset = offset;
         }
         internal virtual FlutterSDK.Rendering.Layer.LayerLink _Link { get; set; }
+        /// <Summary>
+        /// Offset from parent in the parent's coordinate system.
+        ///
+        /// The scene must be explicitly recomposited after this property is changed
+        /// (as described at [Layer]).
+        ///
+        /// The [offset] property must be non-null before the compositing phase of the
+        /// pipeline.
+        /// </Summary>
         public virtual FlutterBinding.UI.Offset Offset { get; set; }
+        /// <Summary>
+        /// The offset the last time this layer was composited.
+        ///
+        /// This is reset to null when the layer is attached or detached, to help
+        /// catch cases where the follower layer ends up before the leader layer, but
+        /// not every case can be detected.
+        /// </Summary>
         internal virtual FlutterBinding.UI.Offset _LastOffset { get; set; }
         public virtual FlutterSDK.Rendering.Layer.LayerLink Link { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool AlwaysNeedsAddToScene { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
@@ -2295,6 +2505,14 @@ public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.Diagnostic
     /// </Summary>
     public class FollowerLayer : FlutterSDK.Rendering.Layer.ContainerLayer
     {
+        /// <Summary>
+        /// Creates a follower layer.
+        ///
+        /// The [link] property must not be null.
+        ///
+        /// The [unlinkedOffset], [linkedOffset], and [showWhenUnlinked] properties
+        /// must be non-null before the compositing phase of the pipeline.
+        /// </Summary>
         public FollowerLayer(FlutterSDK.Rendering.Layer.LayerLink link = default(FlutterSDK.Rendering.Layer.LayerLink), bool showWhenUnlinked = true, FlutterBinding.UI.Offset unlinkedOffset = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Offset linkedOffset = default(FlutterBinding.UI.Offset))
         : base()
         {
@@ -2303,8 +2521,50 @@ public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.Diagnostic
             this.LinkedOffset = linkedOffset;
         }
         internal virtual FlutterSDK.Rendering.Layer.LayerLink _Link { get; set; }
+        /// <Summary>
+        /// Whether to show the layer's contents when the [link] does not point to a
+        /// [LeaderLayer].
+        ///
+        /// When the layer is linked, children layers are positioned such that they
+        /// have the same global position as the linked [LeaderLayer].
+        ///
+        /// When the layer is not linked, then: if [showWhenUnlinked] is true,
+        /// children are positioned as if the [FollowerLayer] was a [ContainerLayer];
+        /// if it is false, then children are hidden.
+        ///
+        /// The [showWhenUnlinked] property must be non-null before the compositing
+        /// phase of the pipeline.
+        /// </Summary>
         public virtual bool ShowWhenUnlinked { get; set; }
+        /// <Summary>
+        /// Offset from parent in the parent's coordinate system, used when the layer
+        /// is not linked to a [LeaderLayer].
+        ///
+        /// The scene must be explicitly recomposited after this property is changed
+        /// (as described at [Layer]).
+        ///
+        /// The [unlinkedOffset] property must be non-null before the compositing
+        /// phase of the pipeline.
+        ///
+        /// See also:
+        ///
+        ///  * [linkedOffset], for when the layers are linked.
+        /// </Summary>
         public virtual FlutterBinding.UI.Offset UnlinkedOffset { get; set; }
+        /// <Summary>
+        /// Offset from the origin of the leader layer to the origin of the child
+        /// layers, used when the layer is linked to a [LeaderLayer].
+        ///
+        /// The scene must be explicitly recomposited after this property is changed
+        /// (as described at [Layer]).
+        ///
+        /// The [linkedOffset] property must be non-null before the compositing phase
+        /// of the pipeline.
+        ///
+        /// See also:
+        ///
+        ///  * [unlinkedOffset], for when the layer is not linked.
+        /// </Summary>
         public virtual FlutterBinding.UI.Offset LinkedOffset { get; set; }
         internal virtual FlutterBinding.UI.Offset _LastOffset { get; set; }
         internal virtual Matrix4 _LastTransform { get; set; }
@@ -2533,6 +2793,11 @@ public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.Diagnostic
     /// </Summary>
     public class AnnotatedRegionLayer<T> : FlutterSDK.Rendering.Layer.ContainerLayer
     {
+        /// <Summary>
+        /// Creates a new layer that annotates its children with [value].
+        ///
+        /// The [value] provided cannot be null.
+        /// </Summary>
         public AnnotatedRegionLayer(T value, Size size = default(Size), FlutterBinding.UI.Offset offset = default(FlutterBinding.UI.Offset), bool opaque = false)
         : base()
         {
@@ -2540,9 +2805,56 @@ public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.Diagnostic
             this.Size = size;
             this.Opaque = opaque;
         }
+        /// <Summary>
+        /// The annotated object, which is added to the result if all restrictions are
+        /// met.
+        /// </Summary>
         public virtual T Value { get; set; }
+        /// <Summary>
+        /// The size of the annotated object.
+        ///
+        /// If [size] is provided, then the annotation is found only if the target
+        /// position is contained by the rectangle formed by [size] and [offset].
+        /// Otherwise no such restriction is applied, and clipping can only be done by
+        /// the ancestor layers.
+        /// </Summary>
         public virtual Size Size { get; set; }
+        /// <Summary>
+        /// The position of the annotated object.
+        ///
+        /// The [offset] defaults to [Offset.zero] if not provided, and is ignored if
+        /// [size] is not set.
+        ///
+        /// The [offset] only offsets the clipping rectangle, and does not affect
+        /// how the painting or annotation search is propagated to its children.
+        /// </Summary>
         public virtual FlutterBinding.UI.Offset Offset { get; set; }
+        /// <Summary>
+        /// Whether the annotation of this layer should be opaque during an annotation
+        /// search of type `T`, preventing siblings visually behind it from being
+        /// searched.
+        ///
+        /// If [opaque] is true, and this layer does add its annotation [value],
+        /// then the layer will always be opaque during the search.
+        ///
+        /// If [opaque] is false, or if this layer does not add its annotation,
+        /// then the opacity of this layer will be the one returned by the children,
+        /// meaning that it will be opaque if any child is opaque.
+        ///
+        /// The [opaque] defaults to false.
+        ///
+        /// The [opaque] is effectively useless during [Layer.find] (more
+        /// specifically, [Layer.findAnnotations] with `onlyFirst: true`), since the
+        /// search process then skips the remaining tree after finding the first
+        /// annotation.
+        ///
+        /// See also:
+        ///
+        ///  * [Layer.findAnnotations], which explains the concept of being opaque
+        ///    to a type of annotation as the return value.
+        ///  * [HitTestBehavior], which controls similar logic when hit-testing in the
+        ///    render tree.
+        /// </Summary>
         public virtual bool Opaque { get; set; }
 
         /// <Summary>

@@ -307,6 +307,13 @@ namespace FlutterSDK.Cupertino.Navbar
         public static object _LinearTranslateWithLargestRectSizeTween = default(object);
         public static object _NavBarHeroLaunchPadBuilder = default(object);
         public static object _NavBarHeroFlightShuttleBuilder = default(object);
+        /// <Summary>
+        /// Returns `child` wrapped with background and a bottom border if background color
+        /// is opaque. Otherwise, also blur with [BackdropFilter].
+        ///
+        /// When `updateSystemUiOverlay` is true, the nav bar will update the OS
+        /// status bar's color theme based on the background color of the nav bar.
+        /// </Summary>
         internal static FlutterSDK.Widgets.Framework.Widget _WrapWithBackground(FlutterSDK.Painting.Boxborder.Border border = default(FlutterSDK.Painting.Boxborder.Border), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), Brightness brightness = default(Brightness), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), bool updateSystemUiOverlay = true)
         {
             Widget result = child;
@@ -430,6 +437,9 @@ namespace FlutterSDK.Cupertino.Navbar
     /// </Summary>
     public class CupertinoNavigationBar : FlutterSDK.Widgets.Framework.StatefulWidget, FlutterSDK.Cupertino.Pagescaffold.IObstructingPreferredSizeWidget
     {
+        /// <Summary>
+        /// Creates a navigation bar in the iOS style.
+        /// </Summary>
         public CupertinoNavigationBar(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget leading = default(FlutterSDK.Widgets.Framework.Widget), bool automaticallyImplyLeading = true, bool automaticallyImplyMiddle = true, string previousPageTitle = default(string), FlutterSDK.Widgets.Framework.Widget middle = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget trailing = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Painting.Boxborder.Border border = default(FlutterSDK.Painting.Boxborder.Border), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), Brightness brightness = default(Brightness), FlutterSDK.Painting.Edgeinsets.EdgeInsetsDirectional padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsDirectional), FlutterBinding.UI.Color actionsForegroundColor = default(FlutterBinding.UI.Color), bool transitionBetweenRoutes = true, @Object heroTag = default(@Object))
         : base(key: key)
         {
@@ -447,18 +457,172 @@ namespace FlutterSDK.Cupertino.Navbar
             this.TransitionBetweenRoutes = transitionBetweenRoutes;
             this.HeroTag = heroTag;
         }
+        /// <Summary>
+        /// {@template flutter.cupertino.navBar.leading}
+        /// Widget to place at the start of the navigation bar. Normally a back button
+        /// for a normal page or a cancel button for full page dialogs.
+        ///
+        /// If null and [automaticallyImplyLeading] is true, an appropriate button
+        /// will be automatically created.
+        /// {@endtemplate}
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Leading { get; set; }
+        /// <Summary>
+        /// {@template flutter.cupertino.navBar.automaticallyImplyLeading}
+        /// Controls whether we should try to imply the leading widget if null.
+        ///
+        /// If true and [leading] is null, automatically try to deduce what the [leading]
+        /// widget should be. If [leading] widget is not null, this parameter has no effect.
+        ///
+        /// Specifically this navigation bar will:
+        ///
+        /// 1. Show a 'Close' button if the current route is a `fullscreenDialog`.
+        /// 2. Show a back chevron with [previousPageTitle] if [previousPageTitle] is
+        ///    not null.
+        /// 3. Show a back chevron with the previous route's `title` if the current
+        ///    route is a [CupertinoPageRoute] and the previous route is also a
+        ///    [CupertinoPageRoute].
+        ///
+        /// This value cannot be null.
+        /// {@endtemplate}
+        /// </Summary>
         public virtual bool AutomaticallyImplyLeading { get; set; }
+        /// <Summary>
+        /// Controls whether we should try to imply the middle widget if null.
+        ///
+        /// If true and [middle] is null, automatically fill in a [Text] widget with
+        /// the current route's `title` if the route is a [CupertinoPageRoute].
+        /// If [middle] widget is not null, this parameter has no effect.
+        ///
+        /// This value cannot be null.
+        /// </Summary>
         public virtual bool AutomaticallyImplyMiddle { get; set; }
+        /// <Summary>
+        /// {@template flutter.cupertino.navBar.previousPageTitle}
+        /// Manually specify the previous route's title when automatically implying
+        /// the leading back button.
+        ///
+        /// Overrides the text shown with the back chevron instead of automatically
+        /// showing the previous [CupertinoPageRoute]'s `title` when
+        /// [automaticallyImplyLeading] is true.
+        ///
+        /// Has no effect when [leading] is not null or if [automaticallyImplyLeading]
+        /// is false.
+        /// {@endtemplate}
+        /// </Summary>
         public virtual string PreviousPageTitle { get; set; }
+        /// <Summary>
+        /// Widget to place in the middle of the navigation bar. Normally a title or
+        /// a segmented control.
+        ///
+        /// If null and [automaticallyImplyMiddle] is true, an appropriate [Text]
+        /// title will be created if the current route is a [CupertinoPageRoute] and
+        /// has a `title`.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Middle { get; set; }
+        /// <Summary>
+        /// {@template flutter.cupertino.navBar.trailing}
+        /// Widget to place at the end of the navigation bar. Normally additional actions
+        /// taken on the page such as a search or edit function.
+        /// {@endtemplate}
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Trailing { get; set; }
+        /// <Summary>
+        /// {@template flutter.cupertino.navBar.backgroundColor}
+        /// The background color of the navigation bar. If it contains transparency, the
+        /// tab bar will automatically produce a blurring effect to the content
+        /// behind it.
+        ///
+        /// Defaults to [CupertinoTheme]'s `barBackgroundColor` if null.
+        /// {@endtemplate}
+        /// </Summary>
         public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
+        /// <Summary>
+        /// {@template flutter.cupertino.navBar.brightness}
+        /// The brightness of the specified [backgroundColor].
+        ///
+        /// Setting this value changes the style of the system status bar. Typically
+        /// used to increase the contrast ratio of the system status bar over
+        /// [backgroundColor].
+        ///
+        /// If set to null, the value of the property will be inferred from the relative
+        /// luminance of [backgroundColor].
+        /// {@endtemplate}
+        /// </Summary>
         public virtual Brightness Brightness { get; set; }
+        /// <Summary>
+        /// {@template flutter.cupertino.navBar.padding}
+        /// Padding for the contents of the navigation bar.
+        ///
+        /// If null, the navigation bar will adopt the following defaults:
+        ///
+        ///  * Vertically, contents will be sized to the same height as the navigation
+        ///    bar itself minus the status bar.
+        ///  * Horizontally, padding will be 16 pixels according to iOS specifications
+        ///    unless the leading widget is an automatically inserted back button, in
+        ///    which case the padding will be 0.
+        ///
+        /// Vertical padding won't change the height of the nav bar.
+        /// {@endtemplate}
+        /// </Summary>
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsDirectional Padding { get; set; }
+        /// <Summary>
+        /// {@template flutter.cupertino.navBar.border}
+        /// The border of the navigation bar. By default renders a single pixel bottom border side.
+        ///
+        /// If a border is null, the navigation bar will not display a border.
+        /// {@endtemplate}
+        /// </Summary>
         public virtual FlutterSDK.Painting.Boxborder.Border Border { get; set; }
+        /// <Summary>
+        /// {@template flutter.cupertino.navBar.actionsForegroundColor}
+        /// Default color used for text and icons of the [leading] and [trailing]
+        /// widgets in the navigation bar.
+        ///
+        /// Defaults to the `primaryColor` of the [CupertinoTheme] when null.
+        /// {@endtemplate}
+        ///
+        /// The default color for text in the [middle] slot is always black, as per
+        /// iOS standard design.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color ActionsForegroundColor { get; set; }
+        /// <Summary>
+        /// {@template flutter.cupertino.navBar.transitionBetweenRoutes}
+        /// Whether to transition between navigation bars.
+        ///
+        /// When [transitionBetweenRoutes] is true, this navigation bar will transition
+        /// on top of the routes instead of inside it if the route being transitioned
+        /// to also has a [CupertinoNavigationBar] or a [CupertinoSliverNavigationBar]
+        /// with [transitionBetweenRoutes] set to true.
+        ///
+        /// This transition will also occur on edge back swipe gestures like on iOS
+        /// but only if the previous page below has `maintainState` set to true on the
+        /// [PageRoute].
+        ///
+        /// When set to true, only one navigation bar can be present per route unless
+        /// [heroTag] is also set.
+        ///
+        /// This value defaults to true and cannot be null.
+        /// {@endtemplate}
+        /// </Summary>
         public virtual bool TransitionBetweenRoutes { get; set; }
+        /// <Summary>
+        /// {@template flutter.cupertino.navBar.heroTag}
+        /// Tag for the navigation bar's Hero widget if [transitionBetweenRoutes] is true.
+        ///
+        /// Defaults to a common tag between all [CupertinoNavigationBar] and
+        /// [CupertinoSliverNavigationBar] instances of the same [Navigator]. With the
+        /// default tag, all navigation bars of the same navigator can transition
+        /// between each other as long as there's only one navigation bar per route.
+        ///
+        /// This [heroTag] can be overridden to manually handle having multiple
+        /// navigation bars per route or to transition between multiple
+        /// [Navigator]s.
+        ///
+        /// Cannot be null. To disable Hero transitions for this navigation bar,
+        /// set [transitionBetweenRoutes] to false.
+        /// {@endtemplate}
+        /// </Summary>
         public virtual @Object HeroTag { get; set; }
         public virtual Size PreferredSize { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 
@@ -580,6 +744,11 @@ namespace FlutterSDK.Cupertino.Navbar
     /// </Summary>
     public class CupertinoSliverNavigationBar : FlutterSDK.Widgets.Framework.StatefulWidget
     {
+        /// <Summary>
+        /// Creates a navigation bar for scrolling lists.
+        ///
+        /// The [largeTitle] argument is required and must not be null.
+        /// </Summary>
         public CupertinoSliverNavigationBar(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget largeTitle = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget leading = default(FlutterSDK.Widgets.Framework.Widget), bool automaticallyImplyLeading = true, bool automaticallyImplyTitle = true, string previousPageTitle = default(string), FlutterSDK.Widgets.Framework.Widget middle = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget trailing = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Painting.Boxborder.Border border = default(FlutterSDK.Painting.Boxborder.Border), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), Brightness brightness = default(Brightness), FlutterSDK.Painting.Edgeinsets.EdgeInsetsDirectional padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsDirectional), FlutterBinding.UI.Color actionsForegroundColor = default(FlutterBinding.UI.Color), bool transitionBetweenRoutes = true, @Object heroTag = default(@Object))
         : base(key: key)
         {
@@ -598,19 +767,99 @@ namespace FlutterSDK.Cupertino.Navbar
             this.TransitionBetweenRoutes = transitionBetweenRoutes;
             this.HeroTag = heroTag;
         }
+        /// <Summary>
+        /// The navigation bar's title.
+        ///
+        /// This text will appear in the top static navigation bar when collapsed and
+        /// below the navigation bar, in a larger font, when expanded.
+        ///
+        /// A suitable [DefaultTextStyle] is provided around this widget as it is
+        /// moved around, to change its font size.
+        ///
+        /// If [middle] is null, then the [largeTitle] widget will be inserted into
+        /// the tree in two places when transitioning from the collapsed state to the
+        /// expanded state. It is therefore imperative that this subtree not contain
+        /// any [GlobalKey]s, and that it not rely on maintaining state (for example,
+        /// animations will not survive the transition from one location to the other,
+        /// and may in fact be visible in two places at once during the transition).
+        ///
+        /// If null and [automaticallyImplyTitle] is true, an appropriate [Text]
+        /// title will be created if the current route is a [CupertinoPageRoute] and
+        /// has a `title`.
+        ///
+        /// This parameter must either be non-null or the route must have a title
+        /// ([CupertinoPageRoute.title]) and [automaticallyImplyTitle] must be true.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget LargeTitle { get; set; }
+        /// <Summary>
+        /// {@macro flutter.cupertino.navBar.leading}
+        ///
+        /// This widget is visible in both collapsed and expanded states.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Leading { get; set; }
+        /// <Summary>
+        /// {@macro flutter.cupertino.navBar.automaticallyImplyLeading}
+        /// </Summary>
         public virtual bool AutomaticallyImplyLeading { get; set; }
+        /// <Summary>
+        /// Controls whether we should try to imply the [largeTitle] widget if null.
+        ///
+        /// If true and [largeTitle] is null, automatically fill in a [Text] widget
+        /// with the current route's `title` if the route is a [CupertinoPageRoute].
+        /// If [largeTitle] widget is not null, this parameter has no effect.
+        ///
+        /// This value cannot be null.
+        /// </Summary>
         public virtual bool AutomaticallyImplyTitle { get; set; }
+        /// <Summary>
+        /// {@macro flutter.cupertino.navBar.previousPageTitle}
+        /// </Summary>
         public virtual string PreviousPageTitle { get; set; }
+        /// <Summary>
+        /// A widget to place in the middle of the static navigation bar instead of
+        /// the [largeTitle].
+        ///
+        /// This widget is visible in both collapsed and expanded states. The text
+        /// supplied in [largeTitle] will no longer appear in collapsed state if a
+        /// [middle] widget is provided.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Middle { get; set; }
+        /// <Summary>
+        /// {@macro flutter.cupertino.navBar.trailing}
+        ///
+        /// This widget is visible in both collapsed and expanded states.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Trailing { get; set; }
+        /// <Summary>
+        /// {@macro flutter.cupertino.navBar.backgroundColor}
+        /// </Summary>
         public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
+        /// <Summary>
+        /// {@macro flutter.cupertino.navBar.brightness}
+        /// </Summary>
         public virtual Brightness Brightness { get; set; }
+        /// <Summary>
+        /// {@macro flutter.cupertino.navBar.padding}
+        /// </Summary>
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsDirectional Padding { get; set; }
+        /// <Summary>
+        /// {@macro flutter.cupertino.navBar.border}
+        /// </Summary>
         public virtual FlutterSDK.Painting.Boxborder.Border Border { get; set; }
+        /// <Summary>
+        /// {@macro flutter.cupertino.navBar.actionsForegroundColor}
+        ///
+        /// The default color for text in the [largeTitle] slot is always black, as per
+        /// iOS standard design.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color ActionsForegroundColor { get; set; }
+        /// <Summary>
+        /// {@macro flutter.cupertino.navBar.transitionBetweenRoutes}
+        /// </Summary>
         public virtual bool TransitionBetweenRoutes { get; set; }
+        /// <Summary>
+        /// {@macro flutter.cupertino.navBar.heroTag}
+        /// </Summary>
         public virtual @Object HeroTag { get; set; }
         public virtual bool Opaque { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 
@@ -730,6 +979,10 @@ namespace FlutterSDK.Cupertino.Navbar
         }
         public virtual FlutterSDK.Cupertino.Navbar._NavigationBarStaticComponents Components { get; set; }
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsDirectional Padding { get; set; }
+        /// <Summary>
+        /// Whether the middle widget has a visible animated opacity. A null value
+        /// means the middle opacity will not be animated.
+        /// </Summary>
         public virtual bool MiddleVisible { get; set; }
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
@@ -789,9 +1042,21 @@ namespace FlutterSDK.Cupertino.Navbar
         }
         public virtual FlutterSDK.Widgets.Basic.KeyedSubtree Leading { get; set; }
         public virtual FlutterSDK.Widgets.Basic.KeyedSubtree BackChevron { get; set; }
+        /// <Summary>
+        /// This widget is not decorated with a font since the font style could
+        /// animate during transitions.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Basic.KeyedSubtree BackLabel { get; set; }
+        /// <Summary>
+        /// This widget is not decorated with a font since the font style could
+        /// animate during transitions.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Basic.KeyedSubtree Middle { get; set; }
         public virtual FlutterSDK.Widgets.Basic.KeyedSubtree Trailing { get; set; }
+        /// <Summary>
+        /// This widget is not decorated with a font since the font style could
+        /// animate during transitions.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Basic.KeyedSubtree LargeTitle { get; set; }
 
         private FlutterSDK.Widgets.Framework.Widget _DerivedTitle(bool automaticallyImplyTitle = default(bool), FlutterSDK.Widgets.Routes.ModalRoute<object> currentRoute = default(FlutterSDK.Widgets.Routes.ModalRoute<object>))
@@ -927,6 +1192,12 @@ namespace FlutterSDK.Cupertino.Navbar
     /// </Summary>
     public class CupertinoNavigationBarBackButton : FlutterSDK.Widgets.Framework.StatelessWidget
     {
+        /// <Summary>
+        /// Construct a [CupertinoNavigationBarBackButton] that can be used to pop
+        /// the current route.
+        ///
+        /// The [color] parameter must not be null.
+        /// </Summary>
         public CupertinoNavigationBarBackButton(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), string previousPageTitle = default(string), VoidCallback onPressed = default(VoidCallback))
         : base(key: key)
         {
@@ -939,8 +1210,30 @@ namespace FlutterSDK.Cupertino.Navbar
             var instance = new CupertinoNavigationBarBackButton(); instance._BackChevron = _backChevron;
             instance._BackLabel = _backLabel;
         }
+        /// <Summary>
+        /// The [Color] of the back button.
+        ///
+        /// Can be used to override the color of the back button chevron and label.
+        ///
+        /// Defaults to [CupertinoTheme]'s `primaryColor` if null.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color Color { get; set; }
+        /// <Summary>
+        /// An override for showing the previous route's title. If null, it will be
+        /// automatically derived from [CupertinoPageRoute.title] if the current and
+        /// previous routes are both [CupertinoPageRoute]s.
+        /// </Summary>
         public virtual string PreviousPageTitle { get; set; }
+        /// <Summary>
+        /// An override callback to perform instead of the default behavior which is
+        /// to pop the [Navigator].
+        ///
+        /// It can, for instance, be used to pop the platform's navigation stack
+        /// via [SystemNavigator] instead of Flutter's [Navigator] in add-to-app
+        /// situations.
+        ///
+        /// Defaults to null.
+        /// </Summary>
         public virtual VoidCallback OnPressed { get; set; }
         internal virtual FlutterSDK.Widgets.Framework.Widget _BackChevron { get; set; }
         internal virtual FlutterSDK.Widgets.Framework.Widget _BackLabel { get; set; }

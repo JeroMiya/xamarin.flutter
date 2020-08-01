@@ -438,6 +438,12 @@ namespace FlutterSDK.Widgets.Banner
     /// </Summary>
     public class BannerPainter : FlutterSDK.Rendering.Custompaint.CustomPainter
     {
+        /// <Summary>
+        /// Creates a banner painter.
+        ///
+        /// The [message], [textDirection], [location], and [layoutDirection]
+        /// arguments must not be null.
+        /// </Summary>
         public BannerPainter(string message = default(string), TextDirection textDirection = default(TextDirection), FlutterSDK.Widgets.Banner.BannerLocation location = default(FlutterSDK.Widgets.Banner.BannerLocation), TextDirection layoutDirection = default(TextDirection), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Textstyle.TextStyle textStyle = default(FlutterSDK.Painting.Textstyle.TextStyle))
         : base(repaint: BindingDefaultClass.PaintingBinding.Instance.SystemFonts)
         {
@@ -448,11 +454,51 @@ namespace FlutterSDK.Widgets.Banner
             this.Color = color;
             this.TextStyle = textStyle;
         }
+        /// <Summary>
+        /// The message to show in the banner.
+        /// </Summary>
         public virtual string Message { get; set; }
+        /// <Summary>
+        /// The directionality of the text.
+        ///
+        /// This value is used to disambiguate how to render bidirectional text. For
+        /// example, if the message is an English phrase followed by a Hebrew phrase,
+        /// in a [TextDirection.ltr] context the English phrase will be on the left
+        /// and the Hebrew phrase to its right, while in a [TextDirection.rtl]
+        /// context, the English phrase will be on the right and the Hebrew phrase on
+        /// its left.
+        ///
+        /// See also:
+        ///
+        ///  * [layoutDirection], which controls the interpretation of values in
+        ///    [location].
+        /// </Summary>
         public virtual TextDirection TextDirection { get; set; }
+        /// <Summary>
+        /// Where to show the banner (e.g., the upper right corner).
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Banner.BannerLocation Location { get; set; }
+        /// <Summary>
+        /// The directionality of the layout.
+        ///
+        /// This value is used to interpret the [location] of the banner.
+        ///
+        /// See also:
+        ///
+        ///  * [textDirection], which controls the reading direction of the [message].
+        /// </Summary>
         public virtual TextDirection LayoutDirection { get; set; }
+        /// <Summary>
+        /// The color to paint behind the [message].
+        ///
+        /// Defaults to a dark red.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color Color { get; set; }
+        /// <Summary>
+        /// The text style to use for the [message].
+        ///
+        /// Defaults to bold, white text.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Textstyle.TextStyle TextStyle { get; set; }
         internal virtual FlutterSDK.Painting.Boxshadow.BoxShadow _Shadow { get; set; }
         internal virtual bool _Prepared { get; set; }
@@ -542,6 +588,11 @@ namespace FlutterSDK.Widgets.Banner
     /// </Summary>
     public class Banner : FlutterSDK.Widgets.Framework.StatelessWidget
     {
+        /// <Summary>
+        /// Creates a banner.
+        ///
+        /// The [message] and [location] arguments must not be null.
+        /// </Summary>
         public Banner(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), string message = default(string), TextDirection textDirection = default(TextDirection), FlutterSDK.Widgets.Banner.BannerLocation location = default(FlutterSDK.Widgets.Banner.BannerLocation), TextDirection layoutDirection = default(TextDirection), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Textstyle.TextStyle textStyle = default(FlutterSDK.Painting.Textstyle.TextStyle))
         : base(key: key)
         {
@@ -553,12 +604,56 @@ namespace FlutterSDK.Widgets.Banner
             this.Color = color;
             this.TextStyle = textStyle;
         }
+        /// <Summary>
+        /// The widget to show behind the banner.
+        ///
+        /// {@macro flutter.widgets.child}
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+        /// <Summary>
+        /// The message to show in the banner.
+        /// </Summary>
         public virtual string Message { get; set; }
+        /// <Summary>
+        /// The directionality of the text.
+        ///
+        /// This is used to disambiguate how to render bidirectional text. For
+        /// example, if the message is an English phrase followed by a Hebrew phrase,
+        /// in a [TextDirection.ltr] context the English phrase will be on the left
+        /// and the Hebrew phrase to its right, while in a [TextDirection.rtl]
+        /// context, the English phrase will be on the right and the Hebrew phrase on
+        /// its left.
+        ///
+        /// Defaults to the ambient [Directionality], if any.
+        ///
+        /// See also:
+        ///
+        ///  * [layoutDirection], which controls the interpretation of the [location].
+        /// </Summary>
         public virtual TextDirection TextDirection { get; set; }
+        /// <Summary>
+        /// Where to show the banner (e.g., the upper right corner).
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Banner.BannerLocation Location { get; set; }
+        /// <Summary>
+        /// The directionality of the layout.
+        ///
+        /// This is used to resolve the [location] values.
+        ///
+        /// Defaults to the ambient [Directionality], if any.
+        ///
+        /// See also:
+        ///
+        ///  * [textDirection], which controls the reading direction of the [message].
+        /// </Summary>
         public virtual TextDirection LayoutDirection { get; set; }
+        /// <Summary>
+        /// The color of the banner.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color Color { get; set; }
+        /// <Summary>
+        /// The style of the text shown on the banner.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Textstyle.TextStyle TextStyle { get; set; }
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
@@ -593,11 +688,19 @@ namespace FlutterSDK.Widgets.Banner
     /// </Summary>
     public class CheckedModeBanner : FlutterSDK.Widgets.Framework.StatelessWidget
     {
+        /// <Summary>
+        /// Creates a const checked mode banner.
+        /// </Summary>
         public CheckedModeBanner(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key)
         {
             this.Child = child;
         }
+        /// <Summary>
+        /// The widget to show behind the banner.
+        ///
+        /// {@macro flutter.widgets.child}
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)

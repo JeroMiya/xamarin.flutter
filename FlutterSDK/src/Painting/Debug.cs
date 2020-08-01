@@ -422,11 +422,29 @@ using FlutterSDK.Material.Tooltiptheme;
 using FlutterSDK.Material.Drawerheader;
 namespace FlutterSDK.Painting.Debug
 {
+    /// <Summary>
+    /// Signature for a method that returns an [HttpClient].
+    ///
+    /// Used by [debugNetworkImageHttpClientProvider].
+    /// </Summary>
     public delegate HttpClient HttpClientProvider();
     internal static class DebugDefaultClass
     {
         public static bool DebugDisableShadows = default(bool);
         public static object DebugNetworkImageHttpClientProvider = default(object);
+        /// <Summary>
+        /// Returns true if none of the painting library debug variables have been changed.
+        ///
+        /// This function is used by the test framework to ensure that debug variables
+        /// haven't been inadvertently changed.
+        ///
+        /// See [the painting library](painting/painting-library.html) for a complete
+        /// list.
+        ///
+        /// The `debugDisableShadowsOverride` argument can be provided to override
+        /// the expected value for [debugDisableShadows]. (This exists because the
+        /// test framework itself overrides this value in some cases.)
+        /// </Summary>
         internal static bool DebugAssertAllPaintingVarsUnset(string reason, bool debugDisableShadowsOverride = false)
         {
 

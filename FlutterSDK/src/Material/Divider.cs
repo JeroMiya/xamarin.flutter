@@ -446,6 +446,12 @@ namespace FlutterSDK.Material.Divider
     /// </Summary>
     public class Divider : FlutterSDK.Widgets.Framework.StatelessWidget
     {
+        /// <Summary>
+        /// Creates a material design divider.
+        ///
+        /// The [height], [thickness], [indent], and [endIndent] must be null or
+        /// non-negative.
+        /// </Summary>
         public Divider(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), double height = default(double), double thickness = default(double), double indent = default(double), double endIndent = default(double), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color))
         : base(key: key)
         {
@@ -455,10 +461,55 @@ namespace FlutterSDK.Material.Divider
             this.EndIndent = endIndent;
             this.Color = color;
         }
+        /// <Summary>
+        /// The divider's height extent.
+        ///
+        /// The divider itself is always drawn as a horizontal line that is centered
+        /// within the height specified by this value.
+        ///
+        /// If this is null, then the [DividerThemeData.space] is used. If that is
+        /// also null, then this defaults to 16.0.
+        /// </Summary>
         public virtual double Height { get; set; }
+        /// <Summary>
+        /// The thickness of the line drawn within the divider.
+        ///
+        /// A divider with a [thickness] of 0.0 is always drawn as a line with a
+        /// height of exactly one device pixel.
+        ///
+        /// If this is null, then the [DividerThemeData.dividerThickness] is used. If
+        /// that is also null, then this defaults to 0.0.
+        /// </Summary>
         public virtual double Thickness { get; set; }
+        /// <Summary>
+        /// The amount of empty space to the leading edge of the divider.
+        ///
+        /// If this is null, then the [DividerThemeData.indent] is used. If that is
+        /// also null, then this defaults to 0.0.
+        /// </Summary>
         public virtual double Indent { get; set; }
+        /// <Summary>
+        /// The amount of empty space to the trailing edge of the divider.
+        ///
+        /// If this is null, then the [DividerThemeData.endIndent] is used. If that is
+        /// also null, then this defaults to 0.0.
+        /// </Summary>
         public virtual double EndIndent { get; set; }
+        /// <Summary>
+        /// The color to use when painting the line.
+        ///
+        /// If this is null, then the [DividerThemeData.color] is used. If that is
+        /// also null, then [ThemeData.dividerColor] is used.
+        ///
+        /// {@tool snippet}
+        ///
+        /// ```dart
+        /// Divider(
+        ///   color: Colors.deepOrange,
+        /// )
+        /// ```
+        /// {@end-tool}
+        /// </Summary>
         public virtual FlutterBinding.UI.Color Color { get; set; }
 
         /// <Summary>
@@ -539,6 +590,12 @@ namespace FlutterSDK.Material.Divider
     /// </Summary>
     public class VerticalDivider : FlutterSDK.Widgets.Framework.StatelessWidget
     {
+        /// <Summary>
+        /// Creates a material design vertical divider.
+        ///
+        /// The [width], [thickness], [indent], and [endIndent] must be null or
+        /// non-negative.
+        /// </Summary>
         public VerticalDivider(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), double width = default(double), double thickness = default(double), double indent = default(double), double endIndent = default(double), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color))
         : base(key: key)
         {
@@ -548,10 +605,55 @@ namespace FlutterSDK.Material.Divider
             this.EndIndent = endIndent;
             this.Color = color;
         }
+        /// <Summary>
+        /// The divider's width.
+        ///
+        /// The divider itself is always drawn as a vertical line that is centered
+        /// within the width specified by this value.
+        ///
+        /// If this is null, then the [DividerThemeData.space] is used. If that is
+        /// also null, then this defaults to 16.0.
+        /// </Summary>
         public virtual double Width { get; set; }
+        /// <Summary>
+        /// The thickness of the line drawn within the divider.
+        ///
+        /// A divider with a [thickness] of 0.0 is always drawn as a line with a
+        /// width of exactly one device pixel.
+        ///
+        /// If this is null, then the [DividerThemeData.thickness] is used which
+        /// defaults to 0.0.
+        /// </Summary>
         public virtual double Thickness { get; set; }
+        /// <Summary>
+        /// The amount of empty space on top of the divider.
+        ///
+        /// If this is null, then the [DividerThemeData.indent] is used. If that is
+        /// also null, then this defaults to 0.0.
+        /// </Summary>
         public virtual double Indent { get; set; }
+        /// <Summary>
+        /// The amount of empty space under the divider.
+        ///
+        /// If this is null, then the [DividerThemeData.endIndent] is used. If that is
+        /// also null, then this defaults to 0.0.
+        /// </Summary>
         public virtual double EndIndent { get; set; }
+        /// <Summary>
+        /// The color to use when painting the line.
+        ///
+        /// If this is null, then the [DividerThemeData.color] is used. If that is
+        /// also null, then [ThemeData.dividerColor] is used.
+        ///
+        /// {@tool snippet}
+        ///
+        /// ```dart
+        /// Divider(
+        ///   color: Colors.deepOrange,
+        /// )
+        /// ```
+        /// {@end-tool}
+        /// </Summary>
         public virtual FlutterBinding.UI.Color Color { get; set; }
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)

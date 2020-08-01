@@ -435,11 +435,20 @@ namespace FlutterSDK.Widgets.Icontheme
     /// </Summary>
     public class IconTheme : FlutterSDK.Widgets.Inheritedtheme.InheritedTheme
     {
+        /// <Summary>
+        /// Creates an icon theme that controls the color, opacity, and size of
+        /// descendant widgets.
+        ///
+        /// Both [data] and [child] arguments must not be null.
+        /// </Summary>
         public IconTheme(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Iconthemedata.IconThemeData data = default(FlutterSDK.Widgets.Iconthemedata.IconThemeData), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
             this.Data = data;
         }
+        /// <Summary>
+        /// The color, opacity, and size to use for icons in this subtree.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Iconthemedata.IconThemeData Data { get; set; }
 
         /// <Summary>

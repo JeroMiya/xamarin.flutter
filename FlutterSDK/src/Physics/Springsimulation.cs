@@ -470,19 +470,53 @@ namespace FlutterSDK.Physics.Springsimulation
     /// </Summary>
     public class SpringDescription
     {
+        /// <Summary>
+        /// Creates a spring given the mass, stiffness, and the damping coefficient.
+        ///
+        /// See [mass], [stiffness], and [damping] for the units of the arguments.
+        /// </Summary>
         public SpringDescription(double mass = default(double), double stiffness = default(double), double damping = default(double))
         {
             this.Mass = mass;
             this.Stiffness = stiffness;
             this.Damping = damping;
         }
+        /// <Summary>
+        /// Creates a spring given the mass (m), stiffness (k), and damping ratio (ζ).
+        /// The damping ratio is especially useful trying to determining the type of
+        /// spring to create. A ratio of 1.0 creates a critically damped spring, > 1.0
+        /// creates an overdamped spring and < 1.0 an underdamped one.
+        ///
+        /// See [mass] and [stiffness] for the units for those arguments. The damping
+        /// ratio is unitless.
+        /// </Summary>
         public static SpringDescription WithDampingRatio(double mass = default(double), double stiffness = default(double), double ratio = 1.0)
         {
             var instance = new SpringDescription(); instance.Mass = mass;
             instance.Stiffness = stiffness;
         }
+        /// <Summary>
+        /// The mass of the spring (m). The units are arbitrary, but all springs
+        /// within a system should use the same mass units.
+        /// </Summary>
         public virtual double Mass { get; set; }
+        /// <Summary>
+        /// The spring constant (k). The units of stiffness are M/T², where M is the
+        /// mass unit used for the value of the [mass] property, and T is the time
+        /// unit used for driving the [SpringSimulation].
+        /// </Summary>
         public virtual double Stiffness { get; set; }
+        /// <Summary>
+        /// The damping coefficient (c).
+        ///
+        /// Do not confuse the damping _coefficient_ (c) with the damping _ratio_ (ζ).
+        /// To create a [SpringDescription] with a damping ratio, use the [new
+        /// SpringDescription.withDampingRatio] constructor.
+        ///
+        /// The units of the damping coefficient are M/T, where M is the mass unit
+        /// used for the value of the [mass] property, and T is the time unit used for
+        /// driving the [SpringSimulation].
+        /// </Summary>
         public virtual double Damping { get; set; }
 
     }
@@ -495,6 +529,17 @@ namespace FlutterSDK.Physics.Springsimulation
     /// </Summary>
     public class SpringSimulation : FlutterSDK.Physics.Simulation.Simulation
     {
+        /// <Summary>
+        /// Creates a spring simulation from the provided spring description, start
+        /// distance, end distance, and initial velocity.
+        ///
+        /// The units for the start and end distance arguments are arbitrary, but must
+        /// be consistent with the units used for other lengths in the system.
+        ///
+        /// The units for the velocity are L/T, where L is the aforementioned
+        /// arbitrary unit of length, and T is the time unit used for driving the
+        /// [SpringSimulation].
+        /// </Summary>
         public SpringSimulation(FlutterSDK.Physics.Springsimulation.SpringDescription spring, double start, double end, double velocity, FlutterSDK.Physics.Tolerance.Tolerance tolerance = default(FlutterSDK.Physics.Tolerance.Tolerance))
         : base(tolerance: tolerance)
         {
@@ -529,6 +574,13 @@ namespace FlutterSDK.Physics.Springsimulation
     /// </Summary>
     public class ScrollSpringSimulation : FlutterSDK.Physics.Springsimulation.SpringSimulation
     {
+        /// <Summary>
+        /// Creates a spring simulation from the provided spring description, start
+        /// distance, end distance, and initial velocity.
+        ///
+        /// See the [new SpringSimulation] constructor on the superclass for a
+        /// discussion of the arguments' units.
+        /// </Summary>
         public ScrollSpringSimulation(FlutterSDK.Physics.Springsimulation.SpringDescription spring, double start, double end, double velocity, FlutterSDK.Physics.Tolerance.Tolerance tolerance = default(FlutterSDK.Physics.Tolerance.Tolerance))
         : base(spring, start, end, velocity, tolerance: tolerance)
         {

@@ -395,6 +395,11 @@ namespace FlutterSDK.Material.Cardtheme
     /// </Summary>
     public class CardTheme : IDiagnosticable
     {
+        /// <Summary>
+        /// Creates a theme that can be used for [ThemeData.cardTheme].
+        ///
+        /// The [elevation] must be null or non-negative.
+        /// </Summary>
         public CardTheme(FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color shadowColor = default(FlutterBinding.UI.Color), double elevation = default(double), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry margin = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder))
         : base()
         {
@@ -405,11 +410,43 @@ namespace FlutterSDK.Material.Cardtheme
             this.Margin = margin;
             this.Shape = shape;
         }
+        /// <Summary>
+        /// Default value for [Card.clipBehavior].
+        ///
+        /// If null, [Card] uses [Clip.none].
+        /// </Summary>
         public virtual FlutterBinding.UI.Clip ClipBehavior { get; set; }
+        /// <Summary>
+        /// Default value for [Card.color].
+        ///
+        /// If null, [Card] uses [ThemeData.cardColor].
+        /// </Summary>
         public virtual FlutterBinding.UI.Color Color { get; set; }
+        /// <Summary>
+        /// Default value for [Card.shadowColor].
+        ///
+        /// If null, [Card] defaults to fully opaque black.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color ShadowColor { get; set; }
+        /// <Summary>
+        /// Default value for [Card.elevation].
+        ///
+        /// If null, [Card] uses a default of 1.0.
+        /// </Summary>
         public virtual double Elevation { get; set; }
+        /// <Summary>
+        /// Default value for [Card.margin].
+        ///
+        /// If null, [Card] uses a default margin of 4.0 logical pixels on all sides:
+        /// `EdgeInsets.all(4.0)`.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Margin { get; set; }
+        /// <Summary>
+        /// Default value for [Card.shape].
+        ///
+        /// If null, [Card] then uses a [RoundedRectangleBorder] with a circular
+        /// corner radius of 4.0.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Borders.ShapeBorder Shape { get; set; }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 

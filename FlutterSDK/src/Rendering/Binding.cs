@@ -425,6 +425,9 @@ namespace FlutterSDK.Rendering.Binding
 {
     internal static class BindingDefaultClass
     {
+        /// <Summary>
+        /// Prints a textual representation of the entire render tree.
+        /// </Summary>
         internal static void DebugDumpRenderTree()
         {
             PrintDefaultClass.DebugPrint(BindingDefaultClass.RendererBinding.Instance?.RenderView?.ToStringDeep() ?? "Render tree unavailable.");
@@ -432,6 +435,9 @@ namespace FlutterSDK.Rendering.Binding
 
 
 
+        /// <Summary>
+        /// Prints a textual representation of the entire layer tree.
+        /// </Summary>
         internal static void DebugDumpLayerTree()
         {
             PrintDefaultClass.DebugPrint(BindingDefaultClass.RendererBinding.Instance?.RenderView?.DebugLayer?.ToStringDeep() ?? "Layer tree unavailable.");
@@ -439,6 +445,14 @@ namespace FlutterSDK.Rendering.Binding
 
 
 
+        /// <Summary>
+        /// Prints a textual representation of the entire semantics tree.
+        /// This will only work if there is a semantics client attached.
+        /// Otherwise, a notice that no semantics are available will be printed.
+        ///
+        /// The order in which the children of a [SemanticsNode] will be printed is
+        /// controlled by the [childOrder] parameter.
+        /// </Summary>
         internal static void DebugDumpSemanticsTree(FlutterSDK.Semantics.Semantics.DebugSemanticsDumpOrder childOrder)
         {
             PrintDefaultClass.DebugPrint(BindingDefaultClass.RendererBinding.Instance?.RenderView?.DebugSemantics?.ToStringDeep(childOrder: childOrder) ?? "Semantics not collected.");
@@ -916,6 +930,12 @@ namespace FlutterSDK.Rendering.Binding
     /// </Summary>
     public class RenderingFlutterBinding : FlutterSDK.Foundation.Binding.BindingBase, IGestureBinding, IServicesBinding, ISchedulerBinding, ISemanticsBinding, IPaintingBinding, IRendererBinding
     {
+        /// <Summary>
+        /// Creates a binding for the rendering layer.
+        ///
+        /// The `root` render box is attached directly to the [renderView] and is
+        /// given constraints that require it to fill the window.
+        /// </Summary>
         public RenderingFlutterBinding(FlutterSDK.Rendering.Box.RenderBox root = default(FlutterSDK.Rendering.Box.RenderBox))
         {
 

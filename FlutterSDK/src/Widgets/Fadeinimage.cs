@@ -478,6 +478,19 @@ namespace FlutterSDK.Widgets.Fadeinimage
     /// </Summary>
     public class FadeInImage : FlutterSDK.Widgets.Framework.StatelessWidget
     {
+        /// <Summary>
+        /// Creates a widget that displays a [placeholder] while an [image] is loading,
+        /// then fades-out the placeholder and fades-in the image.
+        ///
+        /// The [placeholder] and [image] may be composed in a [ResizeImage] to provide
+        /// a custom decode/cache size.
+        ///
+        /// The [placeholder], [image], [fadeOutDuration], [fadeOutCurve],
+        /// [fadeInDuration], [fadeInCurve], [alignment], [repeat], and
+        /// [matchTextDirection] arguments must not be null.
+        ///
+        /// If [excludeFromSemantics] is true, then [imageSemanticLabel] will be ignored.
+        /// </Summary>
         public FadeInImage(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Imageprovider.ImageProvider<object> placeholder = default(FlutterSDK.Painting.Imageprovider.ImageProvider<object>), FlutterSDK.Widgets.Image.ImageErrorWidgetBuilder placeholderErrorBuilder = default(FlutterSDK.Widgets.Image.ImageErrorWidgetBuilder), FlutterSDK.Painting.Imageprovider.ImageProvider<object> image = default(FlutterSDK.Painting.Imageprovider.ImageProvider<object>), FlutterSDK.Widgets.Image.ImageErrorWidgetBuilder imageErrorBuilder = default(FlutterSDK.Widgets.Image.ImageErrorWidgetBuilder), bool excludeFromSemantics = false, string imageSemanticLabel = default(string), TimeSpan fadeOutDuration = default(TimeSpan), FlutterSDK.Animation.Curves.Curve fadeOutCurve = default(FlutterSDK.Animation.Curves.Curve), TimeSpan fadeInDuration = default(TimeSpan), FlutterSDK.Animation.Curves.Curve fadeInCurve = default(FlutterSDK.Animation.Curves.Curve), double width = default(double), double height = default(double), FlutterSDK.Painting.Boxfit.BoxFit fit = default(FlutterSDK.Painting.Boxfit.BoxFit), FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), FlutterSDK.Painting.Decorationimage.ImageRepeat repeat = default(FlutterSDK.Painting.Decorationimage.ImageRepeat), bool matchTextDirection = false)
         : base(key: key)
         {
@@ -498,6 +511,36 @@ namespace FlutterSDK.Widgets.Fadeinimage
             this.Repeat = repeat;
             this.MatchTextDirection = matchTextDirection;
         }
+        /// <Summary>
+        /// Creates a widget that uses a placeholder image stored in memory while
+        /// loading the final image from the network.
+        ///
+        /// The `placeholder` argument contains the bytes of the in-memory image.
+        ///
+        /// The `image` argument is the URL of the final image.
+        ///
+        /// The `placeholderScale` and `imageScale` arguments are passed to their
+        /// respective [ImageProvider]s (see also [ImageInfo.scale]).
+        ///
+        /// If [placeholderCacheWidth], [placeholderCacheHeight], [imageCacheWidth],
+        /// or [imageCacheHeight] are provided, it indicates to the
+        /// engine that the respective image should be decoded at the specified size.
+        /// The image will be rendered to the constraints of the layout or [width]
+        /// and [height] regardless of these parameters. These parameters are primarily
+        /// intended to reduce the memory usage of [ImageCache].
+        ///
+        /// The [placeholder], [image], [placeholderScale], [imageScale],
+        /// [fadeOutDuration], [fadeOutCurve], [fadeInDuration], [fadeInCurve],
+        /// [alignment], [repeat], and [matchTextDirection] arguments must not be
+        /// null.
+        ///
+        /// See also:
+        ///
+        ///  * [new Image.memory], which has more details about loading images from
+        ///    memory.
+        ///  * [new Image.network], which has more details about loading images from
+        ///    the network.
+        /// </Summary>
         public static FadeInImage MemoryNetwork(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), Uint8List placeholder = default(Uint8List), FlutterSDK.Widgets.Image.ImageErrorWidgetBuilder placeholderErrorBuilder = default(FlutterSDK.Widgets.Image.ImageErrorWidgetBuilder), string image = default(string), FlutterSDK.Widgets.Image.ImageErrorWidgetBuilder imageErrorBuilder = default(FlutterSDK.Widgets.Image.ImageErrorWidgetBuilder), double placeholderScale = 1.0, double imageScale = 1.0, bool excludeFromSemantics = false, string imageSemanticLabel = default(string), TimeSpan fadeOutDuration = default(TimeSpan), FlutterSDK.Animation.Curves.Curve fadeOutCurve = default(FlutterSDK.Animation.Curves.Curve), TimeSpan fadeInDuration = default(TimeSpan), FlutterSDK.Animation.Curves.Curve fadeInCurve = default(FlutterSDK.Animation.Curves.Curve), double width = default(double), double height = default(double), FlutterSDK.Painting.Boxfit.BoxFit fit = default(FlutterSDK.Painting.Boxfit.BoxFit), FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), FlutterSDK.Painting.Decorationimage.ImageRepeat repeat = default(FlutterSDK.Painting.Decorationimage.ImageRepeat), bool matchTextDirection = false, int placeholderCacheWidth = default(int), int placeholderCacheHeight = default(int), int imageCacheWidth = default(int), int imageCacheHeight = default(int))
         {
             var instance = new FadeInImage(key: key); instance.PlaceholderErrorBuilder = placeholderErrorBuilder;
@@ -515,6 +558,39 @@ namespace FlutterSDK.Widgets.Fadeinimage
             instance.Repeat = repeat;
             instance.MatchTextDirection = matchTextDirection;
         }
+        /// <Summary>
+        /// Creates a widget that uses a placeholder image stored in an asset bundle
+        /// while loading the final image from the network.
+        ///
+        /// The `placeholder` argument is the key of the image in the asset bundle.
+        ///
+        /// The `image` argument is the URL of the final image.
+        ///
+        /// The `placeholderScale` and `imageScale` arguments are passed to their
+        /// respective [ImageProvider]s (see also [ImageInfo.scale]).
+        ///
+        /// If `placeholderScale` is omitted or is null, pixel-density-aware asset
+        /// resolution will be attempted for the [placeholder] image. Otherwise, the
+        /// exact asset specified will be used.
+        ///
+        /// If [placeholderCacheWidth], [placeholderCacheHeight], [imageCacheWidth],
+        /// or [imageCacheHeight] are provided, it indicates to the
+        /// engine that the respective image should be decoded at the specified size.
+        /// The image will be rendered to the constraints of the layout or [width]
+        /// and [height] regardless of these parameters. These parameters are primarily
+        /// intended to reduce the memory usage of [ImageCache].
+        ///
+        /// The [placeholder], [image], [imageScale], [fadeOutDuration],
+        /// [fadeOutCurve], [fadeInDuration], [fadeInCurve], [alignment], [repeat],
+        /// and [matchTextDirection] arguments must not be null.
+        ///
+        /// See also:
+        ///
+        ///  * [new Image.asset], which has more details about loading images from
+        ///    asset bundles.
+        ///  * [new Image.network], which has more details about loading images from
+        ///    the network.
+        /// </Summary>
         public static FadeInImage AssetNetwork(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), string placeholder = default(string), FlutterSDK.Widgets.Image.ImageErrorWidgetBuilder placeholderErrorBuilder = default(FlutterSDK.Widgets.Image.ImageErrorWidgetBuilder), string image = default(string), FlutterSDK.Widgets.Image.ImageErrorWidgetBuilder imageErrorBuilder = default(FlutterSDK.Widgets.Image.ImageErrorWidgetBuilder), FlutterSDK.Services.Assetbundle.AssetBundle bundle = default(FlutterSDK.Services.Assetbundle.AssetBundle), double placeholderScale = default(double), double imageScale = 1.0, bool excludeFromSemantics = false, string imageSemanticLabel = default(string), TimeSpan fadeOutDuration = default(TimeSpan), FlutterSDK.Animation.Curves.Curve fadeOutCurve = default(FlutterSDK.Animation.Curves.Curve), TimeSpan fadeInDuration = default(TimeSpan), FlutterSDK.Animation.Curves.Curve fadeInCurve = default(FlutterSDK.Animation.Curves.Curve), double width = default(double), double height = default(double), FlutterSDK.Painting.Boxfit.BoxFit fit = default(FlutterSDK.Painting.Boxfit.BoxFit), FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), FlutterSDK.Painting.Decorationimage.ImageRepeat repeat = default(FlutterSDK.Painting.Decorationimage.ImageRepeat), bool matchTextDirection = false, int placeholderCacheWidth = default(int), int placeholderCacheHeight = default(int), int imageCacheWidth = default(int), int imageCacheHeight = default(int))
         {
             var instance = new FadeInImage(key: key); instance.PlaceholderErrorBuilder = placeholderErrorBuilder;
@@ -532,21 +608,135 @@ namespace FlutterSDK.Widgets.Fadeinimage
             instance.Repeat = repeat;
             instance.MatchTextDirection = matchTextDirection;
         }
+        /// <Summary>
+        /// Image displayed while the target [image] is loading.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Imageprovider.ImageProvider<object> Placeholder { get; set; }
+        /// <Summary>
+        /// A builder function that is called if an error occurs during placeholder
+        /// image loading.
+        ///
+        /// If this builder is not provided, any exceptions will be reported to
+        /// [FlutterError.onError]. If it is provided, the caller should either handle
+        /// the exception by providing a replacement widget, or rethrow the exception.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Image.ImageErrorWidgetBuilder PlaceholderErrorBuilder { get; set; }
+        /// <Summary>
+        /// The target image that is displayed once it has loaded.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Imageprovider.ImageProvider<object> Image { get; set; }
+        /// <Summary>
+        /// A builder function that is called if an error occurs during image loading.
+        ///
+        /// If this builder is not provided, any exceptions will be reported to
+        /// [FlutterError.onError]. If it is provided, the caller should either handle
+        /// the exception by providing a replacement widget, or rethrow the exception.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Image.ImageErrorWidgetBuilder ImageErrorBuilder { get; set; }
+        /// <Summary>
+        /// The duration of the fade-out animation for the [placeholder].
+        /// </Summary>
         public virtual TimeSpan FadeOutDuration { get; set; }
+        /// <Summary>
+        /// The curve of the fade-out animation for the [placeholder].
+        /// </Summary>
         public virtual FlutterSDK.Animation.Curves.Curve FadeOutCurve { get; set; }
+        /// <Summary>
+        /// The duration of the fade-in animation for the [image].
+        /// </Summary>
         public virtual TimeSpan FadeInDuration { get; set; }
+        /// <Summary>
+        /// The curve of the fade-in animation for the [image].
+        /// </Summary>
         public virtual FlutterSDK.Animation.Curves.Curve FadeInCurve { get; set; }
+        /// <Summary>
+        /// If non-null, require the image to have this width.
+        ///
+        /// If null, the image will pick a size that best preserves its intrinsic
+        /// aspect ratio. This may result in a sudden change if the size of the
+        /// placeholder image does not match that of the target image. The size is
+        /// also affected by the scale factor.
+        /// </Summary>
         public virtual double Width { get; set; }
+        /// <Summary>
+        /// If non-null, require the image to have this height.
+        ///
+        /// If null, the image will pick a size that best preserves its intrinsic
+        /// aspect ratio. This may result in a sudden change if the size of the
+        /// placeholder image does not match that of the target image. The size is
+        /// also affected by the scale factor.
+        /// </Summary>
         public virtual double Height { get; set; }
+        /// <Summary>
+        /// How to inscribe the image into the space allocated during layout.
+        ///
+        /// The default varies based on the other fields. See the discussion at
+        /// [paintImage].
+        /// </Summary>
         public virtual FlutterSDK.Painting.Boxfit.BoxFit Fit { get; set; }
+        /// <Summary>
+        /// How to align the image within its bounds.
+        ///
+        /// The alignment aligns the given position in the image to the given position
+        /// in the layout bounds. For example, an [Alignment] alignment of (-1.0,
+        /// -1.0) aligns the image to the top-left corner of its layout bounds, while an
+        /// [Alignment] alignment of (1.0, 1.0) aligns the bottom right of the
+        /// image with the bottom right corner of its layout bounds. Similarly, an
+        /// alignment of (0.0, 1.0) aligns the bottom middle of the image with the
+        /// middle of the bottom edge of its layout bounds.
+        ///
+        /// If the [alignment] is [TextDirection]-dependent (i.e. if it is a
+        /// [AlignmentDirectional]), then an ambient [Directionality] widget
+        /// must be in scope.
+        ///
+        /// Defaults to [Alignment.center].
+        ///
+        /// See also:
+        ///
+        ///  * [Alignment], a class with convenient constants typically used to
+        ///    specify an [AlignmentGeometry].
+        ///  * [AlignmentDirectional], like [Alignment] for specifying alignments
+        ///    relative to text direction.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Alignment.AlignmentGeometry Alignment { get; set; }
+        /// <Summary>
+        /// How to paint any portions of the layout bounds not covered by the image.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Decorationimage.ImageRepeat Repeat { get; set; }
+        /// <Summary>
+        /// Whether to paint the image in the direction of the [TextDirection].
+        ///
+        /// If this is true, then in [TextDirection.ltr] contexts, the image will be
+        /// drawn with its origin in the top left (the "normal" painting direction for
+        /// images); and in [TextDirection.rtl] contexts, the image will be drawn with
+        /// a scaling factor of -1 in the horizontal direction so that the origin is
+        /// in the top right.
+        ///
+        /// This is occasionally used with images in right-to-left environments, for
+        /// images that were designed for left-to-right locales. Be careful, when
+        /// using this, to not flip images with integral shadows, text, or other
+        /// effects that will look incorrect when flipped.
+        ///
+        /// If this is true, there must be an ambient [Directionality] widget in
+        /// scope.
+        /// </Summary>
         public virtual bool MatchTextDirection { get; set; }
+        /// <Summary>
+        /// Whether to exclude this image from semantics.
+        ///
+        /// This is useful for images which do not contribute meaningful information
+        /// to an application.
+        /// </Summary>
         public virtual bool ExcludeFromSemantics { get; set; }
+        /// <Summary>
+        /// A semantic description of the [image].
+        ///
+        /// Used to provide a description of the [image] to TalkBack on Android, and
+        /// VoiceOver on iOS.
+        ///
+        /// This description will be used both while the [placeholder] is shown and
+        /// once the image has loaded.
+        /// </Summary>
         public virtual string ImageSemanticLabel { get; set; }
 
         private FlutterSDK.Widgets.Image.Image _Image(FlutterSDK.Painting.Imageprovider.ImageProvider<object> image = default(FlutterSDK.Painting.Imageprovider.ImageProvider<object>), FlutterSDK.Widgets.Image.ImageErrorWidgetBuilder errorBuilder = default(FlutterSDK.Widgets.Image.ImageErrorWidgetBuilder), FlutterSDK.Widgets.Image.ImageFrameBuilder frameBuilder = default(FlutterSDK.Widgets.Image.ImageFrameBuilder))

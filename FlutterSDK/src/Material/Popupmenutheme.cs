@@ -433,6 +433,9 @@ namespace FlutterSDK.Material.Popupmenutheme
     /// </Summary>
     public class PopupMenuThemeData : IDiagnosticable
     {
+        /// <Summary>
+        /// Creates the set of properties used to configure [PopupMenuTheme].
+        /// </Summary>
         public PopupMenuThemeData(FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), double elevation = default(double), FlutterSDK.Painting.Textstyle.TextStyle textStyle = default(FlutterSDK.Painting.Textstyle.TextStyle))
         {
             this.Color = color;
@@ -440,9 +443,21 @@ namespace FlutterSDK.Material.Popupmenutheme
             this.Elevation = elevation;
             this.TextStyle = textStyle;
         }
+        /// <Summary>
+        /// The background color of the popup menu.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color Color { get; set; }
+        /// <Summary>
+        /// The shape of the popup menu.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Borders.ShapeBorder Shape { get; set; }
+        /// <Summary>
+        /// The elevation of the popup menu.
+        /// </Summary>
         public virtual double Elevation { get; set; }
+        /// <Summary>
+        /// The text style of items in the popup menu.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Textstyle.TextStyle TextStyle { get; set; }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 
@@ -508,11 +523,20 @@ namespace FlutterSDK.Material.Popupmenutheme
     /// </Summary>
     public class PopupMenuTheme : FlutterSDK.Widgets.Inheritedtheme.InheritedTheme
     {
+        /// <Summary>
+        /// Creates a popup menu theme that controls the configurations for
+        /// popup menus in its widget subtree.
+        ///
+        /// The data argument must not be null.
+        /// </Summary>
         public PopupMenuTheme(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Material.Popupmenutheme.PopupMenuThemeData data = default(FlutterSDK.Material.Popupmenutheme.PopupMenuThemeData), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
             this.Data = data;
         }
+        /// <Summary>
+        /// The properties for descendant popup menu widgets.
+        /// </Summary>
         public virtual FlutterSDK.Material.Popupmenutheme.PopupMenuThemeData Data { get; set; }
 
         /// <Summary>

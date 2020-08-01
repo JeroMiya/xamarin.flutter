@@ -293,7 +293,24 @@ using FlutterSDK.Widgets.Scrollview;
 using FlutterSDK.Foundation;
 namespace FlutterSDK.Cupertino.Refresh
 {
+    /// <Summary>
+    /// Signature for a builder that can create a different widget to show in the
+    /// refresh indicator space depending on the current state of the refresh
+    /// control and the space available.
+    ///
+    /// The `refreshTriggerPullDistance` and `refreshIndicatorExtent` parameters are
+    /// the same values passed into the [CupertinoSliverRefreshControl].
+    ///
+    /// The `pulledExtent` parameter is the currently available space either from
+    /// overscrolling or as held by the sliver during refresh.
+    /// </Summary>
     public delegate FlutterSDK.Widgets.Framework.Widget RefreshControlIndicatorBuilder(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Cupertino.Refresh.RefreshIndicatorMode refreshState, double pulledExtent, double refreshTriggerPullDistance, double refreshIndicatorExtent);
+    /// <Summary>
+    /// A callback function that's invoked when the [CupertinoSliverRefreshControl] is
+    /// pulled a `refreshTriggerPullDistance`. Must return a [Future]. Upon
+    /// completion of the [Future], the [CupertinoSliverRefreshControl] enters the
+    /// [RefreshIndicatorMode.done] state and will start to go away.
+    /// </Summary>
     public delegate Future<object> RefreshCallback();
     internal static class RefreshDefaultClass
     {
@@ -455,6 +472,19 @@ namespace FlutterSDK.Cupertino.Refresh
     /// </Summary>
     public class CupertinoSliverRefreshControl : FlutterSDK.Widgets.Framework.StatefulWidget
     {
+        /// <Summary>
+        /// Create a new refresh control for inserting into a list of slivers.
+        ///
+        /// The [refreshTriggerPullDistance] and [refreshIndicatorExtent] arguments
+        /// must not be null and must be >= 0.
+        ///
+        /// The [builder] argument may be null, in which case no indicator UI will be
+        /// shown but the [onRefresh] will still be invoked. By default, [builder]
+        /// shows a [CupertinoActivityIndicator].
+        ///
+        /// The [onRefresh] argument will be called when pulled far enough to trigger
+        /// a refresh.
+        /// </Summary>
         public CupertinoSliverRefreshControl(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), double refreshTriggerPullDistance = default(double), double refreshIndicatorExtent = default(double), FlutterSDK.Cupertino.Refresh.RefreshControlIndicatorBuilder builder = default(FlutterSDK.Cupertino.Refresh.RefreshControlIndicatorBuilder), FlutterSDK.Cupertino.Refresh.RefreshCallback onRefresh = default(FlutterSDK.Cupertino.Refresh.RefreshCallback))
         : base(key: key)
         {
@@ -463,9 +493,52 @@ namespace FlutterSDK.Cupertino.Refresh
             this.Builder = builder;
             this.OnRefresh = onRefresh;
         }
+        /// <Summary>
+        /// The amount of overscroll the scrollable must be dragged to trigger a reload.
+        ///
+        /// Must not be null, must be larger than 0.0 and larger than
+        /// [refreshIndicatorExtent]. Defaults to 100px when not specified.
+        ///
+        /// When overscrolled past this distance, [onRefresh] will be called if not
+        /// null and the [builder] will build in the [RefreshIndicatorMode.armed] state.
+        /// </Summary>
         public virtual double RefreshTriggerPullDistance { get; set; }
+        /// <Summary>
+        /// The amount of space the refresh indicator sliver will keep holding while
+        /// [onRefresh]'s [Future] is still running.
+        ///
+        /// Must not be null and must be positive, but can be 0.0, in which case the
+        /// sliver will start retracting back to 0.0 as soon as the refresh is started.
+        /// Defaults to 60px when not specified.
+        ///
+        /// Must be smaller than [refreshTriggerPullDistance], since the sliver
+        /// shouldn't grow further after triggering the refresh.
+        /// </Summary>
         public virtual double RefreshIndicatorExtent { get; set; }
+        /// <Summary>
+        /// A builder that's called as this sliver's size changes, and as the state
+        /// changes.
+        ///
+        /// A default simple Twitter-style pull-to-refresh indicator is provided if
+        /// not specified.
+        ///
+        /// Can be set to null, in which case nothing will be drawn in the overscrolled
+        /// space.
+        ///
+        /// Will not be called when the available space is zero such as before any
+        /// overscroll.
+        /// </Summary>
         public virtual FlutterSDK.Cupertino.Refresh.RefreshControlIndicatorBuilder Builder { get; set; }
+        /// <Summary>
+        /// Callback invoked when pulled by [refreshTriggerPullDistance].
+        ///
+        /// If provided, must return a [Future] which will keep the indicator in the
+        /// [RefreshIndicatorMode.refresh] state until the [Future] completes.
+        ///
+        /// Can be null, in which case a single frame of [RefreshIndicatorMode.armed]
+        /// state will be drawn before going immediately to the [RefreshIndicatorMode.done]
+        /// where the sliver will start retracting.
+        /// </Summary>
         public virtual FlutterSDK.Cupertino.Refresh.RefreshCallback OnRefresh { get; set; }
         internal virtual double _DefaultRefreshTriggerPullDistance { get; set; }
         internal virtual double _DefaultRefreshIndicatorExtent { get; set; }

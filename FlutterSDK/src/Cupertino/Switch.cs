@@ -345,6 +345,12 @@ namespace FlutterSDK.Cupertino.Switch
     /// </Summary>
     public class CupertinoSwitch : FlutterSDK.Widgets.Framework.StatefulWidget
     {
+        /// <Summary>
+        /// Creates an iOS-style switch.
+        ///
+        /// The [value] parameter must not be null.
+        /// The [dragStartBehavior] parameter defaults to [DragStartBehavior.start] and must not be null.
+        /// </Summary>
         public CupertinoSwitch(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), bool value = default(bool), FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>), FlutterBinding.UI.Color activeColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color trackColor = default(FlutterBinding.UI.Color), FlutterSDK.Gestures.Recognizer.DragStartBehavior dragStartBehavior = default(FlutterSDK.Gestures.Recognizer.DragStartBehavior))
         : base(key: key)
         {
@@ -354,10 +360,72 @@ namespace FlutterSDK.Cupertino.Switch
             this.TrackColor = trackColor;
             this.DragStartBehavior = dragStartBehavior;
         }
+        /// <Summary>
+        /// Whether this switch is on or off.
+        ///
+        /// Must not be null.
+        /// </Summary>
         public virtual bool Value { get; set; }
+        /// <Summary>
+        /// Called when the user toggles with switch on or off.
+        ///
+        /// The switch passes the new value to the callback but does not actually
+        /// change state until the parent widget rebuilds the switch with the new
+        /// value.
+        ///
+        /// If null, the switch will be displayed as disabled, which has a reduced opacity.
+        ///
+        /// The callback provided to onChanged should update the state of the parent
+        /// [StatefulWidget] using the [State.setState] method, so that the parent
+        /// gets rebuilt; for example:
+        ///
+        /// ```dart
+        /// CupertinoSwitch(
+        ///   value: _giveVerse,
+        ///   onChanged: (bool newValue) {
+        ///     setState(() {
+        ///       _giveVerse = newValue;
+        ///     });
+        ///   },
+        /// )
+        /// ```
+        /// </Summary>
         public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<bool> OnChanged { get; set; }
+        /// <Summary>
+        /// The color to use when this switch is on.
+        ///
+        /// Defaults to [CupertinoColors.systemGreen] when null and ignores
+        /// the [CupertinoTheme] in accordance to native iOS behavior.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color ActiveColor { get; set; }
+        /// <Summary>
+        /// The color to use for the background when the switch is off.
+        ///
+        /// Defaults to [CupertinoColors.secondarySystemFill] when null.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color TrackColor { get; set; }
+        /// <Summary>
+        /// {@template flutter.cupertino.switch.dragStartBehavior}
+        /// Determines the way that drag start behavior is handled.
+        ///
+        /// If set to [DragStartBehavior.start], the drag behavior used to move the
+        /// switch from on to off will begin upon the detection of a drag gesture. If
+        /// set to [DragStartBehavior.down] it will begin when a down event is first
+        /// detected.
+        ///
+        /// In general, setting this to [DragStartBehavior.start] will make drag
+        /// animation smoother and setting it to [DragStartBehavior.down] will make
+        /// drag behavior feel slightly more reactive.
+        ///
+        /// By default, the drag start behavior is [DragStartBehavior.start].
+        ///
+        /// See also:
+        ///
+        ///  * [DragGestureRecognizer.dragStartBehavior], which gives an example for
+        ///    the different behaviors.
+        ///
+        /// {@endtemplate}
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Recognizer.DragStartBehavior DragStartBehavior { get; set; }
 
         public new FlutterSDK.Cupertino.Switch._CupertinoSwitchState CreateState() => new _CupertinoSwitchState();

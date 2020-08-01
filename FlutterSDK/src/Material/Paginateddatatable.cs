@@ -417,6 +417,35 @@ namespace FlutterSDK.Material.Paginateddatatable
     /// </Summary>
     public class PaginatedDataTable : FlutterSDK.Widgets.Framework.StatefulWidget
     {
+        /// <Summary>
+        /// Creates a widget describing a paginated [DataTable] on a [Card].
+        ///
+        /// The [header] should give the card's header, typically a [Text] widget. It
+        /// must not be null.
+        ///
+        /// The [columns] argument must be a list of as many [DataColumn] objects as
+        /// the table is to have columns, ignoring the leading checkbox column if any.
+        /// The [columns] argument must have a length greater than zero and cannot be
+        /// null.
+        ///
+        /// If the table is sorted, the column that provides the current primary key
+        /// should be specified by index in [sortColumnIndex], 0 meaning the first
+        /// column in [columns], 1 being the next one, and so forth.
+        ///
+        /// The actual sort order can be specified using [sortAscending]; if the sort
+        /// order is ascending, this should be true (the default), otherwise it should
+        /// be false.
+        ///
+        /// The [source] must not be null. The [source] should be a long-lived
+        /// [DataTableSource]. The same source should be provided each time a
+        /// particular [PaginatedDataTable] widget is created; avoid creating a new
+        /// [DataTableSource] with each new instance of the [PaginatedDataTable]
+        /// widget unless the data table really is to now show entirely different
+        /// data from a new source.
+        ///
+        /// The [rowsPerPage] and [availableRowsPerPage] must not be null (they
+        /// both have defaults, though, so don't have to be specified).
+        /// </Summary>
         public PaginatedDataTable(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget header = default(FlutterSDK.Widgets.Framework.Widget), List<FlutterSDK.Widgets.Framework.Widget> actions = default(List<FlutterSDK.Widgets.Framework.Widget>), List<FlutterSDK.Material.Datatable.DataColumn> columns = default(List<FlutterSDK.Material.Datatable.DataColumn>), int sortColumnIndex = default(int), bool sortAscending = true, FlutterSDK.Foundation.Basictypes.ValueSetter<bool> onSelectAll = default(FlutterSDK.Foundation.Basictypes.ValueSetter<bool>), double dataRowHeight = default(double), double headingRowHeight = 56.0, double horizontalMargin = 24.0, double columnSpacing = 56.0, bool showCheckboxColumn = true, int initialFirstRowIndex = 0, FlutterSDK.Foundation.Basictypes.ValueChanged<int> onPageChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<int>), int rowsPerPage = default(int), List<int> availableRowsPerPage = default(List<int>), FlutterSDK.Foundation.Basictypes.ValueChanged<int> onRowsPerPageChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<int>), FlutterSDK.Gestures.Recognizer.DragStartBehavior dragStartBehavior = default(FlutterSDK.Gestures.Recognizer.DragStartBehavior), FlutterSDK.Material.Datatablesource.DataTableSource source = default(FlutterSDK.Material.Datatablesource.DataTableSource))
         : base(key: key)
         {
@@ -439,24 +468,135 @@ namespace FlutterSDK.Material.Paginateddatatable
             this.DragStartBehavior = dragStartBehavior;
             this.Source = source;
         }
+        /// <Summary>
+        /// The table card's header.
+        ///
+        /// This is typically a [Text] widget, but can also be a [ButtonBar] with
+        /// [FlatButton]s. Suitable defaults are automatically provided for the font,
+        /// button color, button padding, and so forth.
+        ///
+        /// If items in the table are selectable, then, when the selection is not
+        /// empty, the header is replaced by a count of the selected items.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Header { get; set; }
+        /// <Summary>
+        /// Icon buttons to show at the top right of the table.
+        ///
+        /// Typically, the exact actions included in this list will vary based on
+        /// whether any rows are selected or not.
+        ///
+        /// These should be size 24.0 with default padding (8.0).
+        /// </Summary>
         public virtual List<FlutterSDK.Widgets.Framework.Widget> Actions { get; set; }
+        /// <Summary>
+        /// The configuration and labels for the columns in the table.
+        /// </Summary>
         public virtual List<FlutterSDK.Material.Datatable.DataColumn> Columns { get; set; }
+        /// <Summary>
+        /// The current primary sort key's column.
+        ///
+        /// See [DataTable.sortColumnIndex].
+        /// </Summary>
         public virtual int SortColumnIndex { get; set; }
+        /// <Summary>
+        /// Whether the column mentioned in [sortColumnIndex], if any, is sorted
+        /// in ascending order.
+        ///
+        /// See [DataTable.sortAscending].
+        /// </Summary>
         public virtual bool SortAscending { get; set; }
+        /// <Summary>
+        /// Invoked when the user selects or unselects every row, using the
+        /// checkbox in the heading row.
+        ///
+        /// See [DataTable.onSelectAll].
+        /// </Summary>
         public virtual FlutterSDK.Foundation.Basictypes.ValueSetter<bool> OnSelectAll { get; set; }
+        /// <Summary>
+        /// The height of each row (excluding the row that contains column headings).
+        ///
+        /// This value is optional and defaults to kMinInteractiveDimension if not
+        /// specified.
+        /// </Summary>
         public virtual double DataRowHeight { get; set; }
+        /// <Summary>
+        /// The height of the heading row.
+        ///
+        /// This value is optional and defaults to 56.0 if not specified.
+        /// </Summary>
         public virtual double HeadingRowHeight { get; set; }
+        /// <Summary>
+        /// The horizontal margin between the edges of the table and the content
+        /// in the first and last cells of each row.
+        ///
+        /// When a checkbox is displayed, it is also the margin between the checkbox
+        /// the content in the first data column.
+        ///
+        /// This value defaults to 24.0 to adhere to the Material Design specifications.
+        /// </Summary>
         public virtual double HorizontalMargin { get; set; }
+        /// <Summary>
+        /// The horizontal margin between the contents of each data column.
+        ///
+        /// This value defaults to 56.0 to adhere to the Material Design specifications.
+        /// </Summary>
         public virtual double ColumnSpacing { get; set; }
+        /// <Summary>
+        /// {@macro flutter.material.dataTable.showCheckboxColumn}
+        /// </Summary>
         public virtual bool ShowCheckboxColumn { get; set; }
+        /// <Summary>
+        /// The index of the first row to display when the widget is first created.
+        /// </Summary>
         public virtual int InitialFirstRowIndex { get; set; }
+        /// <Summary>
+        /// Invoked when the user switches to another page.
+        ///
+        /// The value is the index of the first row on the currently displayed page.
+        /// </Summary>
         public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<int> OnPageChanged { get; set; }
+        /// <Summary>
+        /// The number of rows to show on each page.
+        ///
+        /// See also:
+        ///
+        ///  * [onRowsPerPageChanged]
+        ///  * [defaultRowsPerPage]
+        /// </Summary>
         public virtual int RowsPerPage { get; set; }
+        /// <Summary>
+        /// The default value for [rowsPerPage].
+        ///
+        /// Useful when initializing the field that will hold the current
+        /// [rowsPerPage], when implemented [onRowsPerPageChanged].
+        /// </Summary>
         public virtual int DefaultRowsPerPage { get; set; }
+        /// <Summary>
+        /// The options to offer for the rowsPerPage.
+        ///
+        /// The current [rowsPerPage] must be a value in this list.
+        ///
+        /// The values in this list should be sorted in ascending order.
+        /// </Summary>
         public virtual List<int> AvailableRowsPerPage { get; set; }
+        /// <Summary>
+        /// Invoked when the user selects a different number of rows per page.
+        ///
+        /// If this is null, then the value given by [rowsPerPage] will be used
+        /// and no affordance will be provided to change the value.
+        /// </Summary>
         public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<int> OnRowsPerPageChanged { get; set; }
+        /// <Summary>
+        /// The data source which provides data to show in each row. Must be non-null.
+        ///
+        /// This object should generally have a lifetime longer than the
+        /// [PaginatedDataTable] widget itself; it should be reused each time the
+        /// [PaginatedDataTable] constructor is called.
+        /// </Summary>
         public virtual FlutterSDK.Material.Datatablesource.DataTableSource Source { get; set; }
+        /// <Summary>
+        /// {@macro flutter.widgets.scrollable.dragStartBehavior}
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Recognizer.DragStartBehavior DragStartBehavior { get; set; }
 
         public new FlutterSDK.Material.Paginateddatatable.PaginatedDataTableState CreateState() => new PaginatedDataTableState();

@@ -432,6 +432,11 @@ namespace FlutterSDK.Painting._Networkimageio
     /// </Summary>
     public class NetworkImage : FlutterSDK.Painting.Imageprovider.ImageProvider<FlutterSDK.Painting.Imageprovider.NetworkImage>, INetworkImage
     {
+        /// <Summary>
+        /// Creates an object that fetches the image at the given URL.
+        ///
+        /// The arguments [url] and [scale] must not be null.
+        /// </Summary>
         public NetworkImage(string url, double scale = 1.0, Dictionary<string, string> headers = default(Dictionary<string, string>))
         : base()
         {

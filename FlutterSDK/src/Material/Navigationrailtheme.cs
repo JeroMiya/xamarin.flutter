@@ -422,6 +422,9 @@ namespace FlutterSDK.Material.Navigationrailtheme
     /// </Summary>
     public class NavigationRailThemeData : IDiagnosticable
     {
+        /// <Summary>
+        /// Creates a theme that can be used for [ThemeData.navigationRailTheme].
+        /// </Summary>
         public NavigationRailThemeData(FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), double elevation = default(double), FlutterSDK.Painting.Textstyle.TextStyle unselectedLabelTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle selectedLabelTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Widgets.Iconthemedata.IconThemeData unselectedIconTheme = default(FlutterSDK.Widgets.Iconthemedata.IconThemeData), FlutterSDK.Widgets.Iconthemedata.IconThemeData selectedIconTheme = default(FlutterSDK.Widgets.Iconthemedata.IconThemeData), double groupAlignment = default(double), FlutterSDK.Material.Navigationrail.NavigationRailLabelType labelType = default(FlutterSDK.Material.Navigationrail.NavigationRailLabelType))
         {
             this.BackgroundColor = backgroundColor;
@@ -433,13 +436,43 @@ namespace FlutterSDK.Material.Navigationrailtheme
             this.GroupAlignment = groupAlignment;
             this.LabelType = labelType;
         }
+        /// <Summary>
+        /// Color to be used for the [NavigationRail]'s background.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
+        /// <Summary>
+        /// The z-coordinate to be used for the [NavigationRail]'s elevation.
+        /// </Summary>
         public virtual double Elevation { get; set; }
+        /// <Summary>
+        /// The style to merge with the default text style for
+        /// [NavigationRailDestination] labels, when the destination is not selected.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Textstyle.TextStyle UnselectedLabelTextStyle { get; set; }
+        /// <Summary>
+        /// The style to merge with the default text style for
+        /// [NavigationRailDestination] labels, when the destination is selected.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Textstyle.TextStyle SelectedLabelTextStyle { get; set; }
+        /// <Summary>
+        /// The theme to merge with the default icon theme for
+        /// [NavigationRailDestination] icons, when the destination is not selected.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Iconthemedata.IconThemeData UnselectedIconTheme { get; set; }
+        /// <Summary>
+        /// The theme to merge with the default icon theme for
+        /// [NavigationRailDestination] icons, when the destination is selected.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Iconthemedata.IconThemeData SelectedIconTheme { get; set; }
+        /// <Summary>
+        /// The alignment for the [NavigationRailDestination]s as they are positioned
+        /// within the [NavigationRail].
+        /// </Summary>
         public virtual double GroupAlignment { get; set; }
+        /// <Summary>
+        /// The type that defines the layout and behavior of the labels in the
+        /// [NavigationRail].
+        /// </Summary>
         public virtual FlutterSDK.Material.Navigationrail.NavigationRailLabelType LabelType { get; set; }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 
@@ -510,11 +543,22 @@ namespace FlutterSDK.Material.Navigationrailtheme
     /// </Summary>
     public class NavigationRailTheme : FlutterSDK.Widgets.Inheritedtheme.InheritedTheme
     {
+        /// <Summary>
+        /// Creates a navigation rail theme that controls the
+        /// [NavigationRailThemeData] properties for a [NavigationRail].
+        ///
+        /// The data argument must not be null.
+        /// </Summary>
         public NavigationRailTheme(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Material.Navigationrailtheme.NavigationRailThemeData data = default(FlutterSDK.Material.Navigationrailtheme.NavigationRailThemeData), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
             this.Data = data;
         }
+        /// <Summary>
+        /// Specifies the background color, elevation, label text style, icon theme,
+        /// group alignment, and label type and border values for descendant
+        /// [NavigationRail] widgets.
+        /// </Summary>
         public virtual FlutterSDK.Material.Navigationrailtheme.NavigationRailThemeData Data { get; set; }
 
         /// <Summary>

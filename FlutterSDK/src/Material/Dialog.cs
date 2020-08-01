@@ -388,6 +388,48 @@ namespace FlutterSDK.Material.Dialog
 
 
 
+        /// <Summary>
+        /// Displays a Material dialog above the current contents of the app, with
+        /// Material entrance and exit animations, modal barrier color, and modal
+        /// barrier behavior (dialog is dismissible with a tap on the barrier).
+        ///
+        /// This function takes a `builder` which typically builds a [Dialog] widget.
+        /// Content below the dialog is dimmed with a [ModalBarrier]. The widget
+        /// returned by the `builder` does not share a context with the location that
+        /// `showDialog` is originally called from. Use a [StatefulBuilder] or a
+        /// custom [StatefulWidget] if the dialog needs to update dynamically.
+        ///
+        /// The `child` argument is deprecated, and should be replaced with `builder`.
+        ///
+        /// The `context` argument is used to look up the [Navigator] and [Theme] for
+        /// the dialog. It is only used when the method is called. Its corresponding
+        /// widget can be safely removed from the tree before the dialog is closed.
+        ///
+        /// The `useRootNavigator` argument is used to determine whether to push the
+        /// dialog to the [Navigator] furthest from or nearest to the given `context`.
+        /// By default, `useRootNavigator` is `true` and the dialog route created by
+        /// this method is pushed to the root navigator.
+        ///
+        /// The `routeSettings` argument is passed to [showGeneralDialog],
+        /// see [RouteSettings] for details.
+        ///
+        /// If the application has multiple [Navigator] objects, it may be necessary to
+        /// call `Navigator.of(context, rootNavigator: true).pop(result)` to close the
+        /// dialog rather than just `Navigator.pop(context, result)`.
+        ///
+        /// Returns a [Future] that resolves to the value (if any) that was passed to
+        /// [Navigator.pop] when the dialog was closed.
+        ///
+        /// See also:
+        ///
+        ///  * [AlertDialog], for dialogs that have a row of buttons below a body.
+        ///  * [SimpleDialog], which handles the scrolling of the contents and does
+        ///    not show buttons below its body.
+        ///  * [Dialog], on which [SimpleDialog] and [AlertDialog] are based.
+        ///  * [showCupertinoDialog], which displays an iOS-style dialog.
+        ///  * [showGeneralDialog], which allows for customization of the dialog popup.
+        ///  * <https://material.io/design/components/dialogs.html>
+        /// </Summary>
         internal static Future<T> ShowDialog<T>(FlutterSDK.Widgets.Framework.BuildContext context = default(FlutterSDK.Widgets.Framework.BuildContext), bool barrierDismissible = true, FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.WidgetBuilder builder = default(FlutterSDK.Widgets.Framework.WidgetBuilder), bool useRootNavigator = true, FlutterSDK.Widgets.Navigator.RouteSettings routeSettings = default(FlutterSDK.Widgets.Navigator.RouteSettings))
         {
 
@@ -427,6 +469,11 @@ namespace FlutterSDK.Material.Dialog
     /// </Summary>
     public class Dialog : FlutterSDK.Widgets.Framework.StatelessWidget
     {
+        /// <Summary>
+        /// Creates a dialog.
+        ///
+        /// Typically used in conjunction with [showDialog].
+        /// </Summary>
         public Dialog(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), double elevation = default(double), TimeSpan insetAnimationDuration = default(TimeSpan), FlutterSDK.Animation.Curves.Curve insetAnimationCurve = default(FlutterSDK.Animation.Curves.Curve), FlutterSDK.Painting.Edgeinsets.EdgeInsets insetPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key)
         {
@@ -439,13 +486,81 @@ namespace FlutterSDK.Material.Dialog
             this.Shape = shape;
             this.Child = child;
         }
+        /// <Summary>
+        /// {@template flutter.material.dialog.backgroundColor}
+        /// The background color of the surface of this [Dialog].
+        ///
+        /// This sets the [Material.color] on this [Dialog]'s [Material].
+        ///
+        /// If `null`, [ThemeData.cardColor] is used.
+        /// {@endtemplate}
+        /// </Summary>
         public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
+        /// <Summary>
+        /// {@template flutter.material.dialog.elevation}
+        /// The z-coordinate of this [Dialog].
+        ///
+        /// If null then [DialogTheme.elevation] is used, and if that's null then the
+        /// dialog's elevation is 24.0.
+        /// {@endtemplate}
+        /// {@macro flutter.material.material.elevation}
+        /// </Summary>
         public virtual double Elevation { get; set; }
+        /// <Summary>
+        /// {@template flutter.material.dialog.insetAnimationDuration}
+        /// The duration of the animation to show when the system keyboard intrudes
+        /// into the space that the dialog is placed in.
+        ///
+        /// Defaults to 100 milliseconds.
+        /// {@endtemplate}
+        /// </Summary>
         public virtual TimeSpan InsetAnimationDuration { get; set; }
+        /// <Summary>
+        /// {@template flutter.material.dialog.insetAnimationCurve}
+        /// The curve to use for the animation shown when the system keyboard intrudes
+        /// into the space that the dialog is placed in.
+        ///
+        /// Defaults to [Curves.decelerate].
+        /// {@endtemplate}
+        /// </Summary>
         public virtual FlutterSDK.Animation.Curves.Curve InsetAnimationCurve { get; set; }
+        /// <Summary>
+        /// {@template flutter.material.dialog.insetPadding}
+        /// The amount of padding added to [MediaQueryData.viewInsets] on the outside
+        /// of the dialog. This defines the minimum space between the screen's edges
+        /// and the dialog.
+        ///
+        /// Defaults to `EdgeInsets.symmetric(horizontal: 40.0, vertical: 24.0)`.
+        /// {@endtemplate}
+        /// </Summary>
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets InsetPadding { get; set; }
+        /// <Summary>
+        /// {@template flutter.material.dialog.clipBehavior}
+        /// Controls how the contents of the dialog are clipped (or not) to the given
+        /// [shape].
+        ///
+        /// See the enum [Clip] for details of all possible options and their common
+        /// use cases.
+        ///
+        /// Defaults to [Clip.none], and must not be null.
+        /// {@endtemplate}
+        /// </Summary>
         public virtual FlutterBinding.UI.Clip ClipBehavior { get; set; }
+        /// <Summary>
+        /// {@template flutter.material.dialog.shape}
+        /// The shape of this dialog's border.
+        ///
+        /// Defines the dialog's [Material.shape].
+        ///
+        /// The default shape is a [RoundedRectangleBorder] with a radius of 2.0.
+        /// {@endtemplate}
+        /// </Summary>
         public virtual FlutterSDK.Painting.Borders.ShapeBorder Shape { get; set; }
+        /// <Summary>
+        /// The widget below this widget in the tree.
+        ///
+        /// {@macro flutter.widgets.child}
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
         internal virtual FlutterSDK.Painting.Roundedrectangleborder.RoundedRectangleBorder _DefaultDialogShape { get; set; }
         internal virtual double _DefaultElevation { get; set; }
@@ -535,6 +650,15 @@ namespace FlutterSDK.Material.Dialog
     /// </Summary>
     public class AlertDialog : FlutterSDK.Widgets.Framework.StatelessWidget
     {
+        /// <Summary>
+        /// Creates an alert dialog.
+        ///
+        /// Typically used in conjunction with [showDialog].
+        ///
+        /// The [contentPadding] must not be null. The [titlePadding] defaults to
+        /// null, which implies a default that depends on the values of the other
+        /// properties. See the documentation of [titlePadding] for details.
+        /// </Summary>
         public AlertDialog(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget title = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry titlePadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Painting.Textstyle.TextStyle titleTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Widgets.Framework.Widget content = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry contentPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Painting.Textstyle.TextStyle contentTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), List<FlutterSDK.Widgets.Framework.Widget> actions = default(List<FlutterSDK.Widgets.Framework.Widget>), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry actionsPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Painting.Basictypes.VerticalDirection actionsOverflowDirection = default(FlutterSDK.Painting.Basictypes.VerticalDirection), double actionsOverflowButtonSpacing = default(double), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry buttonPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), double elevation = default(double), string semanticLabel = default(string), FlutterSDK.Painting.Edgeinsets.EdgeInsets insetPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), bool scrollable = false)
         : base(key: key)
         {
@@ -557,23 +681,201 @@ namespace FlutterSDK.Material.Dialog
             this.Shape = shape;
             this.Scrollable = scrollable;
         }
+        /// <Summary>
+        /// The (optional) title of the dialog is displayed in a large font at the top
+        /// of the dialog.
+        ///
+        /// Typically a [Text] widget.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Title { get; set; }
+        /// <Summary>
+        /// Padding around the title.
+        ///
+        /// If there is no title, no padding will be provided. Otherwise, this padding
+        /// is used.
+        ///
+        /// This property defaults to providing 24 pixels on the top, left, and right
+        /// of the title. If the [content] is not null, then no bottom padding is
+        /// provided (but see [contentPadding]). If it _is_ null, then an extra 20
+        /// pixels of bottom padding is added to separate the [title] from the
+        /// [actions].
+        /// </Summary>
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry TitlePadding { get; set; }
+        /// <Summary>
+        /// Style for the text in the [title] of this [AlertDialog].
+        ///
+        /// If null, [DialogTheme.titleTextStyle] is used, if that's null, defaults to
+        /// [ThemeData.textTheme.headline6].
+        /// </Summary>
         public virtual FlutterSDK.Painting.Textstyle.TextStyle TitleTextStyle { get; set; }
+        /// <Summary>
+        /// The (optional) content of the dialog is displayed in the center of the
+        /// dialog in a lighter font.
+        ///
+        /// Typically this is a [SingleChildScrollView] that contains the dialog's
+        /// message. As noted in the [AlertDialog] documentation, it's important
+        /// to use a [SingleChildScrollView] if there's any risk that the content
+        /// will not fit.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Content { get; set; }
+        /// <Summary>
+        /// Padding around the content.
+        ///
+        /// If there is no content, no padding will be provided. Otherwise, padding of
+        /// 20 pixels is provided above the content to separate the content from the
+        /// title, and padding of 24 pixels is provided on the left, right, and bottom
+        /// to separate the content from the other edges of the dialog.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry ContentPadding { get; set; }
+        /// <Summary>
+        /// Style for the text in the [content] of this [AlertDialog].
+        ///
+        /// If null, [DialogTheme.contentTextStyle] is used, if that's null, defaults
+        /// to [ThemeData.textTheme.subtitle1].
+        /// </Summary>
         public virtual FlutterSDK.Painting.Textstyle.TextStyle ContentTextStyle { get; set; }
+        /// <Summary>
+        /// The (optional) set of actions that are displayed at the bottom of the
+        /// dialog.
+        ///
+        /// Typically this is a list of [FlatButton] widgets.
+        ///
+        /// These widgets will be wrapped in a [ButtonBar], which introduces 8 pixels
+        /// of padding on each side.
+        ///
+        /// If the [title] is not null but the [content] _is_ null, then an extra 20
+        /// pixels of padding is added above the [ButtonBar] to separate the [title]
+        /// from the [actions].
+        /// </Summary>
         public virtual List<FlutterSDK.Widgets.Framework.Widget> Actions { get; set; }
+        /// <Summary>
+        /// Padding around the set of [actions] at the bottom of the dialog.
+        ///
+        /// Typically used to provide padding to the button bar between the button bar
+        /// and the edges of the dialog.
+        ///
+        /// If are no [actions], then no padding will be included. The padding around
+        /// the button bar defaults to zero. It is also important to note that
+        /// [buttonPadding] may contribute to the padding on the edges of [actions] as
+        /// well.
+        ///
+        /// {@tool snippet}
+        /// This is an example of a set of actions aligned with the content widget.
+        /// ```dart
+        /// AlertDialog(
+        ///   title: Text('Title'),
+        ///   content: Container(width: 200, height: 200, color: Colors.green),
+        ///   actions: <Widget>[
+        ///     RaisedButton(onPressed: () {}, child: Text('Button 1')),
+        ///     RaisedButton(onPressed: () {}, child: Text('Button 2')),
+        ///   ],
+        ///   actionsPadding: EdgeInsets.symmetric(horizontal: 8.0),
+        /// )
+        /// ```
+        /// {@end-tool}
+        ///
+        /// See also:
+        ///
+        /// * [ButtonBar], which [actions] configures to lay itself out.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry ActionsPadding { get; set; }
+        /// <Summary>
+        /// The vertical direction of [actions] if the children overflow
+        /// horizontally.
+        ///
+        /// If the dialog's [actions] do not fit into a single row, then they
+        /// are arranged in a column. The first action is at the top of the
+        /// column if this property is set to [VerticalDirection.down], since it
+        /// "starts" at the top and "ends" at the bottom. On the other hand,
+        /// the first action will be at the bottom of the column if this
+        /// property is set to [VerticalDirection.up], since it "starts" at the
+        /// bottom and "ends" at the top.
+        ///
+        /// If null then it will use the surrounding
+        /// [ButtonBarTheme.overflowDirection]. If that is null, it will
+        /// default to [VerticalDirection.down].
+        ///
+        /// See also:
+        ///
+        /// * [ButtonBar], which [actions] configures to lay itself out.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Basictypes.VerticalDirection ActionsOverflowDirection { get; set; }
+        /// <Summary>
+        /// The spacing between [actions] when the button bar overflows.
+        ///
+        /// If the widgets in [actions] do not fit into a single row, they are
+        /// arranged into a column. This parameter provides additional
+        /// vertical space in between buttons when it does overflow.
+        ///
+        /// Note that the button spacing may appear to be more than
+        /// the value provided. This is because most buttons adhere to the
+        /// [MaterialTapTargetSize] of 48px. So, even though a button
+        /// might visually be 36px in height, it might still take up to
+        /// 48px vertically.
+        ///
+        /// If null then no spacing will be added in between buttons in
+        /// an overflow state.
+        /// </Summary>
         public virtual double ActionsOverflowButtonSpacing { get; set; }
+        /// <Summary>
+        /// The padding that surrounds each button in [actions].
+        ///
+        /// This is different from [actionsPadding], which defines the padding
+        /// between the entire button bar and the edges of the dialog.
+        ///
+        /// If this property is null, then it will use the surrounding
+        /// [ButtonBarTheme.buttonPadding]. If that is null, it will default to
+        /// 8.0 logical pixels on the left and right.
+        ///
+        /// See also:
+        ///
+        /// * [ButtonBar], which [actions] configures to lay itself out.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry ButtonPadding { get; set; }
+        /// <Summary>
+        /// {@macro flutter.material.dialog.backgroundColor}
+        /// </Summary>
         public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
+        /// <Summary>
+        /// {@macro flutter.material.dialog.elevation}
+        /// {@macro flutter.material.material.elevation}
+        /// </Summary>
         public virtual double Elevation { get; set; }
+        /// <Summary>
+        /// The semantic label of the dialog used by accessibility frameworks to
+        /// announce screen transitions when the dialog is opened and closed.
+        ///
+        /// If this label is not provided, a semantic label will be inferred from the
+        /// [title] if it is not null.  If there is no title, the label will be taken
+        /// from [MaterialLocalizations.alertDialogLabel].
+        ///
+        /// See also:
+        ///
+        ///  * [SemanticsConfiguration.isRouteName], for a description of how this
+        ///    value is used.
+        /// </Summary>
         public virtual string SemanticLabel { get; set; }
+        /// <Summary>
+        /// {@macro flutter.material.dialog.insetPadding}
+        /// </Summary>
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets InsetPadding { get; set; }
+        /// <Summary>
+        /// {@macro flutter.material.dialog.clipBehavior}
+        /// </Summary>
         public virtual FlutterBinding.UI.Clip ClipBehavior { get; set; }
+        /// <Summary>
+        /// {@macro flutter.material.dialog.shape}
+        /// </Summary>
         public virtual FlutterSDK.Painting.Borders.ShapeBorder Shape { get; set; }
+        /// <Summary>
+        /// Determines whether the [title] and [content] widgets are wrapped in a
+        /// scrollable.
+        ///
+        /// This configuration is used when the [title] and [content] are expected
+        /// to overflow. Both [title] and [content] are wrapped in a scroll view,
+        /// allowing all overflowed content to be visible while still showing the
+        /// button bar.
+        /// </Summary>
         public virtual bool Scrollable { get; set; }
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
@@ -647,6 +949,9 @@ namespace FlutterSDK.Material.Dialog
     /// </Summary>
     public class SimpleDialogOption : FlutterSDK.Widgets.Framework.StatelessWidget
     {
+        /// <Summary>
+        /// Creates an option for a [SimpleDialog].
+        /// </Summary>
         public SimpleDialogOption(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), VoidCallback onPressed = default(VoidCallback), FlutterSDK.Painting.Edgeinsets.EdgeInsets padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key)
         {
@@ -654,8 +959,26 @@ namespace FlutterSDK.Material.Dialog
             this.Padding = padding;
             this.Child = child;
         }
+        /// <Summary>
+        /// The callback that is called when this option is selected.
+        ///
+        /// If this is set to null, the option cannot be selected.
+        ///
+        /// When used in a [SimpleDialog], this will typically call [Navigator.pop]
+        /// with a value for [showDialog] to complete its future with.
+        /// </Summary>
         public virtual VoidCallback OnPressed { get; set; }
+        /// <Summary>
+        /// The widget below this widget in the tree.
+        ///
+        /// Typically a [Text] widget.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+        /// <Summary>
+        /// The amount of space to surround the [child] with.
+        ///
+        /// Defaults to EdgeInsets.symmetric(vertical: 8.0, horizontal: 24.0).
+        /// </Summary>
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets Padding { get; set; }
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
@@ -741,6 +1064,13 @@ namespace FlutterSDK.Material.Dialog
     /// </Summary>
     public class SimpleDialog : FlutterSDK.Widgets.Framework.StatelessWidget
     {
+        /// <Summary>
+        /// Creates a simple dialog.
+        ///
+        /// Typically used in conjunction with [showDialog].
+        ///
+        /// The [titlePadding] and [contentPadding] arguments must not be null.
+        /// </Summary>
         public SimpleDialog(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget title = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry titlePadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), List<FlutterSDK.Widgets.Framework.Widget> children = default(List<FlutterSDK.Widgets.Framework.Widget>), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry contentPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), double elevation = default(double), string semanticLabel = default(string), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder))
         : base(key: key)
         {
@@ -753,13 +1083,73 @@ namespace FlutterSDK.Material.Dialog
             this.SemanticLabel = semanticLabel;
             this.Shape = shape;
         }
+        /// <Summary>
+        /// The (optional) title of the dialog is displayed in a large font at the top
+        /// of the dialog.
+        ///
+        /// Typically a [Text] widget.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Title { get; set; }
+        /// <Summary>
+        /// Padding around the title.
+        ///
+        /// If there is no title, no padding will be provided.
+        ///
+        /// By default, this provides the recommend Material Design padding of 24
+        /// pixels around the left, top, and right edges of the title.
+        ///
+        /// See [contentPadding] for the conventions regarding padding between the
+        /// [title] and the [children].
+        /// </Summary>
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry TitlePadding { get; set; }
+        /// <Summary>
+        /// The (optional) content of the dialog is displayed in a
+        /// [SingleChildScrollView] underneath the title.
+        ///
+        /// Typically a list of [SimpleDialogOption]s.
+        /// </Summary>
         public virtual List<FlutterSDK.Widgets.Framework.Widget> Children { get; set; }
+        /// <Summary>
+        /// Padding around the content.
+        ///
+        /// By default, this is 12 pixels on the top and 16 pixels on the bottom. This
+        /// is intended to be combined with children that have 24 pixels of padding on
+        /// the left and right, and 8 pixels of padding on the top and bottom, so that
+        /// the content ends up being indented 20 pixels from the title, 24 pixels
+        /// from the bottom, and 24 pixels from the sides.
+        ///
+        /// The [SimpleDialogOption] widget uses such padding.
+        ///
+        /// If there is no [title], the [contentPadding] should be adjusted so that
+        /// the top padding ends up being 24 pixels.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry ContentPadding { get; set; }
+        /// <Summary>
+        /// {@macro flutter.material.dialog.backgroundColor}
+        /// </Summary>
         public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
+        /// <Summary>
+        /// {@macro flutter.material.dialog.elevation}
+        /// {@macro flutter.material.material.elevation}
+        /// </Summary>
         public virtual double Elevation { get; set; }
+        /// <Summary>
+        /// The semantic label of the dialog used by accessibility frameworks to
+        /// announce screen transitions when the dialog is opened and closed.
+        ///
+        /// If this label is not provided, a semantic label will be inferred from the
+        /// [title] if it is not null.  If there is no title, the label will be taken
+        /// from [MaterialLocalizations.dialogLabel].
+        ///
+        /// See also:
+        ///
+        ///  * [SemanticsConfiguration.isRouteName], for a description of how this
+        ///    value is used.
+        /// </Summary>
         public virtual string SemanticLabel { get; set; }
+        /// <Summary>
+        /// {@macro flutter.material.dialog.shape}
+        /// </Summary>
         public virtual FlutterSDK.Painting.Borders.ShapeBorder Shape { get; set; }
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)

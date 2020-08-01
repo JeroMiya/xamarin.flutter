@@ -423,9 +423,30 @@ using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
 namespace FlutterSDK.Rendering.Mousetracking
 {
+    /// <Summary>
+    /// Signature for listening to [PointerEnterEvent] events.
+    ///
+    /// Used by [MouseTrackerAnnotation], [MouseRegion] and [RenderMouseRegion].
+    /// </Summary>
     public delegate void PointerEnterEventListener(FlutterSDK.Gestures.Events.PointerEnterEvent @event);
+    /// <Summary>
+    /// Signature for listening to [PointerExitEvent] events.
+    ///
+    /// Used by [MouseTrackerAnnotation], [MouseRegion] and [RenderMouseRegion].
+    /// </Summary>
     public delegate void PointerExitEventListener(FlutterSDK.Gestures.Events.PointerExitEvent @event);
+    /// <Summary>
+    /// Signature for listening to [PointerHoverEvent] events.
+    ///
+    /// Used by [MouseTrackerAnnotation], [MouseRegion] and [RenderMouseRegion].
+    /// </Summary>
     public delegate void PointerHoverEventListener(FlutterSDK.Gestures.Events.PointerHoverEvent @event);
+    /// <Summary>
+    /// Signature for searching for [MouseTrackerAnnotation]s at the given offset.
+    ///
+    /// It is used by the [MouseTracker] to fetch annotations for the mouse
+    /// position.
+    /// </Summary>
     public delegate Iterable<FlutterSDK.Rendering.Mousetracking.MouseTrackerAnnotation> MouseDetectorAnnotationFinder(FlutterBinding.UI.Offset offset);
     public delegate void _UpdatedDeviceHandler(FlutterSDK.Rendering.Mousetracking._MouseState mouseState, LinkedHashSet<FlutterSDK.Rendering.Mousetracking.MouseTrackerAnnotation> previousAnnotations);
     internal static class MousetrackingDefaultClass
@@ -440,14 +461,62 @@ namespace FlutterSDK.Rendering.Mousetracking
     /// </Summary>
     public class MouseTrackerAnnotation : IDiagnosticable
     {
+        /// <Summary>
+        /// Creates an annotation that can be used to find layers interested in mouse
+        /// movements.
+        /// </Summary>
         public MouseTrackerAnnotation(FlutterSDK.Rendering.Mousetracking.PointerEnterEventListener onEnter = default(FlutterSDK.Rendering.Mousetracking.PointerEnterEventListener), FlutterSDK.Rendering.Mousetracking.PointerHoverEventListener onHover = default(FlutterSDK.Rendering.Mousetracking.PointerHoverEventListener), FlutterSDK.Rendering.Mousetracking.PointerExitEventListener onExit = default(FlutterSDK.Rendering.Mousetracking.PointerExitEventListener))
         {
             this.OnEnter = onEnter;
             this.OnHover = onHover;
             this.OnExit = onExit;
         }
+        /// <Summary>
+        /// Triggered when a mouse pointer, with or without buttons pressed, has
+        /// entered the annotated region.
+        ///
+        /// This callback is triggered when the pointer has started to be contained
+        /// by the annotationed region for any reason, which means it always matches a
+        /// later [onExit].
+        ///
+        /// See also:
+        ///
+        ///  * [onExit], which is triggered when a mouse pointer exits the region.
+        ///  * [MouseRegion.onEnter], which uses this callback.
+        /// </Summary>
         public virtual FlutterSDK.Rendering.Mousetracking.PointerEnterEventListener OnEnter { get; set; }
+        /// <Summary>
+        /// Triggered when a pointer has moved within the annotated region without
+        /// buttons pressed.
+        ///
+        /// This callback is triggered when:
+        ///
+        ///  * An annotation that did not contain the pointer has moved to under a
+        ///    pointer that has no buttons pressed.
+        ///  * A pointer has moved onto, or moved within an annotation without buttons
+        ///    pressed.
+        ///
+        /// This callback is not triggered when:
+        ///
+        ///  * An annotation that is containing the pointer has moved, and still
+        ///    contains the pointer.
+        /// </Summary>
         public virtual FlutterSDK.Rendering.Mousetracking.PointerHoverEventListener OnHover { get; set; }
+        /// <Summary>
+        /// Triggered when a mouse pointer, with or without buttons pressed, has
+        /// exited the annotated region when the annotated region still exists.
+        ///
+        /// This callback is triggered when the pointer has stopped being contained
+        /// by the region for any reason, which means it always matches an earlier
+        /// [onEnter].
+        ///
+        /// See also:
+        ///
+        ///  * [onEnter], which is triggered when a mouse pointer enters the region.
+        ///  * [RenderMouseRegion.onExit], which uses this callback.
+        ///  * [MouseRegion.onExit], which uses this callback, but is not triggered in
+        ///    certain cases and does not always match its earier [MouseRegion.onEnter].
+        /// </Summary>
         public virtual FlutterSDK.Rendering.Mousetracking.PointerExitEventListener OnExit { get; set; }
 
         public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
@@ -516,6 +585,19 @@ namespace FlutterSDK.Rendering.Mousetracking
     /// </Summary>
     public class MouseTracker : FlutterSDK.Foundation.Changenotifier.ChangeNotifier
     {
+        /// <Summary>
+        /// Creates a mouse tracker to keep track of mouse locations.
+        ///
+        /// The first parameter is a [PointerRouter], which [MouseTracker] will
+        /// subscribe to and receive events from. Usually it is the global singleton
+        /// instance [GestureBinding.pointerRouter].
+        ///
+        /// The second parameter is a function with which the [MouseTracker] can
+        /// search for [MouseTrackerAnnotation]s at a given position.
+        /// Usually it is [Layer.findAllAnnotations] of the root layer.
+        ///
+        /// All of the parameters must not be null.
+        /// </Summary>
         public MouseTracker(FlutterSDK.Gestures.Pointerrouter.PointerRouter _router, FlutterSDK.Rendering.Mousetracking.MouseDetectorAnnotationFinder annotationFinder)
         : base()
         {
@@ -525,6 +607,16 @@ namespace FlutterSDK.Rendering.Mousetracking
         }
 
 
+        /// <Summary>
+        /// Find annotations at a given offset in global logical coordinate space
+        /// in visual order from front to back.
+        ///
+        /// [MouseTracker] uses this callback to know which annotations are affected
+        /// by each device.
+        ///
+        /// The annotations should be returned in visual order from front to
+        /// back, so that the callbacks are called in an correct order.
+        /// </Summary>
         public virtual FlutterSDK.Rendering.Mousetracking.MouseDetectorAnnotationFinder AnnotationFinder { get; set; }
         internal virtual FlutterSDK.Gestures.Pointerrouter.PointerRouter _Router { get; set; }
         internal virtual Dictionary<int, FlutterSDK.Rendering.Mousetracking._MouseState> _MouseStates { get; set; }

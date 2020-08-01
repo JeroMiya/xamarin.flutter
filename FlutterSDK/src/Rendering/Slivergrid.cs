@@ -499,6 +499,9 @@ namespace FlutterSDK.Rendering.Slivergrid
     /// </Summary>
     public class SliverGridGeometry
     {
+        /// <Summary>
+        /// Creates an object that describes the placement of a child in a [RenderSliverGrid].
+        /// </Summary>
         public SliverGridGeometry(double scrollOffset = default(double), double crossAxisOffset = default(double), double mainAxisExtent = default(double), double crossAxisExtent = default(double))
         {
             this.ScrollOffset = scrollOffset;
@@ -506,9 +509,33 @@ namespace FlutterSDK.Rendering.Slivergrid
             this.MainAxisExtent = mainAxisExtent;
             this.CrossAxisExtent = crossAxisExtent;
         }
+        /// <Summary>
+        /// The scroll offset of the leading edge of the child relative to the leading
+        /// edge of the parent.
+        /// </Summary>
         public virtual double ScrollOffset { get; set; }
+        /// <Summary>
+        /// The offset of the child in the non-scrolling axis.
+        ///
+        /// If the scroll axis is vertical, this offset is from the left-most edge of
+        /// the parent to the left-most edge of the child. If the scroll axis is
+        /// horizontal, this offset is from the top-most edge of the parent to the
+        /// top-most edge of the child.
+        /// </Summary>
         public virtual double CrossAxisOffset { get; set; }
+        /// <Summary>
+        /// The extent of the child in the scrolling axis.
+        ///
+        /// If the scroll axis is vertical, this extent is the child's height. If the
+        /// scroll axis is horizontal, this extent is the child's width.
+        /// </Summary>
         public virtual double MainAxisExtent { get; set; }
+        /// <Summary>
+        /// The extent of the child in the non-scrolling axis.
+        ///
+        /// If the scroll axis is vertical, this extent is the child's width. If the
+        /// scroll axis is horizontal, this extent is the child's height.
+        /// </Summary>
         public virtual double CrossAxisExtent { get; set; }
         public virtual double TrailingScrollOffset { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 
@@ -551,6 +578,10 @@ namespace FlutterSDK.Rendering.Slivergrid
     /// </Summary>
     public class SliverGridLayout
     {
+        /// <Summary>
+        /// Abstract const constructor. This constructor enables subclasses to provide
+        /// const constructors so that they can be used in const expressions.
+        /// </Summary>
         public SliverGridLayout()
         {
 
@@ -621,6 +652,12 @@ namespace FlutterSDK.Rendering.Slivergrid
     /// </Summary>
     public class SliverGridRegularTileLayout : FlutterSDK.Rendering.Slivergrid.SliverGridLayout
     {
+        /// <Summary>
+        /// Creates a layout that uses equally sized and spaced tiles.
+        ///
+        /// All of the arguments must not be null and must not be negative. The
+        /// `crossAxisCount` argument must be greater than zero.
+        /// </Summary>
         public SliverGridRegularTileLayout(int crossAxisCount = default(int), double mainAxisStride = default(double), double crossAxisStride = default(double), double childMainAxisExtent = default(double), double childCrossAxisExtent = default(double), bool reverseCrossAxis = default(bool))
         : base()
         {
@@ -631,11 +668,41 @@ namespace FlutterSDK.Rendering.Slivergrid
             this.ChildCrossAxisExtent = childCrossAxisExtent;
             this.ReverseCrossAxis = reverseCrossAxis;
         }
+        /// <Summary>
+        /// The number of children in the cross axis.
+        /// </Summary>
         public virtual int CrossAxisCount { get; set; }
+        /// <Summary>
+        /// The number of pixels from the leading edge of one tile to the leading edge
+        /// of the next tile in the main axis.
+        /// </Summary>
         public virtual double MainAxisStride { get; set; }
+        /// <Summary>
+        /// The number of pixels from the leading edge of one tile to the leading edge
+        /// of the next tile in the cross axis.
+        /// </Summary>
         public virtual double CrossAxisStride { get; set; }
+        /// <Summary>
+        /// The number of pixels from the leading edge of one tile to the trailing
+        /// edge of the same tile in the main axis.
+        /// </Summary>
         public virtual double ChildMainAxisExtent { get; set; }
+        /// <Summary>
+        /// The number of pixels from the leading edge of one tile to the trailing
+        /// edge of the same tile in the cross axis.
+        /// </Summary>
         public virtual double ChildCrossAxisExtent { get; set; }
+        /// <Summary>
+        /// Whether the children should be placed in the opposite order of increasing
+        /// coordinates in the cross axis.
+        ///
+        /// For example, if the cross axis is horizontal, the children are placed from
+        /// left to right when [reverseCrossAxis] is false and from right to left when
+        /// [reverseCrossAxis] is true.
+        ///
+        /// Typically set to the return value of [axisDirectionIsReversed] applied to
+        /// the [SliverConstraints.crossAxisDirection].
+        /// </Summary>
         public virtual bool ReverseCrossAxis { get; set; }
 
         public new int GetMinChildIndexForScrollOffset(double scrollOffset)
@@ -713,6 +780,10 @@ namespace FlutterSDK.Rendering.Slivergrid
     /// </Summary>
     public class SliverGridDelegate
     {
+        /// <Summary>
+        /// Abstract const constructor. This constructor enables subclasses to provide
+        /// const constructors so that they can be used in const expressions.
+        /// </Summary>
         public SliverGridDelegate()
         {
 
@@ -766,6 +837,14 @@ namespace FlutterSDK.Rendering.Slivergrid
     /// </Summary>
     public class SliverGridDelegateWithFixedCrossAxisCount : FlutterSDK.Rendering.Slivergrid.SliverGridDelegate
     {
+        /// <Summary>
+        /// Creates a delegate that makes grid layouts with a fixed number of tiles in
+        /// the cross axis.
+        ///
+        /// All of the arguments must not be null. The `mainAxisSpacing` and
+        /// `crossAxisSpacing` arguments must not be negative. The `crossAxisCount`
+        /// and `childAspectRatio` arguments must be greater than zero.
+        /// </Summary>
         public SliverGridDelegateWithFixedCrossAxisCount(int crossAxisCount = default(int), double mainAxisSpacing = 0.0, double crossAxisSpacing = 0.0, double childAspectRatio = 1.0)
         : base()
         {
@@ -774,9 +853,21 @@ namespace FlutterSDK.Rendering.Slivergrid
             this.CrossAxisSpacing = crossAxisSpacing;
             this.ChildAspectRatio = childAspectRatio;
         }
+        /// <Summary>
+        /// The number of children in the cross axis.
+        /// </Summary>
         public virtual int CrossAxisCount { get; set; }
+        /// <Summary>
+        /// The number of logical pixels between each child along the main axis.
+        /// </Summary>
         public virtual double MainAxisSpacing { get; set; }
+        /// <Summary>
+        /// The number of logical pixels between each child along the cross axis.
+        /// </Summary>
         public virtual double CrossAxisSpacing { get; set; }
+        /// <Summary>
+        /// The ratio of the cross-axis to the main-axis extent of each child.
+        /// </Summary>
         public virtual double ChildAspectRatio { get; set; }
 
         private bool _DebugAssertIsValid()
@@ -848,6 +939,14 @@ namespace FlutterSDK.Rendering.Slivergrid
     /// </Summary>
     public class SliverGridDelegateWithMaxCrossAxisExtent : FlutterSDK.Rendering.Slivergrid.SliverGridDelegate
     {
+        /// <Summary>
+        /// Creates a delegate that makes grid layouts with tiles that have a maximum
+        /// cross-axis extent.
+        ///
+        /// All of the arguments must not be null. The [maxCrossAxisExtent] and
+        /// [mainAxisSpacing], and [crossAxisSpacing] arguments must not be negative.
+        /// The [childAspectRatio] argument must be greater than zero.
+        /// </Summary>
         public SliverGridDelegateWithMaxCrossAxisExtent(double maxCrossAxisExtent = default(double), double mainAxisSpacing = 0.0, double crossAxisSpacing = 0.0, double childAspectRatio = 1.0)
         : base()
         {
@@ -856,9 +955,31 @@ namespace FlutterSDK.Rendering.Slivergrid
             this.CrossAxisSpacing = crossAxisSpacing;
             this.ChildAspectRatio = childAspectRatio;
         }
+        /// <Summary>
+        /// The maximum extent of tiles in the cross axis.
+        ///
+        /// This delegate will select a cross-axis extent for the tiles that is as
+        /// large as possible subject to the following conditions:
+        ///
+        ///  - The extent evenly divides the cross-axis extent of the grid.
+        ///  - The extent is at most [maxCrossAxisExtent].
+        ///
+        /// For example, if the grid is vertical, the grid is 500.0 pixels wide, and
+        /// [maxCrossAxisExtent] is 150.0, this delegate will create a grid with 4
+        /// columns that are 125.0 pixels wide.
+        /// </Summary>
         public virtual double MaxCrossAxisExtent { get; set; }
+        /// <Summary>
+        /// The number of logical pixels between each child along the main axis.
+        /// </Summary>
         public virtual double MainAxisSpacing { get; set; }
+        /// <Summary>
+        /// The number of logical pixels between each child along the cross axis.
+        /// </Summary>
         public virtual double CrossAxisSpacing { get; set; }
+        /// <Summary>
+        /// The ratio of the cross-axis to the main-axis extent of each child.
+        /// </Summary>
         public virtual double ChildAspectRatio { get; set; }
 
         private bool _DebugAssertIsValid()
@@ -909,6 +1030,14 @@ namespace FlutterSDK.Rendering.Slivergrid
     {
         public SliverGridParentData()
         { }
+        /// <Summary>
+        /// The offset of the child in the non-scrolling axis.
+        ///
+        /// If the scroll axis is vertical, this offset is from the left-most edge of
+        /// the parent to the left-most edge of the child. If the scroll axis is
+        /// horizontal, this offset is from the top-most edge of the parent to the
+        /// top-most edge of the child.
+        /// </Summary>
         public virtual double CrossAxisOffset { get; set; }
 
     }
@@ -930,6 +1059,12 @@ namespace FlutterSDK.Rendering.Slivergrid
     /// </Summary>
     public class RenderSliverGrid : FlutterSDK.Rendering.Slivermultiboxadaptor.RenderSliverMultiBoxAdaptor
     {
+        /// <Summary>
+        /// Creates a sliver that contains multiple box children that whose size and
+        /// position are determined by a delegate.
+        ///
+        /// The [childManager] and [gridDelegate] arguments must not be null.
+        /// </Summary>
         public RenderSliverGrid(FlutterSDK.Rendering.Slivermultiboxadaptor.RenderSliverBoxChildManager childManager = default(FlutterSDK.Rendering.Slivermultiboxadaptor.RenderSliverBoxChildManager), FlutterSDK.Rendering.Slivergrid.SliverGridDelegate gridDelegate = default(FlutterSDK.Rendering.Slivergrid.SliverGridDelegate))
         : base(childManager: childManager)
         {

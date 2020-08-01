@@ -451,6 +451,14 @@ namespace FlutterSDK.Material.Tabs
     /// </Summary>
     public class Tab : FlutterSDK.Widgets.Framework.StatelessWidget
     {
+        /// <Summary>
+        /// Creates a material design [TabBar] tab.
+        ///
+        /// At least one of [text], [icon], and [child] must be non-null. The [text]
+        /// and [child] arguments must not be used at the same time. The
+        /// [iconMargin] is only useful when [icon] and either one of [text] or
+        /// [child] is non-null.
+        /// </Summary>
         public Tab(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), string text = default(string), FlutterSDK.Widgets.Framework.Widget icon = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry iconMargin = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key)
         {
@@ -459,9 +467,30 @@ namespace FlutterSDK.Material.Tabs
             this.IconMargin = iconMargin;
             this.Child = child;
         }
+        /// <Summary>
+        /// The text to display as the tab's label.
+        ///
+        /// Must not be used in combination with [child].
+        /// </Summary>
         public virtual string Text { get; set; }
+        /// <Summary>
+        /// The widget to be used as the tab's label.
+        ///
+        /// Usually a [Text] widget, possibly wrapped in a [Semantics] widget.
+        ///
+        /// Must not be used in combination with [text].
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+        /// <Summary>
+        /// An icon to display as the tab's label.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Icon { get; set; }
+        /// <Summary>
+        /// The margin added around the tab's icon.
+        ///
+        /// Only useful when used in combination with [icon], and either one of
+        /// [text] or [child] is non-null.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry IconMargin { get; set; }
 
         private FlutterSDK.Widgets.Framework.Widget _BuildLabelText()
@@ -886,6 +915,22 @@ namespace FlutterSDK.Material.Tabs
     /// </Summary>
     public class TabBar : FlutterSDK.Widgets.Framework.StatefulWidget, IPreferredSizeWidget
     {
+        /// <Summary>
+        /// Creates a material design tab bar.
+        ///
+        /// The [tabs] argument must not be null and its length must match the [controller]'s
+        /// [TabController.length].
+        ///
+        /// If a [TabController] is not provided, then there must be a
+        /// [DefaultTabController] ancestor.
+        ///
+        /// The [indicatorWeight] parameter defaults to 2, and must not be null.
+        ///
+        /// The [indicatorPadding] parameter defaults to [EdgeInsets.zero], and must not be null.
+        ///
+        /// If [indicator] is not null, then [indicatorWeight], [indicatorPadding], and
+        /// [indicatorColor] are ignored.
+        /// </Summary>
         public TabBar(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), List<FlutterSDK.Widgets.Framework.Widget> tabs = default(List<FlutterSDK.Widgets.Framework.Widget>), FlutterSDK.Material.Tabcontroller.TabController controller = default(FlutterSDK.Material.Tabcontroller.TabController), bool isScrollable = false, FlutterBinding.UI.Color indicatorColor = default(FlutterBinding.UI.Color), double indicatorWeight = 2.0, FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry indicatorPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Painting.Decoration.Decoration indicator = default(FlutterSDK.Painting.Decoration.Decoration), FlutterSDK.Material.Tabs.TabBarIndicatorSize indicatorSize = default(FlutterSDK.Material.Tabs.TabBarIndicatorSize), FlutterBinding.UI.Color labelColor = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Textstyle.TextStyle labelStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry labelPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterBinding.UI.Color unselectedLabelColor = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Textstyle.TextStyle unselectedLabelStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Gestures.Recognizer.DragStartBehavior dragStartBehavior = default(FlutterSDK.Gestures.Recognizer.DragStartBehavior), FlutterSDK.Foundation.Basictypes.ValueChanged<int> onTap = default(FlutterSDK.Foundation.Basictypes.ValueChanged<int>))
         : base(key: key)
         {
@@ -905,20 +950,146 @@ namespace FlutterSDK.Material.Tabs
             this.DragStartBehavior = dragStartBehavior;
             this.OnTap = onTap;
         }
+        /// <Summary>
+        /// Typically a list of two or more [Tab] widgets.
+        ///
+        /// The length of this list must match the [controller]'s [TabController.length]
+        /// and the length of the [TabBarView.children] list.
+        /// </Summary>
         public virtual List<FlutterSDK.Widgets.Framework.Widget> Tabs { get; set; }
+        /// <Summary>
+        /// This widget's selection and animation state.
+        ///
+        /// If [TabController] is not provided, then the value of [DefaultTabController.of]
+        /// will be used.
+        /// </Summary>
         public virtual FlutterSDK.Material.Tabcontroller.TabController Controller { get; set; }
+        /// <Summary>
+        /// Whether this tab bar can be scrolled horizontally.
+        ///
+        /// If [isScrollable] is true, then each tab is as wide as needed for its label
+        /// and the entire [TabBar] is scrollable. Otherwise each tab gets an equal
+        /// share of the available space.
+        /// </Summary>
         public virtual bool IsScrollable { get; set; }
+        /// <Summary>
+        /// The color of the line that appears below the selected tab.
+        ///
+        /// If this parameter is null, then the value of the Theme's indicatorColor
+        /// property is used.
+        ///
+        /// If [indicator] is specified, this property is ignored.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color IndicatorColor { get; set; }
+        /// <Summary>
+        /// The thickness of the line that appears below the selected tab.
+        ///
+        /// The value of this parameter must be greater than zero and its default
+        /// value is 2.0.
+        ///
+        /// If [indicator] is specified, this property is ignored.
+        /// </Summary>
         public virtual double IndicatorWeight { get; set; }
+        /// <Summary>
+        /// The horizontal padding for the line that appears below the selected tab.
+        ///
+        /// For [isScrollable] tab bars, specifying [kTabLabelPadding] will align
+        /// the indicator with the tab's text for [Tab] widgets and all but the
+        /// shortest [Tab.text] values.
+        ///
+        /// The [EdgeInsets.top] and [EdgeInsets.bottom] values of the
+        /// [indicatorPadding] are ignored.
+        ///
+        /// The default value of [indicatorPadding] is [EdgeInsets.zero].
+        ///
+        /// If [indicator] is specified, this property is ignored.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry IndicatorPadding { get; set; }
+        /// <Summary>
+        /// Defines the appearance of the selected tab indicator.
+        ///
+        /// If [indicator] is specified, the [indicatorColor], [indicatorWeight],
+        /// and [indicatorPadding] properties are ignored.
+        ///
+        /// The default, underline-style, selected tab indicator can be defined with
+        /// [UnderlineTabIndicator].
+        ///
+        /// The indicator's size is based on the tab's bounds. If [indicatorSize]
+        /// is [TabBarIndicatorSize.tab] the tab's bounds are as wide as the space
+        /// occupied by the tab in the tab bar. If [indicatorSize] is
+        /// [TabBarIndicatorSize.label], then the tab's bounds are only as wide as
+        /// the tab widget itself.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Decoration.Decoration Indicator { get; set; }
+        /// <Summary>
+        /// Defines how the selected tab indicator's size is computed.
+        ///
+        /// The size of the selected tab indicator is defined relative to the
+        /// tab's overall bounds if [indicatorSize] is [TabBarIndicatorSize.tab]
+        /// (the default) or relative to the bounds of the tab's widget if
+        /// [indicatorSize] is [TabBarIndicatorSize.label].
+        ///
+        /// The selected tab's location appearance can be refined further with
+        /// the [indicatorColor], [indicatorWeight], [indicatorPadding], and
+        /// [indicator] properties.
+        /// </Summary>
         public virtual FlutterSDK.Material.Tabs.TabBarIndicatorSize IndicatorSize { get; set; }
+        /// <Summary>
+        /// The color of selected tab labels.
+        ///
+        /// Unselected tab labels are rendered with the same color rendered at 70%
+        /// opacity unless [unselectedLabelColor] is non-null.
+        ///
+        /// If this parameter is null, then the color of the [ThemeData.primaryTextTheme]'s
+        /// bodyText1 text color is used.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color LabelColor { get; set; }
+        /// <Summary>
+        /// The color of unselected tab labels.
+        ///
+        /// If this property is null, unselected tab labels are rendered with the
+        /// [labelColor] with 70% opacity.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color UnselectedLabelColor { get; set; }
+        /// <Summary>
+        /// The text style of the selected tab labels.
+        ///
+        /// If [unselectedLabelStyle] is null, then this text style will be used for
+        /// both selected and unselected label styles.
+        ///
+        /// If this property is null, then the text style of the
+        /// [ThemeData.primaryTextTheme]'s bodyText1 definition is used.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Textstyle.TextStyle LabelStyle { get; set; }
+        /// <Summary>
+        /// The padding added to each of the tab labels.
+        ///
+        /// If this property is null, then kTabLabelPadding is used.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry LabelPadding { get; set; }
+        /// <Summary>
+        /// The text style of the unselected tab labels
+        ///
+        /// If this property is null, then the [labelStyle] value is used. If [labelStyle]
+        /// is null, then the text style of the [ThemeData.primaryTextTheme]'s
+        /// bodyText1 definition is used.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Textstyle.TextStyle UnselectedLabelStyle { get; set; }
+        /// <Summary>
+        /// {@macro flutter.widgets.scrollable.dragStartBehavior}
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Recognizer.DragStartBehavior DragStartBehavior { get; set; }
+        /// <Summary>
+        /// An optional callback that's called when the [TabBar] is tapped.
+        ///
+        /// The callback is applied to the index of the tab where the tap occurred.
+        ///
+        /// This callback has no effect on the default handling of taps. It's for
+        /// applications that want to do a little extra work when a tab is tapped,
+        /// even if the tap doesn't change the TabController's index. TabBar [onTap]
+        /// callbacks should not make changes to the TabController since that would
+        /// interfere with the default tap handler.
+        /// </Summary>
         public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<int> OnTap { get; set; }
         public virtual Size PreferredSize { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 
@@ -1244,6 +1415,11 @@ namespace FlutterSDK.Material.Tabs
     /// </Summary>
     public class TabBarView : FlutterSDK.Widgets.Framework.StatefulWidget
     {
+        /// <Summary>
+        /// Creates a page view with one child per tab.
+        ///
+        /// The length of [children] must be the same as the [controller]'s length.
+        /// </Summary>
         public TabBarView(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), List<FlutterSDK.Widgets.Framework.Widget> children = default(List<FlutterSDK.Widgets.Framework.Widget>), FlutterSDK.Material.Tabcontroller.TabController controller = default(FlutterSDK.Material.Tabcontroller.TabController), FlutterSDK.Widgets.Scrollphysics.ScrollPhysics physics = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics), FlutterSDK.Gestures.Recognizer.DragStartBehavior dragStartBehavior = default(FlutterSDK.Gestures.Recognizer.DragStartBehavior))
         : base(key: key)
         {
@@ -1252,9 +1428,35 @@ namespace FlutterSDK.Material.Tabs
             this.Physics = physics;
             this.DragStartBehavior = dragStartBehavior;
         }
+        /// <Summary>
+        /// This widget's selection and animation state.
+        ///
+        /// If [TabController] is not provided, then the value of [DefaultTabController.of]
+        /// will be used.
+        /// </Summary>
         public virtual FlutterSDK.Material.Tabcontroller.TabController Controller { get; set; }
+        /// <Summary>
+        /// One widget per tab.
+        ///
+        /// Its length must match the length of the [TabBar.tabs]
+        /// list, as well as the [controller]'s [TabController.length].
+        /// </Summary>
         public virtual List<FlutterSDK.Widgets.Framework.Widget> Children { get; set; }
+        /// <Summary>
+        /// How the page view should respond to user input.
+        ///
+        /// For example, determines how the page view continues to animate after the
+        /// user stops dragging the page view.
+        ///
+        /// The physics are modified to snap to page boundaries using
+        /// [PageScrollPhysics] prior to being used.
+        ///
+        /// Defaults to matching platform conventions.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Scrollphysics.ScrollPhysics Physics { get; set; }
+        /// <Summary>
+        /// {@macro flutter.widgets.scrollable.dragStartBehavior}
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Recognizer.DragStartBehavior DragStartBehavior { get; set; }
 
         public new FlutterSDK.Material.Tabs._TabBarViewState CreateState() => new _TabBarViewState();
@@ -1437,6 +1639,11 @@ namespace FlutterSDK.Material.Tabs
     /// </Summary>
     public class TabPageSelectorIndicator : FlutterSDK.Widgets.Framework.StatelessWidget
     {
+        /// <Summary>
+        /// Creates an indicator used by [TabPageSelector].
+        ///
+        /// The [backgroundColor], [borderColor], and [size] parameters must not be null.
+        /// </Summary>
         public TabPageSelectorIndicator(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color borderColor = default(FlutterBinding.UI.Color), double size = default(double))
         : base(key: key)
         {
@@ -1444,8 +1651,17 @@ namespace FlutterSDK.Material.Tabs
             this.BorderColor = borderColor;
             this.Size = size;
         }
+        /// <Summary>
+        /// The indicator circle's background color.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
+        /// <Summary>
+        /// The indicator circle's border color.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color BorderColor { get; set; }
+        /// <Summary>
+        /// The indicator circle's diameter.
+        /// </Summary>
         public virtual double Size { get; set; }
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
@@ -1469,6 +1685,9 @@ namespace FlutterSDK.Material.Tabs
     /// </Summary>
     public class TabPageSelector : FlutterSDK.Widgets.Framework.StatelessWidget
     {
+        /// <Summary>
+        /// Creates a compact widget that indicates which tab has been selected.
+        /// </Summary>
         public TabPageSelector(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Material.Tabcontroller.TabController controller = default(FlutterSDK.Material.Tabcontroller.TabController), double indicatorSize = 12.0, FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color selectedColor = default(FlutterBinding.UI.Color))
         : base(key: key)
         {
@@ -1477,9 +1696,30 @@ namespace FlutterSDK.Material.Tabs
             this.Color = color;
             this.SelectedColor = selectedColor;
         }
+        /// <Summary>
+        /// This widget's selection and animation state.
+        ///
+        /// If [TabController] is not provided, then the value of
+        /// [DefaultTabController.of] will be used.
+        /// </Summary>
         public virtual FlutterSDK.Material.Tabcontroller.TabController Controller { get; set; }
+        /// <Summary>
+        /// The indicator circle's diameter (the default value is 12.0).
+        /// </Summary>
         public virtual double IndicatorSize { get; set; }
+        /// <Summary>
+        /// The indicator circle's fill color for unselected pages.
+        ///
+        /// If this parameter is null, then the indicator is filled with [Colors.transparent].
+        /// </Summary>
         public virtual FlutterBinding.UI.Color Color { get; set; }
+        /// <Summary>
+        /// The indicator circle's fill color for selected pages and border color
+        /// for all indicator circles.
+        ///
+        /// If this parameter is null, then the indicator is filled with the theme's
+        /// accent color, [ThemeData.accentColor].
+        /// </Summary>
         public virtual FlutterBinding.UI.Color SelectedColor { get; set; }
 
         private FlutterSDK.Widgets.Framework.Widget _BuildTabIndicator(int tabIndex, FlutterSDK.Material.Tabcontroller.TabController tabController, FlutterSDK.Animation.Tween.ColorTween selectedColorTween, FlutterSDK.Animation.Tween.ColorTween previousColorTween)

@@ -438,6 +438,23 @@ namespace FlutterSDK.Widgets.Scrollsimulation
     /// </Summary>
     public class BouncingScrollSimulation : FlutterSDK.Physics.Simulation.Simulation
     {
+        /// <Summary>
+        /// Creates a simulation group for scrolling on iOS, with the given
+        /// parameters.
+        ///
+        /// The position and velocity arguments must use the same units as will be
+        /// expected from the [x] and [dx] methods respectively (typically logical
+        /// pixels and logical pixels per second respectively).
+        ///
+        /// The leading and trailing extents must use the unit of length, the same
+        /// unit as used for the position argument and as expected from the [x]
+        /// method (typically logical pixels).
+        ///
+        /// The units used with the provided [SpringDescription] must similarly be
+        /// consistent with the other arguments. A default set of constants is used
+        /// for the `spring` description if it is omitted; these defaults assume
+        /// that the unit of length is the logical pixel.
+        /// </Summary>
         public BouncingScrollSimulation(double position = default(double), double velocity = default(double), double leadingExtent = default(double), double trailingExtent = default(double), FlutterSDK.Physics.Springsimulation.SpringDescription spring = default(FlutterSDK.Physics.Springsimulation.SpringDescription), FlutterSDK.Physics.Tolerance.Tolerance tolerance = default(FlutterSDK.Physics.Tolerance.Tolerance))
         : base(tolerance: tolerance)
         {
@@ -481,9 +498,24 @@ namespace FlutterSDK.Widgets.Scrollsimulation
         }
 
 
+        /// <Summary>
+        /// The maximum velocity that can be transferred from the inertia of a ballistic
+        /// scroll into overscroll.
+        /// </Summary>
         public virtual double MaxSpringTransferVelocity { get; set; }
+        /// <Summary>
+        /// When [x] falls below this value the simulation switches from an internal friction
+        /// model to a spring model which causes [x] to "spring" back to [leadingExtent].
+        /// </Summary>
         public virtual double LeadingExtent { get; set; }
+        /// <Summary>
+        /// When [x] exceeds this value the simulation switches from an internal friction
+        /// model to a spring model which causes [x] to "spring" back to [trailingExtent].
+        /// </Summary>
         public virtual double TrailingExtent { get; set; }
+        /// <Summary>
+        /// The spring used used to return [x] to either [leadingExtent] or [trailingExtent].
+        /// </Summary>
         public virtual FlutterSDK.Physics.Springsimulation.SpringDescription Spring { get; set; }
         internal virtual FlutterSDK.Physics.Frictionsimulation.FrictionSimulation _FrictionSimulation { get; set; }
         internal virtual FlutterSDK.Physics.Simulation.Simulation _SpringSimulation { get; set; }
@@ -550,6 +582,9 @@ namespace FlutterSDK.Widgets.Scrollsimulation
     /// </Summary>
     public class ClampingScrollSimulation : FlutterSDK.Physics.Simulation.Simulation
     {
+        /// <Summary>
+        /// Creates a scroll physics simulation that matches Android scrolling.
+        /// </Summary>
         public ClampingScrollSimulation(double position = default(double), double velocity = default(double), double friction = 0.015, FlutterSDK.Physics.Tolerance.Tolerance tolerance = default(FlutterSDK.Physics.Tolerance.Tolerance))
         : base(tolerance: tolerance)
         {
@@ -561,8 +596,20 @@ namespace FlutterSDK.Widgets.Scrollsimulation
         }
 
 
+        /// <Summary>
+        /// The position of the particle at the beginning of the simulation.
+        /// </Summary>
         public virtual double Position { get; set; }
+        /// <Summary>
+        /// The velocity at which the particle is traveling at the beginning of the
+        /// simulation.
+        /// </Summary>
         public virtual double Velocity { get; set; }
+        /// <Summary>
+        /// The amount of friction the particle experiences as it travels.
+        ///
+        /// The more friction the particle experiences, the sooner it stops.
+        /// </Summary>
         public virtual double Friction { get; set; }
         internal virtual double _Duration { get; set; }
         internal virtual double _Distance { get; set; }

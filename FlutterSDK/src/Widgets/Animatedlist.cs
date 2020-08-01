@@ -423,7 +423,13 @@ using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
 namespace FlutterSDK.Widgets.Animatedlist
 {
+    /// <Summary>
+    /// Signature for the builder callback used by [AnimatedList].
+    /// </Summary>
     public delegate FlutterSDK.Widgets.Framework.Widget AnimatedListItemBuilder(FlutterSDK.Widgets.Framework.BuildContext context, int index, FlutterSDK.Animation.Animation.Animation<double> animation);
+    /// <Summary>
+    /// Signature for the builder callback used by [AnimatedListState.removeItem].
+    /// </Summary>
     public delegate FlutterSDK.Widgets.Framework.Widget AnimatedListRemovedItemBuilder(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Animation.Animation.Animation<double> animation);
     internal static class AnimatedlistDefaultClass
     {
@@ -688,6 +694,10 @@ namespace FlutterSDK.Widgets.Animatedlist
     /// </Summary>
     public class AnimatedList : FlutterSDK.Widgets.Framework.StatefulWidget
     {
+        /// <Summary>
+        /// Creates a scrolling container that animates items when they are inserted
+        /// or removed.
+        /// </Summary>
         public AnimatedList(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Animatedlist.AnimatedListItemBuilder itemBuilder = default(FlutterSDK.Widgets.Animatedlist.AnimatedListItemBuilder), int initialItemCount = 0, FlutterSDK.Painting.Basictypes.Axis scrollDirection = default(FlutterSDK.Painting.Basictypes.Axis), bool reverse = false, FlutterSDK.Widgets.Scrollcontroller.ScrollController controller = default(FlutterSDK.Widgets.Scrollcontroller.ScrollController), bool primary = default(bool), FlutterSDK.Widgets.Scrollphysics.ScrollPhysics physics = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics), bool shrinkWrap = false, FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry))
         : base(key: key)
         {
@@ -701,14 +711,107 @@ namespace FlutterSDK.Widgets.Animatedlist
             this.ShrinkWrap = shrinkWrap;
             this.Padding = padding;
         }
+        /// <Summary>
+        /// Called, as needed, to build list item widgets.
+        ///
+        /// List items are only built when they're scrolled into view.
+        ///
+        /// The [AnimatedListItemBuilder] index parameter indicates the item's
+        /// position in the list. The value of the index parameter will be between 0
+        /// and [initialItemCount] plus the total number of items that have been
+        /// inserted with [AnimatedListState.insertItem] and less the total number of
+        /// items that have been removed with [AnimatedListState.removeItem].
+        ///
+        /// Implementations of this callback should assume that
+        /// [AnimatedListState.removeItem] removes an item immediately.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Animatedlist.AnimatedListItemBuilder ItemBuilder { get; set; }
+        /// <Summary>
+        /// {@template flutter.widgets.animatedList.initialItemCount}
+        /// The number of items the list will start with.
+        ///
+        /// The appearance of the initial items is not animated. They
+        /// are created, as needed, by [itemBuilder] with an animation parameter
+        /// of [kAlwaysCompleteAnimation].
+        /// {@endtemplate}
+        /// </Summary>
         public virtual int InitialItemCount { get; set; }
+        /// <Summary>
+        /// The axis along which the scroll view scrolls.
+        ///
+        /// Defaults to [Axis.vertical].
+        /// </Summary>
         public virtual FlutterSDK.Painting.Basictypes.Axis ScrollDirection { get; set; }
+        /// <Summary>
+        /// Whether the scroll view scrolls in the reading direction.
+        ///
+        /// For example, if the reading direction is left-to-right and
+        /// [scrollDirection] is [Axis.horizontal], then the scroll view scrolls from
+        /// left to right when [reverse] is false and from right to left when
+        /// [reverse] is true.
+        ///
+        /// Similarly, if [scrollDirection] is [Axis.vertical], then the scroll view
+        /// scrolls from top to bottom when [reverse] is false and from bottom to top
+        /// when [reverse] is true.
+        ///
+        /// Defaults to false.
+        /// </Summary>
         public virtual bool Reverse { get; set; }
+        /// <Summary>
+        /// An object that can be used to control the position to which this scroll
+        /// view is scrolled.
+        ///
+        /// Must be null if [primary] is true.
+        ///
+        /// A [ScrollController] serves several purposes. It can be used to control
+        /// the initial scroll position (see [ScrollController.initialScrollOffset]).
+        /// It can be used to control whether the scroll view should automatically
+        /// save and restore its scroll position in the [PageStorage] (see
+        /// [ScrollController.keepScrollOffset]). It can be used to read the current
+        /// scroll position (see [ScrollController.offset]), or change it (see
+        /// [ScrollController.animateTo]).
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Scrollcontroller.ScrollController Controller { get; set; }
+        /// <Summary>
+        /// Whether this is the primary scroll view associated with the parent
+        /// [PrimaryScrollController].
+        ///
+        /// On iOS, this identifies the scroll view that will scroll to top in
+        /// response to a tap in the status bar.
+        ///
+        /// Defaults to true when [scrollDirection] is [Axis.vertical] and
+        /// [controller] is null.
+        /// </Summary>
         public virtual bool Primary { get; set; }
+        /// <Summary>
+        /// How the scroll view should respond to user input.
+        ///
+        /// For example, determines how the scroll view continues to animate after the
+        /// user stops dragging the scroll view.
+        ///
+        /// Defaults to matching platform conventions.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Scrollphysics.ScrollPhysics Physics { get; set; }
+        /// <Summary>
+        /// Whether the extent of the scroll view in the [scrollDirection] should be
+        /// determined by the contents being viewed.
+        ///
+        /// If the scroll view does not shrink wrap, then the scroll view will expand
+        /// to the maximum allowed size in the [scrollDirection]. If the scroll view
+        /// has unbounded constraints in the [scrollDirection], then [shrinkWrap] must
+        /// be true.
+        ///
+        /// Shrink wrapping the content of the scroll view is significantly more
+        /// expensive than expanding to the maximum allowed size because the content
+        /// can expand and contract during scrolling, which means the size of the
+        /// scroll view needs to be recomputed whenever the scroll position changes.
+        ///
+        /// Defaults to false.
+        /// </Summary>
         public virtual bool ShrinkWrap { get; set; }
+        /// <Summary>
+        /// The amount of space by which to inset the children.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Padding { get; set; }
 
         /// <Summary>
@@ -1071,13 +1174,34 @@ namespace FlutterSDK.Widgets.Animatedlist
     /// </Summary>
     public class SliverAnimatedList : FlutterSDK.Widgets.Framework.StatefulWidget
     {
+        /// <Summary>
+        /// Creates a sliver that animates items when they are inserted or removed.
+        /// </Summary>
         public SliverAnimatedList(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Animatedlist.AnimatedListItemBuilder itemBuilder = default(FlutterSDK.Widgets.Animatedlist.AnimatedListItemBuilder), int initialItemCount = 0)
         : base(key: key)
         {
             this.ItemBuilder = itemBuilder;
             this.InitialItemCount = initialItemCount;
         }
+        /// <Summary>
+        /// Called, as needed, to build list item widgets.
+        ///
+        /// List items are only built when they're scrolled into view.
+        ///
+        /// The [AnimatedListItemBuilder] index parameter indicates the item's
+        /// position in the list. The value of the index parameter will be between 0
+        /// and [initialItemCount] plus the total number of items that have been
+        /// inserted with [SliverAnimatedListState.insertItem] and less the total
+        /// number of items that have been removed with
+        /// [SliverAnimatedListState.removeItem].
+        ///
+        /// Implementations of this callback should assume that
+        /// [SliverAnimatedListState.removeItem] removes an item immediately.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Animatedlist.AnimatedListItemBuilder ItemBuilder { get; set; }
+        /// <Summary>
+        /// {@macro flutter.widgets.animatedList.initialItemCount}
+        /// </Summary>
         public virtual int InitialItemCount { get; set; }
 
         public new FlutterSDK.Widgets.Animatedlist.SliverAnimatedListState CreateState() => new SliverAnimatedListState();

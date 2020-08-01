@@ -405,6 +405,24 @@ namespace FlutterSDK.Material.Checkbox
     /// </Summary>
     public class Checkbox : FlutterSDK.Widgets.Framework.StatefulWidget
     {
+        /// <Summary>
+        /// Creates a material design checkbox.
+        ///
+        /// The checkbox itself does not maintain any state. Instead, when the state of
+        /// the checkbox changes, the widget calls the [onChanged] callback. Most
+        /// widgets that use a checkbox will listen for the [onChanged] callback and
+        /// rebuild the checkbox with a new [value] to update the visual appearance of
+        /// the checkbox.
+        ///
+        /// The following arguments are required:
+        ///
+        /// * [value], which determines whether the checkbox is checked. The [value]
+        ///   can only be null if [tristate] is true.
+        /// * [onChanged], which is called when the value of the checkbox should
+        ///   change. It can be set to null to disable the checkbox.
+        ///
+        /// The values of [tristate] and [autofocus] must not be null.
+        /// </Summary>
         public Checkbox(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), bool value = default(bool), bool tristate = false, FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>), FlutterBinding.UI.Color activeColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color checkColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color focusColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color hoverColor = default(FlutterBinding.UI.Color), FlutterSDK.Material.Themedata.MaterialTapTargetSize materialTapTargetSize = default(FlutterSDK.Material.Themedata.MaterialTapTargetSize), FlutterSDK.Material.Themedata.VisualDensity visualDensity = default(FlutterSDK.Material.Themedata.VisualDensity), FlutterSDK.Widgets.Focusmanager.FocusNode focusNode = default(FlutterSDK.Widgets.Focusmanager.FocusNode), bool autofocus = false)
         : base(key: key)
         {
@@ -420,17 +438,107 @@ namespace FlutterSDK.Material.Checkbox
             this.FocusNode = focusNode;
             this.Autofocus = autofocus;
         }
+        /// <Summary>
+        /// Whether this checkbox is checked.
+        ///
+        /// This property must not be null.
+        /// </Summary>
         public virtual bool Value { get; set; }
+        /// <Summary>
+        /// Called when the value of the checkbox should change.
+        ///
+        /// The checkbox passes the new value to the callback but does not actually
+        /// change state until the parent widget rebuilds the checkbox with the new
+        /// value.
+        ///
+        /// If this callback is null, the checkbox will be displayed as disabled
+        /// and will not respond to input gestures.
+        ///
+        /// When the checkbox is tapped, if [tristate] is false (the default) then
+        /// the [onChanged] callback will be applied to `!value`. If [tristate] is
+        /// true this callback cycle from false to true to null.
+        ///
+        /// The callback provided to [onChanged] should update the state of the parent
+        /// [StatefulWidget] using the [State.setState] method, so that the parent
+        /// gets rebuilt; for example:
+        ///
+        /// ```dart
+        /// Checkbox(
+        ///   value: _throwShotAway,
+        ///   onChanged: (bool newValue) {
+        ///     setState(() {
+        ///       _throwShotAway = newValue;
+        ///     });
+        ///   },
+        /// )
+        /// ```
+        /// </Summary>
         public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<bool> OnChanged { get; set; }
+        /// <Summary>
+        /// The color to use when this checkbox is checked.
+        ///
+        /// Defaults to [ThemeData.toggleableActiveColor].
+        /// </Summary>
         public virtual FlutterBinding.UI.Color ActiveColor { get; set; }
+        /// <Summary>
+        /// The color to use for the check icon when this checkbox is checked.
+        ///
+        /// Defaults to Color(0xFFFFFFFF)
+        /// </Summary>
         public virtual FlutterBinding.UI.Color CheckColor { get; set; }
+        /// <Summary>
+        /// If true the checkbox's [value] can be true, false, or null.
+        ///
+        /// Checkbox displays a dash when its value is null.
+        ///
+        /// When a tri-state checkbox ([tristate] is true) is tapped, its [onChanged]
+        /// callback will be applied to true if the current value is false, to null if
+        /// value is true, and to false if value is null (i.e. it cycles through false
+        /// => true => null => false when tapped).
+        ///
+        /// If tristate is false (the default), [value] must not be null.
+        /// </Summary>
         public virtual bool Tristate { get; set; }
+        /// <Summary>
+        /// Configures the minimum size of the tap target.
+        ///
+        /// Defaults to [ThemeData.materialTapTargetSize].
+        ///
+        /// See also:
+        ///
+        ///  * [MaterialTapTargetSize], for a description of how this affects tap targets.
+        /// </Summary>
         public virtual FlutterSDK.Material.Themedata.MaterialTapTargetSize MaterialTapTargetSize { get; set; }
+        /// <Summary>
+        /// Defines how compact the checkbox's layout will be.
+        ///
+        /// {@macro flutter.material.themedata.visualDensity}
+        ///
+        /// See also:
+        ///
+        ///  * [ThemeData.visualDensity], which specifies the [density] for all widgets
+        ///    within a [Theme].
+        /// </Summary>
         public virtual FlutterSDK.Material.Themedata.VisualDensity VisualDensity { get; set; }
+        /// <Summary>
+        /// The color for the checkbox's [Material] when it has the input focus.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color FocusColor { get; set; }
+        /// <Summary>
+        /// The color for the checkbox's [Material] when a pointer is hovering over it.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color HoverColor { get; set; }
+        /// <Summary>
+        /// {@macro flutter.widgets.Focus.focusNode}
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Focusmanager.FocusNode FocusNode { get; set; }
+        /// <Summary>
+        /// {@macro flutter.widgets.Focus.autofocus}
+        /// </Summary>
         public virtual bool Autofocus { get; set; }
+        /// <Summary>
+        /// The width of a checkbox widget.
+        /// </Summary>
         public virtual double Width { get; set; }
 
         public new FlutterSDK.Material.Checkbox._CheckboxState CreateState() => new _CheckboxState();

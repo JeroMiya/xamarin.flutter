@@ -412,11 +412,24 @@ namespace FlutterSDK.Material.Mergeablematerial
     /// </Summary>
     public class MergeableMaterialItem
     {
+        /// <Summary>
+        /// Abstract const constructor. This constructor enables subclasses to provide
+        /// const constructors so that they can be used in const expressions.
+        ///
+        /// The argument is the [key], which must not be null.
+        /// </Summary>
         public MergeableMaterialItem(FlutterSDK.Foundation.Key.LocalKey key)
         : base()
         {
             this.Key = key;
         }
+        /// <Summary>
+        /// The key for this item of the list.
+        ///
+        /// The key is used to match parts of the mergeable material from frame to
+        /// frame so that state is maintained appropriately even as slices are added
+        /// or removed.
+        /// </Summary>
         public virtual FlutterSDK.Foundation.Key.LocalKey Key { get; set; }
     }
 
@@ -429,11 +442,20 @@ namespace FlutterSDK.Material.Mergeablematerial
     /// </Summary>
     public class MaterialSlice : FlutterSDK.Material.Mergeablematerial.MergeableMaterialItem
     {
+        /// <Summary>
+        /// Creates a slice of [Material] that's mergeable within a
+        /// [MergeableMaterial].
+        /// </Summary>
         public MaterialSlice(FlutterSDK.Foundation.Key.LocalKey key = default(FlutterSDK.Foundation.Key.LocalKey), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key)
         {
             this.Child = child;
         }
+        /// <Summary>
+        /// The contents of this slice.
+        ///
+        /// {@macro flutter.widgets.child}
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
 
     }
@@ -446,11 +468,18 @@ namespace FlutterSDK.Material.Mergeablematerial
     /// </Summary>
     public class MaterialGap : FlutterSDK.Material.Mergeablematerial.MergeableMaterialItem
     {
+        /// <Summary>
+        /// Creates a Material gap with a given size.
+        /// </Summary>
         public MaterialGap(FlutterSDK.Foundation.Key.LocalKey key = default(FlutterSDK.Foundation.Key.LocalKey), double size = 16.0)
         : base(key)
         {
             this.Size = size;
         }
+        /// <Summary>
+        /// The main axis extent of this gap. For example, if the [MergeableMaterial]
+        /// is vertical, then this is the height of the gap.
+        /// </Summary>
         public virtual double Size { get; set; }
 
     }
@@ -481,6 +510,9 @@ namespace FlutterSDK.Material.Mergeablematerial
     /// </Summary>
     public class MergeableMaterial : FlutterSDK.Widgets.Framework.StatefulWidget
     {
+        /// <Summary>
+        /// Creates a mergeable Material list of items.
+        /// </Summary>
         public MergeableMaterial(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Basictypes.Axis mainAxis = default(FlutterSDK.Painting.Basictypes.Axis), int elevation = 2, bool hasDividers = false, List<FlutterSDK.Material.Mergeablematerial.MergeableMaterialItem> children = default(List<FlutterSDK.Material.Mergeablematerial.MergeableMaterialItem>))
         : base(key: key)
         {
@@ -489,9 +521,28 @@ namespace FlutterSDK.Material.Mergeablematerial
             this.HasDividers = hasDividers;
             this.Children = children;
         }
+        /// <Summary>
+        /// The children of the [MergeableMaterial].
+        /// </Summary>
         public virtual List<FlutterSDK.Material.Mergeablematerial.MergeableMaterialItem> Children { get; set; }
+        /// <Summary>
+        /// The main layout axis.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Basictypes.Axis MainAxis { get; set; }
+        /// <Summary>
+        /// The z-coordinate at which to place all the [Material] slices.
+        ///
+        /// The following elevations have defined shadows: 1, 2, 3, 4, 6, 8, 9, 12, 16, 24
+        ///
+        /// Defaults to 2, the appropriate elevation for cards.
+        ///
+        /// This uses [kElevationToShadow] to simulate shadows, it does not use
+        /// [Material]'s arbitrary elevation feature.
+        /// </Summary>
         public virtual int Elevation { get; set; }
+        /// <Summary>
+        /// Whether connected pieces of [MaterialSlice] have dividers between them.
+        /// </Summary>
         public virtual bool HasDividers { get; set; }
 
         public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)

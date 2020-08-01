@@ -383,14 +383,28 @@ namespace FlutterSDK.Material.Bottomappbartheme
     /// </Summary>
     public class BottomAppBarTheme : IDiagnosticable
     {
+        /// <Summary>
+        /// Creates a theme that can be used for [ThemeData.BottomAppBarTheme].
+        /// </Summary>
         public BottomAppBarTheme(FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), double elevation = default(double), FlutterSDK.Painting.Notchedshapes.NotchedShape shape = default(FlutterSDK.Painting.Notchedshapes.NotchedShape))
         {
             this.Color = color;
             this.Elevation = elevation;
             this.Shape = shape;
         }
+        /// <Summary>
+        /// Default value for [BottomAppBar.color].
+        ///
+        /// If null, [BottomAppBar] uses [ThemeData.bottomAppBarColor].
+        /// </Summary>
         public virtual FlutterBinding.UI.Color Color { get; set; }
+        /// <Summary>
+        /// Default value for [BottomAppBar.elevation].
+        /// </Summary>
         public virtual double Elevation { get; set; }
+        /// <Summary>
+        /// Default value for [BottomAppBar.shape].
+        /// </Summary>
         public virtual FlutterSDK.Painting.Notchedshapes.NotchedShape Shape { get; set; }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 

@@ -605,6 +605,23 @@ namespace FlutterSDK.Material.Checkboxlisttile
     /// </Summary>
     public class CheckboxListTile : FlutterSDK.Widgets.Framework.StatelessWidget
     {
+        /// <Summary>
+        /// Creates a combination of a list tile and a checkbox.
+        ///
+        /// The checkbox tile itself does not maintain any state. Instead, when the
+        /// state of the checkbox changes, the widget calls the [onChanged] callback.
+        /// Most widgets that use a checkbox will listen for the [onChanged] callback
+        /// and rebuild the checkbox tile with a new [value] to update the visual
+        /// appearance of the checkbox.
+        ///
+        /// The following arguments are required:
+        ///
+        /// * [value], which determines whether the checkbox is checked, and must not
+        ///   be null.
+        ///
+        /// * [onChanged], which is called when the value of the checkbox should
+        ///   change. It can be set to null to disable the checkbox.
+        /// </Summary>
         public CheckboxListTile(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), bool value = default(bool), FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>), FlutterBinding.UI.Color activeColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color checkColor = default(FlutterBinding.UI.Color), FlutterSDK.Widgets.Framework.Widget title = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget subtitle = default(FlutterSDK.Widgets.Framework.Widget), bool isThreeLine = false, bool dense = default(bool), FlutterSDK.Widgets.Framework.Widget secondary = default(FlutterSDK.Widgets.Framework.Widget), bool selected = false, FlutterSDK.Material.Listtile.ListTileControlAffinity controlAffinity = default(FlutterSDK.Material.Listtile.ListTileControlAffinity))
         : base(key: key)
         {
@@ -620,16 +637,94 @@ namespace FlutterSDK.Material.Checkboxlisttile
             this.Selected = selected;
             this.ControlAffinity = controlAffinity;
         }
+        /// <Summary>
+        /// Whether this checkbox is checked.
+        ///
+        /// This property must not be null.
+        /// </Summary>
         public virtual bool Value { get; set; }
+        /// <Summary>
+        /// Called when the value of the checkbox should change.
+        ///
+        /// The checkbox passes the new value to the callback but does not actually
+        /// change state until the parent widget rebuilds the checkbox tile with the
+        /// new value.
+        ///
+        /// If null, the checkbox will be displayed as disabled.
+        ///
+        /// The callback provided to [onChanged] should update the state of the parent
+        /// [StatefulWidget] using the [State.setState] method, so that the parent
+        /// gets rebuilt; for example:
+        ///
+        /// ```dart
+        /// CheckboxListTile(
+        ///   value: _throwShotAway,
+        ///   onChanged: (bool newValue) {
+        ///     setState(() {
+        ///       _throwShotAway = newValue;
+        ///     });
+        ///   },
+        ///   title: Text('Throw away your shot'),
+        /// )
+        /// ```
+        /// </Summary>
         public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<bool> OnChanged { get; set; }
+        /// <Summary>
+        /// The color to use when this checkbox is checked.
+        ///
+        /// Defaults to accent color of the current [Theme].
+        /// </Summary>
         public virtual FlutterBinding.UI.Color ActiveColor { get; set; }
+        /// <Summary>
+        /// The color to use for the check icon when this checkbox is checked.
+        ///
+        /// Defaults to Color(0xFFFFFFFF).
+        /// </Summary>
         public virtual FlutterBinding.UI.Color CheckColor { get; set; }
+        /// <Summary>
+        /// The primary content of the list tile.
+        ///
+        /// Typically a [Text] widget.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Title { get; set; }
+        /// <Summary>
+        /// Additional content displayed below the title.
+        ///
+        /// Typically a [Text] widget.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Subtitle { get; set; }
+        /// <Summary>
+        /// A widget to display on the opposite side of the tile from the checkbox.
+        ///
+        /// Typically an [Icon] widget.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Secondary { get; set; }
+        /// <Summary>
+        /// Whether this list tile is intended to display three lines of text.
+        ///
+        /// If false, the list tile is treated as having one line if the subtitle is
+        /// null and treated as having two lines if the subtitle is non-null.
+        /// </Summary>
         public virtual bool IsThreeLine { get; set; }
+        /// <Summary>
+        /// Whether this list tile is part of a vertically dense list.
+        ///
+        /// If this property is null then its value is based on [ListTileTheme.dense].
+        /// </Summary>
         public virtual bool Dense { get; set; }
+        /// <Summary>
+        /// Whether to render icons and text in the [activeColor].
+        ///
+        /// No effort is made to automatically coordinate the [selected] state and the
+        /// [value] state. To have the list tile appear selected when the checkbox is
+        /// checked, pass the same value to both.
+        ///
+        /// Normally, this property is left to its default value, false.
+        /// </Summary>
         public virtual bool Selected { get; set; }
+        /// <Summary>
+        /// Where to place the control relative to the text.
+        /// </Summary>
         public virtual FlutterSDK.Material.Listtile.ListTileControlAffinity ControlAffinity { get; set; }
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)

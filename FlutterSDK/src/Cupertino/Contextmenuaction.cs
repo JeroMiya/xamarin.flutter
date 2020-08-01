@@ -306,6 +306,9 @@ namespace FlutterSDK.Cupertino.Contextmenuaction
     /// </Summary>
     public class CupertinoContextMenuAction : FlutterSDK.Widgets.Framework.StatefulWidget
     {
+        /// <Summary>
+        /// Construct a CupertinoContextMenuAction.
+        /// </Summary>
         public CupertinoContextMenuAction(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), bool isDefaultAction = false, bool isDestructiveAction = false, VoidCallback onPressed = default(VoidCallback), FlutterSDK.Widgets.Icondata.IconData trailingIcon = default(FlutterSDK.Widgets.Icondata.IconData))
         : base(key: key)
         {
@@ -315,10 +318,30 @@ namespace FlutterSDK.Cupertino.Contextmenuaction
             this.OnPressed = onPressed;
             this.TrailingIcon = trailingIcon;
         }
+        /// <Summary>
+        /// The widget that will be placed inside the action.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+        /// <Summary>
+        /// Indicates whether this action should receive the style of an emphasized,
+        /// default action.
+        /// </Summary>
         public virtual bool IsDefaultAction { get; set; }
+        /// <Summary>
+        /// Indicates whether this action should receive the style of a destructive
+        /// action.
+        /// </Summary>
         public virtual bool IsDestructiveAction { get; set; }
+        /// <Summary>
+        /// Called when the action is pressed.
+        /// </Summary>
         public virtual VoidCallback OnPressed { get; set; }
+        /// <Summary>
+        /// An optional icon to display to the right of the child.
+        ///
+        /// Will be colored in the same way as the [TextStyle] used for [child] (for
+        /// example, if using [isDestructiveAction]).
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Icondata.IconData TrailingIcon { get; set; }
 
         public new FlutterSDK.Cupertino.Contextmenuaction._CupertinoContextMenuActionState CreateState() => new _CupertinoContextMenuActionState();

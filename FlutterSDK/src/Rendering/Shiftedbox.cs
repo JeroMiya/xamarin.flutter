@@ -499,6 +499,9 @@ namespace FlutterSDK.Rendering.Shiftedbox
     /// </Summary>
     public class RenderShiftedBox : FlutterSDK.Rendering.Box.RenderBox, IRenderObjectWithChildMixin<FlutterSDK.Rendering.Box.RenderBox>
     {
+        /// <Summary>
+        /// Initializes the [child] property for subclasses.
+        /// </Summary>
         public RenderShiftedBox(FlutterSDK.Rendering.Box.RenderBox child)
         {
 
@@ -608,6 +611,11 @@ namespace FlutterSDK.Rendering.Shiftedbox
     /// </Summary>
     public class RenderPadding : FlutterSDK.Rendering.Shiftedbox.RenderShiftedBox
     {
+        /// <Summary>
+        /// Creates a render object that insets its child.
+        ///
+        /// The [padding] argument must not be null and must have non-negative insets.
+        /// </Summary>
         public RenderPadding(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), TextDirection textDirection = default(TextDirection), FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox))
         : base(child)
         {
@@ -734,11 +742,22 @@ namespace FlutterSDK.Rendering.Shiftedbox
     /// </Summary>
     public class RenderAligningShiftedBox : FlutterSDK.Rendering.Shiftedbox.RenderShiftedBox
     {
+        /// <Summary>
+        /// Initializes member variables for subclasses.
+        ///
+        /// The [alignment] argument must not be null.
+        ///
+        /// The [textDirection] must be non-null if the [alignment] is
+        /// direction-sensitive.
+        /// </Summary>
         public RenderAligningShiftedBox(FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), TextDirection textDirection = default(TextDirection), FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox))
         : base(child)
         {
 
         }
+        /// <Summary>
+        /// A constructor to be used only when the extending class also has a mixin.
+        /// </Summary>
         public static RenderAligningShiftedBox Mixin(FlutterSDK.Painting.Alignment.AlignmentGeometry alignment, TextDirection textDirection, FlutterSDK.Rendering.Box.RenderBox child)
         {
             var instance = new RenderAligningShiftedBox();
@@ -818,6 +837,9 @@ namespace FlutterSDK.Rendering.Shiftedbox
     /// </Summary>
     public class RenderPositionedBox : FlutterSDK.Rendering.Shiftedbox.RenderAligningShiftedBox
     {
+        /// <Summary>
+        /// Creates a render object that positions its child.
+        /// </Summary>
         public RenderPositionedBox(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox), double widthFactor = default(double), double heightFactor = default(double), FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), TextDirection textDirection = default(TextDirection))
         : base(child: child, alignment: alignment, textDirection: textDirection)
         {
@@ -904,6 +926,9 @@ namespace FlutterSDK.Rendering.Shiftedbox
     /// </Summary>
     public class RenderConstrainedOverflowBox : FlutterSDK.Rendering.Shiftedbox.RenderAligningShiftedBox
     {
+        /// <Summary>
+        /// Creates a render object that lets its child overflow itself.
+        /// </Summary>
         public RenderConstrainedOverflowBox(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox), double minWidth = default(double), double maxWidth = default(double), double minHeight = default(double), double maxHeight = default(double), FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), TextDirection textDirection = default(TextDirection))
         : base(child: child, alignment: alignment, textDirection: textDirection)
         {
@@ -990,6 +1015,12 @@ namespace FlutterSDK.Rendering.Shiftedbox
     /// </Summary>
     public class RenderUnconstrainedBox : FlutterSDK.Rendering.Shiftedbox.RenderAligningShiftedBox, IDebugOverflowIndicatorMixin
     {
+        /// <Summary>
+        /// Create a render object that sizes itself to the child but does not
+        /// pass the [constraints] down to that child.
+        ///
+        /// The [alignment] must not be null.
+        /// </Summary>
         public RenderUnconstrainedBox(FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), TextDirection textDirection = default(TextDirection), FlutterSDK.Painting.Basictypes.Axis constrainedAxis = default(FlutterSDK.Painting.Basictypes.Axis), FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox))
         : base(alignment, textDirection, child)
         {
@@ -1090,6 +1121,14 @@ namespace FlutterSDK.Rendering.Shiftedbox
     /// </Summary>
     public class RenderSizedOverflowBox : FlutterSDK.Rendering.Shiftedbox.RenderAligningShiftedBox
     {
+        /// <Summary>
+        /// Creates a render box of a given size that lets its child overflow.
+        ///
+        /// The [requestedSize] and [alignment] arguments must not be null.
+        ///
+        /// The [textDirection] argument must not be null if the [alignment] is
+        /// direction-sensitive.
+        /// </Summary>
         public RenderSizedOverflowBox(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox), Size requestedSize = default(Size), FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), TextDirection textDirection = default(TextDirection))
         : base(child: child, alignment: alignment, textDirection: textDirection)
         {
@@ -1170,6 +1209,17 @@ namespace FlutterSDK.Rendering.Shiftedbox
     /// </Summary>
     public class RenderFractionallySizedOverflowBox : FlutterSDK.Rendering.Shiftedbox.RenderAligningShiftedBox
     {
+        /// <Summary>
+        /// Creates a render box that sizes its child to a fraction of the total available space.
+        ///
+        /// If non-null, the [widthFactor] and [heightFactor] arguments must be
+        /// non-negative.
+        ///
+        /// The [alignment] must not be null.
+        ///
+        /// The [textDirection] must be non-null if the [alignment] is
+        /// direction-sensitive.
+        /// </Summary>
         public RenderFractionallySizedOverflowBox(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox), double widthFactor = default(double), double heightFactor = default(double), FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), TextDirection textDirection = default(TextDirection))
         : base(child: child, alignment: alignment, textDirection: textDirection)
         {
@@ -1346,6 +1396,11 @@ namespace FlutterSDK.Rendering.Shiftedbox
     /// </Summary>
     public class SingleChildLayoutDelegate
     {
+        /// <Summary>
+        /// Creates a layout delegate.
+        ///
+        /// The layout will update whenever [relayout] notifies its listeners.
+        /// </Summary>
         public SingleChildLayoutDelegate(FlutterSDK.Foundation.Changenotifier.Listenable relayout = default(FlutterSDK.Foundation.Changenotifier.Listenable))
         : base()
         {
@@ -1429,6 +1484,11 @@ namespace FlutterSDK.Rendering.Shiftedbox
     /// </Summary>
     public class RenderCustomSingleChildLayoutBox : FlutterSDK.Rendering.Shiftedbox.RenderShiftedBox
     {
+        /// <Summary>
+        /// Creates a render box that defers its layout to a delegate.
+        ///
+        /// The [delegate] argument must not be null.
+        /// </Summary>
         public RenderCustomSingleChildLayoutBox(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox), FlutterSDK.Rendering.Shiftedbox.SingleChildLayoutDelegate @delegate = default(FlutterSDK.Rendering.Shiftedbox.SingleChildLayoutDelegate))
         : base(child)
         {
@@ -1549,6 +1609,11 @@ namespace FlutterSDK.Rendering.Shiftedbox
     /// </Summary>
     public class RenderBaseline : FlutterSDK.Rendering.Shiftedbox.RenderShiftedBox
     {
+        /// <Summary>
+        /// Creates a [RenderBaseline] object.
+        ///
+        /// The [baseline] and [baselineType] arguments must not be null.
+        /// </Summary>
         public RenderBaseline(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox), double baseline = default(double), TextBaseline baselineType = default(TextBaseline))
         : base(child)
         {

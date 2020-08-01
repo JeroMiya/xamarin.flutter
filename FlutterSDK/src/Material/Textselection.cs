@@ -667,6 +667,12 @@ _OverflowOpen=!_OverflowOpen;
     {
         public _ToolbarParentData()
         { }
+        /// <Summary>
+        /// Whether or not this child is painted.
+        ///
+        /// Children in the selection toolbar may be laid out for measurement purposes
+        /// but not painted. This allows these children to be identified.
+        /// </Summary>
         public virtual bool ShouldPaint { get; set; }
 
     }
@@ -928,8 +934,25 @@ _OverflowOpen=!_OverflowOpen;
             this.UpperBounds = upperBounds;
             this.FitsAbove = fitsAbove;
         }
+        /// <Summary>
+        /// Anchor position of the toolbar in global coordinates.
+        /// </Summary>
         public virtual FlutterBinding.UI.Offset Anchor { get; set; }
+        /// <Summary>
+        /// The upper-most valid y value for the anchor.
+        /// </Summary>
         public virtual double UpperBounds { get; set; }
+        /// <Summary>
+        /// Whether the closed toolbar fits above the anchor position.
+        ///
+        /// If the closed toolbar doesn't fit, then the menu is rendered below the
+        /// anchor position. It should never happen that the toolbar extends below the
+        /// padded bottom of the screen.
+        ///
+        /// If the closed toolbar does fit but it doesn't fit when the overflow menu
+        /// is open, then the toolbar is still rendered above the anchor position. It
+        /// then grows downward, overlapping the selection.
+        /// </Summary>
         public virtual bool FitsAbove { get; set; }
 
         private double _CenterOn(double position, double width, double min, double max)

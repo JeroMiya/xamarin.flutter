@@ -412,6 +412,10 @@ namespace FlutterSDK.Material.Floatingactionbuttontheme
     /// </Summary>
     public class FloatingActionButtonThemeData : IDiagnosticable
     {
+        /// <Summary>
+        /// Creates a theme that can be used for
+        /// [ThemeData.floatingActionButtonTheme].
+        /// </Summary>
         public FloatingActionButtonThemeData(FlutterBinding.UI.Color foregroundColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color focusColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color hoverColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color splashColor = default(FlutterBinding.UI.Color), double elevation = default(double), double focusElevation = default(double), double hoverElevation = default(double), double disabledElevation = default(double), double highlightElevation = default(double), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder))
         {
             this.ForegroundColor = foregroundColor;
@@ -426,16 +430,61 @@ namespace FlutterSDK.Material.Floatingactionbuttontheme
             this.HighlightElevation = highlightElevation;
             this.Shape = shape;
         }
+        /// <Summary>
+        /// Color to be used for the unselected, enabled [FloatingActionButton]'s
+        /// foreground.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color ForegroundColor { get; set; }
+        /// <Summary>
+        /// Color to be used for the unselected, enabled [FloatingActionButton]'s
+        /// background.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
+        /// <Summary>
+        /// The color to use for filling the button when the button has input focus.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color FocusColor { get; set; }
+        /// <Summary>
+        /// The color to use for filling the button when the button has a pointer
+        /// hovering over it.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color HoverColor { get; set; }
+        /// <Summary>
+        /// The splash color for this [FloatingActionButton]'s [InkWell].
+        /// </Summary>
         public virtual FlutterBinding.UI.Color SplashColor { get; set; }
+        /// <Summary>
+        /// The z-coordinate to be used for the unselected, enabled
+        /// [FloatingActionButton]'s elevation foreground.
+        /// </Summary>
         public virtual double Elevation { get; set; }
+        /// <Summary>
+        /// The z-coordinate at which to place this button relative to its parent when
+        /// the button has the input focus.
+        ///
+        /// This controls the size of the shadow below the floating action button.
+        /// </Summary>
         public virtual double FocusElevation { get; set; }
+        /// <Summary>
+        /// The z-coordinate at which to place this button relative to its parent when
+        /// the button is enabled and has a pointer hovering over it.
+        ///
+        /// This controls the size of the shadow below the floating action button.
+        /// </Summary>
         public virtual double HoverElevation { get; set; }
+        /// <Summary>
+        /// The z-coordinate to be used for the disabled [FloatingActionButton]'s
+        /// elevation foreground.
+        /// </Summary>
         public virtual double DisabledElevation { get; set; }
+        /// <Summary>
+        /// The z-coordinate to be used for the selected, enabled
+        /// [FloatingActionButton]'s elevation foreground.
+        /// </Summary>
         public virtual double HighlightElevation { get; set; }
+        /// <Summary>
+        /// The shape to be used for the floating action button's [Material].
+        /// </Summary>
         public virtual FlutterSDK.Painting.Borders.ShapeBorder Shape { get; set; }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 

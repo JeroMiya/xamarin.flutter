@@ -429,12 +429,21 @@ namespace FlutterSDK.Material.Page
     /// </Summary>
     public class MaterialPageRoute<T> : FlutterSDK.Widgets.Pages.PageRoute<T>
     {
+        /// <Summary>
+        /// Construct a MaterialPageRoute whose contents are defined by [builder].
+        ///
+        /// The values of [builder], [maintainState], and [fullScreenDialog] must not
+        /// be null.
+        /// </Summary>
         public MaterialPageRoute(FlutterSDK.Widgets.Framework.WidgetBuilder builder = default(FlutterSDK.Widgets.Framework.WidgetBuilder), FlutterSDK.Widgets.Navigator.RouteSettings settings = default(FlutterSDK.Widgets.Navigator.RouteSettings), bool maintainState = true, bool fullscreenDialog = false)
         : base(settings: settings, fullscreenDialog: fullscreenDialog)
         {
             this.Builder = builder;
             this.MaintainState = maintainState;
         }
+        /// <Summary>
+        /// Builds the primary contents of the route.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.WidgetBuilder Builder { get; set; }
         public new bool MaintainState { get; set; }
         public virtual TimeSpan TransitionDuration { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }

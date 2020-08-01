@@ -388,6 +388,12 @@ namespace FlutterSDK.Material.Buttonbartheme
     /// </Summary>
     public class ButtonBarThemeData : IDiagnosticable
     {
+        /// <Summary>
+        /// Constructs the set of properties used to configure [ButtonBar] widgets.
+        ///
+        /// Both [buttonMinWidth] and [buttonHeight] must be non-negative if they
+        /// are not null.
+        /// </Summary>
         public ButtonBarThemeData(FlutterSDK.Rendering.Flex.MainAxisAlignment alignment = default(FlutterSDK.Rendering.Flex.MainAxisAlignment), FlutterSDK.Rendering.Flex.MainAxisSize mainAxisSize = default(FlutterSDK.Rendering.Flex.MainAxisSize), FlutterSDK.Material.Buttontheme.ButtonTextTheme buttonTextTheme = default(FlutterSDK.Material.Buttontheme.ButtonTextTheme), double buttonMinWidth = default(double), double buttonHeight = default(double), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry buttonPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), bool buttonAlignedDropdown = default(bool), FlutterSDK.Material.Buttontheme.ButtonBarLayoutBehavior layoutBehavior = default(FlutterSDK.Material.Buttontheme.ButtonBarLayoutBehavior), FlutterSDK.Painting.Basictypes.VerticalDirection overflowDirection = default(FlutterSDK.Painting.Basictypes.VerticalDirection))
         : base()
         {
@@ -401,14 +407,82 @@ namespace FlutterSDK.Material.Buttonbartheme
             this.LayoutBehavior = layoutBehavior;
             this.OverflowDirection = overflowDirection;
         }
+        /// <Summary>
+        /// How the children should be placed along the horizontal axis.
+        /// </Summary>
         public virtual FlutterSDK.Rendering.Flex.MainAxisAlignment Alignment { get; set; }
+        /// <Summary>
+        /// How much horizontal space is available. See [Row.mainAxisSize].
+        /// </Summary>
         public virtual FlutterSDK.Rendering.Flex.MainAxisSize MainAxisSize { get; set; }
+        /// <Summary>
+        /// Defines a [ButtonBar] button's base colors, and the defaults for
+        /// the button's minimum size, internal padding, and shape.
+        ///
+        /// This will override the surrounding [ButtonTheme.textTheme] setting
+        /// for buttons contained in the [ButtonBar].
+        ///
+        /// Despite the name, this property is not a [TextTheme], its value is not a
+        /// collection of [TextStyle]s.
+        /// </Summary>
         public virtual FlutterSDK.Material.Buttontheme.ButtonTextTheme ButtonTextTheme { get; set; }
+        /// <Summary>
+        /// The minimum width for [ButtonBar] buttons.
+        ///
+        /// This will override the surrounding [ButtonTheme.minWidth] setting
+        /// for buttons contained in the [ButtonBar].
+        ///
+        /// The actual horizontal space allocated for a button's child is
+        /// at least this value less the theme's horizontal [padding].
+        /// </Summary>
         public virtual double ButtonMinWidth { get; set; }
+        /// <Summary>
+        /// The minimum height for [ButtonBar] buttons.
+        ///
+        /// This will override the surrounding [ButtonTheme.height] setting
+        /// for buttons contained in the [ButtonBar].
+        /// </Summary>
         public virtual double ButtonHeight { get; set; }
+        /// <Summary>
+        /// Padding for a [ButtonBar] button's child (typically the button's label).
+        ///
+        /// This will override the surrounding [ButtonTheme.padding] setting
+        /// for buttons contained in the [ButtonBar].
+        /// </Summary>
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry ButtonPadding { get; set; }
+        /// <Summary>
+        /// If true, then a [DropdownButton] menu's width will match the [ButtonBar]
+        /// button's width.
+        ///
+        /// If false, then the dropdown's menu will be wider than
+        /// its button. In either case the dropdown button will line up the leading
+        /// edge of the menu's value with the leading edge of the values
+        /// displayed by the menu items.
+        ///
+        /// This will override the surrounding [ButtonTheme.alignedDropdown] setting
+        /// for buttons contained in the [ButtonBar].
+        ///
+        /// This property only affects [DropdownButton] contained in a [ButtonBar]
+        /// and its menu.
+        /// </Summary>
         public virtual bool ButtonAlignedDropdown { get; set; }
+        /// <Summary>
+        /// Defines whether a [ButtonBar] should size itself with a minimum size
+        /// constraint or with padding.
+        /// </Summary>
         public virtual FlutterSDK.Material.Buttontheme.ButtonBarLayoutBehavior LayoutBehavior { get; set; }
+        /// <Summary>
+        /// Defines the vertical direction of a [ButtonBar]'s children if it
+        /// overflows.
+        ///
+        /// If the [ButtonBar]'s children do not fit into a single row, then they
+        /// are arranged in a column. The first action is at the top of the
+        /// column if this property is set to [VerticalDirection.down], since it
+        /// "starts" at the top and "ends" at the bottom. On the other hand,
+        /// the first action will be at the bottom of the column if this
+        /// property is set to [VerticalDirection.up], since it "starts" at the
+        /// bottom and "ends" at the top.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Basictypes.VerticalDirection OverflowDirection { get; set; }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 
@@ -490,11 +564,20 @@ namespace FlutterSDK.Material.Buttonbartheme
     /// </Summary>
     public class ButtonBarTheme : FlutterSDK.Widgets.Framework.InheritedWidget
     {
+        /// <Summary>
+        /// Constructs a button bar theme that configures all descendent [ButtonBar]
+        /// widgets.
+        ///
+        /// The [data] must not be null.
+        /// </Summary>
         public ButtonBarTheme(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Material.Buttonbartheme.ButtonBarThemeData data = default(FlutterSDK.Material.Buttonbartheme.ButtonBarThemeData), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
             this.Data = data;
         }
+        /// <Summary>
+        /// The properties used for all descendant [ButtonBar] widgets.
+        /// </Summary>
         public virtual FlutterSDK.Material.Buttonbartheme.ButtonBarThemeData Data { get; set; }
 
         /// <Summary>

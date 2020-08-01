@@ -401,6 +401,11 @@ namespace FlutterSDK.Material.Flutterlogo
     /// </Summary>
     public class FlutterLogo : FlutterSDK.Widgets.Framework.StatelessWidget
     {
+        /// <Summary>
+        /// Creates a widget that paints the Flutter logo.
+        ///
+        /// The [size] defaults to the value given by the current [IconTheme].
+        /// </Summary>
         public FlutterLogo(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), double size = default(double), FlutterSDK.Material.Colors.MaterialColor colors = default(FlutterSDK.Material.Colors.MaterialColor), FlutterBinding.UI.Color textColor = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Flutterlogo.FlutterLogoStyle style = default(FlutterSDK.Painting.Flutterlogo.FlutterLogoStyle), TimeSpan duration = default(TimeSpan), FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve))
         : base(key: key)
         {
@@ -411,11 +416,49 @@ namespace FlutterSDK.Material.Flutterlogo
             this.Duration = duration;
             this.Curve = curve;
         }
+        /// <Summary>
+        /// The size of the logo in logical pixels.
+        ///
+        /// The logo will be fit into a square this size.
+        ///
+        /// Defaults to the current [IconTheme] size, if any. If there is no
+        /// [IconTheme], or it does not specify an explicit size, then it defaults to
+        /// 24.0.
+        /// </Summary>
         public virtual double Size { get; set; }
+        /// <Summary>
+        /// The color swatch to use to paint the logo, [Colors.blue] by default.
+        ///
+        /// If for some reason the default colors are impractical, then one
+        /// of [Colors.amber], [Colors.red], or [Colors.indigo] swatches can be used.
+        /// These are Flutter's secondary colors.
+        ///
+        /// In extreme cases where none of those four color schemes will work,
+        /// [Colors.pink], [Colors.purple], or [Colors.cyan] swatches can be used.
+        /// These are Flutter's tertiary colors.
+        /// </Summary>
         public virtual FlutterSDK.Material.Colors.MaterialColor Colors { get; set; }
+        /// <Summary>
+        /// The color used to paint the "Flutter" text on the logo, if [style] is
+        /// [FlutterLogoStyle.horizontal] or [FlutterLogoStyle.stacked]. The
+        /// appropriate color is `const Color(0xFF616161)` (a medium gray), against a
+        /// white background.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color TextColor { get; set; }
+        /// <Summary>
+        /// Whether and where to draw the "Flutter" text. By default, only the logo
+        /// itself is drawn.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Flutterlogo.FlutterLogoStyle Style { get; set; }
+        /// <Summary>
+        /// The length of time for the animation if the [style], [colors], or
+        /// [textColor] properties are changed.
+        /// </Summary>
         public virtual TimeSpan Duration { get; set; }
+        /// <Summary>
+        /// The curve for the logo animation if the [style], [colors], or [textColor]
+        /// change.
+        /// </Summary>
         public virtual FlutterSDK.Animation.Curves.Curve Curve { get; set; }
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)

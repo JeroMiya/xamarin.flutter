@@ -424,8 +424,34 @@ using FlutterSDK.Painting._Networkimageio;
 using FlutterSDK.Widgets.Constants;
 namespace FlutterSDK.Widgets.Heroes
 {
+    /// <Summary>
+    /// Signature for a function that takes two [Rect] instances and returns a
+    /// [RectTween] that transitions between them.
+    ///
+    /// This is typically used with a [HeroController] to provide an animation for
+    /// [Hero] positions that looks nicer than a linear movement. For example, see
+    /// [MaterialRectArcTween].
+    /// </Summary>
     public delegate FlutterSDK.Animation.Tween.Tween<Rect> CreateRectTween(FlutterBinding.UI.Rect begin, FlutterBinding.UI.Rect end);
+    /// <Summary>
+    /// Signature for a function that builds a [Hero] placeholder widget given a
+    /// child and a [Size].
+    ///
+    /// The child can optionally be part of the returned widget tree. The returned
+    /// widget should typically be constrained to [heroSize], if it doesn't do so
+    /// implicitly.
+    ///
+    /// See also:
+    ///
+    ///  * [TransitionBuilder], which is similar but only takes a [BuildContext]
+    ///    and a child widget.
+    /// </Summary>
     public delegate FlutterSDK.Widgets.Framework.Widget HeroPlaceholderBuilder(FlutterSDK.Widgets.Framework.BuildContext context, Size heroSize, FlutterSDK.Widgets.Framework.Widget child);
+    /// <Summary>
+    /// A function that lets [Hero]es self supply a [Widget] that is shown during the
+    /// hero's flight from one route to another instead of default (which is to
+    /// show the destination route's instance of the Hero).
+    /// </Summary>
     public delegate FlutterSDK.Widgets.Framework.Widget HeroFlightShuttleBuilder(FlutterSDK.Widgets.Framework.BuildContext flightContext, FlutterSDK.Animation.Animation.Animation<double> animation, FlutterSDK.Widgets.Heroes.HeroFlightDirection flightDirection, FlutterSDK.Widgets.Framework.BuildContext fromHeroContext, FlutterSDK.Widgets.Framework.BuildContext toHeroContext);
     public delegate void _OnFlightEnded(FlutterSDK.Widgets.Heroes._HeroFlight flight);
     internal static class HeroesDefaultClass
@@ -512,6 +538,12 @@ namespace FlutterSDK.Widgets.Heroes
     /// </Summary>
     public class Hero : FlutterSDK.Widgets.Framework.StatefulWidget
     {
+        /// <Summary>
+        /// Create a hero.
+        ///
+        /// The [tag] and [child] parameters must not be null.
+        /// The [child] parameter and all of the its descendants must not be [Hero]es.
+        /// </Summary>
         public Hero(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), @Object tag = default(@Object), FlutterSDK.Widgets.Heroes.CreateRectTween createRectTween = default(FlutterSDK.Widgets.Heroes.CreateRectTween), FlutterSDK.Widgets.Heroes.HeroFlightShuttleBuilder flightShuttleBuilder = default(FlutterSDK.Widgets.Heroes.HeroFlightShuttleBuilder), FlutterSDK.Widgets.Heroes.HeroPlaceholderBuilder placeholderBuilder = default(FlutterSDK.Widgets.Heroes.HeroPlaceholderBuilder), bool transitionOnUserGestures = false, FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key)
         {
@@ -522,11 +554,91 @@ namespace FlutterSDK.Widgets.Heroes
             this.TransitionOnUserGestures = transitionOnUserGestures;
             this.Child = child;
         }
+        /// <Summary>
+        /// The identifier for this particular hero. If the tag of this hero matches
+        /// the tag of a hero on a [PageRoute] that we're navigating to or from, then
+        /// a hero animation will be triggered.
+        /// </Summary>
         public virtual @Object Tag { get; set; }
+        /// <Summary>
+        /// Defines how the destination hero's bounds change as it flies from the starting
+        /// route to the destination route.
+        ///
+        /// A hero flight begins with the destination hero's [child] aligned with the
+        /// starting hero's child. The [Tween<Rect>] returned by this callback is used
+        /// to compute the hero's bounds as the flight animation's value goes from 0.0
+        /// to 1.0.
+        ///
+        /// If this property is null, the default, then the value of
+        /// [HeroController.createRectTween] is used. The [HeroController] created by
+        /// [MaterialApp] creates a [MaterialRectArcTween].
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Heroes.CreateRectTween CreateRectTween { get; set; }
+        /// <Summary>
+        /// The widget subtree that will "fly" from one route to another during a
+        /// [Navigator] push or pop transition.
+        ///
+        /// The appearance of this subtree should be similar to the appearance of
+        /// the subtrees of any other heroes in the application with the same [tag].
+        /// Changes in scale and aspect ratio work well in hero animations, changes
+        /// in layout or composition do not.
+        ///
+        /// {@macro flutter.widgets.child}
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+        /// <Summary>
+        /// Optional override to supply a widget that's shown during the hero's flight.
+        ///
+        /// This in-flight widget can depend on the route transition's animation as
+        /// well as the incoming and outgoing routes' [Hero] descendants' widgets and
+        /// layout.
+        ///
+        /// When both the source and destination [Hero]es provide a [flightShuttleBuilder],
+        /// the destination's [flightShuttleBuilder] takes precedence.
+        ///
+        /// If none is provided, the destination route's Hero child is shown in-flight
+        /// by default.
+        ///
+        /// ## Limitations
+        ///
+        /// If a widget built by [flightShuttleBuilder] takes part in a [Navigator]
+        /// push transition, that widget or its descendants must not have any
+        /// [GlobalKey] that is used in the source Hero's descendant widgets. That is
+        /// because both subtrees will be included in the widget tree during the Hero
+        /// flight animation, and [GlobalKey]s must be unique across the entire widget
+        /// tree.
+        ///
+        /// If the said [GlobalKey] is essential to your application, consider providing
+        /// a custom [placeholderBuilder] for the source Hero, to avoid the [GlobalKey]
+        /// collision, such as a builder that builds an empty [SizedBox], keeping the
+        /// Hero [child]'s original size.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Heroes.HeroFlightShuttleBuilder FlightShuttleBuilder { get; set; }
+        /// <Summary>
+        /// Placeholder widget left in place as the Hero's [child] once the flight takes
+        /// off.
+        ///
+        /// By default the placeholder widget is an empty [SizedBox] keeping the Hero
+        /// child's original size, unless this Hero is a source Hero of a [Navigator]
+        /// push transition, in which case [child] will be a descendant of the placeholder
+        /// and will be kept [Offstage] during the Hero's flight.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Heroes.HeroPlaceholderBuilder PlaceholderBuilder { get; set; }
+        /// <Summary>
+        /// Whether to perform the hero transition if the [PageRoute] transition was
+        /// triggered by a user gesture, such as a back swipe on iOS.
+        ///
+        /// If [Hero]es with the same [tag] on both the from and the to routes have
+        /// [transitionOnUserGestures] set to true, a back swipe gesture will
+        /// trigger the same hero animation as a programmatically triggered push or
+        /// pop.
+        ///
+        /// The route being popped to or the bottom route must also have
+        /// [PageRoute.maintainState] set to true for a gesture triggered hero
+        /// transition to work.
+        ///
+        /// Defaults to false and cannot be null.
+        /// </Summary>
         public virtual bool TransitionOnUserGestures { get; set; }
 
         private Dictionary<@Object, FlutterSDK.Widgets.Heroes._HeroState> _AllHeroesFor(FlutterSDK.Widgets.Framework.BuildContext context, bool isUserGestureTransition, FlutterSDK.Widgets.Navigator.NavigatorState navigator)
@@ -882,10 +994,21 @@ namespace FlutterSDK.Widgets.Heroes
     /// </Summary>
     public class HeroController : FlutterSDK.Widgets.Navigator.NavigatorObserver
     {
+        /// <Summary>
+        /// Creates a hero controller with the given [RectTween] constructor if any.
+        ///
+        /// The [createRectTween] argument is optional. If null, the controller uses a
+        /// linear [Tween<Rect>].
+        /// </Summary>
         public HeroController(FlutterSDK.Widgets.Heroes.CreateRectTween createRectTween = default(FlutterSDK.Widgets.Heroes.CreateRectTween))
         {
             this.CreateRectTween = createRectTween;
         }
+        /// <Summary>
+        /// Used to create [RectTween]s that interpolate the position of heroes in flight.
+        ///
+        /// If null, the controller uses a linear [RectTween].
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Heroes.CreateRectTween CreateRectTween { get; set; }
         internal virtual Dictionary<@Object, FlutterSDK.Widgets.Heroes._HeroFlight> _Flights { get; set; }
         internal virtual FlutterSDK.Widgets.Heroes.HeroFlightShuttleBuilder _DefaultHeroFlightShuttleBuilder { get; set; }

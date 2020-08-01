@@ -446,6 +446,12 @@ namespace FlutterSDK.Rendering.Sliverfill
     /// </Summary>
     public class RenderSliverFillViewport : FlutterSDK.Rendering.Sliverfixedextentlist.RenderSliverFixedExtentBoxAdaptor
     {
+        /// <Summary>
+        /// Creates a sliver that contains multiple box children that each fill the
+        /// viewport.
+        ///
+        /// The [childManager] argument must not be null.
+        /// </Summary>
         public RenderSliverFillViewport(FlutterSDK.Rendering.Slivermultiboxadaptor.RenderSliverBoxChildManager childManager = default(FlutterSDK.Rendering.Slivermultiboxadaptor.RenderSliverBoxChildManager), double viewportFraction = 1.0)
         : base(childManager: childManager)
         {
@@ -482,6 +488,10 @@ namespace FlutterSDK.Rendering.Sliverfill
     /// </Summary>
     public class RenderSliverFillRemainingWithScrollable : FlutterSDK.Rendering.Sliver.RenderSliverSingleBoxAdapter
     {
+        /// <Summary>
+        /// Creates a [RenderSliver] that wraps a scrollable [RenderBox] which is
+        /// sized to fit the remaining space in the viewport.
+        /// </Summary>
         public RenderSliverFillRemainingWithScrollable(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox))
         : base(child: child)
         {
@@ -529,6 +539,10 @@ namespace FlutterSDK.Rendering.Sliverfill
     /// </Summary>
     public class RenderSliverFillRemaining : FlutterSDK.Rendering.Sliver.RenderSliverSingleBoxAdapter
     {
+        /// <Summary>
+        /// Creates a [RenderSliver] that wraps a non-scrollable [RenderBox] which is
+        /// sized to fit the remaining space in the viewport.
+        /// </Summary>
         public RenderSliverFillRemaining(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox))
         : base(child: child)
         {
@@ -584,6 +598,10 @@ namespace FlutterSDK.Rendering.Sliverfill
     /// </Summary>
     public class RenderSliverFillRemainingAndOverscroll : FlutterSDK.Rendering.Sliver.RenderSliverSingleBoxAdapter
     {
+        /// <Summary>
+        /// Creates a [RenderSliver] that wraps a non-scrollable [RenderBox] which is
+        /// sized to fit the remaining space plus any overscroll in the viewport.
+        /// </Summary>
         public RenderSliverFillRemainingAndOverscroll(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox))
         : base(child: child)
         {

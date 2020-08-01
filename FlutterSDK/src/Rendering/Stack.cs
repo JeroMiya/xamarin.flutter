@@ -439,6 +439,11 @@ namespace FlutterSDK.Rendering.Stack
     /// </Summary>
     public class RelativeRect
     {
+        /// <Summary>
+        /// Creates a RelativeRect with the given values.
+        ///
+        /// The arguments must not be null.
+        /// </Summary>
         public static RelativeRect FromLTRB(double left, double top, double right, double bottom)
         {
             var instance = new RelativeRect(); instance.Left = left;
@@ -446,6 +451,11 @@ namespace FlutterSDK.Rendering.Stack
             instance.Right = right;
             instance.Bottom = bottom;
         }
+        /// <Summary>
+        /// Creates a RelativeRect from a Rect and a Size. The Rect (first argument)
+        /// and the RelativeRect (the output) are in the coordinate space of the
+        /// rectangle described by the Size, with 0,0 being at the top left.
+        /// </Summary>
         public static RelativeRect FromSize(FlutterBinding.UI.Rect rect, Size container)
         {
             var instance = new RelativeRect();
@@ -453,6 +463,20 @@ namespace FlutterSDK.Rendering.Stack
         }
 
 
+        /// <Summary>
+        /// Creates a RelativeRect from two Rects. The second Rect provides the
+        /// container, the first provides the rectangle, in the same coordinate space,
+        /// that is to be converted to a RelativeRect. The output will be in the
+        /// container's coordinate space.
+        ///
+        /// For example, if the top left of the rect is at 0,0, and the top left of
+        /// the container is at 100,100, then the top left of the output will be at
+        /// -100,-100.
+        ///
+        /// If the first rect is actually in the container's coordinate space, then
+        /// use [RelativeRect.fromSize] and pass the container's size as the second
+        /// argument instead.
+        /// </Summary>
         public static RelativeRect FromRect(FlutterBinding.UI.Rect rect, FlutterBinding.UI.Rect container)
         {
             var instance = new RelativeRect();
@@ -460,10 +484,33 @@ namespace FlutterSDK.Rendering.Stack
         }
 
 
+        /// <Summary>
+        /// A rect that covers the entire container.
+        /// </Summary>
         public virtual FlutterSDK.Rendering.Stack.RelativeRect Fill { get; set; }
+        /// <Summary>
+        /// Distance from the left side of the container to the left side of this rectangle.
+        ///
+        /// May be negative if the left side of the rectangle is outside of the container.
+        /// </Summary>
         public virtual double Left { get; set; }
+        /// <Summary>
+        /// Distance from the top side of the container to the top side of this rectangle.
+        ///
+        /// May be negative if the top side of the rectangle is outside of the container.
+        /// </Summary>
         public virtual double Top { get; set; }
+        /// <Summary>
+        /// Distance from the right side of the container to the right side of this rectangle.
+        ///
+        /// May be negative if the right side of the rectangle is outside of the container.
+        /// </Summary>
         public virtual double Right { get; set; }
+        /// <Summary>
+        /// Distance from the bottom side of the container to the bottom side of this rectangle.
+        ///
+        /// May be negative if the bottom side of the rectangle is outside of the container.
+        /// </Summary>
         public virtual double Bottom { get; set; }
         public virtual bool HasInsets { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
@@ -586,11 +633,33 @@ namespace FlutterSDK.Rendering.Stack
     {
         public StackParentData()
         { }
+        /// <Summary>
+        /// The distance by which the child's top edge is inset from the top of the stack.
+        /// </Summary>
         public virtual double Top { get; set; }
+        /// <Summary>
+        /// The distance by which the child's right edge is inset from the right of the stack.
+        /// </Summary>
         public virtual double Right { get; set; }
+        /// <Summary>
+        /// The distance by which the child's bottom edge is inset from the bottom of the stack.
+        /// </Summary>
         public virtual double Bottom { get; set; }
+        /// <Summary>
+        /// The distance by which the child's left edge is inset from the left of the stack.
+        /// </Summary>
         public virtual double Left { get; set; }
+        /// <Summary>
+        /// The child's width.
+        ///
+        /// Ignored if both left and right are non-null.
+        /// </Summary>
         public virtual double Width { get; set; }
+        /// <Summary>
+        /// The child's height.
+        ///
+        /// Ignored if both top and bottom are non-null.
+        /// </Summary>
         public virtual double Height { get; set; }
         public virtual FlutterSDK.Rendering.Stack.RelativeRect Rect { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool IsPositioned { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
@@ -638,6 +707,12 @@ namespace FlutterSDK.Rendering.Stack
     /// </Summary>
     public class RenderStack : FlutterSDK.Rendering.Box.RenderBox, IContainerRenderObjectMixin<FlutterSDK.Rendering.Box.RenderBox, FlutterSDK.Rendering.Stack.StackParentData>, IRenderBoxContainerDefaultsMixin<FlutterSDK.Rendering.Box.RenderBox, FlutterSDK.Rendering.Stack.StackParentData>
     {
+        /// <Summary>
+        /// Creates a stack render object.
+        ///
+        /// By default, the non-positioned children of the stack are aligned by their
+        /// top left corners.
+        /// </Summary>
         public RenderStack(List<FlutterSDK.Rendering.Box.RenderBox> children = default(List<FlutterSDK.Rendering.Box.RenderBox>), FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), TextDirection textDirection = default(TextDirection), FlutterSDK.Rendering.Stack.StackFit fit = default(FlutterSDK.Rendering.Stack.StackFit), FlutterSDK.Rendering.Stack.Overflow overflow = default(FlutterSDK.Rendering.Stack.Overflow))
         : base()
         {
@@ -936,6 +1011,11 @@ namespace FlutterSDK.Rendering.Stack
     /// </Summary>
     public class RenderIndexedStack : FlutterSDK.Rendering.Stack.RenderStack
     {
+        /// <Summary>
+        /// Creates a stack render object that paints a single child.
+        ///
+        /// If the [index] parameter is null, nothing is displayed.
+        /// </Summary>
         public RenderIndexedStack(List<FlutterSDK.Rendering.Box.RenderBox> children = default(List<FlutterSDK.Rendering.Box.RenderBox>), FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), TextDirection textDirection = default(TextDirection), int index = 0)
         : base(children: children, alignment: alignment, textDirection: textDirection)
         {

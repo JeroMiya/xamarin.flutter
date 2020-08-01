@@ -491,6 +491,30 @@ namespace FlutterSDK.Material.Navigationrail
     /// </Summary>
     public class NavigationRail : FlutterSDK.Widgets.Framework.StatefulWidget
     {
+        /// <Summary>
+        /// Creates a material design navigation rail.
+        ///
+        /// The value of [destinations] must be a list of one or more
+        /// [NavigationRailDestination] values.
+        ///
+        /// If [elevation] is specified, it must be non-negative.
+        ///
+        /// If [minWidth] is specified, it must be non-negative, and if
+        /// [minExtendedWidth] is specified, it must be non-negative and greater than
+        /// [minWidth].
+        ///
+        /// The argument [extended] must not be null. [extended] can only be set to
+        /// true when when the [labelType] is null or [NavigationRailLabelType.none].
+        ///
+        /// If [backgroundColor], [elevation], [groupAlignment], [labelType],
+        /// [unselectedLabelTextStyle], [unselectedLabelTextStyle],
+        /// [unselectedIconTheme], or [selectedIconTheme] are null, then their
+        /// [NavigationRailThemeData] values will be used. If the corresponding
+        /// [NavigationRailThemeData] property is null, then the navigation rail
+        /// defaults are used. See the individual properties for more information.
+        ///
+        /// Typically used within a [Row] that defines the [Scaffold.body] property.
+        /// </Summary>
         public NavigationRail(FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), bool extended = false, FlutterSDK.Widgets.Framework.Widget leading = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget trailing = default(FlutterSDK.Widgets.Framework.Widget), List<FlutterSDK.Material.Navigationrail.NavigationRailDestination> destinations = default(List<FlutterSDK.Material.Navigationrail.NavigationRailDestination>), int selectedIndex = default(int), FlutterSDK.Foundation.Basictypes.ValueChanged<int> onDestinationSelected = default(FlutterSDK.Foundation.Basictypes.ValueChanged<int>), double elevation = default(double), double groupAlignment = default(double), FlutterSDK.Material.Navigationrail.NavigationRailLabelType labelType = default(FlutterSDK.Material.Navigationrail.NavigationRailLabelType), FlutterSDK.Painting.Textstyle.TextStyle unselectedLabelTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle selectedLabelTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Widgets.Iconthemedata.IconThemeData unselectedIconTheme = default(FlutterSDK.Widgets.Iconthemedata.IconThemeData), FlutterSDK.Widgets.Iconthemedata.IconThemeData selectedIconTheme = default(FlutterSDK.Widgets.Iconthemedata.IconThemeData), double minWidth = default(double), double minExtendedWidth = default(double))
         : base()
         {
@@ -511,21 +535,195 @@ namespace FlutterSDK.Material.Navigationrail
             this.MinWidth = minWidth;
             this.MinExtendedWidth = minExtendedWidth;
         }
+        /// <Summary>
+        /// Sets the color of the Container that holds all of the [NavigationRail]'s
+        /// contents.
+        ///
+        /// The default value is [NavigationRailThemeData.backgroundColor]. If
+        /// [NavigationRailThemeData.backgroundColor] is null, then the default value
+        /// is based on [ThemeData.colorScheme.surface].
+        /// </Summary>
         public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
+        /// <Summary>
+        /// Indicates that the [NavigationRail] should be in the extended state.
+        ///
+        /// The extended state has a wider rail container, and the labels are
+        /// positioned next to the icons. [minExtendedWidth] can be used to set the
+        /// the minimum width of the rail when it is in this state.
+        ///
+        /// The rail will implicitly animate between the extended and normal state.
+        ///
+        /// If the rail is going to be in the extended state, then the [labelType]
+        /// must be set to [NavigationRailLabelType.none].
+        ///
+        /// The default value is false.
+        /// </Summary>
         public virtual bool Extended { get; set; }
+        /// <Summary>
+        /// The leading widget in the rail that is placed above the destinations.
+        ///
+        /// It is placed at the top of the rail, above the [destinations]. Its
+        /// location is not affected by [groupAlignment].
+        ///
+        /// This is commonly a [FloatingActionButton], but may also be a non-button,
+        /// such as a logo.
+        ///
+        /// The default value is null.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Leading { get; set; }
+        /// <Summary>
+        /// The trailing widget in the rail that is placed below the destinations.
+        ///
+        /// The trailing widget is placed below the last [NavigationRailDestination].
+        /// It's location is affected by [groupAlignment].
+        ///
+        /// This is commonly a list of additional options or destinations that is
+        /// usually only rendered when [extended] is true.
+        ///
+        /// The default value is null.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Trailing { get; set; }
+        /// <Summary>
+        /// Defines the appearance of the button items that are arrayed within the
+        /// navigation rail.
+        ///
+        /// The value must be a list of two or more [NavigationRailDestination]
+        /// values.
+        /// </Summary>
         public virtual List<FlutterSDK.Material.Navigationrail.NavigationRailDestination> Destinations { get; set; }
+        /// <Summary>
+        /// The index into [destinations] for the current selected
+        /// [NavigationRailDestination].
+        /// </Summary>
         public virtual int SelectedIndex { get; set; }
+        /// <Summary>
+        /// Called when one of the [destinations] is selected.
+        ///
+        /// The stateful widget that creates the navigation rail needs to keep
+        /// track of the index of the selected [NavigationRailDestination] and call
+        /// `setState` to rebuild the navigation rail with the new [selectedIndex].
+        /// </Summary>
         public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<int> OnDestinationSelected { get; set; }
+        /// <Summary>
+        /// The rail's elevation or z-coordinate.
+        ///
+        /// If [Directionality] is [TextDirection.LTR], the inner side is the right
+        /// side, and if [Directionality] is [TextDirection.RTL], it is the left side.
+        ///
+        /// The default value is 0.
+        /// </Summary>
         public virtual double Elevation { get; set; }
+        /// <Summary>
+        /// The vertical alignment for the group of [destinations] within the rail.
+        ///
+        /// The [NavigationRailDestination]s are grouped together with the [trailing]
+        /// widget, between the [leading] widget and the bottom of the rail.
+        ///
+        /// The value must be between -1.0 and 1.0.
+        ///
+        /// If [groupAlignment] is -1.0, then the items are aligned to the top. If
+        /// [groupAlignment] is 0.0, then the items are aligned to the center. If
+        /// [groupAlignment] is 1.0, then the items are aligned to the bottom.
+        ///
+        /// The default is -1.0.
+        ///
+        /// See also:
+        ///   * [Alignment.y]
+        ///
+        /// </Summary>
         public virtual double GroupAlignment { get; set; }
+        /// <Summary>
+        /// Defines the layout and behavior of the labels for the default, unextended
+        /// [NavigationRail].
+        ///
+        /// When a navigation rail is [extended], the labels are always shown.
+        ///
+        /// The default value is [NavigationRailThemeData.labelType]. If
+        /// [NavigationRailThemeData.labelType] is null, then the default value is
+        /// [NavigationRailLabelType.none].
+        ///
+        /// See also:
+        ///
+        ///   * [NavigationRailLabelType] for information on the meaning of different
+        ///   types.
+        /// </Summary>
         public virtual FlutterSDK.Material.Navigationrail.NavigationRailLabelType LabelType { get; set; }
+        /// <Summary>
+        /// The [TextStyle] of a destination's label when it is unselected.
+        ///
+        /// When one of the [destinations] is selected the [selectedLabelTextStyle]
+        /// will be used instead.
+        ///
+        /// The default value is based on the [Theme]'s
+        /// [ThemeData.textTheme.bodyText]. The default color is based on the
+        /// [Theme]'s [ColorScheme.onSurface].
+        ///
+        /// Properties from this text style, or
+        /// [NavigationRailThemeData.unselectedLabelTextStyle] if this is null, are
+        /// merged into the defaults.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Textstyle.TextStyle UnselectedLabelTextStyle { get; set; }
+        /// <Summary>
+        /// The [TextStyle] of a destination's label when it is selected.
+        ///
+        /// When a [NavigationRailDestination] is not selected,
+        /// [unselectedLabelTextStyle] will be used.
+        ///
+        /// The default value is based on the [Theme]'s
+        /// [ThemeData.textTheme.bodyText]. The default color is based on the
+        /// [Theme]'s [ColorScheme.primary].
+        ///
+        /// Properties from this text style,
+        /// or [NavigationRailThemeData.selectedLabelTextStyle] if this is null, are
+        /// merged into the defaults.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Textstyle.TextStyle SelectedLabelTextStyle { get; set; }
+        /// <Summary>
+        /// The visual properties of the icon in the unselected destination.
+        ///
+        /// If this field is not provided, or provided with any null properties, then
+        /// a copy of the [IconThemeData.fallback] with a custom [NavigationRail]
+        /// specific color will be used.
+        ///
+        /// The default value is Is the [Theme]'s [ThemeData.iconTheme] with a color
+        /// of the [Theme]'s [ColorScheme.onSurface] with an opacity of 0.64.
+        /// Properties from this icon theme, or
+        /// [NavigationRailThemeData.unselectedIconTheme] if this is null, are
+        /// merged into the defaults.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Iconthemedata.IconThemeData UnselectedIconTheme { get; set; }
+        /// <Summary>
+        /// The visual properties of the icon in the selected destination.
+        ///
+        /// When a [NavigationRailDestination] is not selected,
+        /// [unselectedIconTheme] will be used.
+        ///
+        /// The default value is Is the [Theme]'s [ThemeData.iconTheme] with a color
+        /// of the [Theme]'s [ColorScheme.primary]. Properties from this icon theme,
+        /// or [NavigationRailThemeData.selectedIconTheme] if this is null, are
+        /// merged into the defaults.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Iconthemedata.IconThemeData SelectedIconTheme { get; set; }
+        /// <Summary>
+        /// The smallest possible width for the rail regardless of the destination's
+        /// icon or label size.
+        ///
+        /// The default is 72.
+        ///
+        /// This value also defines the min width and min height of the destinations.
+        ///
+        /// To make a compact rail, set this to 56 and use
+        /// [NavigationRailLabelType.none].
+        /// </Summary>
         public virtual double MinWidth { get; set; }
+        /// <Summary>
+        /// The final width when the animation is complete for setting [extended] to
+        /// true.
+        ///
+        /// This is only used when [extended] is set to true.
+        ///
+        /// The default value is 256.
+        /// </Summary>
         public virtual double MinExtendedWidth { get; set; }
 
         /// <Summary>
@@ -856,14 +1054,56 @@ namespace FlutterSDK.Material.Navigationrail
     /// </Summary>
     public class NavigationRailDestination
     {
+        /// <Summary>
+        /// Creates a destination that is used with [NavigationRail.destinations].
+        ///
+        /// [icon] and [label] must be non-null. When the [NavigationRail.labelType]
+        /// is [NavigationRailLabelType.none], the label is still used for semantics,
+        /// and may still be used if [NavigationRail.extended] is true.
+        /// </Summary>
         public NavigationRailDestination(FlutterSDK.Widgets.Framework.Widget icon = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget selectedIcon = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget label = default(FlutterSDK.Widgets.Framework.Widget))
         : base()
         {
             this.Icon = icon;
             this.Label = label;
         }
+        /// <Summary>
+        /// The icon of the destination.
+        ///
+        /// Typically the icon is an [Icon] or an [ImageIcon] widget. If another type
+        /// of widget is provided then it should configure itself to match the current
+        /// [IconTheme] size and color.
+        ///
+        /// If [selectedIcon] is provided, this will only be displayed when the
+        /// destination is not selected.
+        ///
+        /// To make the [NavigationRail] more accessible, consider choosing an
+        /// icon with a stroked and filled version, such as [Icons.cloud] and
+        /// [Icons.cloud_queue]. The [icon] should be set to the stroked version and
+        /// [selectedIcon] to the filled version.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Icon { get; set; }
+        /// <Summary>
+        /// An alternative icon displayed when this destination is selected.
+        ///
+        /// If this icon is not provided, the [NavigationRail] will display [icon] in
+        /// either state. The size, color, and opacity of the
+        /// [NavigationRail.selectedIconTheme] will still apply.
+        ///
+        /// See also:
+        ///
+        ///  * [NavigationRailDestination.icon], for a description of how to pair
+        ///    icons.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget SelectedIcon { get; set; }
+        /// <Summary>
+        /// The label for the destination.
+        ///
+        /// The label must be provided when used with the [NavigationRail]. When the
+        /// [NavigationRail.labelType] is [NavigationRailLabelType.none], the label is
+        /// still used for semantics, and may still be used if
+        /// [NavigationRail.extended] is true.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Label { get; set; }
     }
 

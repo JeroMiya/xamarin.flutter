@@ -373,6 +373,10 @@ namespace FlutterSDK.Material.Backbutton
     /// </Summary>
     public class BackButtonIcon : FlutterSDK.Widgets.Framework.StatelessWidget
     {
+        /// <Summary>
+        /// Creates an icon that shows the appropriate "back" image for
+        /// the current platform (as obtained from the [Theme]).
+        /// </Summary>
         public BackButtonIcon(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key))
         : base(key: key)
         {
@@ -428,13 +432,33 @@ namespace FlutterSDK.Material.Backbutton
     /// </Summary>
     public class BackButton : FlutterSDK.Widgets.Framework.StatelessWidget
     {
+        /// <Summary>
+        /// Creates an [IconButton] with the appropriate "back" icon for the current
+        /// target platform.
+        /// </Summary>
         public BackButton(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), VoidCallback onPressed = default(VoidCallback))
         : base(key: key)
         {
             this.Color = color;
             this.OnPressed = onPressed;
         }
+        /// <Summary>
+        /// The color to use for the icon.
+        ///
+        /// Defaults to the [IconThemeData.color] specified in the ambient [IconTheme],
+        /// which usually matches the ambient [Theme]'s [ThemeData.iconTheme].
+        /// </Summary>
         public virtual FlutterBinding.UI.Color Color { get; set; }
+        /// <Summary>
+        /// An override callback to perform instead of the default behavior which is
+        /// to pop the [Navigator].
+        ///
+        /// It can, for instance, be used to pop the platform's navigation stack
+        /// via [SytemNavigator] instead of Flutter's [Navigator] in add-to-app
+        /// situations.
+        ///
+        /// Defaults to null.
+        /// </Summary>
         public virtual VoidCallback OnPressed { get; set; }
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
@@ -480,13 +504,32 @@ namespace FlutterSDK.Material.Backbutton
     /// </Summary>
     public class CloseButton : FlutterSDK.Widgets.Framework.StatelessWidget
     {
+        /// <Summary>
+        /// Creates a Material Design close button.
+        /// </Summary>
         public CloseButton(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), VoidCallback onPressed = default(VoidCallback))
         : base(key: key)
         {
             this.Color = color;
             this.OnPressed = onPressed;
         }
+        /// <Summary>
+        /// The color to use for the icon.
+        ///
+        /// Defaults to the [IconThemeData.color] specified in the ambient [IconTheme],
+        /// which usually matches the ambient [Theme]'s [ThemeData.iconTheme].
+        /// </Summary>
         public virtual FlutterBinding.UI.Color Color { get; set; }
+        /// <Summary>
+        /// An override callback to perform instead of the default behavior which is
+        /// to pop the [Navigator].
+        ///
+        /// It can, for instance, be used to pop the platform's navigation stack
+        /// via [SytemNavigator] instead of Flutter's [Navigator] in add-to-app
+        /// situations.
+        ///
+        /// Defaults to null.
+        /// </Summary>
         public virtual VoidCallback OnPressed { get; set; }
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)

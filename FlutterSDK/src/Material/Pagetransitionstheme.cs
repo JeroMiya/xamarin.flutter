@@ -599,6 +599,10 @@ namespace FlutterSDK.Material.Pagetransitionstheme
     /// </Summary>
     public class PageTransitionsBuilder
     {
+        /// <Summary>
+        /// Abstract const constructor. This constructor enables subclasses to provide
+        /// const constructors so that they can be used in const expressions.
+        /// </Summary>
         public PageTransitionsBuilder()
         {
 
@@ -639,6 +643,9 @@ namespace FlutterSDK.Material.Pagetransitionstheme
     /// </Summary>
     public class FadeUpwardsPageTransitionsBuilder : FlutterSDK.Material.Pagetransitionstheme.PageTransitionsBuilder
     {
+        /// <Summary>
+        /// Construct a [FadeUpwardsPageTransitionsBuilder].
+        /// </Summary>
         public FadeUpwardsPageTransitionsBuilder()
         {
 
@@ -669,6 +676,9 @@ namespace FlutterSDK.Material.Pagetransitionstheme
     /// </Summary>
     public class OpenUpwardsPageTransitionsBuilder : FlutterSDK.Material.Pagetransitionstheme.PageTransitionsBuilder
     {
+        /// <Summary>
+        /// Construct a [OpenUpwardsPageTransitionsBuilder].
+        /// </Summary>
         public OpenUpwardsPageTransitionsBuilder()
         {
 
@@ -699,6 +709,9 @@ namespace FlutterSDK.Material.Pagetransitionstheme
     /// </Summary>
     public class ZoomPageTransitionsBuilder : FlutterSDK.Material.Pagetransitionstheme.PageTransitionsBuilder
     {
+        /// <Summary>
+        /// Construct a [ZoomPageTransitionsBuilder].
+        /// </Summary>
         public ZoomPageTransitionsBuilder()
         {
 
@@ -728,6 +741,9 @@ namespace FlutterSDK.Material.Pagetransitionstheme
     /// </Summary>
     public class CupertinoPageTransitionsBuilder : FlutterSDK.Material.Pagetransitionstheme.PageTransitionsBuilder
     {
+        /// <Summary>
+        /// Construct a [CupertinoPageTransitionsBuilder].
+        /// </Summary>
         public CupertinoPageTransitionsBuilder()
         {
 
@@ -766,6 +782,13 @@ namespace FlutterSDK.Material.Pagetransitionstheme
     /// </Summary>
     public class PageTransitionsTheme : IDiagnosticable
     {
+        /// <Summary>
+        /// Construct a PageTransitionsTheme.
+        ///
+        /// By default the list of builders is: [FadeUpwardsPageTransitionsBuilder]
+        /// for [TargetPlatform.android], and [CupertinoPageTransitionsBuilder] for
+        /// [TargetPlatform.iOS] and [TargetPlatform.macOS].
+        /// </Summary>
         public PageTransitionsTheme(Dictionary<FlutterSDK.Foundation.Platform.TargetPlatform, FlutterSDK.Material.Pagetransitionstheme.PageTransitionsBuilder> builders = default(Dictionary<FlutterSDK.Foundation.Platform.TargetPlatform, FlutterSDK.Material.Pagetransitionstheme.PageTransitionsBuilder>))
         : base()
         {

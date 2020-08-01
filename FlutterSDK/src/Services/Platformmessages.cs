@@ -450,6 +450,9 @@ namespace FlutterSDK.Services.Platformmessages
         {
 
         }
+        /// <Summary>
+        /// The messenger which sends the platform messages, not null.
+        /// </Summary>
         internal virtual FlutterSDK.Services.Binarymessenger.BinaryMessenger _BinaryMessenger { get; set; }
 
         /// <Summary>

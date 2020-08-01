@@ -441,6 +441,12 @@ namespace FlutterSDK.Rendering.Tweens
     /// </Summary>
     public class FractionalOffsetTween : FlutterSDK.Animation.Tween.Tween<FlutterSDK.Painting.Fractionaloffset.FractionalOffset>
     {
+        /// <Summary>
+        /// Creates a fractional offset tween.
+        ///
+        /// The [begin] and [end] properties may be null; the null value
+        /// is treated as meaning the center.
+        /// </Summary>
         public FractionalOffsetTween(FlutterSDK.Painting.Fractionaloffset.FractionalOffset begin = default(FlutterSDK.Painting.Fractionaloffset.FractionalOffset), FlutterSDK.Painting.Fractionaloffset.FractionalOffset end = default(FlutterSDK.Painting.Fractionaloffset.FractionalOffset))
         : base(begin: begin, end: end)
         {
@@ -471,6 +477,12 @@ namespace FlutterSDK.Rendering.Tweens
     /// </Summary>
     public class AlignmentTween : FlutterSDK.Animation.Tween.Tween<FlutterSDK.Painting.Alignment.Alignment>
     {
+        /// <Summary>
+        /// Creates a fractional offset tween.
+        ///
+        /// The [begin] and [end] properties may be null; the null value
+        /// is treated as meaning the center.
+        /// </Summary>
         public AlignmentTween(FlutterSDK.Painting.Alignment.Alignment begin = default(FlutterSDK.Painting.Alignment.Alignment), FlutterSDK.Painting.Alignment.Alignment end = default(FlutterSDK.Painting.Alignment.Alignment))
         : base(begin: begin, end: end)
         {
@@ -500,6 +512,12 @@ namespace FlutterSDK.Rendering.Tweens
     /// </Summary>
     public class AlignmentGeometryTween : FlutterSDK.Animation.Tween.Tween<FlutterSDK.Painting.Alignment.AlignmentGeometry>
     {
+        /// <Summary>
+        /// Creates a fractional offset geometry tween.
+        ///
+        /// The [begin] and [end] properties may be null; the null value
+        /// is treated as meaning the center.
+        /// </Summary>
         public AlignmentGeometryTween(FlutterSDK.Painting.Alignment.AlignmentGeometry begin = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), FlutterSDK.Painting.Alignment.AlignmentGeometry end = default(FlutterSDK.Painting.Alignment.AlignmentGeometry))
         : base(begin: begin, end: end)
         {

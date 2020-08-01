@@ -473,6 +473,12 @@ namespace FlutterSDK.Material.Toggleable
     /// </Summary>
     public class RenderToggleable : FlutterSDK.Rendering.Proxybox.RenderConstrainedBox
     {
+        /// <Summary>
+        /// Creates a toggleable render object.
+        ///
+        /// The [activeColor], and [inactiveColor] arguments must not be
+        /// null. The [value] can only be null if tristate is true.
+        /// </Summary>
         public RenderToggleable(bool value = default(bool), bool tristate = false, FlutterBinding.UI.Color activeColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color inactiveColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color hoverColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color focusColor = default(FlutterBinding.UI.Color), FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>), FlutterSDK.Rendering.Box.BoxConstraints additionalConstraints = default(FlutterSDK.Rendering.Box.BoxConstraints), FlutterSDK.Scheduler.Ticker.TickerProvider vsync = default(FlutterSDK.Scheduler.Ticker.TickerProvider), bool hasFocus = false, bool hovering = false)
         : base(additionalConstraints: additionalConstraints)
         {
