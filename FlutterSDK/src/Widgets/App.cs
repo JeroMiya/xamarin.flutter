@@ -488,7 +488,7 @@ namespace FlutterSDK.Widgets.App
     ///
     /// Creates a [PageRoute] using the given [RouteSettings] and [WidgetBuilder].
     /// </Summary>
-    public delegate FlutterSDK.Widgets.Pages.PageRoute<T> PageRouteFactory(FlutterSDK.Widgets.Navigator.RouteSettings settings, FlutterSDK.Widgets.Framework.WidgetBuilder builder);
+    public delegate FlutterSDK.Widgets.Pages.PageRoute<T> PageRouteFactory<T>(FlutterSDK.Widgets.Navigator.RouteSettings settings, FlutterSDK.Widgets.Framework.WidgetBuilder builder);
     /// <Summary>
     /// The signature of [WidgetsApp.onGenerateInitialRoutes].
     ///

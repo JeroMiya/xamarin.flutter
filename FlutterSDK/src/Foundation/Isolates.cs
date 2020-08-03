@@ -306,7 +306,7 @@ namespace FlutterSDK.Foundation.Isolates
     /// {@macro flutter.foundation.compute.limitations}
     /// </Summary>
     public delegate FutureOr<R> ComputeCallback<Q, R>(Q message);
-    public delegate Future<R> _ComputeImpl(FlutterSDK.Foundation.Isolates.ComputeCallback<Q, R> callback, Q message, string debugLabel = default(string));
+    public delegate Future<R> _ComputeImpl<Q, R>(FlutterSDK.Foundation.Isolates.ComputeCallback<Q, R> callback, Q message, string debugLabel = default(string));
     internal static class IsolatesDefaultClass
     {
         public static object Compute = default(object);

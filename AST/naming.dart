@@ -78,6 +78,14 @@ class Naming {
     for (var argument in element.typeParameters) {
       typeArguments.add(getTypeParameterName(argument));
     }
+    //as per https://github.com/dart-lang/sdk/blob/master/docs/language/informal/generic-function-type-alias.md
+    //typedef definition can include generic types in the function defition too
+    if (element is GenericTypeAliasElement && element.function != null) {
+      for (var argument in element.function.typeParameters) {
+        typeArguments.add(getTypeParameterName(argument));
+      }
+    }
+
     if (typeArguments.length > 0) {
       name += "<${typeArguments.join(",")}>";
     }
