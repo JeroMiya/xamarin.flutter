@@ -493,6 +493,12 @@ namespace FlutterSDK.Rendering.Sliverfixedextentlist
     /// </Summary>
     public class RenderSliverFixedExtentBoxAdaptor : FlutterSDK.Rendering.Slivermultiboxadaptor.RenderSliverMultiBoxAdaptor
     {
+        /// <Summary>
+        /// Creates a sliver that contains multiple box children that have the same
+        /// extent in the main axis.
+        ///
+        /// The [childManager] argument must not be null.
+        /// </Summary>
         public RenderSliverFixedExtentBoxAdaptor(FlutterSDK.Rendering.Slivermultiboxadaptor.RenderSliverBoxChildManager childManager = default(FlutterSDK.Rendering.Slivermultiboxadaptor.RenderSliverBoxChildManager))
         : base(childManager: childManager)
         {
@@ -795,6 +801,12 @@ namespace FlutterSDK.Rendering.Sliverfixedextentlist
     /// </Summary>
     public class RenderSliverFixedExtentList : FlutterSDK.Rendering.Sliverfixedextentlist.RenderSliverFixedExtentBoxAdaptor
     {
+        /// <Summary>
+        /// Creates a sliver that contains multiple box children that have a given
+        /// extent in the main axis.
+        ///
+        /// The [childManager] argument must not be null.
+        /// </Summary>
         public RenderSliverFixedExtentList(FlutterSDK.Rendering.Slivermultiboxadaptor.RenderSliverBoxChildManager childManager = default(FlutterSDK.Rendering.Slivermultiboxadaptor.RenderSliverBoxChildManager), double itemExtent = default(double))
         : base(childManager: childManager)
         {

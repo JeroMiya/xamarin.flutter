@@ -378,6 +378,9 @@ namespace FlutterSDK.Material.Appbartheme
     /// </Summary>
     public class AppBarTheme : IDiagnosticable
     {
+        /// <Summary>
+        /// Creates a theme that can be used for [ThemeData.AppBarTheme].
+        /// </Summary>
         public AppBarTheme(Brightness brightness = default(Brightness), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), double elevation = default(double), FlutterSDK.Widgets.Iconthemedata.IconThemeData iconTheme = default(FlutterSDK.Widgets.Iconthemedata.IconThemeData), FlutterSDK.Widgets.Iconthemedata.IconThemeData actionsIconTheme = default(FlutterSDK.Widgets.Iconthemedata.IconThemeData), FlutterSDK.Material.Texttheme.TextTheme textTheme = default(FlutterSDK.Material.Texttheme.TextTheme))
         {
             this.Brightness = brightness;
@@ -387,11 +390,41 @@ namespace FlutterSDK.Material.Appbartheme
             this.ActionsIconTheme = actionsIconTheme;
             this.TextTheme = textTheme;
         }
+        /// <Summary>
+        /// Default value for [AppBar.brightness].
+        ///
+        /// If null, [AppBar] uses [ThemeData.primaryColorBrightness].
+        /// </Summary>
         public virtual Brightness Brightness { get; set; }
+        /// <Summary>
+        /// Default value for [AppBar.color].
+        ///
+        /// If null, [AppBar] uses [ThemeData.primaryColor].
+        /// </Summary>
         public virtual FlutterBinding.UI.Color Color { get; set; }
+        /// <Summary>
+        /// Default value for [AppBar.elevation].
+        ///
+        /// If null, [AppBar] uses a default value of 4.0.
+        /// </Summary>
         public virtual double Elevation { get; set; }
+        /// <Summary>
+        /// Default value for [AppBar.iconTheme].
+        ///
+        /// If null, [AppBar] uses [ThemeData.primaryIconTheme].
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Iconthemedata.IconThemeData IconTheme { get; set; }
+        /// <Summary>
+        /// Default value for [AppBar.actionsIconTheme].
+        ///
+        /// If null, [AppBar] uses [ThemeData.primaryIconTheme].
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Iconthemedata.IconThemeData ActionsIconTheme { get; set; }
+        /// <Summary>
+        /// Default value for [AppBar.textTheme].
+        ///
+        /// If null, [AppBar] uses [ThemeData.primaryTextTheme].
+        /// </Summary>
         public virtual FlutterSDK.Material.Texttheme.TextTheme TextTheme { get; set; }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 

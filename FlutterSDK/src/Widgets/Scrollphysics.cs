@@ -445,12 +445,35 @@ namespace FlutterSDK.Widgets.Scrollphysics
     /// </Summary>
     public class ScrollPhysics
     {
+        /// <Summary>
+        /// Creates an object with the default scroll physics.
+        /// </Summary>
         public ScrollPhysics(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics parent = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics))
         {
             this.Parent = parent;
         }
+        /// <Summary>
+        /// If non-null, determines the default behavior for each method.
+        ///
+        /// If a subclass of [ScrollPhysics] does not override a method, that subclass
+        /// will inherit an implementation from this base class that defers to
+        /// [parent]. This mechanism lets you assemble novel combinations of
+        /// [ScrollPhysics] subclasses at runtime. For example:
+        ///
+        /// ```dart
+        /// BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics())
+        ///
+        /// ```
+        /// will result in a [ScrollPhysics] that has the combined behavior
+        /// of [BouncingScrollPhysics] and [AlwaysScrollableScrollPhysics]:
+        /// behaviors that are not specified in [BouncingScrollPhysics]
+        /// (e.g. [shouldAcceptUserOffset]) will defer to [AlwaysScrollableScrollPhysics].
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Scrollphysics.ScrollPhysics Parent { get; set; }
         internal virtual FlutterSDK.Physics.Springsimulation.SpringDescription _KDefaultSpring { get; set; }
+        /// <Summary>
+        /// The default accuracy to which scrolling is computed.
+        /// </Summary>
         internal virtual FlutterSDK.Physics.Tolerance.Tolerance _KDefaultTolerance { get; set; }
         public virtual FlutterSDK.Physics.Springsimulation.SpringDescription Spring { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterSDK.Physics.Tolerance.Tolerance Tolerance { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
@@ -721,6 +744,9 @@ namespace FlutterSDK.Widgets.Scrollphysics
     /// </Summary>
     public class BouncingScrollPhysics : FlutterSDK.Widgets.Scrollphysics.ScrollPhysics
     {
+        /// <Summary>
+        /// Creates scroll physics that bounce back from the edge.
+        /// </Summary>
         public BouncingScrollPhysics(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics parent = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics))
         : base(parent: parent)
         {
@@ -840,6 +866,10 @@ namespace FlutterSDK.Widgets.Scrollphysics
     /// </Summary>
     public class ClampingScrollPhysics : FlutterSDK.Widgets.Scrollphysics.ScrollPhysics
     {
+        /// <Summary>
+        /// Creates scroll physics that prevent the scroll offset from exceeding the
+        /// bounds of the content..
+        /// </Summary>
         public ClampingScrollPhysics(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics parent = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics))
         : base(parent: parent)
         {
@@ -908,6 +938,9 @@ namespace FlutterSDK.Widgets.Scrollphysics
     /// </Summary>
     public class AlwaysScrollableScrollPhysics : FlutterSDK.Widgets.Scrollphysics.ScrollPhysics
     {
+        /// <Summary>
+        /// Creates scroll physics that always lets the user scroll.
+        /// </Summary>
         public AlwaysScrollableScrollPhysics(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics parent = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics))
         : base(parent: parent)
         {
@@ -942,6 +975,9 @@ namespace FlutterSDK.Widgets.Scrollphysics
     /// </Summary>
     public class NeverScrollableScrollPhysics : FlutterSDK.Widgets.Scrollphysics.ScrollPhysics
     {
+        /// <Summary>
+        /// Creates scroll physics that does not let the user scroll.
+        /// </Summary>
         public NeverScrollableScrollPhysics(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics parent = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics))
         : base(parent: parent)
         {

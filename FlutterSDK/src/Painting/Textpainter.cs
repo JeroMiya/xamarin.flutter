@@ -445,6 +445,12 @@ namespace FlutterSDK.Painting.Textpainter
     /// </Summary>
     public class PlaceholderDimensions
     {
+        /// <Summary>
+        /// Constructs a [PlaceholderDimensions] with the specified parameters.
+        ///
+        /// The `size` and `alignment` are required as a placeholder's dimensions
+        /// require at least `size` and `alignment` to be fully defined.
+        /// </Summary>
         public PlaceholderDimensions(Size size = default(Size), PlaceholderAlignment alignment = default(PlaceholderAlignment), TextBaseline baseline = default(TextBaseline), double baselineOffset = default(double))
         : base()
         {
@@ -453,9 +459,37 @@ namespace FlutterSDK.Painting.Textpainter
             this.Baseline = baseline;
             this.BaselineOffset = baselineOffset;
         }
+        /// <Summary>
+        /// Width and height dimensions of the placeholder.
+        /// </Summary>
         public virtual Size Size { get; set; }
+        /// <Summary>
+        /// How to align the placeholder with the text.
+        ///
+        /// See also:
+        ///
+        ///  * [baseline], the baseline to align to when using
+        ///    [ui.PlaceholderAlignment.baseline],
+        ///    [ui.PlaceholderAlignment.aboveBaseline],
+        ///    or [ui.PlaceholderAlignment.underBaseline].
+        ///  * [baselineOffset], the distance of the alphabetic baseline from the upper
+        ///    edge of the placeholder.
+        /// </Summary>
         public virtual PlaceholderAlignment Alignment { get; set; }
+        /// <Summary>
+        /// Distance of the [baseline] from the upper edge of the placeholder.
+        ///
+        /// Only used when [alignment] is [ui.PlaceholderAlignment.baseline].
+        /// </Summary>
         public virtual double BaselineOffset { get; set; }
+        /// <Summary>
+        /// The [TextBaseline] to align to. Used with:
+        ///
+        ///  * [ui.PlaceholderAlignment.baseline]
+        ///  * [ui.PlaceholderAlignment.aboveBaseline]
+        ///  * [ui.PlaceholderAlignment.underBaseline]
+        ///  * [ui.PlaceholderAlignment.middle]
+        /// </Summary>
         public virtual TextBaseline Baseline { get; set; }
 
     }
@@ -473,7 +507,14 @@ namespace FlutterSDK.Painting.Textpainter
             this.Offset = offset;
             this.FullHeight = fullHeight;
         }
+        /// <Summary>
+        /// The offset of the top left corner of the caret from the top left
+        /// corner of the paragraph.
+        /// </Summary>
         public virtual FlutterBinding.UI.Offset Offset { get; set; }
+        /// <Summary>
+        /// The full height of the glyph at the caret position.
+        /// </Summary>
         public virtual double FullHeight { get; set; }
     }
 
@@ -499,6 +540,16 @@ namespace FlutterSDK.Painting.Textpainter
     /// </Summary>
     public class TextPainter
     {
+        /// <Summary>
+        /// Creates a text painter that paints the given text.
+        ///
+        /// The `text` and `textDirection` arguments are optional but [text] and
+        /// [textDirection] must be non-null before calling [layout].
+        ///
+        /// The [textAlign] property must not be null.
+        ///
+        /// The [maxLines] property, if non-null, must be greater than zero.
+        /// </Summary>
         public TextPainter(FlutterSDK.Painting.Inlinespan.InlineSpan text = default(FlutterSDK.Painting.Inlinespan.InlineSpan), TextAlign textAlign = default(TextAlign), TextDirection textDirection = default(TextDirection), double textScaleFactor = 1.0, int maxLines = default(int), string ellipsis = default(string), Locale locale = default(Locale), FlutterSDK.Painting.Strutstyle.StrutStyle strutStyle = default(FlutterSDK.Painting.Strutstyle.StrutStyle), FlutterSDK.Painting.Textpainter.TextWidthBasis textWidthBasis = default(FlutterSDK.Painting.Textpainter.TextWidthBasis), TextHeightBehavior textHeightBehavior = default(TextHeightBehavior))
         : base()
         {

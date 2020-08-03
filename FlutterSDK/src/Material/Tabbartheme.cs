@@ -439,6 +439,9 @@ namespace FlutterSDK.Material.Tabbartheme
     /// </Summary>
     public class TabBarTheme : IDiagnosticable
     {
+        /// <Summary>
+        /// Creates a tab bar theme that can be used with [ThemeData.tabBarTheme].
+        /// </Summary>
         public TabBarTheme(FlutterSDK.Painting.Decoration.Decoration indicator = default(FlutterSDK.Painting.Decoration.Decoration), FlutterSDK.Material.Tabs.TabBarIndicatorSize indicatorSize = default(FlutterSDK.Material.Tabs.TabBarIndicatorSize), FlutterBinding.UI.Color labelColor = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry labelPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Painting.Textstyle.TextStyle labelStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterBinding.UI.Color unselectedLabelColor = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Textstyle.TextStyle unselectedLabelStyle = default(FlutterSDK.Painting.Textstyle.TextStyle))
         {
             this.Indicator = indicator;
@@ -449,12 +452,33 @@ namespace FlutterSDK.Material.Tabbartheme
             this.UnselectedLabelColor = unselectedLabelColor;
             this.UnselectedLabelStyle = unselectedLabelStyle;
         }
+        /// <Summary>
+        /// Default value for [TabBar.indicator].
+        /// </Summary>
         public virtual FlutterSDK.Painting.Decoration.Decoration Indicator { get; set; }
+        /// <Summary>
+        /// Default value for [TabBar.indicatorSize].
+        /// </Summary>
         public virtual FlutterSDK.Material.Tabs.TabBarIndicatorSize IndicatorSize { get; set; }
+        /// <Summary>
+        /// Default value for [TabBar.labelColor].
+        /// </Summary>
         public virtual FlutterBinding.UI.Color LabelColor { get; set; }
+        /// <Summary>
+        /// Default value for [TabBar.labelPadding].
+        /// </Summary>
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry LabelPadding { get; set; }
+        /// <Summary>
+        /// Default value for [TabBar.labelStyle].
+        /// </Summary>
         public virtual FlutterSDK.Painting.Textstyle.TextStyle LabelStyle { get; set; }
+        /// <Summary>
+        /// Default value for [TabBar.unselectedLabelColor].
+        /// </Summary>
         public virtual FlutterBinding.UI.Color UnselectedLabelColor { get; set; }
+        /// <Summary>
+        /// Default value for [TabBar.unselectedLabelStyle].
+        /// </Summary>
         public virtual FlutterSDK.Painting.Textstyle.TextStyle UnselectedLabelStyle { get; set; }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 

@@ -525,6 +525,9 @@ namespace FlutterSDK.Painting.Shaderwarmup
     /// </Summary>
     public class ShaderWarmUp
     {
+        /// <Summary>
+        /// Allow const constructors for subclasses.
+        /// </Summary>
         public ShaderWarmUp()
         {
 
@@ -580,12 +583,23 @@ namespace FlutterSDK.Painting.Shaderwarmup
     /// </Summary>
     public class DefaultShaderWarmUp : FlutterSDK.Painting.Shaderwarmup.ShaderWarmUp
     {
+        /// <Summary>
+        /// Allow [DefaultShaderWarmUp] to be used as the default value of parameters.
+        /// </Summary>
         public DefaultShaderWarmUp(double drawCallSpacing = 0.0, Size canvasSize = default(Size))
         {
             this.DrawCallSpacing = drawCallSpacing;
             this.CanvasSize = canvasSize;
         }
+        /// <Summary>
+        /// Constant that can be used to space out draw calls for visualizing the draws
+        /// for debugging purposes (example: 80.0).  Be sure to also change your canvas
+        /// size.
+        /// </Summary>
         public virtual double DrawCallSpacing { get; set; }
+        /// <Summary>
+        /// Value that returned by this.size to control canvas size where draws happen.
+        /// </Summary>
         public virtual Size CanvasSize { get; set; }
         public virtual Size Size { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 

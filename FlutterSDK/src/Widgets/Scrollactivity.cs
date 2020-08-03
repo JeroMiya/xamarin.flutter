@@ -563,6 +563,9 @@ namespace FlutterSDK.Widgets.Scrollactivity
     /// </Summary>
     public class ScrollActivity
     {
+        /// <Summary>
+        /// Initializes [delegate] for subclasses.
+        /// </Summary>
         public ScrollActivity(FlutterSDK.Widgets.Scrollactivity.ScrollActivityDelegate _delegate)
         {
             this._Delegate = _delegate;
@@ -683,6 +686,9 @@ namespace FlutterSDK.Widgets.Scrollactivity
     /// </Summary>
     public class IdleScrollActivity : FlutterSDK.Widgets.Scrollactivity.ScrollActivity
     {
+        /// <Summary>
+        /// Creates a scroll activity that does nothing.
+        /// </Summary>
         public IdleScrollActivity(FlutterSDK.Widgets.Scrollactivity.ScrollActivityDelegate @delegate)
         : base(@delegate)
         {
@@ -716,11 +722,17 @@ namespace FlutterSDK.Widgets.Scrollactivity
     /// </Summary>
     public class HoldScrollActivity : FlutterSDK.Widgets.Scrollactivity.ScrollActivity, IScrollHoldController
     {
+        /// <Summary>
+        /// Creates a scroll activity that does nothing.
+        /// </Summary>
         public HoldScrollActivity(FlutterSDK.Widgets.Scrollactivity.ScrollActivityDelegate @delegate = default(FlutterSDK.Widgets.Scrollactivity.ScrollActivityDelegate), VoidCallback onHoldCanceled = default(VoidCallback))
         : base(@delegate)
         {
             this.OnHoldCanceled = onHoldCanceled;
         }
+        /// <Summary>
+        /// Called when [dispose] is called.
+        /// </Summary>
         public virtual VoidCallback OnHoldCanceled { get; set; }
         public virtual bool ShouldIgnorePointer { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool IsScrolling { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
@@ -755,6 +767,12 @@ namespace FlutterSDK.Widgets.Scrollactivity
     /// </Summary>
     public class ScrollDragController : IDrag
     {
+        /// <Summary>
+        /// Creates an object that scrolls a scroll view as the user drags their
+        /// finger across the screen.
+        ///
+        /// The [delegate] and `details` arguments must not be null.
+        /// </Summary>
         public ScrollDragController(FlutterSDK.Widgets.Scrollactivity.ScrollActivityDelegate @delegate = default(FlutterSDK.Widgets.Scrollactivity.ScrollActivityDelegate), FlutterSDK.Gestures.Dragdetails.DragStartDetails details = default(FlutterSDK.Gestures.Dragdetails.DragStartDetails), VoidCallback onDragCanceled = default(VoidCallback), double carriedVelocity = default(double), double motionStartDistanceThreshold = default(double))
         : base()
         {
@@ -763,14 +781,42 @@ namespace FlutterSDK.Widgets.Scrollactivity
             this.MotionStartDistanceThreshold = motionStartDistanceThreshold;
         }
         internal virtual FlutterSDK.Widgets.Scrollactivity.ScrollActivityDelegate _Delegate { get; set; }
+        /// <Summary>
+        /// Called when [dispose] is called.
+        /// </Summary>
         public virtual VoidCallback OnDragCanceled { get; set; }
+        /// <Summary>
+        /// Velocity that was present from a previous [ScrollActivity] when this drag
+        /// began.
+        /// </Summary>
         public virtual double CarriedVelocity { get; set; }
+        /// <Summary>
+        /// Amount of pixels in either direction the drag has to move by to start
+        /// scroll movement again after each time scrolling came to a stop.
+        /// </Summary>
         public virtual double MotionStartDistanceThreshold { get; set; }
         internal virtual TimeSpan _LastNonStationaryTimestamp { get; set; }
         internal virtual bool _RetainMomentum { get; set; }
+        /// <Summary>
+        /// Null if already in motion or has no [motionStartDistanceThreshold].
+        /// </Summary>
         internal virtual double _OffsetSinceLastStop { get; set; }
+        /// <Summary>
+        /// Maximum amount of time interval the drag can have consecutive stationary
+        /// pointer update events before losing the momentum carried from a previous
+        /// scroll activity.
+        /// </Summary>
         public virtual TimeSpan MomentumRetainStationaryDurationThreshold { get; set; }
+        /// <Summary>
+        /// Maximum amount of time interval the drag can have consecutive stationary
+        /// pointer update events before needing to break the
+        /// [motionStartDistanceThreshold] to start motion again.
+        /// </Summary>
         public virtual TimeSpan MotionStoppedDurationThreshold { get; set; }
+        /// <Summary>
+        /// The drag distance past which, a [motionStartDistanceThreshold] breaking
+        /// drag is considered a deliberate fling.
+        /// </Summary>
         internal virtual double _BigThresholdBreakDistance { get; set; }
         internal virtual object _LastDetails { get; set; }
         public virtual FlutterSDK.Widgets.Scrollactivity.ScrollActivityDelegate @delegate { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
@@ -939,6 +985,10 @@ namespace FlutterSDK.Widgets.Scrollactivity
     /// </Summary>
     public class DragScrollActivity : FlutterSDK.Widgets.Scrollactivity.ScrollActivity
     {
+        /// <Summary>
+        /// Creates an activity for when the user drags their finger across the
+        /// screen.
+        /// </Summary>
         public DragScrollActivity(FlutterSDK.Widgets.Scrollactivity.ScrollActivityDelegate @delegate, FlutterSDK.Widgets.Scrollactivity.ScrollDragController controller)
         : base(@delegate)
         {
@@ -1017,6 +1067,11 @@ namespace FlutterSDK.Widgets.Scrollactivity
     /// </Summary>
     public class BallisticScrollActivity : FlutterSDK.Widgets.Scrollactivity.ScrollActivity
     {
+        /// <Summary>
+        /// Creates an activity that animates a scroll view based on a [simulation].
+        ///
+        /// The [delegate], [simulation], and [vsync] arguments must not be null.
+        /// </Summary>
         public BallisticScrollActivity(FlutterSDK.Widgets.Scrollactivity.ScrollActivityDelegate @delegate, FlutterSDK.Physics.Simulation.Simulation simulation, FlutterSDK.Scheduler.Ticker.TickerProvider vsync)
         : base(@delegate)
         {
@@ -1114,6 +1169,12 @@ namespace FlutterSDK.Widgets.Scrollactivity
     /// </Summary>
     public class DrivenScrollActivity : FlutterSDK.Widgets.Scrollactivity.ScrollActivity
     {
+        /// <Summary>
+        /// Creates an activity that animates a scroll view based on animation
+        /// parameters.
+        ///
+        /// All of the parameters must be non-null.
+        /// </Summary>
         public DrivenScrollActivity(FlutterSDK.Widgets.Scrollactivity.ScrollActivityDelegate @delegate, double from = default(double), double to = default(double), TimeSpan duration = default(TimeSpan), FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve), FlutterSDK.Scheduler.Ticker.TickerProvider vsync = default(FlutterSDK.Scheduler.Ticker.TickerProvider))
         : base(@delegate)
         {

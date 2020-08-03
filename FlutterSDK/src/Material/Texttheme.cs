@@ -517,6 +517,18 @@ namespace FlutterSDK.Material.Texttheme
     /// </Summary>
     public class TextTheme : IDiagnosticable
     {
+        /// <Summary>
+        /// Creates a text theme that uses the given values.
+        ///
+        /// Rather than creating a new text theme, consider using [Typography.black]
+        /// or [Typography.white], which implement the typography styles in the
+        /// material design specification:
+        ///
+        /// <https://material.io/design/typography/#type-scale>
+        ///
+        /// If you do decide to create your own text theme, consider using one of
+        /// those predefined themes as a starting point for [copyWith] or [apply].
+        /// </Summary>
         public TextTheme(FlutterSDK.Painting.Textstyle.TextStyle headline1 = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle headline2 = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle headline3 = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle headline4 = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle headline5 = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle headline6 = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle subtitle1 = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle subtitle2 = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle bodyText1 = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle bodyText2 = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle caption = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle button = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle overline = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle display4 = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle display3 = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle display2 = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle display1 = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle headline = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle title = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle subhead = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle subtitle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle body2 = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle body1 = default(FlutterSDK.Painting.Textstyle.TextStyle))
         : base()
         {
@@ -524,18 +536,63 @@ namespace FlutterSDK.Material.Texttheme
             this.Button = button;
             this.Overline = overline;
         }
+        /// <Summary>
+        /// Extremely large text.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Textstyle.TextStyle Headline1 { get; set; }
+        /// <Summary>
+        /// Very, very large text.
+        ///
+        /// Used for the date in the dialog shown by [showDatePicker].
+        /// </Summary>
         public virtual FlutterSDK.Painting.Textstyle.TextStyle Headline2 { get; set; }
+        /// <Summary>
+        /// Very large text.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Textstyle.TextStyle Headline3 { get; set; }
+        /// <Summary>
+        /// Large text.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Textstyle.TextStyle Headline4 { get; set; }
+        /// <Summary>
+        /// Used for large text in dialogs (e.g., the month and year in the dialog
+        /// shown by [showDatePicker]).
+        /// </Summary>
         public virtual FlutterSDK.Painting.Textstyle.TextStyle Headline5 { get; set; }
+        /// <Summary>
+        /// Used for the primary text in app bars and dialogs (e.g., [AppBar.title]
+        /// and [AlertDialog.title]).
+        /// </Summary>
         public virtual FlutterSDK.Painting.Textstyle.TextStyle Headline6 { get; set; }
+        /// <Summary>
+        /// Used for the primary text in lists (e.g., [ListTile.title]).
+        /// </Summary>
         public virtual FlutterSDK.Painting.Textstyle.TextStyle Subtitle1 { get; set; }
+        /// <Summary>
+        /// For medium emphasis text that's a little smaller than [subtitle1].
+        /// </Summary>
         public virtual FlutterSDK.Painting.Textstyle.TextStyle Subtitle2 { get; set; }
+        /// <Summary>
+        /// Used for emphasizing text that would otherwise be [bodyText2].
+        /// </Summary>
         public virtual FlutterSDK.Painting.Textstyle.TextStyle BodyText1 { get; set; }
+        /// <Summary>
+        /// The default text style for [Material].
+        /// </Summary>
         public virtual FlutterSDK.Painting.Textstyle.TextStyle BodyText2 { get; set; }
+        /// <Summary>
+        /// Used for auxiliary text associated with images.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Textstyle.TextStyle Caption { get; set; }
+        /// <Summary>
+        /// Used for text on [RaisedButton] and [FlatButton].
+        /// </Summary>
         public virtual FlutterSDK.Painting.Textstyle.TextStyle Button { get; set; }
+        /// <Summary>
+        /// The smallest style.
+        ///
+        /// Typically used for captions or to introduce a (larger) headline.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Textstyle.TextStyle Overline { get; set; }
         public virtual FlutterSDK.Painting.Textstyle.TextStyle Display4 { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterSDK.Painting.Textstyle.TextStyle Display3 { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }

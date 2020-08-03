@@ -443,13 +443,24 @@ namespace FlutterSDK.Painting.Roundedrectangleborder
     /// </Summary>
     public class RoundedRectangleBorder : FlutterSDK.Painting.Borders.ShapeBorder
     {
+        /// <Summary>
+        /// Creates a rounded rectangle border.
+        ///
+        /// The arguments must not be null.
+        /// </Summary>
         public RoundedRectangleBorder(FlutterSDK.Painting.Borders.BorderSide side = default(FlutterSDK.Painting.Borders.BorderSide), FlutterSDK.Painting.Borderradius.BorderRadiusGeometry borderRadius = default(FlutterSDK.Painting.Borderradius.BorderRadiusGeometry))
         : base()
         {
             this.Side = side;
             this.BorderRadius = borderRadius;
         }
+        /// <Summary>
+        /// The style of this border.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Borders.BorderSide Side { get; set; }
+        /// <Summary>
+        /// The radii for each corner.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Borderradius.BorderRadiusGeometry BorderRadius { get; set; }
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Dimensions { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }

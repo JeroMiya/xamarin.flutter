@@ -309,6 +309,24 @@ namespace FlutterSDK.Material.About
 {
     internal static class AboutDefaultClass
     {
+        /// <Summary>
+        /// Displays an [AboutDialog], which describes the application and provides a
+        /// button to show licenses for software used by the application.
+        ///
+        /// The arguments correspond to the properties on [AboutDialog].
+        ///
+        /// If the application has a [Drawer], consider using [AboutListTile] instead
+        /// of calling this directly.
+        ///
+        /// If you do not need an about box in your application, you should at least
+        /// provide an affordance to call [showLicensePage].
+        ///
+        /// The licenses shown on the [LicensePage] are those returned by the
+        /// [LicenseRegistry] API, which can be used to add more licenses to the list.
+        ///
+        /// The [context], [useRootNavigator] and [routeSettings] arguments are passed to
+        /// [showDialog], the documentation for which discusses how it is used.
+        /// </Summary>
         internal static void ShowAboutDialog(FlutterSDK.Widgets.Framework.BuildContext context = default(FlutterSDK.Widgets.Framework.BuildContext), string applicationName = default(string), string applicationVersion = default(string), FlutterSDK.Widgets.Framework.Widget applicationIcon = default(FlutterSDK.Widgets.Framework.Widget), string applicationLegalese = default(string), List<FlutterSDK.Widgets.Framework.Widget> children = default(List<FlutterSDK.Widgets.Framework.Widget>), bool useRootNavigator = true, FlutterSDK.Widgets.Navigator.RouteSettings routeSettings = default(FlutterSDK.Widgets.Navigator.RouteSettings))
         {
 
@@ -322,6 +340,27 @@ namespace FlutterSDK.Material.About
 
 
 
+        /// <Summary>
+        /// Displays a [LicensePage], which shows licenses for software used by the
+        /// application.
+        ///
+        /// The application arguments correspond to the properties on [LicensePage].
+        ///
+        /// The `context` argument is used to look up the [Navigator] for the page.
+        ///
+        /// The `useRootNavigator` argument is used to determine whether to push the
+        /// page to the [Navigator] furthest from or nearest to the given `context`. It
+        /// is `false` by default.
+        ///
+        /// If the application has a [Drawer], consider using [AboutListTile] instead
+        /// of calling this directly.
+        ///
+        /// The [AboutDialog] shown by [showAboutDialog] includes a button that calls
+        /// [showLicensePage].
+        ///
+        /// The licenses shown on the [LicensePage] are those returned by the
+        /// [LicenseRegistry] API, which can be used to add more licenses to the list.
+        /// </Summary>
         internal static void ShowLicensePage(FlutterSDK.Widgets.Framework.BuildContext context = default(FlutterSDK.Widgets.Framework.BuildContext), string applicationName = default(string), string applicationVersion = default(string), FlutterSDK.Widgets.Framework.Widget applicationIcon = default(FlutterSDK.Widgets.Framework.Widget), string applicationLegalese = default(string), bool useRootNavigator = false)
         {
 
@@ -441,6 +480,13 @@ namespace FlutterSDK.Material.About
     /// </Summary>
     public class AboutListTile : FlutterSDK.Widgets.Framework.StatelessWidget
     {
+        /// <Summary>
+        /// Creates a list tile for showing an about box.
+        ///
+        /// The arguments are all optional. The application name, if omitted, will be
+        /// derived from the nearest [Title] widget. The version, icon, and legalese
+        /// values default to the empty string.
+        /// </Summary>
         public AboutListTile(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget icon = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), string applicationName = default(string), string applicationVersion = default(string), FlutterSDK.Widgets.Framework.Widget applicationIcon = default(FlutterSDK.Widgets.Framework.Widget), string applicationLegalese = default(string), List<FlutterSDK.Widgets.Framework.Widget> aboutBoxChildren = default(List<FlutterSDK.Widgets.Framework.Widget>), bool dense = default(bool))
         : base(key: key)
         {
@@ -453,13 +499,76 @@ namespace FlutterSDK.Material.About
             this.AboutBoxChildren = aboutBoxChildren;
             this.Dense = dense;
         }
+        /// <Summary>
+        /// The icon to show for this drawer item.
+        ///
+        /// By default no icon is shown.
+        ///
+        /// This is not necessarily the same as the image shown in the dialog box
+        /// itself; which is controlled by the [applicationIcon] property.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Icon { get; set; }
+        /// <Summary>
+        /// The label to show on this drawer item.
+        ///
+        /// Defaults to a text widget that says "About Foo" where "Foo" is the
+        /// application name specified by [applicationName].
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+        /// <Summary>
+        /// The name of the application.
+        ///
+        /// This string is used in the default label for this drawer item (see
+        /// [child]) and as the caption of the [AboutDialog] that is shown.
+        ///
+        /// Defaults to the value of [Title.title], if a [Title] widget can be found.
+        /// Otherwise, defaults to [Platform.resolvedExecutable].
+        /// </Summary>
         public virtual string ApplicationName { get; set; }
+        /// <Summary>
+        /// The version of this build of the application.
+        ///
+        /// This string is shown under the application name in the [AboutDialog].
+        ///
+        /// Defaults to the empty string.
+        /// </Summary>
         public virtual string ApplicationVersion { get; set; }
+        /// <Summary>
+        /// The icon to show next to the application name in the [AboutDialog].
+        ///
+        /// By default no icon is shown.
+        ///
+        /// Typically this will be an [ImageIcon] widget. It should honor the
+        /// [IconTheme]'s [IconThemeData.size].
+        ///
+        /// This is not necessarily the same as the icon shown on the drawer item
+        /// itself, which is controlled by the [icon] property.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget ApplicationIcon { get; set; }
+        /// <Summary>
+        /// A string to show in small print in the [AboutDialog].
+        ///
+        /// Typically this is a copyright notice.
+        ///
+        /// Defaults to the empty string.
+        /// </Summary>
         public virtual string ApplicationLegalese { get; set; }
+        /// <Summary>
+        /// Widgets to add to the [AboutDialog] after the name, version, and legalese.
+        ///
+        /// This could include a link to a Web site, some descriptive text, credits,
+        /// or other information to show in the about box.
+        ///
+        /// Defaults to nothing.
+        /// </Summary>
         public virtual List<FlutterSDK.Widgets.Framework.Widget> AboutBoxChildren { get; set; }
+        /// <Summary>
+        /// Whether this list tile is part of a vertically dense list.
+        ///
+        /// If this property is null, then its value is based on [ListTileTheme.dense].
+        ///
+        /// Dense list tiles default to a smaller height.
+        /// </Summary>
         public virtual bool Dense { get; set; }
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
@@ -496,6 +605,13 @@ namespace FlutterSDK.Material.About
     /// </Summary>
     public class AboutDialog : FlutterSDK.Widgets.Framework.StatelessWidget
     {
+        /// <Summary>
+        /// Creates an about box.
+        ///
+        /// The arguments are all optional. The application name, if omitted, will be
+        /// derived from the nearest [Title] widget. The version, icon, and legalese
+        /// values default to the empty string.
+        /// </Summary>
         public AboutDialog(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), string applicationName = default(string), string applicationVersion = default(string), FlutterSDK.Widgets.Framework.Widget applicationIcon = default(FlutterSDK.Widgets.Framework.Widget), string applicationLegalese = default(string), List<FlutterSDK.Widgets.Framework.Widget> children = default(List<FlutterSDK.Widgets.Framework.Widget>))
         : base(key: key)
         {
@@ -505,10 +621,46 @@ namespace FlutterSDK.Material.About
             this.ApplicationLegalese = applicationLegalese;
             this.Children = children;
         }
+        /// <Summary>
+        /// The name of the application.
+        ///
+        /// Defaults to the value of [Title.title], if a [Title] widget can be found.
+        /// Otherwise, defaults to [Platform.resolvedExecutable].
+        /// </Summary>
         public virtual string ApplicationName { get; set; }
+        /// <Summary>
+        /// The version of this build of the application.
+        ///
+        /// This string is shown under the application name.
+        ///
+        /// Defaults to the empty string.
+        /// </Summary>
         public virtual string ApplicationVersion { get; set; }
+        /// <Summary>
+        /// The icon to show next to the application name.
+        ///
+        /// By default no icon is shown.
+        ///
+        /// Typically this will be an [ImageIcon] widget. It should honor the
+        /// [IconTheme]'s [IconThemeData.size].
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget ApplicationIcon { get; set; }
+        /// <Summary>
+        /// A string to show in small print.
+        ///
+        /// Typically this is a copyright notice.
+        ///
+        /// Defaults to the empty string.
+        /// </Summary>
         public virtual string ApplicationLegalese { get; set; }
+        /// <Summary>
+        /// Widgets to add to the dialog box after the name, version, and legalese.
+        ///
+        /// This could include a link to a Web site, some descriptive text, credits,
+        /// or other information to show in the about box.
+        ///
+        /// Defaults to nothing.
+        /// </Summary>
         public virtual List<FlutterSDK.Widgets.Framework.Widget> Children { get; set; }
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
@@ -544,6 +696,16 @@ NavigatorDefaultClass.Navigator.Pop(context);
     /// </Summary>
     public class LicensePage : FlutterSDK.Widgets.Framework.StatefulWidget
     {
+        /// <Summary>
+        /// Creates a page that shows licenses for software used by the application.
+        ///
+        /// The arguments are all optional. The application name, if omitted, will be
+        /// derived from the nearest [Title] widget. The version and legalese values
+        /// default to the empty string.
+        ///
+        /// The licenses shown on the [LicensePage] are those returned by the
+        /// [LicenseRegistry] API, which can be used to add more licenses to the list.
+        /// </Summary>
         public LicensePage(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), string applicationName = default(string), string applicationVersion = default(string), FlutterSDK.Widgets.Framework.Widget applicationIcon = default(FlutterSDK.Widgets.Framework.Widget), string applicationLegalese = default(string))
         : base(key: key)
         {
@@ -552,9 +714,37 @@ NavigatorDefaultClass.Navigator.Pop(context);
             this.ApplicationIcon = applicationIcon;
             this.ApplicationLegalese = applicationLegalese;
         }
+        /// <Summary>
+        /// The name of the application.
+        ///
+        /// Defaults to the value of [Title.title], if a [Title] widget can be found.
+        /// Otherwise, defaults to [Platform.resolvedExecutable].
+        /// </Summary>
         public virtual string ApplicationName { get; set; }
+        /// <Summary>
+        /// The version of this build of the application.
+        ///
+        /// This string is shown under the application name.
+        ///
+        /// Defaults to the empty string.
+        /// </Summary>
         public virtual string ApplicationVersion { get; set; }
+        /// <Summary>
+        /// The icon to show below the application name.
+        ///
+        /// By default no icon is shown.
+        ///
+        /// Typically this will be an [ImageIcon] widget. It should honor the
+        /// [IconTheme]'s [IconThemeData.size].
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget ApplicationIcon { get; set; }
+        /// <Summary>
+        /// A string to show in small print.
+        ///
+        /// Typically this is a copyright notice.
+        ///
+        /// Defaults to the empty string.
+        /// </Summary>
         public virtual string ApplicationLegalese { get; set; }
 
         public new FlutterSDK.Material.About._LicensePageState CreateState() => new _LicensePageState();

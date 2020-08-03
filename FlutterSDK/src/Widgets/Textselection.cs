@@ -425,7 +425,28 @@ using FlutterSDK.Widgets.Constants;
 using FlutterSDK.Widgets.Routenotificationmessages;
 namespace FlutterSDK.Widgets.Textselection
 {
+    /// <Summary>
+    /// Signature for reporting changes to the selection component of a
+    /// [TextEditingValue] for the purposes of a [TextSelectionOverlay]. The
+    /// [caretRect] argument gives the location of the caret in the coordinate space
+    /// of the [RenderBox] given by the [TextSelectionOverlay.renderObject].
+    ///
+    /// Used by [TextSelectionOverlay.onSelectionOverlayChanged].
+    /// </Summary>
     public delegate void TextSelectionOverlayChanged(FlutterSDK.Services.Textinput.TextEditingValue value, FlutterBinding.UI.Rect caretRect);
+    /// <Summary>
+    /// Signature for when a pointer that's dragging to select text has moved again.
+    ///
+    /// The first argument [startDetails] contains the details of the event that
+    /// initiated the dragging.
+    ///
+    /// The second argument [updateDetails] contains the details of the current
+    /// pointer movement. It's the same as the one passed to [DragGestureRecognizer.onUpdate].
+    ///
+    /// This signature is different from [GestureDragUpdateCallback] to make it
+    /// easier for various text fields to use [TextSelectionGestureDetector] without
+    /// having to store the start position.
+    /// </Summary>
     public delegate void DragSelectionUpdateCallback(FlutterSDK.Gestures.Dragdetails.DragStartDetails startDetails, FlutterSDK.Gestures.Dragdetails.DragUpdateDetails updateDetails);
     internal static class TextselectionDefaultClass
     {
@@ -703,6 +724,11 @@ namespace FlutterSDK.Widgets.Textselection
     /// </Summary>
     public class TextSelectionOverlay
     {
+        /// <Summary>
+        /// Creates an object that manages overlay entries for selection handles.
+        ///
+        /// The [context] must not be null and must have an [Overlay] as an ancestor.
+        /// </Summary>
         public TextSelectionOverlay(FlutterSDK.Services.Textinput.TextEditingValue value = default(FlutterSDK.Services.Textinput.TextEditingValue), FlutterSDK.Widgets.Framework.BuildContext context = default(FlutterSDK.Widgets.Framework.BuildContext), FlutterSDK.Widgets.Framework.Widget debugRequiredFor = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Rendering.Layer.LayerLink toolbarLayerLink = default(FlutterSDK.Rendering.Layer.LayerLink), FlutterSDK.Rendering.Layer.LayerLink startHandleLayerLink = default(FlutterSDK.Rendering.Layer.LayerLink), FlutterSDK.Rendering.Layer.LayerLink endHandleLayerLink = default(FlutterSDK.Rendering.Layer.LayerLink), FlutterSDK.Rendering.Editable.RenderEditable renderObject = default(FlutterSDK.Rendering.Editable.RenderEditable), FlutterSDK.Widgets.Textselection.TextSelectionControls selectionControls = default(FlutterSDK.Widgets.Textselection.TextSelectionControls), bool handlesVisible = false, FlutterSDK.Services.Textinput.TextSelectionDelegate selectionDelegate = default(FlutterSDK.Services.Textinput.TextSelectionDelegate), FlutterSDK.Gestures.Recognizer.DragStartBehavior dragStartBehavior = default(FlutterSDK.Gestures.Recognizer.DragStartBehavior), VoidCallback onSelectionHandleTapped = default(VoidCallback))
         : base()
         {
@@ -722,20 +748,86 @@ namespace FlutterSDK.Widgets.Textselection
         }
 
 
+        /// <Summary>
+        /// The context in which the selection handles should appear.
+        ///
+        /// This context must have an [Overlay] as an ancestor because this object
+        /// will display the text selection handles in that [Overlay].
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.BuildContext Context { get; set; }
+        /// <Summary>
+        /// Debugging information for explaining why the [Overlay] is required.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget DebugRequiredFor { get; set; }
+        /// <Summary>
+        /// The object supplied to the [CompositedTransformTarget] that wraps the text
+        /// field.
+        /// </Summary>
         public virtual FlutterSDK.Rendering.Layer.LayerLink ToolbarLayerLink { get; set; }
+        /// <Summary>
+        /// The objects supplied to the [CompositedTransformTarget] that wraps the
+        /// location of start selection handle.
+        /// </Summary>
         public virtual FlutterSDK.Rendering.Layer.LayerLink StartHandleLayerLink { get; set; }
+        /// <Summary>
+        /// The objects supplied to the [CompositedTransformTarget] that wraps the
+        /// location of end selection handle.
+        /// </Summary>
         public virtual FlutterSDK.Rendering.Layer.LayerLink EndHandleLayerLink { get; set; }
+        /// <Summary>
+        /// The editable line in which the selected text is being displayed.
+        /// </Summary>
         public virtual FlutterSDK.Rendering.Editable.RenderEditable RenderObject { get; set; }
+        /// <Summary>
+        /// Builds text selection handles and toolbar.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Textselection.TextSelectionControls SelectionControls { get; set; }
+        /// <Summary>
+        /// The delegate for manipulating the current selection in the owning
+        /// text field.
+        /// </Summary>
         public virtual FlutterSDK.Services.Textinput.TextSelectionDelegate SelectionDelegate { get; set; }
+        /// <Summary>
+        /// Determines the way that drag start behavior is handled.
+        ///
+        /// If set to [DragStartBehavior.start], handle drag behavior will
+        /// begin upon the detection of a drag gesture. If set to
+        /// [DragStartBehavior.down] it will begin when a down event is first detected.
+        ///
+        /// In general, setting this to [DragStartBehavior.start] will make drag
+        /// animation smoother and setting it to [DragStartBehavior.down] will make
+        /// drag behavior feel slightly more reactive.
+        ///
+        /// By default, the drag start behavior is [DragStartBehavior.start].
+        ///
+        /// See also:
+        ///
+        ///  * [DragGestureRecognizer.dragStartBehavior], which gives an example for the different behaviors.
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Recognizer.DragStartBehavior DragStartBehavior { get; set; }
+        /// <Summary>
+        /// {@template flutter.widgets.textSelection.onSelectionHandleTapped}
+        /// A callback that's invoked when a selection handle is tapped.
+        ///
+        /// Both regular taps and long presses invoke this callback, but a drag
+        /// gesture won't.
+        /// {@endtemplate}
+        /// </Summary>
         public virtual VoidCallback OnSelectionHandleTapped { get; set; }
+        /// <Summary>
+        /// Controls the fade-in and fade-out animations for the toolbar and handles.
+        /// </Summary>
         public virtual TimeSpan FadeDuration { get; set; }
         internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _ToolbarController { get; set; }
         internal virtual FlutterSDK.Services.Textinput.TextEditingValue _Value { get; set; }
+        /// <Summary>
+        /// A pair of handles. If this is non-null, there are always 2, though the
+        /// second is hidden when the selection is collapsed.
+        /// </Summary>
         internal virtual List<FlutterSDK.Widgets.Overlay.OverlayEntry> _Handles { get; set; }
+        /// <Summary>
+        /// A copy/paste toolbar.
+        /// </Summary>
         internal virtual FlutterSDK.Widgets.Overlay.OverlayEntry _Toolbar { get; set; }
         internal virtual bool _HandlesVisible { get; set; }
         internal virtual FlutterSDK.Animation.Animation.Animation<double> _ToolbarOpacity { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
@@ -1114,11 +1206,23 @@ namespace FlutterSDK.Widgets.Textselection
     /// </Summary>
     public class TextSelectionGestureDetectorBuilder
     {
+        /// <Summary>
+        /// Creates a [TextSelectionGestureDetectorBuilder].
+        ///
+        /// The [delegate] must not be null.
+        /// </Summary>
         public TextSelectionGestureDetectorBuilder(FlutterSDK.Widgets.Textselection.TextSelectionGestureDetectorBuilderDelegate @delegate = default(FlutterSDK.Widgets.Textselection.TextSelectionGestureDetectorBuilderDelegate))
         : base()
         {
             this.@delegate = @delegate;
         }
+        /// <Summary>
+        /// The delegate for this [TextSelectionGestureDetectorBuilder].
+        ///
+        /// The delegate provides the builder with information about what actions can
+        /// currently be performed on the textfield. Based on this, the builder adds
+        /// the correct gesture handlers to the gesture detector.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Textselection.TextSelectionGestureDetectorBuilderDelegate @delegate { get; set; }
         internal virtual bool _ShouldShowSelectionToolbar { get; set; }
         public virtual bool ShouldShowSelectionToolbar { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
@@ -1407,6 +1511,12 @@ namespace FlutterSDK.Widgets.Textselection
     /// </Summary>
     public class TextSelectionGestureDetector : FlutterSDK.Widgets.Framework.StatefulWidget
     {
+        /// <Summary>
+        /// Create a [TextSelectionGestureDetector].
+        ///
+        /// Multiple callbacks can be called for one sequence of input gesture.
+        /// The [child] parameter must not be null.
+        /// </Summary>
         public TextSelectionGestureDetector(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Gestures.Tap.GestureTapDownCallback onTapDown = default(FlutterSDK.Gestures.Tap.GestureTapDownCallback), FlutterSDK.Gestures.Forcepress.GestureForcePressStartCallback onForcePressStart = default(FlutterSDK.Gestures.Forcepress.GestureForcePressStartCallback), FlutterSDK.Gestures.Forcepress.GestureForcePressEndCallback onForcePressEnd = default(FlutterSDK.Gestures.Forcepress.GestureForcePressEndCallback), FlutterSDK.Gestures.Tap.GestureTapUpCallback onSingleTapUp = default(FlutterSDK.Gestures.Tap.GestureTapUpCallback), FlutterSDK.Gestures.Tap.GestureTapCancelCallback onSingleTapCancel = default(FlutterSDK.Gestures.Tap.GestureTapCancelCallback), FlutterSDK.Gestures.Longpress.GestureLongPressStartCallback onSingleLongTapStart = default(FlutterSDK.Gestures.Longpress.GestureLongPressStartCallback), FlutterSDK.Gestures.Longpress.GestureLongPressMoveUpdateCallback onSingleLongTapMoveUpdate = default(FlutterSDK.Gestures.Longpress.GestureLongPressMoveUpdateCallback), FlutterSDK.Gestures.Longpress.GestureLongPressEndCallback onSingleLongTapEnd = default(FlutterSDK.Gestures.Longpress.GestureLongPressEndCallback), FlutterSDK.Gestures.Tap.GestureTapDownCallback onDoubleTapDown = default(FlutterSDK.Gestures.Tap.GestureTapDownCallback), FlutterSDK.Gestures.Dragdetails.GestureDragStartCallback onDragSelectionStart = default(FlutterSDK.Gestures.Dragdetails.GestureDragStartCallback), FlutterSDK.Widgets.Textselection.DragSelectionUpdateCallback onDragSelectionUpdate = default(FlutterSDK.Widgets.Textselection.DragSelectionUpdateCallback), FlutterSDK.Gestures.Monodrag.GestureDragEndCallback onDragSelectionEnd = default(FlutterSDK.Gestures.Monodrag.GestureDragEndCallback), FlutterSDK.Rendering.Proxybox.HitTestBehavior behavior = default(FlutterSDK.Rendering.Proxybox.HitTestBehavior), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key)
         {
@@ -1425,19 +1535,79 @@ namespace FlutterSDK.Widgets.Textselection
             this.Behavior = behavior;
             this.Child = child;
         }
+        /// <Summary>
+        /// Called for every tap down including every tap down that's part of a
+        /// double click or a long press, except touches that include enough movement
+        /// to not qualify as taps (e.g. pans and flings).
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Tap.GestureTapDownCallback OnTapDown { get; set; }
+        /// <Summary>
+        /// Called when a pointer has tapped down and the force of the pointer has
+        /// just become greater than [ForcePressGestureDetector.startPressure].
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Forcepress.GestureForcePressStartCallback OnForcePressStart { get; set; }
+        /// <Summary>
+        /// Called when a pointer that had previously triggered [onForcePressStart] is
+        /// lifted off the screen.
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Forcepress.GestureForcePressEndCallback OnForcePressEnd { get; set; }
+        /// <Summary>
+        /// Called for each distinct tap except for every second tap of a double tap.
+        /// For example, if the detector was configured [onSingleTapDown] and
+        /// [onDoubleTapDown], three quick taps would be recognized as a single tap
+        /// down, followed by a double tap down, followed by a single tap down.
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Tap.GestureTapUpCallback OnSingleTapUp { get; set; }
+        /// <Summary>
+        /// Called for each touch that becomes recognized as a gesture that is not a
+        /// short tap, such as a long tap or drag. It is called at the moment when
+        /// another gesture from the touch is recognized.
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Tap.GestureTapCancelCallback OnSingleTapCancel { get; set; }
+        /// <Summary>
+        /// Called for a single long tap that's sustained for longer than
+        /// [kLongPressTimeout] but not necessarily lifted. Not called for a
+        /// double-tap-hold, which calls [onDoubleTapDown] instead.
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Longpress.GestureLongPressStartCallback OnSingleLongTapStart { get; set; }
+        /// <Summary>
+        /// Called after [onSingleLongTapStart] when the pointer is dragged.
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Longpress.GestureLongPressMoveUpdateCallback OnSingleLongTapMoveUpdate { get; set; }
+        /// <Summary>
+        /// Called after [onSingleLongTapStart] when the pointer is lifted.
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Longpress.GestureLongPressEndCallback OnSingleLongTapEnd { get; set; }
+        /// <Summary>
+        /// Called after a momentary hold or a short tap that is close in space and
+        /// time (within [kDoubleTapTimeout]) to a previous short tap.
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Tap.GestureTapDownCallback OnDoubleTapDown { get; set; }
+        /// <Summary>
+        /// Called when a mouse starts dragging to select text.
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Dragdetails.GestureDragStartCallback OnDragSelectionStart { get; set; }
+        /// <Summary>
+        /// Called repeatedly as a mouse moves while dragging.
+        ///
+        /// The frequency of calls is throttled to avoid excessive text layout
+        /// operations in text fields. The throttling is controlled by the constant
+        /// [_kDragSelectionUpdateThrottle].
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Textselection.DragSelectionUpdateCallback OnDragSelectionUpdate { get; set; }
+        /// <Summary>
+        /// Called when a mouse that was previously dragging is released.
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Monodrag.GestureDragEndCallback OnDragSelectionEnd { get; set; }
+        /// <Summary>
+        /// How this gesture detector should behave during hit testing.
+        ///
+        /// This defaults to [HitTestBehavior.deferToChild].
+        /// </Summary>
         public virtual FlutterSDK.Rendering.Proxybox.HitTestBehavior Behavior { get; set; }
+        /// <Summary>
+        /// Child below this widget.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
 
         public new FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget> CreateState() => new _TextSelectionGestureDetectorState();

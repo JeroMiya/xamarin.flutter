@@ -90,6 +90,10 @@ namespace FlutterSDK.Animation.Tween
     /// </Summary>
     public class Animatable<T>
     {
+        /// <Summary>
+        /// Abstract const constructor. This constructor enables subclasses to provide
+        /// const constructors so that they can be used in const expressions.
+        /// </Summary>
         public Animatable()
         {
 
@@ -307,12 +311,31 @@ namespace FlutterSDK.Animation.Tween
     /// </Summary>
     public class Tween<T> : FlutterSDK.Animation.Tween.Animatable<T>
     {
+        /// <Summary>
+        /// Creates a tween.
+        ///
+        /// The [begin] and [end] properties must be non-null before the tween is
+        /// first used, but the arguments can be null if the values are going to be
+        /// filled in later.
+        /// </Summary>
         public Tween(T begin = default(T), T end = default(T))
         {
             this.Begin = begin;
             this.End = end;
         }
+        /// <Summary>
+        /// The value this variable has at the beginning of the animation.
+        ///
+        /// See the constructor for details about whether this property may be null
+        /// (it varies from subclass to subclass).
+        /// </Summary>
         public virtual T Begin { get; set; }
+        /// <Summary>
+        /// The value this variable has at the end of the animation.
+        ///
+        /// See the constructor for details about whether this property may be null
+        /// (it varies from subclass to subclass).
+        /// </Summary>
         public virtual T End { get; set; }
 
         /// <Summary>
@@ -364,11 +387,21 @@ namespace FlutterSDK.Animation.Tween
     /// </Summary>
     public class ReverseTween<T> : FlutterSDK.Animation.Tween.Tween<T>
     {
+        /// <Summary>
+        /// Construct a [Tween] that evaluates its [parent] in reverse.
+        /// </Summary>
         public ReverseTween(FlutterSDK.Animation.Tween.Tween<T> parent)
         : base(begin: parent.End, end: parent.Begin)
         {
             this.Parent = parent;
         }
+        /// <Summary>
+        /// This tween's value is the same as the parent's value evaluated in reverse.
+        ///
+        /// This tween's [begin] is the parent's [end] and its [end] is the parent's
+        /// [begin]. The [lerp] method returns `parent.lerp(1.0 - t)` and its
+        /// [evaluate] method is similar.
+        /// </Summary>
         public virtual FlutterSDK.Animation.Tween.Tween<T> Parent { get; set; }
 
         public new T Lerp(double t) => Parent.Lerp(1.0 - t);
@@ -387,6 +420,17 @@ namespace FlutterSDK.Animation.Tween
     /// </Summary>
     public class ColorTween : FlutterSDK.Animation.Tween.Tween<Color>
     {
+        /// <Summary>
+        /// Creates a [Color] tween.
+        ///
+        /// The [begin] and [end] properties may be null; the null value
+        /// is treated as transparent.
+        ///
+        /// We recommend that you do not pass [Colors.transparent] as [begin]
+        /// or [end] if you want the effect of fading in or out of transparent.
+        /// Instead prefer null. [Colors.transparent] refers to black transparent and
+        /// thus will fade out of or into black which is likely unwanted.
+        /// </Summary>
         public ColorTween(FlutterBinding.UI.Color begin = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color end = default(FlutterBinding.UI.Color))
         : base(begin: begin, end: end)
         {
@@ -412,6 +456,12 @@ namespace FlutterSDK.Animation.Tween
     /// </Summary>
     public class SizeTween : FlutterSDK.Animation.Tween.Tween<Size>
     {
+        /// <Summary>
+        /// Creates a [Size] tween.
+        ///
+        /// The [begin] and [end] properties may be null; the null value
+        /// is treated as an empty size.
+        /// </Summary>
         public SizeTween(Size begin = default(Size), Size end = default(Size))
         : base(begin: begin, end: end)
         {
@@ -437,6 +487,12 @@ namespace FlutterSDK.Animation.Tween
     /// </Summary>
     public class RectTween : FlutterSDK.Animation.Tween.Tween<Rect>
     {
+        /// <Summary>
+        /// Creates a [Rect] tween.
+        ///
+        /// The [begin] and [end] properties may be null; the null value
+        /// is treated as an empty rect at the top left corner.
+        /// </Summary>
         public RectTween(FlutterBinding.UI.Rect begin = default(FlutterBinding.UI.Rect), FlutterBinding.UI.Rect end = default(FlutterBinding.UI.Rect))
         : base(begin: begin, end: end)
         {
@@ -467,6 +523,13 @@ namespace FlutterSDK.Animation.Tween
     /// </Summary>
     public class IntTween : FlutterSDK.Animation.Tween.Tween<int>
     {
+        /// <Summary>
+        /// Creates an int tween.
+        ///
+        /// The [begin] and [end] properties must be non-null before the tween is
+        /// first used, but the arguments can be null if the values are going to be
+        /// filled in later.
+        /// </Summary>
         public IntTween(int begin = default(int), int end = default(int))
         : base(begin: begin, end: end)
         {
@@ -494,6 +557,13 @@ namespace FlutterSDK.Animation.Tween
     /// </Summary>
     public class StepTween : FlutterSDK.Animation.Tween.Tween<int>
     {
+        /// <Summary>
+        /// Creates an [int] tween that floors.
+        ///
+        /// The [begin] and [end] properties must be non-null before the tween is
+        /// first used, but the arguments can be null if the values are going to be
+        /// filled in later.
+        /// </Summary>
         public StepTween(int begin = default(int), int end = default(int))
         : base(begin: begin, end: end)
         {
@@ -511,6 +581,9 @@ namespace FlutterSDK.Animation.Tween
     /// </Summary>
     public class ConstantTween<T> : FlutterSDK.Animation.Tween.Tween<T>
     {
+        /// <Summary>
+        /// Create a tween whose [begin] and [end] values equal [value].
+        /// </Summary>
         public ConstantTween(T value)
         : base(begin: value, end: value)
         {
@@ -557,11 +630,19 @@ namespace FlutterSDK.Animation.Tween
     /// </Summary>
     public class CurveTween : FlutterSDK.Animation.Tween.Animatable<double>
     {
+        /// <Summary>
+        /// Creates a curve tween.
+        ///
+        /// The [curve] argument must not be null.
+        /// </Summary>
         public CurveTween(FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve))
         : base()
         {
             this.Curve = curve;
         }
+        /// <Summary>
+        /// The curve to use when transforming the value of the animation.
+        /// </Summary>
         public virtual FlutterSDK.Animation.Curves.Curve Curve { get; set; }
 
         public new double Transform(double t)

@@ -404,6 +404,9 @@ namespace FlutterSDK.Material.Dialogtheme
     /// </Summary>
     public class DialogTheme : IDiagnosticable
     {
+        /// <Summary>
+        /// Creates a dialog theme that can be used for [ThemeData.dialogTheme].
+        /// </Summary>
         public DialogTheme(FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), double elevation = default(double), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), FlutterSDK.Painting.Textstyle.TextStyle titleTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle contentTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle))
         {
             this.BackgroundColor = backgroundColor;
@@ -412,10 +415,34 @@ namespace FlutterSDK.Material.Dialogtheme
             this.TitleTextStyle = titleTextStyle;
             this.ContentTextStyle = contentTextStyle;
         }
+        /// <Summary>
+        /// Default value for [Dialog.backgroundColor].
+        ///
+        /// If null, [ThemeData.dialogBackgroundColor] is used, if that's null,
+        /// defaults to [Colors.white].
+        /// </Summary>
         public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
+        /// <Summary>
+        /// Default value for [Dialog.elevation].
+        ///
+        /// If null, the [Dialog] elevation defaults to `24.0`.
+        /// </Summary>
         public virtual double Elevation { get; set; }
+        /// <Summary>
+        /// Default value for [Dialog.shape].
+        /// </Summary>
         public virtual FlutterSDK.Painting.Borders.ShapeBorder Shape { get; set; }
+        /// <Summary>
+        /// Used to configure the [DefaultTextStyle] for the [AlertDialog.title] widget.
+        ///
+        /// If null, defaults to [ThemeData.textTheme.headline6].
+        /// </Summary>
         public virtual FlutterSDK.Painting.Textstyle.TextStyle TitleTextStyle { get; set; }
+        /// <Summary>
+        /// Used to configure the [DefaultTextStyle] for the [AlertDialog.content] widget.
+        ///
+        /// If null, defaults to [ThemeData.textTheme.subtitle1].
+        /// </Summary>
         public virtual FlutterSDK.Painting.Textstyle.TextStyle ContentTextStyle { get; set; }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 

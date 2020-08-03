@@ -423,7 +423,18 @@ using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
 namespace FlutterSDK.Rendering.Editable
 {
+    /// <Summary>
+    /// Signature for the callback that reports when the user changes the selection
+    /// (including the cursor location).
+    ///
+    /// Used by [RenderEditable.onSelectionChanged].
+    /// </Summary>
     public delegate void SelectionChangedHandler(FlutterSDK.Services.Textediting.TextSelection selection, FlutterSDK.Rendering.Editable.RenderEditable renderObject, FlutterSDK.Rendering.Editable.SelectionChangedCause cause);
+    /// <Summary>
+    /// Signature for the callback that reports when the caret location changes.
+    ///
+    /// Used by [RenderEditable.onCaretChanged].
+    /// </Summary>
     public delegate void CaretChangedHandler(FlutterBinding.UI.Rect caretRect);
     internal static class EditableDefaultClass
     {
@@ -448,13 +459,25 @@ namespace FlutterSDK.Rendering.Editable
     /// </Summary>
     public class TextSelectionPoint
     {
+        /// <Summary>
+        /// Creates a description of a point in a text selection.
+        ///
+        /// The [point] argument must not be null.
+        /// </Summary>
         public TextSelectionPoint(FlutterBinding.UI.Offset point, TextDirection direction)
         : base()
         {
             this.Point = point;
             this.Direction = direction;
         }
+        /// <Summary>
+        /// Coordinates of the lower left or lower right corner of the selection,
+        /// relative to the top left of the [RenderEditable] object.
+        /// </Summary>
         public virtual FlutterBinding.UI.Offset Point { get; set; }
+        /// <Summary>
+        /// Direction of the text at this edge of the selection.
+        /// </Summary>
         public virtual TextDirection Direction { get; set; }
 
     }
@@ -488,6 +511,22 @@ namespace FlutterSDK.Rendering.Editable
     /// </Summary>
     public class RenderEditable : FlutterSDK.Rendering.Box.RenderBox, IRelayoutWhenSystemFontsChangeMixin
     {
+        /// <Summary>
+        /// Creates a render object that implements the visual aspects of a text field.
+        ///
+        /// The [textAlign] argument must not be null. It defaults to [TextAlign.start].
+        ///
+        /// The [textDirection] argument must not be null.
+        ///
+        /// If [showCursor] is not specified, then it defaults to hiding the cursor.
+        ///
+        /// The [maxLines] property can be set to null to remove the restriction on
+        /// the number of lines. By default, it is 1, meaning this is a single-line
+        /// text field. If it is not null, it must be greater than zero.
+        ///
+        /// The [offset] is required and must not be null. You can use [new
+        /// ViewportOffset.zero] if you have no need for scrolling.
+        /// </Summary>
         public RenderEditable(FlutterSDK.Painting.Textspan.TextSpan text = default(FlutterSDK.Painting.Textspan.TextSpan), TextDirection textDirection = default(TextDirection), TextAlign textAlign = default(TextAlign), FlutterBinding.UI.Color cursorColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color backgroundCursorColor = default(FlutterBinding.UI.Color), FlutterSDK.Foundation.Changenotifier.ValueNotifier<bool> showCursor = default(FlutterSDK.Foundation.Changenotifier.ValueNotifier<bool>), bool hasFocus = default(bool), FlutterSDK.Rendering.Layer.LayerLink startHandleLayerLink = default(FlutterSDK.Rendering.Layer.LayerLink), FlutterSDK.Rendering.Layer.LayerLink endHandleLayerLink = default(FlutterSDK.Rendering.Layer.LayerLink), int maxLines = 1, int minLines = default(int), bool expands = false, FlutterSDK.Painting.Strutstyle.StrutStyle strutStyle = default(FlutterSDK.Painting.Strutstyle.StrutStyle), FlutterBinding.UI.Color selectionColor = default(FlutterBinding.UI.Color), double textScaleFactor = 1.0, FlutterSDK.Services.Textediting.TextSelection selection = default(FlutterSDK.Services.Textediting.TextSelection), FlutterSDK.Rendering.Viewportoffset.ViewportOffset offset = default(FlutterSDK.Rendering.Viewportoffset.ViewportOffset), FlutterSDK.Rendering.Editable.SelectionChangedHandler onSelectionChanged = default(FlutterSDK.Rendering.Editable.SelectionChangedHandler), FlutterSDK.Rendering.Editable.CaretChangedHandler onCaretChanged = default(FlutterSDK.Rendering.Editable.CaretChangedHandler), bool ignorePointer = false, bool readOnly = false, bool forceLine = true, FlutterSDK.Painting.Textpainter.TextWidthBasis textWidthBasis = default(FlutterSDK.Painting.Textpainter.TextWidthBasis), bool obscureText = false, Locale locale = default(Locale), double cursorWidth = 1.0, Radius cursorRadius = default(Radius), bool paintCursorAboveText = false, FlutterBinding.UI.Offset cursorOffset = default(FlutterBinding.UI.Offset), double devicePixelRatio = 1.0, BoxHeightStyle selectionHeightStyle = default(BoxHeightStyle), BoxWidthStyle selectionWidthStyle = default(BoxWidthStyle), bool enableInteractiveSelection = default(bool), FlutterSDK.Painting.Edgeinsets.EdgeInsets floatingCursorAddedMargin = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets), FlutterSDK.Services.Textinput.TextSelectionDelegate textSelectionDelegate = default(FlutterSDK.Services.Textinput.TextSelectionDelegate))
         : base()
         {
@@ -501,14 +540,39 @@ namespace FlutterSDK.Rendering.Editable
         }
 
 
+        /// <Summary>
+        /// Character used to obscure text if [obscureText] is true.
+        /// </Summary>
         public virtual string ObscuringCharacter { get; set; }
+        /// <Summary>
+        /// Called when the selection changes.
+        ///
+        /// If this is null, then selection changes will be ignored.
+        /// </Summary>
         public virtual FlutterSDK.Rendering.Editable.SelectionChangedHandler OnSelectionChanged { get; set; }
         internal virtual double _TextLayoutLastMaxWidth { get; set; }
         internal virtual double _TextLayoutLastMinWidth { get; set; }
+        /// <Summary>
+        /// Called during the paint phase when the caret location changes.
+        /// </Summary>
         public virtual FlutterSDK.Rendering.Editable.CaretChangedHandler OnCaretChanged { get; set; }
+        /// <Summary>
+        /// If true [handleEvent] does nothing and it's assumed that this
+        /// renderer will be notified of input gestures via [handleTapDown],
+        /// [handleTap], [handleDoubleTap], and [handleLongPress].
+        ///
+        /// The default value of this property is false.
+        /// </Summary>
         public virtual bool IgnorePointer { get; set; }
         internal virtual double _DevicePixelRatio { get; set; }
         internal virtual bool _ObscureText { get; set; }
+        /// <Summary>
+        /// The object that controls the text selection, used by this render object
+        /// for implementing cut, copy, and paste keyboard shortcuts.
+        ///
+        /// It must not be null. It will make cut, copy and paste functionality work
+        /// with the most recently set [TextSelectionDelegate].
+        /// </Summary>
         public virtual FlutterSDK.Services.Textinput.TextSelectionDelegate TextSelectionDelegate { get; set; }
         internal virtual FlutterBinding.UI.Rect _LastCaretRect { get; set; }
         internal virtual FlutterSDK.Foundation.Changenotifier.ValueNotifier<bool> _SelectionStartInViewport { get; set; }

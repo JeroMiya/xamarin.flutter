@@ -423,6 +423,9 @@ namespace FlutterSDK.Material.Pickers.Datepickerheader
     /// </Summary>
     public class DatePickerHeader : FlutterSDK.Widgets.Framework.StatelessWidget
     {
+        /// <Summary>
+        /// Creates a header for use in a date picker dialog.
+        /// </Summary>
         public DatePickerHeader(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), string helpText = default(string), string titleText = default(string), string titleSemanticsLabel = default(string), FlutterSDK.Painting.Textstyle.TextStyle titleStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Widgets.Mediaquery.Orientation orientation = default(FlutterSDK.Widgets.Mediaquery.Orientation), bool isShort = false, FlutterSDK.Widgets.Icondata.IconData icon = default(FlutterSDK.Widgets.Icondata.IconData), string iconTooltip = default(string), VoidCallback onIconPressed = default(VoidCallback))
         : base(key: key)
         {
@@ -436,14 +439,55 @@ namespace FlutterSDK.Material.Pickers.Datepickerheader
             this.IconTooltip = iconTooltip;
             this.OnIconPressed = onIconPressed;
         }
+        /// <Summary>
+        /// The text that is displayed at the top of the header.
+        ///
+        /// This is used to indicate to the user what they are selecting a date for.
+        /// </Summary>
         public virtual string HelpText { get; set; }
+        /// <Summary>
+        /// The text that is displayed at the center of the header.
+        /// </Summary>
         public virtual string TitleText { get; set; }
+        /// <Summary>
+        /// The semantic label associated with the [titleText].
+        /// </Summary>
         public virtual string TitleSemanticsLabel { get; set; }
+        /// <Summary>
+        /// The [TextStyle] that the title text is displayed with.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Textstyle.TextStyle TitleStyle { get; set; }
+        /// <Summary>
+        /// The orientation is used to decide how to layout its children.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Mediaquery.Orientation Orientation { get; set; }
+        /// <Summary>
+        /// Indicates the header is being displayed in a shorter/narrower context.
+        ///
+        /// This will be used to tighten up the space between the help text and date
+        /// text if `true`. Additionally, it will use a smaller typography style if
+        /// `true`.
+        ///
+        /// This is necessary for displaying the manual input mode in
+        /// landscape orientation, in order to account for the keyboard height.
+        /// </Summary>
         public virtual bool IsShort { get; set; }
+        /// <Summary>
+        /// The mode-switching icon that will be displayed in the lower right
+        /// in portrait, and lower left in landscape.
+        ///
+        /// The available icons are described in [Icons].
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Icondata.IconData Icon { get; set; }
+        /// <Summary>
+        /// The text that is displayed for the tooltip of the icon.
+        /// </Summary>
         public virtual string IconTooltip { get; set; }
+        /// <Summary>
+        /// Callback when the user taps the icon in the header.
+        ///
+        /// The picker will use this to toggle between entry modes.
+        /// </Summary>
         public virtual VoidCallback OnIconPressed { get; set; }
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)

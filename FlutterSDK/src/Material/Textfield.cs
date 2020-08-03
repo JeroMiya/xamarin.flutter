@@ -418,6 +418,9 @@ using FlutterSDK.Material.Tabindicator;
 using FlutterSDK.Material.Selectabletext;
 namespace FlutterSDK.Material.Textfield
 {
+    /// <Summary>
+    /// Signature for the [TextField.buildCounter] callback.
+    /// </Summary>
     public delegate FlutterSDK.Widgets.Framework.Widget InputCounterWidgetBuilder(FlutterSDK.Widgets.Framework.BuildContext context, int currentLength = default(int), int maxLength = default(int), bool isFocused = default(bool));
     internal static class TextfieldDefaultClass
     {
@@ -623,6 +626,56 @@ namespace FlutterSDK.Material.Textfield
     /// </Summary>
     public class TextField : FlutterSDK.Widgets.Framework.StatefulWidget
     {
+        /// <Summary>
+        /// Creates a Material Design text field.
+        ///
+        /// If [decoration] is non-null (which is the default), the text field requires
+        /// one of its ancestors to be a [Material] widget.
+        ///
+        /// To remove the decoration entirely (including the extra padding introduced
+        /// by the decoration to save space for the labels), set the [decoration] to
+        /// null.
+        ///
+        /// The [maxLines] property can be set to null to remove the restriction on
+        /// the number of lines. By default, it is one, meaning this is a single-line
+        /// text field. [maxLines] must not be zero.
+        ///
+        /// The [maxLength] property is set to null by default, which means the
+        /// number of characters allowed in the text field is not restricted. If
+        /// [maxLength] is set a character counter will be displayed below the
+        /// field showing how many characters have been entered. If the value is
+        /// set to a positive integer it will also display the maximum allowed
+        /// number of characters to be entered.  If the value is set to
+        /// [TextField.noMaxLength] then only the current length is displayed.
+        ///
+        /// After [maxLength] characters have been input, additional input
+        /// is ignored, unless [maxLengthEnforced] is set to false. The text field
+        /// enforces the length with a [LengthLimitingTextInputFormatter], which is
+        /// evaluated after the supplied [inputFormatters], if any. The [maxLength]
+        /// value must be either null or greater than zero.
+        ///
+        /// If [maxLengthEnforced] is set to false, then more than [maxLength]
+        /// characters may be entered, and the error counter and divider will
+        /// switch to the [decoration.errorStyle] when the limit is exceeded.
+        ///
+        /// The text cursor is not shown if [showCursor] is false or if [showCursor]
+        /// is null (the default) and [readOnly] is true.
+        ///
+        /// The [selectionHeightStyle] and [selectionWidthStyle] properties allow
+        /// changing the shape of the selection highlighting. These properties default
+        /// to [ui.BoxHeightStyle.tight] and [ui.BoxWidthStyle.tight] respectively and
+        /// must not be null.
+        ///
+        /// The [textAlign], [autofocus], [obscureText], [readOnly], [autocorrect],
+        /// [maxLengthEnforced], [scrollPadding], [maxLines], [maxLength],
+        /// [selectionHeightStyle], [selectionWidthStyle], and [enableSuggestions]
+        /// arguments must not be null.
+        ///
+        /// See also:
+        ///
+        ///  * [maxLength], which discusses the precise meaning of "number of
+        ///    characters" and how it may differ from the intuitive meaning.
+        /// </Summary>
         public TextField(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Editabletext.TextEditingController controller = default(FlutterSDK.Widgets.Editabletext.TextEditingController), FlutterSDK.Widgets.Focusmanager.FocusNode focusNode = default(FlutterSDK.Widgets.Focusmanager.FocusNode), FlutterSDK.Material.Inputdecorator.InputDecoration decoration = default(FlutterSDK.Material.Inputdecorator.InputDecoration), FlutterSDK.Services.Textinput.TextInputType keyboardType = default(FlutterSDK.Services.Textinput.TextInputType), FlutterSDK.Services.Textinput.TextInputAction textInputAction = default(FlutterSDK.Services.Textinput.TextInputAction), FlutterSDK.Services.Textinput.TextCapitalization textCapitalization = default(FlutterSDK.Services.Textinput.TextCapitalization), FlutterSDK.Painting.Textstyle.TextStyle style = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Strutstyle.StrutStyle strutStyle = default(FlutterSDK.Painting.Strutstyle.StrutStyle), TextAlign textAlign = default(TextAlign), FlutterSDK.Painting.Alignment.TextAlignVertical textAlignVertical = default(FlutterSDK.Painting.Alignment.TextAlignVertical), TextDirection textDirection = default(TextDirection), bool readOnly = false, FlutterSDK.Widgets.Editabletext.ToolbarOptions toolbarOptions = default(FlutterSDK.Widgets.Editabletext.ToolbarOptions), bool showCursor = default(bool), bool autofocus = false, bool obscureText = false, bool autocorrect = true, FlutterSDK.Services.Textinput.SmartDashesType smartDashesType = default(FlutterSDK.Services.Textinput.SmartDashesType), FlutterSDK.Services.Textinput.SmartQuotesType smartQuotesType = default(FlutterSDK.Services.Textinput.SmartQuotesType), bool enableSuggestions = true, int maxLines = 1, int minLines = default(int), bool expands = false, int maxLength = default(int), bool maxLengthEnforced = true, FlutterSDK.Foundation.Basictypes.ValueChanged<string> onChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<string>), VoidCallback onEditingComplete = default(VoidCallback), FlutterSDK.Foundation.Basictypes.ValueChanged<string> onSubmitted = default(FlutterSDK.Foundation.Basictypes.ValueChanged<string>), List<FlutterSDK.Services.Textformatter.TextInputFormatter> inputFormatters = default(List<FlutterSDK.Services.Textformatter.TextInputFormatter>), bool enabled = default(bool), double cursorWidth = 2.0, Radius cursorRadius = default(Radius), FlutterBinding.UI.Color cursorColor = default(FlutterBinding.UI.Color), BoxHeightStyle selectionHeightStyle = default(BoxHeightStyle), BoxWidthStyle selectionWidthStyle = default(BoxWidthStyle), Brightness keyboardAppearance = default(Brightness), FlutterSDK.Painting.Edgeinsets.EdgeInsets scrollPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets), FlutterSDK.Gestures.Recognizer.DragStartBehavior dragStartBehavior = default(FlutterSDK.Gestures.Recognizer.DragStartBehavior), bool enableInteractiveSelection = true, FlutterSDK.Gestures.Tap.GestureTapCallback onTap = default(FlutterSDK.Gestures.Tap.GestureTapCallback), FlutterSDK.Material.Textfield.InputCounterWidgetBuilder buildCounter = default(FlutterSDK.Material.Textfield.InputCounterWidgetBuilder), FlutterSDK.Widgets.Scrollcontroller.ScrollController scrollController = default(FlutterSDK.Widgets.Scrollcontroller.ScrollController), FlutterSDK.Widgets.Scrollphysics.ScrollPhysics scrollPhysics = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics))
         : base(key: key)
         {
@@ -666,49 +719,369 @@ namespace FlutterSDK.Material.Textfield
             this.ScrollController = scrollController;
             this.ScrollPhysics = scrollPhysics;
         }
+        /// <Summary>
+        /// Controls the text being edited.
+        ///
+        /// If null, this widget will create its own [TextEditingController].
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Editabletext.TextEditingController Controller { get; set; }
+        /// <Summary>
+        /// Defines the keyboard focus for this widget.
+        ///
+        /// The [focusNode] is a long-lived object that's typically managed by a
+        /// [StatefulWidget] parent. See [FocusNode] for more information.
+        ///
+        /// To give the keyboard focus to this widget, provide a [focusNode] and then
+        /// use the current [FocusScope] to request the focus:
+        ///
+        /// ```dart
+        /// FocusScope.of(context).requestFocus(myFocusNode);
+        /// ```
+        ///
+        /// This happens automatically when the widget is tapped.
+        ///
+        /// To be notified when the widget gains or loses the focus, add a listener
+        /// to the [focusNode]:
+        ///
+        /// ```dart
+        /// focusNode.addListener(() { print(myFocusNode.hasFocus); });
+        /// ```
+        ///
+        /// If null, this widget will create its own [FocusNode].
+        ///
+        /// ## Keyboard
+        ///
+        /// Requesting the focus will typically cause the keyboard to be shown
+        /// if it's not showing already.
+        ///
+        /// On Android, the user can hide the keyboard - without changing the focus -
+        /// with the system back button. They can restore the keyboard's visibility
+        /// by tapping on a text field.  The user might hide the keyboard and
+        /// switch to a physical keyboard, or they might just need to get it
+        /// out of the way for a moment, to expose something it's
+        /// obscuring. In this case requesting the focus again will not
+        /// cause the focus to change, and will not make the keyboard visible.
+        ///
+        /// This widget builds an [EditableText] and will ensure that the keyboard is
+        /// showing when it is tapped by calling [EditableTextState.requestKeyboard()].
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Focusmanager.FocusNode FocusNode { get; set; }
+        /// <Summary>
+        /// The decoration to show around the text field.
+        ///
+        /// By default, draws a horizontal line under the text field but can be
+        /// configured to show an icon, label, hint text, and error text.
+        ///
+        /// Specify null to remove the decoration entirely (including the
+        /// extra padding introduced by the decoration to save space for the labels).
+        /// </Summary>
         public virtual FlutterSDK.Material.Inputdecorator.InputDecoration Decoration { get; set; }
+        /// <Summary>
+        /// {@macro flutter.widgets.editableText.keyboardType}
+        /// </Summary>
         public virtual FlutterSDK.Services.Textinput.TextInputType KeyboardType { get; set; }
+        /// <Summary>
+        /// The type of action button to use for the keyboard.
+        ///
+        /// Defaults to [TextInputAction.newline] if [keyboardType] is
+        /// [TextInputType.multiline] and [TextInputAction.done] otherwise.
+        /// </Summary>
         public virtual FlutterSDK.Services.Textinput.TextInputAction TextInputAction { get; set; }
+        /// <Summary>
+        /// {@macro flutter.widgets.editableText.textCapitalization}
+        /// </Summary>
         public virtual FlutterSDK.Services.Textinput.TextCapitalization TextCapitalization { get; set; }
+        /// <Summary>
+        /// The style to use for the text being edited.
+        ///
+        /// This text style is also used as the base style for the [decoration].
+        ///
+        /// If null, defaults to the `subtitle1` text style from the current [Theme].
+        /// </Summary>
         public virtual FlutterSDK.Painting.Textstyle.TextStyle Style { get; set; }
+        /// <Summary>
+        /// {@macro flutter.widgets.editableText.strutStyle}
+        /// </Summary>
         public virtual FlutterSDK.Painting.Strutstyle.StrutStyle StrutStyle { get; set; }
+        /// <Summary>
+        /// {@macro flutter.widgets.editableText.textAlign}
+        /// </Summary>
         public virtual TextAlign TextAlign { get; set; }
+        /// <Summary>
+        /// {@macro flutter.widgets.inputDecorator.textAlignVertical}
+        /// </Summary>
         public virtual FlutterSDK.Painting.Alignment.TextAlignVertical TextAlignVertical { get; set; }
+        /// <Summary>
+        /// {@macro flutter.widgets.editableText.textDirection}
+        /// </Summary>
         public virtual TextDirection TextDirection { get; set; }
+        /// <Summary>
+        /// {@macro flutter.widgets.editableText.autofocus}
+        /// </Summary>
         public virtual bool Autofocus { get; set; }
+        /// <Summary>
+        /// {@macro flutter.widgets.editableText.obscureText}
+        /// </Summary>
         public virtual bool ObscureText { get; set; }
+        /// <Summary>
+        /// {@macro flutter.widgets.editableText.autocorrect}
+        /// </Summary>
         public virtual bool Autocorrect { get; set; }
+        /// <Summary>
+        /// {@macro flutter.services.textInput.smartDashesType}
+        /// </Summary>
         public virtual FlutterSDK.Services.Textinput.SmartDashesType SmartDashesType { get; set; }
+        /// <Summary>
+        /// {@macro flutter.services.textInput.smartQuotesType}
+        /// </Summary>
         public virtual FlutterSDK.Services.Textinput.SmartQuotesType SmartQuotesType { get; set; }
+        /// <Summary>
+        /// {@macro flutter.services.textInput.enableSuggestions}
+        /// </Summary>
         public virtual bool EnableSuggestions { get; set; }
+        /// <Summary>
+        /// {@macro flutter.widgets.editableText.maxLines}
+        /// </Summary>
         public virtual int MaxLines { get; set; }
+        /// <Summary>
+        /// {@macro flutter.widgets.editableText.minLines}
+        /// </Summary>
         public virtual int MinLines { get; set; }
+        /// <Summary>
+        /// {@macro flutter.widgets.editableText.expands}
+        /// </Summary>
         public virtual bool Expands { get; set; }
+        /// <Summary>
+        /// {@macro flutter.widgets.editableText.readOnly}
+        /// </Summary>
         public virtual bool ReadOnly { get; set; }
+        /// <Summary>
+        /// Configuration of toolbar options.
+        ///
+        /// If not set, select all and paste will default to be enabled. Copy and cut
+        /// will be disabled if [obscureText] is true. If [readOnly] is true,
+        /// paste and cut will be disabled regardless.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Editabletext.ToolbarOptions ToolbarOptions { get; set; }
+        /// <Summary>
+        /// {@macro flutter.widgets.editableText.showCursor}
+        /// </Summary>
         public virtual bool ShowCursor { get; set; }
+        /// <Summary>
+        /// If [maxLength] is set to this value, only the "current input length"
+        /// part of the character counter is shown.
+        /// </Summary>
         public virtual int NoMaxLength { get; set; }
+        /// <Summary>
+        /// The maximum number of characters (Unicode scalar values) to allow in the
+        /// text field.
+        ///
+        /// If set, a character counter will be displayed below the
+        /// field showing how many characters have been entered. If set to a number
+        /// greater than 0, it will also display the maximum number allowed. If set
+        /// to [TextField.noMaxLength] then only the current character count is displayed.
+        ///
+        /// After [maxLength] characters have been input, additional input
+        /// is ignored, unless [maxLengthEnforced] is set to false. The text field
+        /// enforces the length with a [LengthLimitingTextInputFormatter], which is
+        /// evaluated after the supplied [inputFormatters], if any.
+        ///
+        /// This value must be either null, [TextField.noMaxLength], or greater than 0.
+        /// If null (the default) then there is no limit to the number of characters
+        /// that can be entered. If set to [TextField.noMaxLength], then no limit will
+        /// be enforced, but the number of characters entered will still be displayed.
+        ///
+        /// Whitespace characters (e.g. newline, space, tab) are included in the
+        /// character count.
+        ///
+        /// If [maxLengthEnforced] is set to false, then more than [maxLength]
+        /// characters may be entered, but the error counter and divider will
+        /// switch to the [decoration.errorStyle] when the limit is exceeded.
+        ///
+        /// ## Limitations
+        ///
+        /// The text field does not currently count Unicode grapheme clusters (i.e.
+        /// characters visible to the user), it counts Unicode scalar values, which
+        /// leaves out a number of useful possible characters (like many emoji and
+        /// composed characters), so this will be inaccurate in the presence of those
+        /// characters. If you expect to encounter these kinds of characters, be
+        /// generous in the maxLength used.
+        ///
+        /// For instance, the character "ö" can be represented as '\u{006F}\u{0308}',
+        /// which is the letter "o" followed by a composed diaeresis "¨", or it can
+        /// be represented as '\u{00F6}', which is the Unicode scalar value "LATIN
+        /// SMALL LETTER O WITH DIAERESIS". In the first case, the text field will
+        /// count two characters, and the second case will be counted as one
+        /// character, even though the user can see no difference in the input.
+        ///
+        /// Similarly, some emoji are represented by multiple scalar values. The
+        /// Unicode "THUMBS UP SIGN + MEDIUM SKIN TONE MODIFIER", "👍🏽", should be
+        /// counted as a single character, but because it is a combination of two
+        /// Unicode scalar values, '\u{1F44D}\u{1F3FD}', it is counted as two
+        /// characters.
+        ///
+        /// See also:
+        ///
+        ///  * [LengthLimitingTextInputFormatter] for more information on how it
+        ///    counts characters, and how it may differ from the intuitive meaning.
+        /// </Summary>
         public virtual int MaxLength { get; set; }
+        /// <Summary>
+        /// If true, prevents the field from allowing more than [maxLength]
+        /// characters.
+        ///
+        /// If [maxLength] is set, [maxLengthEnforced] indicates whether or not to
+        /// enforce the limit, or merely provide a character counter and warning when
+        /// [maxLength] is exceeded.
+        /// </Summary>
         public virtual bool MaxLengthEnforced { get; set; }
+        /// <Summary>
+        /// {@macro flutter.widgets.editableText.onChanged}
+        ///
+        /// See also:
+        ///
+        ///  * [inputFormatters], which are called before [onChanged]
+        ///    runs and can validate and change ("format") the input value.
+        ///  * [onEditingComplete], [onSubmitted], [onSelectionChanged]:
+        ///    which are more specialized input change notifications.
+        /// </Summary>
         public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<string> OnChanged { get; set; }
+        /// <Summary>
+        /// {@macro flutter.widgets.editableText.onEditingComplete}
+        /// </Summary>
         public virtual VoidCallback OnEditingComplete { get; set; }
+        /// <Summary>
+        /// {@macro flutter.widgets.editableText.onSubmitted}
+        ///
+        /// See also:
+        ///
+        ///  * [EditableText.onSubmitted] for an example of how to handle moving to
+        ///    the next/previous field when using [TextInputAction.next] and
+        ///    [TextInputAction.previous] for [textInputAction].
+        /// </Summary>
         public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<string> OnSubmitted { get; set; }
+        /// <Summary>
+        /// {@macro flutter.widgets.editableText.inputFormatters}
+        /// </Summary>
         public virtual List<FlutterSDK.Services.Textformatter.TextInputFormatter> InputFormatters { get; set; }
+        /// <Summary>
+        /// If false the text field is "disabled": it ignores taps and its
+        /// [decoration] is rendered in grey.
+        ///
+        /// If non-null this property overrides the [decoration]'s
+        /// [Decoration.enabled] property.
+        /// </Summary>
         public virtual bool Enabled { get; set; }
+        /// <Summary>
+        /// {@macro flutter.widgets.editableText.cursorWidth}
+        /// </Summary>
         public virtual double CursorWidth { get; set; }
+        /// <Summary>
+        /// {@macro flutter.widgets.editableText.cursorRadius}
+        /// </Summary>
         public virtual Radius CursorRadius { get; set; }
+        /// <Summary>
+        /// The color to use when painting the cursor.
+        ///
+        /// Defaults to [ThemeData.cursorColor] or [CupertinoTheme.primaryColor]
+        /// depending on [ThemeData.platform].
+        /// </Summary>
         public virtual FlutterBinding.UI.Color CursorColor { get; set; }
+        /// <Summary>
+        /// Controls how tall the selection highlight boxes are computed to be.
+        ///
+        /// See [ui.BoxHeightStyle] for details on available styles.
+        /// </Summary>
         public virtual BoxHeightStyle SelectionHeightStyle { get; set; }
+        /// <Summary>
+        /// Controls how wide the selection highlight boxes are computed to be.
+        ///
+        /// See [ui.BoxWidthStyle] for details on available styles.
+        /// </Summary>
         public virtual BoxWidthStyle SelectionWidthStyle { get; set; }
+        /// <Summary>
+        /// The appearance of the keyboard.
+        ///
+        /// This setting is only honored on iOS devices.
+        ///
+        /// If unset, defaults to the brightness of [ThemeData.primaryColorBrightness].
+        /// </Summary>
         public virtual Brightness KeyboardAppearance { get; set; }
+        /// <Summary>
+        /// {@macro flutter.widgets.editableText.scrollPadding}
+        /// </Summary>
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets ScrollPadding { get; set; }
+        /// <Summary>
+        /// {@macro flutter.widgets.editableText.enableInteractiveSelection}
+        /// </Summary>
         public virtual bool EnableInteractiveSelection { get; set; }
+        /// <Summary>
+        /// {@macro flutter.widgets.scrollable.dragStartBehavior}
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Recognizer.DragStartBehavior DragStartBehavior { get; set; }
+        /// <Summary>
+        /// {@template flutter.material.textfield.onTap}
+        /// Called for each distinct tap except for every second tap of a double tap.
+        ///
+        /// The text field builds a [GestureDetector] to handle input events like tap,
+        /// to trigger focus requests, to move the caret, adjust the selection, etc.
+        /// Handling some of those events by wrapping the text field with a competing
+        /// GestureDetector is problematic.
+        ///
+        /// To unconditionally handle taps, without interfering with the text field's
+        /// internal gesture detector, provide this callback.
+        ///
+        /// If the text field is created with [enabled] false, taps will not be
+        /// recognized.
+        ///
+        /// To be notified when the text field gains or loses the focus, provide a
+        /// [focusNode] and add a listener to that.
+        ///
+        /// To listen to arbitrary pointer events without competing with the
+        /// text field's internal gesture detector, use a [Listener].
+        /// {@endtemplate}
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Tap.GestureTapCallback OnTap { get; set; }
+        /// <Summary>
+        /// Callback that generates a custom [InputDecorator.counter] widget.
+        ///
+        /// See [InputCounterWidgetBuilder] for an explanation of the passed in
+        /// arguments.  The returned widget will be placed below the line in place of
+        /// the default widget built when [counterText] is specified.
+        ///
+        /// The returned widget will be wrapped in a [Semantics] widget for
+        /// accessibility, but it also needs to be accessible itself.  For example,
+        /// if returning a Text widget, set the [semanticsLabel] property.
+        ///
+        /// {@tool snippet}
+        /// ```dart
+        /// Widget counter(
+        ///   BuildContext context,
+        ///   {
+        ///     int currentLength,
+        ///     int maxLength,
+        ///     bool isFocused,
+        ///   }
+        /// ) {
+        ///   return Text(
+        ///     '$currentLength of $maxLength characters',
+        ///     semanticsLabel: 'character count',
+        ///   );
+        /// }
+        /// ```
+        /// {@end-tool}
+        ///
+        /// If buildCounter returns null, then no counter and no Semantics widget will
+        /// be created at all.
+        /// </Summary>
         public virtual FlutterSDK.Material.Textfield.InputCounterWidgetBuilder BuildCounter { get; set; }
+        /// <Summary>
+        /// {@macro flutter.widgets.editableText.scrollPhysics}
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Scrollphysics.ScrollPhysics ScrollPhysics { get; set; }
+        /// <Summary>
+        /// {@macro flutter.widgets.editableText.scrollController}
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Scrollcontroller.ScrollController ScrollController { get; set; }
         public virtual bool SelectionEnabled { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 

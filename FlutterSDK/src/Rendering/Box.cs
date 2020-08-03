@@ -423,6 +423,17 @@ using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
 namespace FlutterSDK.Rendering.Box
 {
+    /// <Summary>
+    /// Method signature for hit testing a [RenderBox].
+    ///
+    /// Used by [BoxHitTestResult.addWithPaintTransform] to hit test children
+    /// of a [RenderBox].
+    ///
+    /// See also:
+    ///
+    ///  * [RenderBox.hitTest], which documents more details around hit testing
+    ///    [RenderBox]es.
+    /// </Summary>
     public delegate bool BoxHitTest(FlutterSDK.Rendering.Box.BoxHitTestResult result, FlutterBinding.UI.Offset position);
     internal static class BoxDefaultClass
     {
@@ -1504,6 +1515,9 @@ namespace FlutterSDK.Rendering.Box
     /// </Summary>
     public class BoxConstraints : FlutterSDK.Rendering.@object.Constraints
     {
+        /// <Summary>
+        /// Creates box constraints with the given constraints.
+        /// </Summary>
         public BoxConstraints(double minWidth = 0.0, double maxWidth = default(double), double minHeight = 0.0, double maxHeight = default(double))
         : base()
         {
@@ -1512,29 +1526,75 @@ namespace FlutterSDK.Rendering.Box
             this.MinHeight = minHeight;
             this.MaxHeight = maxHeight;
         }
+        /// <Summary>
+        /// Creates box constraints that is respected only by the given size.
+        /// </Summary>
         public static BoxConstraints Tight(Size size)
         {
             var instance = new BoxConstraints();
         }
+        /// <Summary>
+        /// Creates box constraints that require the given width or height.
+        ///
+        /// See also:
+        ///
+        ///  * [new BoxConstraints.tightForFinite], which is similar but instead of
+        ///    being tight if the value is non-null, is tight if the value is not
+        ///    infinite.
+        /// </Summary>
         public static BoxConstraints TightFor(double width = default(double), double height = default(double))
         {
             var instance = new BoxConstraints();
         }
+        /// <Summary>
+        /// Creates box constraints that require the given width or height, except if
+        /// they are infinite.
+        ///
+        /// See also:
+        ///
+        ///  * [new BoxConstraints.tightFor], which is similar but instead of being
+        ///    tight if the value is not infinite, is tight if the value is non-null.
+        /// </Summary>
         public static BoxConstraints TightForFinite(double width = default(double), double height = default(double))
         {
             var instance = new BoxConstraints();
         }
+        /// <Summary>
+        /// Creates box constraints that forbid sizes larger than the given size.
+        /// </Summary>
         public static BoxConstraints Loose(Size size)
         {
             var instance = new BoxConstraints();
         }
+        /// <Summary>
+        /// Creates box constraints that expand to fill another box constraints.
+        ///
+        /// If width or height is given, the constraints will require exactly the
+        /// given value in the given dimension.
+        /// </Summary>
         public static BoxConstraints Expand(double width = default(double), double height = default(double))
         {
             var instance = new BoxConstraints();
         }
+        /// <Summary>
+        /// The minimum width that satisfies the constraints.
+        /// </Summary>
         public virtual double MinWidth { get; set; }
+        /// <Summary>
+        /// The maximum width that satisfies the constraints.
+        ///
+        /// Might be [double.infinity].
+        /// </Summary>
         public virtual double MaxWidth { get; set; }
+        /// <Summary>
+        /// The minimum height that satisfies the constraints.
+        /// </Summary>
         public virtual double MinHeight { get; set; }
+        /// <Summary>
+        /// The maximum height that satisfies the constraints.
+        ///
+        /// Might be [double.infinity].
+        /// </Summary>
         public virtual double MaxHeight { get; set; }
         public virtual FlutterSDK.Rendering.Box.BoxConstraints Flipped { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual Size Biggest { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
@@ -1885,11 +1945,33 @@ namespace FlutterSDK.Rendering.Box
     /// </Summary>
     public class BoxHitTestResult : FlutterSDK.Gestures.Hittest.HitTestResult
     {
+        /// <Summary>
+        /// Creates an empty hit test result for hit testing on [RenderBox].
+        /// </Summary>
         public BoxHitTestResult()
         : base()
         {
 
         }
+        /// <Summary>
+        /// Wraps `result` to create a [HitTestResult] that implements the
+        /// [BoxHitTestResult] protocol for hit testing on [RenderBox]es.
+        ///
+        /// This method is used by [RenderObject]s that adapt between the
+        /// [RenderBox]-world and the non-[RenderBox]-world to convert a (subtype of)
+        /// [HitTestResult] to a [BoxHitTestResult] for hit testing on [RenderBox]es.
+        ///
+        /// The [HitTestEntry] instances added to the returned [BoxHitTestResult] are
+        /// also added to the wrapped `result` (both share the same underlying data
+        /// structure to store [HitTestEntry] instances).
+        ///
+        /// See also:
+        ///
+        ///  * [HitTestResult.wrap], which turns a [BoxHitTestResult] back into a
+        ///    generic [HitTestResult].
+        ///  * [SliverHitTestResult.wrap], which turns a [BoxHitTestResult] into a
+        ///    [SliverHitTestResult] for hit testing on [RenderSliver] children.
+        /// </Summary>
         public static BoxHitTestResult Wrap(FlutterSDK.Gestures.Hittest.HitTestResult result)
         {
             var instance = new BoxHitTestResult(result);
@@ -2056,11 +2138,19 @@ namespace FlutterSDK.Rendering.Box
     /// </Summary>
     public class BoxHitTestEntry : FlutterSDK.Gestures.Hittest.HitTestEntry
     {
+        /// <Summary>
+        /// Creates a box hit test entry.
+        ///
+        /// The [localPosition] argument must not be null.
+        /// </Summary>
         public BoxHitTestEntry(FlutterSDK.Rendering.Box.RenderBox target, FlutterBinding.UI.Offset localPosition)
         : base(target)
         {
             this.LocalPosition = localPosition;
         }
+        /// <Summary>
+        /// The position of the hit test in the local coordinates of [target].
+        /// </Summary>
         public virtual FlutterBinding.UI.Offset LocalPosition { get; set; }
         public virtual FlutterSDK.Rendering.Box.RenderBox Target { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 
@@ -2074,6 +2164,9 @@ namespace FlutterSDK.Rendering.Box
     {
         public BoxParentData()
         { }
+        /// <Summary>
+        /// The offset at which to paint the child in the parent's coordinate system.
+        /// </Summary>
         public virtual FlutterBinding.UI.Offset Offset { get; set; }
 
     }

@@ -653,6 +653,11 @@ namespace FlutterSDK.Rendering.Sliverpadding
     /// </Summary>
     public class RenderSliverPadding : FlutterSDK.Rendering.Sliverpadding.RenderSliverEdgeInsetsPadding
     {
+        /// <Summary>
+        /// Creates a render object that insets its child in a viewport.
+        ///
+        /// The [padding] argument must not be null and must have non-negative insets.
+        /// </Summary>
         public RenderSliverPadding(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), TextDirection textDirection = default(TextDirection), FlutterSDK.Rendering.Sliver.RenderSliver child = default(FlutterSDK.Rendering.Sliver.RenderSliver))
         : base()
         {

@@ -294,6 +294,13 @@ using FlutterSDK.Foundation;
 using FlutterSDK.Foundation._Bitfieldio;
 namespace FlutterSDK.Foundation.Diagnostics
 {
+    /// <Summary>
+    /// Signature for computing the value of a property.
+    ///
+    /// May throw exception if accessing the property would throw an exception
+    /// and callers must handle that case gracefully. For example, accessing a
+    /// property may trigger an assert that layout constraints were violated.
+    /// </Summary>
     public delegate T ComputePropertyValueCallback<T>();
     internal static class DiagnosticsDefaultClass
     {
@@ -315,6 +322,10 @@ namespace FlutterSDK.Foundation.Diagnostics
 
 
 
+        /// <Summary>
+        /// Returns a 5 character long hexadecimal string generated from
+        /// [Object.hashCode]'s 20 least-significant bits.
+        /// </Summary>
         internal static string ShortHash(@Object @object)
         {
             return object.HashCode.ToUnsigned(20).ToRadixString(16).PadLeft(5, '0');
@@ -322,9 +333,39 @@ namespace FlutterSDK.Foundation.Diagnostics
 
 
 
+        /// <Summary>
+        /// Returns a summary of the runtime type and hash code of `object`.
+        ///
+        /// See also:
+        ///
+        ///  * [Object.hashCode], a value used when placing an object in a [Map] or
+        ///    other similar data structure, and which is also used in debug output to
+        ///    distinguish instances of the same class (hash collisions are
+        ///    possible, but rare enough that its use in debug output is useful).
+        ///  * [Object.runtimeType], the [Type] of an object.
+        /// </Summary>
         internal static string DescribeIdentity(@Object @object) => $"'{ObjectDefaultClass.ObjectRuntimeType(object, "<optimized out>")}#{DiagnosticsDefaultClass.ShortHash(object)}'";
 
 
+        /// <Summary>
+        /// Returns a short description of an enum value.
+        ///
+        /// Strips off the enum class name from the `enumEntry.toString()`.
+        ///
+        /// {@tool snippet}
+        ///
+        /// ```dart
+        /// enum Day {
+        ///   monday, tuesday, wednesday, thursday, friday, saturday, sunday
+        /// }
+        ///
+        /// void validateDescribeEnum() {
+        ///   assert(Day.monday.toString() == 'Day.monday');
+        ///   assert(describeEnum(Day.monday) == 'monday');
+        /// }
+        /// ```
+        /// {@end-tool}
+        /// </Summary>
         internal static string DescribeEnum(@Object enumEntry)
         {
             string description = enumEntry.ToString();
@@ -939,6 +980,11 @@ namespace FlutterSDK.Foundation.Diagnostics
     /// </Summary>
     public class TextTreeConfiguration
     {
+        /// <Summary>
+        /// Create a configuration object describing how to render a tree as text.
+        ///
+        /// All of the arguments must not be null.
+        /// </Summary>
         public TextTreeConfiguration(string prefixLineOne = default(string), string prefixOtherLines = default(string), string prefixLastChildLineOne = default(string), string prefixOtherLinesRootNode = default(string), string linkCharacter = default(string), string propertyPrefixIfChildren = default(string), string propertyPrefixNoChildren = default(string), string lineBreak = default(string), bool lineBreakProperties = true, string afterName = default(string), string afterDescriptionIfBody = default(string), string afterDescription = default(string), string beforeProperties = default(string), string afterProperties = default(string), string mandatoryAfterProperties = default(string), string propertySeparator = default(string), string bodyIndent = default(string), string footer = default(string), bool showChildren = true, bool addBlankLineIfNoChildren = true, bool isNameOnOwnLine = false, bool isBlankLineBetweenPropertiesAndChildren = true, string beforeName = default(string), string suffixLineOne = default(string), string mandatoryFooter = default(string))
         : base()
         {
@@ -968,31 +1014,159 @@ namespace FlutterSDK.Foundation.Diagnostics
             this.SuffixLineOne = suffixLineOne;
             this.MandatoryFooter = mandatoryFooter;
         }
+        /// <Summary>
+        /// Prefix to add to the first line to display a child with this style.
+        /// </Summary>
         public virtual string PrefixLineOne { get; set; }
+        /// <Summary>
+        /// Suffix to add to end of the first line to make its length match the footer.
+        /// </Summary>
         public virtual string SuffixLineOne { get; set; }
+        /// <Summary>
+        /// Prefix to add to other lines to display a child with this style.
+        ///
+        /// [prefixOtherLines] should typically be one character shorter than
+        /// [prefixLineOne] as
+        /// </Summary>
         public virtual string PrefixOtherLines { get; set; }
+        /// <Summary>
+        /// Prefix to add to the first line to display the last child of a node with
+        /// this style.
+        /// </Summary>
         public virtual string PrefixLastChildLineOne { get; set; }
+        /// <Summary>
+        /// Additional prefix to add to other lines of a node if this is the root node
+        /// of the tree.
+        /// </Summary>
         public virtual string PrefixOtherLinesRootNode { get; set; }
+        /// <Summary>
+        /// Prefix to add before each property if the node as children.
+        ///
+        /// Plays a similar role to [linkCharacter] except that some configurations
+        /// intentionally use a different line style than the [linkCharacter].
+        /// </Summary>
         public virtual string PropertyPrefixIfChildren { get; set; }
+        /// <Summary>
+        /// Prefix to add before each property if the node does not have children.
+        ///
+        /// This string is typically a whitespace string the same length as
+        /// [propertyPrefixIfChildren] but can have a different length.
+        /// </Summary>
         public virtual string PropertyPrefixNoChildren { get; set; }
+        /// <Summary>
+        /// Character to use to draw line linking parent to child.
+        ///
+        /// The first child does not require a line but all subsequent children do
+        /// with the line drawn immediately before the left edge of the previous
+        /// sibling.
+        /// </Summary>
         public virtual string LinkCharacter { get; set; }
+        /// <Summary>
+        /// Whitespace to draw instead of the childLink character if this node is the
+        /// last child of its parent so no link line is required.
+        /// </Summary>
         public virtual string ChildLinkSpace { get; set; }
+        /// <Summary>
+        /// Character(s) to use to separate lines.
+        ///
+        /// Typically leave set at the default value of '\n' unless this style needs
+        /// to treat lines differently as is the case for
+        /// [singleLineTextConfiguration].
+        /// </Summary>
         public virtual string LineBreak { get; set; }
+        /// <Summary>
+        /// Whether to place line breaks between properties or to leave all
+        /// properties on one line.
+        /// </Summary>
         public virtual bool LineBreakProperties { get; set; }
+        /// <Summary>
+        /// Text added immediately before the name of the node.
+        ///
+        /// See [errorTextConfiguration] for an example of using this to achieve a
+        /// custom line art style.
+        /// </Summary>
         public virtual string BeforeName { get; set; }
+        /// <Summary>
+        /// Text added immediately after the name of the node.
+        ///
+        /// See [transitionTextConfiguration] for an example of using a value other
+        /// than ':' to achieve a custom line art style.
+        /// </Summary>
         public virtual string AfterName { get; set; }
+        /// <Summary>
+        /// Text to add immediately after the description line of a node with
+        /// properties and/or children if the node has a body.
+        /// </Summary>
         public virtual string AfterDescriptionIfBody { get; set; }
+        /// <Summary>
+        /// Text to add immediately after the description line of a node with
+        /// properties and/or children.
+        /// </Summary>
         public virtual string AfterDescription { get; set; }
+        /// <Summary>
+        /// Optional string to add before the properties of a node.
+        ///
+        /// Only displayed if the node has properties.
+        /// See [singleLineTextConfiguration] for an example of using this field
+        /// to enclose the property list with parenthesis.
+        /// </Summary>
         public virtual string BeforeProperties { get; set; }
+        /// <Summary>
+        /// Optional string to add after the properties of a node.
+        ///
+        /// See documentation for [beforeProperties].
+        /// </Summary>
         public virtual string AfterProperties { get; set; }
+        /// <Summary>
+        /// Mandatory string to add after the properties of a node regardless of
+        /// whether the node has any properties.
+        /// </Summary>
         public virtual string MandatoryAfterProperties { get; set; }
+        /// <Summary>
+        /// Property separator to add between properties.
+        ///
+        /// See [singleLineTextConfiguration] for an example of using this field
+        /// to render properties as a comma separated list.
+        /// </Summary>
         public virtual string PropertySeparator { get; set; }
+        /// <Summary>
+        /// Prefix to add to all lines of the body of the tree node.
+        ///
+        /// The body is all content in the node other than the name and description.
+        /// </Summary>
         public virtual string BodyIndent { get; set; }
+        /// <Summary>
+        /// Whether the children of a node should be shown.
+        ///
+        /// See [singleLineTextConfiguration] for an example of using this field to
+        /// hide all children of a node.
+        /// </Summary>
         public virtual bool ShowChildren { get; set; }
+        /// <Summary>
+        /// Whether to add a blank line at the end of the output for a node if it has
+        /// no children.
+        ///
+        /// See [denseTextConfiguration] for an example of setting this to false.
+        /// </Summary>
         public virtual bool AddBlankLineIfNoChildren { get; set; }
+        /// <Summary>
+        /// Whether the name should be displayed on the same line as the description.
+        /// </Summary>
         public virtual bool IsNameOnOwnLine { get; set; }
+        /// <Summary>
+        /// Footer to add as its own line at the end of a non-root node.
+        ///
+        /// See [transitionTextConfiguration] for an example of using footer to draw a box
+        /// around the node. [footer] is indented the same amount as [prefixOtherLines].
+        /// </Summary>
         public virtual string Footer { get; set; }
+        /// <Summary>
+        /// Footer to add even for root nodes.
+        /// </Summary>
         public virtual string MandatoryFooter { get; set; }
+        /// <Summary>
+        /// Add a blank line between properties and children if both are present.
+        /// </Summary>
         public virtual bool IsBlankLineBetweenPropertiesAndChildren { get; set; }
     }
 
@@ -1014,12 +1188,25 @@ namespace FlutterSDK.Foundation.Diagnostics
             this.PrefixLineOne = prefixLineOne;
             this.WrapWidth = wrapWidth;
         }
+        /// <Summary>
+        /// Prefix to add to the first line.
+        /// </Summary>
         public virtual string PrefixLineOne { get; set; }
         internal virtual string _PrefixOtherLines { get; set; }
         internal virtual string _NextPrefixOtherLines { get; set; }
         public virtual int WrapWidth { get; set; }
+        /// <Summary>
+        /// Buffer containing lines that have already been completely laid out.
+        /// </Summary>
         internal virtual StringBuffer _Buffer { get; set; }
+        /// <Summary>
+        /// Buffer containing the current line that has not yet been wrapped.
+        /// </Summary>
         internal virtual StringBuffer _CurrentLine { get; set; }
+        /// <Summary>
+        /// List of pairs of integers indicating the start and end of each block of
+        /// text within _currentLine that can be wrapped.
+        /// </Summary>
         internal virtual List<int> _WrappableRanges { get; set; }
         internal virtual int _NumLines { get; set; }
         public virtual string PrefixOtherLines { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
@@ -1315,6 +1502,18 @@ namespace FlutterSDK.Foundation.Diagnostics
     /// </Summary>
     public class TextTreeRenderer
     {
+        /// <Summary>
+        /// Creates a [TextTreeRenderer] object with the given arguments specifying
+        /// how the tree is rendered.
+        ///
+        /// Lines are wrapped to at the maximum of [wrapWidth] and the current indent
+        /// plus [wrapWidthProperties] characters. This ensures that wrapping does not
+        /// become too excessive when displaying very deep trees and that wrapping
+        /// only occurs at the overall [wrapWidth] when the tree is not very indented.
+        /// If [maxDescendentsTruncatableNode] is specified, [DiagnosticsNode] objects
+        /// with `allowTruncate` set to `true` are truncated after including
+        /// [maxDescendentsTruncatableNode] descendants of the node to be truncated.
+        /// </Summary>
         public TextTreeRenderer(FlutterSDK.Foundation.Diagnostics.DiagnosticLevel minLevel = default(FlutterSDK.Foundation.Diagnostics.DiagnosticLevel), int wrapWidth = 100, int wrapWidthProperties = 65, int maxDescendentsTruncatableNode = -1)
         : base()
         {
@@ -1641,6 +1840,12 @@ namespace FlutterSDK.Foundation.Diagnostics
     /// </Summary>
     public class DiagnosticsNode
     {
+        /// <Summary>
+        /// Initializes the object.
+        ///
+        /// The [style], [showName], and [showSeparator] arguments must not
+        /// be null.
+        /// </Summary>
         public DiagnosticsNode(string name = default(string), FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle style = default(FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle), bool showName = true, bool showSeparator = true, string linePrefix = default(string))
         : base()
         {
@@ -1650,6 +1855,17 @@ namespace FlutterSDK.Foundation.Diagnostics
             this.ShowSeparator = showSeparator;
             this.LinePrefix = linePrefix;
         }
+        /// <Summary>
+        /// Diagnostics containing just a string `message` and not a concrete name or
+        /// value.
+        ///
+        /// The [style] and [level] arguments must not be null.
+        ///
+        /// See also:
+        ///
+        ///  * [MessageProperty], which is better suited to messages that are to be
+        ///    formatted like a property with a separate name and message.
+        /// </Summary>
         public static DiagnosticsNode Message(string message, FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle style = default(FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle), FlutterSDK.Foundation.Diagnostics.DiagnosticLevel level = default(FlutterSDK.Foundation.Diagnostics.DiagnosticLevel), bool allowWrap = true)
         {
             var instance = new DiagnosticsNode();
@@ -1659,10 +1875,35 @@ namespace FlutterSDK.Foundation.Diagnostics
         }
 
 
+        /// <Summary>
+        /// Label describing the [DiagnosticsNode], typically shown before a separator
+        /// (see [showSeparator]).
+        ///
+        /// The name will be omitted if the [showName] property is false.
+        /// </Summary>
         public virtual string Name { get; set; }
+        /// <Summary>
+        /// Whether to show a separator between [name] and description.
+        ///
+        /// If false, name and description should be shown with no separation.
+        /// `:` is typically used as a separator when displaying as text.
+        /// </Summary>
         public virtual bool ShowSeparator { get; set; }
+        /// <Summary>
+        /// Whether the name of the property should be shown when showing the default
+        /// view of the tree.
+        ///
+        /// This could be set to false (hiding the name) if the value's description
+        /// will make the name self-evident.
+        /// </Summary>
         public virtual bool ShowName { get; set; }
+        /// <Summary>
+        /// Prefix to include at the start of each line
+        /// </Summary>
         public virtual string LinePrefix { get; set; }
+        /// <Summary>
+        /// Hint for how the node should be displayed.
+        /// </Summary>
         public virtual FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle Style { get; set; }
         public virtual FlutterSDK.Foundation.Diagnostics.DiagnosticLevel Level { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual string EmptyBodyDescription { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
@@ -1842,6 +2083,14 @@ namespace FlutterSDK.Foundation.Diagnostics
     /// </Summary>
     public class MessageProperty : FlutterSDK.Foundation.Diagnostics.DiagnosticsProperty<object>
     {
+        /// <Summary>
+        /// Create a diagnostics property that displays a message.
+        ///
+        /// Messages have no concrete [value] (so [value] will return null). The
+        /// message is stored as the description.
+        ///
+        /// The [name], `message`, and [level] arguments must not be null.
+        /// </Summary>
         public MessageProperty(string name, string message, FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle style = default(FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle), FlutterSDK.Foundation.Diagnostics.DiagnosticLevel level = default(FlutterSDK.Foundation.Diagnostics.DiagnosticLevel))
         : base(name, null, description: message, style: style, level: level)
         {
@@ -1860,11 +2109,19 @@ namespace FlutterSDK.Foundation.Diagnostics
     /// </Summary>
     public class StringProperty : FlutterSDK.Foundation.Diagnostics.DiagnosticsProperty<string>
     {
+        /// <Summary>
+        /// Create a diagnostics property for strings.
+        ///
+        /// The [showName], [quoted], [style], and [level] arguments must not be null.
+        /// </Summary>
         public StringProperty(string name, string value, string description = default(string), string tooltip = default(string), bool showName = true, @Object defaultValue = default(@Object), bool quoted = true, string ifEmpty = default(string), FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle style = default(FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle), FlutterSDK.Foundation.Diagnostics.DiagnosticLevel level = default(FlutterSDK.Foundation.Diagnostics.DiagnosticLevel))
         : base(name, value, description: description, defaultValue: defaultValue, tooltip: tooltip, showName: showName, ifEmpty: ifEmpty, style: style, level: level)
         {
             this.Quoted = quoted;
         }
+        /// <Summary>
+        /// Whether the value is enclosed in double quotes.
+        /// </Summary>
         public virtual bool Quoted { get; set; }
 
         public new Dictionary<string, @Object> ToJsonMap(FlutterSDK.Foundation.Diagnostics.DiagnosticsSerializationDelegate @delegate)
@@ -1911,6 +2168,13 @@ namespace FlutterSDK.Foundation.Diagnostics
         {
             var instance = new _NumProperty<T>(name, computeValue, ifNull: ifNull, showName: showName, defaultValue: defaultValue, tooltip: tooltip, style: style, level: level); instance.Unit = unit;
         }
+        /// <Summary>
+        /// Optional unit the [value] is measured in.
+        ///
+        /// Unit must be acceptable to display immediately after a number with no
+        /// spaces. For example: 'physical pixels per logical pixel' should be a
+        /// [tooltip] not a [unit].
+        /// </Summary>
         public virtual string Unit { get; set; }
 
         public new Dictionary<string, @Object> ToJsonMap(FlutterSDK.Foundation.Diagnostics.DiagnosticsSerializationDelegate @delegate)
@@ -1951,11 +2215,24 @@ namespace FlutterSDK.Foundation.Diagnostics
     /// </Summary>
     public class DoubleProperty : FlutterSDK.Foundation.Diagnostics._NumProperty<double>
     {
+        /// <Summary>
+        /// If specified, [unit] describes the unit for the [value] (e.g. px).
+        ///
+        /// The [showName], [style], and [level] arguments must not be null.
+        /// </Summary>
         public DoubleProperty(string name, double value, string ifNull = default(string), string unit = default(string), string tooltip = default(string), @Object defaultValue = default(@Object), bool showName = true, FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle style = default(FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle), FlutterSDK.Foundation.Diagnostics.DiagnosticLevel level = default(FlutterSDK.Foundation.Diagnostics.DiagnosticLevel))
         : base(name, value, ifNull: ifNull, unit: unit, tooltip: tooltip, defaultValue: defaultValue, showName: showName, style: style, level: level)
         {
 
         }
+        /// <Summary>
+        /// Property with a [value] that is computed only when needed.
+        ///
+        /// Use if computing the property [value] may throw an exception or is
+        /// expensive.
+        ///
+        /// The [showName] and [level] arguments must not be null.
+        /// </Summary>
         public static DoubleProperty Lazy(string name, FlutterSDK.Foundation.Diagnostics.ComputePropertyValueCallback<double> computeValue, string ifNull = default(string), bool showName = true, string unit = default(string), string tooltip = default(string), @Object defaultValue = default(@Object), FlutterSDK.Foundation.Diagnostics.DiagnosticLevel level = default(FlutterSDK.Foundation.Diagnostics.DiagnosticLevel))
         {
             var instance = new DoubleProperty(name, computeValue, showName: showName, ifNull: ifNull, unit: unit, tooltip: tooltip, defaultValue: defaultValue, level: level);
@@ -1974,6 +2251,11 @@ namespace FlutterSDK.Foundation.Diagnostics
     /// </Summary>
     public class IntProperty : FlutterSDK.Foundation.Diagnostics._NumProperty<int>
     {
+        /// <Summary>
+        /// Create a diagnostics property for integers.
+        ///
+        /// The [showName], [style], and [level] arguments must not be null.
+        /// </Summary>
         public IntProperty(string name, int value, string ifNull = default(string), bool showName = true, string unit = default(string), @Object defaultValue = default(@Object), FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle style = default(FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle), FlutterSDK.Foundation.Diagnostics.DiagnosticLevel level = default(FlutterSDK.Foundation.Diagnostics.DiagnosticLevel))
         : base(name, value, ifNull: ifNull, showName: showName, unit: unit, defaultValue: defaultValue, level: level)
         {
@@ -1992,6 +2274,16 @@ namespace FlutterSDK.Foundation.Diagnostics
     /// </Summary>
     public class PercentProperty : FlutterSDK.Foundation.Diagnostics.DoubleProperty
     {
+        /// <Summary>
+        /// Create a diagnostics property for doubles that represent percentages or
+        /// fractions.
+        ///
+        /// Setting [showName] to false is often reasonable for [PercentProperty]
+        /// objects, as the fact that the property is shown as a percentage tends to
+        /// be sufficient to disambiguate its meaning.
+        ///
+        /// The [showName] and [level] arguments must not be null.
+        /// </Summary>
         public PercentProperty(string name, double fraction, string ifNull = default(string), bool showName = true, string tooltip = default(string), string unit = default(string), FlutterSDK.Foundation.Diagnostics.DiagnosticLevel level = default(FlutterSDK.Foundation.Diagnostics.DiagnosticLevel))
         : base(name, fraction, ifNull: ifNull, showName: showName, tooltip: tooltip, unit: unit, level: level)
         {
@@ -2061,13 +2353,33 @@ namespace FlutterSDK.Foundation.Diagnostics
     /// </Summary>
     public class FlagProperty : FlutterSDK.Foundation.Diagnostics.DiagnosticsProperty<bool>
     {
+        /// <Summary>
+        /// Constructs a FlagProperty with the given descriptions with the specified descriptions.
+        ///
+        /// [showName] defaults to false as typically [ifTrue] and [ifFalse] should
+        /// be descriptions that make the property name redundant.
+        ///
+        /// The [showName] and [level] arguments must not be null.
+        /// </Summary>
         public FlagProperty(string name, bool value = default(bool), string ifTrue = default(string), string ifFalse = default(string), bool showName = false, @Object defaultValue = default(@Object), FlutterSDK.Foundation.Diagnostics.DiagnosticLevel level = default(FlutterSDK.Foundation.Diagnostics.DiagnosticLevel))
         : base(name, value, showName: showName, defaultValue: defaultValue, level: level)
         {
             this.IfTrue = ifTrue;
             this.IfFalse = ifFalse;
         }
+        /// <Summary>
+        /// Description to use if the property [value] is true.
+        ///
+        /// If not specified and [value] equals true the property's priority [level]
+        /// will be [DiagnosticLevel.hidden].
+        /// </Summary>
         public virtual string IfTrue { get; set; }
+        /// <Summary>
+        /// Description to use if the property value is false.
+        ///
+        /// If not specified and [value] equals false, the property's priority [level]
+        /// will be [DiagnosticLevel.hidden].
+        /// </Summary>
         public virtual string IfFalse { get; set; }
         public virtual bool ShowName { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterSDK.Foundation.Diagnostics.DiagnosticLevel Level { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
@@ -2112,6 +2424,17 @@ namespace FlutterSDK.Foundation.Diagnostics
     /// </Summary>
     public class IterableProperty<T> : FlutterSDK.Foundation.Diagnostics.DiagnosticsProperty<Iterable<T>>
     {
+        /// <Summary>
+        /// Create a diagnostics property for iterables (e.g. lists).
+        ///
+        /// The [ifEmpty] argument is used to indicate how an iterable [value] with 0
+        /// elements is displayed. If [ifEmpty] equals null that indicates that an
+        /// empty iterable [value] is not interesting to display similar to how
+        /// [defaultValue] is used to indicate that a specific concrete value is not
+        /// interesting to display.
+        ///
+        /// The [style], [showName], [showSeparator], and [level] arguments must not be null.
+        /// </Summary>
         public IterableProperty(string name, Iterable<T> value, @Object defaultValue = default(@Object), string ifNull = default(string), string ifEmpty = default(string), FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle style = default(FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle), bool showName = true, bool showSeparator = true, FlutterSDK.Foundation.Diagnostics.DiagnosticLevel level = default(FlutterSDK.Foundation.Diagnostics.DiagnosticLevel))
         : base(name, value, defaultValue: defaultValue, ifNull: ifNull, ifEmpty: ifEmpty, style: style, showName: showName, showSeparator: showSeparator, level: level)
         {
@@ -2176,6 +2499,11 @@ namespace FlutterSDK.Foundation.Diagnostics
     /// </Summary>
     public class EnumProperty<T> : FlutterSDK.Foundation.Diagnostics.DiagnosticsProperty<T>
     {
+        /// <Summary>
+        /// Create a diagnostics property that displays an enum.
+        ///
+        /// The [level] argument must also not be null.
+        /// </Summary>
         public EnumProperty(string name, T value, @Object defaultValue = default(@Object), FlutterSDK.Foundation.Diagnostics.DiagnosticLevel level = default(FlutterSDK.Foundation.Diagnostics.DiagnosticLevel))
         : base(name, value, defaultValue: defaultValue, level: level)
         {
@@ -2219,15 +2547,38 @@ namespace FlutterSDK.Foundation.Diagnostics
     /// </Summary>
     public class ObjectFlagProperty<T> : FlutterSDK.Foundation.Diagnostics.DiagnosticsProperty<T>
     {
+        /// <Summary>
+        /// Create a diagnostics property for values that can be present (non-null) or
+        /// absent (null), but for which the exact value's [Object.toString]
+        /// representation is not very transparent (e.g. a callback).
+        ///
+        /// The [showName] and [level] arguments must not be null. Additionally, at
+        /// least one of [ifPresent] and [ifNull] must not be null.
+        /// </Summary>
         public ObjectFlagProperty(string name, T value, string ifPresent = default(string), string ifNull = default(string), bool showName = false, FlutterSDK.Foundation.Diagnostics.DiagnosticLevel level = default(FlutterSDK.Foundation.Diagnostics.DiagnosticLevel))
         : base(name, value, showName: showName, ifNull: ifNull, level: level)
         {
             this.IfPresent = ifPresent;
         }
+        /// <Summary>
+        /// Shorthand constructor to describe whether the property has a value.
+        ///
+        /// Only use if prefixing the property name with the word 'has' is a good
+        /// flag name.
+        ///
+        /// The [name] and [level] arguments must not be null.
+        /// </Summary>
         public static ObjectFlagProperty<T> Has(string name, T value, FlutterSDK.Foundation.Diagnostics.DiagnosticLevel level = default(FlutterSDK.Foundation.Diagnostics.DiagnosticLevel))
         {
             var instance = new ObjectFlagProperty<T>(name, value, showName: false, level: level);
         }
+        /// <Summary>
+        /// Description to use if the property [value] is not null.
+        ///
+        /// If the property [value] is not null and [ifPresent] is null, the
+        /// [level] for the property is [DiagnosticLevel.hidden] and the description
+        /// from superclass is used.
+        /// </Summary>
         public virtual string IfPresent { get; set; }
         public virtual bool ShowName { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterSDK.Foundation.Diagnostics.DiagnosticLevel Level { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
@@ -2286,6 +2637,13 @@ namespace FlutterSDK.Foundation.Diagnostics
     /// </Summary>
     public class FlagsSummary<T> : FlutterSDK.Foundation.Diagnostics.DiagnosticsProperty<Dictionary<string, T>>
     {
+        /// <Summary>
+        /// Create a summary for multiple properties, indicating whether each of them
+        /// is present (non-null) or absent (null).
+        ///
+        /// The [value], [showName], [showSeparator] and [level] arguments must not be
+        /// null.
+        /// </Summary>
         public FlagsSummary(string name, Dictionary<string, T> value, string ifEmpty = default(string), bool showName = true, bool showSeparator = true, FlutterSDK.Foundation.Diagnostics.DiagnosticLevel level = default(FlutterSDK.Foundation.Diagnostics.DiagnosticLevel))
         : base(name, value, ifEmpty: ifEmpty, showName: showName, showSeparator: showSeparator, level: level)
         {
@@ -2352,6 +2710,17 @@ namespace FlutterSDK.Foundation.Diagnostics
     /// </Summary>
     public class DiagnosticsProperty<T> : FlutterSDK.Foundation.Diagnostics.DiagnosticsNode
     {
+        /// <Summary>
+        /// Create a diagnostics property.
+        ///
+        /// The [showName], [showSeparator], [style], [missingIfNull], and [level]
+        /// arguments must not be null.
+        ///
+        /// The [level] argument is just a suggestion and can be overridden if
+        /// something else about the property causes it to have a lower or higher
+        /// level. For example, if the property value is null and [missingIfNull] is
+        /// true, [level] is raised to [DiagnosticLevel.warning].
+        /// </Summary>
         public DiagnosticsProperty(string name, T value, string description = default(string), string ifNull = default(string), string ifEmpty = default(string), bool showName = true, bool showSeparator = true, @Object defaultValue = default(@Object), string tooltip = default(string), bool missingIfNull = false, string linePrefix = default(string), bool expandableValue = false, bool allowWrap = true, bool allowNameWrap = true, FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle style = default(FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle), FlutterSDK.Foundation.Diagnostics.DiagnosticLevel level = default(FlutterSDK.Foundation.Diagnostics.DiagnosticLevel))
         : base(name: name, showName: showName, showSeparator: showSeparator, style: style, linePrefix: linePrefix)
         {
@@ -2363,6 +2732,20 @@ namespace FlutterSDK.Foundation.Diagnostics
             this.AllowWrap = allowWrap;
             this.AllowNameWrap = allowNameWrap;
         }
+        /// <Summary>
+        /// Property with a [value] that is computed only when needed.
+        ///
+        /// Use if computing the property [value] may throw an exception or is
+        /// expensive.
+        ///
+        /// The [showName], [showSeparator], [style], [missingIfNull], and [level]
+        /// arguments must not be null.
+        ///
+        /// The [level] argument is just a suggestion and can be overridden if
+        /// if something else about the property causes it to have a lower or higher
+        /// level. For example, if calling `computeValue` throws an exception, [level]
+        /// will always return [DiagnosticLevel.error].
+        /// </Summary>
         public static DiagnosticsProperty<T> Lazy(string name, FlutterSDK.Foundation.Diagnostics.ComputePropertyValueCallback<T> computeValue, string description = default(string), string ifNull = default(string), string ifEmpty = default(string), bool showName = true, bool showSeparator = true, @Object defaultValue = default(@Object), string tooltip = default(string), bool missingIfNull = false, bool expandableValue = false, bool allowWrap = true, bool allowNameWrap = true, FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle style = default(FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle), FlutterSDK.Foundation.Diagnostics.DiagnosticLevel level = default(FlutterSDK.Foundation.Diagnostics.DiagnosticLevel))
         {
             var instance = new DiagnosticsProperty<T>(name: name, showName: showName, showSeparator: showSeparator, style: style); instance.IfEmpty = ifEmpty;
@@ -2374,16 +2757,45 @@ namespace FlutterSDK.Foundation.Diagnostics
             instance.AllowNameWrap = allowNameWrap;
         }
         internal virtual string _Description { get; set; }
+        /// <Summary>
+        /// Whether to expose properties and children of the value as properties and
+        /// children.
+        /// </Summary>
         public virtual bool ExpandableValue { get; set; }
         public new bool AllowWrap { get; set; }
         public new bool AllowNameWrap { get; set; }
+        /// <Summary>
+        /// Description if the property [value] is null.
+        /// </Summary>
         public virtual string IfNull { get; set; }
+        /// <Summary>
+        /// Description if the property description would otherwise be empty.
+        /// </Summary>
         public virtual string IfEmpty { get; set; }
+        /// <Summary>
+        /// Optional tooltip typically describing the property.
+        ///
+        /// Example tooltip: 'physical pixels per logical pixel'
+        ///
+        /// If present, the tooltip is added in parenthesis after the raw value when
+        /// generating the string description.
+        /// </Summary>
         public virtual string Tooltip { get; set; }
+        /// <Summary>
+        /// Whether a [value] of null causes the property to have [level]
+        /// [DiagnosticLevel.warning] warning that the property is missing a [value].
+        /// </Summary>
         public virtual bool MissingIfNull { get; set; }
         internal virtual T _Value { get; set; }
         internal virtual bool _ValueComputed { get; set; }
         internal virtual @Object _Exception { get; set; }
+        /// <Summary>
+        /// If the [value] of the property equals [defaultValue] the priority [level]
+        /// of the property is downgraded to [DiagnosticLevel.fine] as the property
+        /// value is uninteresting.
+        ///
+        /// [defaultValue] has type [T] or is [kNoDefaultValue].
+        /// </Summary>
         public virtual @Object DefaultValue { get; set; }
         internal virtual FlutterSDK.Foundation.Diagnostics.DiagnosticLevel _DefaultLevel { get; set; }
         internal virtual FlutterSDK.Foundation.Diagnostics.ComputePropertyValueCallback<T> _ComputeValue { get; set; }
@@ -2552,6 +2964,11 @@ namespace FlutterSDK.Foundation.Diagnostics
     /// </Summary>
     public class DiagnosticableNode<T> : FlutterSDK.Foundation.Diagnostics.DiagnosticsNode
     {
+        /// <Summary>
+        /// Create a diagnostics describing a [DiagnosticableMixin] value.
+        ///
+        /// The [value] argument must not be null.
+        /// </Summary>
         public DiagnosticableNode(string name = default(string), T value = default(T), FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle style = default(FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle))
         : base(name: name, style: style)
         {
@@ -2592,6 +3009,9 @@ namespace FlutterSDK.Foundation.Diagnostics
     /// </Summary>
     public class DiagnosticableTreeNode : FlutterSDK.Foundation.Diagnostics.DiagnosticableNode<FlutterSDK.Foundation.Diagnostics.DiagnosticableTree>
     {
+        /// <Summary>
+        /// Creates a [DiagnosticableTreeNode].
+        /// </Summary>
         public DiagnosticableTreeNode(string name = default(string), FlutterSDK.Foundation.Diagnostics.DiagnosticableTree value = default(FlutterSDK.Foundation.Diagnostics.DiagnosticableTree), FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle style = default(FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle))
         : base(name: name, value: value, style: style)
         {
@@ -2615,17 +3035,33 @@ namespace FlutterSDK.Foundation.Diagnostics
     /// </Summary>
     public class DiagnosticPropertiesBuilder
     {
+        /// <Summary>
+        /// Creates a [DiagnosticPropertiesBuilder] with [properties] initialize to
+        /// an empty array.
+        /// </Summary>
         public DiagnosticPropertiesBuilder()
         : base()
         {
 
         }
+        /// <Summary>
+        /// Creates a [DiagnosticPropertiesBuilder] with a given [properties].
+        /// </Summary>
         public static DiagnosticPropertiesBuilder FromProperties(List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> properties)
         {
             var instance = new DiagnosticPropertiesBuilder(); instance.Properties = properties;
         }
+        /// <Summary>
+        /// List of properties accumulated so far.
+        /// </Summary>
         public virtual List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> Properties { get; set; }
+        /// <Summary>
+        /// Default style to use for the [DiagnosticsNode] if no style is specified.
+        /// </Summary>
         public virtual FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle DefaultDiagnosticsTreeStyle { get; set; }
+        /// <Summary>
+        /// Description to show if the node has no displayed properties or children.
+        /// </Summary>
         public virtual string EmptyBodyDescription { get; set; }
 
         /// <Summary>
@@ -2658,6 +3094,10 @@ namespace FlutterSDK.Foundation.Diagnostics
     /// </Summary>
     public class DiagnosticableTree : IDiagnosticable
     {
+        /// <Summary>
+        /// Abstract const constructor. This constructor enables subclasses to provide
+        /// const constructors so that they can be used in const expressions.
+        /// </Summary>
         public DiagnosticableTree()
         {
 
@@ -2770,6 +3210,10 @@ namespace FlutterSDK.Foundation.Diagnostics
     /// </Summary>
     public class DiagnosticsBlock : FlutterSDK.Foundation.Diagnostics.DiagnosticsNode
     {
+        /// <Summary>
+        /// Creates a diagnostic with properties specified by [properties] and
+        /// children specified by [children].
+        /// </Summary>
         public DiagnosticsBlock(string name = default(string), FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle style = default(FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle), bool showName = true, bool showSeparator = true, string linePrefix = default(string), @Object value = default(@Object), string description = default(string), FlutterSDK.Foundation.Diagnostics.DiagnosticLevel level = default(FlutterSDK.Foundation.Diagnostics.DiagnosticLevel), bool allowTruncate = false, List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> children = default(List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode>), List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> properties = default(List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode>))
         : base(name: name, style: style, showName: showName && name != null, showSeparator: showSeparator, linePrefix: linePrefix)
         {

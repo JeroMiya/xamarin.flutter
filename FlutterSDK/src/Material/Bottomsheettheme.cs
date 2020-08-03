@@ -387,6 +387,9 @@ namespace FlutterSDK.Material.Bottomsheettheme
     /// </Summary>
     public class BottomSheetThemeData : IDiagnosticable
     {
+        /// <Summary>
+        /// Creates a theme that can be used for [ThemeData.bottomSheetTheme].
+        /// </Summary>
         public BottomSheetThemeData(FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), double elevation = default(double), FlutterBinding.UI.Color modalBackgroundColor = default(FlutterBinding.UI.Color), double modalElevation = default(double), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip))
         {
             this.BackgroundColor = backgroundColor;
@@ -396,11 +399,42 @@ namespace FlutterSDK.Material.Bottomsheettheme
             this.Shape = shape;
             this.ClipBehavior = clipBehavior;
         }
+        /// <Summary>
+        /// Default value for [BottomSheet.backgroundColor].
+        ///
+        /// If null, [BottomSheet] defaults to [Material]'s default.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
+        /// <Summary>
+        /// Default value for [BottomSheet.elevation].
+        ///
+        /// {@macro flutter.material.material.elevation}
+        ///
+        /// If null, [BottomSheet] defaults to 0.0.
+        /// </Summary>
         public virtual double Elevation { get; set; }
+        /// <Summary>
+        /// Value for [BottomSheet.backgroundColor] when the Bottom sheet is presented
+        /// as a modal bottom sheet.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color ModalBackgroundColor { get; set; }
+        /// <Summary>
+        /// Value for [BottomSheet.elevation] when the Bottom sheet is presented as a
+        /// modal bottom sheet.
+        /// </Summary>
         public virtual double ModalElevation { get; set; }
+        /// <Summary>
+        /// Default value for [BottomSheet.shape].
+        ///
+        /// If null, no overriding shape is specified for [BottomSheet], so the
+        /// [BottomSheet] is rectangular.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Borders.ShapeBorder Shape { get; set; }
+        /// <Summary>
+        /// Default value for [BottomSheet.clipBehavior].
+        ///
+        /// If null, [BottomSheet] uses [Clip.none].
+        /// </Summary>
         public virtual FlutterBinding.UI.Clip ClipBehavior { get; set; }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 

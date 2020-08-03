@@ -425,6 +425,18 @@ using FlutterSDK.Widgets.Constants;
 using FlutterSDK.Widgets.Routenotificationmessages;
 namespace FlutterSDK.Widgets.Valuelistenablebuilder
 {
+    /// <Summary>
+    /// Builds a [Widget] when given a concrete value of a [ValueListenable<T>].
+    ///
+    /// If the `child` parameter provided to the [ValueListenableBuilder] is not
+    /// null, the same `child` widget is passed back to this [ValueWidgetBuilder]
+    /// and should typically be incorporated in the returned widget tree.
+    ///
+    /// See also:
+    ///
+    ///  * [ValueListenableBuilder], a widget which invokes this builder each time
+    ///    a [ValueListenable] changes value.
+    /// </Summary>
     public delegate FlutterSDK.Widgets.Framework.Widget ValueWidgetBuilder<T>(FlutterSDK.Widgets.Framework.BuildContext context, T value, FlutterSDK.Widgets.Framework.Widget child);
     internal static class ValuelistenablebuilderDefaultClass
     {
@@ -524,6 +536,13 @@ namespace FlutterSDK.Widgets.Valuelistenablebuilder
     /// </Summary>
     public class ValueListenableBuilder<T> : FlutterSDK.Widgets.Framework.StatefulWidget
     {
+        /// <Summary>
+        /// Creates a [ValueListenableBuilder].
+        ///
+        /// The [valueListenable] and [builder] arguments must not be null.
+        /// The [child] is optional but is good practice to use if part of the widget
+        /// subtree does not depend on the value of the [valueListenable].
+        /// </Summary>
         public ValueListenableBuilder(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Foundation.Changenotifier.ValueListenable<T> valueListenable = default(FlutterSDK.Foundation.Changenotifier.ValueListenable<T>), FlutterSDK.Widgets.Valuelistenablebuilder.ValueWidgetBuilder<T> builder = default(FlutterSDK.Widgets.Valuelistenablebuilder.ValueWidgetBuilder<T>), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key)
         {
@@ -531,8 +550,33 @@ namespace FlutterSDK.Widgets.Valuelistenablebuilder
             this.Builder = builder;
             this.Child = child;
         }
+        /// <Summary>
+        /// The [ValueListenable] whose value you depend on in order to build.
+        ///
+        /// This widget does not ensure that the [ValueListenable]'s value is not
+        /// null, therefore your [builder] may need to handle null values.
+        ///
+        /// This [ValueListenable] itself must not be null.
+        /// </Summary>
         public virtual FlutterSDK.Foundation.Changenotifier.ValueListenable<T> ValueListenable { get; set; }
+        /// <Summary>
+        /// A [ValueWidgetBuilder] which builds a widget depending on the
+        /// [valueListenable]'s value.
+        ///
+        /// Can incorporate a [valueListenable] value-independent widget subtree
+        /// from the [child] parameter into the returned widget tree.
+        ///
+        /// Must not be null.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Valuelistenablebuilder.ValueWidgetBuilder<T> Builder { get; set; }
+        /// <Summary>
+        /// A [valueListenable]-independent widget which is passed back to the [builder].
+        ///
+        /// This argument is optional and can be null if the entire widget subtree
+        /// the [builder] builds depends on the value of the [valueListenable]. For
+        /// example, if the [valueListenable] is a [String] and the [builder] simply
+        /// returns a [Text] widget with the [String] value.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
 
         public new FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget> CreateState() => new _ValueListenableBuilderState<T>();

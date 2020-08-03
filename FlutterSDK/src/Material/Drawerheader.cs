@@ -402,6 +402,11 @@ namespace FlutterSDK.Material.Drawerheader
     /// </Summary>
     public class DrawerHeader : FlutterSDK.Widgets.Framework.StatelessWidget
     {
+        /// <Summary>
+        /// Creates a material design drawer header.
+        ///
+        /// Requires one of its ancestors to be a [Material] widget.
+        /// </Summary>
         public DrawerHeader(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Decoration.Decoration decoration = default(FlutterSDK.Painting.Decoration.Decoration), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry margin = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), TimeSpan duration = default(TimeSpan), FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key)
         {
@@ -412,11 +417,44 @@ namespace FlutterSDK.Material.Drawerheader
             this.Curve = curve;
             this.Child = child;
         }
+        /// <Summary>
+        /// Decoration for the main drawer header [Container]; useful for applying
+        /// backgrounds.
+        ///
+        /// This decoration will extend under the system status bar.
+        ///
+        /// If this is changed, it will be animated according to [duration] and [curve].
+        /// </Summary>
         public virtual FlutterSDK.Painting.Decoration.Decoration Decoration { get; set; }
+        /// <Summary>
+        /// The padding by which to inset [child].
+        ///
+        /// The [DrawerHeader] additionally offsets the child by the height of the
+        /// system status bar.
+        ///
+        /// If the child is null, the padding has no effect.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Padding { get; set; }
+        /// <Summary>
+        /// The margin around the drawer header.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Margin { get; set; }
+        /// <Summary>
+        /// The duration for animations of the [decoration].
+        /// </Summary>
         public virtual TimeSpan Duration { get; set; }
+        /// <Summary>
+        /// The curve for animations of the [decoration].
+        /// </Summary>
         public virtual FlutterSDK.Animation.Curves.Curve Curve { get; set; }
+        /// <Summary>
+        /// A widget to be placed inside the drawer header, inset by the [padding].
+        ///
+        /// This widget will be sized to the size of the header. To position the child
+        /// precisely, consider using an [Align] or [Center] widget.
+        ///
+        /// {@macro flutter.widgets.child}
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)

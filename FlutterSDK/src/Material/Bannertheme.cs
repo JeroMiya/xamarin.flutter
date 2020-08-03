@@ -381,6 +381,10 @@ namespace FlutterSDK.Material.Bannertheme
     /// </Summary>
     public class MaterialBannerThemeData : IDiagnosticable
     {
+        /// <Summary>
+        /// Creates a theme that can be used for [MaterialBannerTheme] or
+        /// [ThemeData.bannerTheme].
+        /// </Summary>
         public MaterialBannerThemeData(FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Textstyle.TextStyle contentTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry leadingPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry))
         {
             this.BackgroundColor = backgroundColor;
@@ -388,9 +392,22 @@ namespace FlutterSDK.Material.Bannertheme
             this.Padding = padding;
             this.LeadingPadding = leadingPadding;
         }
+        /// <Summary>
+        /// The background color of a [MaterialBanner].
+        /// </Summary>
         public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
+        /// <Summary>
+        /// Used to configure the [DefaultTextStyle] for the [MaterialBanner.content]
+        /// widget.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Textstyle.TextStyle ContentTextStyle { get; set; }
+        /// <Summary>
+        /// The amount of space by which to inset [MaterialBanner.content].
+        /// </Summary>
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Padding { get; set; }
+        /// <Summary>
+        /// The amount of space by which to inset [MaterialBanner.leading].
+        /// </Summary>
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry LeadingPadding { get; set; }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 
@@ -455,11 +472,18 @@ namespace FlutterSDK.Material.Bannertheme
     /// </Summary>
     public class MaterialBannerTheme : FlutterSDK.Widgets.Inheritedtheme.InheritedTheme
     {
+        /// <Summary>
+        /// Creates a banner theme that controls the configurations for
+        /// [MaterialBanner]s in its widget subtree.
+        /// </Summary>
         public MaterialBannerTheme(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Material.Bannertheme.MaterialBannerThemeData data = default(FlutterSDK.Material.Bannertheme.MaterialBannerThemeData), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
             this.Data = data;
         }
+        /// <Summary>
+        /// The properties for descendant [MaterialBanner] widgets.
+        /// </Summary>
         public virtual FlutterSDK.Material.Bannertheme.MaterialBannerThemeData Data { get; set; }
 
         /// <Summary>

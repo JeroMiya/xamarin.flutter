@@ -438,6 +438,11 @@ namespace FlutterSDK.Material.Stepper
     /// </Summary>
     public class Step
     {
+        /// <Summary>
+        /// Creates a step for a [Stepper].
+        ///
+        /// The [title], [content], and [state] arguments must not be null.
+        /// </Summary>
         public Step(FlutterSDK.Widgets.Framework.Widget title = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget subtitle = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget content = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Material.Stepper.StepState state = default(FlutterSDK.Material.Stepper.StepState), bool isActive = false)
         : base()
         {
@@ -447,10 +452,31 @@ namespace FlutterSDK.Material.Stepper
             this.State = state;
             this.IsActive = isActive;
         }
+        /// <Summary>
+        /// The title of the step that typically describes it.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Title { get; set; }
+        /// <Summary>
+        /// The subtitle of the step that appears below the title and has a smaller
+        /// font size. It typically gives more details that complement the title.
+        ///
+        /// If null, the subtitle is not shown.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Subtitle { get; set; }
+        /// <Summary>
+        /// The content of the step that appears below the [title] and [subtitle].
+        ///
+        /// Below the content, every step has a 'continue' and 'cancel' button.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Content { get; set; }
+        /// <Summary>
+        /// The state of the step which determines the styling of its components
+        /// and whether steps are interactive.
+        /// </Summary>
         public virtual FlutterSDK.Material.Stepper.StepState State { get; set; }
+        /// <Summary>
+        /// Whether or not the step is active. The flag only influences styling.
+        /// </Summary>
         public virtual bool IsActive { get; set; }
     }
 
@@ -472,6 +498,15 @@ namespace FlutterSDK.Material.Stepper
     /// </Summary>
     public class Stepper : FlutterSDK.Widgets.Framework.StatefulWidget
     {
+        /// <Summary>
+        /// Creates a stepper from a list of steps.
+        ///
+        /// This widget is not meant to be rebuilt with a different list of steps
+        /// unless a key is provided in order to distinguish the old stepper from the
+        /// new one.
+        ///
+        /// The [steps], [type], and [currentStep] arguments must not be null.
+        /// </Summary>
         public Stepper(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), List<FlutterSDK.Material.Stepper.Step> steps = default(List<FlutterSDK.Material.Stepper.Step>), FlutterSDK.Widgets.Scrollphysics.ScrollPhysics physics = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics), FlutterSDK.Material.Stepper.StepperType type = default(FlutterSDK.Material.Stepper.StepperType), int currentStep = 0, FlutterSDK.Foundation.Basictypes.ValueChanged<int> onStepTapped = default(FlutterSDK.Foundation.Basictypes.ValueChanged<int>), VoidCallback onStepContinue = default(VoidCallback), VoidCallback onStepCancel = default(VoidCallback), FlutterSDK.Widgets.Framework.ControlsWidgetBuilder controlsBuilder = default(FlutterSDK.Widgets.Framework.ControlsWidgetBuilder))
         : base(key: key)
         {
@@ -484,13 +519,100 @@ namespace FlutterSDK.Material.Stepper
             this.OnStepCancel = onStepCancel;
             this.ControlsBuilder = controlsBuilder;
         }
+        /// <Summary>
+        /// The steps of the stepper whose titles, subtitles, icons always get shown.
+        ///
+        /// The length of [steps] must not change.
+        /// </Summary>
         public virtual List<FlutterSDK.Material.Stepper.Step> Steps { get; set; }
+        /// <Summary>
+        /// How the stepper's scroll view should respond to user input.
+        ///
+        /// For example, determines how the scroll view continues to
+        /// animate after the user stops dragging the scroll view.
+        ///
+        /// If the stepper is contained within another scrollable it
+        /// can be helpful to set this property to [ClampingScrollPhysics].
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Scrollphysics.ScrollPhysics Physics { get; set; }
+        /// <Summary>
+        /// The type of stepper that determines the layout. In the case of
+        /// [StepperType.horizontal], the content of the current step is displayed
+        /// underneath as opposed to the [StepperType.vertical] case where it is
+        /// displayed in-between.
+        /// </Summary>
         public virtual FlutterSDK.Material.Stepper.StepperType Type { get; set; }
+        /// <Summary>
+        /// The index into [steps] of the current step whose content is displayed.
+        /// </Summary>
         public virtual int CurrentStep { get; set; }
+        /// <Summary>
+        /// The callback called when a step is tapped, with its index passed as
+        /// an argument.
+        /// </Summary>
         public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<int> OnStepTapped { get; set; }
+        /// <Summary>
+        /// The callback called when the 'continue' button is tapped.
+        ///
+        /// If null, the 'continue' button will be disabled.
+        /// </Summary>
         public virtual VoidCallback OnStepContinue { get; set; }
+        /// <Summary>
+        /// The callback called when the 'cancel' button is tapped.
+        ///
+        /// If null, the 'cancel' button will be disabled.
+        /// </Summary>
         public virtual VoidCallback OnStepCancel { get; set; }
+        /// <Summary>
+        /// The callback for creating custom controls.
+        ///
+        /// If null, the default controls from the current theme will be used.
+        ///
+        /// This callback which takes in a context and two functions,[onStepContinue]
+        /// and [onStepCancel]. These can be used to control the stepper.
+        ///
+        /// {@tool dartpad --template=stateless_widget_scaffold}
+        /// Creates a stepper control with custom buttons.
+        ///
+        /// ```dart
+        /// Widget build(BuildContext context) {
+        ///   return Stepper(
+        ///     controlsBuilder:
+        ///       (BuildContext context, {VoidCallback onStepContinue, VoidCallback onStepCancel}) {
+        ///          return Row(
+        ///            children: <Widget>[
+        ///              FlatButton(
+        ///                onPressed: onStepContinue,
+        ///                child: const Text('NEXT'),
+        ///              ),
+        ///              FlatButton(
+        ///                onPressed: onStepCancel,
+        ///                child: const Text('CANCEL'),
+        ///              ),
+        ///            ],
+        ///          );
+        ///       },
+        ///     steps: const <Step>[
+        ///       Step(
+        ///         title: Text('A'),
+        ///         content: SizedBox(
+        ///           width: 100.0,
+        ///           height: 100.0,
+        ///         ),
+        ///       ),
+        ///       Step(
+        ///         title: Text('B'),
+        ///         content: SizedBox(
+        ///           width: 100.0,
+        ///           height: 100.0,
+        ///         ),
+        ///       ),
+        ///     ],
+        ///   );
+        /// }
+        /// ```
+        /// {@end-tool}
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.ControlsWidgetBuilder ControlsBuilder { get; set; }
 
         public new FlutterSDK.Material.Stepper._StepperState CreateState() => new _StepperState();

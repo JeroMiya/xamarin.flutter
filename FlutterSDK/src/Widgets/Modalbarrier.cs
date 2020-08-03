@@ -446,6 +446,9 @@ namespace FlutterSDK.Widgets.Modalbarrier
     /// </Summary>
     public class ModalBarrier : FlutterSDK.Widgets.Framework.StatelessWidget
     {
+        /// <Summary>
+        /// Creates a widget that blocks user interaction.
+        /// </Summary>
         public ModalBarrier(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), bool dismissible = true, string semanticsLabel = default(string), bool barrierSemanticsDismissible = true)
         : base(key: key)
         {
@@ -454,9 +457,44 @@ namespace FlutterSDK.Widgets.Modalbarrier
             this.SemanticsLabel = semanticsLabel;
             this.BarrierSemanticsDismissible = barrierSemanticsDismissible;
         }
+        /// <Summary>
+        /// If non-null, fill the barrier with this color.
+        ///
+        /// See also:
+        ///
+        ///  * [ModalRoute.barrierColor], which controls this property for the
+        ///    [ModalBarrier] built by [ModalRoute] pages.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color Color { get; set; }
+        /// <Summary>
+        /// Whether touching the barrier will pop the current route off the [Navigator].
+        ///
+        /// See also:
+        ///
+        ///  * [ModalRoute.barrierDismissible], which controls this property for the
+        ///    [ModalBarrier] built by [ModalRoute] pages.
+        /// </Summary>
         public virtual bool Dismissible { get; set; }
+        /// <Summary>
+        /// Whether the modal barrier semantics are included in the semantics tree.
+        ///
+        /// See also:
+        ///
+        ///  * [ModalRoute.semanticsDismissible], which controls this property for
+        ///    the [ModalBarrier] built by [ModalRoute] pages.
+        /// </Summary>
         public virtual bool BarrierSemanticsDismissible { get; set; }
+        /// <Summary>
+        /// Semantics label used for the barrier if it is [dismissible].
+        ///
+        /// The semantics label is read out by accessibility tools (e.g. TalkBack
+        /// on Android and VoiceOver on iOS) when the barrier is focused.
+        ///
+        /// See also:
+        ///
+        ///  * [ModalRoute.barrierLabel], which controls this property for the
+        ///    [ModalBarrier] built by [ModalRoute] pages.
+        /// </Summary>
         public virtual string SemanticsLabel { get; set; }
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
@@ -499,6 +537,9 @@ namespace FlutterSDK.Widgets.Modalbarrier
     /// </Summary>
     public class AnimatedModalBarrier : FlutterSDK.Widgets.Transitions.AnimatedWidget
     {
+        /// <Summary>
+        /// Creates a widget that blocks user interaction.
+        /// </Summary>
         public AnimatedModalBarrier(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Animation.Animation.Animation<Color> color = default(FlutterSDK.Animation.Animation.Animation<Color>), bool dismissible = true, string semanticsLabel = default(string), bool barrierSemanticsDismissible = default(bool))
         : base(key: key, listenable: color)
         {
@@ -506,8 +547,34 @@ namespace FlutterSDK.Widgets.Modalbarrier
             this.SemanticsLabel = semanticsLabel;
             this.BarrierSemanticsDismissible = barrierSemanticsDismissible;
         }
+        /// <Summary>
+        /// Whether touching the barrier will pop the current route off the [Navigator].
+        ///
+        /// See also:
+        ///
+        ///  * [ModalRoute.barrierDismissible], which controls this property for the
+        ///    [AnimatedModalBarrier] built by [ModalRoute] pages.
+        /// </Summary>
         public virtual bool Dismissible { get; set; }
+        /// <Summary>
+        /// Semantics label used for the barrier if it is [dismissible].
+        ///
+        /// The semantics label is read out by accessibility tools (e.g. TalkBack
+        /// on Android and VoiceOver on iOS) when the barrier is focused.
+        /// See also:
+        ///
+        ///  * [ModalRoute.barrierLabel], which controls this property for the
+        ///    [ModalBarrier] built by [ModalRoute] pages.
+        /// </Summary>
         public virtual string SemanticsLabel { get; set; }
+        /// <Summary>
+        /// Whether the modal barrier semantics are included in the semantics tree.
+        ///
+        /// See also:
+        ///
+        ///  * [ModalRoute.semanticsDismissible], which controls this property for
+        ///    the [ModalBarrier] built by [ModalRoute] pages.
+        /// </Summary>
         public virtual bool BarrierSemanticsDismissible { get; set; }
         public virtual FlutterSDK.Animation.Animation.Animation<Color> Color { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 
@@ -612,7 +679,15 @@ namespace FlutterSDK.Widgets.Modalbarrier
             this.Child = child;
             this.OnDismiss = onDismiss;
         }
+        /// <Summary>
+        /// The widget below this widget in the tree.
+        /// See [RawGestureDetector.child].
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+        /// <Summary>
+        /// Immediately called when an event that should dismiss the modal barrier
+        /// has happened.
+        /// </Summary>
         public virtual VoidCallback OnDismiss { get; set; }
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)

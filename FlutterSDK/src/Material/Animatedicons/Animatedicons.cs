@@ -362,6 +362,12 @@ namespace FlutterSDK.Material.Animatedicons.Animatedicons
     /// </Summary>
     public class AnimatedIcon
     {
+        /// <Summary>
+        /// Creates an AnimatedIcon.
+        ///
+        /// The [progress] and [icon] arguments must not be null.
+        /// The [size] and [color] default to the value given by the current [IconTheme].
+        /// </Summary>
         public AnimatedIcon(Key key = default(Key), AnimatedIconData icon = default(AnimatedIconData), Animation<double> progress = default(Animation<double>), Color color = default(Color), double size = default(double), string semanticLabel = default(string), TextDirection textDirection = default(TextDirection))
         : base(Key: key)
         {
@@ -372,11 +378,64 @@ namespace FlutterSDK.Material.Animatedicons.Animatedicons
             this.SemanticLabel = semanticLabel;
             this.TextDirection = textDirection;
         }
+        /// <Summary>
+        /// The animation progress for the animated icon.
+        ///
+        /// The value is clamped to be between 0 and 1.
+        ///
+        /// This determines the actual frame that is displayed.
+        /// </Summary>
         public virtual object Progress { get; set; }
+        /// <Summary>
+        /// The color to use when drawing the icon.
+        ///
+        /// Defaults to the current [IconTheme] color, if any.
+        ///
+        /// The given color will be adjusted by the opacity of the current
+        /// [IconTheme], if any.
+        ///
+        /// In material apps, if there is a [Theme] without any [IconTheme]s
+        /// specified, icon colors default to white if the theme is dark
+        /// and black if the theme is light.
+        ///
+        /// If no [IconTheme] and no [Theme] is specified, icons will default to black.
+        ///
+        /// See [Theme] to set the current theme and [ThemeData.brightness]
+        /// for setting the current theme's brightness.
+        /// </Summary>
         public virtual Color Color { get; set; }
+        /// <Summary>
+        /// The size of the icon in logical pixels.
+        ///
+        /// Icons occupy a square with width and height equal to size.
+        ///
+        /// Defaults to the current [IconTheme] size.
+        /// </Summary>
         public virtual double Size { get; set; }
+        /// <Summary>
+        /// The icon to display. Available icons are listed in [AnimatedIcons].
+        /// </Summary>
         public virtual AnimatedIconData Icon { get; set; }
+        /// <Summary>
+        /// Semantic label for the icon.
+        ///
+        /// Announced in accessibility modes (e.g TalkBack/VoiceOver).
+        /// This label does not show in the UI.
+        ///
+        /// See also:
+        ///
+        ///  * [Semantics.label], which is set to [semanticLabel] in the underlying
+        ///    [Semantics] widget.
+        /// </Summary>
         public virtual string SemanticLabel { get; set; }
+        /// <Summary>
+        /// The text direction to use for rendering the icon.
+        ///
+        /// If this is null, the ambient [Directionality] is used instead.
+        ///
+        /// If the text direction is [TextDirection.rtl], the icon will be mirrored
+        /// horizontally (e.g back arrow will point right).
+        /// </Summary>
         public virtual TextDirection TextDirection { get; set; }
         internal virtual FlutterSDK.Material.Animatedicons.Animatedicons._UiPathFactory _PathFactory { get; set; }
 
@@ -413,6 +472,9 @@ namespace FlutterSDK.Material.Animatedicons.Animatedicons
         public virtual object Progress { get; set; }
         public virtual Color Color { get; set; }
         public virtual double Scale { get; set; }
+        /// <Summary>
+        /// If this is true the image will be mirrored horizontally.
+        /// </Summary>
         public virtual bool ShouldMirror { get; set; }
         public virtual FlutterSDK.Material.Animatedicons.Animatedicons._UiPathFactory UiPathFactory { get; set; }
         public virtual object SemanticsBuilder { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }

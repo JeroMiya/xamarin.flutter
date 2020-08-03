@@ -425,6 +425,13 @@ namespace FlutterSDK.Rendering.Viewportoffset
 {
     internal static class ViewportoffsetDefaultClass
     {
+        /// <Summary>
+        /// Returns the opposite of the given [ScrollDirection].
+        ///
+        /// Specifically, returns [ScrollDirection.reverse] for [ScrollDirection.forward]
+        /// (and vice versa) and returns [ScrollDirection.idle] for
+        /// [ScrollDirection.idle].
+        /// </Summary>
         internal static FlutterSDK.Rendering.Viewportoffset.ScrollDirection FlipScrollDirection(FlutterSDK.Rendering.Viewportoffset.ScrollDirection direction)
         {
             switch (direction) { case ScrollDirection.Idle: return ScrollDirection.Idle; case ScrollDirection.Forward: return ScrollDirection.Reverse; case ScrollDirection.Reverse: return ScrollDirection.Forward; }
@@ -485,14 +492,31 @@ namespace FlutterSDK.Rendering.Viewportoffset
     /// </Summary>
     public class ViewportOffset : FlutterSDK.Foundation.Changenotifier.ChangeNotifier
     {
+        /// <Summary>
+        /// Default constructor.
+        ///
+        /// Allows subclasses to construct this object directly.
+        /// </Summary>
         public ViewportOffset()
         {
 
         }
+        /// <Summary>
+        /// Creates a viewport offset with the given [pixels] value.
+        ///
+        /// The [pixels] value does not change unless the viewport issues a
+        /// correction.
+        /// </Summary>
         public static ViewportOffset Fixed(double value)
         {
             var instance = new ViewportOffset();
         }
+        /// <Summary>
+        /// Creates a viewport offset with a [pixels] value of 0.0.
+        ///
+        /// The [pixels] value does not change unless the viewport issues a
+        /// correction.
+        /// </Summary>
         public static ViewportOffset Zero()
         {
             var instance = new ViewportOffset();

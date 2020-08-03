@@ -448,13 +448,25 @@ namespace FlutterSDK.Services.Platformchannel
     /// </Summary>
     public class BasicMessageChannel<T>
     {
+        /// <Summary>
+        /// Creates a [BasicMessageChannel] with the specified [name], [codec] and [binaryMessenger].
+        ///
+        /// The [name] and [codec] arguments cannot be null. The default [ServicesBinding.defaultBinaryMessenger]
+        /// instance is used if [binaryMessenger] is null.
+        /// </Summary>
         public BasicMessageChannel(string name, FlutterSDK.Services.Messagecodec.MessageCodec<T> codec, FlutterSDK.Services.Binarymessenger.BinaryMessenger binaryMessenger = default(FlutterSDK.Services.Binarymessenger.BinaryMessenger))
         : base()
         {
             this.Name = name;
             this.Codec = codec;
         }
+        /// <Summary>
+        /// The logical channel on which communication happens, not null.
+        /// </Summary>
         public virtual string Name { get; set; }
+        /// <Summary>
+        /// The message codec used by this channel, not null.
+        /// </Summary>
         public virtual FlutterSDK.Services.Messagecodec.MessageCodec<T> Codec { get; set; }
         internal virtual FlutterSDK.Services.Binarymessenger.BinaryMessenger _BinaryMessenger { get; set; }
         public virtual FlutterSDK.Services.Binarymessenger.BinaryMessenger BinaryMessenger { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
@@ -560,13 +572,28 @@ namespace FlutterSDK.Services.Platformchannel
     /// </Summary>
     public class MethodChannel
     {
+        /// <Summary>
+        /// Creates a [MethodChannel] with the specified [name].
+        ///
+        /// The [codec] used will be [StandardMethodCodec], unless otherwise
+        /// specified.
+        ///
+        /// The [name] and [codec] arguments cannot be null. The default [ServicesBinding.defaultBinaryMessenger]
+        /// instance is used if [binaryMessenger] is null.
+        /// </Summary>
         public MethodChannel(string name, FlutterSDK.Services.Messagecodec.MethodCodec codec = default(FlutterSDK.Services.Messagecodec.MethodCodec), FlutterSDK.Services.Binarymessenger.BinaryMessenger binaryMessenger = default(FlutterSDK.Services.Binarymessenger.BinaryMessenger))
         : base()
         {
             this.Name = name;
             this.Codec = codec;
         }
+        /// <Summary>
+        /// The logical channel on which communication happens, not null.
+        /// </Summary>
         public virtual string Name { get; set; }
+        /// <Summary>
+        /// The message codec used by this channel, not null.
+        /// </Summary>
         public virtual FlutterSDK.Services.Messagecodec.MethodCodec Codec { get; set; }
         internal virtual FlutterSDK.Services.Binarymessenger.BinaryMessenger _BinaryMessenger { get; set; }
         public virtual FlutterSDK.Services.Binarymessenger.BinaryMessenger BinaryMessenger { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
@@ -895,6 +922,9 @@ catch (e)
     /// </Summary>
     public class OptionalMethodChannel : FlutterSDK.Services.Platformchannel.MethodChannel
     {
+        /// <Summary>
+        /// Creates a [MethodChannel] that ignores missing platform plugins.
+        /// </Summary>
         public OptionalMethodChannel(string name, FlutterSDK.Services.Messagecodec.MethodCodec codec = default(FlutterSDK.Services.Messagecodec.MethodCodec))
         : base(name, codec)
         {
@@ -947,13 +977,28 @@ catch (e)
     /// </Summary>
     public class EventChannel
     {
+        /// <Summary>
+        /// Creates an [EventChannel] with the specified [name].
+        ///
+        /// The [codec] used will be [StandardMethodCodec], unless otherwise
+        /// specified.
+        ///
+        /// Neither [name] nor [codec] may be null. The default [ServicesBinding.defaultBinaryMessenger]
+        /// instance is used if [binaryMessenger] is null.
+        /// </Summary>
         public EventChannel(string name, FlutterSDK.Services.Messagecodec.MethodCodec codec = default(FlutterSDK.Services.Messagecodec.MethodCodec), FlutterSDK.Services.Binarymessenger.BinaryMessenger binaryMessenger = default(FlutterSDK.Services.Binarymessenger.BinaryMessenger))
         : base()
         {
             this.Name = name;
             this.Codec = codec;
         }
+        /// <Summary>
+        /// The logical channel on which communication happens, not null.
+        /// </Summary>
         public virtual string Name { get; set; }
+        /// <Summary>
+        /// The message codec used by this channel, not null.
+        /// </Summary>
         public virtual FlutterSDK.Services.Messagecodec.MethodCodec Codec { get; set; }
         internal virtual FlutterSDK.Services.Binarymessenger.BinaryMessenger _BinaryMessenger { get; set; }
         public virtual FlutterSDK.Services.Binarymessenger.BinaryMessenger BinaryMessenger { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }

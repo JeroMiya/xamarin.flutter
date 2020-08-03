@@ -566,6 +566,16 @@ namespace FlutterSDK.Material.Selectabletext
     /// </Summary>
     public class SelectableText : FlutterSDK.Widgets.Framework.StatefulWidget
     {
+        /// <Summary>
+        /// Creates a selectable text widget.
+        ///
+        /// If the [style] argument is null, the text will use the style from the
+        /// closest enclosing [DefaultTextStyle].
+        ///
+        /// The [showCursor], [autofocus], [dragStartBehavior], and [data] parameters
+        /// must not be null. If specified, the [maxLines] argument must be greater
+        /// than zero.
+        /// </Summary>
         public SelectableText(string data, FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Focusmanager.FocusNode focusNode = default(FlutterSDK.Widgets.Focusmanager.FocusNode), FlutterSDK.Painting.Textstyle.TextStyle style = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Strutstyle.StrutStyle strutStyle = default(FlutterSDK.Painting.Strutstyle.StrutStyle), TextAlign textAlign = default(TextAlign), TextDirection textDirection = default(TextDirection), double textScaleFactor = default(double), bool showCursor = false, bool autofocus = false, FlutterSDK.Widgets.Editabletext.ToolbarOptions toolbarOptions = default(FlutterSDK.Widgets.Editabletext.ToolbarOptions), int minLines = default(int), int maxLines = default(int), double cursorWidth = 2.0, Radius cursorRadius = default(Radius), FlutterBinding.UI.Color cursorColor = default(FlutterBinding.UI.Color), FlutterSDK.Gestures.Recognizer.DragStartBehavior dragStartBehavior = default(FlutterSDK.Gestures.Recognizer.DragStartBehavior), bool enableInteractiveSelection = true, FlutterSDK.Gestures.Tap.GestureTapCallback onTap = default(FlutterSDK.Gestures.Tap.GestureTapCallback), FlutterSDK.Widgets.Scrollphysics.ScrollPhysics scrollPhysics = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics), FlutterSDK.Painting.Textpainter.TextWidthBasis textWidthBasis = default(FlutterSDK.Painting.Textpainter.TextWidthBasis))
         : base(key: key)
         {
@@ -589,6 +599,14 @@ namespace FlutterSDK.Material.Selectabletext
             this.ScrollPhysics = scrollPhysics;
             this.TextWidthBasis = textWidthBasis;
         }
+        /// <Summary>
+        /// Creates a selectable text widget with a [TextSpan].
+        ///
+        /// The [textSpan] parameter must not be null and only contain [TextSpan] in
+        /// [textSpan.children]. Other type of [InlineSpan] is not allowed.
+        ///
+        /// The [autofocus] and [dragStartBehavior] arguments must not be null.
+        /// </Summary>
         public static SelectableText Rich(FlutterSDK.Painting.Textspan.TextSpan textSpan, FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Focusmanager.FocusNode focusNode = default(FlutterSDK.Widgets.Focusmanager.FocusNode), FlutterSDK.Painting.Textstyle.TextStyle style = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Strutstyle.StrutStyle strutStyle = default(FlutterSDK.Painting.Strutstyle.StrutStyle), TextAlign textAlign = default(TextAlign), TextDirection textDirection = default(TextDirection), double textScaleFactor = default(double), bool showCursor = false, bool autofocus = false, FlutterSDK.Widgets.Editabletext.ToolbarOptions toolbarOptions = default(FlutterSDK.Widgets.Editabletext.ToolbarOptions), int minLines = default(int), int maxLines = default(int), double cursorWidth = 2.0, Radius cursorRadius = default(Radius), FlutterBinding.UI.Color cursorColor = default(FlutterBinding.UI.Color), FlutterSDK.Gestures.Recognizer.DragStartBehavior dragStartBehavior = default(FlutterSDK.Gestures.Recognizer.DragStartBehavior), bool enableInteractiveSelection = true, FlutterSDK.Gestures.Tap.GestureTapCallback onTap = default(FlutterSDK.Gestures.Tap.GestureTapCallback), FlutterSDK.Widgets.Scrollphysics.ScrollPhysics scrollPhysics = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics), FlutterSDK.Painting.Textpainter.TextWidthBasis textWidthBasis = default(FlutterSDK.Painting.Textpainter.TextWidthBasis))
         {
             var instance = new SelectableText(key: key); instance.TextSpan = textSpan;
@@ -611,26 +629,138 @@ namespace FlutterSDK.Material.Selectabletext
             instance.ScrollPhysics = scrollPhysics;
             instance.TextWidthBasis = textWidthBasis;
         }
+        /// <Summary>
+        /// The text to display.
+        ///
+        /// This will be null if a [textSpan] is provided instead.
+        /// </Summary>
         public virtual string Data { get; set; }
+        /// <Summary>
+        /// The text to display as a [TextSpan].
+        ///
+        /// This will be null if [data] is provided instead.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Textspan.TextSpan TextSpan { get; set; }
+        /// <Summary>
+        /// Defines the focus for this widget.
+        ///
+        /// Text is only selectable when widget is focused.
+        ///
+        /// The [focusNode] is a long-lived object that's typically managed by a
+        /// [StatefulWidget] parent. See [FocusNode] for more information.
+        ///
+        /// To give the focus to this widget, provide a [focusNode] and then
+        /// use the current [FocusScope] to request the focus:
+        ///
+        /// ```dart
+        /// FocusScope.of(context).requestFocus(myFocusNode);
+        /// ```
+        ///
+        /// This happens automatically when the widget is tapped.
+        ///
+        /// To be notified when the widget gains or loses the focus, add a listener
+        /// to the [focusNode]:
+        ///
+        /// ```dart
+        /// focusNode.addListener(() { print(myFocusNode.hasFocus); });
+        /// ```
+        ///
+        /// If null, this widget will create its own [FocusNode].
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Focusmanager.FocusNode FocusNode { get; set; }
+        /// <Summary>
+        /// The style to use for the text.
+        ///
+        /// If null, defaults [DefaultTextStyle] of context.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Textstyle.TextStyle Style { get; set; }
+        /// <Summary>
+        /// {@macro flutter.widgets.editableText.strutStyle}
+        /// </Summary>
         public virtual FlutterSDK.Painting.Strutstyle.StrutStyle StrutStyle { get; set; }
+        /// <Summary>
+        /// {@macro flutter.widgets.editableText.textAlign}
+        /// </Summary>
         public virtual TextAlign TextAlign { get; set; }
+        /// <Summary>
+        /// {@macro flutter.widgets.editableText.textDirection}
+        /// </Summary>
         public virtual TextDirection TextDirection { get; set; }
+        /// <Summary>
+        /// {@macro flutter.widgets.editableText.textScaleFactor}
+        /// </Summary>
         public virtual double TextScaleFactor { get; set; }
+        /// <Summary>
+        /// {@macro flutter.widgets.editableText.autofocus}
+        /// </Summary>
         public virtual bool Autofocus { get; set; }
+        /// <Summary>
+        /// {@macro flutter.widgets.editableText.minLines}
+        /// </Summary>
         public virtual int MinLines { get; set; }
+        /// <Summary>
+        /// {@macro flutter.widgets.editableText.maxLines}
+        /// </Summary>
         public virtual int MaxLines { get; set; }
+        /// <Summary>
+        /// {@macro flutter.widgets.editableText.showCursor}
+        /// </Summary>
         public virtual bool ShowCursor { get; set; }
+        /// <Summary>
+        /// {@macro flutter.widgets.editableText.cursorWidth}
+        /// </Summary>
         public virtual double CursorWidth { get; set; }
+        /// <Summary>
+        /// {@macro flutter.widgets.editableText.cursorRadius}
+        /// </Summary>
         public virtual Radius CursorRadius { get; set; }
+        /// <Summary>
+        /// The color to use when painting the cursor.
+        ///
+        /// Defaults to the theme's `cursorColor` when null.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color CursorColor { get; set; }
+        /// <Summary>
+        /// {@macro flutter.widgets.editableText.enableInteractiveSelection}
+        /// </Summary>
         public virtual bool EnableInteractiveSelection { get; set; }
+        /// <Summary>
+        /// {@macro flutter.widgets.scrollable.dragStartBehavior}
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Recognizer.DragStartBehavior DragStartBehavior { get; set; }
+        /// <Summary>
+        /// Configuration of toolbar options.
+        ///
+        /// Paste and cut will be disabled regardless.
+        ///
+        /// If not set, select all and copy will be enabled by default.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Editabletext.ToolbarOptions ToolbarOptions { get; set; }
+        /// <Summary>
+        /// Called when the user taps on this selectable text.
+        ///
+        /// The selectable text builds a [GestureDetector] to handle input events like tap,
+        /// to trigger focus requests, to move the caret, adjust the selection, etc.
+        /// Handling some of those events by wrapping the selectable text with a competing
+        /// GestureDetector is problematic.
+        ///
+        /// To unconditionally handle taps, without interfering with the selectable text's
+        /// internal gesture detector, provide this callback.
+        ///
+        /// To be notified when the text field gains or loses the focus, provide a
+        /// [focusNode] and add a listener to that.
+        ///
+        /// To listen to arbitrary pointer events without competing with the
+        /// selectable text's internal gesture detector, use a [Listener].
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Tap.GestureTapCallback OnTap { get; set; }
+        /// <Summary>
+        /// {@macro flutter.widgets.editableText.scrollPhysics}
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Scrollphysics.ScrollPhysics ScrollPhysics { get; set; }
+        /// <Summary>
+        /// {@macro flutter.painting.textPainter.textWidthBasis}
+        /// </Summary>
         public virtual FlutterSDK.Painting.Textpainter.TextWidthBasis TextWidthBasis { get; set; }
         public virtual bool SelectionEnabled { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 

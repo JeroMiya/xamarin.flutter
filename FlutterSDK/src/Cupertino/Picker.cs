@@ -329,6 +329,26 @@ namespace FlutterSDK.Cupertino.Picker
     /// </Summary>
     public class CupertinoPicker : FlutterSDK.Widgets.Framework.StatefulWidget
     {
+        /// <Summary>
+        /// Creates a picker from a concrete list of children.
+        ///
+        /// The [diameterRatio] and [itemExtent] arguments must not be null. The
+        /// [itemExtent] must be greater than zero.
+        ///
+        /// The [backgroundColor] defaults to null, which disables background painting entirely.
+        /// (i.e. the picker is going to have a completely transparent background), to match
+        /// the native UIPicker and UIDatePicker. Also, if it has transparency, no gradient
+        /// effect will be rendered.
+        ///
+        /// The [scrollController] argument can be used to specify a custom
+        /// [FixedExtentScrollController] for programmatically reading or changing
+        /// the current picker index or for selecting an initial index value.
+        ///
+        /// The [looping] argument decides whether the child list loops and can be
+        /// scrolled infinitely.  If set to true, scrolling past the end of the list
+        /// will loop the list back to the beginning.  If set to false, the list will
+        /// stop scrolling when you reach the end or the beginning.
+        /// </Summary>
         public CupertinoPicker(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), double diameterRatio = default(double), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), double offAxisFraction = 0.0, bool useMagnifier = false, double magnification = 1.0, FlutterSDK.Widgets.Listwheelscrollview.FixedExtentScrollController scrollController = default(FlutterSDK.Widgets.Listwheelscrollview.FixedExtentScrollController), double squeeze = default(double), double itemExtent = default(double), FlutterSDK.Foundation.Basictypes.ValueChanged<int> onSelectedItemChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<int>), List<FlutterSDK.Widgets.Framework.Widget> children = default(List<FlutterSDK.Widgets.Framework.Widget>), bool looping = false)
         : base(key: key)
         {
@@ -342,6 +362,25 @@ namespace FlutterSDK.Cupertino.Picker
             this.ItemExtent = itemExtent;
             this.OnSelectedItemChanged = onSelectedItemChanged;
         }
+        /// <Summary>
+        /// Creates a picker from an [IndexedWidgetBuilder] callback where the builder
+        /// is dynamically invoked during layout.
+        ///
+        /// A child is lazily created when it starts becoming visible in the viewport.
+        /// All of the children provided by the builder are cached and reused, so
+        /// normally the builder is only called once for each index (except when
+        /// rebuilding - the cache is cleared).
+        ///
+        /// The [itemBuilder] argument must not be null. The [childCount] argument
+        /// reflects the number of children that will be provided by the [itemBuilder].
+        /// {@macro flutter.widgets.wheelList.childCount}
+        ///
+        /// The [itemExtent] argument must be non-null and positive.
+        ///
+        /// The [backgroundColor] defaults to null, which disables background painting entirely.
+        /// (i.e. the picker is going to have a completely transparent background), to match
+        /// the native UIPicker and UIDatePicker.
+        /// </Summary>
         public static CupertinoPicker Builder(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), double diameterRatio = default(double), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), double offAxisFraction = 0.0, bool useMagnifier = false, double magnification = 1.0, FlutterSDK.Widgets.Listwheelscrollview.FixedExtentScrollController scrollController = default(FlutterSDK.Widgets.Listwheelscrollview.FixedExtentScrollController), double squeeze = default(double), double itemExtent = default(double), FlutterSDK.Foundation.Basictypes.ValueChanged<int> onSelectedItemChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<int>), FlutterSDK.Widgets.Framework.IndexedWidgetBuilder itemBuilder = default(FlutterSDK.Widgets.Framework.IndexedWidgetBuilder), int childCount = default(int))
         {
             var instance = new CupertinoPicker(key: key); instance.DiameterRatio = diameterRatio;
@@ -354,15 +393,72 @@ namespace FlutterSDK.Cupertino.Picker
             instance.ItemExtent = itemExtent;
             instance.OnSelectedItemChanged = onSelectedItemChanged;
         }
+        /// <Summary>
+        /// Relative ratio between this picker's height and the simulated cylinder's diameter.
+        ///
+        /// Smaller values creates more pronounced curvatures in the scrollable wheel.
+        ///
+        /// For more details, see [ListWheelScrollView.diameterRatio].
+        ///
+        /// Must not be null and defaults to `1.1` to visually mimic iOS.
+        /// </Summary>
         public virtual double DiameterRatio { get; set; }
+        /// <Summary>
+        /// Background color behind the children.
+        ///
+        /// Defaults to null, which disables background painting entirely.
+        /// (i.e. the picker is going to have a completely transparent background), to match
+        /// the native UIPicker and UIDatePicker.
+        ///
+        /// Any alpha value less 255 (fully opaque) will cause the removal of the
+        /// wheel list edge fade gradient from rendering of the widget.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
+        /// <Summary>
+        /// {@macro flutter.rendering.wheelList.offAxisFraction}
+        /// </Summary>
         public virtual double OffAxisFraction { get; set; }
+        /// <Summary>
+        /// {@macro flutter.rendering.wheelList.useMagnifier}
+        /// </Summary>
         public virtual bool UseMagnifier { get; set; }
+        /// <Summary>
+        /// {@macro flutter.rendering.wheelList.magnification}
+        /// </Summary>
         public virtual double Magnification { get; set; }
+        /// <Summary>
+        /// A [FixedExtentScrollController] to read and control the current item, and
+        /// to set the initial item.
+        ///
+        /// If null, an implicit one will be created internally.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Listwheelscrollview.FixedExtentScrollController ScrollController { get; set; }
+        /// <Summary>
+        /// The uniform height of all children.
+        ///
+        /// All children will be given the [BoxConstraints] to match this exact
+        /// height. Must not be null and must be positive.
+        /// </Summary>
         public virtual double ItemExtent { get; set; }
+        /// <Summary>
+        /// {@macro flutter.rendering.wheelList.squeeze}
+        ///
+        /// Defaults to `1.45` to visually mimic iOS.
+        /// </Summary>
         public virtual double Squeeze { get; set; }
+        /// <Summary>
+        /// An option callback when the currently centered item changes.
+        ///
+        /// Value changes when the item closest to the center changes.
+        ///
+        /// This can be called during scrolls and during ballistic flings. To get the
+        /// value only when the scrolling settles, use a [NotificationListener],
+        /// listen for [ScrollEndNotification] and read its [FixedExtentMetrics].
+        /// </Summary>
         public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<int> OnSelectedItemChanged { get; set; }
+        /// <Summary>
+        /// A delegate that lazily instantiates children.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Listwheelscrollview.ListWheelChildDelegate ChildDelegate { get; set; }
 
         public new FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget> CreateState() => new _CupertinoPickerState();

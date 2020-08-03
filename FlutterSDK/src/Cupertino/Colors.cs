@@ -295,6 +295,11 @@ namespace FlutterSDK.Cupertino.Colors
 {
     internal static class ColorsDefaultClass
     {
+        /// <Summary>
+        /// Creates a diagnostics property for [CupertinoDynamicColor].
+        ///
+        /// The [showName], [style], and [level] arguments must not be null.
+        /// </Summary>
         internal static FlutterSDK.Foundation.Diagnostics.DiagnosticsProperty<Color> CreateCupertinoColorProperty(string name, FlutterBinding.UI.Color value, bool showName = true, @Object defaultValue = default(@Object), FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle style = default(FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle), DiagnosticLevel level = default(DiagnosticLevel))
         {
             if (value is CupertinoDynamicColor)
@@ -322,48 +327,321 @@ namespace FlutterSDK.Cupertino.Colors
         {
 
         }
+        /// <Summary>
+        /// iOS 13's default blue color. Used to indicate active elements such as
+        /// buttons, selected tabs and your own chat bubbles.
+        ///
+        /// This is SystemBlue in the iOS palette.
+        /// </Summary>
         public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor ActiveBlue { get; set; }
+        /// <Summary>
+        /// iOS 13's default green color. Used to indicate active accents such as
+        /// the switch in its on state and some accent buttons such as the call button
+        /// and Apple Map's 'Go' button.
+        ///
+        /// This is SystemGreen in the iOS palette.
+        /// </Summary>
         public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor ActiveGreen { get; set; }
+        /// <Summary>
+        /// iOS 13's orange color.
+        ///
+        /// This is SystemOrange in the iOS palette.
+        /// </Summary>
         public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor ActiveOrange { get; set; }
+        /// <Summary>
+        /// Opaque white color. Used for backgrounds and fonts against dark backgrounds.
+        ///
+        /// This is SystemWhiteColor in the iOS palette.
+        ///
+        /// See also:
+        ///
+        ///  * [material.Colors.white], the same color, in the material design palette.
+        ///  * [black], opaque black in the [CupertinoColors] palette.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color White { get; set; }
+        /// <Summary>
+        /// Opaque black color. Used for texts against light backgrounds.
+        ///
+        /// This is SystemBlackColor in the iOS palette.
+        ///
+        /// See also:
+        ///
+        ///  * [material.Colors.black], the same color, in the material design palette.
+        ///  * [white], opaque white in the [CupertinoColors] palette.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color Black { get; set; }
+        /// <Summary>
+        /// Used in iOS 10 for light background fills such as the chat bubble background.
+        ///
+        /// This is SystemLightGrayColor in the iOS palette.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color LightBackgroundGray { get; set; }
+        /// <Summary>
+        /// Used in iOS 12 for very light background fills in tables between cell groups.
+        ///
+        /// This is SystemExtraLightGrayColor in the iOS palette.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color ExtraLightBackgroundGray { get; set; }
+        /// <Summary>
+        /// Used in iOS 12 for very dark background fills in tables between cell groups
+        /// in dark mode.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color DarkBackgroundGray { get; set; }
+        /// <Summary>
+        /// Used in iOS 13 for unselected selectables such as tab bar items in their
+        /// inactive state or de-emphasized subtitles and details text.
+        ///
+        /// Not the same grey as disabled buttons etc.
+        ///
+        /// This is the disabled color in the iOS palette.
+        /// </Summary>
         public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor InactiveGray { get; set; }
+        /// <Summary>
+        /// Used for iOS 13 for destructive actions such as the delete actions in
+        /// table view cells and dialogs.
+        ///
+        /// Not the same red as the camera shutter or springboard icon notifications
+        /// or the foreground red theme in various native apps such as HealthKit.
+        ///
+        /// This is SystemRed in the iOS palette.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color DestructiveRed { get; set; }
+        /// <Summary>
+        /// A blue color that can adapt to the given [BuildContext].
+        ///
+        /// See also:
+        ///
+        ///  * [UIColor.systemBlue](https://developer.apple.com/documentation/uikit/uicolor/3173141-systemblue),
+        ///    the `UIKit` equivalent.
+        /// </Summary>
         public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor SystemBlue { get; set; }
+        /// <Summary>
+        /// A green color that can adapt to the given [BuildContext].
+        ///
+        /// See also:
+        ///
+        ///  * [UIColor.systemGreen](https://developer.apple.com/documentation/uikit/uicolor/3173144-systemgreen),
+        ///    the `UIKit` equivalent.
+        /// </Summary>
         public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor SystemGreen { get; set; }
+        /// <Summary>
+        /// An indigo color that can adapt to the given [BuildContext].
+        ///
+        /// See also:
+        ///
+        ///  * [UIColor.systemIndigo](https://developer.apple.com/documentation/uikit/uicolor/3173146-systemindigo),
+        ///    the `UIKit` equivalent.
+        /// </Summary>
         public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor SystemIndigo { get; set; }
+        /// <Summary>
+        /// An orange color that can adapt to the given [BuildContext].
+        ///
+        /// See also:
+        ///
+        ///  * [UIColor.systemOrange](https://developer.apple.com/documentation/uikit/uicolor/3173147-systemorange),
+        ///    the `UIKit` equivalent.
+        /// </Summary>
         public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor SystemOrange { get; set; }
+        /// <Summary>
+        /// A pink color that can adapt to the given [BuildContext].
+        ///
+        /// See also:
+        ///
+        ///  * [UIColor.systemPink](https://developer.apple.com/documentation/uikit/uicolor/3173148-systempink),
+        ///    the `UIKit` equivalent.
+        /// </Summary>
         public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor SystemPink { get; set; }
+        /// <Summary>
+        /// A purple color that can adapt to the given [BuildContext].
+        ///
+        /// See also:
+        ///
+        ///  * [UIColor.systemPurple](https://developer.apple.com/documentation/uikit/uicolor/3173149-systempurple),
+        ///    the `UIKit` equivalent.
+        /// </Summary>
         public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor SystemPurple { get; set; }
+        /// <Summary>
+        /// A red color that can adapt to the given [BuildContext].
+        ///
+        /// See also:
+        ///
+        ///  * [UIColor.systemRed](https://developer.apple.com/documentation/uikit/uicolor/3173150-systemred),
+        ///    the `UIKit` equivalent.
+        /// </Summary>
         public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor SystemRed { get; set; }
+        /// <Summary>
+        /// A teal color that can adapt to the given [BuildContext].
+        ///
+        /// See also:
+        ///
+        ///  * [UIColor.systemTeal](https://developer.apple.com/documentation/uikit/uicolor/3173151-systemteal),
+        ///    the `UIKit` equivalent.
+        /// </Summary>
         public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor SystemTeal { get; set; }
+        /// <Summary>
+        /// A yellow color that can adapt to the given [BuildContext].
+        ///
+        /// See also:
+        ///
+        ///  * [UIColor.systemYellow](https://developer.apple.com/documentation/uikit/uicolor/3173152-systemyellow),
+        ///    the `UIKit` equivalent.
+        /// </Summary>
         public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor SystemYellow { get; set; }
+        /// <Summary>
+        /// The base grey color.
+        ///
+        /// See also:
+        ///
+        ///  * [UIColor.systemGray](https://developer.apple.com/documentation/uikit/uicolor/3173143-systemgray),
+        ///    the `UIKit` equivalent.
+        /// </Summary>
         public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor SystemGrey { get; set; }
+        /// <Summary>
+        /// A second-level shade of grey.
+        ///
+        /// See also:
+        ///
+        ///  * [UIColor.systemGray2](https://developer.apple.com/documentation/uikit/uicolor/3255071-systemgray2),
+        ///    the `UIKit` equivalent.
+        /// </Summary>
         public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor SystemGrey2 { get; set; }
+        /// <Summary>
+        /// A third-level shade of grey.
+        ///
+        /// See also:
+        ///
+        ///  * [UIColor.systemGray3](https://developer.apple.com/documentation/uikit/uicolor/3255072-systemgray3),
+        ///    the `UIKit` equivalent.
+        /// </Summary>
         public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor SystemGrey3 { get; set; }
+        /// <Summary>
+        /// A fourth-level shade of grey.
+        ///
+        /// See also:
+        ///
+        ///  * [UIColor.systemGray4](https://developer.apple.com/documentation/uikit/uicolor/3255073-systemgray4),
+        ///    the `UIKit` equivalent.
+        /// </Summary>
         public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor SystemGrey4 { get; set; }
+        /// <Summary>
+        /// A fifth-level shade of grey.
+        ///
+        /// See also:
+        ///
+        ///  * [UIColor.systemGray5](https://developer.apple.com/documentation/uikit/uicolor/3255074-systemgray5),
+        ///    the `UIKit` equivalent.
+        /// </Summary>
         public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor SystemGrey5 { get; set; }
+        /// <Summary>
+        /// A sixth-level shade of grey.
+        ///
+        /// See also:
+        ///
+        ///  * [UIColor.systemGray6](https://developer.apple.com/documentation/uikit/uicolor/3255075-systemgray6),
+        ///    the `UIKit` equivalent.
+        /// </Summary>
         public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor SystemGrey6 { get; set; }
+        /// <Summary>
+        /// The color for text labels containing primary content, equivalent to
+        /// [UIColor.label](https://developer.apple.com/documentation/uikit/uicolor/3173131-label).
+        /// </Summary>
         public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor Label { get; set; }
+        /// <Summary>
+        /// The color for text labels containing secondary content, equivalent to
+        /// [UIColor.secondaryLabel](https://developer.apple.com/documentation/uikit/uicolor/3173136-secondarylabel).
+        /// </Summary>
         public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor SecondaryLabel { get; set; }
+        /// <Summary>
+        /// The color for text labels containing tertiary content, equivalent to
+        /// [UIColor.tertiaryLabel](https://developer.apple.com/documentation/uikit/uicolor/3173153-tertiarylabel).
+        /// </Summary>
         public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor TertiaryLabel { get; set; }
+        /// <Summary>
+        /// The color for text labels containing quaternary content, equivalent to
+        /// [UIColor.quaternaryLabel](https://developer.apple.com/documentation/uikit/uicolor/3173135-quaternarylabel).
+        /// </Summary>
         public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor QuaternaryLabel { get; set; }
+        /// <Summary>
+        /// An overlay fill color for thin and small shapes, equivalent to
+        /// [UIColor.systemFill](https://developer.apple.com/documentation/uikit/uicolor/3255070-systemfill).
+        /// </Summary>
         public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor SystemFill { get; set; }
+        /// <Summary>
+        /// An overlay fill color for medium-size shapes, equivalent to
+        /// [UIColor.secondarySystemFill](https://developer.apple.com/documentation/uikit/uicolor/3255069-secondarysystemfill).
+        /// </Summary>
         public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor SecondarySystemFill { get; set; }
+        /// <Summary>
+        /// An overlay fill color for large shapes, equivalent to
+        /// [UIColor.tertiarySystemFill](https://developer.apple.com/documentation/uikit/uicolor/3255076-tertiarysystemfill).
+        /// </Summary>
         public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor TertiarySystemFill { get; set; }
+        /// <Summary>
+        /// An overlay fill color for large areas containing complex content, equivalent
+        /// to [UIColor.quaternarySystemFill](https://developer.apple.com/documentation/uikit/uicolor/3255068-quaternarysystemfill).
+        /// </Summary>
         public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor QuaternarySystemFill { get; set; }
+        /// <Summary>
+        /// The color for placeholder text in controls or text views, equivalent to
+        /// [UIColor.placeholderText](https://developer.apple.com/documentation/uikit/uicolor/3173134-placeholdertext).
+        /// </Summary>
         public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor PlaceholderText { get; set; }
+        /// <Summary>
+        /// The color for the main background of your interface, equivalent to
+        /// [UIColor.systemBackground](https://developer.apple.com/documentation/uikit/uicolor/3173140-systembackground).
+        ///
+        /// Typically used for designs that have a white primary background in a light environment.
+        /// </Summary>
         public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor SystemBackground { get; set; }
+        /// <Summary>
+        /// The color for content layered on top of the main background, equivalent to
+        /// [UIColor.secondarySystemBackground](https://developer.apple.com/documentation/uikit/uicolor/3173137-secondarysystembackground).
+        ///
+        /// Typically used for designs that have a white primary background in a light environment.
+        /// </Summary>
         public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor SecondarySystemBackground { get; set; }
+        /// <Summary>
+        /// The color for content layered on top of secondary backgrounds, equivalent
+        /// to [UIColor.tertiarySystemBackground](https://developer.apple.com/documentation/uikit/uicolor/3173154-tertiarysystembackground).
+        ///
+        /// Typically used for designs that have a white primary background in a light environment.
+        /// </Summary>
         public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor TertiarySystemBackground { get; set; }
+        /// <Summary>
+        /// The color for the main background of your grouped interface, equivalent to
+        /// [UIColor.systemGroupedBackground](https://developer.apple.com/documentation/uikit/uicolor/3173145-systemgroupedbackground).
+        ///
+        /// Typically used for grouped content, including table views and platter-based designs.
+        /// </Summary>
         public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor SystemGroupedBackground { get; set; }
+        /// <Summary>
+        /// The color for content layered on top of the main background of your grouped interface,
+        /// equivalent to [UIColor.secondarySystemGroupedBackground](https://developer.apple.com/documentation/uikit/uicolor/3173138-secondarysystemgroupedbackground).
+        ///
+        /// Typically used for grouped content, including table views and platter-based designs.
+        /// </Summary>
         public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor SecondarySystemGroupedBackground { get; set; }
+        /// <Summary>
+        /// The color for content layered on top of secondary backgrounds of your grouped interface,
+        /// equivalent to [UIColor.tertiarySystemGroupedBackground](https://developer.apple.com/documentation/uikit/uicolor/3173155-tertiarysystemgroupedbackground).
+        ///
+        /// Typically used for grouped content, including table views and platter-based designs.
+        /// </Summary>
         public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor TertiarySystemGroupedBackground { get; set; }
+        /// <Summary>
+        /// The color for thin borders or divider lines that allows some underlying content to be visible,
+        /// equivalent to [UIColor.separator](https://developer.apple.com/documentation/uikit/uicolor/3173139-separator).
+        /// </Summary>
         public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor Separator { get; set; }
+        /// <Summary>
+        /// The color for borders or divider lines that hide any underlying content,
+        /// equivalent to [UIColor.opaqueSeparator](https://developer.apple.com/documentation/uikit/uicolor/3173133-opaqueseparator).
+        /// </Summary>
         public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor OpaqueSeparator { get; set; }
+        /// <Summary>
+        /// The color for links, equivalent to
+        /// [UIColor.link](https://developer.apple.com/documentation/uikit/uicolor/3173132-link).
+        /// </Summary>
         public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor Link { get; set; }
     }
 
@@ -474,15 +752,36 @@ namespace FlutterSDK.Cupertino.Colors
     /// </Summary>
     public class CupertinoDynamicColor : Color, IDiagnosticable
     {
+        /// <Summary>
+        /// Creates an adaptive [Color] that changes its effective color based on the
+        /// [BuildContext] given. The default effective color is [color].
+        ///
+        /// All the colors must not be null.
+        /// </Summary>
         public CupertinoDynamicColor(string debugLabel = default(string), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color darkColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color highContrastColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color darkHighContrastColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color elevatedColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color darkElevatedColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color highContrastElevatedColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color darkHighContrastElevatedColor = default(FlutterBinding.UI.Color))
         : base()
         {
 
         }
+        /// <Summary>
+        /// Creates an adaptive [Color] that changes its effective color based on the
+        /// given [BuildContext]'s brightness (from [MediaQueryData.platformBrightness]
+        /// or [CupertinoThemeData.brightness]) and accessibility contrast setting
+        /// ([MediaQueryData.highContrast]). The default effective color is [color].
+        ///
+        /// All the colors must not be null.
+        /// </Summary>
         public static CupertinoDynamicColor WithBrightnessAndContrast(string debugLabel = default(string), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color darkColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color highContrastColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color darkHighContrastColor = default(FlutterBinding.UI.Color))
         {
             var instance = new CupertinoDynamicColor();
         }
+        /// <Summary>
+        /// Creates an adaptive [Color] that changes its effective color based on the given
+        /// [BuildContext]'s brightness (from [MediaQueryData.platformBrightness] or
+        /// [CupertinoThemeData.brightness]). The default effective color is [color].
+        ///
+        /// All the colors must not be null.
+        /// </Summary>
         public static CupertinoDynamicColor WithBrightness(string debugLabel = default(string), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color darkColor = default(FlutterBinding.UI.Color))
         {
             var instance = new CupertinoDynamicColor();
@@ -502,16 +801,110 @@ namespace FlutterSDK.Cupertino.Colors
             this._DebugResolveContext = _debugResolveContext;
             this._DebugLabel = _debugLabel;
         }
+        /// <Summary>
+        /// The current effective color.
+        ///
+        /// Must not be null. Defaults to [color] if this [CupertinoDynamicColor] has
+        /// never been resolved.
+        /// </Summary>
         internal virtual FlutterBinding.UI.Color _EffectiveColor { get; set; }
         internal virtual string _DebugLabel { get; set; }
         internal virtual FlutterSDK.Widgets.Framework.Element _DebugResolveContext { get; set; }
+        /// <Summary>
+        /// The color to use when the [BuildContext] implies a combination of light mode,
+        /// normal contrast, and base interface elevation.
+        ///
+        /// In other words, this color will be the effective color of the [CupertinoDynamicColor]
+        /// after it is resolved against a [BuildContext] that:
+        /// - has a [CupertinoTheme] whose [CupertinoThemeData.brightness] is [Brightness.light],
+        /// or a [MediaQuery] whose [MediaQueryData.platformBrightness] is [Brightness.light].
+        /// - has a [MediaQuery] whose [MediaQueryData.highContrast] is `false`.
+        /// - has a [CupertinoUserInterfaceLevel] that indicates [CupertinoUserInterfaceLevelData.base].
+        /// </Summary>
         public virtual FlutterBinding.UI.Color Color { get; set; }
+        /// <Summary>
+        /// The color to use when the [BuildContext] implies a combination of dark mode,
+        /// normal contrast, and base interface elevation.
+        ///
+        /// In other words, this color will be the effective color of the [CupertinoDynamicColor]
+        /// after it is resolved against a [BuildContext] that:
+        /// - has a [CupertinoTheme] whose [CupertinoThemeData.brightness] is [Brightness.dark],
+        /// or a [MediaQuery] whose [MediaQueryData.platformBrightness] is [Brightness.dark].
+        /// - has a [MediaQuery] whose [MediaQueryData.highContrast] is `false`.
+        /// - has a [CupertinoUserInterfaceLevel] that indicates [CupertinoUserInterfaceLevelData.base].
+        /// </Summary>
         public virtual FlutterBinding.UI.Color DarkColor { get; set; }
+        /// <Summary>
+        /// The color to use when the [BuildContext] implies a combination of light mode,
+        /// high contrast, and base interface elevation.
+        ///
+        /// In other words, this color will be the effective color of the [CupertinoDynamicColor]
+        /// after it is resolved against a [BuildContext] that:
+        /// - has a [CupertinoTheme] whose [CupertinoThemeData.brightness] is [Brightness.light],
+        /// or a [MediaQuery] whose [MediaQueryData.platformBrightness] is [Brightness.light].
+        /// - has a [MediaQuery] whose [MediaQueryData.highContrast] is `true`.
+        /// - has a [CupertinoUserInterfaceLevel] that indicates [CupertinoUserInterfaceLevelData.base].
+        /// </Summary>
         public virtual FlutterBinding.UI.Color HighContrastColor { get; set; }
+        /// <Summary>
+        /// The color to use when the [BuildContext] implies a combination of dark mode,
+        /// high contrast, and base interface elevation.
+        ///
+        /// In other words, this color will be the effective color of the [CupertinoDynamicColor]
+        /// after it is resolved against a [BuildContext] that:
+        /// - has a [CupertinoTheme] whose [CupertinoThemeData.brightness] is [Brightness.dark],
+        /// or a [MediaQuery] whose [MediaQueryData.platformBrightness] is [Brightness.dark].
+        /// - has a [MediaQuery] whose [MediaQueryData.highContrast] is `true`.
+        /// - has a [CupertinoUserInterfaceLevel] that indicates [CupertinoUserInterfaceLevelData.base].
+        /// </Summary>
         public virtual FlutterBinding.UI.Color DarkHighContrastColor { get; set; }
+        /// <Summary>
+        /// The color to use when the [BuildContext] implies a combination of light mode,
+        /// normal contrast, and elevated interface elevation.
+        ///
+        /// In other words, this color will be the effective color of the [CupertinoDynamicColor]
+        /// after it is resolved against a [BuildContext] that:
+        /// - has a [CupertinoTheme] whose [CupertinoThemeData.brightness] is [Brightness.light],
+        /// or a [MediaQuery] whose [MediaQueryData.platformBrightness] is [Brightness.light].
+        /// - has a [MediaQuery] whose [MediaQueryData.highContrast] is `false`.
+        /// - has a [CupertinoUserInterfaceLevel] that indicates [CupertinoUserInterfaceLevelData.elevated].
+        /// </Summary>
         public virtual FlutterBinding.UI.Color ElevatedColor { get; set; }
+        /// <Summary>
+        /// The color to use when the [BuildContext] implies a combination of dark mode,
+        /// normal contrast, and elevated interface elevation.
+        ///
+        /// In other words, this color will be the effective color of the [CupertinoDynamicColor]
+        /// after it is resolved against a [BuildContext] that:
+        /// - has a [CupertinoTheme] whose [CupertinoThemeData.brightness] is [Brightness.dark],
+        /// or a [MediaQuery] whose [MediaQueryData.platformBrightness] is [Brightness.dark].
+        /// - has a [MediaQuery] whose [MediaQueryData.highContrast] is `false`.
+        /// - has a [CupertinoUserInterfaceLevel] that indicates [CupertinoUserInterfaceLevelData.elevated].
+        /// </Summary>
         public virtual FlutterBinding.UI.Color DarkElevatedColor { get; set; }
+        /// <Summary>
+        /// The color to use when the [BuildContext] implies a combination of light mode,
+        /// high contrast, and elevated interface elevation.
+        ///
+        /// In other words, this color will be the effective color of the [CupertinoDynamicColor]
+        /// after it is resolved against a [BuildContext] that:
+        /// - has a [CupertinoTheme] whose [CupertinoThemeData.brightness] is [Brightness.light],
+        /// or a [MediaQuery] whose [MediaQueryData.platformBrightness] is [Brightness.light].
+        /// - has a [MediaQuery] whose [MediaQueryData.highContrast] is `true`.
+        /// - has a [CupertinoUserInterfaceLevel] that indicates [CupertinoUserInterfaceLevelData.elevated].
+        /// </Summary>
         public virtual FlutterBinding.UI.Color HighContrastElevatedColor { get; set; }
+        /// <Summary>
+        /// The color to use when the [BuildContext] implies a combination of dark mode,
+        /// high contrast, and elevated interface elevation.
+        ///
+        /// In other words, this color will be the effective color of the [CupertinoDynamicColor]
+        /// after it is resolved against a [BuildContext] that:
+        /// - has a [CupertinoTheme] whose [CupertinoThemeData.brightness] is [Brightness.dark],
+        /// or a [MediaQuery] whose [MediaQueryData.platformBrightness] is [Brightness.dark].
+        /// - has a [MediaQuery] whose [MediaQueryData.highContrast] is `true`.
+        /// - has a [CupertinoUserInterfaceLevel] that indicates [CupertinoUserInterfaceLevelData.elevated].
+        /// </Summary>
         public virtual FlutterBinding.UI.Color DarkHighContrastElevatedColor { get; set; }
         public virtual int Value { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         internal virtual bool _IsPlatformBrightnessDependent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }

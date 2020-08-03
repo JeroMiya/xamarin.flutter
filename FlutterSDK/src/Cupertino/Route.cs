@@ -306,6 +306,39 @@ namespace FlutterSDK.Cupertino.Route
         public static FlutterSDK.Animation.Tween.Animatable<Offset> _KBottomUpTween = default(FlutterSDK.Animation.Tween.Animatable<Offset>);
         public static FlutterSDK.Widgets.Implicitanimations.DecorationTween _KGradientShadowTween = default(FlutterSDK.Widgets.Implicitanimations.DecorationTween);
         public static FlutterSDK.Animation.Tween.Animatable<double> _DialogScaleTween = default(FlutterSDK.Animation.Tween.Animatable<double>);
+        /// <Summary>
+        /// Shows a modal iOS-style popup that slides up from the bottom of the screen.
+        ///
+        /// Such a popup is an alternative to a menu or a dialog and prevents the user
+        /// from interacting with the rest of the app.
+        ///
+        /// The `context` argument is used to look up the [Navigator] for the popup.
+        /// It is only used when the method is called. Its corresponding widget can be
+        /// safely removed from the tree before the popup is closed.
+        ///
+        /// The `useRootNavigator` argument is used to determine whether to push the
+        /// popup to the [Navigator] furthest from or nearest to the given `context`. It
+        /// is `false` by default.
+        ///
+        /// The `semanticsDismissble` argument is used to determine whether the
+        /// semantics of the modal barrier are included in the semantics tree.
+        ///
+        /// The `builder` argument typically builds a [CupertinoActionSheet] widget.
+        /// Content below the widget is dimmed with a [ModalBarrier]. The widget built
+        /// by the `builder` does not share a context with the location that
+        /// `showCupertinoModalPopup` is originally called from. Use a
+        /// [StatefulBuilder] or a custom [StatefulWidget] if the widget needs to
+        /// update dynamically.
+        ///
+        /// Returns a `Future` that resolves to the value that was passed to
+        /// [Navigator.pop] when the popup was closed.
+        ///
+        /// See also:
+        ///
+        ///  * [CupertinoActionSheet], which is the widget usually returned by the
+        ///    `builder` argument to [showCupertinoModalPopup].
+        ///  * <https://developer.apple.com/design/human-interface-guidelines/ios/views/action-sheets/>
+        /// </Summary>
         internal static Future<T> ShowCupertinoModalPopup<T>(FlutterSDK.Widgets.Framework.BuildContext context = default(FlutterSDK.Widgets.Framework.BuildContext), FlutterSDK.Widgets.Framework.WidgetBuilder builder = default(FlutterSDK.Widgets.Framework.WidgetBuilder), ImageFilter filter = default(ImageFilter), bool useRootNavigator = true, bool semanticsDismissible = default(bool))
         {
 
@@ -327,6 +360,42 @@ namespace FlutterSDK.Cupertino.Route
 
 
 
+        /// <Summary>
+        /// Displays an iOS-style dialog above the current contents of the app, with
+        /// iOS-style entrance and exit animations, modal barrier color, and modal
+        /// barrier behavior (the dialog is not dismissible with a tap on the barrier).
+        ///
+        /// This function takes a `builder` which typically builds a [CupertinoDialog]
+        /// or [CupertinoAlertDialog] widget. Content below the dialog is dimmed with a
+        /// [ModalBarrier]. The widget returned by the `builder` does not share a
+        /// context with the location that `showCupertinoDialog` is originally called
+        /// from. Use a [StatefulBuilder] or a custom [StatefulWidget] if the dialog
+        /// needs to update dynamically.
+        ///
+        /// The `context` argument is used to look up the [Navigator] for the dialog.
+        /// It is only used when the method is called. Its corresponding widget can
+        /// be safely removed from the tree before the dialog is closed.
+        ///
+        /// The `useRootNavigator` argument is used to determine whether to push the
+        /// dialog to the [Navigator] furthest from or nearest to the given `context`.
+        /// By default, `useRootNavigator` is `true` and the dialog route created by
+        /// this method is pushed to the root navigator.
+        ///
+        /// If the application has multiple [Navigator] objects, it may be necessary to
+        /// call `Navigator.of(context, rootNavigator: true).pop(result)` to close the
+        /// dialog rather than just `Navigator.pop(context, result)`.
+        ///
+        /// Returns a [Future] that resolves to the value (if any) that was passed to
+        /// [Navigator.pop] when the dialog was closed.
+        ///
+        /// See also:
+        ///
+        ///  * [CupertinoDialog], an iOS-style dialog.
+        ///  * [CupertinoAlertDialog], an iOS-style alert dialog.
+        ///  * [showDialog], which displays a Material-style dialog.
+        ///  * [showGeneralDialog], which allows for customization of the dialog popup.
+        ///  * <https://developer.apple.com/ios/human-interface-guidelines/views/alerts/>
+        /// </Summary>
         internal static Future<T> ShowCupertinoDialog<T>(FlutterSDK.Widgets.Framework.BuildContext context = default(FlutterSDK.Widgets.Framework.BuildContext), FlutterSDK.Widgets.Framework.WidgetBuilder builder = default(FlutterSDK.Widgets.Framework.WidgetBuilder), bool useRootNavigator = true, FlutterSDK.Widgets.Navigator.RouteSettings routeSettings = default(FlutterSDK.Widgets.Navigator.RouteSettings))
         {
 
@@ -370,6 +439,12 @@ namespace FlutterSDK.Cupertino.Route
     /// </Summary>
     public class CupertinoPageRoute<T> : FlutterSDK.Widgets.Pages.PageRoute<T>
     {
+        /// <Summary>
+        /// Creates a page route for use in an iOS designed app.
+        ///
+        /// The [builder], [maintainState], and [fullscreenDialog] arguments must not
+        /// be null.
+        /// </Summary>
         public CupertinoPageRoute(FlutterSDK.Widgets.Framework.WidgetBuilder builder = default(FlutterSDK.Widgets.Framework.WidgetBuilder), string title = default(string), FlutterSDK.Widgets.Navigator.RouteSettings settings = default(FlutterSDK.Widgets.Navigator.RouteSettings), bool maintainState = true, bool fullscreenDialog = false)
         : base(settings: settings, fullscreenDialog: fullscreenDialog)
         {
@@ -377,7 +452,17 @@ namespace FlutterSDK.Cupertino.Route
             this.Title = title;
             this.MaintainState = maintainState;
         }
+        /// <Summary>
+        /// Builds the primary contents of the route.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.WidgetBuilder Builder { get; set; }
+        /// <Summary>
+        /// A title string for this route.
+        ///
+        /// Used to auto-populate [CupertinoNavigationBar] and
+        /// [CupertinoSliverNavigationBar]'s `middle`/`largeTitle` widgets when
+        /// one is not manually supplied.
+        /// </Summary>
         public virtual string Title { get; set; }
         internal virtual FlutterSDK.Foundation.Changenotifier.ValueNotifier<string> _PreviousTitle { get; set; }
         public new bool MaintainState { get; set; }
@@ -519,6 +604,16 @@ namespace FlutterSDK.Cupertino.Route
     /// </Summary>
     public class CupertinoPageTransition : FlutterSDK.Widgets.Framework.StatelessWidget
     {
+        /// <Summary>
+        /// Creates an iOS-style page transition.
+        ///
+        ///  * `primaryRouteAnimation` is a linear route animation from 0.0 to 1.0
+        ///    when this screen is being pushed.
+        ///  * `secondaryRouteAnimation` is a linear route animation from 0.0 to 1.0
+        ///    when another screen is being pushed on top of this one.
+        ///  * `linearTransition` is whether to perform the transitions linearly.
+        ///    Used to precisely track back gesture drags.
+        /// </Summary>
         public CupertinoPageTransition(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Animation.Animation.Animation<double> primaryRouteAnimation = default(FlutterSDK.Animation.Animation.Animation<double>), FlutterSDK.Animation.Animation.Animation<double> secondaryRouteAnimation = default(FlutterSDK.Animation.Animation.Animation<double>), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), bool linearTransition = default(bool))
         : base(key: key)
         {
@@ -527,6 +622,9 @@ namespace FlutterSDK.Cupertino.Route
         internal virtual FlutterSDK.Animation.Animation.Animation<Offset> _PrimaryPositionAnimation { get; set; }
         internal virtual FlutterSDK.Animation.Animation.Animation<Offset> _SecondaryPositionAnimation { get; set; }
         internal virtual FlutterSDK.Animation.Animation.Animation<FlutterSDK.Painting.Decoration.Decoration> _PrimaryShadowAnimation { get; set; }
+        /// <Summary>
+        /// The widget below this widget in the tree.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
@@ -549,6 +647,16 @@ namespace FlutterSDK.Cupertino.Route
     /// </Summary>
     public class CupertinoFullscreenDialogTransition : FlutterSDK.Widgets.Framework.StatelessWidget
     {
+        /// <Summary>
+        /// Creates an iOS-style transition used for summoning fullscreen dialogs.
+        ///
+        ///  * `primaryRouteAnimation` is a linear route animation from 0.0 to 1.0
+        ///    when this screen is being pushed.
+        ///  * `secondaryRouteAnimation` is a linear route animation from 0.0 to 1.0
+        ///    when another screen is being pushed on top of this one.
+        ///  * `linearTransition` is whether to perform the secondary transition linearly.
+        ///    Used to precisely track back gesture drags.
+        /// </Summary>
         public CupertinoFullscreenDialogTransition(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Animation.Animation.Animation<double> primaryRouteAnimation = default(FlutterSDK.Animation.Animation.Animation<double>), FlutterSDK.Animation.Animation.Animation<double> secondaryRouteAnimation = default(FlutterSDK.Animation.Animation.Animation<double>), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), bool linearTransition = default(bool))
         : base(key: key)
         {
@@ -556,6 +664,9 @@ namespace FlutterSDK.Cupertino.Route
         }
         internal virtual FlutterSDK.Animation.Animation.Animation<Offset> _PositionAnimation { get; set; }
         internal virtual FlutterSDK.Animation.Animation.Animation<Offset> _SecondaryPositionAnimation { get; set; }
+        /// <Summary>
+        /// The widget below this widget in the tree.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
@@ -714,6 +825,11 @@ namespace FlutterSDK.Cupertino.Route
     /// </Summary>
     public class _CupertinoBackGestureController<T>
     {
+        /// <Summary>
+        /// Creates a controller for an iOS-style back gesture.
+        ///
+        /// The [navigator] and [controller] arguments must not be null.
+        /// </Summary>
         public _CupertinoBackGestureController(FlutterSDK.Widgets.Navigator.NavigatorState navigator = default(FlutterSDK.Widgets.Navigator.NavigatorState), FlutterSDK.Animation.Animationcontroller.AnimationController controller = default(FlutterSDK.Animation.Animationcontroller.AnimationController))
         : base()
         {

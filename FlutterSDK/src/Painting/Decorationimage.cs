@@ -424,6 +424,76 @@ namespace FlutterSDK.Painting.Decorationimage
 {
     internal static class DecorationimageDefaultClass
     {
+        /// <Summary>
+        /// Paints an image into the given rectangle on the canvas.
+        ///
+        /// The arguments have the following meanings:
+        ///
+        ///  * `canvas`: The canvas onto which the image will be painted.
+        ///
+        ///  * `rect`: The region of the canvas into which the image will be painted.
+        ///    The image might not fill the entire rectangle (e.g., depending on the
+        ///    `fit`). If `rect` is empty, nothing is painted.
+        ///
+        ///  * `image`: The image to paint onto the canvas.
+        ///
+        ///  * `scale`: The number of image pixels for each logical pixel.
+        ///
+        ///  * `colorFilter`: If non-null, the color filter to apply when painting the
+        ///    image.
+        ///
+        ///  * `fit`: How the image should be inscribed into `rect`. If null, the
+        ///    default behavior depends on `centerSlice`. If `centerSlice` is also null,
+        ///    the default behavior is [BoxFit.scaleDown]. If `centerSlice` is
+        ///    non-null, the default behavior is [BoxFit.fill]. See [BoxFit] for
+        ///    details.
+        ///
+        ///  * `alignment`: How the destination rectangle defined by applying `fit` is
+        ///    aligned within `rect`. For example, if `fit` is [BoxFit.contain] and
+        ///    `alignment` is [Alignment.bottomRight], the image will be as large
+        ///    as possible within `rect` and placed with its bottom right corner at the
+        ///    bottom right corner of `rect`. Defaults to [Alignment.center].
+        ///
+        ///  * `centerSlice`: The image is drawn in nine portions described by splitting
+        ///    the image by drawing two horizontal lines and two vertical lines, where
+        ///    `centerSlice` describes the rectangle formed by the four points where
+        ///    these four lines intersect each other. (This forms a 3-by-3 grid
+        ///    of regions, the center region being described by `centerSlice`.)
+        ///    The four regions in the corners are drawn, without scaling, in the four
+        ///    corners of the destination rectangle defined by applying `fit`. The
+        ///    remaining five regions are drawn by stretching them to fit such that they
+        ///    exactly cover the destination rectangle while maintaining their relative
+        ///    positions.
+        ///
+        ///  * `repeat`: If the image does not fill `rect`, whether and how the image
+        ///    should be repeated to fill `rect`. By default, the image is not repeated.
+        ///    See [ImageRepeat] for details.
+        ///
+        ///  * `flipHorizontally`: Whether to flip the image horizontally. This is
+        ///    occasionally used with images in right-to-left environments, for images
+        ///    that were designed for left-to-right locales (or vice versa). Be careful,
+        ///    when using this, to not flip images with integral shadows, text, or other
+        ///    effects that will look incorrect when flipped.
+        ///
+        ///  * `invertColors`: Inverting the colors of an image applies a new color
+        ///    filter to the paint. If there is another specified color filter, the
+        ///    invert will be applied after it. This is primarily used for implementing
+        ///    smart invert on iOS.
+        ///
+        ///  * `filterQuality`: Use this to change the quality when scaling an image.
+        ///     Use the [FilterQuality.low] quality setting to scale the image, which corresponds to
+        ///     bilinear interpolation, rather than the default [FilterQuality.none] which corresponds
+        ///     to nearest-neighbor.
+        ///
+        /// The `canvas`, `rect`, `image`, `scale`, `alignment`, `repeat`, `flipHorizontally` and `filterQuality`
+        /// arguments must not be null.
+        ///
+        /// See also:
+        ///
+        ///  * [paintBorder], which paints a border around a rectangle on a canvas.
+        ///  * [DecorationImage], which holds a configuration for calling this function.
+        ///  * [BoxDecoration], which uses this function to paint a [DecorationImage].
+        /// </Summary>
         internal static void PaintImage(Canvas canvas = default(Canvas), FlutterBinding.UI.Rect rect = default(FlutterBinding.UI.Rect), SKImage image = default(SKImage), double scale = 1.0, ColorFilter colorFilter = default(ColorFilter), FlutterSDK.Painting.Boxfit.BoxFit fit = default(FlutterSDK.Painting.Boxfit.BoxFit), FlutterSDK.Painting.Alignment.Alignment alignment = default(FlutterSDK.Painting.Alignment.Alignment), FlutterBinding.UI.Rect centerSlice = default(FlutterBinding.UI.Rect), FlutterSDK.Painting.Decorationimage.ImageRepeat repeat = default(FlutterSDK.Painting.Decorationimage.ImageRepeat), bool flipHorizontally = false, bool invertColors = false, FilterQuality filterQuality = default(FilterQuality))
         {
 
@@ -554,6 +624,12 @@ namespace FlutterSDK.Painting.Decorationimage
     /// </Summary>
     public class DecorationImage
     {
+        /// <Summary>
+        /// Creates an image to show in a [BoxDecoration].
+        ///
+        /// The [image], [alignment], [repeat], and [matchTextDirection] arguments
+        /// must not be null.
+        /// </Summary>
         public DecorationImage(FlutterSDK.Painting.Imageprovider.ImageProvider<object> image = default(FlutterSDK.Painting.Imageprovider.ImageProvider<object>), FlutterSDK.Painting.Imagestream.ImageErrorListener onError = default(FlutterSDK.Painting.Imagestream.ImageErrorListener), ColorFilter colorFilter = default(ColorFilter), FlutterSDK.Painting.Boxfit.BoxFit fit = default(FlutterSDK.Painting.Boxfit.BoxFit), FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), FlutterBinding.UI.Rect centerSlice = default(FlutterBinding.UI.Rect), FlutterSDK.Painting.Decorationimage.ImageRepeat repeat = default(FlutterSDK.Painting.Decorationimage.ImageRepeat), bool matchTextDirection = false)
         : base()
         {
@@ -566,13 +642,90 @@ namespace FlutterSDK.Painting.Decorationimage
             this.Repeat = repeat;
             this.MatchTextDirection = matchTextDirection;
         }
+        /// <Summary>
+        /// The image to be painted into the decoration.
+        ///
+        /// Typically this will be an [AssetImage] (for an image shipped with the
+        /// application) or a [NetworkImage] (for an image obtained from the network).
+        /// </Summary>
         public virtual FlutterSDK.Painting.Imageprovider.ImageProvider<object> Image { get; set; }
+        /// <Summary>
+        /// An optional error callback for errors emitted when loading [image].
+        /// </Summary>
         public virtual FlutterSDK.Painting.Imagestream.ImageErrorListener OnError { get; set; }
+        /// <Summary>
+        /// A color filter to apply to the image before painting it.
+        /// </Summary>
         public virtual ColorFilter ColorFilter { get; set; }
+        /// <Summary>
+        /// How the image should be inscribed into the box.
+        ///
+        /// The default is [BoxFit.scaleDown] if [centerSlice] is null, and
+        /// [BoxFit.fill] if [centerSlice] is not null.
+        ///
+        /// See the discussion at [paintImage] for more details.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Boxfit.BoxFit Fit { get; set; }
+        /// <Summary>
+        /// How to align the image within its bounds.
+        ///
+        /// The alignment aligns the given position in the image to the given position
+        /// in the layout bounds. For example, an [Alignment] alignment of (-1.0,
+        /// -1.0) aligns the image to the top-left corner of its layout bounds, while a
+        /// [Alignment] alignment of (1.0, 1.0) aligns the bottom right of the
+        /// image with the bottom right corner of its layout bounds. Similarly, an
+        /// alignment of (0.0, 1.0) aligns the bottom middle of the image with the
+        /// middle of the bottom edge of its layout bounds.
+        ///
+        /// To display a subpart of an image, consider using a [CustomPainter] and
+        /// [Canvas.drawImageRect].
+        ///
+        /// If the [alignment] is [TextDirection]-dependent (i.e. if it is a
+        /// [AlignmentDirectional]), then a [TextDirection] must be available
+        /// when the image is painted.
+        ///
+        /// Defaults to [Alignment.center].
+        ///
+        /// See also:
+        ///
+        ///  * [Alignment], a class with convenient constants typically used to
+        ///    specify an [AlignmentGeometry].
+        ///  * [AlignmentDirectional], like [Alignment] for specifying alignments
+        ///    relative to text direction.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Alignment.AlignmentGeometry Alignment { get; set; }
+        /// <Summary>
+        /// The center slice for a nine-patch image.
+        ///
+        /// The region of the image inside the center slice will be stretched both
+        /// horizontally and vertically to fit the image into its destination. The
+        /// region of the image above and below the center slice will be stretched
+        /// only horizontally and the region of the image to the left and right of
+        /// the center slice will be stretched only vertically.
+        ///
+        /// The stretching will be applied in order to make the image fit into the box
+        /// specified by [fit]. When [centerSlice] is not null, [fit] defaults to
+        /// [BoxFit.fill], which distorts the destination image size relative to the
+        /// image's original aspect ratio. Values of [BoxFit] which do not distort the
+        /// destination image size will result in [centerSlice] having no effect
+        /// (since the nine regions of the image will be rendered with the same
+        /// scaling, as if it wasn't specified).
+        /// </Summary>
         public virtual FlutterBinding.UI.Rect CenterSlice { get; set; }
+        /// <Summary>
+        /// How to paint any portions of the box that would not otherwise be covered
+        /// by the image.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Decorationimage.ImageRepeat Repeat { get; set; }
+        /// <Summary>
+        /// Whether to paint the image in the direction of the [TextDirection].
+        ///
+        /// If this is true, then in [TextDirection.ltr] contexts, the image will be
+        /// drawn with its origin in the top left (the "normal" painting direction for
+        /// images); and in [TextDirection.rtl] contexts, the image will be drawn with
+        /// a scaling factor of -1 in the horizontal direction so that the origin is
+        /// in the top right.
+        /// </Summary>
         public virtual bool MatchTextDirection { get; set; }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 

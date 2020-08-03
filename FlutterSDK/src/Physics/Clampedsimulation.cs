@@ -442,6 +442,12 @@ namespace FlutterSDK.Physics.Clampedsimulation
     /// </Summary>
     public class ClampedSimulation : FlutterSDK.Physics.Simulation.Simulation
     {
+        /// <Summary>
+        /// Creates a [ClampedSimulation] that clamps the given simulation.
+        ///
+        /// The named arguments specify the ranges for the clamping behavior, as
+        /// applied to [x] and [dx].
+        /// </Summary>
         public ClampedSimulation(FlutterSDK.Physics.Simulation.Simulation simulation, double xMin = default(double), double xMax = default(double), double dxMin = default(double), double dxMax = default(double))
         : base()
         {
@@ -451,10 +457,26 @@ namespace FlutterSDK.Physics.Clampedsimulation
             this.DxMin = dxMin;
             this.DxMax = dxMax;
         }
+        /// <Summary>
+        /// The simulation being clamped. Calls to [x], [dx], and [isDone] are
+        /// forwarded to the simulation.
+        /// </Summary>
         public virtual FlutterSDK.Physics.Simulation.Simulation Simulation { get; set; }
+        /// <Summary>
+        /// The minimum to apply to [x].
+        /// </Summary>
         public virtual double XMin { get; set; }
+        /// <Summary>
+        /// The maximum to apply to [x].
+        /// </Summary>
         public virtual double XMax { get; set; }
+        /// <Summary>
+        /// The minimum to apply to [dx].
+        /// </Summary>
         public virtual double DxMin { get; set; }
+        /// <Summary>
+        /// The maximum to apply to [dx].
+        /// </Summary>
         public virtual double DxMax { get; set; }
 
         public new double x(double time) => Simulation.x(time).Clamp(XMin, XMax) as double;

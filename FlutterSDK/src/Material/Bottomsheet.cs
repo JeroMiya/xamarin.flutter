@@ -371,6 +371,98 @@ namespace FlutterSDK.Material.Bottomsheet
         public static FlutterSDK.Animation.Curves.Curve _ModalBottomSheetCurve = default(FlutterSDK.Animation.Curves.Curve);
         public static double _MinFlingVelocity = default(double);
         public static double _CloseProgressThreshold = default(double);
+        /// <Summary>
+        /// Shows a modal material design bottom sheet.
+        ///
+        /// A modal bottom sheet is an alternative to a menu or a dialog and prevents
+        /// the user from interacting with the rest of the app.
+        ///
+        /// A closely related widget is a persistent bottom sheet, which shows
+        /// information that supplements the primary content of the app without
+        /// preventing the use from interacting with the app. Persistent bottom sheets
+        /// can be created and displayed with the [showBottomSheet] function or the
+        /// [ScaffoldState.showBottomSheet] method.
+        ///
+        /// The `context` argument is used to look up the [Navigator] and [Theme] for
+        /// the bottom sheet. It is only used when the method is called. Its
+        /// corresponding widget can be safely removed from the tree before the bottom
+        /// sheet is closed.
+        ///
+        /// The `isScrollControlled` parameter specifies whether this is a route for
+        /// a bottom sheet that will utilize [DraggableScrollableSheet]. If you wish
+        /// to have a bottom sheet that has a scrollable child such as a [ListView] or
+        /// a [GridView] and have the bottom sheet be draggable, you should set this
+        /// parameter to true.
+        ///
+        /// The `useRootNavigator` parameter ensures that the root navigator is used to
+        /// display the [BottomSheet] when set to `true`. This is useful in the case
+        /// that a modal [BottomSheet] needs to be displayed above all other content
+        /// but the caller is inside another [Navigator].
+        ///
+        /// The [isDismissible] parameter specifies whether the bottom sheet will be
+        /// dismissed when user taps on the scrim.
+        ///
+        /// The [enableDrag] parameter specifies whether the bottom sheet can be
+        /// dragged up and down and dismissed by swiping downwards.
+        ///
+        /// The optional [backgroundColor], [elevation], [shape], and [clipBehavior]
+        /// parameters can be passed in to customize the appearance and behavior of
+        /// modal bottom sheets.
+        ///
+        /// Returns a `Future` that resolves to the value (if any) that was passed to
+        /// [Navigator.pop] when the modal bottom sheet was closed.
+        ///
+        /// {@tool dartpad --template=stateless_widget_scaffold}
+        ///
+        /// This example demonstrates how to use `showModalBottomSheet` to display a
+        /// bottom sheet that obscures the content behind it when a user taps a button.
+        /// It also demonstrates how to close the bottom sheet using the [Navigator]
+        /// when a user taps on a button inside the bottom sheet.
+        ///
+        /// ```dart
+        /// Widget build(BuildContext context) {
+        ///   return Center(
+        ///     child: RaisedButton(
+        ///       child: const Text('showModalBottomSheet'),
+        ///       onPressed: () {
+        ///         showModalBottomSheet<void>(
+        ///           context: context,
+        ///           builder: (BuildContext context) {
+        ///             return Container(
+        ///               height: 200,
+        ///               color: Colors.amber,
+        ///               child: Center(
+        ///                 child: Column(
+        ///                   mainAxisAlignment: MainAxisAlignment.center,
+        ///                   mainAxisSize: MainAxisSize.min,
+        ///                   children: <Widget>[
+        ///                     const Text('Modal BottomSheet'),
+        ///                     RaisedButton(
+        ///                       child: const Text('Close BottomSheet'),
+        ///                       onPressed: () => Navigator.pop(context),
+        ///                     )
+        ///                   ],
+        ///                 ),
+        ///               ),
+        ///             );
+        ///           },
+        ///         );
+        ///       },
+        ///     ),
+        ///   );
+        /// }
+        /// ```
+        /// {@end-tool}
+        /// See also:
+        ///
+        ///  * [BottomSheet], which becomes the parent of the widget returned by the
+        ///    function passed as the `builder` argument to [showModalBottomSheet].
+        ///  * [showBottomSheet] and [ScaffoldState.showBottomSheet], for showing
+        ///    non-modal bottom sheets.
+        ///  * [DraggableScrollableSheet], which allows you to create a bottom sheet
+        ///    that grows and then becomes scrollable once it reaches its maximum size.
+        ///  * <https://material.io/design/components/sheets-bottom.html#modal-bottom-sheet>
+        /// </Summary>
         internal static Future<T> ShowModalBottomSheet<T>(FlutterSDK.Widgets.Framework.BuildContext context = default(FlutterSDK.Widgets.Framework.BuildContext), FlutterSDK.Widgets.Framework.WidgetBuilder builder = default(FlutterSDK.Widgets.Framework.WidgetBuilder), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), double elevation = default(double), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip), FlutterBinding.UI.Color barrierColor = default(FlutterBinding.UI.Color), bool isScrollControlled = false, bool useRootNavigator = false, bool isDismissible = true, bool enableDrag = true)
         {
 
@@ -386,6 +478,47 @@ namespace FlutterSDK.Material.Bottomsheet
 
 
 
+        /// <Summary>
+        /// Shows a material design bottom sheet in the nearest [Scaffold] ancestor. If
+        /// you wish to show a persistent bottom sheet, use [Scaffold.bottomSheet].
+        ///
+        /// Returns a controller that can be used to close and otherwise manipulate the
+        /// bottom sheet.
+        ///
+        /// The optional [backgroundColor], [elevation], [shape], and [clipBehavior]
+        /// parameters can be passed in to customize the appearance and behavior of
+        /// persistent bottom sheets.
+        ///
+        /// To rebuild the bottom sheet (e.g. if it is stateful), call
+        /// [PersistentBottomSheetController.setState] on the controller returned by
+        /// this method.
+        ///
+        /// The new bottom sheet becomes a [LocalHistoryEntry] for the enclosing
+        /// [ModalRoute] and a back button is added to the app bar of the [Scaffold]
+        /// that closes the bottom sheet.
+        ///
+        /// To create a persistent bottom sheet that is not a [LocalHistoryEntry] and
+        /// does not add a back button to the enclosing Scaffold's app bar, use the
+        /// [Scaffold.bottomSheet] constructor parameter.
+        ///
+        /// A closely related widget is a modal bottom sheet, which is an alternative
+        /// to a menu or a dialog and prevents the user from interacting with the rest
+        /// of the app. Modal bottom sheets can be created and displayed with the
+        /// [showModalBottomSheet] function.
+        ///
+        /// The `context` argument is used to look up the [Scaffold] for the bottom
+        /// sheet. It is only used when the method is called. Its corresponding widget
+        /// can be safely removed from the tree before the bottom sheet is closed.
+        ///
+        /// See also:
+        ///
+        ///  * [BottomSheet], which becomes the parent of the widget returned by the
+        ///    `builder`.
+        ///  * [showModalBottomSheet], which can be used to display a modal bottom
+        ///    sheet.
+        ///  * [Scaffold.of], for information about how to obtain the [BuildContext].
+        ///  * <https://material.io/design/components/sheets-bottom.html#standard-bottom-sheet>
+        /// </Summary>
         internal static FlutterSDK.Material.Scaffold.PersistentBottomSheetController<T> ShowBottomSheet<T>(FlutterSDK.Widgets.Framework.BuildContext context = default(FlutterSDK.Widgets.Framework.BuildContext), FlutterSDK.Widgets.Framework.WidgetBuilder builder = default(FlutterSDK.Widgets.Framework.WidgetBuilder), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), double elevation = default(double), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip))
         {
 
@@ -429,6 +562,13 @@ namespace FlutterSDK.Material.Bottomsheet
     /// </Summary>
     public class BottomSheet : FlutterSDK.Widgets.Framework.StatefulWidget
     {
+        /// <Summary>
+        /// Creates a bottom sheet.
+        ///
+        /// Typically, bottom sheets are created implicitly by
+        /// [ScaffoldState.showBottomSheet], for persistent bottom sheets, or by
+        /// [showModalBottomSheet], for modal bottom sheets.
+        /// </Summary>
         public BottomSheet(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Animation.Animationcontroller.AnimationController animationController = default(FlutterSDK.Animation.Animationcontroller.AnimationController), bool enableDrag = true, FlutterSDK.Material.Bottomsheet.BottomSheetDragStartHandler onDragStart = default(FlutterSDK.Material.Bottomsheet.BottomSheetDragStartHandler), FlutterSDK.Material.Bottomsheet.BottomSheetDragEndHandler onDragEnd = default(FlutterSDK.Material.Bottomsheet.BottomSheetDragEndHandler), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), double elevation = default(double), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip), VoidCallback onClosing = default(VoidCallback), FlutterSDK.Widgets.Framework.WidgetBuilder builder = default(FlutterSDK.Widgets.Framework.WidgetBuilder))
         : base(key: key)
         {
@@ -443,15 +583,90 @@ namespace FlutterSDK.Material.Bottomsheet
             this.OnClosing = onClosing;
             this.Builder = builder;
         }
+        /// <Summary>
+        /// The animation controller that controls the bottom sheet's entrance and
+        /// exit animations.
+        ///
+        /// The BottomSheet widget will manipulate the position of this animation, it
+        /// is not just a passive observer.
+        /// </Summary>
         public virtual FlutterSDK.Animation.Animationcontroller.AnimationController AnimationController { get; set; }
+        /// <Summary>
+        /// Called when the bottom sheet begins to close.
+        ///
+        /// A bottom sheet might be prevented from closing (e.g., by user
+        /// interaction) even after this callback is called. For this reason, this
+        /// callback might be call multiple times for a given bottom sheet.
+        /// </Summary>
         public virtual VoidCallback OnClosing { get; set; }
+        /// <Summary>
+        /// A builder for the contents of the sheet.
+        ///
+        /// The bottom sheet will wrap the widget produced by this builder in a
+        /// [Material] widget.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.WidgetBuilder Builder { get; set; }
+        /// <Summary>
+        /// If true, the bottom sheet can be dragged up and down and dismissed by
+        /// swiping downwards.
+        ///
+        /// Default is true.
+        /// </Summary>
         public virtual bool EnableDrag { get; set; }
+        /// <Summary>
+        /// Called when the user begins dragging the bottom sheet vertically, if
+        /// [enableDrag] is true.
+        ///
+        /// Would typically be used to change the bottom sheet animation curve so
+        /// that it tracks the user's finger accurately.
+        /// </Summary>
         public virtual FlutterSDK.Material.Bottomsheet.BottomSheetDragStartHandler OnDragStart { get; set; }
+        /// <Summary>
+        /// Called when the user stops dragging the bottom sheet, if [enableDrag]
+        /// is true.
+        ///
+        /// Would typically be used to reset the bottom sheet animation curve, so
+        /// that it animates non-linearly. Called before [onClosing] if the bottom
+        /// sheet is closing.
+        /// </Summary>
         public virtual FlutterSDK.Material.Bottomsheet.BottomSheetDragEndHandler OnDragEnd { get; set; }
+        /// <Summary>
+        /// The bottom sheet's background color.
+        ///
+        /// Defines the bottom sheet's [Material.color].
+        ///
+        /// Defaults to null and falls back to [Material]'s default.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
+        /// <Summary>
+        /// The z-coordinate at which to place this material relative to its parent.
+        ///
+        /// This controls the size of the shadow below the material.
+        ///
+        /// Defaults to 0. The value is non-negative.
+        /// </Summary>
         public virtual double Elevation { get; set; }
+        /// <Summary>
+        /// The shape of the bottom sheet.
+        ///
+        /// Defines the bottom sheet's [Material.shape].
+        ///
+        /// Defaults to null and falls back to [Material]'s default.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Borders.ShapeBorder Shape { get; set; }
+        /// <Summary>
+        /// {@macro flutter.widgets.Clip}
+        ///
+        /// Defines the bottom sheet's [Material.clipBehavior].
+        ///
+        /// Use this property to enable clipping of content when the bottom sheet has
+        /// a custom [shape] and the content can extend past this shape. For example,
+        /// a bottom sheet with rounded corners and an edge-to-edge [Image] at the
+        /// top.
+        ///
+        /// If this property is null then [ThemeData.bottomSheetTheme.clipBehavior] is
+        /// used. If that's null then the behavior will be [Clip.none].
+        /// </Summary>
         public virtual FlutterBinding.UI.Clip ClipBehavior { get; set; }
 
         public new FlutterSDK.Material.Bottomsheet._BottomSheetState CreateState() => new _BottomSheetState();
@@ -784,13 +999,24 @@ namespace FlutterSDK.Material.Bottomsheet
     /// </Summary>
     public class _BottomSheetSuspendedCurve : FlutterSDK.Animation.Curves.ParametricCurve<double>
     {
+        /// <Summary>
+        /// Creates a suspended curve.
+        /// </Summary>
         public _BottomSheetSuspendedCurve(double startingPoint, FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve))
         : base()
         {
             this.StartingPoint = startingPoint;
             this.Curve = curve;
         }
+        /// <Summary>
+        /// The progress value at which [curve] should begin.
+        ///
+        /// This defaults to [Curves.easeOutCubic].
+        /// </Summary>
         public virtual double StartingPoint { get; set; }
+        /// <Summary>
+        /// The curve to use when [startingPoint] is reached.
+        /// </Summary>
         public virtual FlutterSDK.Animation.Curves.Curve Curve { get; set; }
 
         public new double Transform(double t)

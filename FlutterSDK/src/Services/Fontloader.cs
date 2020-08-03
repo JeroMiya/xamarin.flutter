@@ -436,11 +436,24 @@ namespace FlutterSDK.Services.Fontloader
     /// </Summary>
     public class FontLoader
     {
+        /// <Summary>
+        /// Creates a new [FontLoader] that will load font assets for the specified
+        /// [family].
+        ///
+        /// The font family will not be available for use until [load] has been
+        /// called.
+        /// </Summary>
         public FontLoader(string family)
         : base()
         {
             this.Family = family;
         }
+        /// <Summary>
+        /// The font family being loaded.
+        ///
+        /// The family groups a series of related font assets, each of which defines
+        /// how to render a specific [FontWeight] and [FontStyle] within the family.
+        /// </Summary>
         public virtual string Family { get; set; }
         internal virtual bool _Loaded { get; set; }
         internal virtual List<Future<Uint8List>> _FontFutures { get; set; }

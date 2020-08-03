@@ -478,6 +478,13 @@ namespace FlutterSDK.Rendering.Proxysliver
     /// </Summary>
     public class RenderProxySliver : FlutterSDK.Rendering.Sliver.RenderSliver, IRenderObjectWithChildMixin<FlutterSDK.Rendering.Sliver.RenderSliver>
     {
+        /// <Summary>
+        /// Creates a proxy render sliver.
+        ///
+        /// Proxy render slivers aren't created directly because they simply proxy
+        /// the render sliver protocol to their sliver [child]. Instead, use one of
+        /// the subclasses.
+        /// </Summary>
         public RenderProxySliver(FlutterSDK.Rendering.Sliver.RenderSliver child = default(FlutterSDK.Rendering.Sliver.RenderSliver))
         {
 
@@ -564,6 +571,11 @@ namespace FlutterSDK.Rendering.Proxysliver
     /// </Summary>
     public class RenderSliverOpacity : FlutterSDK.Rendering.Proxysliver.RenderProxySliver
     {
+        /// <Summary>
+        /// Creates a partially transparent render object.
+        ///
+        /// The [opacity] argument must be between 0.0 and 1.0, inclusive.
+        /// </Summary>
         public RenderSliverOpacity(double opacity = 1.0, bool alwaysIncludeSemantics = false, FlutterSDK.Rendering.Sliver.RenderSliver sliver = default(FlutterSDK.Rendering.Sliver.RenderSliver))
         : base()
         {
@@ -639,6 +651,12 @@ namespace FlutterSDK.Rendering.Proxysliver
     /// </Summary>
     public class RenderSliverIgnorePointer : FlutterSDK.Rendering.Proxysliver.RenderProxySliver
     {
+        /// <Summary>
+        /// Creates a render object that is invisible to hit testing.
+        ///
+        /// The [ignoring] argument must not be null. If [ignoringSemantics] is null,
+        /// this render object will be ignored for semantics if [ignoring] is true.
+        /// </Summary>
         public RenderSliverIgnorePointer(FlutterSDK.Rendering.Sliver.RenderSliver sliver = default(FlutterSDK.Rendering.Sliver.RenderSliver), bool ignoring = true, bool ignoringSemantics = default(bool))
         : base()
         {
@@ -688,6 +706,9 @@ namespace FlutterSDK.Rendering.Proxysliver
     /// </Summary>
     public class RenderSliverOffstage : FlutterSDK.Rendering.Proxysliver.RenderProxySliver
     {
+        /// <Summary>
+        /// Creates an offstage render object.
+        /// </Summary>
         public RenderSliverOffstage(bool offstage = true, FlutterSDK.Rendering.Sliver.RenderSliver sliver = default(FlutterSDK.Rendering.Sliver.RenderSliver))
         : base()
         {
@@ -771,6 +792,11 @@ namespace FlutterSDK.Rendering.Proxysliver
     /// </Summary>
     public class RenderSliverAnimatedOpacity : FlutterSDK.Rendering.Proxysliver.RenderProxySliver, IRenderAnimatedOpacityMixin<FlutterSDK.Rendering.Sliver.RenderSliver>
     {
+        /// <Summary>
+        /// Creates a partially transparent render object.
+        ///
+        /// The [opacity] argument must not be null.
+        /// </Summary>
         public RenderSliverAnimatedOpacity(FlutterSDK.Animation.Animation.Animation<double> opacity = default(FlutterSDK.Animation.Animation.Animation<double>), bool alwaysIncludeSemantics = false, FlutterSDK.Rendering.Sliver.RenderSliver sliver = default(FlutterSDK.Rendering.Sliver.RenderSliver))
         : base()
         {

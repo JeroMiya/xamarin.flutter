@@ -310,6 +310,9 @@ namespace FlutterSDK.Foundation.Serialization
     /// </Summary>
     public class WriteBuffer
     {
+        /// <Summary>
+        /// Creates an interface for incrementally building a [ByteData] instance.
+        /// </Summary>
         public WriteBuffer()
         {
 
@@ -477,12 +480,21 @@ namespace FlutterSDK.Foundation.Serialization
     /// </Summary>
     public class ReadBuffer
     {
+        /// <Summary>
+        /// Creates a [ReadBuffer] for reading from the specified [data].
+        /// </Summary>
         public ReadBuffer(ByteData data)
         : base()
         {
             this.Data = data;
         }
+        /// <Summary>
+        /// The underlying data being read.
+        /// </Summary>
         public virtual ByteData Data { get; set; }
+        /// <Summary>
+        /// The position to read next.
+        /// </Summary>
         internal virtual int _Position { get; set; }
         public virtual bool HasRemaining { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 

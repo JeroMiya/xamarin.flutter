@@ -424,6 +424,12 @@ using FlutterSDK.Painting._Networkimageio;
 using FlutterSDK.Widgets.Constants;
 namespace FlutterSDK.Widgets.Focusmanager
 {
+    /// <Summary>
+    /// Signature of a callback used by [Focus.onKey] and [FocusScope.onKey]
+    /// to receive key events.
+    ///
+    /// The [node] is the node that received the event.
+    /// </Summary>
     public delegate bool FocusOnKeyCallback(FlutterSDK.Widgets.Focusmanager.FocusNode node, FlutterSDK.Services.Rawkeyboard.RawKeyEvent @event);
     internal static class FocusmanagerDefaultClass
     {
@@ -450,6 +456,12 @@ namespace FlutterSDK.Widgets.Focusmanager
 
 
 
+        /// <Summary>
+        /// Returns a text representation of the current focus tree, along with the
+        /// current attributes on each node.
+        ///
+        /// Will return an empty string in release builds.
+        /// </Summary>
         internal static string DebugDescribeFocusTree()
         {
 
@@ -460,6 +472,12 @@ namespace FlutterSDK.Widgets.Focusmanager
 
 
 
+        /// <Summary>
+        /// Prints a text representation of the current focus tree, along with the
+        /// current attributes on each node.
+        ///
+        /// Will do nothing in release builds.
+        /// </Summary>
         internal static void DebugDumpFocusTree()
         {
 
@@ -495,6 +513,10 @@ namespace FlutterSDK.Widgets.Focusmanager
     /// </Summary>
     public class FocusAttachment
     {
+        /// <Summary>
+        /// A private constructor, because [FocusAttachment]s are only to be created
+        /// by [FocusNode.attach].
+        /// </Summary>
         internal FocusAttachment(FlutterSDK.Widgets.Focusmanager.FocusNode _node)
         : base()
         {
@@ -815,6 +837,13 @@ namespace FlutterSDK.Widgets.Focusmanager
     /// </Summary>
     public class FocusNode : IDiagnosticableTreeMixin, IChangeNotifier
     {
+        /// <Summary>
+        /// Creates a focus node.
+        ///
+        /// The [debugLabel] is ignored on release builds.
+        ///
+        /// The [skipTraversal] and [canRequestFocus] arguments must not be null.
+        /// </Summary>
         public FocusNode(string debugLabel = default(string), FlutterSDK.Widgets.Focusmanager.FocusOnKeyCallback onKey = default(FlutterSDK.Widgets.Focusmanager.FocusOnKeyCallback), bool skipTraversal = false, bool canRequestFocus = true)
         : base()
         {
@@ -1389,6 +1418,11 @@ namespace FlutterSDK.Widgets.Focusmanager
     /// </Summary>
     public class FocusScopeNode : FlutterSDK.Widgets.Focusmanager.FocusNode
     {
+        /// <Summary>
+        /// Creates a [FocusScopeNode].
+        ///
+        /// All parameters are optional.
+        /// </Summary>
         public FocusScopeNode(string debugLabel = default(string), FlutterSDK.Widgets.Focusmanager.FocusOnKeyCallback onKey = default(FlutterSDK.Widgets.Focusmanager.FocusOnKeyCallback), bool skipTraversal = false, bool canRequestFocus = true)
         : base(debugLabel: debugLabel, onKey: onKey, canRequestFocus: canRequestFocus, skipTraversal: skipTraversal)
         {
@@ -1575,6 +1609,13 @@ namespace FlutterSDK.Widgets.Focusmanager
     /// </Summary>
     public class FocusManager : IDiagnosticableTreeMixin, IChangeNotifier
     {
+        /// <Summary>
+        /// Creates an object that manages the focus tree.
+        ///
+        /// This constructor is rarely called directly. To access the [FocusManager],
+        /// consider using the [FocusManager.instance] accessor instead (which gets it
+        /// from the [WidgetsBinding] singleton).
+        /// </Summary>
         public FocusManager()
         {
 
@@ -1588,6 +1629,12 @@ namespace FlutterSDK.Widgets.Focusmanager
         internal virtual FlutterSDK.Widgets.Focusmanager.FocusHighlightStrategy _HighlightStrategy { get; set; }
         internal virtual FlutterSDK.Widgets.Focusmanager.FocusHighlightMode _HighlightMode { get; set; }
         internal virtual FlutterSDK.Foundation.Observerlist.HashedObserverList<object> _Listeners { get; set; }
+        /// <Summary>
+        /// The root [FocusScopeNode] in the focus tree.
+        ///
+        /// This field is rarely used directly. To find the nearest [FocusScopeNode]
+        /// for a given [FocusNode], call [FocusNode.nearestScope].
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Focusmanager.FocusScopeNode RootScope { get; set; }
         internal virtual FlutterSDK.Widgets.Focusmanager.FocusNode _PrimaryFocus { get; set; }
         internal virtual HashSet<FlutterSDK.Widgets.Focusmanager.FocusNode> _DirtyNodes { get; set; }

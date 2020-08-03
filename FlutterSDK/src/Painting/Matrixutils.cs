@@ -425,6 +425,12 @@ namespace FlutterSDK.Painting.Matrixutils
 {
     internal static class MatrixutilsDefaultClass
     {
+        /// <Summary>
+        /// Returns a list of strings representing the given transform in a format
+        /// useful for [TransformProperty].
+        ///
+        /// If the argument is null, returns a list with the single string "null".
+        /// </Summary>
         internal static List<string> DebugDescribeTransform(Matrix4 transform)
         {
             if (transform == null) return new List<string>() { "null" };
@@ -809,6 +815,11 @@ namespace FlutterSDK.Painting.Matrixutils
     /// </Summary>
     public class TransformProperty : FlutterSDK.Foundation.Diagnostics.DiagnosticsProperty<object>
     {
+        /// <Summary>
+        /// Create a diagnostics property for [Matrix4] objects.
+        ///
+        /// The [showName] and [level] arguments must not be null.
+        /// </Summary>
         public TransformProperty(string name, Matrix4 value, bool showName = true, @Object defaultValue = default(@Object), FlutterSDK.Foundation.Diagnostics.DiagnosticLevel level = default(FlutterSDK.Foundation.Diagnostics.DiagnosticLevel))
         : base(name, value, showName: showName, defaultValue: defaultValue, level: level)
         {

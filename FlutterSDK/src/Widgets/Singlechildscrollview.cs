@@ -626,6 +626,9 @@ namespace FlutterSDK.Widgets.Singlechildscrollview
     /// </Summary>
     public class SingleChildScrollView : FlutterSDK.Widgets.Framework.StatelessWidget
     {
+        /// <Summary>
+        /// Creates a box in which a single widget can be scrolled.
+        /// </Summary>
         public SingleChildScrollView(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Basictypes.Axis scrollDirection = default(FlutterSDK.Painting.Basictypes.Axis), bool reverse = false, FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), bool primary = default(bool), FlutterSDK.Widgets.Scrollphysics.ScrollPhysics physics = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics), FlutterSDK.Widgets.Scrollcontroller.ScrollController controller = default(FlutterSDK.Widgets.Scrollcontroller.ScrollController), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Gestures.Recognizer.DragStartBehavior dragStartBehavior = default(FlutterSDK.Gestures.Recognizer.DragStartBehavior))
         : base(key: key)
         {
@@ -637,13 +640,75 @@ namespace FlutterSDK.Widgets.Singlechildscrollview
             this.Child = child;
             this.DragStartBehavior = dragStartBehavior;
         }
+        /// <Summary>
+        /// The axis along which the scroll view scrolls.
+        ///
+        /// Defaults to [Axis.vertical].
+        /// </Summary>
         public virtual FlutterSDK.Painting.Basictypes.Axis ScrollDirection { get; set; }
+        /// <Summary>
+        /// Whether the scroll view scrolls in the reading direction.
+        ///
+        /// For example, if the reading direction is left-to-right and
+        /// [scrollDirection] is [Axis.horizontal], then the scroll view scrolls from
+        /// left to right when [reverse] is false and from right to left when
+        /// [reverse] is true.
+        ///
+        /// Similarly, if [scrollDirection] is [Axis.vertical], then the scroll view
+        /// scrolls from top to bottom when [reverse] is false and from bottom to top
+        /// when [reverse] is true.
+        ///
+        /// Defaults to false.
+        /// </Summary>
         public virtual bool Reverse { get; set; }
+        /// <Summary>
+        /// The amount of space by which to inset the child.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Padding { get; set; }
+        /// <Summary>
+        /// An object that can be used to control the position to which this scroll
+        /// view is scrolled.
+        ///
+        /// Must be null if [primary] is true.
+        ///
+        /// A [ScrollController] serves several purposes. It can be used to control
+        /// the initial scroll position (see [ScrollController.initialScrollOffset]).
+        /// It can be used to control whether the scroll view should automatically
+        /// save and restore its scroll position in the [PageStorage] (see
+        /// [ScrollController.keepScrollOffset]). It can be used to read the current
+        /// scroll position (see [ScrollController.offset]), or change it (see
+        /// [ScrollController.animateTo]).
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Scrollcontroller.ScrollController Controller { get; set; }
+        /// <Summary>
+        /// Whether this is the primary scroll view associated with the parent
+        /// [PrimaryScrollController].
+        ///
+        /// On iOS, this identifies the scroll view that will scroll to top in
+        /// response to a tap in the status bar.
+        ///
+        /// Defaults to true when [scrollDirection] is vertical and [controller] is
+        /// not specified.
+        /// </Summary>
         public virtual bool Primary { get; set; }
+        /// <Summary>
+        /// How the scroll view should respond to user input.
+        ///
+        /// For example, determines how the scroll view continues to animate after the
+        /// user stops dragging the scroll view.
+        ///
+        /// Defaults to matching platform conventions.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Scrollphysics.ScrollPhysics Physics { get; set; }
+        /// <Summary>
+        /// The widget that scrolls.
+        ///
+        /// {@macro flutter.widgets.child}
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+        /// <Summary>
+        /// {@macro flutter.widgets.scrollable.dragStartBehavior}
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Recognizer.DragStartBehavior DragStartBehavior { get; set; }
 
         private FlutterSDK.Painting.Basictypes.AxisDirection _GetDirection(FlutterSDK.Widgets.Framework.BuildContext context)

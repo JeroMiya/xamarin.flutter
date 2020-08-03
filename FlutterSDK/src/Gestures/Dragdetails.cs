@@ -296,8 +296,33 @@ using FlutterSDK.Foundation._Isolatesio;
 using FlutterSDK.Foundation._Platformio;
 namespace FlutterSDK.Gestures.Dragdetails
 {
+    /// <Summary>
+    /// Signature for when a pointer has contacted the screen and might begin to
+    /// move.
+    ///
+    /// The `details` object provides the position of the touch.
+    ///
+    /// See [DragGestureRecognizer.onDown].
+    /// </Summary>
     public delegate void GestureDragDownCallback(FlutterSDK.Gestures.Dragdetails.DragDownDetails details);
+    /// <Summary>
+    /// Signature for when a pointer has contacted the screen and has begun to move.
+    ///
+    /// The `details` object provides the position of the touch when it first
+    /// touched the surface.
+    ///
+    /// See [DragGestureRecognizer.onStart].
+    /// </Summary>
     public delegate void GestureDragStartCallback(FlutterSDK.Gestures.Dragdetails.DragStartDetails details);
+    /// <Summary>
+    /// Signature for when a pointer that is in contact with the screen and moving
+    /// has moved again.
+    ///
+    /// The `details` object provides the position of the touch and the distance it
+    /// has traveled since the last update.
+    ///
+    /// See [DragGestureRecognizer.onUpdate].
+    /// </Summary>
     public delegate void GestureDragUpdateCallback(FlutterSDK.Gestures.Dragdetails.DragUpdateDetails details);
     internal static class DragdetailsDefaultClass
     {
@@ -315,12 +340,33 @@ namespace FlutterSDK.Gestures.Dragdetails
     /// </Summary>
     public class DragDownDetails
     {
+        /// <Summary>
+        /// Creates details for a [GestureDragDownCallback].
+        ///
+        /// The [globalPosition] argument must not be null.
+        /// </Summary>
         public DragDownDetails(FlutterBinding.UI.Offset globalPosition = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Offset localPosition = default(FlutterBinding.UI.Offset))
         : base()
         {
             this.GlobalPosition = globalPosition;
         }
+        /// <Summary>
+        /// The global position at which the pointer contacted the screen.
+        ///
+        /// Defaults to the origin if not specified in the constructor.
+        ///
+        /// See also:
+        ///
+        ///  * [localPosition], which is the [globalPosition] transformed to the
+        ///    coordinate space of the event receiver.
+        /// </Summary>
         public virtual FlutterBinding.UI.Offset GlobalPosition { get; set; }
+        /// <Summary>
+        /// The local position in the coordinate system of the event receiver at
+        /// which the pointer contacted the screen.
+        ///
+        /// Defaults to [globalPosition] if not specified in the constructor.
+        /// </Summary>
         public virtual FlutterBinding.UI.Offset LocalPosition { get; set; }
 
     }
@@ -338,14 +384,41 @@ namespace FlutterSDK.Gestures.Dragdetails
     /// </Summary>
     public class DragStartDetails
     {
+        /// <Summary>
+        /// Creates details for a [GestureDragStartCallback].
+        ///
+        /// The [globalPosition] argument must not be null.
+        /// </Summary>
         public DragStartDetails(TimeSpan sourceTimeStamp = default(TimeSpan), FlutterBinding.UI.Offset globalPosition = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Offset localPosition = default(FlutterBinding.UI.Offset))
         : base()
         {
             this.SourceTimeStamp = sourceTimeStamp;
             this.GlobalPosition = globalPosition;
         }
+        /// <Summary>
+        /// Recorded timestamp of the source pointer event that triggered the drag
+        /// event.
+        ///
+        /// Could be null if triggered from proxied events such as accessibility.
+        /// </Summary>
         public virtual TimeSpan SourceTimeStamp { get; set; }
+        /// <Summary>
+        /// The global position at which the pointer contacted the screen.
+        ///
+        /// Defaults to the origin if not specified in the constructor.
+        ///
+        /// See also:
+        ///
+        ///  * [localPosition], which is the [globalPosition] transformed to the
+        ///    coordinate space of the event receiver.
+        /// </Summary>
         public virtual FlutterBinding.UI.Offset GlobalPosition { get; set; }
+        /// <Summary>
+        /// The local position in the coordinate system of the event receiver at
+        /// which the pointer contacted the screen.
+        ///
+        /// Defaults to [globalPosition] if not specified in the constructor.
+        /// </Summary>
         public virtual FlutterBinding.UI.Offset LocalPosition { get; set; }
 
     }
@@ -363,6 +436,16 @@ namespace FlutterSDK.Gestures.Dragdetails
     /// </Summary>
     public class DragUpdateDetails
     {
+        /// <Summary>
+        /// Creates details for a [DragUpdateDetails].
+        ///
+        /// The [delta] argument must not be null.
+        ///
+        /// If [primaryDelta] is non-null, then its value must match one of the
+        /// coordinates of [delta] and the other coordinate must be zero.
+        ///
+        /// The [globalPosition] argument must be provided and must not be null.
+        /// </Summary>
         public DragUpdateDetails(TimeSpan sourceTimeStamp = default(TimeSpan), FlutterBinding.UI.Offset delta = default(FlutterBinding.UI.Offset), double primaryDelta = default(double), FlutterBinding.UI.Offset globalPosition = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Offset localPosition = default(FlutterBinding.UI.Offset))
         : base()
         {
@@ -371,10 +454,53 @@ namespace FlutterSDK.Gestures.Dragdetails
             this.PrimaryDelta = primaryDelta;
             this.GlobalPosition = globalPosition;
         }
+        /// <Summary>
+        /// Recorded timestamp of the source pointer event that triggered the drag
+        /// event.
+        ///
+        /// Could be null if triggered from proxied events such as accessibility.
+        /// </Summary>
         public virtual TimeSpan SourceTimeStamp { get; set; }
+        /// <Summary>
+        /// The amount the pointer has moved in the coordinate space of the event
+        /// receiver since the previous update.
+        ///
+        /// If the [GestureDragUpdateCallback] is for a one-dimensional drag (e.g.,
+        /// a horizontal or vertical drag), then this offset contains only the delta
+        /// in that direction (i.e., the coordinate in the other direction is zero).
+        ///
+        /// Defaults to zero if not specified in the constructor.
+        /// </Summary>
         public virtual FlutterBinding.UI.Offset Delta { get; set; }
+        /// <Summary>
+        /// The amount the pointer has moved along the primary axis in the coordinate
+        /// space of the event receiver since the previous
+        /// update.
+        ///
+        /// If the [GestureDragUpdateCallback] is for a one-dimensional drag (e.g.,
+        /// a horizontal or vertical drag), then this value contains the component of
+        /// [delta] along the primary axis (e.g., horizontal or vertical,
+        /// respectively). Otherwise, if the [GestureDragUpdateCallback] is for a
+        /// two-dimensional drag (e.g., a pan), then this value is null.
+        ///
+        /// Defaults to null if not specified in the constructor.
+        /// </Summary>
         public virtual double PrimaryDelta { get; set; }
+        /// <Summary>
+        /// The pointer's global position when it triggered this update.
+        ///
+        /// See also:
+        ///
+        ///  * [localPosition], which is the [globalPosition] transformed to the
+        ///    coordinate space of the event receiver.
+        /// </Summary>
         public virtual FlutterBinding.UI.Offset GlobalPosition { get; set; }
+        /// <Summary>
+        /// The local position in the coordinate system of the event receiver at
+        /// which the pointer contacted the screen.
+        ///
+        /// Defaults to [globalPosition] if not specified in the constructor.
+        /// </Summary>
         public virtual FlutterBinding.UI.Offset LocalPosition { get; set; }
 
     }
@@ -392,13 +518,35 @@ namespace FlutterSDK.Gestures.Dragdetails
     /// </Summary>
     public class DragEndDetails
     {
+        /// <Summary>
+        /// Creates details for a [GestureDragEndCallback].
+        ///
+        /// The [velocity] argument must not be null.
+        /// </Summary>
         public DragEndDetails(FlutterSDK.Gestures.Velocitytracker.Velocity velocity = default(FlutterSDK.Gestures.Velocitytracker.Velocity), double primaryVelocity = default(double))
         : base()
         {
             this.Velocity = velocity;
             this.PrimaryVelocity = primaryVelocity;
         }
+        /// <Summary>
+        /// The velocity the pointer was moving when it stopped contacting the screen.
+        ///
+        /// Defaults to zero if not specified in the constructor.
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Velocitytracker.Velocity Velocity { get; set; }
+        /// <Summary>
+        /// The velocity the pointer was moving along the primary axis when it stopped
+        /// contacting the screen, in logical pixels per second.
+        ///
+        /// If the [GestureDragEndCallback] is for a one-dimensional drag (e.g., a
+        /// horizontal or vertical drag), then this value contains the component of
+        /// [velocity] along the primary axis (e.g., horizontal or vertical,
+        /// respectively). Otherwise, if the [GestureDragEndCallback] is for a
+        /// two-dimensional drag (e.g., a pan), then this value is null.
+        ///
+        /// Defaults to null if not specified in the constructor.
+        /// </Summary>
         public virtual double PrimaryVelocity { get; set; }
 
     }

@@ -479,6 +479,35 @@ namespace FlutterSDK.Material.Rangeslider
     /// </Summary>
     public class RangeSlider : FlutterSDK.Widgets.Framework.StatefulWidget
     {
+        /// <Summary>
+        /// Creates a Material Design range slider.
+        ///
+        /// The range slider widget itself does not maintain any state. Instead, when
+        /// the state of the slider changes, the widget calls the [onChanged] callback.
+        /// Most widgets that use a range slider will listen for the [onChanged] callback
+        /// and rebuild the slider with a new [value] to update the visual appearance of
+        /// the slider. To know when the value starts to change, or when it is done
+        /// changing, set the optional callbacks [onChangeStart] and/or [onChangeEnd].
+        ///
+        /// * [values], which  determines currently selected values for this range
+        ///   slider.
+        /// * [onChanged], which is called while the user is selecting a new value for
+        ///   the range slider.
+        /// * [onChangeStart], which is called when the user starts to select a new
+        ///   value for the range slider.
+        /// * [onChangeEnd], which is called when the user is done selecting a new
+        ///   value for the range slider.
+        ///
+        /// You can override some of the colors with the [activeColor] and
+        /// [inactiveColor] properties, although more fine-grained control of the
+        /// appearance is achieved using a [SliderThemeData].
+        ///
+        /// The [values], [min], [max] must not be null. The [min] must be less than
+        /// or equal to the [max]. [values.start] must be less than or equal to
+        /// [values.end]. [values.start] and [values.end] must be greater than or
+        /// equal to the [min] and less than or equal to the [max]. The [divisions]
+        /// must be null or greater than 0.
+        /// </Summary>
         public RangeSlider(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Material.Slidertheme.RangeValues values = default(FlutterSDK.Material.Slidertheme.RangeValues), FlutterSDK.Foundation.Basictypes.ValueChanged<RangeValues> onChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<RangeValues>), FlutterSDK.Foundation.Basictypes.ValueChanged<RangeValues> onChangeStart = default(FlutterSDK.Foundation.Basictypes.ValueChanged<RangeValues>), FlutterSDK.Foundation.Basictypes.ValueChanged<RangeValues> onChangeEnd = default(FlutterSDK.Foundation.Basictypes.ValueChanged<RangeValues>), double min = 0.0, double max = 1.0, int divisions = default(int), FlutterSDK.Material.Slidertheme.RangeLabels labels = default(FlutterSDK.Material.Slidertheme.RangeLabels), FlutterBinding.UI.Color activeColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color inactiveColor = default(FlutterBinding.UI.Color), FlutterSDK.Material.Slidertheme.RangeSemanticFormatterCallback semanticFormatterCallback = default(FlutterSDK.Material.Slidertheme.RangeSemanticFormatterCallback))
         : base(key: key)
         {
@@ -494,16 +523,212 @@ namespace FlutterSDK.Material.Rangeslider
             this.InactiveColor = inactiveColor;
             this.SemanticFormatterCallback = semanticFormatterCallback;
         }
+        /// <Summary>
+        /// The currently selected values for this range slider.
+        ///
+        /// The slider's thumbs are drawn at horizontal positions that corresponds to
+        /// these values.
+        /// </Summary>
         public virtual FlutterSDK.Material.Slidertheme.RangeValues Values { get; set; }
+        /// <Summary>
+        /// Called when the user is selecting a new value for the slider by dragging.
+        ///
+        /// The slider passes the new values to the callback but does not actually
+        /// change state until the parent widget rebuilds the slider with the new
+        /// values.
+        ///
+        /// If null, the slider will be displayed as disabled.
+        ///
+        /// The callback provided to [onChanged] should update the state of the parent
+        /// [StatefulWidget] using the [State.setState] method, so that the parent
+        /// gets rebuilt; for example:
+        ///
+        /// {@tool snippet}
+        ///
+        /// ```dart
+        /// RangeSlider(
+        ///   values: _rangeValues,
+        ///   min: 1.0,
+        ///   max: 10.0,
+        ///   onChanged: (RangeValues newValues) {
+        ///     setState(() {
+        ///       _rangeValues = newValues;
+        ///     });
+        ///   },
+        /// )
+        /// ```
+        /// {@end-tool}
+        ///
+        /// See also:
+        ///
+        ///  * [onChangeStart], which  is called when the user starts  changing the
+        ///    values.
+        ///  * [onChangeEnd], which is called when the user stops changing the values.
+        /// </Summary>
         public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<RangeValues> OnChanged { get; set; }
+        /// <Summary>
+        /// Called when the user starts selecting new values for the slider.
+        ///
+        /// This callback shouldn't be used to update the slider [values] (use
+        /// [onChanged] for that). Rather, it should be used to be notified when the
+        /// user has started selecting a new value by starting a drag or with a tap.
+        ///
+        /// The values passed will be the last [values] that the slider had before the
+        /// change began.
+        ///
+        /// {@tool snippet}
+        ///
+        /// ```dart
+        /// RangeSlider(
+        ///   values: _rangeValues,
+        ///   min: 1.0,
+        ///   max: 10.0,
+        ///   onChanged: (RangeValues newValues) {
+        ///     setState(() {
+        ///       _rangeValues = newValues;
+        ///     });
+        ///   },
+        ///   onChangeStart: (RangeValues startValues) {
+        ///     print('Started change at $startValues');
+        ///   },
+        /// )
+        /// ```
+        /// {@end-tool}
+        ///
+        /// See also:
+        ///
+        ///  * [onChangeEnd] for a callback that is called when the value change is
+        ///    complete.
+        /// </Summary>
         public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<RangeValues> OnChangeStart { get; set; }
+        /// <Summary>
+        /// Called when the user is done selecting new values for the slider.
+        ///
+        /// This differs from [onChanged] because it is only called once at the end
+        /// of the interaction, while [onChanged] is called as the value is getting
+        /// updated within the interaction.
+        ///
+        /// This callback shouldn't be used to update the slider [values] (use
+        /// [onChanged] for that). Rather, it should be used to know when the user has
+        /// completed selecting a new [values] by ending a drag or a click.
+        ///
+        /// {@tool snippet}
+        ///
+        /// ```dart
+        /// RangeSlider(
+        ///   values: _rangeValues,
+        ///   min: 1.0,
+        ///   max: 10.0,
+        ///   onChanged: (RangeValues newValues) {
+        ///     setState(() {
+        ///       _rangeValues = newValues;
+        ///     });
+        ///   },
+        ///   onChangeEnd: (RangeValues endValues) {
+        ///     print('Ended change at $endValues');
+        ///   },
+        /// )
+        /// ```
+        /// {@end-tool}
+        ///
+        /// See also:
+        ///
+        ///  * [onChangeStart] for a callback that is called when a value change
+        ///    begins.
+        /// </Summary>
         public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<RangeValues> OnChangeEnd { get; set; }
+        /// <Summary>
+        /// The minimum value the user can select.
+        ///
+        /// Defaults to 0.0. Must be less than or equal to [max].
+        ///
+        /// If the [max] is equal to the [min], then the slider is disabled.
+        /// </Summary>
         public virtual double Min { get; set; }
+        /// <Summary>
+        /// The maximum value the user can select.
+        ///
+        /// Defaults to 1.0. Must be greater than or equal to [min].
+        ///
+        /// If the [max] is equal to the [min], then the slider is disabled.
+        /// </Summary>
         public virtual double Max { get; set; }
+        /// <Summary>
+        /// The number of discrete divisions.
+        ///
+        /// Typically used with [labels] to show the current discrete values.
+        ///
+        /// If null, the slider is continuous.
+        /// </Summary>
         public virtual int Divisions { get; set; }
+        /// <Summary>
+        /// Labels to show as text in the [SliderThemeData.rangeValueIndicatorShape].
+        ///
+        /// There are two labels: one for the start thumb and one for the end thumb.
+        ///
+        /// Each label is rendered using the active [ThemeData]'s
+        /// [ThemeData.textTheme.bodyText1] text style, with the
+        /// theme data's [ThemeData.colorScheme.onPrimaryColor]. The label's text
+        /// style can be overridden with [SliderThemeData.valueIndicatorTextStyle].
+        ///
+        /// If null, then the value indicator will not be displayed.
+        ///
+        /// See also:
+        ///
+        ///  * [RangeSliderValueIndicatorShape] for how to create a custom value
+        ///    indicator shape.
+        /// </Summary>
         public virtual FlutterSDK.Material.Slidertheme.RangeLabels Labels { get; set; }
+        /// <Summary>
+        /// The color of the track's active segment, i.e. the span of track between
+        /// the thumbs.
+        ///
+        /// Defaults to [ColorScheme.primary].
+        ///
+        /// Using a [SliderTheme] gives more fine-grained control over the
+        /// appearance of various components of the slider.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color ActiveColor { get; set; }
+        /// <Summary>
+        /// The color of the track's inactive segments, i.e. the span of tracks
+        /// between the min and the start thumb, and the end thumb and the max.
+        ///
+        /// Defaults to [ColorScheme.primary] with 24% opacity.
+        ///
+        /// Using a [SliderTheme] gives more fine-grained control over the
+        /// appearance of various components of the slider.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color InactiveColor { get; set; }
+        /// <Summary>
+        /// The callback used to create a semantic value from the slider's values.
+        ///
+        /// Defaults to formatting values as a percentage.
+        ///
+        /// This is used by accessibility frameworks like TalkBack on Android to
+        /// inform users what the currently selected value is with more context.
+        ///
+        /// {@tool snippet}
+        ///
+        /// In the example below, a slider for currency values is configured to
+        /// announce a value with a currency label.
+        ///
+        /// ```dart
+        /// RangeSlider(
+        ///   values: _dollarsRange,
+        ///   min: 20.0,
+        ///   max: 330.0,
+        ///   onChanged: (RangeValues newValues) {
+        ///     setState(() {
+        ///       _dollarsRange = newValues;
+        ///     });
+        ///   },
+        ///   semanticFormatterCallback: (RangeValues rangeValues) {
+        ///     return '${rangeValues.start.round()} - ${rangeValues.end.round()} dollars';
+        ///   }
+        ///  )
+        /// ```
+        /// {@end-tool}
+        /// </Summary>
         public virtual FlutterSDK.Material.Slidertheme.RangeSemanticFormatterCallback SemanticFormatterCallback { get; set; }
         internal virtual double _MinTouchTargetWidth { get; set; }
 

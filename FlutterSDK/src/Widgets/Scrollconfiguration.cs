@@ -438,6 +438,9 @@ namespace FlutterSDK.Widgets.Scrollconfiguration
     /// </Summary>
     public class ScrollBehavior
     {
+        /// <Summary>
+        /// Creates a description of how [Scrollable] widgets should behave.
+        /// </Summary>
         public ScrollBehavior()
         {
 
@@ -510,11 +513,19 @@ namespace FlutterSDK.Widgets.Scrollconfiguration
     /// </Summary>
     public class ScrollConfiguration : FlutterSDK.Widgets.Framework.InheritedWidget
     {
+        /// <Summary>
+        /// Creates a widget that controls how [Scrollable] widgets behave in a subtree.
+        ///
+        /// The [behavior] and [child] arguments must not be null.
+        /// </Summary>
         public ScrollConfiguration(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Scrollconfiguration.ScrollBehavior behavior = default(FlutterSDK.Widgets.Scrollconfiguration.ScrollBehavior), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
             this.Behavior = behavior;
         }
+        /// <Summary>
+        /// How [Scrollable] widgets that are descendants of [child] should behave.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Scrollconfiguration.ScrollBehavior Behavior { get; set; }
 
         /// <Summary>

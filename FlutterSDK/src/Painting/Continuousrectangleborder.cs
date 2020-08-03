@@ -451,13 +451,25 @@ namespace FlutterSDK.Painting.Continuousrectangleborder
     /// </Summary>
     public class ContinuousRectangleBorder : FlutterSDK.Painting.Borders.ShapeBorder
     {
+        /// <Summary>
+        /// The arguments must not be null.
+        /// </Summary>
         public ContinuousRectangleBorder(FlutterSDK.Painting.Borders.BorderSide side = default(FlutterSDK.Painting.Borders.BorderSide), FlutterSDK.Painting.Borderradius.BorderRadiusGeometry borderRadius = default(FlutterSDK.Painting.Borderradius.BorderRadiusGeometry))
         : base()
         {
             this.Side = side;
             this.BorderRadius = borderRadius;
         }
+        /// <Summary>
+        /// The radius for each corner.
+        ///
+        /// Negative radius values are clamped to 0.0 by [getInnerPath] and
+        /// [getOuterPath].
+        /// </Summary>
         public virtual FlutterSDK.Painting.Borderradius.BorderRadiusGeometry BorderRadius { get; set; }
+        /// <Summary>
+        /// The style of this border.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Borders.BorderSide Side { get; set; }
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Dimensions { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }

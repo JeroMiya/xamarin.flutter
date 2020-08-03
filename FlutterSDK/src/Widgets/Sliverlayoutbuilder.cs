@@ -425,6 +425,9 @@ using FlutterSDK.Widgets.Constants;
 using FlutterSDK.Widgets.Routenotificationmessages;
 namespace FlutterSDK.Widgets.Sliverlayoutbuilder
 {
+    /// <Summary>
+    /// The signature of the [SliverLayoutBuilder] builder function.
+    /// </Summary>
     public delegate FlutterSDK.Widgets.Framework.Widget SliverLayoutWidgetBuilder(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.Sliver.SliverConstraints constraints);
     internal static class SliverlayoutbuilderDefaultClass
     {
@@ -446,6 +449,11 @@ namespace FlutterSDK.Widgets.Sliverlayoutbuilder
     /// </Summary>
     public class SliverLayoutBuilder : FlutterSDK.Widgets.Layoutbuilder.ConstrainedLayoutBuilder<FlutterSDK.Rendering.Sliver.SliverConstraints>
     {
+        /// <Summary>
+        /// Creates a sliver widget that defers its building until layout.
+        ///
+        /// The [builder] argument must not be null.
+        /// </Summary>
         public SliverLayoutBuilder(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Sliverlayoutbuilder.SliverLayoutWidgetBuilder builder = default(FlutterSDK.Widgets.Sliverlayoutbuilder.SliverLayoutWidgetBuilder))
         : base(key: key, builder: builder)
         {

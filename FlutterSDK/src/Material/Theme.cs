@@ -445,6 +445,11 @@ namespace FlutterSDK.Material.Theme
     /// </Summary>
     public class Theme : FlutterSDK.Widgets.Framework.StatelessWidget
     {
+        /// <Summary>
+        /// Applies the given theme [data] to [child].
+        ///
+        /// The [data] and [child] arguments must not be null.
+        /// </Summary>
         public Theme(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Material.Themedata.ThemeData data = default(FlutterSDK.Material.Themedata.ThemeData), bool isMaterialAppTheme = false, FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key)
         {
@@ -452,8 +457,27 @@ namespace FlutterSDK.Material.Theme
             this.IsMaterialAppTheme = isMaterialAppTheme;
             this.Child = child;
         }
+        /// <Summary>
+        /// Specifies the color and typography values for descendant widgets.
+        /// </Summary>
         public virtual FlutterSDK.Material.Themedata.ThemeData Data { get; set; }
+        /// <Summary>
+        /// True if this theme was installed by the [MaterialApp].
+        ///
+        /// When an app uses the [Navigator] to push a route, the route's widgets
+        /// will only inherit from the app's theme, even though the widget that
+        /// triggered the push may inherit from a theme that "shadows" the app's
+        /// theme because it's deeper in the widget tree. Apps can find the shadowing
+        /// theme with `Theme.of(context, shadowThemeOnly: true)` and pass it along
+        /// to the class that creates a route's widgets. Material widgets that push
+        /// routes, like [PopupMenuButton] and [DropdownButton], do this.
+        /// </Summary>
         public virtual bool IsMaterialAppTheme { get; set; }
+        /// <Summary>
+        /// The widget below this widget in the tree.
+        ///
+        /// {@macro flutter.widgets.child}
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
         internal virtual FlutterSDK.Material.Themedata.ThemeData _KFallbackTheme { get; set; }
 
@@ -589,6 +613,13 @@ namespace FlutterSDK.Material.Theme
     /// </Summary>
     public class ThemeDataTween : FlutterSDK.Animation.Tween.Tween<FlutterSDK.Material.Themedata.ThemeData>
     {
+        /// <Summary>
+        /// Creates a [ThemeData] tween.
+        ///
+        /// The [begin] and [end] properties must be non-null before the tween is
+        /// first used, but the arguments can be null if the values are going to be
+        /// filled in later.
+        /// </Summary>
         public ThemeDataTween(FlutterSDK.Material.Themedata.ThemeData begin = default(FlutterSDK.Material.Themedata.ThemeData), FlutterSDK.Material.Themedata.ThemeData end = default(FlutterSDK.Material.Themedata.ThemeData))
         : base(begin: begin, end: end)
         {
@@ -619,6 +650,12 @@ namespace FlutterSDK.Material.Theme
     /// </Summary>
     public class AnimatedTheme : FlutterSDK.Widgets.Implicitanimations.ImplicitlyAnimatedWidget
     {
+        /// <Summary>
+        /// Creates an animated theme.
+        ///
+        /// By default, the theme transition uses a linear curve. The [data] and
+        /// [child] arguments must not be null.
+        /// </Summary>
         public AnimatedTheme(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Material.Themedata.ThemeData data = default(FlutterSDK.Material.Themedata.ThemeData), bool isMaterialAppTheme = false, FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve), TimeSpan duration = default(TimeSpan), VoidCallback onEnd = default(VoidCallback), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, curve: curve, duration: duration, onEnd: onEnd)
         {
@@ -626,8 +663,19 @@ namespace FlutterSDK.Material.Theme
             this.IsMaterialAppTheme = isMaterialAppTheme;
             this.Child = child;
         }
+        /// <Summary>
+        /// Specifies the color and typography values for descendant widgets.
+        /// </Summary>
         public virtual FlutterSDK.Material.Themedata.ThemeData Data { get; set; }
+        /// <Summary>
+        /// True if this theme was created by the [MaterialApp]. See [Theme.isMaterialAppTheme].
+        /// </Summary>
         public virtual bool IsMaterialAppTheme { get; set; }
+        /// <Summary>
+        /// The widget below this widget in the tree.
+        ///
+        /// {@macro flutter.widgets.child}
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
 
         public new FlutterSDK.Material.Theme._AnimatedThemeState CreateState() => new _AnimatedThemeState();

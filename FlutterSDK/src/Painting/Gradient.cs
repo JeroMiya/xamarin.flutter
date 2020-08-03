@@ -424,6 +424,9 @@ namespace FlutterSDK.Painting.Gradient
 {
     internal static class GradientDefaultClass
     {
+        /// <Summary>
+        /// Calculate the color at position [t] of the gradient defined by [colors] and [stops].
+        /// </Summary>
         internal static Color _Sample(List<Color> colors, List<double> stops, double t)
         {
 
@@ -518,6 +521,9 @@ namespace FlutterSDK.Painting.Gradient
     /// </Summary>
     public class GradientTransform
     {
+        /// <Summary>
+        /// A const constructor so that subclasses may be const.
+        /// </Summary>
         public GradientTransform()
         {
 
@@ -556,10 +562,18 @@ namespace FlutterSDK.Painting.Gradient
     /// </Summary>
     public class GradientRotation : FlutterSDK.Painting.Gradient.GradientTransform
     {
+        /// <Summary>
+        /// Constructs a [GradientRotation] for the specified angle.
+        ///
+        /// The angle is in radians in the clockwise direction.
+        /// </Summary>
         public GradientRotation(double radians)
         {
             this.Radians = radians;
         }
+        /// <Summary>
+        /// The angle of rotation in radians in the clockwise direction.
+        /// </Summary>
         public virtual double Radians { get; set; }
 
         public new Matrix4 Transform(FlutterBinding.UI.Rect bounds, TextDirection textDirection = default(TextDirection))
@@ -593,6 +607,23 @@ namespace FlutterSDK.Painting.Gradient
     /// </Summary>
     public class Gradient
     {
+        /// <Summary>
+        /// Initialize the gradient's colors and stops.
+        ///
+        /// The [colors] argument must not be null, and must have at least two colors
+        /// (the length is not verified until the [createShader] method is called).
+        ///
+        /// If specified, the [stops] argument must have the same number of entries as
+        /// [colors] (this is also not verified until the [createShader] method is
+        /// called).
+        ///
+        /// The [transform] argument can be applied to transform _only_ the gradient,
+        /// without rotating the canvas itself or other geometry on the canvas. For
+        /// example, a `GradientRotation(math.pi/4)` will result in a [SweepGradient]
+        /// that starts from a position of 6 o'clock instead of 3 o'clock, assuming
+        /// no other rotation or perspective transformations have been applied to the
+        /// [Canvas]. If null, no transformation is applied.
+        /// </Summary>
         public Gradient(List<Color> colors = default(List<Color>), List<double> stops = default(List<double>), FlutterSDK.Painting.Gradient.GradientTransform transform = default(FlutterSDK.Painting.Gradient.GradientTransform))
         : base()
         {
@@ -600,8 +631,40 @@ namespace FlutterSDK.Painting.Gradient
             this.Stops = stops;
             this.Transform = transform;
         }
+        /// <Summary>
+        /// The colors the gradient should obtain at each of the stops.
+        ///
+        /// If [stops] is non-null, this list must have the same length as [stops].
+        ///
+        /// This list must have at least two colors in it (otherwise, it's not a
+        /// gradient!).
+        /// </Summary>
         public virtual List<Color> Colors { get; set; }
+        /// <Summary>
+        /// A list of values from 0.0 to 1.0 that denote fractions along the gradient.
+        ///
+        /// If non-null, this list must have the same length as [colors].
+        ///
+        /// If the first value is not 0.0, then a stop with position 0.0 and a color
+        /// equal to the first color in [colors] is implied.
+        ///
+        /// If the last value is not 1.0, then a stop with position 1.0 and a color
+        /// equal to the last color in [colors] is implied.
+        ///
+        /// The values in the [stops] list must be in ascending order. If a value in
+        /// the [stops] list is less than an earlier value in the list, then its value
+        /// is assumed to equal the previous value.
+        ///
+        /// If stops is null, then a set of uniformly distributed stops is implied,
+        /// with the first stop at 0.0 and the last stop at 1.0.
+        /// </Summary>
         public virtual List<double> Stops { get; set; }
+        /// <Summary>
+        /// The transform, if any, to apply to the gradient.
+        ///
+        /// This transform is in addition to any other transformations applied to the
+        /// canvas, but does not add any transformations to the canvas.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Gradient.GradientTransform Transform { get; set; }
 
         private List<double> _ImpliedStops()
@@ -807,6 +870,12 @@ namespace FlutterSDK.Painting.Gradient
     /// </Summary>
     public class LinearGradient : FlutterSDK.Painting.Gradient.Gradient
     {
+        /// <Summary>
+        /// Creates a linear gradient.
+        ///
+        /// The [colors] argument must not be null. If [stops] is non-null, it must
+        /// have the same length as [colors].
+        /// </Summary>
         public LinearGradient(FlutterSDK.Painting.Alignment.AlignmentGeometry begin = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), FlutterSDK.Painting.Alignment.AlignmentGeometry end = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), List<Color> colors = default(List<Color>), List<double> stops = default(List<double>), TileMode tileMode = default(TileMode), FlutterSDK.Painting.Gradient.GradientTransform transform = default(FlutterSDK.Painting.Gradient.GradientTransform))
         : base(colors: colors, stops: stops, transform: transform)
         {
@@ -814,8 +883,48 @@ namespace FlutterSDK.Painting.Gradient
             this.End = end;
             this.TileMode = tileMode;
         }
+        /// <Summary>
+        /// The offset at which stop 0.0 of the gradient is placed.
+        ///
+        /// If this is an [Alignment], then it is expressed as a vector from
+        /// coordinate (0.0, 0.0), in a coordinate space that maps the center of the
+        /// paint box at (0.0, 0.0) and the bottom right at (1.0, 1.0).
+        ///
+        /// For example, a begin offset of (-1.0, 0.0) is half way down the
+        /// left side of the box.
+        ///
+        /// It can also be an [AlignmentDirectional], where the start is the
+        /// left in left-to-right contexts and the right in right-to-left contexts. If
+        /// a text-direction-dependent value is provided here, then the [createShader]
+        /// method will need to be given a [TextDirection].
+        /// </Summary>
         public virtual FlutterSDK.Painting.Alignment.AlignmentGeometry Begin { get; set; }
+        /// <Summary>
+        /// The offset at which stop 1.0 of the gradient is placed.
+        ///
+        /// If this is an [Alignment], then it is expressed as a vector from
+        /// coordinate (0.0, 0.0), in a coordinate space that maps the center of the
+        /// paint box at (0.0, 0.0) and the bottom right at (1.0, 1.0).
+        ///
+        /// For example, a begin offset of (1.0, 0.0) is half way down the
+        /// right side of the box.
+        ///
+        /// It can also be an [AlignmentDirectional], where the start is the left in
+        /// left-to-right contexts and the right in right-to-left contexts. If a
+        /// text-direction-dependent value is provided here, then the [createShader]
+        /// method will need to be given a [TextDirection].
+        /// </Summary>
         public virtual FlutterSDK.Painting.Alignment.AlignmentGeometry End { get; set; }
+        /// <Summary>
+        /// How this gradient should tile the plane beyond in the region before
+        /// [begin] and after [end].
+        ///
+        /// For details, see [TileMode].
+        ///
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/dart-ui/tile_mode_clamp_linear.png)
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/dart-ui/tile_mode_mirror_linear.png)
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/dart-ui/tile_mode_repeated_linear.png)
+        /// </Summary>
         public virtual TileMode TileMode { get; set; }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 
@@ -979,6 +1088,12 @@ namespace FlutterSDK.Painting.Gradient
     /// </Summary>
     public class RadialGradient : FlutterSDK.Painting.Gradient.Gradient
     {
+        /// <Summary>
+        /// Creates a radial gradient.
+        ///
+        /// The [colors] argument must not be null. If [stops] is non-null, it must
+        /// have the same length as [colors].
+        /// </Summary>
         public RadialGradient(FlutterSDK.Painting.Alignment.AlignmentGeometry center = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), double radius = 0.5, List<Color> colors = default(List<Color>), List<double> stops = default(List<double>), TileMode tileMode = default(TileMode), FlutterSDK.Painting.Alignment.AlignmentGeometry focal = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), double focalRadius = 0.0, FlutterSDK.Painting.Gradient.GradientTransform transform = default(FlutterSDK.Painting.Gradient.GradientTransform))
         : base(colors: colors, stops: stops, transform: transform)
         {
@@ -988,10 +1103,70 @@ namespace FlutterSDK.Painting.Gradient
             this.Focal = focal;
             this.FocalRadius = focalRadius;
         }
+        /// <Summary>
+        /// The center of the gradient, as an offset into the (-1.0, -1.0) x (1.0, 1.0)
+        /// square describing the gradient which will be mapped onto the paint box.
+        ///
+        /// For example, an alignment of (0.0, 0.0) will place the radial
+        /// gradient in the center of the box.
+        ///
+        /// If this is an [Alignment], then it is expressed as a vector from
+        /// coordinate (0.0, 0.0), in a coordinate space that maps the center of the
+        /// paint box at (0.0, 0.0) and the bottom right at (1.0, 1.0).
+        ///
+        /// It can also be an [AlignmentDirectional], where the start is the left in
+        /// left-to-right contexts and the right in right-to-left contexts. If a
+        /// text-direction-dependent value is provided here, then the [createShader]
+        /// method will need to be given a [TextDirection].
+        /// </Summary>
         public virtual FlutterSDK.Painting.Alignment.AlignmentGeometry Center { get; set; }
+        /// <Summary>
+        /// The radius of the gradient, as a fraction of the shortest side
+        /// of the paint box.
+        ///
+        /// For example, if a radial gradient is painted on a box that is
+        /// 100.0 pixels wide and 200.0 pixels tall, then a radius of 1.0
+        /// will place the 1.0 stop at 100.0 pixels from the [center].
+        /// </Summary>
         public virtual double Radius { get; set; }
+        /// <Summary>
+        /// How this gradient should tile the plane beyond the outer ring at [radius]
+        /// pixels from the [center].
+        ///
+        /// For details, see [TileMode].
+        ///
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/dart-ui/tile_mode_clamp_radial.png)
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/dart-ui/tile_mode_mirror_radial.png)
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/dart-ui/tile_mode_repeated_radial.png)
+        ///
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/dart-ui/tile_mode_clamp_radialWithFocal.png)
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/dart-ui/tile_mode_mirror_radialWithFocal.png)
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/dart-ui/tile_mode_repeated_radialWithFocal.png)
+        /// </Summary>
         public virtual TileMode TileMode { get; set; }
+        /// <Summary>
+        /// The focal point of the gradient.  If specified, the gradient will appear
+        /// to be focused along the vector from [center] to focal.
+        ///
+        /// See [center] for a description of how the coordinates are mapped.
+        ///
+        /// If this value is specified and [focalRadius] > 0.0, care should be taken
+        /// to ensure that either this value or [center] will not both resolve to
+        /// [Offset.zero], which would fail to create a valid gradient.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Alignment.AlignmentGeometry Focal { get; set; }
+        /// <Summary>
+        /// The radius of the focal point of gradient, as a fraction of the shortest
+        /// side of the paint box.
+        ///
+        /// For example, if a radial gradient is painted on a box that is
+        /// 100.0 pixels wide and 200.0 pixels tall, then a radius of 1.0
+        /// will place the 1.0 stop at 100.0 pixels from the [focus].
+        ///
+        /// If this value is specified and is greater than 0.0, either [focal] or
+        /// [center] must not resolve to [Offset.zero], which would fail to create
+        /// a valid gradient.
+        /// </Summary>
         public virtual double FocalRadius { get; set; }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 
@@ -1168,6 +1343,12 @@ namespace FlutterSDK.Painting.Gradient
     /// </Summary>
     public class SweepGradient : FlutterSDK.Painting.Gradient.Gradient
     {
+        /// <Summary>
+        /// Creates a sweep gradient.
+        ///
+        /// The [colors] argument must not be null. If [stops] is non-null, it must
+        /// have the same length as [colors].
+        /// </Summary>
         public SweepGradient(FlutterSDK.Painting.Alignment.AlignmentGeometry center = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), double startAngle = 0.0, double endAngle = default(double), List<Color> colors = default(List<Color>), List<double> stops = default(List<double>), TileMode tileMode = default(TileMode), FlutterSDK.Painting.Gradient.GradientTransform transform = default(FlutterSDK.Painting.Gradient.GradientTransform))
         : base(colors: colors, stops: stops, transform: transform)
         {
@@ -1176,9 +1357,45 @@ namespace FlutterSDK.Painting.Gradient
             this.EndAngle = endAngle;
             this.TileMode = tileMode;
         }
+        /// <Summary>
+        /// The center of the gradient, as an offset into the (-1.0, -1.0) x (1.0, 1.0)
+        /// square describing the gradient which will be mapped onto the paint box.
+        ///
+        /// For example, an alignment of (0.0, 0.0) will place the sweep
+        /// gradient in the center of the box.
+        ///
+        /// If this is an [Alignment], then it is expressed as a vector from
+        /// coordinate (0.0, 0.0), in a coordinate space that maps the center of the
+        /// paint box at (0.0, 0.0) and the bottom right at (1.0, 1.0).
+        ///
+        /// It can also be an [AlignmentDirectional], where the start is the left in
+        /// left-to-right contexts and the right in right-to-left contexts. If a
+        /// text-direction-dependent value is provided here, then the [createShader]
+        /// method will need to be given a [TextDirection].
+        /// </Summary>
         public virtual FlutterSDK.Painting.Alignment.AlignmentGeometry Center { get; set; }
+        /// <Summary>
+        /// The angle in radians at which stop 0.0 of the gradient is placed.
+        ///
+        /// Defaults to 0.0.
+        /// </Summary>
         public virtual double StartAngle { get; set; }
+        /// <Summary>
+        /// The angle in radians at which stop 1.0 of the gradient is placed.
+        ///
+        /// Defaults to math.pi * 2.
+        /// </Summary>
         public virtual double EndAngle { get; set; }
+        /// <Summary>
+        /// How this gradient should tile the plane beyond in the region before
+        /// [startAngle] and after [endAngle].
+        ///
+        /// For details, see [TileMode].
+        ///
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/dart-ui/tile_mode_clamp_sweep.png)
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/dart-ui/tile_mode_mirror_sweep.png)
+        /// ![](https://flutter.github.io/assets-for-api-docs/assets/dart-ui/tile_mode_repeated_sweep.png)
+        /// </Summary>
         public virtual TileMode TileMode { get; set; }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 

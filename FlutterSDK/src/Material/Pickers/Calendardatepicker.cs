@@ -438,6 +438,31 @@ namespace FlutterSDK.Material.Pickers.Calendardatepicker
     /// </Summary>
     public class CalendarDatePicker : FlutterSDK.Widgets.Framework.StatefulWidget
     {
+        /// <Summary>
+        /// Creates a calender date picker
+        ///
+        /// It will display a grid of days for the [initialDate]'s month. The day
+        /// indicated by [initialDate] will be selected.
+        ///
+        /// The optional [onDisplayedMonthChanged] callback can be used to track
+        /// the currently displayed month.
+        ///
+        /// The user interface provides a way to change the year of the month being
+        /// displayed. By default it will show the day grid, but this can be changed
+        /// to start in the year selection interface with [initialCalendarMode] set
+        /// to [DatePickerMode.year].
+        ///
+        /// The [initialDate], [firstDate], [lastDate], [onDateChanged], and
+        /// [initialCalendarMode] must be non-null.
+        ///
+        /// [lastDate] must be after or equal to [firstDate].
+        ///
+        /// [initialDate] must be between [firstDate] and [lastDate] or equal to
+        /// one of them.
+        ///
+        /// If [selectableDayPredicate] is non-null, it must return `true` for the
+        /// [initialDate].
+        /// </Summary>
         public CalendarDatePicker(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), DateTime initialDate = default(DateTime), DateTime firstDate = default(DateTime), DateTime lastDate = default(DateTime), FlutterSDK.Foundation.Basictypes.ValueChanged<DateTime> onDateChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<DateTime>), FlutterSDK.Foundation.Basictypes.ValueChanged<DateTime> onDisplayedMonthChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<DateTime>), FlutterSDK.Material.Pickers.Datepickercommon.DatePickerMode initialCalendarMode = default(FlutterSDK.Material.Pickers.Datepickercommon.DatePickerMode), FlutterSDK.Material.Pickers.Datepickercommon.SelectableDayPredicate selectableDayPredicate = default(FlutterSDK.Material.Pickers.Datepickercommon.SelectableDayPredicate))
         : base(key: key)
         {
@@ -452,12 +477,33 @@ namespace FlutterSDK.Material.Pickers.Calendardatepicker
         }
 
 
+        /// <Summary>
+        /// The initially selected [DateTime] that the picker should display.
+        /// </Summary>
         public virtual DateTime InitialDate { get; set; }
+        /// <Summary>
+        /// The earliest allowable [DateTime] that the user can select.
+        /// </Summary>
         public virtual DateTime FirstDate { get; set; }
+        /// <Summary>
+        /// The latest allowable [DateTime] that the user can select.
+        /// </Summary>
         public virtual DateTime LastDate { get; set; }
+        /// <Summary>
+        /// Called when the user selects a date in the picker.
+        /// </Summary>
         public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<DateTime> OnDateChanged { get; set; }
+        /// <Summary>
+        /// Called when the user navigates to a new month/year in the picker.
+        /// </Summary>
         public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<DateTime> OnDisplayedMonthChanged { get; set; }
+        /// <Summary>
+        /// The initial display of the calendar picker.
+        /// </Summary>
         public virtual FlutterSDK.Material.Pickers.Datepickercommon.DatePickerMode InitialCalendarMode { get; set; }
+        /// <Summary>
+        /// Function to provide full control over which dates in the calendar can be selected.
+        /// </Summary>
         public virtual FlutterSDK.Material.Pickers.Datepickercommon.SelectableDayPredicate SelectableDayPredicate { get; set; }
 
         public new FlutterSDK.Material.Pickers.Calendardatepicker._CalendarDatePickerState CreateState() => new _CalendarDatePickerState();
@@ -627,8 +673,17 @@ _HandleModeChanged(_Mode==DatePickerMode.Day?DatePickerMode.Year:DatePickerMode.
             this.Title = title;
             this.OnTitlePressed = onTitlePressed;
         }
+        /// <Summary>
+        /// The current display of the calendar picker.
+        /// </Summary>
         public virtual FlutterSDK.Material.Pickers.Datepickercommon.DatePickerMode Mode { get; set; }
+        /// <Summary>
+        /// The text that displays the current month/year being viewed.
+        /// </Summary>
         public virtual string Title { get; set; }
+        /// <Summary>
+        /// The callback when the title is pressed.
+        /// </Summary>
         public virtual VoidCallback OnTitlePressed { get; set; }
 
         public new FlutterSDK.Material.Pickers.Calendardatepicker._DatePickerModeToggleButtonState CreateState() => new _DatePickerModeToggleButtonState();
@@ -698,6 +753,9 @@ _HandleModeChanged(_Mode==DatePickerMode.Day?DatePickerMode.Year:DatePickerMode.
 
     public class _MonthPicker : FlutterSDK.Widgets.Framework.StatefulWidget
     {
+        /// <Summary>
+        /// Creates a month picker.
+        /// </Summary>
         public _MonthPicker(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), DateTime initialMonth = default(DateTime), DateTime currentDate = default(DateTime), DateTime firstDate = default(DateTime), DateTime lastDate = default(DateTime), DateTime selectedDate = default(DateTime), FlutterSDK.Foundation.Basictypes.ValueChanged<DateTime> onChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<DateTime>), FlutterSDK.Foundation.Basictypes.ValueChanged<DateTime> onDisplayedMonthChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<DateTime>), FlutterSDK.Material.Pickers.Datepickercommon.SelectableDayPredicate selectableDayPredicate = default(FlutterSDK.Material.Pickers.Datepickercommon.SelectableDayPredicate))
         : base(key: key)
         {
@@ -710,13 +768,45 @@ _HandleModeChanged(_Mode==DatePickerMode.Day?DatePickerMode.Year:DatePickerMode.
             this.OnDisplayedMonthChanged = onDisplayedMonthChanged;
             this.SelectableDayPredicate = selectableDayPredicate;
         }
+        /// <Summary>
+        /// The initial month to display
+        /// </Summary>
         public virtual DateTime InitialMonth { get; set; }
+        /// <Summary>
+        /// The current date.
+        ///
+        /// This date is subtly highlighted in the picker.
+        /// </Summary>
         public virtual DateTime CurrentDate { get; set; }
+        /// <Summary>
+        /// The earliest date the user is permitted to pick.
+        ///
+        /// This date must be on or before the [lastDate].
+        /// </Summary>
         public virtual DateTime FirstDate { get; set; }
+        /// <Summary>
+        /// The latest date the user is permitted to pick.
+        ///
+        /// This date must be on or after the [firstDate].
+        /// </Summary>
         public virtual DateTime LastDate { get; set; }
+        /// <Summary>
+        /// The currently selected date.
+        ///
+        /// This date is highlighted in the picker.
+        /// </Summary>
         public virtual DateTime SelectedDate { get; set; }
+        /// <Summary>
+        /// Called when the user picks a day.
+        /// </Summary>
         public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<DateTime> OnChanged { get; set; }
+        /// <Summary>
+        /// Called when the user navigates to a new month
+        /// </Summary>
         public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<DateTime> OnDisplayedMonthChanged { get; set; }
+        /// <Summary>
+        /// Optional user supplied predicate function to customize selectable days.
+        /// </Summary>
         public virtual FlutterSDK.Material.Pickers.Datepickercommon.SelectableDayPredicate SelectableDayPredicate { get; set; }
 
         public new FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget> CreateState() => new _MonthPickerState();
@@ -841,6 +931,9 @@ _HandleModeChanged(_Mode==DatePickerMode.Day?DatePickerMode.Year:DatePickerMode.
     /// </Summary>
     public class _DayPicker : FlutterSDK.Widgets.Framework.StatelessWidget
     {
+        /// <Summary>
+        /// Creates a day picker.
+        /// </Summary>
         public _DayPicker(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), DateTime currentDate = default(DateTime), DateTime displayedMonth = default(DateTime), DateTime firstDate = default(DateTime), DateTime lastDate = default(DateTime), DateTime selectedDate = default(DateTime), FlutterSDK.Foundation.Basictypes.ValueChanged<DateTime> onChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<DateTime>), FlutterSDK.Material.Pickers.Datepickercommon.SelectableDayPredicate selectableDayPredicate = default(FlutterSDK.Material.Pickers.Datepickercommon.SelectableDayPredicate))
         : base(key: key)
         {
@@ -852,12 +945,39 @@ _HandleModeChanged(_Mode==DatePickerMode.Day?DatePickerMode.Year:DatePickerMode.
             this.OnChanged = onChanged;
             this.SelectableDayPredicate = selectableDayPredicate;
         }
+        /// <Summary>
+        /// The currently selected date.
+        ///
+        /// This date is highlighted in the picker.
+        /// </Summary>
         public virtual DateTime SelectedDate { get; set; }
+        /// <Summary>
+        /// The current date at the time the picker is displayed.
+        /// </Summary>
         public virtual DateTime CurrentDate { get; set; }
+        /// <Summary>
+        /// Called when the user picks a day.
+        /// </Summary>
         public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<DateTime> OnChanged { get; set; }
+        /// <Summary>
+        /// The earliest date the user is permitted to pick.
+        ///
+        /// This date must be on or before the [lastDate].
+        /// </Summary>
         public virtual DateTime FirstDate { get; set; }
+        /// <Summary>
+        /// The latest date the user is permitted to pick.
+        ///
+        /// This date must be on or after the [firstDate].
+        /// </Summary>
         public virtual DateTime LastDate { get; set; }
+        /// <Summary>
+        /// The month whose days are displayed by this picker.
+        /// </Summary>
         public virtual DateTime DisplayedMonth { get; set; }
+        /// <Summary>
+        /// Optional user supplied predicate function to customize selectable days.
+        /// </Summary>
         public virtual FlutterSDK.Material.Pickers.Datepickercommon.SelectableDayPredicate SelectableDayPredicate { get; set; }
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
@@ -1016,6 +1136,12 @@ _HandleModeChanged(_Mode==DatePickerMode.Day?DatePickerMode.Year:DatePickerMode.
     /// </Summary>
     public class _YearPicker : FlutterSDK.Widgets.Framework.StatefulWidget
     {
+        /// <Summary>
+        /// Creates a year picker.
+        ///
+        /// The [currentDate, [firstDate], [lastDate], [selectedDate], and [onChanged]
+        /// arguments must be non-null. The [lastDate] must be after the [firstDate].
+        /// </Summary>
         public _YearPicker(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), DateTime currentDate = default(DateTime), DateTime firstDate = default(DateTime), DateTime lastDate = default(DateTime), DateTime initialDate = default(DateTime), DateTime selectedDate = default(DateTime), FlutterSDK.Foundation.Basictypes.ValueChanged<DateTime> onChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<DateTime>))
         : base(key: key)
         {
@@ -1026,11 +1152,33 @@ _HandleModeChanged(_Mode==DatePickerMode.Day?DatePickerMode.Year:DatePickerMode.
             this.SelectedDate = selectedDate;
             this.OnChanged = onChanged;
         }
+        /// <Summary>
+        /// The current date.
+        ///
+        /// This date is subtly highlighted in the picker.
+        /// </Summary>
         public virtual DateTime CurrentDate { get; set; }
+        /// <Summary>
+        /// The earliest date the user is permitted to pick.
+        /// </Summary>
         public virtual DateTime FirstDate { get; set; }
+        /// <Summary>
+        /// The latest date the user is permitted to pick.
+        /// </Summary>
         public virtual DateTime LastDate { get; set; }
+        /// <Summary>
+        /// The initial date to center the year display around.
+        /// </Summary>
         public virtual DateTime InitialDate { get; set; }
+        /// <Summary>
+        /// The currently selected date.
+        ///
+        /// This date is highlighted in the picker.
+        /// </Summary>
         public virtual DateTime SelectedDate { get; set; }
+        /// <Summary>
+        /// Called when the user picks a year.
+        /// </Summary>
         public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<DateTime> OnChanged { get; set; }
 
         public new FlutterSDK.Material.Pickers.Calendardatepicker._YearPickerState CreateState() => new _YearPickerState();

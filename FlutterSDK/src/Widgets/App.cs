@@ -423,10 +423,77 @@ using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
 namespace FlutterSDK.Widgets.App
 {
+    /// <Summary>
+    /// The signature of [WidgetsApp.localeListResolutionCallback].
+    ///
+    /// A [LocaleListResolutionCallback] is responsible for computing the locale of the app's
+    /// [Localizations] object when the app starts and when user changes the list of
+    /// locales for the device.
+    ///
+    /// The [locales] list is the device's preferred locales when the app started, or the
+    /// device's preferred locales the user selected after the app was started. This list
+    /// is in order of preference. If this list is null or empty, then Flutter has not yet
+    /// received the locale information from the platform. The [supportedLocales] parameter
+    /// is just the value of [WidgetsApp.supportedLocales].
+    ///
+    /// See also:
+    ///
+    ///  * [LocaleResolutionCallback], which takes only one default locale (instead of a list)
+    ///    and is attempted only after this callback fails or is null. [LocaleListResolutionCallback]
+    ///    is recommended over [LocaleResolutionCallback].
+    /// </Summary>
     public delegate Locale LocaleListResolutionCallback(List<Locale> locales, Iterable<Locale> supportedLocales);
+    /// <Summary>
+    /// {@template flutter.widgets.widgetsApp.localeResolutionCallback}
+    /// The signature of [WidgetsApp.localeResolutionCallback].
+    ///
+    /// It is recommended to provide a [LocaleListResolutionCallback] instead of a
+    /// [LocaleResolutionCallback] when possible, as [LocaleResolutionCallback] only
+    /// receives a subset of the information provided in [LocaleListResolutionCallback].
+    ///
+    /// A [LocaleResolutionCallback] is responsible for computing the locale of the app's
+    /// [Localizations] object when the app starts and when user changes the default
+    /// locale for the device after [LocaleListResolutionCallback] fails or is not provided.
+    ///
+    /// This callback is also used if the app is created with a specific locale using
+    /// the [new WidgetsApp] `locale` parameter.
+    ///
+    /// The [locale] is either the value of [WidgetsApp.locale], or the device's default
+    /// locale when the app started, or the device locale the user selected after the app
+    /// was started. The default locale is the first locale in the list of preferred
+    /// locales. If [locale] is null, then Flutter has not yet received the locale
+    /// information from the platform. The [supportedLocales] parameter is just the value of
+    /// [WidgetsApp.supportedLocales].
+    ///
+    /// See also:
+    ///
+    ///  * [LocaleListResolutionCallback], which takes a list of preferred locales (instead of one locale).
+    ///    Resolutions by [LocaleListResolutionCallback] take precedence over [LocaleResolutionCallback].
+    /// {@endtemplate}
+    /// </Summary>
     public delegate Locale LocaleResolutionCallback(Locale locale, Iterable<Locale> supportedLocales);
+    /// <Summary>
+    /// The signature of [WidgetsApp.onGenerateTitle].
+    ///
+    /// Used to generate a value for the app's [Title.title], which the device uses
+    /// to identify the app for the user. The `context` includes the [WidgetsApp]'s
+    /// [Localizations] widget so that this method can be used to produce a
+    /// localized title.
+    ///
+    /// This function must not return null.
+    /// </Summary>
     public delegate string GenerateAppTitle(FlutterSDK.Widgets.Framework.BuildContext context);
-    public delegate FlutterSDK.Widgets.Pages.PageRoute<T> PageRouteFactory(FlutterSDK.Widgets.Navigator.RouteSettings settings, FlutterSDK.Widgets.Framework.WidgetBuilder builder);
+    /// <Summary>
+    /// The signature of [WidgetsApp.pageRouteBuilder].
+    ///
+    /// Creates a [PageRoute] using the given [RouteSettings] and [WidgetBuilder].
+    /// </Summary>
+    public delegate FlutterSDK.Widgets.Pages.PageRoute<T> PageRouteFactory<T>(FlutterSDK.Widgets.Navigator.RouteSettings settings, FlutterSDK.Widgets.Framework.WidgetBuilder builder);
+    /// <Summary>
+    /// The signature of [WidgetsApp.onGenerateInitialRoutes].
+    ///
+    /// Creates a series of one or more initial routes.
+    /// </Summary>
     public delegate List<FlutterSDK.Widgets.Navigator.Route<object>> InitialRouteListFactory(string initialRoute);
     internal static class AppDefaultClass
     {
@@ -463,6 +530,49 @@ namespace FlutterSDK.Widgets.App
     /// </Summary>
     public class WidgetsApp : FlutterSDK.Widgets.Framework.StatefulWidget
     {
+        /// <Summary>
+        /// Creates a widget that wraps a number of widgets that are commonly
+        /// required for an application.
+        ///
+        /// The boolean arguments, [color], and [navigatorObservers] must not be null.
+        ///
+        /// Most callers will want to use the [home] or [routes] parameters, or both.
+        /// The [home] parameter is a convenience for the following [routes] map:
+        ///
+        /// ```dart
+        /// <String, WidgetBuilder>{ '/': (BuildContext context) => myWidget }
+        /// ```
+        ///
+        /// It is possible to specify both [home] and [routes], but only if [routes] does
+        ///  _not_ contain an entry for `'/'`.  Conversely, if [home] is omitted, [routes]
+        /// _must_ contain an entry for `'/'`.
+        ///
+        /// If [home] or [routes] are not null, the routing implementation needs to know how
+        /// appropriately build [PageRoutes]. This can be achieved by supplying the
+        /// [pageRouteBuilder] parameter.  The [pageRouteBuilder] is used by [MaterialApp]
+        /// and [CupertinoApp] to create [MaterialPageRoute]s and [CupertinoPageRoute],
+        /// respectively.
+        ///
+        /// The [builder] parameter is designed to provide the ability to wrap the visible
+        /// content of the app in some other widget. It is recommended that you use [home]
+        /// rather than [builder] if you intend to only display a single route in your app.
+        ///
+        /// [WidgetsApp] is also possible to provide a custom implementation of routing via the
+        /// [onGeneratedRoute] and [onUnknownRoute] parameters. These parameters correspond
+        /// to [Navigator.onGenerateRoute] and [Navigator.onUnknownRoute]. If [home], [routes],
+        /// and [builder] are null, or if they fail to create a requested route,
+        /// [onGeneratedRoute] will be invoked.  If that fails, [onUnknownRoute] will be invoked.
+        ///
+        /// The [pageRouteBuilder] will create a [PageRoute] that wraps newly built routes.
+        /// If the [builder] is non-null and the [onGenerateRoute] argument is null, then the
+        /// [builder] will not be provided only with the context and the child widget, whereas
+        /// the [pageRouteBuilder] will be provided with [RouteSettings]. If [onGenerateRoute]
+        /// is not provided, [navigatorKey], [onUnknownRoute], [navigatorObservers], and
+        /// [initialRoute] must have their default values, as they will have no effect.
+        ///
+        /// The `supportedLocales` argument must be a list of one or more elements.
+        /// By default supportedLocales is `[const Locale('en', 'US')]`.
+        /// </Summary>
         public WidgetsApp(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Navigator.NavigatorState> navigatorKey = default(FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Navigator.NavigatorState>), FlutterSDK.Widgets.Navigator.RouteFactory onGenerateRoute = default(FlutterSDK.Widgets.Navigator.RouteFactory), FlutterSDK.Widgets.App.InitialRouteListFactory onGenerateInitialRoutes = default(FlutterSDK.Widgets.App.InitialRouteListFactory), FlutterSDK.Widgets.Navigator.RouteFactory onUnknownRoute = default(FlutterSDK.Widgets.Navigator.RouteFactory), List<FlutterSDK.Widgets.Navigator.NavigatorObserver> navigatorObservers = default(List<FlutterSDK.Widgets.Navigator.NavigatorObserver>), string initialRoute = default(string), FlutterSDK.Widgets.App.PageRouteFactory pageRouteBuilder = default(FlutterSDK.Widgets.App.PageRouteFactory), FlutterSDK.Widgets.Framework.Widget home = default(FlutterSDK.Widgets.Framework.Widget), Dictionary<string, object> routes = default(Dictionary<string, object>), FlutterSDK.Widgets.Framework.TransitionBuilder builder = default(FlutterSDK.Widgets.Framework.TransitionBuilder), string title = default(string), FlutterSDK.Widgets.App.GenerateAppTitle onGenerateTitle = default(FlutterSDK.Widgets.App.GenerateAppTitle), FlutterSDK.Painting.Textstyle.TextStyle textStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), Locale locale = default(Locale), Iterable<FlutterSDK.Widgets.Localizations.LocalizationsDelegate<object>> localizationsDelegates = default(Iterable<FlutterSDK.Widgets.Localizations.LocalizationsDelegate<object>>), FlutterSDK.Widgets.App.LocaleListResolutionCallback localeListResolutionCallback = default(FlutterSDK.Widgets.App.LocaleListResolutionCallback), FlutterSDK.Widgets.App.LocaleResolutionCallback localeResolutionCallback = default(FlutterSDK.Widgets.App.LocaleResolutionCallback), Iterable<Locale> supportedLocales = default(Iterable<Locale>), bool showPerformanceOverlay = false, bool checkerboardRasterCacheImages = false, bool checkerboardOffscreenLayers = false, bool showSemanticsDebugger = false, bool debugShowWidgetInspector = false, bool debugShowCheckedModeBanner = true, FlutterSDK.Widgets.Widgetinspector.InspectorSelectButtonBuilder inspectorSelectButtonBuilder = default(FlutterSDK.Widgets.Widgetinspector.InspectorSelectButtonBuilder), Dictionary<FlutterSDK.Widgets.Shortcuts.LogicalKeySet, FlutterSDK.Widgets.Actions.Intent> shortcuts = default(Dictionary<FlutterSDK.Widgets.Shortcuts.LogicalKeySet, FlutterSDK.Widgets.Actions.Intent>), Dictionary<FlutterSDK.Foundation.Key.LocalKey, object> actions = default(Dictionary<FlutterSDK.Foundation.Key.LocalKey, object>))
         : base(key: key)
         {
@@ -495,40 +605,626 @@ namespace FlutterSDK.Widgets.App
             this.Shortcuts = shortcuts;
             this.Actions = actions;
         }
+        /// <Summary>
+        /// {@template flutter.widgets.widgetsApp.navigatorKey}
+        /// A key to use when building the [Navigator].
+        ///
+        /// If a [navigatorKey] is specified, the [Navigator] can be directly
+        /// manipulated without first obtaining it from a [BuildContext] via
+        /// [Navigator.of]: from the [navigatorKey], use the [GlobalKey.currentState]
+        /// getter.
+        ///
+        /// If this is changed, a new [Navigator] will be created, losing all the
+        /// application state in the process; in that case, the [navigatorObservers]
+        /// must also be changed, since the previous observers will be attached to the
+        /// previous navigator.
+        ///
+        /// The [Navigator] is only built if [onGenerateRoute] is not null; if it is
+        /// null, [navigatorKey] must also be null.
+        /// {@endtemplate}
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Navigator.NavigatorState> NavigatorKey { get; set; }
+        /// <Summary>
+        /// {@template flutter.widgets.widgetsApp.onGenerateRoute}
+        /// The route generator callback used when the app is navigated to a
+        /// named route.
+        ///
+        /// If this returns null when building the routes to handle the specified
+        /// [initialRoute], then all the routes are discarded and
+        /// [Navigator.defaultRouteName] is used instead (`/`). See [initialRoute].
+        ///
+        /// During normal app operation, the [onGenerateRoute] callback will only be
+        /// applied to route names pushed by the application, and so should never
+        /// return null.
+        ///
+        /// This is used if [routes] does not contain the requested route.
+        ///
+        /// The [Navigator] is only built if routes are provided (either via [home],
+        /// [routes], [onGenerateRoute], or [onUnknownRoute]); if they are not,
+        /// [builder] must not be null.
+        /// {@endtemplate}
+        ///
+        /// If this property is not set, either the [routes] or [home] properties must
+        /// be set, and the [pageRouteBuilder] must also be set so that the
+        /// default handler will know what routes and [PageRoute]s to build.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Navigator.RouteFactory OnGenerateRoute { get; set; }
+        /// <Summary>
+        /// {@template flutter.widgets.widgetsApp.onGenerateInitialRoutes}
+        /// The routes generator callback used for generating initial routes if
+        /// [initialRoute] is provided.
+        ///
+        /// If this property is not set, the underlying
+        /// [Navigator.onGenerateInitialRoutes] will default to
+        /// [Navigator.defaultGenerateInitialRoutes].
+        /// {@endtemplate}
+        /// </Summary>
         public virtual FlutterSDK.Widgets.App.InitialRouteListFactory OnGenerateInitialRoutes { get; set; }
+        /// <Summary>
+        /// The [PageRoute] generator callback used when the app is navigated to a
+        /// named route.
+        ///
+        /// This callback can be used, for example, to specify that a [MaterialPageRoute]
+        /// or a [CupertinoPageRoute] should be used for building page transitions.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.App.PageRouteFactory PageRouteBuilder { get; set; }
+        /// <Summary>
+        /// {@template flutter.widgets.widgetsApp.home}
+        /// The widget for the default route of the app ([Navigator.defaultRouteName],
+        /// which is `/`).
+        ///
+        /// This is the route that is displayed first when the application is started
+        /// normally, unless [initialRoute] is specified. It's also the route that's
+        /// displayed if the [initialRoute] can't be displayed.
+        ///
+        /// To be able to directly call [Theme.of], [MediaQuery.of], etc, in the code
+        /// that sets the [home] argument in the constructor, you can use a [Builder]
+        /// widget to get a [BuildContext].
+        ///
+        /// If [home] is specified, then [routes] must not include an entry for `/`,
+        /// as [home] takes its place.
+        ///
+        /// The [Navigator] is only built if routes are provided (either via [home],
+        /// [routes], [onGenerateRoute], or [onUnknownRoute]); if they are not,
+        /// [builder] must not be null.
+        ///
+        /// The difference between using [home] and using [builder] is that the [home]
+        /// subtree is inserted into the application below a [Navigator] (and thus
+        /// below an [Overlay], which [Navigator] uses). With [home], therefore,
+        /// dialog boxes will work automatically, the [routes] table will be used, and
+        /// APIs such as [Navigator.push] and [Navigator.pop] will work as expected.
+        /// In contrast, the widget returned from [builder] is inserted _above_ the
+        /// app's [Navigator] (if any).
+        /// {@endtemplate}
+        ///
+        /// If this property is set, the [pageRouteBuilder] property must also be set
+        /// so that the default route handler will know what kind of [PageRoute]s to
+        /// build.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Home { get; set; }
+        /// <Summary>
+        /// The application's top-level routing table.
+        ///
+        /// When a named route is pushed with [Navigator.pushNamed], the route name is
+        /// looked up in this map. If the name is present, the associated
+        /// [WidgetBuilder] is used to construct a [PageRoute] specified by
+        /// [pageRouteBuilder] to perform an appropriate transition, including [Hero]
+        /// animations, to the new route.
+        ///
+        /// {@template flutter.widgets.widgetsApp.routes}
+        /// If the app only has one page, then you can specify it using [home] instead.
+        ///
+        /// If [home] is specified, then it implies an entry in this table for the
+        /// [Navigator.defaultRouteName] route (`/`), and it is an error to
+        /// redundantly provide such a route in the [routes] table.
+        ///
+        /// If a route is requested that is not specified in this table (or by
+        /// [home]), then the [onGenerateRoute] callback is called to build the page
+        /// instead.
+        ///
+        /// The [Navigator] is only built if routes are provided (either via [home],
+        /// [routes], [onGenerateRoute], or [onUnknownRoute]); if they are not,
+        /// [builder] must not be null.
+        /// {@endtemplate}
+        ///
+        /// If the routes map is not empty, the [pageRouteBuilder] property must be set
+        /// so that the default route handler will know what kind of [PageRoute]s to
+        /// build.
+        /// </Summary>
         public virtual Dictionary<string, object> Routes { get; set; }
+        /// <Summary>
+        /// {@template flutter.widgets.widgetsApp.onUnknownRoute}
+        /// Called when [onGenerateRoute] fails to generate a route, except for the
+        /// [initialRoute].
+        ///
+        /// This callback is typically used for error handling. For example, this
+        /// callback might always generate a "not found" page that describes the route
+        /// that wasn't found.
+        ///
+        /// Unknown routes can arise either from errors in the app or from external
+        /// requests to push routes, such as from Android intents.
+        ///
+        /// The [Navigator] is only built if routes are provided (either via [home],
+        /// [routes], [onGenerateRoute], or [onUnknownRoute]); if they are not,
+        /// [builder] must not be null.
+        /// {@endtemplate}
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Navigator.RouteFactory OnUnknownRoute { get; set; }
+        /// <Summary>
+        /// {@template flutter.widgets.widgetsApp.initialRoute}
+        /// The name of the first route to show, if a [Navigator] is built.
+        ///
+        /// Defaults to [Window.defaultRouteName], which may be overridden by the code
+        /// that launched the application.
+        ///
+        /// If the route contains slashes, then it is treated as a "deep link", and
+        /// before this route is pushed, the routes leading to this one are pushed
+        /// also. For example, if the route was `/a/b/c`, then the app would start
+        /// with the three routes `/a`, `/a/b`, and `/a/b/c` loaded, in that order.
+        ///
+        /// Intermediate routes aren't required to exist. In the example above, `/a`
+        /// and `/a/b` could be skipped if they have no matching route. But `/a/b/c` is
+        /// required to have a route, else [initialRoute] is ignored and
+        /// [Navigator.defaultRouteName] is used instead (`/`). This can happen if the
+        /// app is started with an intent that specifies a non-existent route.
+        ///
+        /// The [Navigator] is only built if routes are provided (either via [home],
+        /// [routes], [onGenerateRoute], or [onUnknownRoute]); if they are not,
+        /// [initialRoute] must be null and [builder] must not be null.
+        ///
+        /// See also:
+        ///
+        ///  * [Navigator.initialRoute], which is used to implement this property.
+        ///  * [Navigator.push], for pushing additional routes.
+        ///  * [Navigator.pop], for removing a route from the stack.
+        ///
+        /// {@endtemplate}
+        /// </Summary>
         public virtual string InitialRoute { get; set; }
+        /// <Summary>
+        /// {@template flutter.widgets.widgetsApp.navigatorObservers}
+        /// The list of observers for the [Navigator] created for this app.
+        ///
+        /// This list must be replaced by a list of newly-created observers if the
+        /// [navigatorKey] is changed.
+        ///
+        /// The [Navigator] is only built if routes are provided (either via [home],
+        /// [routes], [onGenerateRoute], or [onUnknownRoute]); if they are not,
+        /// [navigatorObservers] must be the empty list and [builder] must not be null.
+        /// {@endtemplate}
+        /// </Summary>
         public virtual List<FlutterSDK.Widgets.Navigator.NavigatorObserver> NavigatorObservers { get; set; }
+        /// <Summary>
+        /// {@template flutter.widgets.widgetsApp.builder}
+        /// A builder for inserting widgets above the [Navigator] but below the other
+        /// widgets created by the [WidgetsApp] widget, or for replacing the
+        /// [Navigator] entirely.
+        ///
+        /// For example, from the [BuildContext] passed to this method, the
+        /// [Directionality], [Localizations], [DefaultTextStyle], [MediaQuery], etc,
+        /// are all available. They can also be overridden in a way that impacts all
+        /// the routes in the [Navigator].
+        ///
+        /// This is rarely useful, but can be used in applications that wish to
+        /// override those defaults, e.g. to force the application into right-to-left
+        /// mode despite being in English, or to override the [MediaQuery] metrics
+        /// (e.g. to leave a gap for advertisements shown by a plugin from OEM code).
+        ///
+        /// For specifically overriding the [title] with a value based on the
+        /// [Localizations], consider [onGenerateTitle] instead.
+        ///
+        /// The [builder] callback is passed two arguments, the [BuildContext] (as
+        /// `context`) and a [Navigator] widget (as `child`).
+        ///
+        /// If no routes are provided using [home], [routes], [onGenerateRoute], or
+        /// [onUnknownRoute], the `child` will be null, and it is the responsibility
+        /// of the [builder] to provide the application's routing machinery.
+        ///
+        /// If routes _are_ provided using one or more of those properties, then
+        /// `child` is not null, and the returned value should include the `child` in
+        /// the widget subtree; if it does not, then the application will have no
+        /// navigator and the [navigatorKey], [home], [routes], [onGenerateRoute],
+        /// [onUnknownRoute], [initialRoute], and [navigatorObservers] properties will
+        /// have no effect.
+        ///
+        /// If [builder] is null, it is as if a builder was specified that returned
+        /// the `child` directly. If it is null, routes must be provided using one of
+        /// the other properties listed above.
+        ///
+        /// Unless a [Navigator] is provided, either implicitly from [builder] being
+        /// null, or by a [builder] including its `child` argument, or by a [builder]
+        /// explicitly providing a [Navigator] of its own, widgets and APIs such as
+        /// [Hero], [Navigator.push] and [Navigator.pop], will not function.
+        /// {@endtemplate}
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.TransitionBuilder Builder { get; set; }
+        /// <Summary>
+        /// {@template flutter.widgets.widgetsApp.title}
+        /// A one-line description used by the device to identify the app for the user.
+        ///
+        /// On Android the titles appear above the task manager's app snapshots which are
+        /// displayed when the user presses the "recent apps" button. On iOS this
+        /// value cannot be used. `CFBundleDisplayName` from the app's `Info.plist` is
+        /// referred to instead whenever present, `CFBundleName` otherwise.
+        ///
+        /// To provide a localized title instead, use [onGenerateTitle].
+        /// {@endtemplate}
+        /// </Summary>
         public virtual string Title { get; set; }
+        /// <Summary>
+        /// {@template flutter.widgets.widgetsApp.onGenerateTitle}
+        /// If non-null this callback function is called to produce the app's
+        /// title string, otherwise [title] is used.
+        ///
+        /// The [onGenerateTitle] `context` parameter includes the [WidgetsApp]'s
+        /// [Localizations] widget so that this callback can be used to produce a
+        /// localized title.
+        ///
+        /// This callback function must not return null.
+        ///
+        /// The [onGenerateTitle] callback is called each time the [WidgetsApp]
+        /// rebuilds.
+        /// {@endtemplate}
+        /// </Summary>
         public virtual FlutterSDK.Widgets.App.GenerateAppTitle OnGenerateTitle { get; set; }
+        /// <Summary>
+        /// The default text style for [Text] in the application.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Textstyle.TextStyle TextStyle { get; set; }
+        /// <Summary>
+        /// {@template flutter.widgets.widgetsApp.color}
+        /// The primary color to use for the application in the operating system
+        /// interface.
+        ///
+        /// For example, on Android this is the color used for the application in the
+        /// application switcher.
+        /// {@endtemplate}
+        /// </Summary>
         public virtual FlutterBinding.UI.Color Color { get; set; }
+        /// <Summary>
+        /// {@template flutter.widgets.widgetsApp.locale}
+        /// The initial locale for this app's [Localizations] widget is based
+        /// on this value.
+        ///
+        /// If the 'locale' is null then the system's locale value is used.
+        ///
+        /// The value of [Localizations.locale] will equal this locale if
+        /// it matches one of the [supportedLocales]. Otherwise it will be
+        /// the first element of [supportedLocales].
+        /// {@endtemplate}
+        ///
+        /// See also:
+        ///
+        ///  * [localeResolutionCallback], which can override the default
+        ///    [supportedLocales] matching algorithm.
+        ///  * [localizationsDelegates], which collectively define all of the localized
+        ///    resources used by this app.
+        /// </Summary>
         public virtual Locale Locale { get; set; }
+        /// <Summary>
+        /// {@template flutter.widgets.widgetsApp.localizationsDelegates}
+        /// The delegates for this app's [Localizations] widget.
+        ///
+        /// The delegates collectively define all of the localized resources
+        /// for this application's [Localizations] widget.
+        /// {@endtemplate}
+        /// </Summary>
         public virtual Iterable<FlutterSDK.Widgets.Localizations.LocalizationsDelegate<object>> LocalizationsDelegates { get; set; }
+        /// <Summary>
+        /// {@template flutter.widgets.widgetsApp.localeListResolutionCallback}
+        /// This callback is responsible for choosing the app's locale
+        /// when the app is started, and when the user changes the
+        /// device's locale.
+        ///
+        /// When a [localeListResolutionCallback] is provided, Flutter will first
+        /// attempt to resolve the locale with the provided
+        /// [localeListResolutionCallback]. If the callback or result is null, it will
+        /// fallback to trying the [localeResolutionCallback]. If both
+        /// [localeResolutionCallback] and [localeListResolutionCallback] are left
+        /// null or fail to resolve (return null), the a basic fallback algorithm will
+        /// be used.
+        ///
+        /// The priority of each available fallback is:
+        ///
+        ///  1. [localeListResolutionCallback] is attempted first.
+        ///  1. [localeResolutionCallback] is attempted second.
+        ///  1. Flutter's basic resolution algorithm, as described in
+        ///     [supportedLocales], is attempted last.
+        ///
+        /// Properly localized projects should provide a more advanced algorithm than
+        /// the basic method from [supportedLocales], as it does not implement a
+        /// complete algorithm (such as the one defined in
+        /// [Unicode TR35](https://unicode.org/reports/tr35/#LanguageMatching))
+        /// and is optimized for speed at the detriment of some uncommon edge-cases.
+        /// {@endtemplate}
+        ///
+        /// This callback considers the entire list of preferred locales.
+        ///
+        /// This algorithm should be able to handle a null or empty list of preferred locales,
+        /// which indicates Flutter has not yet received locale information from the platform.
+        ///
+        /// See also:
+        ///
+        ///  * [MaterialApp.localeListResolutionCallback], which sets the callback of the
+        ///    [WidgetsApp] it creates.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.App.LocaleListResolutionCallback LocaleListResolutionCallback { get; set; }
+        /// <Summary>
+        /// {@macro flutter.widgets.widgetsApp.localeListResolutionCallback}
+        ///
+        /// This callback considers only the default locale, which is the first locale
+        /// in the preferred locales list. It is preferred to set [localeListResolutionCallback]
+        /// over [localeResolutionCallback] as it provides the full preferred locales list.
+        ///
+        /// This algorithm should be able to handle a null locale, which indicates
+        /// Flutter has not yet received locale information from the platform.
+        ///
+        /// See also:
+        ///
+        ///  * [MaterialApp.localeResolutionCallback], which sets the callback of the
+        ///    [WidgetsApp] it creates.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.App.LocaleResolutionCallback LocaleResolutionCallback { get; set; }
+        /// <Summary>
+        /// {@template flutter.widgets.widgetsApp.supportedLocales}
+        /// The list of locales that this app has been localized for.
+        ///
+        /// By default only the American English locale is supported. Apps should
+        /// configure this list to match the locales they support.
+        ///
+        /// This list must not null. Its default value is just
+        /// `[const Locale('en', 'US')]`.
+        ///
+        /// The order of the list matters. The default locale resolution algorithm,
+        /// `basicLocaleListResolution`, attempts to match by the following priority:
+        ///
+        ///  1. [Locale.languageCode], [Locale.scriptCode], and [Locale.countryCode]
+        ///  2. [Locale.languageCode] and [Locale.scriptCode] only
+        ///  3. [Locale.languageCode] and [Locale.countryCode] only
+        ///  4. [Locale.languageCode] only
+        ///  5. [Locale.countryCode] only when all preferred locales fail to match
+        ///  6. Returns the first element of [supportedLocales] as a fallback
+        ///
+        /// When more than one supported locale matches one of these criteria, only
+        /// the first matching locale is returned.
+        ///
+        /// The default locale resolution algorithm can be overridden by providing a
+        /// value for [localeListResolutionCallback]. The provided
+        /// `basicLocaleListResolution` is optimized for speed and does not implement
+        /// a full algorithm (such as the one defined in
+        /// [Unicode TR35](https://unicode.org/reports/tr35/#LanguageMatching)) that
+        /// takes distances between languages into account.
+        ///
+        /// When supporting languages with more than one script, it is recommended
+        /// to specify the [Locale.scriptCode] explicitly. Locales may also be defined without
+        /// [Locale.countryCode] to specify a generic fallback for a particular script.
+        ///
+        /// A fully supported language with multiple scripts should define a generic language-only
+        /// locale (e.g. 'zh'), language+script only locales (e.g. 'zh_Hans' and 'zh_Hant'),
+        /// and any language+script+country locales (e.g. 'zh_Hans_CN'). Fully defining all of
+        /// these locales as supported is not strictly required but allows for proper locale resolution in
+        /// the most number of cases. These locales can be specified with the [Locale.fromSubtags]
+        /// constructor:
+        ///
+        /// ```dart
+        /// // Full Chinese support for CN, TW, and HK
+        /// supportedLocales: [
+        ///   const Locale.fromSubtags(languageCode: 'zh'), // generic Chinese 'zh'
+        ///   const Locale.fromSubtags(languageCode: 'zh', scriptCode: 'Hans'), // generic simplified Chinese 'zh_Hans'
+        ///   const Locale.fromSubtags(languageCode: 'zh', scriptCode: 'Hant'), // generic traditional Chinese 'zh_Hant'
+        ///   const Locale.fromSubtags(languageCode: 'zh', scriptCode: 'Hans', countryCode: 'CN'), // 'zh_Hans_CN'
+        ///   const Locale.fromSubtags(languageCode: 'zh', scriptCode: 'Hant', countryCode: 'TW'), // 'zh_Hant_TW'
+        ///   const Locale.fromSubtags(languageCode: 'zh', scriptCode: 'Hant', countryCode: 'HK'), // 'zh_Hant_HK'
+        /// ],
+        /// ```
+        ///
+        /// Omitting some these fallbacks may result in improperly resolved
+        /// edge-cases, for example, a simplified Chinese user in Taiwan ('zh_Hans_TW')
+        /// may resolve to traditional Chinese if 'zh_Hans' and 'zh_Hans_CN' are
+        /// omitted.
+        /// {@endtemplate}
+        ///
+        /// See also:
+        ///
+        ///  * [MaterialApp.supportedLocales], which sets the `supportedLocales`
+        ///    of the [WidgetsApp] it creates.
+        ///  * [localeResolutionCallback], an app callback that resolves the app's locale
+        ///    when the device's locale changes.
+        ///  * [localizationsDelegates], which collectively define all of the localized
+        ///    resources used by this app.
+        /// </Summary>
         public virtual Iterable<Locale> SupportedLocales { get; set; }
+        /// <Summary>
+        /// Turns on a performance overlay.
+        ///
+        /// See also:
+        ///
+        ///  * <https://flutter.dev/debugging/#performanceoverlay>
+        /// </Summary>
         public virtual bool ShowPerformanceOverlay { get; set; }
+        /// <Summary>
+        /// Checkerboards raster cache images.
+        ///
+        /// See [PerformanceOverlay.checkerboardRasterCacheImages].
+        /// </Summary>
         public virtual bool CheckerboardRasterCacheImages { get; set; }
+        /// <Summary>
+        /// Checkerboards layers rendered to offscreen bitmaps.
+        ///
+        /// See [PerformanceOverlay.checkerboardOffscreenLayers].
+        /// </Summary>
         public virtual bool CheckerboardOffscreenLayers { get; set; }
+        /// <Summary>
+        /// Turns on an overlay that shows the accessibility information
+        /// reported by the framework.
+        /// </Summary>
         public virtual bool ShowSemanticsDebugger { get; set; }
+        /// <Summary>
+        /// Turns on an overlay that enables inspecting the widget tree.
+        ///
+        /// The inspector is only available in checked mode as it depends on
+        /// [RenderObject.debugDescribeChildren] which should not be called outside of
+        /// checked mode.
+        /// </Summary>
         public virtual bool DebugShowWidgetInspector { get; set; }
+        /// <Summary>
+        /// Builds the widget the [WidgetInspector] uses to switch between view and
+        /// inspect modes.
+        ///
+        /// This lets [MaterialApp] to use a material button to toggle the inspector
+        /// select mode without requiring [WidgetInspector] to depend on the
+        /// material package.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Widgetinspector.InspectorSelectButtonBuilder InspectorSelectButtonBuilder { get; set; }
+        /// <Summary>
+        /// {@template flutter.widgets.widgetsApp.debugShowCheckedModeBanner}
+        /// Turns on a little "DEBUG" banner in checked mode to indicate
+        /// that the app is in checked mode. This is on by default (in
+        /// checked mode), to turn it off, set the constructor argument to
+        /// false. In release mode this has no effect.
+        ///
+        /// To get this banner in your application if you're not using
+        /// WidgetsApp, include a [CheckedModeBanner] widget in your app.
+        ///
+        /// This banner is intended to deter people from complaining that your
+        /// app is slow when it's in checked mode. In checked mode, Flutter
+        /// enables a large number of expensive diagnostics to aid in
+        /// development, and so performance in checked mode is not
+        /// representative of what will happen in release mode.
+        /// {@endtemplate}
+        /// </Summary>
         public virtual bool DebugShowCheckedModeBanner { get; set; }
+        /// <Summary>
+        /// {@template flutter.widgets.widgetsApp.shortcuts}
+        /// The default map of keyboard shortcuts to intents for the application.
+        ///
+        /// By default, this is set to [WidgetsApp.defaultShortcuts].
+        /// {@endtemplate}
+        ///
+        /// {@tool snippet}
+        /// This example shows how to add a single shortcut for
+        /// [LogicalKeyboardKey.select] to the default shortcuts without needing to
+        /// add your own [Shortcuts] widget.
+        ///
+        /// Alternatively, you could insert a [Shortcuts] widget with just the mapping
+        /// you want to add between the [WidgetsApp] and its child and get the same
+        /// effect.
+        ///
+        /// ```dart
+        /// Widget build(BuildContext context) {
+        ///   return WidgetsApp(
+        ///     shortcuts: <LogicalKeySet, Intent>{
+        ///       ... WidgetsApp.defaultShortcuts,
+        ///       LogicalKeySet(LogicalKeyboardKey.select): const Intent(ActivateAction.key),
+        ///     },
+        ///     color: const Color(0xFFFF0000),
+        ///     builder: (BuildContext context, Widget child) {
+        ///       return const Placeholder();
+        ///     },
+        ///   );
+        /// }
+        /// ```
+        /// {@end-tool}
+        ///
+        /// {@template flutter.widgets.widgetsApp.shortcuts.seeAlso}
+        /// See also:
+        ///
+        ///  * [LogicalKeySet], a set of [LogicalKeyboardKey]s that make up the keys
+        ///    for this map.
+        ///  * The [Shortcuts] widget, which defines a keyboard mapping.
+        ///  * The [Actions] widget, which defines the mapping from intent to action.
+        ///  * The [Intent] and [Action] classes, which allow definition of new
+        ///    actions.
+        /// {@endtemplate}
+        /// </Summary>
         public virtual Dictionary<FlutterSDK.Widgets.Shortcuts.LogicalKeySet, FlutterSDK.Widgets.Actions.Intent> Shortcuts { get; set; }
+        /// <Summary>
+        /// {@template flutter.widgets.widgetsApp.actions}
+        /// The default map of intent keys to actions for the application.
+        ///
+        /// By default, this is the output of [WidgetsApp.defaultActions], called with
+        /// [defaultTargetPlatform]. Specifying [actions] for an app overrides the
+        /// default, so if you wish to modify the default [actions], you can call
+        /// [WidgetsApp.defaultActions] and modify the resulting map, passing it as
+        /// the [actions] for this app. You may also add to the bindings, or override
+        /// specific bindings for a widget subtree, by adding your own [Actions]
+        /// widget.
+        /// {@endtemplate}
+        ///
+        /// {@tool snippet}
+        /// This example shows how to add a single action handling an
+        /// [ActivateAction] to the default actions without needing to
+        /// add your own [Actions] widget.
+        ///
+        /// Alternatively, you could insert a [Actions] widget with just the mapping
+        /// you want to add between the [WidgetsApp] and its child and get the same
+        /// effect.
+        ///
+        /// ```dart
+        /// Widget build(BuildContext context) {
+        ///   return WidgetsApp(
+        ///     actions: <LocalKey, ActionFactory>{
+        ///       ... WidgetsApp.defaultActions,
+        ///       ActivateAction.key: () => CallbackAction(
+        ///         ActivateAction.key,
+        ///         onInvoke: (FocusNode focusNode, Intent intent) {
+        ///           // Do something here...
+        ///         },
+        ///       ),
+        ///     },
+        ///     color: const Color(0xFFFF0000),
+        ///     builder: (BuildContext context, Widget child) {
+        ///       return const Placeholder();
+        ///     },
+        ///   );
+        /// }
+        /// ```
+        /// {@end-tool}
+        ///
+        /// {@template flutter.widgets.widgetsApp.actions.seeAlso}
+        /// See also:
+        ///
+        ///  * The [shortcuts] parameter, which defines the default set of shortcuts
+        ///    for the application.
+        ///  * The [Shortcuts] widget, which defines a keyboard mapping.
+        ///  * The [Actions] widget, which defines the mapping from intent to action.
+        ///  * The [Intent] and [Action] classes, which allow definition of new
+        ///    actions.
+        /// {@endtemplate}
+        /// </Summary>
         public virtual Dictionary<FlutterSDK.Foundation.Key.LocalKey, object> Actions { get; set; }
+        /// <Summary>
+        /// If true, forces the performance overlay to be visible in all instances.
+        ///
+        /// Used by the `showPerformanceOverlay` observatory extension.
+        /// </Summary>
         public virtual bool ShowPerformanceOverlayOverride { get; set; }
+        /// <Summary>
+        /// If true, forces the widget inspector to be visible.
+        ///
+        /// Used by the `debugShowWidgetInspector` debugging extension.
+        ///
+        /// The inspector allows you to select a location on your device or emulator
+        /// and view what widgets and render objects associated with it. An outline of
+        /// the selected widget and some summary information is shown on device and
+        /// more detailed information is shown in the IDE or Observatory.
+        /// </Summary>
         public virtual bool DebugShowWidgetInspectorOverride { get; set; }
+        /// <Summary>
+        /// If false, prevents the debug banner from being visible.
+        ///
+        /// Used by the `debugAllowBanner` observatory extension.
+        ///
+        /// This is how `flutter run` turns off the banner when you take a screen shot
+        /// with "s".
+        /// </Summary>
         public virtual bool DebugAllowBannerOverride { get; set; }
         internal virtual Dictionary<FlutterSDK.Widgets.Shortcuts.LogicalKeySet, FlutterSDK.Widgets.Actions.Intent> _DefaultShortcuts { get; set; }
         internal virtual Dictionary<FlutterSDK.Widgets.Shortcuts.LogicalKeySet, FlutterSDK.Widgets.Actions.Intent> _DefaultWebShortcuts { get; set; }
         internal virtual Dictionary<FlutterSDK.Widgets.Shortcuts.LogicalKeySet, FlutterSDK.Widgets.Actions.Intent> _DefaultMacOsShortcuts { get; set; }
+        /// <Summary>
+        /// The default value of [WidgetsApp.actions].
+        /// </Summary>
         public virtual Dictionary<FlutterSDK.Foundation.Key.LocalKey, object> DefaultActions { get; set; }
         public virtual Dictionary<FlutterSDK.Widgets.Shortcuts.LogicalKeySet, FlutterSDK.Widgets.Actions.Intent> DefaultShortcuts { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 
@@ -543,6 +1239,9 @@ namespace FlutterSDK.Widgets.App
         public _WidgetsAppState()
         { }
         internal virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Navigator.NavigatorState> _Navigator { get; set; }
+        /// <Summary>
+        /// This is the resolved locale, and is one of the supportedLocales.
+        /// </Summary>
         internal virtual Locale _Locale { get; set; }
         internal virtual Iterable<FlutterSDK.Widgets.Localizations.LocalizationsDelegate<object>> _LocalizationsDelegates { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 

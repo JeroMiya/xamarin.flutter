@@ -436,6 +436,15 @@ namespace FlutterSDK.Widgets.Icondata
     /// </Summary>
     public class IconData
     {
+        /// <Summary>
+        /// Creates icon data.
+        ///
+        /// Rarely used directly. Instead, consider using one of the predefined icons
+        /// like the [Icons] collection.
+        ///
+        /// The [fontPackage] argument must be non-null when using a font family that
+        /// is included in a package. This is used when selecting the font.
+        /// </Summary>
         public IconData(int codePoint, string fontFamily = default(string), string fontPackage = default(string), bool matchTextDirection = false)
         {
             this.CodePoint = codePoint;
@@ -443,9 +452,32 @@ namespace FlutterSDK.Widgets.Icondata
             this.FontPackage = fontPackage;
             this.MatchTextDirection = matchTextDirection;
         }
+        /// <Summary>
+        /// The Unicode code point at which this icon is stored in the icon font.
+        /// </Summary>
         public virtual int CodePoint { get; set; }
+        /// <Summary>
+        /// The font family from which the glyph for the [codePoint] will be selected.
+        /// </Summary>
         public virtual string FontFamily { get; set; }
+        /// <Summary>
+        /// The name of the package from which the font family is included.
+        ///
+        /// The name is used by the [Icon] widget when configuring the [TextStyle] so
+        /// that the given [fontFamily] is obtained from the appropriate asset.
+        ///
+        /// See also:
+        ///
+        ///  * [TextStyle], which describes how to use fonts from other packages.
+        /// </Summary>
         public virtual string FontPackage { get; set; }
+        /// <Summary>
+        /// Whether this icon should be automatically mirrored in right-to-left
+        /// environments.
+        ///
+        /// The [Icon] widget respects this value by mirroring the icon when the
+        /// [Directionality] is [TextDirection.rtl].
+        /// </Summary>
         public virtual bool MatchTextDirection { get; set; }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 
@@ -466,6 +498,11 @@ namespace FlutterSDK.Widgets.Icondata
     /// </Summary>
     public class IconDataProperty : FlutterSDK.Foundation.Diagnostics.DiagnosticsProperty<FlutterSDK.Widgets.Icondata.IconData>
     {
+        /// <Summary>
+        /// Create a diagnostics property for [IconData].
+        ///
+        /// The [showName], [style], and [level] arguments must not be null.
+        /// </Summary>
         public IconDataProperty(string name, FlutterSDK.Widgets.Icondata.IconData value, string ifNull = default(string), bool showName = true, FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle style = default(FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle), FlutterSDK.Foundation.Diagnostics.DiagnosticLevel level = default(FlutterSDK.Foundation.Diagnostics.DiagnosticLevel))
         : base(name, value, showName: showName, ifNull: ifNull, style: style, level: level)
         {

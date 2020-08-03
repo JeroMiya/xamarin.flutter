@@ -442,6 +442,20 @@ namespace FlutterSDK.Widgets.Text
     /// </Summary>
     public class DefaultTextStyle : FlutterSDK.Widgets.Inheritedtheme.InheritedTheme
     {
+        /// <Summary>
+        /// Creates a default text style for the given subtree.
+        ///
+        /// Consider using [DefaultTextStyle.merge] to inherit styling information
+        /// from the current default text style for a given [BuildContext].
+        ///
+        /// The [style] and [child] arguments are required and must not be null.
+        ///
+        /// The [softWrap] and [overflow] arguments must not be null (though they do
+        /// have default values).
+        ///
+        /// The [maxLines] property may be null (and indeed defaults to null), but if
+        /// it is not null, it must be greater than zero.
+        /// </Summary>
         public DefaultTextStyle(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Textstyle.TextStyle style = default(FlutterSDK.Painting.Textstyle.TextStyle), TextAlign textAlign = default(TextAlign), bool softWrap = true, FlutterSDK.Rendering.Paragraph.TextOverflow overflow = default(FlutterSDK.Rendering.Paragraph.TextOverflow), int maxLines = default(int), FlutterSDK.Painting.Textpainter.TextWidthBasis textWidthBasis = default(FlutterSDK.Painting.Textpainter.TextWidthBasis), TextHeightBehavior textHeightBehavior = default(TextHeightBehavior), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
@@ -453,16 +467,57 @@ namespace FlutterSDK.Widgets.Text
             this.TextWidthBasis = textWidthBasis;
             this.TextHeightBehavior = textHeightBehavior;
         }
+        /// <Summary>
+        /// A const-constructible default text style that provides fallback values.
+        ///
+        /// Returned from [of] when the given [BuildContext] doesn't have an enclosing default text style.
+        ///
+        /// This constructor creates a [DefaultTextStyle] that lacks a [child], which
+        /// means the constructed value cannot be incorporated into the tree.
+        /// </Summary>
         public static DefaultTextStyle Fallback(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key))
         {
             var instance = new DefaultTextStyle(key: key, child: null);
         }
+        /// <Summary>
+        /// The text style to apply.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Textstyle.TextStyle Style { get; set; }
+        /// <Summary>
+        /// How the text should be aligned horizontally.
+        /// </Summary>
         public virtual TextAlign TextAlign { get; set; }
+        /// <Summary>
+        /// Whether the text should break at soft line breaks.
+        ///
+        /// If false, the glyphs in the text will be positioned as if there was unlimited horizontal space.
+        /// </Summary>
         public virtual bool SoftWrap { get; set; }
+        /// <Summary>
+        /// How visual overflow should be handled.
+        /// </Summary>
         public virtual FlutterSDK.Rendering.Paragraph.TextOverflow Overflow { get; set; }
+        /// <Summary>
+        /// An optional maximum number of lines for the text to span, wrapping if necessary.
+        /// If the text exceeds the given number of lines, it will be truncated according
+        /// to [overflow].
+        ///
+        /// If this is 1, text will not wrap. Otherwise, text will be wrapped at the
+        /// edge of the box.
+        ///
+        /// If this is non-null, it will override even explicit null values of
+        /// [Text.maxLines].
+        /// </Summary>
         public virtual int MaxLines { get; set; }
+        /// <Summary>
+        /// The strategy to use when calculating the width of the Text.
+        ///
+        /// See [TextWidthBasis] for possible values and their implications.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Textpainter.TextWidthBasis TextWidthBasis { get; set; }
+        /// <Summary>
+        /// {@macro flutter.dart:ui.textHeightBehavior}
+        /// </Summary>
         public virtual TextHeightBehavior TextHeightBehavior { get; set; }
 
         /// <Summary>
@@ -632,6 +687,14 @@ namespace FlutterSDK.Widgets.Text
     /// </Summary>
     public class Text : FlutterSDK.Widgets.Framework.StatelessWidget
     {
+        /// <Summary>
+        /// Creates a text widget.
+        ///
+        /// If the [style] argument is null, the text will use the style from the
+        /// closest enclosing [DefaultTextStyle].
+        ///
+        /// The [data] parameter must not be null.
+        /// </Summary>
         public Text(string data, FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Textstyle.TextStyle style = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Strutstyle.StrutStyle strutStyle = default(FlutterSDK.Painting.Strutstyle.StrutStyle), TextAlign textAlign = default(TextAlign), TextDirection textDirection = default(TextDirection), Locale locale = default(Locale), bool softWrap = default(bool), FlutterSDK.Rendering.Paragraph.TextOverflow overflow = default(FlutterSDK.Rendering.Paragraph.TextOverflow), double textScaleFactor = default(double), int maxLines = default(int), string semanticsLabel = default(string), FlutterSDK.Painting.Textpainter.TextWidthBasis textWidthBasis = default(FlutterSDK.Painting.Textpainter.TextWidthBasis), TextHeightBehavior textHeightBehavior = default(TextHeightBehavior))
         : base(key: key)
         {
@@ -649,6 +712,18 @@ namespace FlutterSDK.Widgets.Text
             this.TextWidthBasis = textWidthBasis;
             this.TextHeightBehavior = textHeightBehavior;
         }
+        /// <Summary>
+        /// Creates a text widget with a [InlineSpan].
+        ///
+        /// The following subclasses of [InlineSpan] may be used to build rich text:
+        ///
+        /// * [TextSpan]s define text and children [InlineSpan]s.
+        /// * [WidgetSpan]s define embedded inline widgets.
+        ///
+        /// The [textSpan] parameter must not be null.
+        ///
+        /// See [RichText] which provides a lower-level way to draw text.
+        /// </Summary>
         public static Text Rich(FlutterSDK.Painting.Inlinespan.InlineSpan textSpan, FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Textstyle.TextStyle style = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Strutstyle.StrutStyle strutStyle = default(FlutterSDK.Painting.Strutstyle.StrutStyle), TextAlign textAlign = default(TextAlign), TextDirection textDirection = default(TextDirection), Locale locale = default(Locale), bool softWrap = default(bool), FlutterSDK.Rendering.Paragraph.TextOverflow overflow = default(FlutterSDK.Rendering.Paragraph.TextOverflow), double textScaleFactor = default(double), int maxLines = default(int), string semanticsLabel = default(string), FlutterSDK.Painting.Textpainter.TextWidthBasis textWidthBasis = default(FlutterSDK.Painting.Textpainter.TextWidthBasis), TextHeightBehavior textHeightBehavior = default(TextHeightBehavior))
         {
             var instance = new Text(key: key); instance.TextSpan = textSpan;
@@ -665,19 +740,117 @@ namespace FlutterSDK.Widgets.Text
             instance.TextWidthBasis = textWidthBasis;
             instance.TextHeightBehavior = textHeightBehavior;
         }
+        /// <Summary>
+        /// The text to display.
+        ///
+        /// This will be null if a [textSpan] is provided instead.
+        /// </Summary>
         public virtual string Data { get; set; }
+        /// <Summary>
+        /// The text to display as a [InlineSpan].
+        ///
+        /// This will be null if [data] is provided instead.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Inlinespan.InlineSpan TextSpan { get; set; }
+        /// <Summary>
+        /// If non-null, the style to use for this text.
+        ///
+        /// If the style's "inherit" property is true, the style will be merged with
+        /// the closest enclosing [DefaultTextStyle]. Otherwise, the style will
+        /// replace the closest enclosing [DefaultTextStyle].
+        /// </Summary>
         public virtual FlutterSDK.Painting.Textstyle.TextStyle Style { get; set; }
+        /// <Summary>
+        /// {@macro flutter.painting.textPainter.strutStyle}
+        /// </Summary>
         public virtual FlutterSDK.Painting.Strutstyle.StrutStyle StrutStyle { get; set; }
+        /// <Summary>
+        /// How the text should be aligned horizontally.
+        /// </Summary>
         public virtual TextAlign TextAlign { get; set; }
+        /// <Summary>
+        /// The directionality of the text.
+        ///
+        /// This decides how [textAlign] values like [TextAlign.start] and
+        /// [TextAlign.end] are interpreted.
+        ///
+        /// This is also used to disambiguate how to render bidirectional text. For
+        /// example, if the [data] is an English phrase followed by a Hebrew phrase,
+        /// in a [TextDirection.ltr] context the English phrase will be on the left
+        /// and the Hebrew phrase to its right, while in a [TextDirection.rtl]
+        /// context, the English phrase will be on the right and the Hebrew phrase on
+        /// its left.
+        ///
+        /// Defaults to the ambient [Directionality], if any.
+        /// </Summary>
         public virtual TextDirection TextDirection { get; set; }
+        /// <Summary>
+        /// Used to select a font when the same Unicode character can
+        /// be rendered differently, depending on the locale.
+        ///
+        /// It's rarely necessary to set this property. By default its value
+        /// is inherited from the enclosing app with `Localizations.localeOf(context)`.
+        ///
+        /// See [RenderParagraph.locale] for more information.
+        /// </Summary>
         public virtual Locale Locale { get; set; }
+        /// <Summary>
+        /// Whether the text should break at soft line breaks.
+        ///
+        /// If false, the glyphs in the text will be positioned as if there was unlimited horizontal space.
+        /// </Summary>
         public virtual bool SoftWrap { get; set; }
+        /// <Summary>
+        /// How visual overflow should be handled.
+        /// </Summary>
         public virtual FlutterSDK.Rendering.Paragraph.TextOverflow Overflow { get; set; }
+        /// <Summary>
+        /// The number of font pixels for each logical pixel.
+        ///
+        /// For example, if the text scale factor is 1.5, text will be 50% larger than
+        /// the specified font size.
+        ///
+        /// The value given to the constructor as textScaleFactor. If null, will
+        /// use the [MediaQueryData.textScaleFactor] obtained from the ambient
+        /// [MediaQuery], or 1.0 if there is no [MediaQuery] in scope.
+        /// </Summary>
         public virtual double TextScaleFactor { get; set; }
+        /// <Summary>
+        /// An optional maximum number of lines for the text to span, wrapping if necessary.
+        /// If the text exceeds the given number of lines, it will be truncated according
+        /// to [overflow].
+        ///
+        /// If this is 1, text will not wrap. Otherwise, text will be wrapped at the
+        /// edge of the box.
+        ///
+        /// If this is null, but there is an ambient [DefaultTextStyle] that specifies
+        /// an explicit number for its [DefaultTextStyle.maxLines], then the
+        /// [DefaultTextStyle] value will take precedence. You can use a [RichText]
+        /// widget directly to entirely override the [DefaultTextStyle].
+        /// </Summary>
         public virtual int MaxLines { get; set; }
+        /// <Summary>
+        /// An alternative semantics label for this text.
+        ///
+        /// If present, the semantics of this widget will contain this value instead
+        /// of the actual text. This will overwrite any of the semantics labels applied
+        /// directly to the [TextSpan]s.
+        ///
+        /// This is useful for replacing abbreviations or shorthands with the full
+        /// text value:
+        ///
+        /// ```dart
+        /// Text(r'$$', semanticsLabel: 'Double dollars')
+        /// ```
+        /// </Summary>
         public virtual string SemanticsLabel { get; set; }
+        /// <Summary>
+        /// {@macro flutter.painting.textPainter.textWidthBasis}
+        /// </Summary>
         public virtual FlutterSDK.Painting.Textpainter.TextWidthBasis TextWidthBasis { get; set; }
+        /// <Summary>
+        /// {@macro flutter.dart:ui.textHeightBehavior}
+        /// </Summary>
         public virtual TextHeightBehavior TextHeightBehavior { get; set; }
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)

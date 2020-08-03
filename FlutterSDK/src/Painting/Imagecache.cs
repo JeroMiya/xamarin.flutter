@@ -434,6 +434,12 @@ namespace FlutterSDK.Painting.Imagecache
     {
         internal virtual Dictionary<@Object, FlutterSDK.Painting.Imagecache._PendingImage> _PendingImages { get; set; }
         internal virtual Dictionary<@Object, FlutterSDK.Painting.Imagecache._CachedImage> _Cache { get; set; }
+        /// <Summary>
+        /// ImageStreamCompleters with at least one listener. These images may or may
+        /// not fit into the _pendingImages or _cache objects.
+        ///
+        /// Unlike _cache, the [_CachedImage] for this may have a null byte size.
+        /// </Summary>
         internal virtual Dictionary<@Object, FlutterSDK.Painting.Imagecache._LiveImage> _LiveImages { get; set; }
         internal virtual int _MaximumSize { get; set; }
         internal virtual int _MaximumSizeBytes { get; set; }
@@ -883,8 +889,27 @@ namespace FlutterSDK.Painting.Imagecache
             this.KeepAlive = keepAlive;
             this.Live = live;
         }
+        /// <Summary>
+        /// An image that has been submitted to [ImageCache.putIfAbsent], but
+        /// not yet completed.
+        /// </Summary>
         public virtual bool Pending { get; set; }
+        /// <Summary>
+        /// An image that has been submitted to [ImageCache.putIfAbsent], has
+        /// completed, fits based on the sizing rules of the cache, and has not been
+        /// evicted.
+        ///
+        /// Such images will be kept alive even if [live] is false, as long
+        /// as they have not been evicted from the cache based on its sizing rules.
+        /// </Summary>
         public virtual bool KeepAlive { get; set; }
+        /// <Summary>
+        /// An image that has been submitted to [ImageCache.putIfAbsent] and has at
+        /// least one listener on its [ImageStreamCompleter].
+        ///
+        /// Such images may also be [keepAlive] if they fit in the cache based on its
+        /// sizing rules. They may also be [pending] if they have not yet resolved.
+        /// </Summary>
         public virtual bool Live { get; set; }
         public virtual bool Tracked { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool Untracked { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }

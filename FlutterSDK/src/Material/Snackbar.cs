@@ -438,6 +438,11 @@ namespace FlutterSDK.Material.Snackbar
     /// </Summary>
     public class SnackBarAction : FlutterSDK.Widgets.Framework.StatefulWidget
     {
+        /// <Summary>
+        /// Creates an action for a [SnackBar].
+        ///
+        /// The [label] and [onPressed] arguments must be non-null.
+        /// </Summary>
         public SnackBarAction(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterBinding.UI.Color textColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color disabledTextColor = default(FlutterBinding.UI.Color), string label = default(string), VoidCallback onPressed = default(VoidCallback))
         : base(key: key)
         {
@@ -446,9 +451,25 @@ namespace FlutterSDK.Material.Snackbar
             this.Label = label;
             this.OnPressed = onPressed;
         }
+        /// <Summary>
+        /// The button label color. If not provided, defaults to [accentColor].
+        /// </Summary>
         public virtual FlutterBinding.UI.Color TextColor { get; set; }
+        /// <Summary>
+        /// The button disabled label color. This color is shown after the
+        /// [snackBarAction] is dismissed.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color DisabledTextColor { get; set; }
+        /// <Summary>
+        /// The button label.
+        /// </Summary>
         public virtual string Label { get; set; }
+        /// <Summary>
+        /// The callback to be called when the button is pressed. Must not be null.
+        ///
+        /// This callback will be called at most once each time this action is
+        /// displayed in a [SnackBar].
+        /// </Summary>
         public virtual VoidCallback OnPressed { get; set; }
 
         public new FlutterSDK.Material.Snackbar._SnackBarActionState CreateState() => new _SnackBarActionState();
@@ -518,6 +539,12 @@ namespace FlutterSDK.Material.Snackbar
     /// </Summary>
     public class SnackBar : FlutterSDK.Widgets.Framework.StatefulWidget
     {
+        /// <Summary>
+        /// Creates a snack bar.
+        ///
+        /// The [content] argument must be non-null. The [elevation] must be null or
+        /// non-negative.
+        /// </Summary>
         public SnackBar(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget content = default(FlutterSDK.Widgets.Framework.Widget), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), double elevation = default(double), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), FlutterSDK.Material.Snackbartheme.SnackBarBehavior behavior = default(FlutterSDK.Material.Snackbartheme.SnackBarBehavior), FlutterSDK.Material.Snackbar.SnackBarAction action = default(FlutterSDK.Material.Snackbar.SnackBarAction), TimeSpan duration = default(TimeSpan), FlutterSDK.Animation.Animation.Animation<double> animation = default(FlutterSDK.Animation.Animation.Animation<double>), VoidCallback onVisible = default(VoidCallback))
         : base(key: key)
         {
@@ -531,14 +558,81 @@ namespace FlutterSDK.Material.Snackbar
             this.Animation = animation;
             this.OnVisible = onVisible;
         }
+        /// <Summary>
+        /// The primary content of the snack bar.
+        ///
+        /// Typically a [Text] widget.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Content { get; set; }
+        /// <Summary>
+        /// The Snackbar's background color. If not specified it will use
+        /// [ThemeData.snackBarTheme.backgroundColor]. If that is not specified
+        /// it will default to a dark variation of [ColorScheme.surface] for light
+        /// themes, or [ColorScheme.onSurface] for dark themes.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
+        /// <Summary>
+        /// The z-coordinate at which to place the snack bar. This controls the size
+        /// of the shadow below the snack bar.
+        ///
+        /// Defines the card's [Material.elevation].
+        ///
+        /// If this property is null, then [ThemeData.snackBarTheme.elevation] is
+        /// used, if that is also null, the default value is 6.0.
+        /// </Summary>
         public virtual double Elevation { get; set; }
+        /// <Summary>
+        /// The shape of the snack bar's [Material].
+        ///
+        /// Defines the snack bar's [Material.shape].
+        ///
+        /// If this property is null then [ThemeData.snackBarTheme.shape] is used.
+        /// If that's null then the shape will depend on the [SnackBarBehavior]. For
+        /// [SnackBarBehavior.fixed], no overriding shape is specified, so the
+        /// [SnackBar] is rectangular. For [SnackBarBehavior.floating], it uses a
+        /// [RoundedRectangleBorder] with a circular corner radius of 4.0.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Borders.ShapeBorder Shape { get; set; }
+        /// <Summary>
+        /// This defines the behavior and location of the snack bar.
+        ///
+        /// Defines where a [SnackBar] should appear within a [Scaffold] and how its
+        /// location should be adjusted when the scaffold also includes a
+        /// [FloatingActionButton] or a [BottomNavigationBar]
+        ///
+        /// If this property is null, then [ThemeData.snackBarTheme.behavior]
+        /// is used. If that is null, then the default is [SnackBarBehavior.fixed].
+        /// </Summary>
         public virtual FlutterSDK.Material.Snackbartheme.SnackBarBehavior Behavior { get; set; }
+        /// <Summary>
+        /// (optional) An action that the user can take based on the snack bar.
+        ///
+        /// For example, the snack bar might let the user undo the operation that
+        /// prompted the snackbar. Snack bars can have at most one action.
+        ///
+        /// The action should not be "dismiss" or "cancel".
+        /// </Summary>
         public virtual FlutterSDK.Material.Snackbar.SnackBarAction Action { get; set; }
+        /// <Summary>
+        /// The amount of time the snack bar should be displayed.
+        ///
+        /// Defaults to 4.0s.
+        ///
+        /// See also:
+        ///
+        ///  * [ScaffoldState.removeCurrentSnackBar], which abruptly hides the
+        ///    currently displayed snack bar, if any, and allows the next to be
+        ///    displayed.
+        ///  * <https://material.io/design/components/snackbars.html>
+        /// </Summary>
         public virtual TimeSpan Duration { get; set; }
+        /// <Summary>
+        /// The animation driving the entrance and exit of the snack bar.
+        /// </Summary>
         public virtual FlutterSDK.Animation.Animation.Animation<double> Animation { get; set; }
+        /// <Summary>
+        /// Called the first time that the snackbar is visible within a [Scaffold].
+        /// </Summary>
         public virtual VoidCallback OnVisible { get; set; }
 
         /// <Summary>

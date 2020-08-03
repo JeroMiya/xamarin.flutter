@@ -495,6 +495,9 @@ namespace FlutterSDK.Widgets.Gridpaper
     /// </Summary>
     public class GridPaper : FlutterSDK.Widgets.Framework.StatelessWidget
     {
+        /// <Summary>
+        /// Creates a widget that draws a rectilinear grid of 1-pixel-wide lines.
+        /// </Summary>
         public GridPaper(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), double interval = 100.0, int divisions = 2, int subdivisions = 5, FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key)
         {
@@ -504,10 +507,47 @@ namespace FlutterSDK.Widgets.Gridpaper
             this.Subdivisions = subdivisions;
             this.Child = child;
         }
+        /// <Summary>
+        /// The color to draw the lines in the grid.
+        ///
+        /// Defaults to a light blue commonly seen on traditional grid paper.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color Color { get; set; }
+        /// <Summary>
+        /// The distance between the primary lines in the grid, in logical pixels.
+        ///
+        /// Each primary line is one logical pixel wide.
+        /// </Summary>
         public virtual double Interval { get; set; }
+        /// <Summary>
+        /// The number of major divisions within each primary grid cell.
+        ///
+        /// This is the number of major divisions per [interval], including the
+        /// primary grid's line.
+        ///
+        /// The lines after the first are half a logical pixel wide.
+        ///
+        /// If this is set to 2 (the default), then for each [interval] there will be
+        /// a 1-pixel line on the left, a half-pixel line in the middle, and a 1-pixel
+        /// line on the right (the latter being the 1-pixel line on the left of the
+        /// next [interval]).
+        /// </Summary>
         public virtual int Divisions { get; set; }
+        /// <Summary>
+        /// The number of minor divisions within each major division, including the
+        /// major division itself.
+        ///
+        /// If [subdivisions] is 5 (the default), it means that there will be four
+        /// lines between each major ([divisions]) line.
+        ///
+        /// The subdivision lines after the first are a quarter of a logical pixel wide.
+        /// </Summary>
         public virtual int Subdivisions { get; set; }
+        /// <Summary>
+        /// The widget below this widget in the tree.
+        ///
+        /// {@macro flutter.widgets.child}
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)

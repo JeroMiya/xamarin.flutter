@@ -523,6 +523,12 @@ namespace FlutterSDK.Painting.Colors
     /// </Summary>
     public class HSVColor
     {
+        /// <Summary>
+        /// Creates a color.
+        ///
+        /// All the arguments must not be null and be in their respective ranges. See
+        /// the fields for each parameter for a description of their ranges.
+        /// </Summary>
         public static HSVColor FromAHSV(double alpha, double hue, double saturation, double value)
         {
             var instance = new HSVColor(); instance.Alpha = alpha;
@@ -530,6 +536,12 @@ namespace FlutterSDK.Painting.Colors
             instance.Saturation = saturation;
             instance.Value = value;
         }
+        /// <Summary>
+        /// Creates an [HSVColor] from an RGB [Color].
+        ///
+        /// This constructor does not necessarily round-trip with [toColor] because
+        /// of floating point imprecision.
+        /// </Summary>
         public static HSVColor FromColor(FlutterBinding.UI.Color color)
         {
             var instance = new HSVColor();
@@ -546,9 +558,31 @@ namespace FlutterSDK.Painting.Colors
         }
 
 
+        /// <Summary>
+        /// Alpha, from 0.0 to 1.0. The describes the transparency of the color.
+        /// A value of 0.0 is fully transparent, and 1.0 is fully opaque.
+        /// </Summary>
         public virtual double Alpha { get; set; }
+        /// <Summary>
+        /// Hue, from 0.0 to 360.0. Describes which color of the spectrum is
+        /// represented. A value of 0.0 represents red, as does 360.0. Values in
+        /// between go through all the hues representable in RGB. You can think of
+        /// this as selecting which pigment will be added to a color.
+        /// </Summary>
         public virtual double Hue { get; set; }
+        /// <Summary>
+        /// Saturation, from 0.0 to 1.0. This describes how colorful the color is.
+        /// 0.0 implies a shade of grey (i.e. no pigment), and 1.0 implies a color as
+        /// vibrant as that hue gets. You can think of this as the equivalent of
+        /// how much of a pigment is added.
+        /// </Summary>
         public virtual double Saturation { get; set; }
+        /// <Summary>
+        /// Value, from 0.0 to 1.0. The "value" of a color that, in this context,
+        /// describes how bright a color is. A value of 0.0 indicates black, and 1.0
+        /// indicates full intensity color. You can think of this as the equivalent of
+        /// removing black from the color as value increases.
+        /// </Summary>
         public virtual double Value { get; set; }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 
@@ -688,6 +722,12 @@ namespace FlutterSDK.Painting.Colors
     /// </Summary>
     public class HSLColor
     {
+        /// <Summary>
+        /// Creates a color.
+        ///
+        /// All the arguments must not be null and be in their respective ranges. See
+        /// the fields for each parameter for a description of their ranges.
+        /// </Summary>
         public static HSLColor FromAHSL(double alpha, double hue, double saturation, double lightness)
         {
             var instance = new HSLColor(); instance.Alpha = alpha;
@@ -695,6 +735,12 @@ namespace FlutterSDK.Painting.Colors
             instance.Saturation = saturation;
             instance.Lightness = lightness;
         }
+        /// <Summary>
+        /// Creates an [HSLColor] from an RGB [Color].
+        ///
+        /// This constructor does not necessarily round-trip with [toColor] because
+        /// of floating point imprecision.
+        /// </Summary>
         public static HSLColor FromColor(FlutterBinding.UI.Color color)
         {
             var instance = new HSLColor();
@@ -712,9 +758,33 @@ namespace FlutterSDK.Painting.Colors
         }
 
 
+        /// <Summary>
+        /// Alpha, from 0.0 to 1.0. The describes the transparency of the color.
+        /// A value of 0.0 is fully transparent, and 1.0 is fully opaque.
+        /// </Summary>
         public virtual double Alpha { get; set; }
+        /// <Summary>
+        /// Hue, from 0.0 to 360.0. Describes which color of the spectrum is
+        /// represented. A value of 0.0 represents red, as does 360.0. Values in
+        /// between go through all the hues representable in RGB. You can think of
+        /// this as selecting which color filter is placed over a light.
+        /// </Summary>
         public virtual double Hue { get; set; }
+        /// <Summary>
+        /// Saturation, from 0.0 to 1.0. This describes how colorful the color is.
+        /// 0.0 implies a shade of grey (i.e. no pigment), and 1.0 implies a color as
+        /// vibrant as that hue gets. You can think of this as the purity of the
+        /// color filter over the light.
+        /// </Summary>
         public virtual double Saturation { get; set; }
+        /// <Summary>
+        /// Lightness, from 0.0 to 1.0. The lightness of a color describes how bright
+        /// a color is. A value of 0.0 indicates black, and 1.0 indicates white. You
+        /// can think of this as the intensity of the light behind the filter. As the
+        /// lightness approaches 0.5, the colors get brighter and appear more
+        /// saturated, and over 0.5, the colors start to become less saturated and
+        /// approach white at 1.0.
+        /// </Summary>
         public virtual double Lightness { get; set; }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 
@@ -854,6 +924,14 @@ namespace FlutterSDK.Painting.Colors
     /// </Summary>
     public class ColorSwatch<T> : Color
     {
+        /// <Summary>
+        /// Creates a color that has a small table of related colors called a "swatch".
+        ///
+        /// The `primary` argument should be the 32 bit ARGB value of one of the
+        /// values in the swatch, as would be passed to the [new Color] constructor
+        /// for that same color, and as is exposed by [value]. (This is distinct from
+        /// the specific index of the color in the swatch.)
+        /// </Summary>
         public ColorSwatch(int primary, Dictionary<T, Color> _swatch)
         : base(primary)
         {
@@ -887,6 +965,11 @@ namespace FlutterSDK.Painting.Colors
     /// </Summary>
     public class ColorProperty : FlutterSDK.Foundation.Diagnostics.DiagnosticsProperty<Color>
     {
+        /// <Summary>
+        /// Create a diagnostics property for [Color].
+        ///
+        /// The [showName], [style], and [level] arguments must not be null.
+        /// </Summary>
         public ColorProperty(string name, FlutterBinding.UI.Color value, bool showName = true, @Object defaultValue = default(@Object), FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle style = default(FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle), FlutterSDK.Foundation.Diagnostics.DiagnosticLevel level = default(FlutterSDK.Foundation.Diagnostics.DiagnosticLevel))
         : base(name, value, defaultValue: defaultValue, showName: showName, style: style, level: level)
         {

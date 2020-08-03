@@ -452,10 +452,22 @@ namespace FlutterSDK.Semantics.Semanticsevent
     /// </Summary>
     public class SemanticsEvent
     {
+        /// <Summary>
+        /// Initializes internal fields.
+        ///
+        /// [type] is a string that identifies this class of [SemanticsEvent]s.
+        /// </Summary>
         public SemanticsEvent(string type)
         {
             this.Type = type;
         }
+        /// <Summary>
+        /// The type of this event.
+        ///
+        /// The type is used by the engine to translate this event into the
+        /// appropriate native event (`UIAccessibility*Notification` on iOS and
+        /// `AccessibilityEvent` on Android).
+        /// </Summary>
         public virtual string Type { get; set; }
 
         /// <Summary>
@@ -501,13 +513,26 @@ namespace FlutterSDK.Semantics.Semanticsevent
     /// </Summary>
     public class AnnounceSemanticsEvent : FlutterSDK.Semantics.Semanticsevent.SemanticsEvent
     {
+        /// <Summary>
+        /// Constructs an event that triggers an announcement by the platform.
+        /// </Summary>
         public AnnounceSemanticsEvent(string message, TextDirection textDirection)
         : base("announce")
         {
             this.Message = message;
             this.TextDirection = textDirection;
         }
+        /// <Summary>
+        /// The message to announce.
+        ///
+        /// This property must not be null.
+        /// </Summary>
         public virtual string Message { get; set; }
+        /// <Summary>
+        /// Text direction for [message].
+        ///
+        /// This property must not be null.
+        /// </Summary>
         public virtual TextDirection TextDirection { get; set; }
 
         public new Dictionary<string, object> GetDataMap()
@@ -527,11 +552,17 @@ namespace FlutterSDK.Semantics.Semanticsevent
     /// </Summary>
     public class TooltipSemanticsEvent : FlutterSDK.Semantics.Semanticsevent.SemanticsEvent
     {
+        /// <Summary>
+        /// Constructs an event that triggers a tooltip announcement by the platform.
+        /// </Summary>
         public TooltipSemanticsEvent(string message)
         : base("tooltip")
         {
             this.Message = message;
         }
+        /// <Summary>
+        /// The text content of the tooltip.
+        /// </Summary>
         public virtual string Message { get; set; }
 
         public new Dictionary<string, object> GetDataMap()
@@ -552,6 +583,9 @@ namespace FlutterSDK.Semantics.Semanticsevent
     /// </Summary>
     public class LongPressSemanticsEvent : FlutterSDK.Semantics.Semanticsevent.SemanticsEvent
     {
+        /// <Summary>
+        /// Constructs an event that triggers a long-press semantic feedback by the platform.
+        /// </Summary>
         public LongPressSemanticsEvent()
         : base("longPress")
         {
@@ -572,6 +606,9 @@ namespace FlutterSDK.Semantics.Semanticsevent
     /// </Summary>
     public class TapSemanticEvent : FlutterSDK.Semantics.Semanticsevent.SemanticsEvent
     {
+        /// <Summary>
+        /// Constructs an event that triggers a long-press semantic feedback by the platform.
+        /// </Summary>
         public TapSemanticEvent()
         : base("tap")
         {
@@ -602,6 +639,9 @@ namespace FlutterSDK.Semantics.Semanticsevent
     /// </Summary>
     public class UpdateLiveRegionEvent : FlutterSDK.Semantics.Semanticsevent.SemanticsEvent
     {
+        /// <Summary>
+        /// Creates a new [UpdateLiveRegionEvent].
+        /// </Summary>
         public UpdateLiveRegionEvent()
         : base("updateLiveRegion")
         {

@@ -432,12 +432,23 @@ namespace FlutterSDK.Rendering.View
     /// </Summary>
     public class ViewConfiguration
     {
+        /// <Summary>
+        /// Creates a view configuration.
+        ///
+        /// By default, the view has zero [size] and a [devicePixelRatio] of 1.0.
+        /// </Summary>
         public ViewConfiguration(Size size = default(Size), double devicePixelRatio = 1.0)
         {
             this.Size = size;
             this.DevicePixelRatio = devicePixelRatio;
         }
+        /// <Summary>
+        /// The size of the output surface.
+        /// </Summary>
         public virtual Size Size { get; set; }
+        /// <Summary>
+        /// The pixel density of the output surface.
+        /// </Summary>
         public virtual double DevicePixelRatio { get; set; }
 
         /// <Summary>
@@ -463,6 +474,13 @@ namespace FlutterSDK.Rendering.View
     /// </Summary>
     public class RenderView : FlutterSDK.Rendering.@object.RenderObject, IRenderObjectWithChildMixin<FlutterSDK.Rendering.Box.RenderBox>
     {
+        /// <Summary>
+        /// Creates the root of the render tree.
+        ///
+        /// Typically created by the binding (e.g., [RendererBinding]).
+        ///
+        /// The [configuration] must not be null.
+        /// </Summary>
         public RenderView(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox), FlutterSDK.Rendering.View.ViewConfiguration configuration = default(FlutterSDK.Rendering.View.ViewConfiguration), Window window = default(Window))
         : base()
         {
@@ -474,6 +492,27 @@ namespace FlutterSDK.Rendering.View
         internal virtual Size _Size { get; set; }
         internal virtual FlutterSDK.Rendering.View.ViewConfiguration _Configuration { get; set; }
         internal virtual Window _Window { get; set; }
+        /// <Summary>
+        /// Whether Flutter should automatically compute the desired system UI.
+        ///
+        /// When this setting is enabled, Flutter will hit-test the layer tree at the
+        /// top and bottom of the screen on each frame looking for an
+        /// [AnnotatedRegionLayer] with an instance of a [SystemUiOverlayStyle]. The
+        /// hit-test result from the top of the screen provides the status bar settings
+        /// and the hit-test result from the bottom of the screen provides the system
+        /// nav bar settings.
+        ///
+        /// Setting this to false does not cause previous automatic adjustments to be
+        /// reset, nor does setting it to true cause the app to update immediately.
+        ///
+        /// If you want to imperatively set the system ui style instead, it is
+        /// recommended that [automaticSystemUiAdjustment] is set to false.
+        ///
+        /// See also:
+        ///
+        ///  * [AnnotatedRegion], for placing [SystemUiOverlayStyle] in the layer tree.
+        ///  * [SystemChrome.setSystemUIOverlayStyle], for imperatively setting the system ui style.
+        /// </Summary>
         public virtual bool AutomaticSystemUiAdjustment { get; set; }
         internal virtual Matrix4 _RootTransform { get; set; }
         public virtual Size Size { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }

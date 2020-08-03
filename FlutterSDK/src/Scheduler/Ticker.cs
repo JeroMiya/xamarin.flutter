@@ -423,6 +423,12 @@ using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
 namespace FlutterSDK.Scheduler.Ticker
 {
+    /// <Summary>
+    /// Signature for the callback passed to the [Ticker] class's constructor.
+    ///
+    /// The argument is the time that the object had spent enabled so far
+    /// at the time of the callback being called.
+    /// </Summary>
     public delegate void TickerCallback(TimeSpan elapsed);
     internal static class TickerDefaultClass
     {
@@ -466,6 +472,10 @@ namespace FlutterSDK.Scheduler.Ticker
     /// </Summary>
     public class TickerProvider
     {
+        /// <Summary>
+        /// Abstract const constructor. This constructor enables subclasses to provide
+        /// const constructors so that they can be used in const expressions.
+        /// </Summary>
         public TickerProvider()
         {
 
@@ -503,6 +513,13 @@ namespace FlutterSDK.Scheduler.Ticker
     /// </Summary>
     public class Ticker
     {
+        /// <Summary>
+        /// Creates a ticker that will call the provided callback once per frame while
+        /// running.
+        ///
+        /// An optional label can be provided for debugging purposes. That label
+        /// will appear in the [toString] output in debug builds.
+        /// </Summary>
         public Ticker(FlutterSDK.Scheduler.Ticker.TickerCallback _onTick, string debugLabel = default(string))
         {
             this._OnTick = _onTick;
@@ -516,6 +533,11 @@ namespace FlutterSDK.Scheduler.Ticker
         internal virtual TimeSpan _StartTime { get; set; }
         internal virtual FlutterSDK.Scheduler.Ticker.TickerCallback _OnTick { get; set; }
         internal virtual int _AnimationId { get; set; }
+        /// <Summary>
+        /// An optional label can be provided for debugging purposes.
+        ///
+        /// This label will appear in the [toString] output in debug builds.
+        /// </Summary>
         public virtual string DebugLabel { get; set; }
         internal virtual StackTrace _DebugCreationStack { get; set; }
         public virtual bool Muted { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
@@ -739,6 +761,15 @@ namespace FlutterSDK.Scheduler.Ticker
         {
 
         }
+        /// <Summary>
+        /// Creates a [TickerFuture] instance that represents an already-complete
+        /// [Ticker] sequence.
+        ///
+        /// This is useful for implementing objects that normally defer to a [Ticker]
+        /// but sometimes can skip the ticker because the animation is of zero
+        /// duration, but which still need to represent the completed animation in the
+        /// form of a [TickerFuture].
+        /// </Summary>
         public static TickerFuture Complete()
         {
             var instance = new TickerFuture();
@@ -842,10 +873,19 @@ namespace FlutterSDK.Scheduler.Ticker
     /// </Summary>
     public class TickerCanceled : IException
     {
+        /// <Summary>
+        /// Creates a canceled-ticker exception.
+        /// </Summary>
         public TickerCanceled(FlutterSDK.Scheduler.Ticker.Ticker ticker = default(FlutterSDK.Scheduler.Ticker.Ticker))
         {
             this.Ticker = ticker;
         }
+        /// <Summary>
+        /// Reference to the [Ticker] object that was canceled.
+        ///
+        /// This may be null in the case that the [Future] created for
+        /// [TickerFuture.orCancel] was created after the ticker was canceled.
+        /// </Summary>
         public virtual FlutterSDK.Scheduler.Ticker.Ticker Ticker { get; set; }
 
     }

@@ -434,13 +434,28 @@ namespace FlutterSDK.Material.Tabindicator
     /// </Summary>
     public class UnderlineTabIndicator : FlutterSDK.Painting.Decoration.Decoration
     {
+        /// <Summary>
+        /// Create an underline style selected tab indicator.
+        ///
+        /// The [borderSide] and [insets] arguments must not be null.
+        /// </Summary>
         public UnderlineTabIndicator(FlutterSDK.Painting.Borders.BorderSide borderSide = default(FlutterSDK.Painting.Borders.BorderSide), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry insets = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry))
         : base()
         {
             this.BorderSide = borderSide;
             this.Insets = insets;
         }
+        /// <Summary>
+        /// The color and weight of the horizontal line drawn below the selected tab.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Borders.BorderSide BorderSide { get; set; }
+        /// <Summary>
+        /// Locates the selected tab's underline relative to the tab's boundary.
+        ///
+        /// The [TabBar.indicatorSize] property can be used to define the
+        /// tab indicator's bounds in terms of its (centered) tab widget with
+        /// [TabIndicatorSize.label], or the entire tab with [TabIndicatorSize.tab].
+        /// </Summary>
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Insets { get; set; }
 
         public new FlutterSDK.Painting.Decoration.Decoration LerpFrom(FlutterSDK.Painting.Decoration.Decoration a, double t)

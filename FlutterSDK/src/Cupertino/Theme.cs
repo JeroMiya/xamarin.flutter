@@ -321,13 +321,26 @@ namespace FlutterSDK.Cupertino.Theme
     /// </Summary>
     public class CupertinoTheme : FlutterSDK.Widgets.Framework.StatelessWidget
     {
+        /// <Summary>
+        /// Creates a [CupertinoTheme] to change descendant Cupertino widgets' styling.
+        ///
+        /// The [data] and [child] parameters must not be null.
+        /// </Summary>
         public CupertinoTheme(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Cupertino.Theme.CupertinoThemeData data = default(FlutterSDK.Cupertino.Theme.CupertinoThemeData), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key)
         {
             this.Data = data;
             this.Child = child;
         }
+        /// <Summary>
+        /// The [CupertinoThemeData] styling for this theme.
+        /// </Summary>
         public virtual FlutterSDK.Cupertino.Theme.CupertinoThemeData Data { get; set; }
+        /// <Summary>
+        /// The widget below this widget in the tree.
+        ///
+        /// {@macro flutter.widgets.child}
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
 
         /// <Summary>
@@ -427,11 +440,22 @@ namespace FlutterSDK.Cupertino.Theme
     /// </Summary>
     public class CupertinoThemeData : IDiagnosticable
     {
+        /// <Summary>
+        /// Creates a [CupertinoTheme] styling specification.
+        ///
+        /// Unspecified parameters default to a reasonable iOS default style.
+        /// </Summary>
         public CupertinoThemeData(Brightness brightness = default(Brightness), FlutterBinding.UI.Color primaryColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color primaryContrastingColor = default(FlutterBinding.UI.Color), FlutterSDK.Cupertino.Texttheme.CupertinoTextThemeData textTheme = default(FlutterSDK.Cupertino.Texttheme.CupertinoTextThemeData), FlutterBinding.UI.Color barBackgroundColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color scaffoldBackgroundColor = default(FlutterBinding.UI.Color))
         : base()
         {
 
         }
+        /// <Summary>
+        /// Same as the default constructor but with positional arguments to avoid
+        /// forgetting any and to specify all arguments.
+        ///
+        /// Used by subclasses to get the superclass's defaulting behaviors.
+        /// </Summary>
         public static CupertinoThemeData Raw(Brightness brightness, FlutterBinding.UI.Color primaryColor, FlutterBinding.UI.Color primaryContrastingColor, FlutterSDK.Cupertino.Texttheme.CupertinoTextThemeData textTheme, FlutterBinding.UI.Color barBackgroundColor, FlutterBinding.UI.Color scaffoldBackgroundColor)
         {
             var instance = new CupertinoThemeData();
@@ -447,6 +471,24 @@ namespace FlutterSDK.Cupertino.Theme
             instance._Defaults = _defaults;
         }
         internal virtual FlutterSDK.Cupertino.Theme._CupertinoThemeDefaults _Defaults { get; set; }
+        /// <Summary>
+        /// The brightness override for Cupertino descendants.
+        ///
+        /// Defaults to null. If a non-null [Brightness] is specified, the value will
+        /// take precedence over the ambient [MediaQueryData.platformBrightness], when
+        /// determining the brightness of descendant Cupertino widgets.
+        ///
+        /// If coming from a Material [Theme] and unspecified, [brightness] will be
+        /// derived from the Material [ThemeData]'s `brightness`.
+        ///
+        /// See also:
+        ///
+        ///  * [MaterialBasedCupertinoThemeData], a [CupertinoThemeData] that defers
+        ///    [brightness] to its Material [Theme] parent if it's unspecified.
+        ///
+        ///  * [CupertinoTheme.brightnessOf], a method used to retrieve the overall
+        ///    [Brightness] from a [BuildContext], for Cupertino widgets.
+        /// </Summary>
         public virtual Brightness Brightness { get; set; }
         internal virtual FlutterBinding.UI.Color _PrimaryColor { get; set; }
         internal virtual FlutterBinding.UI.Color _PrimaryContrastingColor { get; set; }

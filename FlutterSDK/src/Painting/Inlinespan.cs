@@ -423,6 +423,12 @@ using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
 namespace FlutterSDK.Painting.Inlinespan
 {
+    /// <Summary>
+    /// Called on each span as [InlineSpan.visitChildren] walks the [InlineSpan] tree.
+    ///
+    /// Returns true when the walk should continue, and false to stop visiting further
+    /// [InlineSpan]s.
+    /// </Summary>
     public delegate bool InlineSpanVisitor(FlutterSDK.Painting.Inlinespan.InlineSpan span);
     internal static class InlinespanDefaultClass
     {
@@ -505,6 +511,10 @@ namespace FlutterSDK.Painting.Inlinespan
     /// </Summary>
     public class Accumulator
     {
+        /// <Summary>
+        /// [Accumulator] may be initialized with a specified value, otherwise, it will
+        /// initialize to zero.
+        /// </Summary>
         public Accumulator(int _value = 0)
         {
             this._Value = _value;
@@ -537,6 +547,15 @@ namespace FlutterSDK.Painting.Inlinespan
     /// </Summary>
     public class InlineSpanSemanticsInformation
     {
+        /// <Summary>
+        /// Constructs an object that holds the text and semantics label values of an
+        /// [InlineSpan].
+        ///
+        /// The text parameter must not be null.
+        ///
+        /// Use [InlineSpanSemanticsInformation.placeholder] instead of directly setting
+        /// [isPlaceholder].
+        /// </Summary>
         public InlineSpanSemanticsInformation(string text, bool isPlaceholder = false, string semanticsLabel = default(string), FlutterSDK.Gestures.Recognizer.GestureRecognizer recognizer = default(FlutterSDK.Gestures.Recognizer.GestureRecognizer))
         : base()
         {
@@ -545,11 +564,33 @@ namespace FlutterSDK.Painting.Inlinespan
             this.SemanticsLabel = semanticsLabel;
             this.Recognizer = recognizer;
         }
+        /// <Summary>
+        /// The text info for a [PlaceholderSpan].
+        /// </Summary>
         public virtual FlutterSDK.Painting.Inlinespan.InlineSpanSemanticsInformation Placeholder { get; set; }
+        /// <Summary>
+        /// The text value, if any.  For [PlaceholderSpan]s, this will be the unicode
+        /// placeholder value.
+        /// </Summary>
         public virtual string Text { get; set; }
+        /// <Summary>
+        /// The semanticsLabel, if any.
+        /// </Summary>
         public virtual string SemanticsLabel { get; set; }
+        /// <Summary>
+        /// The gesture recognizer, if any, for this span.
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Recognizer.GestureRecognizer Recognizer { get; set; }
+        /// <Summary>
+        /// Whether this is for a placeholder span.
+        /// </Summary>
         public virtual bool IsPlaceholder { get; set; }
+        /// <Summary>
+        /// True if this configuration should get its own semantics node.
+        ///
+        /// This will be the case of the [recognizer] is not null, of if
+        /// [isPlaceholder] is true.
+        /// </Summary>
         public virtual bool RequiresOwnNode { get; set; }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 
@@ -611,10 +652,19 @@ namespace FlutterSDK.Painting.Inlinespan
     /// </Summary>
     public class InlineSpan : FlutterSDK.Foundation.Diagnostics.DiagnosticableTree
     {
+        /// <Summary>
+        /// Creates an [InlineSpan] with the given values.
+        /// </Summary>
         public InlineSpan(FlutterSDK.Painting.Textstyle.TextStyle style = default(FlutterSDK.Painting.Textstyle.TextStyle))
         {
             this.Style = style;
         }
+        /// <Summary>
+        /// The [TextStyle] to apply to this span.
+        ///
+        /// The [style] is also applied to any child spans when this is an instance
+        /// of [TextSpan].
+        /// </Summary>
         public virtual FlutterSDK.Painting.Textstyle.TextStyle Style { get; set; }
         public virtual string Text { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual List<FlutterSDK.Painting.Inlinespan.InlineSpan> Children { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }

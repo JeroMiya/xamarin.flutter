@@ -433,11 +433,19 @@ namespace FlutterSDK.Widgets.Imagefilter
     /// </Summary>
     public class ImageFiltered : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
+        /// <Summary>
+        /// Creates a widget that applies an [ImageFilter] to its child.
+        ///
+        /// The [imageFilter] must not be null.
+        /// </Summary>
         public ImageFiltered(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), ImageFilter imageFilter = default(ImageFilter), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
             this.ImageFilter = imageFilter;
         }
+        /// <Summary>
+        /// The image filter to apply to the child of this widget.
+        /// </Summary>
         public virtual ImageFilter ImageFilter { get; set; }
 
         public new FlutterSDK.Rendering.@object.RenderObject CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context) => new _ImageFilterRenderObject(ImageFilter);

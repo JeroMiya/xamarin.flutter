@@ -435,6 +435,10 @@ namespace FlutterSDK.Material.Scaffold
     /// </Summary>
     public class ScaffoldPrelayoutGeometry
     {
+        /// <Summary>
+        /// Abstract const constructor. This constructor enables subclasses to provide
+        /// const constructors so that they can be used in const expressions.
+        /// </Summary>
         public ScaffoldPrelayoutGeometry(Size bottomSheetSize = default(Size), double contentBottom = default(double), double contentTop = default(double), Size floatingActionButtonSize = default(Size), FlutterSDK.Painting.Edgeinsets.EdgeInsets minInsets = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets), Size scaffoldSize = default(Size), Size snackBarSize = default(Size), TextDirection textDirection = default(TextDirection))
         {
             this.BottomSheetSize = bottomSheetSize;
@@ -446,13 +450,85 @@ namespace FlutterSDK.Material.Scaffold
             this.SnackBarSize = snackBarSize;
             this.TextDirection = textDirection;
         }
+        /// <Summary>
+        /// The [Size] of [Scaffold.floatingActionButton].
+        ///
+        /// If [Scaffold.floatingActionButton] is null, this will be [Size.zero].
+        /// </Summary>
         public virtual Size FloatingActionButtonSize { get; set; }
+        /// <Summary>
+        /// The [Size] of the [Scaffold]'s [BottomSheet].
+        ///
+        /// If the [Scaffold] is not currently showing a [BottomSheet],
+        /// this will be [Size.zero].
+        /// </Summary>
         public virtual Size BottomSheetSize { get; set; }
+        /// <Summary>
+        /// The vertical distance from the Scaffold's origin to the bottom of
+        /// [Scaffold.body].
+        ///
+        /// This is useful in a [FloatingActionButtonLocation] designed to
+        /// place the [FloatingActionButton] at the bottom of the screen, while
+        /// keeping it above the [BottomSheet], the [Scaffold.bottomNavigationBar],
+        /// or the keyboard.
+        ///
+        /// The [Scaffold.body] is laid out with respect to [minInsets] already. This
+        /// means that a [FloatingActionButtonLocation] does not need to factor in
+        /// [minInsets.bottom] when aligning a [FloatingActionButton] to
+        /// [contentBottom].
+        /// </Summary>
         public virtual double ContentBottom { get; set; }
+        /// <Summary>
+        /// The vertical distance from the [Scaffold]'s origin to the top of
+        /// [Scaffold.body].
+        ///
+        /// This is useful in a [FloatingActionButtonLocation] designed to
+        /// place the [FloatingActionButton] at the top of the screen, while
+        /// keeping it below the [Scaffold.appBar].
+        ///
+        /// The [Scaffold.body] is laid out with respect to [minInsets] already. This
+        /// means that a [FloatingActionButtonLocation] does not need to factor in
+        /// [minInsets.top] when aligning a [FloatingActionButton] to [contentTop].
+        /// </Summary>
         public virtual double ContentTop { get; set; }
+        /// <Summary>
+        /// The minimum padding to inset the [FloatingActionButton] by for it
+        /// to remain visible.
+        ///
+        /// This value is the result of calling [MediaQuery.padding] in the
+        /// [Scaffold]'s [BuildContext],
+        /// and is useful for insetting the [FloatingActionButton] to avoid features like
+        /// the system status bar or the keyboard.
+        ///
+        /// If [Scaffold.resizeToAvoidBottomInset] is set to false, [minInsets.bottom]
+        /// will be 0.0.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets MinInsets { get; set; }
+        /// <Summary>
+        /// The [Size] of the whole [Scaffold].
+        ///
+        /// If the [Size] of the [Scaffold]'s contents is modified by values such as
+        /// [Scaffold.resizeToAvoidBottomInset] or the keyboard opening, then the
+        /// [scaffoldSize] will not reflect those changes.
+        ///
+        /// This means that [FloatingActionButtonLocation]s designed to reposition
+        /// the [FloatingActionButton] based on events such as the keyboard popping
+        /// up should use [minInsets] to make sure that the [FloatingActionButton] is
+        /// inset by enough to remain visible.
+        ///
+        /// See [minInsets] and [MediaQuery.padding] for more information on the appropriate
+        /// insets to apply.
+        /// </Summary>
         public virtual Size ScaffoldSize { get; set; }
+        /// <Summary>
+        /// The [Size] of the [Scaffold]'s [SnackBar].
+        ///
+        /// If the [Scaffold] is not showing a [SnackBar], this will be [Size.zero].
+        /// </Summary>
         public virtual Size SnackBarSize { get; set; }
+        /// <Summary>
+        /// The [TextDirection] of the [Scaffold]'s [BuildContext].
+        /// </Summary>
         public virtual TextDirection TextDirection { get; set; }
     }
 
@@ -506,12 +582,26 @@ namespace FlutterSDK.Material.Scaffold
     /// </Summary>
     public class ScaffoldGeometry
     {
+        /// <Summary>
+        /// Create an object that describes the geometry of a [Scaffold].
+        /// </Summary>
         public ScaffoldGeometry(double bottomNavigationBarTop = default(double), FlutterBinding.UI.Rect floatingActionButtonArea = default(FlutterBinding.UI.Rect))
         {
             this.BottomNavigationBarTop = bottomNavigationBarTop;
             this.FloatingActionButtonArea = floatingActionButtonArea;
         }
+        /// <Summary>
+        /// The distance from the [Scaffold]'s top edge to the top edge of the
+        /// rectangle in which the [Scaffold.bottomNavigationBar] bar is laid out.
+        ///
+        /// Null if [Scaffold.bottomNavigationBar] is null.
+        /// </Summary>
         public virtual double BottomNavigationBarTop { get; set; }
+        /// <Summary>
+        /// The [Scaffold.floatingActionButton]'s bounding rectangle.
+        ///
+        /// This is null when there is no floating action button showing.
+        /// </Summary>
         public virtual FlutterBinding.UI.Rect FloatingActionButtonArea { get; set; }
 
         private FlutterSDK.Material.Scaffold.ScaffoldGeometry _ScaleFloatingActionButton(double scaleFactor)
@@ -816,6 +906,9 @@ namespace FlutterSDK.Material.Scaffold
         public virtual FlutterSDK.Animation.Animation.Animation<double> FabMoveAnimation { get; set; }
         public virtual FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonAnimator FabMotionAnimator { get; set; }
         public virtual FlutterSDK.Material.Scaffold._ScaffoldGeometryNotifier GeometryNotifier { get; set; }
+        /// <Summary>
+        /// Controls the current child widget.child as it exits.
+        /// </Summary>
         public virtual FlutterSDK.Animation.Animationcontroller.AnimationController CurrentController { get; set; }
 
         public new FlutterSDK.Material.Scaffold._FloatingActionButtonTransitionState CreateState() => new _FloatingActionButtonTransitionState();
@@ -1154,6 +1247,9 @@ namespace FlutterSDK.Material.Scaffold
     /// </Summary>
     public class Scaffold : FlutterSDK.Widgets.Framework.StatefulWidget
     {
+        /// <Summary>
+        /// Creates a visual scaffold for material design widgets.
+        /// </Summary>
         public Scaffold(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Preferredsize.PreferredSizeWidget appBar = default(FlutterSDK.Widgets.Preferredsize.PreferredSizeWidget), FlutterSDK.Widgets.Framework.Widget body = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget floatingActionButton = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonLocation floatingActionButtonLocation = default(FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonLocation), FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonAnimator floatingActionButtonAnimator = default(FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonAnimator), List<FlutterSDK.Widgets.Framework.Widget> persistentFooterButtons = default(List<FlutterSDK.Widgets.Framework.Widget>), FlutterSDK.Widgets.Framework.Widget drawer = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget endDrawer = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget bottomNavigationBar = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget bottomSheet = default(FlutterSDK.Widgets.Framework.Widget), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), bool resizeToAvoidBottomPadding = default(bool), bool resizeToAvoidBottomInset = default(bool), bool primary = true, FlutterSDK.Gestures.Recognizer.DragStartBehavior drawerDragStartBehavior = default(FlutterSDK.Gestures.Recognizer.DragStartBehavior), bool extendBody = false, bool extendBodyBehindAppBar = false, FlutterBinding.UI.Color drawerScrimColor = default(FlutterBinding.UI.Color), double drawerEdgeDragWidth = default(double), bool drawerEnableOpenDragGesture = true, bool endDrawerEnableOpenDragGesture = true)
         : base(key: key)
         {
@@ -1179,27 +1275,339 @@ namespace FlutterSDK.Material.Scaffold
             this.DrawerEnableOpenDragGesture = drawerEnableOpenDragGesture;
             this.EndDrawerEnableOpenDragGesture = endDrawerEnableOpenDragGesture;
         }
+        /// <Summary>
+        /// If true, and [bottomNavigationBar] or [persistentFooterButtons]
+        /// is specified, then the [body] extends to the bottom of the Scaffold,
+        /// instead of only extending to the top of the [bottomNavigationBar]
+        /// or the [persistentFooterButtons].
+        ///
+        /// If true, a [MediaQuery] widget whose bottom padding matches the
+        /// the height of the [bottomNavigationBar] will be added above the
+        /// scaffold's [body].
+        ///
+        /// This property is often useful when the [bottomNavigationBar] has
+        /// a non-rectangular shape, like [CircularNotchedRectangle], which
+        /// adds a [FloatingActionButton] sized notch to the top edge of the bar.
+        /// In this case specifying `extendBody: true` ensures that that scaffold's
+        /// body will be visible through the bottom navigation bar's notch.
+        ///
+        /// See also:
+        ///
+        ///  * [extendBodyBehindAppBar], which extends the height of the body
+        ///    to the top of the scaffold.
+        /// </Summary>
         public virtual bool ExtendBody { get; set; }
+        /// <Summary>
+        /// If true, and an [appBar] is specified, then the height of the [body] is
+        /// extended to include the height of the app bar and the top of the body
+        /// is aligned with the top of the app bar.
+        ///
+        /// This is useful if the app bar's [AppBar.backgroundColor] is not
+        /// completely opaque.
+        ///
+        /// This property is false by default. It must not be null.
+        ///
+        /// See also:
+        ///
+        ///  * [extendBody], which extends the height of the body to the bottom
+        ///    of the scaffold.
+        /// </Summary>
         public virtual bool ExtendBodyBehindAppBar { get; set; }
+        /// <Summary>
+        /// An app bar to display at the top of the scaffold.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Preferredsize.PreferredSizeWidget AppBar { get; set; }
+        /// <Summary>
+        /// The primary content of the scaffold.
+        ///
+        /// Displayed below the [appBar], above the bottom of the ambient
+        /// [MediaQuery]'s [MediaQueryData.viewInsets], and behind the
+        /// [floatingActionButton] and [drawer]. If [resizeToAvoidBottomInset] is
+        /// false then the body is not resized when the onscreen keyboard appears,
+        /// i.e. it is not inset by `viewInsets.bottom`.
+        ///
+        /// The widget in the body of the scaffold is positioned at the top-left of
+        /// the available space between the app bar and the bottom of the scaffold. To
+        /// center this widget instead, consider putting it in a [Center] widget and
+        /// having that be the body. To expand this widget instead, consider
+        /// putting it in a [SizedBox.expand].
+        ///
+        /// If you have a column of widgets that should normally fit on the screen,
+        /// but may overflow and would in such cases need to scroll, consider using a
+        /// [ListView] as the body of the scaffold. This is also a good choice for
+        /// the case where your body is a scrollable list.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Body { get; set; }
+        /// <Summary>
+        /// A button displayed floating above [body], in the bottom right corner.
+        ///
+        /// Typically a [FloatingActionButton].
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget FloatingActionButton { get; set; }
+        /// <Summary>
+        /// Responsible for determining where the [floatingActionButton] should go.
+        ///
+        /// If null, the [ScaffoldState] will use the default location, [FloatingActionButtonLocation.endFloat].
+        /// </Summary>
         public virtual FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonLocation FloatingActionButtonLocation { get; set; }
+        /// <Summary>
+        /// Animator to move the [floatingActionButton] to a new [floatingActionButtonLocation].
+        ///
+        /// If null, the [ScaffoldState] will use the default animator, [FloatingActionButtonAnimator.scaling].
+        /// </Summary>
         public virtual FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonAnimator FloatingActionButtonAnimator { get; set; }
+        /// <Summary>
+        /// A set of buttons that are displayed at the bottom of the scaffold.
+        ///
+        /// Typically this is a list of [FlatButton] widgets. These buttons are
+        /// persistently visible, even if the [body] of the scaffold scrolls.
+        ///
+        /// These widgets will be wrapped in a [ButtonBar].
+        ///
+        /// The [persistentFooterButtons] are rendered above the
+        /// [bottomNavigationBar] but below the [body].
+        /// </Summary>
         public virtual List<FlutterSDK.Widgets.Framework.Widget> PersistentFooterButtons { get; set; }
+        /// <Summary>
+        /// A panel displayed to the side of the [body], often hidden on mobile
+        /// devices. Swipes in from either left-to-right ([TextDirection.ltr]) or
+        /// right-to-left ([TextDirection.rtl])
+        ///
+        /// Typically a [Drawer].
+        ///
+        /// To open the drawer, use the [ScaffoldState.openDrawer] function.
+        ///
+        /// To close the drawer, use [Navigator.pop].
+        ///
+        /// {@tool dartpad --template=stateful_widget_material}
+        /// To disable the drawer edge swipe, set the
+        /// [Scaffold.drawerEnableOpenDragGesture] to false. Then, use
+        /// [ScaffoldState.openDrawer] to open the drawer and [Navigator.pop] to close
+        /// it.
+        ///
+        /// ```dart
+        /// final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+        ///
+        /// void _openDrawer() {
+        ///   _scaffoldKey.currentState.openDrawer();
+        /// }
+        ///
+        /// void _closeDrawer() {
+        ///   Navigator.of(context).pop();
+        /// }
+        ///
+        /// @override
+        /// Widget build(BuildContext context) {
+        ///   return Scaffold(
+        ///     key: _scaffoldKey,
+        ///     appBar: AppBar(title: const Text('Drawer Demo')),
+        ///     body: Center(
+        ///       child: RaisedButton(
+        ///         onPressed: _openDrawer,
+        ///         child: const Text('Open Drawer'),
+        ///       ),
+        ///     ),
+        ///     drawer: Drawer(
+        ///       child: Center(
+        ///         child: Column(
+        ///           mainAxisAlignment: MainAxisAlignment.center,
+        ///           children: <Widget>[
+        ///             const Text('This is the Drawer'),
+        ///             RaisedButton(
+        ///               onPressed: _closeDrawer,
+        ///               child: const Text('Close Drawer'),
+        ///             ),
+        ///           ],
+        ///         ),
+        ///       ),
+        ///     ),
+        ///     // Disable opening the drawer with a swipe gesture.
+        ///     drawerEnableOpenDragGesture: false,
+        ///   );
+        /// }
+        /// ```
+        /// {@end-tool}
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Drawer { get; set; }
+        /// <Summary>
+        /// A panel displayed to the side of the [body], often hidden on mobile
+        /// devices. Swipes in from right-to-left ([TextDirection.ltr]) or
+        /// left-to-right ([TextDirection.rtl])
+        ///
+        /// Typically a [Drawer].
+        ///
+        /// To open the drawer, use the [ScaffoldState.openEndDrawer] function.
+        ///
+        /// To close the drawer, use [Navigator.pop].
+        ///
+        /// {@tool dartpad --template=stateful_widget_material}
+        /// To disable the drawer edge swipe, set the
+        /// [Scaffold.endDrawerEnableOpenDragGesture] to false. Then, use
+        /// [ScaffoldState.openEndDrawer] to open the drawer and [Navigator.pop] to
+        /// close it.
+        ///
+        /// ```dart
+        /// final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+        ///
+        /// void _openEndDrawer() {
+        ///   _scaffoldKey.currentState.openEndDrawer();
+        /// }
+        ///
+        /// void _closeEndDrawer() {
+        ///   Navigator.of(context).pop();
+        /// }
+        ///
+        /// @override
+        /// Widget build(BuildContext context) {
+        ///   return Scaffold(
+        ///     key: _scaffoldKey,
+        ///     appBar: AppBar(title: Text('Drawer Demo')),
+        ///     body: Center(
+        ///       child: RaisedButton(
+        ///         onPressed: _openEndDrawer,
+        ///         child: Text('Open End Drawer'),
+        ///       ),
+        ///     ),
+        ///     endDrawer: Drawer(
+        ///       child: Center(
+        ///         child: Column(
+        ///           mainAxisAlignment: MainAxisAlignment.center,
+        ///           children: <Widget>[
+        ///             const Text('This is the Drawer'),
+        ///             RaisedButton(
+        ///               onPressed: _closeEndDrawer,
+        ///               child: const Text('Close Drawer'),
+        ///             ),
+        ///           ],
+        ///         ),
+        ///       ),
+        ///     ),
+        ///     // Disable opening the end drawer with a swipe gesture.
+        ///     endDrawerEnableOpenDragGesture: false,
+        ///   );
+        /// }
+        /// ```
+        /// {@end-tool}
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget EndDrawer { get; set; }
+        /// <Summary>
+        /// The color to use for the scrim that obscures primary content while a drawer is open.
+        ///
+        /// By default, the color is [Colors.black54]
+        /// </Summary>
         public virtual FlutterBinding.UI.Color DrawerScrimColor { get; set; }
+        /// <Summary>
+        /// The color of the [Material] widget that underlies the entire Scaffold.
+        ///
+        /// The theme's [ThemeData.scaffoldBackgroundColor] by default.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
+        /// <Summary>
+        /// A bottom navigation bar to display at the bottom of the scaffold.
+        ///
+        /// Snack bars slide from underneath the bottom navigation bar while bottom
+        /// sheets are stacked on top.
+        ///
+        /// The [bottomNavigationBar] is rendered below the [persistentFooterButtons]
+        /// and the [body].
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget BottomNavigationBar { get; set; }
+        /// <Summary>
+        /// The persistent bottom sheet to display.
+        ///
+        /// A persistent bottom sheet shows information that supplements the primary
+        /// content of the app. A persistent bottom sheet remains visible even when
+        /// the user interacts with other parts of the app.
+        ///
+        /// A closely related widget is a modal bottom sheet, which is an alternative
+        /// to a menu or a dialog and prevents the user from interacting with the rest
+        /// of the app. Modal bottom sheets can be created and displayed with the
+        /// [showModalBottomSheet] function.
+        ///
+        /// Unlike the persistent bottom sheet displayed by [showBottomSheet]
+        /// this bottom sheet is not a [LocalHistoryEntry] and cannot be dismissed
+        /// with the scaffold appbar's back button.
+        ///
+        /// If a persistent bottom sheet created with [showBottomSheet] is already
+        /// visible, it must be closed before building the Scaffold with a new
+        /// [bottomSheet].
+        ///
+        /// The value of [bottomSheet] can be any widget at all. It's unlikely to
+        /// actually be a [BottomSheet], which is used by the implementations of
+        /// [showBottomSheet] and [showModalBottomSheet]. Typically it's a widget
+        /// that includes [Material].
+        ///
+        /// See also:
+        ///
+        ///  * [showBottomSheet], which displays a bottom sheet as a route that can
+        ///    be dismissed with the scaffold's back button.
+        ///  * [showModalBottomSheet], which displays a modal bottom sheet.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget BottomSheet { get; set; }
+        /// <Summary>
+        /// This flag is deprecated, please use [resizeToAvoidBottomInset]
+        /// instead.
+        ///
+        /// Originally the name referred [MediaQueryData.padding]. Now it refers
+        /// [MediaQueryData.viewInsets], so using [resizeToAvoidBottomInset]
+        /// should be clearer to readers.
+        /// </Summary>
         public virtual bool ResizeToAvoidBottomPadding { get; set; }
+        /// <Summary>
+        /// If true the [body] and the scaffold's floating widgets should size
+        /// themselves to avoid the onscreen keyboard whose height is defined by the
+        /// ambient [MediaQuery]'s [MediaQueryData.viewInsets] `bottom` property.
+        ///
+        /// For example, if there is an onscreen keyboard displayed above the
+        /// scaffold, the body can be resized to avoid overlapping the keyboard, which
+        /// prevents widgets inside the body from being obscured by the keyboard.
+        ///
+        /// Defaults to true.
+        /// </Summary>
         public virtual bool ResizeToAvoidBottomInset { get; set; }
+        /// <Summary>
+        /// Whether this scaffold is being displayed at the top of the screen.
+        ///
+        /// If true then the height of the [appBar] will be extended by the height
+        /// of the screen's status bar, i.e. the top padding for [MediaQuery].
+        ///
+        /// The default value of this property, like the default value of
+        /// [AppBar.primary], is true.
+        /// </Summary>
         public virtual bool Primary { get; set; }
+        /// <Summary>
+        /// {@macro flutter.material.drawer.dragStartBehavior}
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Recognizer.DragStartBehavior DrawerDragStartBehavior { get; set; }
+        /// <Summary>
+        /// The width of the area within which a horizontal swipe will open the
+        /// drawer.
+        ///
+        /// By default, the value used is 20.0 added to the padding edge of
+        /// `MediaQuery.of(context).padding` that corresponds to [alignment].
+        /// This ensures that the drag area for notched devices is not obscured. For
+        /// example, if `TextDirection.of(context)` is set to [TextDirection.ltr],
+        /// 20.0 will be added to `MediaQuery.of(context).padding.left`.
+        /// </Summary>
         public virtual double DrawerEdgeDragWidth { get; set; }
+        /// <Summary>
+        /// Determines if the [Scaffold.drawer] can be opened with a drag
+        /// gesture.
+        ///
+        /// By default, the drag gesture is enabled.
+        /// </Summary>
         public virtual bool DrawerEnableOpenDragGesture { get; set; }
+        /// <Summary>
+        /// Determines if the [Scaffold.endDrawer] can be opened with a
+        /// drag gesture.
+        ///
+        /// By default, the drag gesture is enabled.
+        /// </Summary>
         public virtual bool EndDrawerEnableOpenDragGesture { get; set; }
+        /// <Summary>
+        /// This flag is deprecated and fixes and issue with incorrect clipping
+        /// and positioning of the [SnackBar] set to [SnackBarBehavior.floating].
+        /// </Summary>
         public virtual bool ShouldSnackBarIgnoreFABRect { get; set; }
 
         /// <Summary>
@@ -2186,7 +2594,13 @@ namespace FlutterSDK.Material.Scaffold
         }
         internal virtual T _Widget { get; set; }
         internal virtual Completer<U> _Completer { get; set; }
+        /// <Summary>
+        /// Remove the feature (e.g., bottom sheet or snack bar) from the scaffold.
+        /// </Summary>
         public virtual VoidCallback Close { get; set; }
+        /// <Summary>
+        /// Mark the feature (e.g., bottom sheet or snack bar) as needing to rebuild.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.StateSetter SetState { get; set; }
         public virtual Future<U> Closed { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
     }
@@ -2212,13 +2626,24 @@ namespace FlutterSDK.Material.Scaffold
     /// </Summary>
     public class _BottomSheetSuspendedCurve : FlutterSDK.Animation.Curves.ParametricCurve<double>
     {
+        /// <Summary>
+        /// Creates a suspended curve.
+        /// </Summary>
         public _BottomSheetSuspendedCurve(double startingPoint, FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve))
         : base()
         {
             this.StartingPoint = startingPoint;
             this.Curve = curve;
         }
+        /// <Summary>
+        /// The progress value at which [curve] should begin.
+        ///
+        /// This defaults to [Curves.easeOutCubic].
+        /// </Summary>
         public virtual double StartingPoint { get; set; }
+        /// <Summary>
+        /// The curve to use when [startingPoint] is reached.
+        /// </Summary>
         public virtual FlutterSDK.Animation.Curves.Curve Curve { get; set; }
 
         public new double Transform(double t)

@@ -293,12 +293,71 @@ using FlutterSDK.Widgets.Scrollview;
 using FlutterSDK.Foundation;
 namespace FlutterSDK.Foundation.Basictypes
 {
+    /// <Summary>
+    /// Signature for callbacks that report that an underlying value has changed.
+    ///
+    /// See also:
+    ///
+    ///  * [ValueSetter], for callbacks that report that a value has been set.
+    /// </Summary>
     public delegate void ValueChanged<T>(T value);
+    /// <Summary>
+    /// Signature for callbacks that report that a value has been set.
+    ///
+    /// This is the same signature as [ValueChanged], but is used when the
+    /// callback is called even if the underlying value has not changed.
+    /// For example, service extensions use this callback because they
+    /// call the callback whenever the extension is called with a
+    /// value, regardless of whether the given value is new or not.
+    ///
+    /// See also:
+    ///
+    ///  * [ValueGetter], the getter equivalent of this signature.
+    ///  * [AsyncValueSetter], an asynchronous version of this signature.
+    /// </Summary>
     public delegate void ValueSetter<T>(T value);
+    /// <Summary>
+    /// Signature for callbacks that are to report a value on demand.
+    ///
+    /// See also:
+    ///
+    ///  * [ValueSetter], the setter equivalent of this signature.
+    ///  * [AsyncValueGetter], an asynchronous version of this signature.
+    /// </Summary>
     public delegate T ValueGetter<T>();
+    /// <Summary>
+    /// Signature for callbacks that filter an iterable.
+    /// </Summary>
     public delegate Iterable<T> IterableFilter<T>(Iterable<T> input);
+    /// <Summary>
+    /// Signature of callbacks that have no arguments and return no data, but that
+    /// return a [Future] to indicate when their work is complete.
+    ///
+    /// See also:
+    ///
+    ///  * [VoidCallback], a synchronous version of this signature.
+    ///  * [AsyncValueGetter], a signature for asynchronous getters.
+    ///  * [AsyncValueSetter], a signature for asynchronous setters.
+    /// </Summary>
     public delegate Future<object> AsyncCallback();
+    /// <Summary>
+    /// Signature for callbacks that report that a value has been set and return a
+    /// [Future] that completes when the value has been saved.
+    ///
+    /// See also:
+    ///
+    ///  * [ValueSetter], a synchronous version of this signature.
+    ///  * [AsyncValueGetter], the getter equivalent of this signature.
+    /// </Summary>
     public delegate Future<object> AsyncValueSetter<T>(T value);
+    /// <Summary>
+    /// Signature for callbacks that are to asynchronously report a value on demand.
+    ///
+    /// See also:
+    ///
+    ///  * [ValueGetter], a synchronous version of this signature.
+    ///  * [AsyncValueSetter], the setter equivalent of this signature.
+    /// </Summary>
     public delegate Future<T> AsyncValueGetter<T>();
     internal static class BasictypesDefaultClass
     {
@@ -342,6 +401,29 @@ namespace FlutterSDK.Foundation.Basictypes
     /// </Summary>
     public class CachingIterable<E> : IterableBase<E>
     {
+        /// <Summary>
+        /// Creates a CachingIterable using the given [Iterator] as the
+        /// source of data. The iterator must be non-null and must not throw
+        /// exceptions.
+        ///
+        /// Since the argument is an [Iterator], not an [Iterable], it is
+        /// guaranteed that the underlying data set will only be walked
+        /// once. If you have an [Iterable], you can pass its [iterator]
+        /// field as the argument to this constructor.
+        ///
+        /// You can use a `sync*` function with this as follows:
+        ///
+        /// ```dart
+        /// Iterable<int> range(int start, int end) sync* {
+        ///   for (int index = start; index <= end; index += 1)
+        ///     yield index;
+        ///  }
+        ///
+        /// Iterable<int> i = CachingIterable<int>(range(1, 5).iterator);
+        /// print(i.length); // walks the list
+        /// print(i.length); // efficient
+        /// ```
+        /// </Summary>
         public CachingIterable(Iterator<E> _prefillIterator)
         {
             this._PrefillIterator = _prefillIterator;
@@ -468,11 +550,19 @@ namespace FlutterSDK.Foundation.Basictypes
     /// </Summary>
     public class Factory<T>
     {
+        /// <Summary>
+        /// Creates a new factory.
+        ///
+        /// The `constructor` parameter must not be null.
+        /// </Summary>
         public Factory(FlutterSDK.Foundation.Basictypes.ValueGetter<T> constructor)
         : base()
         {
             this.Constructor = constructor;
         }
+        /// <Summary>
+        /// Creates a new object of type T.
+        /// </Summary>
         public virtual FlutterSDK.Foundation.Basictypes.ValueGetter<T> Constructor { get; set; }
         public virtual Type Type { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 

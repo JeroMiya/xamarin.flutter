@@ -550,10 +550,23 @@ namespace FlutterSDK.Foundation.Changenotifier
         /// </Summary>
         public class Listenable
         {
+            /// <Summary>
+            /// Abstract const constructor. This constructor enables subclasses to provide
+            /// const constructors so that they can be used in const expressions.
+            /// </Summary>
             public Listenable()
             {
 
             }
+            /// <Summary>
+            /// Return a [Listenable] that triggers when any of the given [Listenable]s
+            /// themselves trigger.
+            ///
+            /// The list must not be changed after this method has been called. Doing so
+            /// will lead to memory leaks or exceptions.
+            ///
+            /// The list may contain nulls; they are ignored.
+            /// </Summary>
             public static Listenable Merge(List<FlutterSDK.Foundation.Changenotifier.Listenable> listenables)
             {
                 var instance = new Listenable();
@@ -586,6 +599,10 @@ namespace FlutterSDK.Foundation.Changenotifier
         /// </Summary>
         public class ValueListenable<T> : FlutterSDK.Foundation.Changenotifier.Listenable
         {
+            /// <Summary>
+            /// Abstract const constructor. This constructor enables subclasses to provide
+            /// const constructors so that they can be used in const expressions.
+            /// </Summary>
             public ValueListenable()
             {
 
@@ -638,6 +655,9 @@ namespace FlutterSDK.Foundation.Changenotifier
         /// </Summary>
         public class ValueNotifier<T> : FlutterSDK.Foundation.Changenotifier.ChangeNotifier, IValueListenable<T>
         {
+            /// <Summary>
+            /// Creates a [ChangeNotifier] that wraps this value.
+            /// </Summary>
             public ValueNotifier(T _value)
             {
                 this._Value = _value;

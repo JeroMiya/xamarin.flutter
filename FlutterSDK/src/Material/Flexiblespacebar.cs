@@ -494,6 +494,11 @@ namespace FlutterSDK.Material.Flexiblespacebar
     /// </Summary>
     public class FlexibleSpaceBar : FlutterSDK.Widgets.Framework.StatefulWidget
     {
+        /// <Summary>
+        /// Creates a flexible space bar.
+        ///
+        /// Most commonly used in the [AppBar.flexibleSpace] field.
+        /// </Summary>
         public FlexibleSpaceBar(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget title = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget background = default(FlutterSDK.Widgets.Framework.Widget), bool centerTitle = default(bool), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry titlePadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Material.Flexiblespacebar.CollapseMode collapseMode = default(FlutterSDK.Material.Flexiblespacebar.CollapseMode), List<FlutterSDK.Material.Flexiblespacebar.StretchMode> stretchModes = default(List<FlutterSDK.Material.Flexiblespacebar.StretchMode>))
         : base(key: key)
         {
@@ -504,11 +509,49 @@ namespace FlutterSDK.Material.Flexiblespacebar
             this.CollapseMode = collapseMode;
             this.StretchModes = stretchModes;
         }
+        /// <Summary>
+        /// The primary contents of the flexible space bar when expanded.
+        ///
+        /// Typically a [Text] widget.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Title { get; set; }
+        /// <Summary>
+        /// Shown behind the [title] when expanded.
+        ///
+        /// Typically an [Image] widget with [Image.fit] set to [BoxFit.cover].
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Background { get; set; }
+        /// <Summary>
+        /// Whether the title should be centered.
+        ///
+        /// By default this property is true if the current target platform
+        /// is [TargetPlatform.iOS] or [TargetPlatform.macOS], false otherwise.
+        /// </Summary>
         public virtual bool CenterTitle { get; set; }
+        /// <Summary>
+        /// Collapse effect while scrolling.
+        ///
+        /// Defaults to [CollapseMode.parallax].
+        /// </Summary>
         public virtual FlutterSDK.Material.Flexiblespacebar.CollapseMode CollapseMode { get; set; }
+        /// <Summary>
+        /// Stretch effect while over-scrolling,
+        ///
+        /// Defaults to include [StretchMode.zoomBackground].
+        /// </Summary>
         public virtual List<FlutterSDK.Material.Flexiblespacebar.StretchMode> StretchModes { get; set; }
+        /// <Summary>
+        /// Defines how far the [title] is inset from either the widget's
+        /// bottom-left or its center.
+        ///
+        /// Typically this property is used to adjust how far the title is
+        /// is inset from the bottom-left and it is specified along with
+        /// [centerTitle] false.
+        ///
+        /// By default the value of this property is
+        /// `EdgeInsetsDirectional.only(start: 72, bottom: 16)` if the title is
+        /// not centered, `EdgeInsetsDirectional.only(start: 0, bottom: 16)` otherwise.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry TitlePadding { get; set; }
 
         /// <Summary>
@@ -666,6 +709,15 @@ namespace FlutterSDK.Material.Flexiblespacebar
     /// </Summary>
     public class FlexibleSpaceBarSettings : FlutterSDK.Widgets.Framework.InheritedWidget
     {
+        /// <Summary>
+        /// Creates a Flexible Space Bar Settings widget.
+        ///
+        /// Used by [Scaffold] and [SliverAppBar]. [child] must have a
+        /// [FlexibleSpaceBar] widget in its tree for the settings to take affect.
+        ///
+        /// The required [toolbarOpacity], [minExtent], [maxExtent], [currentExtent],
+        /// and [child] parameters must not be null.
+        /// </Summary>
         public FlexibleSpaceBarSettings(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), double toolbarOpacity = default(double), double minExtent = default(double), double maxExtent = default(double), double currentExtent = default(double), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
@@ -674,9 +726,23 @@ namespace FlutterSDK.Material.Flexiblespacebar
             this.MaxExtent = maxExtent;
             this.CurrentExtent = currentExtent;
         }
+        /// <Summary>
+        /// Affects how transparent the text within the toolbar appears.
+        /// </Summary>
         public virtual double ToolbarOpacity { get; set; }
+        /// <Summary>
+        /// Minimum height of the resulting [FlexibleSpaceBar] when fully collapsed.
+        /// </Summary>
         public virtual double MinExtent { get; set; }
+        /// <Summary>
+        /// Maximum height of the resulting [FlexibleSpaceBar] when fully expanded.
+        /// </Summary>
         public virtual double MaxExtent { get; set; }
+        /// <Summary>
+        /// If the [FlexibleSpaceBar.title] or the [FlexibleSpaceBar.background] is
+        /// not null, then this value is used to calculate the relative scale of
+        /// these elements upon initialization.
+        /// </Summary>
         public virtual double CurrentExtent { get; set; }
 
         public new bool UpdateShouldNotify(FlutterSDK.Material.Flexiblespacebar.FlexibleSpaceBarSettings oldWidget)

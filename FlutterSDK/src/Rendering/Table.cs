@@ -454,8 +454,17 @@ namespace FlutterSDK.Rendering.Table
     {
         public TableCellParentData()
         { }
+        /// <Summary>
+        /// Where this cell should be placed vertically.
+        /// </Summary>
         public virtual FlutterSDK.Rendering.Table.TableCellVerticalAlignment VerticalAlignment { get; set; }
+        /// <Summary>
+        /// The column that the child was in the last time it was laid out.
+        /// </Summary>
         public virtual int x { get; set; }
+        /// <Summary>
+        /// The row that the child was in the last time it was laid out.
+        /// </Summary>
         public virtual int y { get; set; }
 
     }
@@ -474,6 +483,10 @@ namespace FlutterSDK.Rendering.Table
     /// </Summary>
     public class TableColumnWidth
     {
+        /// <Summary>
+        /// Abstract const constructor. This constructor enables subclasses to provide
+        /// const constructors so that they can be used in const expressions.
+        /// </Summary>
         public TableColumnWidth()
         {
 
@@ -544,6 +557,11 @@ namespace FlutterSDK.Rendering.Table
     /// </Summary>
     public class IntrinsicColumnWidth : FlutterSDK.Rendering.Table.TableColumnWidth
     {
+        /// <Summary>
+        /// Creates a column width based on intrinsic sizing.
+        ///
+        /// This sizing algorithm is very expensive.
+        /// </Summary>
         public IntrinsicColumnWidth(double flex = default(double))
         : base()
         {
@@ -585,11 +603,19 @@ namespace FlutterSDK.Rendering.Table
     /// </Summary>
     public class FixedColumnWidth : FlutterSDK.Rendering.Table.TableColumnWidth
     {
+        /// <Summary>
+        /// Creates a column width based on a fixed number of logical pixels.
+        ///
+        /// The [value] argument must not be null.
+        /// </Summary>
         public FixedColumnWidth(double value)
         : base()
         {
             this.Value = value;
         }
+        /// <Summary>
+        /// The width the column should occupy in logical pixels.
+        /// </Summary>
         public virtual double Value { get; set; }
 
         public new double MinIntrinsicWidth(Iterable<FlutterSDK.Rendering.Box.RenderBox> cells, double containerWidth)
@@ -618,11 +644,21 @@ namespace FlutterSDK.Rendering.Table
     /// </Summary>
     public class FractionColumnWidth : FlutterSDK.Rendering.Table.TableColumnWidth
     {
+        /// <Summary>
+        /// Creates a column width based on a fraction of the table's constraints'
+        /// maxWidth.
+        ///
+        /// The [value] argument must not be null.
+        /// </Summary>
         public FractionColumnWidth(double value)
         : base()
         {
             this.Value = value;
         }
+        /// <Summary>
+        /// The fraction of the table's constraints' maxWidth that this column should
+        /// occupy.
+        /// </Summary>
         public virtual double Value { get; set; }
 
         public new double MinIntrinsicWidth(Iterable<FlutterSDK.Rendering.Box.RenderBox> cells, double containerWidth)
@@ -657,11 +693,21 @@ namespace FlutterSDK.Rendering.Table
     /// </Summary>
     public class FlexColumnWidth : FlutterSDK.Rendering.Table.TableColumnWidth
     {
+        /// <Summary>
+        /// Creates a column width based on a fraction of the remaining space once all
+        /// the other columns have been laid out.
+        ///
+        /// The [value] argument must not be null.
+        /// </Summary>
         public FlexColumnWidth(double value = 1.0)
         : base()
         {
             this.Value = value;
         }
+        /// <Summary>
+        /// The reaction of the of the remaining space once all the other columns have
+        /// been laid out that this column should occupy.
+        /// </Summary>
         public virtual double Value { get; set; }
 
         public new double MinIntrinsicWidth(Iterable<FlutterSDK.Rendering.Box.RenderBox> cells, double containerWidth)
@@ -705,12 +751,21 @@ namespace FlutterSDK.Rendering.Table
     /// </Summary>
     public class MaxColumnWidth : FlutterSDK.Rendering.Table.TableColumnWidth
     {
+        /// <Summary>
+        /// Creates a column width that is the maximum of two other column widths.
+        /// </Summary>
         public MaxColumnWidth(FlutterSDK.Rendering.Table.TableColumnWidth a, FlutterSDK.Rendering.Table.TableColumnWidth b)
         {
             this.a = a;
             this.b = b;
         }
+        /// <Summary>
+        /// A lower bound for the width of this column.
+        /// </Summary>
         public virtual FlutterSDK.Rendering.Table.TableColumnWidth a { get; set; }
+        /// <Summary>
+        /// Another lower bound for the width of this column.
+        /// </Summary>
         public virtual FlutterSDK.Rendering.Table.TableColumnWidth b { get; set; }
 
         public new double MinIntrinsicWidth(Iterable<FlutterSDK.Rendering.Box.RenderBox> cells, double containerWidth)
@@ -758,12 +813,21 @@ namespace FlutterSDK.Rendering.Table
     /// </Summary>
     public class MinColumnWidth : FlutterSDK.Rendering.Table.TableColumnWidth
     {
+        /// <Summary>
+        /// Creates a column width that is the minimum of two other column widths.
+        /// </Summary>
         public MinColumnWidth(FlutterSDK.Rendering.Table.TableColumnWidth a, FlutterSDK.Rendering.Table.TableColumnWidth b)
         {
             this.a = a;
             this.b = b;
         }
+        /// <Summary>
+        /// An upper bound for the width of this column.
+        /// </Summary>
         public virtual FlutterSDK.Rendering.Table.TableColumnWidth a { get; set; }
+        /// <Summary>
+        /// Another upper bound for the width of this column.
+        /// </Summary>
         public virtual FlutterSDK.Rendering.Table.TableColumnWidth b { get; set; }
 
         public new double MinIntrinsicWidth(Iterable<FlutterSDK.Rendering.Box.RenderBox> cells, double containerWidth)
@@ -802,6 +866,20 @@ namespace FlutterSDK.Rendering.Table
     /// </Summary>
     public class RenderTable : FlutterSDK.Rendering.Box.RenderBox
     {
+        /// <Summary>
+        /// Creates a table render object.
+        ///
+        ///  * `columns` must either be null or non-negative. If `columns` is null,
+        ///    the number of columns will be inferred from length of the first sublist
+        ///    of `children`.
+        ///  * `rows` must either be null or non-negative. If `rows` is null, the
+        ///    number of rows will be inferred from the `children`. If `rows` is not
+        ///    null, then `children` must be null.
+        ///  * `children` must either be null or contain lists of all the same length.
+        ///    if `children` is not null, then `rows` must be null.
+        ///  * [defaultColumnWidth] must not be null.
+        ///  * [configuration] must not be null (but has a default value).
+        /// </Summary>
         public RenderTable(int columns = default(int), int rows = default(int), Dictionary<int, FlutterSDK.Rendering.Table.TableColumnWidth> columnWidths = default(Dictionary<int, FlutterSDK.Rendering.Table.TableColumnWidth>), FlutterSDK.Rendering.Table.TableColumnWidth defaultColumnWidth = default(FlutterSDK.Rendering.Table.TableColumnWidth), TextDirection textDirection = default(TextDirection), FlutterSDK.Rendering.Tableborder.TableBorder border = default(FlutterSDK.Rendering.Tableborder.TableBorder), List<FlutterSDK.Painting.Decoration.Decoration> rowDecorations = default(List<FlutterSDK.Painting.Decoration.Decoration>), FlutterSDK.Painting.Imageprovider.ImageConfiguration configuration = default(FlutterSDK.Painting.Imageprovider.ImageConfiguration), FlutterSDK.Rendering.Table.TableCellVerticalAlignment defaultVerticalAlignment = default(FlutterSDK.Rendering.Table.TableCellVerticalAlignment), TextBaseline textBaseline = default(TextBaseline), List<List<FlutterSDK.Rendering.Box.RenderBox>> children = default(List<List<FlutterSDK.Rendering.Box.RenderBox>>))
         : base()
         {

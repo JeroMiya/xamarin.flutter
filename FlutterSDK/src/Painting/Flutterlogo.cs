@@ -431,6 +431,16 @@ namespace FlutterSDK.Painting.Flutterlogo
     /// </Summary>
     public class FlutterLogoDecoration : FlutterSDK.Painting.Decoration.Decoration
     {
+        /// <Summary>
+        /// Creates a decoration that knows how to paint Flutter's logo.
+        ///
+        /// The [lightColor] and [darkColor] are used to fill the logo. The [style]
+        /// controls whether and where to draw the "Flutter" label. If one is shown,
+        /// the [textColor] controls the color of the label.
+        ///
+        /// The [lightColor], [darkColor], [textColor], [style], and [margin]
+        /// arguments must not be null.
+        /// </Summary>
         public FlutterLogoDecoration(FlutterBinding.UI.Color lightColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color darkColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color textColor = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Flutterlogo.FlutterLogoStyle style = default(FlutterSDK.Painting.Flutterlogo.FlutterLogoStyle), FlutterSDK.Painting.Edgeinsets.EdgeInsets margin = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets))
         : base()
         {
@@ -450,10 +460,43 @@ namespace FlutterSDK.Painting.Flutterlogo
             this._Position = _position;
             this._Opacity = _opacity;
         }
+        /// <Summary>
+        /// The lighter of the two colors used to paint the logo.
+        ///
+        /// If possible, the default should be used. It corresponds to the 400 and 900
+        /// values of [material.Colors.blue] from the Material library.
+        ///
+        /// If for some reason that color scheme is impractical, the same entries from
+        /// [material.Colors.amber], [material.Colors.red], or
+        /// [material.Colors.indigo] colors can be used. These are Flutter's secondary
+        /// colors.
+        ///
+        /// In extreme cases where none of those four color schemes will work,
+        /// [material.Colors.pink], [material.Colors.purple], or
+        /// [material.Colors.cyan] can be used. These are Flutter's tertiary colors.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color LightColor { get; set; }
+        /// <Summary>
+        /// The darker of the two colors used to paint the logo.
+        ///
+        /// See [lightColor] for more information about selecting the logo's colors.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color DarkColor { get; set; }
+        /// <Summary>
+        /// The color used to paint the "Flutter" text on the logo, if [style] is
+        /// [FlutterLogoStyle.horizontal] or [FlutterLogoStyle.stacked]. The
+        /// appropriate color is `const Color(0xFF616161)` (a medium gray), against a
+        /// white background.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color TextColor { get; set; }
+        /// <Summary>
+        /// Whether and where to draw the "Flutter" text. By default, only the logo
+        /// itself is drawn.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Flutterlogo.FlutterLogoStyle Style { get; set; }
+        /// <Summary>
+        /// How far to inset the logo from the edge of the container.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets Margin { get; set; }
         internal virtual double _Position { get; set; }
         internal virtual double _Opacity { get; set; }

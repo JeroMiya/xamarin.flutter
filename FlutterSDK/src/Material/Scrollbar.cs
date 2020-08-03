@@ -438,6 +438,12 @@ namespace FlutterSDK.Material.Scrollbar
     /// </Summary>
     public class Scrollbar : FlutterSDK.Widgets.Framework.StatefulWidget
     {
+        /// <Summary>
+        /// Creates a material design scrollbar that wraps the given [child].
+        ///
+        /// The [child] should be a source of [ScrollNotification] notifications,
+        /// typically a [Scrollable] widget.
+        /// </Summary>
         public Scrollbar(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Scrollcontroller.ScrollController controller = default(FlutterSDK.Widgets.Scrollcontroller.ScrollController), bool isAlwaysShown = false)
         : base(key: key)
         {
@@ -445,8 +451,22 @@ namespace FlutterSDK.Material.Scrollbar
             this.Controller = controller;
             this.IsAlwaysShown = isAlwaysShown;
         }
+        /// <Summary>
+        /// The widget below this widget in the tree.
+        ///
+        /// The scrollbar will be stacked on top of this child. This child (and its
+        /// subtree) should include a source of [ScrollNotification] notifications.
+        ///
+        /// Typically a [ListView] or [CustomScrollView].
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+        /// <Summary>
+        /// {@macro flutter.cupertino.cupertinoScrollbar.controller}
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Scrollcontroller.ScrollController Controller { get; set; }
+        /// <Summary>
+        /// {@macro flutter.cupertino.cupertinoScrollbar.isAlwaysShown}
+        /// </Summary>
         public virtual bool IsAlwaysShown { get; set; }
 
         public new FlutterSDK.Material.Scrollbar._ScrollbarState CreateState() => new _ScrollbarState();

@@ -310,6 +310,9 @@ namespace FlutterSDK.Cupertino.Button
     /// </Summary>
     public class CupertinoButton : FlutterSDK.Widgets.Framework.StatefulWidget
     {
+        /// <Summary>
+        /// Creates an iOS-style button.
+        /// </Summary>
         public CupertinoButton(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color disabledColor = default(FlutterBinding.UI.Color), double minSize = default(double), double pressedOpacity = 0.4, FlutterSDK.Painting.Borderradius.BorderRadius borderRadius = default(FlutterSDK.Painting.Borderradius.BorderRadius), VoidCallback onPressed = default(VoidCallback))
         : base(key: key)
         {
@@ -322,6 +325,14 @@ namespace FlutterSDK.Cupertino.Button
             this.BorderRadius = borderRadius;
             this.OnPressed = onPressed;
         }
+        /// <Summary>
+        /// Creates an iOS-style button with a filled background.
+        ///
+        /// The background color is derived from the [CupertinoTheme]'s `primaryColor`.
+        ///
+        /// To specify a custom background color, use the [color] argument of the
+        /// default constructor.
+        /// </Summary>
         public static CupertinoButton Filled(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterBinding.UI.Color disabledColor = default(FlutterBinding.UI.Color), double minSize = default(double), double pressedOpacity = 0.4, FlutterSDK.Painting.Borderradius.BorderRadius borderRadius = default(FlutterSDK.Painting.Borderradius.BorderRadius), VoidCallback onPressed = default(VoidCallback))
         {
             var instance = new CupertinoButton(key: key); instance.Child = child;
@@ -332,13 +343,62 @@ namespace FlutterSDK.Cupertino.Button
             instance.BorderRadius = borderRadius;
             instance.OnPressed = onPressed;
         }
+        /// <Summary>
+        /// The widget below this widget in the tree.
+        ///
+        /// Typically a [Text] widget.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+        /// <Summary>
+        /// The amount of space to surround the child inside the bounds of the button.
+        ///
+        /// Defaults to 16.0 pixels.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Padding { get; set; }
+        /// <Summary>
+        /// The color of the button's background.
+        ///
+        /// Defaults to null which produces a button with no background or border.
+        ///
+        /// Defaults to the [CupertinoTheme]'s `primaryColor` when the
+        /// [CupertinoButton.filled] constructor is used.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color Color { get; set; }
+        /// <Summary>
+        /// The color of the button's background when the button is disabled.
+        ///
+        /// Ignored if the [CupertinoButton] doesn't also have a [color].
+        ///
+        /// Defaults to [CupertinoColors.quaternarySystemFill] when [color] is
+        /// specified. Must not be null.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color DisabledColor { get; set; }
+        /// <Summary>
+        /// The callback that is called when the button is tapped or otherwise activated.
+        ///
+        /// If this is set to null, the button will be disabled.
+        /// </Summary>
         public virtual VoidCallback OnPressed { get; set; }
+        /// <Summary>
+        /// Minimum size of the button.
+        ///
+        /// Defaults to kMinInteractiveDimensionCupertino which the iOS Human
+        /// Interface Guidelines recommends as the minimum tappable area.
+        /// </Summary>
         public virtual double MinSize { get; set; }
+        /// <Summary>
+        /// The opacity that the button will fade to when it is pressed.
+        /// The button will have an opacity of 1.0 when it is not pressed.
+        ///
+        /// This defaults to 0.4. If null, opacity will not change on pressed if using
+        /// your own custom effects is desired.
+        /// </Summary>
         public virtual double PressedOpacity { get; set; }
+        /// <Summary>
+        /// The radius of the button's corners when it has a background color.
+        ///
+        /// Defaults to round corners of 8 logical pixels.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Borderradius.BorderRadius BorderRadius { get; set; }
         internal virtual bool _Filled { get; set; }
         public virtual bool Enabled { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }

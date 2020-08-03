@@ -688,6 +688,13 @@ namespace FlutterSDK.Widgets.Focusscope
     /// </Summary>
     public class Focus : FlutterSDK.Widgets.Framework.StatefulWidget
     {
+        /// <Summary>
+        /// Creates a widget that manages a [FocusNode].
+        ///
+        /// The [child] argument is required and must not be null.
+        ///
+        /// The [autofocus] argument must not be null.
+        /// </Summary>
         public Focus(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Focusmanager.FocusNode focusNode = default(FlutterSDK.Widgets.Focusmanager.FocusNode), bool autofocus = false, FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onFocusChange = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>), FlutterSDK.Widgets.Focusmanager.FocusOnKeyCallback onKey = default(FlutterSDK.Widgets.Focusmanager.FocusOnKeyCallback), string debugLabel = default(string), bool canRequestFocus = default(bool), bool skipTraversal = default(bool), bool includeSemantics = true)
         : base(key: key)
         {
@@ -701,14 +708,126 @@ namespace FlutterSDK.Widgets.Focusscope
             this.SkipTraversal = skipTraversal;
             this.IncludeSemantics = includeSemantics;
         }
+        /// <Summary>
+        /// A debug label for this widget.
+        ///
+        /// Not used for anything except to be printed in the diagnostic output from
+        /// [toString] or [toStringDeep]. Also unused if a [focusNode] is provided,
+        /// since that node can have its own [FocusNode.debugLabel].
+        ///
+        /// To get a string with the entire tree, call [debugDescribeFocusTree]. To
+        /// print it to the console call [debugDumpFocusTree].
+        ///
+        /// Defaults to null.
+        /// </Summary>
         public virtual string DebugLabel { get; set; }
+        /// <Summary>
+        /// The child widget of this [Focus].
+        ///
+        /// {@macro flutter.widgets.child}
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+        /// <Summary>
+        /// Handler for keys pressed when this object or one of its children has
+        /// focus.
+        ///
+        /// Key events are first given to the [FocusNode] that has primary focus, and
+        /// if its [onKey] method return false, then they are given to each ancestor
+        /// node up the focus hierarchy in turn. If an event reaches the root of the
+        /// hierarchy, it is discarded.
+        ///
+        /// This is not the way to get text input in the manner of a text field: it
+        /// leaves out support for input method editors, and doesn't support soft
+        /// keyboards in general. For text input, consider [TextField],
+        /// [EditableText], or [CupertinoTextField] instead, which do support these
+        /// things.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Focusmanager.FocusOnKeyCallback OnKey { get; set; }
+        /// <Summary>
+        /// Handler called when the focus changes.
+        ///
+        /// Called with true if this widget's node gains focus, and false if it loses
+        /// focus.
+        /// </Summary>
         public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<bool> OnFocusChange { get; set; }
+        /// <Summary>
+        /// {@template flutter.widgets.Focus.autofocus}
+        /// True if this widget will be selected as the initial focus when no other
+        /// node in its scope is currently focused.
+        ///
+        /// Ideally, there is only one widget with autofocus set in each [FocusScope].
+        /// If there is more than one widget with autofocus set, then the first one
+        /// added to the tree will get focus.
+        ///
+        /// Must not be null. Defaults to false.
+        /// {@endtemplate}
+        /// </Summary>
         public virtual bool Autofocus { get; set; }
+        /// <Summary>
+        /// {@template flutter.widgets.Focus.focusNode}
+        /// An optional focus node to use as the focus node for this widget.
+        ///
+        /// If one is not supplied, then one will be automatically allocated, owned,
+        /// and managed by this widget. The widget will be focusable even if a
+        /// [focusNode] is not supplied. If supplied, the given `focusNode` will be
+        /// _hosted_ by this widget, but not owned. See [FocusNode] for more
+        /// information on what being hosted and/or owned implies.
+        ///
+        /// Supplying a focus node is sometimes useful if an ancestor to this widget
+        /// wants to control when this widget has the focus. The owner will be
+        /// responsible for calling [FocusNode.dispose] on the focus node when it is
+        /// done with it, but this widget will attach/detach and reparent the node
+        /// when needed.
+        /// {@endtemplate}
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Focusmanager.FocusNode FocusNode { get; set; }
+        /// <Summary>
+        /// Sets the [FocusNode.skipTraversal] flag on the focus node so that it won't
+        /// be visited by the [FocusTraversalPolicy].
+        ///
+        /// This is sometimes useful if a [Focus] widget should receive key events as
+        /// part of the focus chain, but shouldn't be accessible via focus traversal.
+        ///
+        /// This is different from [canRequestFocus] because it only implies that the
+        /// widget can't be reached via traversal, not that it can't be focused. It may
+        /// still be focused explicitly.
+        /// </Summary>
         public virtual bool SkipTraversal { get; set; }
+        /// <Summary>
+        /// Include semantics information in this [Focus] widget.
+        ///
+        /// If true, this [Focus] widget will include a [Semantics] node that
+        /// indicates the [Semantics.focusable] and [Semantics.focused] properties.
+        ///
+        /// It is not typical to set this to false, as that can affect the semantics
+        /// information available to accessibility systems.
+        ///
+        /// Must not be null, defaults to true.
+        /// </Summary>
         public virtual bool IncludeSemantics { get; set; }
+        /// <Summary>
+        /// {@template flutter.widgets.Focus.canRequestFocus}
+        /// If true, this widget may request the primary focus.
+        ///
+        /// Defaults to true.  Set to false if you want the [FocusNode] this widget
+        /// manages to do nothing when [requestFocus] is called on it. Does not affect
+        /// the children of this node, and [FocusNode.hasFocus] can still return true
+        /// if this node is the ancestor of the primary focus.
+        ///
+        /// This is different than [skipTraversal] because [skipTraversal] still
+        /// allows the widget to be focused, just not traversed to.
+        ///
+        /// Setting [canRequestFocus] to false implies that the widget will also be
+        /// skipped for traversal purposes.
+        ///
+        /// See also:
+        ///
+        ///  * [DefaultFocusTraversal], a widget that sets the traversal policy for
+        ///    its descendants.
+        ///  * [FocusTraversalPolicy], a class that can be extended to describe a
+        ///    traversal policy.
+        /// {@endtemplate}
+        /// </Summary>
         public virtual bool CanRequestFocus { get; set; }
 
         /// <Summary>
@@ -1172,6 +1291,13 @@ namespace FlutterSDK.Widgets.Focusscope
     /// </Summary>
     public class FocusScope : FlutterSDK.Widgets.Focusscope.Focus
     {
+        /// <Summary>
+        /// Creates a widget that manages a [FocusScopeNode].
+        ///
+        /// The [child] argument is required and must not be null.
+        ///
+        /// The [autofocus], and [showDecorations] arguments must not be null.
+        /// </Summary>
         public FocusScope(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Focusmanager.FocusScopeNode node = default(FlutterSDK.Widgets.Focusmanager.FocusScopeNode), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), bool autofocus = false, FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onFocusChange = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>), bool canRequestFocus = default(bool), bool skipTraversal = default(bool), FlutterSDK.Widgets.Focusmanager.FocusOnKeyCallback onKey = default(FlutterSDK.Widgets.Focusmanager.FocusOnKeyCallback), string debugLabel = default(string))
         : base(key: key, child: child, focusNode: node, autofocus: autofocus, onFocusChange: onFocusChange, canRequestFocus: canRequestFocus, skipTraversal: skipTraversal, onKey: onKey, debugLabel: debugLabel)
         {

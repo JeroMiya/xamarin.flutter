@@ -482,6 +482,10 @@ namespace FlutterSDK.Widgets.Sizechangedlayoutnotifier
     /// </Summary>
     public class SizeChangedLayoutNotifier : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
+        /// <Summary>
+        /// Creates a [SizeChangedLayoutNotifier] that dispatches layout changed
+        /// notifications when [child] changes layout size.
+        /// </Summary>
         public SizeChangedLayoutNotifier(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {

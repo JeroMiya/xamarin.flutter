@@ -542,13 +542,24 @@ namespace FlutterSDK.Rendering.Sliverpersistentheader
     /// </Summary>
     public class OverScrollHeaderStretchConfiguration
     {
+        /// <Summary>
+        /// Creates an object that specifies how a stretched header may activate an
+        /// [AsyncCallback].
+        /// </Summary>
         public OverScrollHeaderStretchConfiguration(double stretchTriggerOffset = 100.0, FlutterSDK.Foundation.Basictypes.AsyncCallback onStretchTrigger = default(FlutterSDK.Foundation.Basictypes.AsyncCallback))
         : base()
         {
             this.StretchTriggerOffset = stretchTriggerOffset;
             this.OnStretchTrigger = onStretchTrigger;
         }
+        /// <Summary>
+        /// The offset of overscroll required to trigger the [onStretchTrigger].
+        /// </Summary>
         public virtual double StretchTriggerOffset { get; set; }
+        /// <Summary>
+        /// The callback function to be executed when a user over-scrolls to the
+        /// offset specified by [stretchTriggerOffset].
+        /// </Summary>
         public virtual FlutterSDK.Foundation.Basictypes.AsyncCallback OnStretchTrigger { get; set; }
     }
 
@@ -573,6 +584,12 @@ namespace FlutterSDK.Rendering.Sliverpersistentheader
     /// </Summary>
     public class RenderSliverPersistentHeader : FlutterSDK.Rendering.Sliver.RenderSliver, IRenderObjectWithChildMixin<FlutterSDK.Rendering.Box.RenderBox>, IRenderSliverHelpers
     {
+        /// <Summary>
+        /// Creates a sliver that changes its size when scrolled to the start of the
+        /// viewport.
+        ///
+        /// This is an abstract class; this constructor only initializes the [child].
+        /// </Summary>
         public RenderSliverPersistentHeader(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox), FlutterSDK.Rendering.Sliverpersistentheader.OverScrollHeaderStretchConfiguration stretchConfiguration = default(FlutterSDK.Rendering.Sliverpersistentheader.OverScrollHeaderStretchConfiguration))
         {
             this.StretchConfiguration = stretchConfiguration;
@@ -584,6 +601,17 @@ namespace FlutterSDK.Rendering.Sliverpersistentheader
         internal virtual bool _NeedsUpdateChild { get; set; }
         internal virtual double _LastShrinkOffset { get; set; }
         internal virtual bool _LastOverlapsContent { get; set; }
+        /// <Summary>
+        /// Defines the parameters used to execute an [AsyncCallback] when a
+        /// stretching header over-scrolls.
+        ///
+        /// If [stretchConfiguration] is null then callback is not triggered.
+        ///
+        /// See also:
+        ///
+        ///  * [SliverAppBar], which creates a header that can stretched into an
+        ///    overscroll area and trigger a callback function.
+        /// </Summary>
         public virtual FlutterSDK.Rendering.Sliverpersistentheader.OverScrollHeaderStretchConfiguration StretchConfiguration { get; set; }
         internal virtual bool _ExcludeFromSemanticsScrolling { get; set; }
         public virtual double MaxExtent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
@@ -762,6 +790,10 @@ namespace FlutterSDK.Rendering.Sliverpersistentheader
     /// </Summary>
     public class RenderSliverScrollingPersistentHeader : FlutterSDK.Rendering.Sliverpersistentheader.RenderSliverPersistentHeader
     {
+        /// <Summary>
+        /// Creates a sliver that shrinks when it hits the start of the viewport, then
+        /// scrolls off.
+        /// </Summary>
         public RenderSliverScrollingPersistentHeader(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox), FlutterSDK.Rendering.Sliverpersistentheader.OverScrollHeaderStretchConfiguration stretchConfiguration = default(FlutterSDK.Rendering.Sliverpersistentheader.OverScrollHeaderStretchConfiguration))
         : base(child: child, stretchConfiguration: stretchConfiguration)
         {
@@ -831,6 +863,10 @@ namespace FlutterSDK.Rendering.Sliverpersistentheader
     /// </Summary>
     public class RenderSliverPinnedPersistentHeader : FlutterSDK.Rendering.Sliverpersistentheader.RenderSliverPersistentHeader
     {
+        /// <Summary>
+        /// Creates a sliver that shrinks when it hits the start of the viewport, then
+        /// stays pinned there.
+        /// </Summary>
         public RenderSliverPinnedPersistentHeader(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox), FlutterSDK.Rendering.Sliverpersistentheader.OverScrollHeaderStretchConfiguration stretchConfiguration = default(FlutterSDK.Rendering.Sliverpersistentheader.OverScrollHeaderStretchConfiguration))
         : base(child: child, stretchConfiguration: stretchConfiguration)
         {
@@ -875,6 +911,10 @@ namespace FlutterSDK.Rendering.Sliverpersistentheader
     /// </Summary>
     public class FloatingHeaderSnapConfiguration
     {
+        /// <Summary>
+        /// Creates an object that specifies how a floating header is to be "snapped"
+        /// (animated) into or out of view.
+        /// </Summary>
         public FloatingHeaderSnapConfiguration(FlutterSDK.Scheduler.Ticker.TickerProvider vsync = default(FlutterSDK.Scheduler.Ticker.TickerProvider), FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve), TimeSpan duration = default(TimeSpan))
         : base()
         {
@@ -882,8 +922,18 @@ namespace FlutterSDK.Rendering.Sliverpersistentheader
             this.Curve = curve;
             this.Duration = duration;
         }
+        /// <Summary>
+        /// The [TickerProvider] for the [AnimationController] that causes a
+        /// floating header to snap in or out of view.
+        /// </Summary>
         public virtual FlutterSDK.Scheduler.Ticker.TickerProvider Vsync { get; set; }
+        /// <Summary>
+        /// The snap animation curve.
+        /// </Summary>
         public virtual FlutterSDK.Animation.Curves.Curve Curve { get; set; }
+        /// <Summary>
+        /// The snap animation's duration.
+        /// </Summary>
         public virtual TimeSpan Duration { get; set; }
     }
 
@@ -900,6 +950,11 @@ namespace FlutterSDK.Rendering.Sliverpersistentheader
     /// </Summary>
     public class RenderSliverFloatingPersistentHeader : FlutterSDK.Rendering.Sliverpersistentheader.RenderSliverPersistentHeader
     {
+        /// <Summary>
+        /// Creates a sliver that shrinks when it hits the start of the viewport, then
+        /// scrolls off, and comes back immediately when the user reverses the scroll
+        /// direction.
+        /// </Summary>
         public RenderSliverFloatingPersistentHeader(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox), FlutterSDK.Rendering.Sliverpersistentheader.FloatingHeaderSnapConfiguration snapConfiguration = default(FlutterSDK.Rendering.Sliverpersistentheader.FloatingHeaderSnapConfiguration), FlutterSDK.Rendering.Sliverpersistentheader.OverScrollHeaderStretchConfiguration stretchConfiguration = default(FlutterSDK.Rendering.Sliverpersistentheader.OverScrollHeaderStretchConfiguration))
         : base(child: child, stretchConfiguration: stretchConfiguration)
         {
@@ -1055,6 +1110,11 @@ namespace FlutterSDK.Rendering.Sliverpersistentheader
     /// </Summary>
     public class RenderSliverFloatingPinnedPersistentHeader : FlutterSDK.Rendering.Sliverpersistentheader.RenderSliverFloatingPersistentHeader
     {
+        /// <Summary>
+        /// Creates a sliver that shrinks when it hits the start of the viewport, then
+        /// stays pinned there, and grows immediately when the user reverses the
+        /// scroll direction.
+        /// </Summary>
         public RenderSliverFloatingPinnedPersistentHeader(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox), FlutterSDK.Rendering.Sliverpersistentheader.FloatingHeaderSnapConfiguration snapConfiguration = default(FlutterSDK.Rendering.Sliverpersistentheader.FloatingHeaderSnapConfiguration), FlutterSDK.Rendering.Sliverpersistentheader.OverScrollHeaderStretchConfiguration stretchConfiguration = default(FlutterSDK.Rendering.Sliverpersistentheader.OverScrollHeaderStretchConfiguration))
         : base(child: child, snapConfiguration: snapConfiguration, stretchConfiguration: stretchConfiguration)
         {

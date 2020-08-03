@@ -296,7 +296,22 @@ using FlutterSDK.Foundation._Isolatesio;
 using FlutterSDK.Foundation._Platformio;
 namespace FlutterSDK.Gestures.Monodrag
 {
+    /// <Summary>
+    /// Signature for when a pointer that was previously in contact with the screen
+    /// and moving is no longer in contact with the screen.
+    ///
+    /// The velocity at which the pointer was moving when it stopped contacting
+    /// the screen is available in the `details`.
+    ///
+    /// See [DragGestureRecognizer.onEnd].
+    /// </Summary>
     public delegate void GestureDragEndCallback(FlutterSDK.Gestures.Dragdetails.DragEndDetails details);
+    /// <Summary>
+    /// Signature for when the pointer that previously triggered a
+    /// [GestureDragDownCallback] did not complete.
+    ///
+    /// See [DragGestureRecognizer.onCancel].
+    /// </Summary>
     public delegate void GestureDragCancelCallback();
     internal static class MonodragDefaultClass
     {
@@ -371,19 +386,129 @@ namespace FlutterSDK.Gestures.Monodrag
     /// </Summary>
     public class DragGestureRecognizer : FlutterSDK.Gestures.Recognizer.OneSequenceGestureRecognizer
     {
+        /// <Summary>
+        /// Initialize the object.
+        ///
+        /// [dragStartBehavior] must not be null.
+        ///
+        /// {@macro flutter.gestures.gestureRecognizer.kind}
+        /// </Summary>
         public DragGestureRecognizer(@Object debugOwner = default(@Object), PointerDeviceKind kind = default(PointerDeviceKind), FlutterSDK.Gestures.Recognizer.DragStartBehavior dragStartBehavior = default(FlutterSDK.Gestures.Recognizer.DragStartBehavior))
         : base(debugOwner: debugOwner, kind: kind)
         {
             this.DragStartBehavior = dragStartBehavior;
         }
+        /// <Summary>
+        /// Configure the behavior of offsets sent to [onStart].
+        ///
+        /// If set to [DragStartBehavior.start], the [onStart] callback will be called
+        /// at the time and position when this gesture recognizer wins the arena. If
+        /// [DragStartBehavior.down], [onStart] will be called at the time and
+        /// position when a down event was first detected.
+        ///
+        /// For more information about the gesture arena:
+        /// https://flutter.dev/docs/development/ui/advanced/gestures#gesture-disambiguation
+        ///
+        /// By default, the drag start behavior is [DragStartBehavior.start].
+        ///
+        /// ## Example:
+        ///
+        /// A finger presses down on the screen with offset (500.0, 500.0), and then
+        /// moves to position (510.0, 500.0) before winning the arena. With
+        /// [dragStartBehavior] set to [DragStartBehavior.down], the [onStart]
+        /// callback will be called at the time corresponding to the touch's position
+        /// at (500.0, 500.0). If it is instead set to [DragStartBehavior.start],
+        /// [onStart] will be called at the time corresponding to the touch's position
+        /// at (510.0, 500.0).
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Recognizer.DragStartBehavior DragStartBehavior { get; set; }
+        /// <Summary>
+        /// A pointer has contacted the screen with a primary button and might begin
+        /// to move.
+        ///
+        /// The position of the pointer is provided in the callback's `details`
+        /// argument, which is a [DragDownDetails] object.
+        ///
+        /// See also:
+        ///
+        ///  * [kPrimaryButton], the button this callback responds to.
+        ///  * [DragDownDetails], which is passed as an argument to this callback.
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Dragdetails.GestureDragDownCallback OnDown { get; set; }
+        /// <Summary>
+        /// A pointer has contacted the screen with a primary button and has begun to
+        /// move.
+        ///
+        /// The position of the pointer is provided in the callback's `details`
+        /// argument, which is a [DragStartDetails] object.
+        ///
+        /// Depending on the value of [dragStartBehavior], this function will be
+        /// called on the initial touch down, if set to [DragStartBehavior.down] or
+        /// when the drag gesture is first detected, if set to
+        /// [DragStartBehavior.start].
+        ///
+        /// See also:
+        ///
+        ///  * [kPrimaryButton], the button this callback responds to.
+        ///  * [DragStartDetails], which is passed as an argument to this callback.
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Dragdetails.GestureDragStartCallback OnStart { get; set; }
+        /// <Summary>
+        /// A pointer that is in contact with the screen with a primary button and
+        /// moving has moved again.
+        ///
+        /// The distance traveled by the pointer since the last update is provided in
+        /// the callback's `details` argument, which is a [DragUpdateDetails] object.
+        ///
+        /// See also:
+        ///
+        ///  * [kPrimaryButton], the button this callback responds to.
+        ///  * [DragUpdateDetails], which is passed as an argument to this callback.
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Dragdetails.GestureDragUpdateCallback OnUpdate { get; set; }
+        /// <Summary>
+        /// A pointer that was previously in contact with the screen with a primary
+        /// button and moving is no longer in contact with the screen and was moving
+        /// at a specific velocity when it stopped contacting the screen.
+        ///
+        /// The velocity is provided in the callback's `details` argument, which is a
+        /// [DragEndDetails] object.
+        ///
+        /// See also:
+        ///
+        ///  * [kPrimaryButton], the button this callback responds to.
+        ///  * [DragEndDetails], which is passed as an argument to this callback.
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Monodrag.GestureDragEndCallback OnEnd { get; set; }
+        /// <Summary>
+        /// The pointer that previously triggered [onDown] did not complete.
+        ///
+        /// See also:
+        ///
+        ///  * [kPrimaryButton], the button this callback responds to.
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Monodrag.GestureDragCancelCallback OnCancel { get; set; }
+        /// <Summary>
+        /// The minimum distance an input pointer drag must have moved to
+        /// to be considered a fling gesture.
+        ///
+        /// This value is typically compared with the distance traveled along the
+        /// scrolling axis. If null then [kTouchSlop] is used.
+        /// </Summary>
         public virtual double MinFlingDistance { get; set; }
+        /// <Summary>
+        /// The minimum velocity for an input pointer drag to be considered fling.
+        ///
+        /// This value is typically compared with the magnitude of fling gesture's
+        /// velocity along the scrolling axis. If null then [kMinFlingVelocity]
+        /// is used.
+        /// </Summary>
         public virtual double MinFlingVelocity { get; set; }
+        /// <Summary>
+        /// Fling velocity magnitudes will be clamped to this value.
+        ///
+        /// If null then [kMaxFlingVelocity] is used.
+        /// </Summary>
         public virtual double MaxFlingVelocity { get; set; }
         internal virtual FlutterSDK.Gestures.Monodrag._DragState _State { get; set; }
         internal virtual FlutterSDK.Gestures.Recognizer.OffsetPair _InitialPosition { get; set; }
@@ -391,6 +516,12 @@ namespace FlutterSDK.Gestures.Monodrag
         internal virtual TimeSpan _LastPendingEventTimestamp { get; set; }
         internal virtual int _InitialButtons { get; set; }
         internal virtual Matrix4 _LastTransform { get; set; }
+        /// <Summary>
+        /// Distance moved in the global coordinate space of the screen in drag direction.
+        ///
+        /// If drag is only allowed along a defined axis, this value may be negative to
+        /// differentiate the direction of the drag.
+        /// </Summary>
         internal virtual double _GlobalDistanceMoved { get; set; }
         internal virtual Dictionary<int, FlutterSDK.Gestures.Velocitytracker.VelocityTracker> _VelocityTrackers { get; set; }
         internal virtual bool _HasSufficientGlobalDistanceToAccept { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
@@ -689,6 +820,11 @@ namespace FlutterSDK.Gestures.Monodrag
     /// </Summary>
     public class VerticalDragGestureRecognizer : FlutterSDK.Gestures.Monodrag.DragGestureRecognizer
     {
+        /// <Summary>
+        /// Create a gesture recognizer for interactions in the vertical axis.
+        ///
+        /// {@macro flutter.gestures.gestureRecognizer.kind}
+        /// </Summary>
         public VerticalDragGestureRecognizer(@Object debugOwner = default(@Object), PointerDeviceKind kind = default(PointerDeviceKind))
         : base(debugOwner: debugOwner, kind: kind)
         {
@@ -731,6 +867,11 @@ namespace FlutterSDK.Gestures.Monodrag
     /// </Summary>
     public class HorizontalDragGestureRecognizer : FlutterSDK.Gestures.Monodrag.DragGestureRecognizer
     {
+        /// <Summary>
+        /// Create a gesture recognizer for interactions in the horizontal axis.
+        ///
+        /// {@macro flutter.gestures.gestureRecognizer.kind}
+        /// </Summary>
         public HorizontalDragGestureRecognizer(@Object debugOwner = default(@Object), PointerDeviceKind kind = default(PointerDeviceKind))
         : base(debugOwner: debugOwner, kind: kind)
         {
@@ -772,6 +913,9 @@ namespace FlutterSDK.Gestures.Monodrag
     /// </Summary>
     public class PanGestureRecognizer : FlutterSDK.Gestures.Monodrag.DragGestureRecognizer
     {
+        /// <Summary>
+        /// Create a gesture recognizer for tracking movement on a plane.
+        /// </Summary>
         public PanGestureRecognizer(@Object debugOwner = default(@Object))
         : base(debugOwner: debugOwner)
         {

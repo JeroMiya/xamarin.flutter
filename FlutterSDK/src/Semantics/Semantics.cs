@@ -423,12 +423,33 @@ using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
 namespace FlutterSDK.Semantics.Semantics
 {
+    /// <Summary>
+    /// Signature for a function that is called for each [SemanticsNode].
+    ///
+    /// Return false to stop visiting nodes.
+    ///
+    /// Used by [SemanticsNode.visitChildren].
+    /// </Summary>
     public delegate bool SemanticsNodeVisitor(FlutterSDK.Semantics.Semantics.SemanticsNode node);
+    /// <Summary>
+    /// Signature for [SemanticsAction]s that move the cursor.
+    ///
+    /// If `extendSelection` is set to true the cursor movement should extend the
+    /// current selection or (if nothing is currently selected) start a selection.
+    /// </Summary>
     public delegate void MoveCursorHandler(bool extendSelection);
+    /// <Summary>
+    /// Signature for the [SemanticsAction.setSelection] handlers to change the
+    /// text selection (or re-position the cursor) to `selection`.
+    /// </Summary>
     public delegate void SetSelectionHandler(FlutterSDK.Services.Textediting.TextSelection selection);
     public delegate void _SemanticsActionHandler(object args);
     internal static class SemanticsDefaultClass
     {
+        /// <Summary>
+        /// In tests use this function to reset the counter used to generate
+        /// [SemanticsNode.id].
+        /// </Summary>
         internal static void DebugResetSemanticsIdCounter()
         {
             SemanticsDefaultClass.SemanticsNode._LastIdentifier = 0;
@@ -436,6 +457,9 @@ namespace FlutterSDK.Semantics.Semantics
 
 
 
+        /// <Summary>
+        /// Converts `point` to the `node`'s parent's coordinate system.
+        /// </Summary>
         internal static Offset _PointInParentCoordinates(FlutterSDK.Semantics.Semantics.SemanticsNode node, FlutterBinding.UI.Offset point)
         {
             if (node.Transform == null)
@@ -450,6 +474,19 @@ namespace FlutterSDK.Semantics.Semantics
 
 
 
+        /// <Summary>
+        /// Sorts `children` using the default sorting algorithm, and returns them as a
+        /// new list.
+        ///
+        /// The algorithm first breaks up children into groups such that no two nodes
+        /// from different groups overlap vertically. These groups are sorted vertically
+        /// according to their [_SemanticsSortGroup.startOffset].
+        ///
+        /// Within each group, the nodes are sorted using
+        /// [_SemanticsSortGroup.sortedWithinVerticalGroup].
+        ///
+        /// For an illustration of the algorithm see http://bit.ly/flutter-default-traversal.
+        /// </Summary>
         internal static List<FlutterSDK.Semantics.Semantics.SemanticsNode> _ChildrenInDefaultOrder(List<FlutterSDK.Semantics.Semantics.SemanticsNode> children, TextDirection textDirection)
         {
             List<_BoxEdge> edges = new List<_BoxEdge>() { };
@@ -541,9 +578,49 @@ namespace FlutterSDK.Semantics.Semantics
     public class SemanticsConfiguration
     {
         internal virtual bool _IsSemanticBoundary { get; set; }
+        /// <Summary>
+        /// Whether the configuration forces all children of the owning [RenderObject]
+        /// that want to contribute semantic information to the semantics tree to do
+        /// so in the form of explicit [SemanticsNode]s.
+        ///
+        /// When set to false children of the owning [RenderObject] are allowed to
+        /// annotate [SemanticsNode]s of their parent with the semantic information
+        /// they want to contribute to the semantic tree.
+        /// When set to true the only way for children of the owning [RenderObject]
+        /// to contribute semantic information to the semantic tree is to introduce
+        /// new explicit [SemanticsNode]s to the tree.
+        ///
+        /// This setting is often used in combination with [isSemanticBoundary] to
+        /// create semantic boundaries that are either writable or not for children.
+        /// </Summary>
         public virtual bool ExplicitChildNodes { get; set; }
+        /// <Summary>
+        /// Whether the owning [RenderObject] makes other [RenderObject]s previously
+        /// painted within the same semantic boundary unreachable for accessibility
+        /// purposes.
+        ///
+        /// If set to true, the semantic information for all siblings and cousins of
+        /// this node, that are earlier in a depth-first pre-order traversal, are
+        /// dropped from the semantics tree up until a semantic boundary (as defined
+        /// by [isSemanticBoundary]) is reached.
+        ///
+        /// If [isSemanticBoundary] and [isBlockingSemanticsOfPreviouslyPaintedNodes]
+        /// is set on the same node, all previously painted siblings and cousins up
+        /// until the next ancestor that is a semantic boundary are dropped.
+        ///
+        /// Paint order as established by [RenderObject.visitChildrenForSemantics] is
+        /// used to determine if a node is previous to this one.
+        /// </Summary>
         public virtual bool IsBlockingSemanticsOfPreviouslyPaintedNodes { get; set; }
         internal virtual bool _HasBeenAnnotated { get; set; }
+        /// <Summary>
+        /// The actions (with associated action handlers) that this configuration
+        /// would like to contribute to the semantics tree.
+        ///
+        /// See also:
+        ///
+        ///  * [addAction] to add an action.
+        /// </Summary>
         internal virtual Dictionary<SemanticsAction, object> _Actions { get; set; }
         internal virtual int _ActionsAsBits { get; set; }
         internal virtual VoidCallback _OnTap { get; set; }
@@ -960,10 +1037,23 @@ namespace FlutterSDK.Semantics.Semantics
     /// </Summary>
     public class SemanticsTag
     {
+        /// <Summary>
+        /// Creates a [SemanticsTag].
+        ///
+        /// The provided [name] is only used for debugging. Two tags created with the
+        /// same [name] and the `new` operator are not considered identical. However,
+        /// two tags created with the same [name] and the `const` operator are always
+        /// identical.
+        /// </Summary>
         public SemanticsTag(string name)
         {
             this.Name = name;
         }
+        /// <Summary>
+        /// A human-readable name for this tag used for debugging.
+        ///
+        /// This string is not used to determine if two tags are identical.
+        /// </Summary>
         public virtual string Name { get; set; }
 
     }
@@ -995,18 +1085,38 @@ namespace FlutterSDK.Semantics.Semantics
     /// </Summary>
     public class CustomSemanticsAction
     {
+        /// <Summary>
+        /// Creates a new [CustomSemanticsAction].
+        ///
+        /// The [label] must not be null or the empty string.
+        /// </Summary>
         public CustomSemanticsAction(string label = default(string))
         : base()
         {
             this.Label = label;
         }
+        /// <Summary>
+        /// Creates a new [CustomSemanticsAction] that overrides a standard semantics
+        /// action.
+        ///
+        /// The [hint] must not be null or the empty string.
+        /// </Summary>
         public static CustomSemanticsAction OverridingAction(string hint = default(string), SemanticsAction action = default(SemanticsAction))
         {
             var instance = new CustomSemanticsAction(); instance.Hint = hint;
             instance.Action = action;
         }
+        /// <Summary>
+        /// The user readable name of this custom semantics action.
+        /// </Summary>
         public virtual string Label { get; set; }
+        /// <Summary>
+        /// The hint description of this custom semantics action.
+        /// </Summary>
         public virtual string Hint { get; set; }
+        /// <Summary>
+        /// The standard semantics action this action replaces.
+        /// </Summary>
         public virtual SemanticsAction Action { get; set; }
         internal virtual int _NextId { get; set; }
         internal virtual Dictionary<int, FlutterSDK.Semantics.Semantics.CustomSemanticsAction> _Actions { get; set; }
@@ -1067,6 +1177,13 @@ namespace FlutterSDK.Semantics.Semantics
     /// </Summary>
     public class SemanticsData : IDiagnosticable
     {
+        /// <Summary>
+        /// Creates a semantics data object.
+        ///
+        /// The [flags], [actions], [label], and [Rect] arguments must not be null.
+        ///
+        /// If [label] is not empty, then [textDirection] must also not be null.
+        /// </Summary>
         public SemanticsData(int flags = default(int), int actions = default(int), string label = default(string), string increasedValue = default(string), string value = default(string), string decreasedValue = default(string), string hint = default(string), TextDirection textDirection = default(TextDirection), FlutterBinding.UI.Rect rect = default(FlutterBinding.UI.Rect), double elevation = default(double), double thickness = default(double), FlutterSDK.Services.Textediting.TextSelection textSelection = default(FlutterSDK.Services.Textediting.TextSelection), int scrollIndex = default(int), int scrollChildCount = default(int), double scrollPosition = default(double), double scrollExtentMax = default(double), double scrollExtentMin = default(double), int platformViewId = default(int), int maxValueLength = default(int), int currentValueLength = default(int), HashSet<FlutterSDK.Semantics.Semantics.SemanticsTag> tags = default(HashSet<FlutterSDK.Semantics.Semantics.SemanticsTag>), Matrix4 transform = default(Matrix4), List<int> customSemanticsActionIds = default(List<int>))
         : base()
         {
@@ -1094,28 +1211,181 @@ namespace FlutterSDK.Semantics.Semantics
             this.Transform = transform;
             this.CustomSemanticsActionIds = customSemanticsActionIds;
         }
+        /// <Summary>
+        /// A bit field of [SemanticsFlag]s that apply to this node.
+        /// </Summary>
         public virtual int Flags { get; set; }
+        /// <Summary>
+        /// A bit field of [SemanticsAction]s that apply to this node.
+        /// </Summary>
         public virtual int Actions { get; set; }
+        /// <Summary>
+        /// A textual description of this node.
+        ///
+        /// The reading direction is given by [textDirection].
+        /// </Summary>
         public virtual string Label { get; set; }
+        /// <Summary>
+        /// A textual description for the current value of the node.
+        ///
+        /// The reading direction is given by [textDirection].
+        /// </Summary>
         public virtual string Value { get; set; }
+        /// <Summary>
+        /// The value that [value] will become after performing a
+        /// [SemanticsAction.increase] action.
+        ///
+        /// The reading direction is given by [textDirection].
+        /// </Summary>
         public virtual string IncreasedValue { get; set; }
+        /// <Summary>
+        /// The value that [value] will become after performing a
+        /// [SemanticsAction.decrease] action.
+        ///
+        /// The reading direction is given by [textDirection].
+        /// </Summary>
         public virtual string DecreasedValue { get; set; }
+        /// <Summary>
+        /// A brief description of the result of performing an action on this node.
+        ///
+        /// The reading direction is given by [textDirection].
+        /// </Summary>
         public virtual string Hint { get; set; }
+        /// <Summary>
+        /// The reading direction for the text in [label], [value], [hint],
+        /// [increasedValue], and [decreasedValue].
+        /// </Summary>
         public virtual TextDirection TextDirection { get; set; }
+        /// <Summary>
+        /// The currently selected text (or the position of the cursor) within [value]
+        /// if this node represents a text field.
+        /// </Summary>
         public virtual FlutterSDK.Services.Textediting.TextSelection TextSelection { get; set; }
+        /// <Summary>
+        /// The total number of scrollable children that contribute to semantics.
+        ///
+        /// If the number of children are unknown or unbounded, this value will be
+        /// null.
+        /// </Summary>
         public virtual int ScrollChildCount { get; set; }
+        /// <Summary>
+        /// The index of the first visible semantic child of a scroll node.
+        /// </Summary>
         public virtual int ScrollIndex { get; set; }
+        /// <Summary>
+        /// Indicates the current scrolling position in logical pixels if the node is
+        /// scrollable.
+        ///
+        /// The properties [scrollExtentMin] and [scrollExtentMax] indicate the valid
+        /// in-range values for this property. The value for [scrollPosition] may
+        /// (temporarily) be outside that range, e.g. during an overscroll.
+        ///
+        /// See also:
+        ///
+        ///  * [ScrollPosition.pixels], from where this value is usually taken.
+        /// </Summary>
         public virtual double ScrollPosition { get; set; }
+        /// <Summary>
+        /// Indicates the maximum in-range value for [scrollPosition] if the node is
+        /// scrollable.
+        ///
+        /// This value may be infinity if the scroll is unbound.
+        ///
+        /// See also:
+        ///
+        ///  * [ScrollPosition.maxScrollExtent], from where this value is usually taken.
+        /// </Summary>
         public virtual double ScrollExtentMax { get; set; }
+        /// <Summary>
+        /// Indicates the minimum in-range value for [scrollPosition] if the node is
+        /// scrollable.
+        ///
+        /// This value may be infinity if the scroll is unbound.
+        ///
+        /// See also:
+        ///
+        ///  * [ScrollPosition.minScrollExtent], from where this value is usually taken.
+        /// </Summary>
         public virtual double ScrollExtentMin { get; set; }
+        /// <Summary>
+        /// The id of the platform view, whose semantics nodes will be added as
+        /// children to this node.
+        ///
+        /// If this value is non-null, the SemanticsNode must not have any children
+        /// as those would be replaced by the semantics nodes of the referenced
+        /// platform view.
+        ///
+        /// See also:
+        ///
+        ///  * [AndroidView], which is the platform view for Android.
+        ///  * [UiKitView], which is the platform view for iOS.
+        /// </Summary>
         public virtual int PlatformViewId { get; set; }
+        /// <Summary>
+        /// The maximum number of characters that can be entered into an editable
+        /// text field.
+        ///
+        /// For the purpose of this function a character is defined as one Unicode
+        /// scalar value.
+        ///
+        /// This should only be set when [SemanticsFlag.isTextField] is set. Defaults
+        /// to null, which means no limit is imposed on the text field.
+        /// </Summary>
         public virtual int MaxValueLength { get; set; }
+        /// <Summary>
+        /// The current number of characters that have been entered into an editable
+        /// text field.
+        ///
+        /// For the purpose of this function a character is defined as one Unicode
+        /// scalar value.
+        ///
+        /// This should only be set when [SemanticsFlag.isTextField] is set. This must
+        /// be set when [maxValueLength] is set.
+        /// </Summary>
         public virtual int CurrentValueLength { get; set; }
+        /// <Summary>
+        /// The bounding box for this node in its coordinate system.
+        /// </Summary>
         public virtual FlutterBinding.UI.Rect Rect { get; set; }
+        /// <Summary>
+        /// The set of [SemanticsTag]s associated with this node.
+        /// </Summary>
         public virtual HashSet<FlutterSDK.Semantics.Semantics.SemanticsTag> Tags { get; set; }
+        /// <Summary>
+        /// The transform from this node's coordinate system to its parent's coordinate system.
+        ///
+        /// By default, the transform is null, which represents the identity
+        /// transformation (i.e., that this node has the same coordinate system as its
+        /// parent).
+        /// </Summary>
         public virtual Matrix4 Transform { get; set; }
+        /// <Summary>
+        /// The elevation of this node relative to the parent semantics node.
+        ///
+        /// See also:
+        ///
+        ///  * [SemanticsConfiguration.elevation] for a detailed discussion regarding
+        ///    elevation and semantics.
+        /// </Summary>
         public virtual double Elevation { get; set; }
+        /// <Summary>
+        /// The extent of this node along the z-axis beyond its [elevation]
+        ///
+        /// See also:
+        ///
+        ///  * [SemanticsConfiguration.thickness] for a more detailed definition.
+        /// </Summary>
         public virtual double Thickness { get; set; }
+        /// <Summary>
+        /// The identifiers for the custom semantics actions and standard action
+        /// overrides for this node.
+        ///
+        /// The list must be sorted in increasing order.
+        ///
+        /// See also:
+        ///
+        ///  * [CustomSemanticsAction], for an explanation of custom actions.
+        /// </Summary>
         public virtual List<int> CustomSemanticsActionIds { get; set; }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 
@@ -1224,13 +1494,38 @@ namespace FlutterSDK.Semantics.Semantics
     /// </Summary>
     public class SemanticsHintOverrides : FlutterSDK.Foundation.Diagnostics.DiagnosticableTree
     {
+        /// <Summary>
+        /// Creates a semantics hint overrides.
+        /// </Summary>
         public SemanticsHintOverrides(string onTapHint = default(string), string onLongPressHint = default(string))
         : base()
         {
             this.OnTapHint = onTapHint;
             this.OnLongPressHint = onLongPressHint;
         }
+        /// <Summary>
+        /// The hint text for a tap action.
+        ///
+        /// If null, the standard hint is used instead.
+        ///
+        /// The hint should describe what happens when a tap occurs, not the
+        /// manner in which a tap is accomplished.
+        ///
+        /// Bad: 'Double tap to show movies'.
+        /// Good: 'show movies'.
+        /// </Summary>
         public virtual string OnTapHint { get; set; }
+        /// <Summary>
+        /// The hint text for a long press action.
+        ///
+        /// If null, the standard hint is used instead.
+        ///
+        /// The hint should describe what happens when a long press occurs, not
+        /// the manner in which the long press is accomplished.
+        ///
+        /// Bad: 'Double tap and hold to show tooltip'.
+        /// Good: 'show tooltip'.
+        /// </Summary>
         public virtual string OnLongPressHint { get; set; }
         public virtual bool IsNotEmpty { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
@@ -1265,6 +1560,9 @@ namespace FlutterSDK.Semantics.Semantics
     /// </Summary>
     public class SemanticsProperties : FlutterSDK.Foundation.Diagnostics.DiagnosticableTree
     {
+        /// <Summary>
+        /// Creates a semantic annotation.
+        /// </Summary>
         public SemanticsProperties(bool enabled = default(bool), bool @checked = default(bool), bool selected = default(bool), bool toggled = default(bool), bool button = default(bool), bool link = default(bool), bool header = default(bool), bool textField = default(bool), bool readOnly = default(bool), bool focusable = default(bool), bool focused = default(bool), bool inMutuallyExclusiveGroup = default(bool), bool hidden = default(bool), bool obscured = default(bool), bool multiline = default(bool), bool scopesRoute = default(bool), bool namesRoute = default(bool), bool image = default(bool), bool liveRegion = default(bool), int maxValueLength = default(int), int currentValueLength = default(int), string label = default(string), string value = default(string), string increasedValue = default(string), string decreasedValue = default(string), string hint = default(string), FlutterSDK.Semantics.Semantics.SemanticsHintOverrides hintOverrides = default(FlutterSDK.Semantics.Semantics.SemanticsHintOverrides), TextDirection textDirection = default(TextDirection), FlutterSDK.Semantics.Semantics.SemanticsSortKey sortKey = default(FlutterSDK.Semantics.Semantics.SemanticsSortKey), VoidCallback onTap = default(VoidCallback), VoidCallback onLongPress = default(VoidCallback), VoidCallback onScrollLeft = default(VoidCallback), VoidCallback onScrollRight = default(VoidCallback), VoidCallback onScrollUp = default(VoidCallback), VoidCallback onScrollDown = default(VoidCallback), VoidCallback onIncrease = default(VoidCallback), VoidCallback onDecrease = default(VoidCallback), VoidCallback onCopy = default(VoidCallback), VoidCallback onCut = default(VoidCallback), VoidCallback onPaste = default(VoidCallback), FlutterSDK.Semantics.Semantics.MoveCursorHandler onMoveCursorForwardByCharacter = default(FlutterSDK.Semantics.Semantics.MoveCursorHandler), FlutterSDK.Semantics.Semantics.MoveCursorHandler onMoveCursorBackwardByCharacter = default(FlutterSDK.Semantics.Semantics.MoveCursorHandler), FlutterSDK.Semantics.Semantics.MoveCursorHandler onMoveCursorForwardByWord = default(FlutterSDK.Semantics.Semantics.MoveCursorHandler), FlutterSDK.Semantics.Semantics.MoveCursorHandler onMoveCursorBackwardByWord = default(FlutterSDK.Semantics.Semantics.MoveCursorHandler), FlutterSDK.Semantics.Semantics.SetSelectionHandler onSetSelection = default(FlutterSDK.Semantics.Semantics.SetSelectionHandler), VoidCallback onDidGainAccessibilityFocus = default(VoidCallback), VoidCallback onDidLoseAccessibilityFocus = default(VoidCallback), VoidCallback onDismiss = default(VoidCallback), Dictionary<FlutterSDK.Semantics.Semantics.CustomSemanticsAction, object> customSemanticsActions = default(Dictionary<FlutterSDK.Semantics.Semantics.CustomSemanticsAction, object>))
         {
             this.Enabled = enabled;
@@ -1317,54 +1615,555 @@ namespace FlutterSDK.Semantics.Semantics
             this.OnDismiss = onDismiss;
             this.CustomSemanticsActions = customSemanticsActions;
         }
+        /// <Summary>
+        /// If non-null, indicates that this subtree represents something that can be
+        /// in an enabled or disabled state.
+        ///
+        /// For example, a button that a user can currently interact with would set
+        /// this field to true. A button that currently does not respond to user
+        /// interactions would set this field to false.
+        /// </Summary>
         public virtual bool Enabled { get; set; }
+        /// <Summary>
+        /// If non-null, indicates that this subtree represents a checkbox
+        /// or similar widget with a "checked" state, and what its current
+        /// state is.
+        ///
+        /// This is mutually exclusive with [toggled].
+        /// </Summary>
         public virtual bool @checked { get; set; }
+        /// <Summary>
+        /// If non-null, indicates that this subtree represents a toggle switch
+        /// or similar widget with an "on" state, and what its current
+        /// state is.
+        ///
+        /// This is mutually exclusive with [checked].
+        /// </Summary>
         public virtual bool Toggled { get; set; }
+        /// <Summary>
+        /// If non-null indicates that this subtree represents something that can be
+        /// in a selected or unselected state, and what its current state is.
+        ///
+        /// The active tab in a tab bar for example is considered "selected", whereas
+        /// all other tabs are unselected.
+        /// </Summary>
         public virtual bool Selected { get; set; }
+        /// <Summary>
+        /// If non-null, indicates that this subtree represents a button.
+        ///
+        /// TalkBack/VoiceOver provides users with the hint "button" when a button
+        /// is focused.
+        /// </Summary>
         public virtual bool Button { get; set; }
+        /// <Summary>
+        /// If non-null, indicates that this subtree represents a link.
+        ///
+        /// iOS's VoiceOver provides users with a unique hint when a link is focused.
+        /// Android's Talkback will announce a link hint the same way it does a
+        /// button.
+        /// </Summary>
         public virtual bool Link { get; set; }
+        /// <Summary>
+        /// If non-null, indicates that this subtree represents a header.
+        ///
+        /// A header divides into sections. For example, an address book application
+        /// might define headers A, B, C, etc. to divide the list of alphabetically
+        /// sorted contacts into sections.
+        /// </Summary>
         public virtual bool Header { get; set; }
+        /// <Summary>
+        /// If non-null, indicates that this subtree represents a text field.
+        ///
+        /// TalkBack/VoiceOver provide special affordances to enter text into a
+        /// text field.
+        /// </Summary>
         public virtual bool TextField { get; set; }
+        /// <Summary>
+        /// If non-null, indicates that this subtree is read only.
+        ///
+        /// Only applicable when [textField] is true
+        ///
+        /// TalkBack/VoiceOver will treat it as non-editable text field.
+        /// </Summary>
         public virtual bool ReadOnly { get; set; }
+        /// <Summary>
+        /// If non-null, whether the node is able to hold input focus.
+        ///
+        /// If [focusable] is set to false, then [focused] must not be true.
+        ///
+        /// Input focus indicates that the node will receive keyboard events. It is not
+        /// to be confused with accessibility focus. Accessibility focus is the
+        /// green/black rectangular highlight that TalkBack/VoiceOver draws around the
+        /// element it is reading, and is separate from input focus.
+        /// </Summary>
         public virtual bool Focusable { get; set; }
+        /// <Summary>
+        /// If non-null, whether the node currently holds input focus.
+        ///
+        /// At most one node in the tree should hold input focus at any point in time,
+        /// and it should not be set to true if [focusable] is false.
+        ///
+        /// Input focus indicates that the node will receive keyboard events. It is not
+        /// to be confused with accessibility focus. Accessibility focus is the
+        /// green/black rectangular highlight that TalkBack/VoiceOver draws around the
+        /// element it is reading, and is separate from input focus.
+        /// </Summary>
         public virtual bool Focused { get; set; }
+        /// <Summary>
+        /// If non-null, whether a semantic node is in a mutually exclusive group.
+        ///
+        /// For example, a radio button is in a mutually exclusive group because only
+        /// one radio button in that group can be marked as [checked].
+        /// </Summary>
         public virtual bool InMutuallyExclusiveGroup { get; set; }
+        /// <Summary>
+        /// If non-null, whether the node is considered hidden.
+        ///
+        /// Hidden elements are currently not visible on screen. They may be covered
+        /// by other elements or positioned outside of the visible area of a viewport.
+        ///
+        /// Hidden elements cannot gain accessibility focus though regular touch. The
+        /// only way they can be focused is by moving the focus to them via linear
+        /// navigation.
+        ///
+        /// Platforms are free to completely ignore hidden elements and new platforms
+        /// are encouraged to do so.
+        ///
+        /// Instead of marking an element as hidden it should usually be excluded from
+        /// the semantics tree altogether. Hidden elements are only included in the
+        /// semantics tree to work around platform limitations and they are mainly
+        /// used to implement accessibility scrolling on iOS.
+        /// </Summary>
         public virtual bool Hidden { get; set; }
+        /// <Summary>
+        /// If non-null, whether [value] should be obscured.
+        ///
+        /// This option is usually set in combination with [textField] to indicate
+        /// that the text field contains a password (or other sensitive information).
+        /// Doing so instructs screen readers to not read out the [value].
+        /// </Summary>
         public virtual bool Obscured { get; set; }
+        /// <Summary>
+        /// Whether the [value] is coming from a field that supports multiline text
+        /// editing.
+        ///
+        /// This option is only meaningful when [textField] is true to indicate
+        /// whether it's a single-line or multiline text field.
+        ///
+        /// This option is null when [textField] is false.
+        /// </Summary>
         public virtual bool Multiline { get; set; }
+        /// <Summary>
+        /// If non-null, whether the node corresponds to the root of a subtree for
+        /// which a route name should be announced.
+        ///
+        /// Generally, this is set in combination with [explicitChildNodes], since
+        /// nodes with this flag are not considered focusable by Android or iOS.
+        ///
+        /// See also:
+        ///
+        ///  * [SemanticsFlag.scopesRoute] for a description of how the announced
+        ///    value is selected.
+        /// </Summary>
         public virtual bool ScopesRoute { get; set; }
+        /// <Summary>
+        /// If non-null, whether the node contains the semantic label for a route.
+        ///
+        /// See also:
+        ///
+        ///  * [SemanticsFlag.namesRoute] for a description of how the name is used.
+        /// </Summary>
         public virtual bool NamesRoute { get; set; }
+        /// <Summary>
+        /// If non-null, whether the node represents an image.
+        ///
+        /// See also:
+        ///
+        ///  * [SemanticsFlag.image], for the flag this setting controls.
+        /// </Summary>
         public virtual bool Image { get; set; }
+        /// <Summary>
+        /// If non-null, whether the node should be considered a live region.
+        ///
+        /// On Android, when the label changes on a live region semantics node,
+        /// TalkBack will make a polite announcement of the current label. This
+        /// announcement occurs even if the node is not focused, but only if the label
+        /// has changed since the last update.
+        ///
+        /// On iOS, no announcements are made but the node is marked as
+        /// `UIAccessibilityTraitUpdatesFrequently`.
+        ///
+        /// An example of a live region is the [Snackbar] widget. When it appears
+        /// on the screen it may be difficult to focus to read the label. A live
+        /// region causes an initial polite announcement to be generated
+        /// automatically.
+        ///
+        /// See also:
+        ///
+        ///  * [SemanticsFlag.liveRegion], the semantics flag this setting controls.
+        ///  * [SemanticsConfiguration.liveRegion], for a full description of a live region.
+        /// </Summary>
         public virtual bool LiveRegion { get; set; }
+        /// <Summary>
+        /// The maximum number of characters that can be entered into an editable
+        /// text field.
+        ///
+        /// For the purpose of this function a character is defined as one Unicode
+        /// scalar value.
+        ///
+        /// This should only be set when [textField] is true. Defaults to null,
+        /// which means no limit is imposed on the text field.
+        /// </Summary>
         public virtual int MaxValueLength { get; set; }
+        /// <Summary>
+        /// The current number of characters that have been entered into an editable
+        /// text field.
+        ///
+        /// For the purpose of this function a character is defined as one Unicode
+        /// scalar value.
+        ///
+        /// This should only be set when [textField] is true. Must be set when
+        /// [maxValueLength] is set.
+        /// </Summary>
         public virtual int CurrentValueLength { get; set; }
+        /// <Summary>
+        /// Provides a textual description of the widget.
+        ///
+        /// If a label is provided, there must either by an ambient [Directionality]
+        /// or an explicit [textDirection] should be provided.
+        ///
+        /// See also:
+        ///
+        ///  * [SemanticsConfiguration.label] for a description of how this is exposed
+        ///    in TalkBack and VoiceOver.
+        /// </Summary>
         public virtual string Label { get; set; }
+        /// <Summary>
+        /// Provides a textual description of the value of the widget.
+        ///
+        /// If a value is provided, there must either by an ambient [Directionality]
+        /// or an explicit [textDirection] should be provided.
+        ///
+        /// See also:
+        ///
+        ///  * [SemanticsConfiguration.value] for a description of how this is exposed
+        ///    in TalkBack and VoiceOver.
+        /// </Summary>
         public virtual string Value { get; set; }
+        /// <Summary>
+        /// The value that [value] will become after a [SemanticsAction.increase]
+        /// action has been performed on this widget.
+        ///
+        /// If a value is provided, [onIncrease] must also be set and there must
+        /// either be an ambient [Directionality] or an explicit [textDirection]
+        /// must be provided.
+        ///
+        /// See also:
+        ///
+        ///  * [SemanticsConfiguration.increasedValue] for a description of how this
+        ///    is exposed in TalkBack and VoiceOver.
+        /// </Summary>
         public virtual string IncreasedValue { get; set; }
+        /// <Summary>
+        /// The value that [value] will become after a [SemanticsAction.decrease]
+        /// action has been performed on this widget.
+        ///
+        /// If a value is provided, [onDecrease] must also be set and there must
+        /// either be an ambient [Directionality] or an explicit [textDirection]
+        /// must be provided.
+        ///
+        /// See also:
+        ///
+        ///  * [SemanticsConfiguration.decreasedValue] for a description of how this
+        ///    is exposed in TalkBack and VoiceOver.
+        /// </Summary>
         public virtual string DecreasedValue { get; set; }
+        /// <Summary>
+        /// Provides a brief textual description of the result of an action performed
+        /// on the widget.
+        ///
+        /// If a hint is provided, there must either be an ambient [Directionality]
+        /// or an explicit [textDirection] should be provided.
+        ///
+        /// See also:
+        ///
+        ///  * [SemanticsConfiguration.hint] for a description of how this is exposed
+        ///    in TalkBack and VoiceOver.
+        /// </Summary>
         public virtual string Hint { get; set; }
+        /// <Summary>
+        /// Provides hint values which override the default hints on supported
+        /// platforms.
+        ///
+        /// On Android, If no hint overrides are used then default [hint] will be
+        /// combined with the [label]. Otherwise, the [hint] will be ignored as long
+        /// as there as at least one non-null hint override.
+        ///
+        /// On iOS, these are always ignored and the default [hint] is used instead.
+        /// </Summary>
         public virtual FlutterSDK.Semantics.Semantics.SemanticsHintOverrides HintOverrides { get; set; }
+        /// <Summary>
+        /// The reading direction of the [label], [value], [hint], [increasedValue],
+        /// and [decreasedValue].
+        ///
+        /// Defaults to the ambient [Directionality].
+        /// </Summary>
         public virtual TextDirection TextDirection { get; set; }
+        /// <Summary>
+        /// Determines the position of this node among its siblings in the traversal
+        /// sort order.
+        ///
+        /// This is used to describe the order in which the semantic node should be
+        /// traversed by the accessibility services on the platform (e.g. VoiceOver
+        /// on iOS and TalkBack on Android).
+        /// </Summary>
         public virtual FlutterSDK.Semantics.Semantics.SemanticsSortKey SortKey { get; set; }
+        /// <Summary>
+        /// The handler for [SemanticsAction.tap].
+        ///
+        /// This is the semantic equivalent of a user briefly tapping the screen with
+        /// the finger without moving it. For example, a button should implement this
+        /// action.
+        ///
+        /// VoiceOver users on iOS and TalkBack users on Android can trigger this
+        /// action by double-tapping the screen while an element is focused.
+        /// </Summary>
         public virtual VoidCallback OnTap { get; set; }
+        /// <Summary>
+        /// The handler for [SemanticsAction.longPress].
+        ///
+        /// This is the semantic equivalent of a user pressing and holding the screen
+        /// with the finger for a few seconds without moving it.
+        ///
+        /// VoiceOver users on iOS and TalkBack users on Android can trigger this
+        /// action by double-tapping the screen without lifting the finger after the
+        /// second tap.
+        /// </Summary>
         public virtual VoidCallback OnLongPress { get; set; }
+        /// <Summary>
+        /// The handler for [SemanticsAction.scrollLeft].
+        ///
+        /// This is the semantic equivalent of a user moving their finger across the
+        /// screen from right to left. It should be recognized by controls that are
+        /// horizontally scrollable.
+        ///
+        /// VoiceOver users on iOS can trigger this action by swiping left with three
+        /// fingers. TalkBack users on Android can trigger this action by swiping
+        /// right and then left in one motion path. On Android, [onScrollUp] and
+        /// [onScrollLeft] share the same gesture. Therefore, only on of them should
+        /// be provided.
+        /// </Summary>
         public virtual VoidCallback OnScrollLeft { get; set; }
+        /// <Summary>
+        /// The handler for [SemanticsAction.scrollRight].
+        ///
+        /// This is the semantic equivalent of a user moving their finger across the
+        /// screen from left to right. It should be recognized by controls that are
+        /// horizontally scrollable.
+        ///
+        /// VoiceOver users on iOS can trigger this action by swiping right with three
+        /// fingers. TalkBack users on Android can trigger this action by swiping
+        /// left and then right in one motion path. On Android, [onScrollDown] and
+        /// [onScrollRight] share the same gesture. Therefore, only on of them should
+        /// be provided.
+        /// </Summary>
         public virtual VoidCallback OnScrollRight { get; set; }
+        /// <Summary>
+        /// The handler for [SemanticsAction.scrollUp].
+        ///
+        /// This is the semantic equivalent of a user moving their finger across the
+        /// screen from bottom to top. It should be recognized by controls that are
+        /// vertically scrollable.
+        ///
+        /// VoiceOver users on iOS can trigger this action by swiping up with three
+        /// fingers. TalkBack users on Android can trigger this action by swiping
+        /// right and then left in one motion path. On Android, [onScrollUp] and
+        /// [onScrollLeft] share the same gesture. Therefore, only on of them should
+        /// be provided.
+        /// </Summary>
         public virtual VoidCallback OnScrollUp { get; set; }
+        /// <Summary>
+        /// The handler for [SemanticsAction.scrollDown].
+        ///
+        /// This is the semantic equivalent of a user moving their finger across the
+        /// screen from top to bottom. It should be recognized by controls that are
+        /// vertically scrollable.
+        ///
+        /// VoiceOver users on iOS can trigger this action by swiping down with three
+        /// fingers. TalkBack users on Android can trigger this action by swiping
+        /// left and then right in one motion path. On Android, [onScrollDown] and
+        /// [onScrollRight] share the same gesture. Therefore, only on of them should
+        /// be provided.
+        /// </Summary>
         public virtual VoidCallback OnScrollDown { get; set; }
+        /// <Summary>
+        /// The handler for [SemanticsAction.increase].
+        ///
+        /// This is a request to increase the value represented by the widget. For
+        /// example, this action might be recognized by a slider control.
+        ///
+        /// If a [value] is set, [increasedValue] must also be provided and
+        /// [onIncrease] must ensure that [value] will be set to [increasedValue].
+        ///
+        /// VoiceOver users on iOS can trigger this action by swiping up with one
+        /// finger. TalkBack users on Android can trigger this action by pressing the
+        /// volume up button.
+        /// </Summary>
         public virtual VoidCallback OnIncrease { get; set; }
+        /// <Summary>
+        /// The handler for [SemanticsAction.decrease].
+        ///
+        /// This is a request to decrease the value represented by the widget. For
+        /// example, this action might be recognized by a slider control.
+        ///
+        /// If a [value] is set, [decreasedValue] must also be provided and
+        /// [onDecrease] must ensure that [value] will be set to [decreasedValue].
+        ///
+        /// VoiceOver users on iOS can trigger this action by swiping down with one
+        /// finger. TalkBack users on Android can trigger this action by pressing the
+        /// volume down button.
+        /// </Summary>
         public virtual VoidCallback OnDecrease { get; set; }
+        /// <Summary>
+        /// The handler for [SemanticsAction.copy].
+        ///
+        /// This is a request to copy the current selection to the clipboard.
+        ///
+        /// TalkBack users on Android can trigger this action from the local context
+        /// menu of a text field, for example.
+        /// </Summary>
         public virtual VoidCallback OnCopy { get; set; }
+        /// <Summary>
+        /// The handler for [SemanticsAction.cut].
+        ///
+        /// This is a request to cut the current selection and place it in the
+        /// clipboard.
+        ///
+        /// TalkBack users on Android can trigger this action from the local context
+        /// menu of a text field, for example.
+        /// </Summary>
         public virtual VoidCallback OnCut { get; set; }
+        /// <Summary>
+        /// The handler for [SemanticsAction.paste].
+        ///
+        /// This is a request to paste the current content of the clipboard.
+        ///
+        /// TalkBack users on Android can trigger this action from the local context
+        /// menu of a text field, for example.
+        /// </Summary>
         public virtual VoidCallback OnPaste { get; set; }
+        /// <Summary>
+        /// The handler for [SemanticsAction.onMoveCursorForwardByCharacter].
+        ///
+        /// This handler is invoked when the user wants to move the cursor in a
+        /// text field forward by one character.
+        ///
+        /// TalkBack users can trigger this by pressing the volume up key while the
+        /// input focus is in a text field.
+        /// </Summary>
         public virtual FlutterSDK.Semantics.Semantics.MoveCursorHandler OnMoveCursorForwardByCharacter { get; set; }
+        /// <Summary>
+        /// The handler for [SemanticsAction.onMoveCursorBackwardByCharacter].
+        ///
+        /// This handler is invoked when the user wants to move the cursor in a
+        /// text field backward by one character.
+        ///
+        /// TalkBack users can trigger this by pressing the volume down key while the
+        /// input focus is in a text field.
+        /// </Summary>
         public virtual FlutterSDK.Semantics.Semantics.MoveCursorHandler OnMoveCursorBackwardByCharacter { get; set; }
+        /// <Summary>
+        /// The handler for [SemanticsAction.onMoveCursorForwardByWord].
+        ///
+        /// This handler is invoked when the user wants to move the cursor in a
+        /// text field backward by one word.
+        ///
+        /// TalkBack users can trigger this by pressing the volume down key while the
+        /// input focus is in a text field.
+        /// </Summary>
         public virtual FlutterSDK.Semantics.Semantics.MoveCursorHandler OnMoveCursorForwardByWord { get; set; }
+        /// <Summary>
+        /// The handler for [SemanticsAction.onMoveCursorBackwardByWord].
+        ///
+        /// This handler is invoked when the user wants to move the cursor in a
+        /// text field backward by one word.
+        ///
+        /// TalkBack users can trigger this by pressing the volume down key while the
+        /// input focus is in a text field.
+        /// </Summary>
         public virtual FlutterSDK.Semantics.Semantics.MoveCursorHandler OnMoveCursorBackwardByWord { get; set; }
+        /// <Summary>
+        /// The handler for [SemanticsAction.setSelection].
+        ///
+        /// This handler is invoked when the user either wants to change the currently
+        /// selected text in a text field or change the position of the cursor.
+        ///
+        /// TalkBack users can trigger this handler by selecting "Move cursor to
+        /// beginning/end" or "Select all" from the local context menu.
+        /// </Summary>
         public virtual FlutterSDK.Semantics.Semantics.SetSelectionHandler OnSetSelection { get; set; }
+        /// <Summary>
+        /// The handler for [SemanticsAction.didGainAccessibilityFocus].
+        ///
+        /// This handler is invoked when the node annotated with this handler gains
+        /// the accessibility focus. The accessibility focus is the
+        /// green (on Android with TalkBack) or black (on iOS with VoiceOver)
+        /// rectangle shown on screen to indicate what element an accessibility
+        /// user is currently interacting with.
+        ///
+        /// The accessibility focus is different from the input focus. The input focus
+        /// is usually held by the element that currently responds to keyboard inputs.
+        /// Accessibility focus and input focus can be held by two different nodes!
+        ///
+        /// See also:
+        ///
+        ///  * [onDidLoseAccessibilityFocus], which is invoked when the accessibility
+        ///    focus is removed from the node.
+        ///  * [FocusNode], [FocusScope], [FocusManager], which manage the input focus.
+        /// </Summary>
         public virtual VoidCallback OnDidGainAccessibilityFocus { get; set; }
+        /// <Summary>
+        /// The handler for [SemanticsAction.didLoseAccessibilityFocus].
+        ///
+        /// This handler is invoked when the node annotated with this handler
+        /// loses the accessibility focus. The accessibility focus is
+        /// the green (on Android with TalkBack) or black (on iOS with VoiceOver)
+        /// rectangle shown on screen to indicate what element an accessibility
+        /// user is currently interacting with.
+        ///
+        /// The accessibility focus is different from the input focus. The input focus
+        /// is usually held by the element that currently responds to keyboard inputs.
+        /// Accessibility focus and input focus can be held by two different nodes!
+        ///
+        /// See also:
+        ///
+        ///  * [onDidGainAccessibilityFocus], which is invoked when the node gains
+        ///    accessibility focus.
+        ///  * [FocusNode], [FocusScope], [FocusManager], which manage the input focus.
+        /// </Summary>
         public virtual VoidCallback OnDidLoseAccessibilityFocus { get; set; }
+        /// <Summary>
+        /// The handler for [SemanticsAction.dismiss].
+        ///
+        /// This is a request to dismiss the currently focused node.
+        ///
+        /// TalkBack users on Android can trigger this action in the local context
+        /// menu, and VoiceOver users on iOS can trigger this action with a standard
+        /// gesture or menu option.
+        /// </Summary>
         public virtual VoidCallback OnDismiss { get; set; }
+        /// <Summary>
+        /// A map from each supported [CustomSemanticsAction] to a provided handler.
+        ///
+        /// The handler associated with each custom action is called whenever a
+        /// semantics event of type [SemanticsEvent.customEvent] is received. The
+        /// provided argument will be an identifier used to retrieve an instance of
+        /// a custom action which can then retrieve the correct handler from this map.
+        ///
+        /// See also:
+        ///
+        ///  * [CustomSemanticsAction], for an explanation of custom actions.
+        /// </Summary>
         public virtual Dictionary<FlutterSDK.Semantics.Semantics.CustomSemanticsAction, object> CustomSemanticsActions { get; set; }
 
         public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
@@ -1399,11 +2198,22 @@ namespace FlutterSDK.Semantics.Semantics
     /// </Summary>
     public class SemanticsNode : FlutterSDK.Foundation.Node.AbstractNode, IDiagnosticableTreeMixin
     {
+        /// <Summary>
+        /// Creates a semantic node.
+        ///
+        /// Each semantic node has a unique identifier that is assigned when the node
+        /// is created.
+        /// </Summary>
         public SemanticsNode(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), VoidCallback showOnScreen = default(VoidCallback))
         : base()
         {
             this.Key = key;
         }
+        /// <Summary>
+        /// Creates a semantic node to represent the root of the semantics tree.
+        ///
+        /// The root node is assigned an identifier of zero.
+        /// </Summary>
         public static SemanticsNode Root(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), VoidCallback showOnScreen = default(VoidCallback), FlutterSDK.Semantics.Semantics.SemanticsOwner owner = default(FlutterSDK.Semantics.Semantics.SemanticsOwner))
         {
             var instance = new SemanticsNode(); instance.Key = key;
@@ -1413,24 +2223,109 @@ namespace FlutterSDK.Semantics.Semantics
 
         internal virtual int _MaxFrameworkAccessibilityIdentifier { get; set; }
         internal virtual int _LastIdentifier { get; set; }
+        /// <Summary>
+        /// Uniquely identifies this node in the list of sibling nodes.
+        ///
+        /// Keys are used during the construction of the semantics tree. They are not
+        /// transferred to the engine.
+        /// </Summary>
         public virtual FlutterSDK.Foundation.Key.Key Key { get; set; }
+        /// <Summary>
+        /// The unique identifier for this node.
+        ///
+        /// The root node has an id of zero. Other nodes are given a unique id when
+        /// they are created.
+        /// </Summary>
         public virtual int Id { get; set; }
         internal virtual VoidCallback _ShowOnScreen { get; set; }
         internal virtual Matrix4 _Transform { get; set; }
         internal virtual FlutterBinding.UI.Rect _Rect { get; set; }
+        /// <Summary>
+        /// The semantic clip from an ancestor that was applied to this node.
+        ///
+        /// Expressed in the coordinate system of the node. May be null if no clip has
+        /// been applied.
+        ///
+        /// Descendant [SemanticsNode]s that are positioned outside of this rect will
+        /// be excluded from the semantics tree. Descendant [SemanticsNode]s that are
+        /// overlapping with this rect, but are outside of [parentPaintClipRect] will
+        /// be included in the tree, but they will be marked as hidden because they
+        /// are assumed to be not visible on screen.
+        ///
+        /// If this rect is null, all descendant [SemanticsNode]s outside of
+        /// [parentPaintClipRect] will be excluded from the tree.
+        ///
+        /// If this rect is non-null it has to completely enclose
+        /// [parentPaintClipRect]. If [parentPaintClipRect] is null this property is
+        /// also null.
+        /// </Summary>
         public virtual FlutterBinding.UI.Rect ParentSemanticsClipRect { get; set; }
+        /// <Summary>
+        /// The paint clip from an ancestor that was applied to this node.
+        ///
+        /// Expressed in the coordinate system of the node. May be null if no clip has
+        /// been applied.
+        ///
+        /// Descendant [SemanticsNode]s that are positioned outside of this rect will
+        /// either be excluded from the semantics tree (if they have no overlap with
+        /// [parentSemanticsClipRect]) or they will be included and marked as hidden
+        /// (if they are overlapping with [parentSemanticsClipRect]).
+        ///
+        /// This rect is completely enclosed by [parentSemanticsClipRect].
+        ///
+        /// If this rect is null [parentSemanticsClipRect] also has to be null.
+        /// </Summary>
         public virtual FlutterBinding.UI.Rect ParentPaintClipRect { get; set; }
+        /// <Summary>
+        /// The elevation adjustment that the parent imposes on this node.
+        ///
+        /// The [elevation] property is relative to the elevation of the parent
+        /// [SemanticsNode]. However, as [SemanticsConfiguration]s from various
+        /// ascending [RenderObjects] are merged into each other to form that
+        /// [SemanticsNode] the parent’s elevation may change. This requires an
+        /// adjustment of the child’s relative elevation which is represented by this
+        /// value.
+        ///
+        /// The value is rarely accessed directly. Instead, for most use cases the
+        /// [elevation] value should be used, which includes this adjustment.
+        ///
+        /// See also:
+        ///
+        ///  * [elevation], the actual elevation of this [SemanticsNode].
+        /// </Summary>
         public virtual double ElevationAdjustment { get; set; }
+        /// <Summary>
+        /// The index of this node within the parent's list of semantic children.
+        ///
+        /// This includes all semantic nodes, not just those currently in the
+        /// child list. For example, if a scrollable has five children but the first
+        /// two are not visible (and thus not included in the list of children), then
+        /// the index of the last node will still be 4.
+        /// </Summary>
         public virtual int IndexInParent { get; set; }
         internal virtual bool _IsMergedIntoParent { get; set; }
         internal virtual bool _MergeAllDescendantsIntoThisNode { get; set; }
+        /// <Summary>
+        /// Contains the children in inverse hit test order (i.e. paint order).
+        /// </Summary>
         internal virtual List<FlutterSDK.Semantics.Semantics.SemanticsNode> _Children { get; set; }
+        /// <Summary>
+        /// A snapshot of `newChildren` passed to [_replaceChildren] that we keep in
+        /// debug mode. It supports the assertion that user does not mutate the list
+        /// of children.
+        /// </Summary>
         internal virtual List<FlutterSDK.Semantics.Semantics.SemanticsNode> _DebugPreviousSnapshot { get; set; }
         internal virtual bool _Dead { get; set; }
         internal virtual bool _Dirty { get; set; }
         internal virtual Dictionary<SemanticsAction, object> _Actions { get; set; }
         internal virtual Dictionary<FlutterSDK.Semantics.Semantics.CustomSemanticsAction, object> _CustomSemanticsActions { get; set; }
         internal virtual int _ActionsAsBits { get; set; }
+        /// <Summary>
+        /// The [SemanticsTag]s this node is tagged with.
+        ///
+        /// Tags are used during the construction of the semantics tree. They are not
+        /// transferred to the engine.
+        /// </Summary>
         public virtual HashSet<FlutterSDK.Semantics.Semantics.SemanticsTag> Tags { get; set; }
         internal virtual int _Flags { get; set; }
         internal virtual string _Label { get; set; }
@@ -2174,8 +3069,26 @@ namespace FlutterSDK.Semantics.Semantics
             this.Offset = offset;
             this.Node = node;
         }
+        /// <Summary>
+        /// True if the edge comes before the seconds edge along the traversal
+        /// direction, and false otherwise.
+        ///
+        /// This field is never null.
+        ///
+        /// For example, in LTR traversal the left edge's [isLeadingEdge] is set to true,
+        /// the right edge's [isLeadingEdge] is set to false. When considering vertical
+        /// ordering of boxes, the top edge is the start edge, and the bottom edge is
+        /// the end edge.
+        /// </Summary>
         public virtual bool IsLeadingEdge { get; set; }
+        /// <Summary>
+        /// The offset from the start edge of the parent [SemanticsNode] in the
+        /// direction of the traversal.
+        /// </Summary>
         public virtual double Offset { get; set; }
+        /// <Summary>
+        /// The node whom this edge belongs.
+        /// </Summary>
         public virtual FlutterSDK.Semantics.Semantics.SemanticsNode Node { get; set; }
 
         public new int CompareTo(FlutterSDK.Semantics.Semantics._BoxEdge other)
@@ -2202,8 +3115,18 @@ namespace FlutterSDK.Semantics.Semantics
             this.StartOffset = startOffset;
             this.TextDirection = textDirection;
         }
+        /// <Summary>
+        /// The offset from the start edge of the parent [SemanticsNode] in the
+        /// direction of the traversal.
+        ///
+        /// This value is equal to the [_BoxEdge.offset] of the first node in the
+        /// [nodes] list being considered.
+        /// </Summary>
         public virtual double StartOffset { get; set; }
         public virtual TextDirection TextDirection { get; set; }
+        /// <Summary>
+        /// The nodes that are sorted among each other.
+        /// </Summary>
         public virtual List<FlutterSDK.Semantics.Semantics.SemanticsNode> Nodes { get; set; }
 
         public new int CompareTo(FlutterSDK.Semantics.Semantics._SemanticsSortGroup other)
@@ -2377,8 +3300,21 @@ namespace FlutterSDK.Semantics.Semantics
             this.SortKey = sortKey;
             this.Position = position;
         }
+        /// <Summary>
+        /// The node whose position this sort node determines.
+        /// </Summary>
         public virtual FlutterSDK.Semantics.Semantics.SemanticsNode Node { get; set; }
+        /// <Summary>
+        /// Determines the position of this node among its siblings.
+        ///
+        /// Sort keys take precedence over other attributes, such as
+        /// [position].
+        /// </Summary>
         public virtual FlutterSDK.Semantics.Semantics.SemanticsSortKey SortKey { get; set; }
+        /// <Summary>
+        /// Position within the list of siblings as determined by the default sort
+        /// order.
+        /// </Summary>
         public virtual int Position { get; set; }
 
         public new int CompareTo(FlutterSDK.Semantics.Semantics._TraversalSortNode other)
@@ -2612,10 +3548,23 @@ namespace FlutterSDK.Semantics.Semantics
     /// </Summary>
     public class SemanticsSortKey : IComparable<FlutterSDK.Semantics.Semantics.SemanticsSortKey>, IDiagnosticable
     {
+        /// <Summary>
+        /// Abstract const constructor. This constructor enables subclasses to provide
+        /// const constructors so that they can be used in const expressions.
+        /// </Summary>
         public SemanticsSortKey(string name = default(string))
         {
             this.Name = name;
         }
+        /// <Summary>
+        /// An optional name that will group this sort key with other sort keys of the
+        /// same [name].
+        ///
+        /// Sort keys must have the same `runtimeType` when compared.
+        ///
+        /// Keys with no [name] are compared to other keys with no [name], and will
+        /// be traversed before those with a [name].
+        /// </Summary>
         public virtual string Name { get; set; }
 
         public new int CompareTo(FlutterSDK.Semantics.Semantics.SemanticsSortKey other)
@@ -2691,11 +3640,24 @@ namespace FlutterSDK.Semantics.Semantics
     /// </Summary>
     public class OrdinalSortKey : FlutterSDK.Semantics.Semantics.SemanticsSortKey
     {
+        /// <Summary>
+        /// Creates a const semantics sort key that uses a [double] as its key value.
+        ///
+        /// The [order] must be a finite number, and must not be null.
+        /// </Summary>
         public OrdinalSortKey(double order, string name = default(string))
         : base(name: name)
         {
             this.Order = order;
         }
+        /// <Summary>
+        /// Determines the placement of this key in a sequence of keys that defines
+        /// the order in which this node is traversed by the platform's accessibility
+        /// services.
+        ///
+        /// Lower values will be traversed first. Keys with the same [name] will be
+        /// grouped together and sorted by name first, and then sorted by [order].
+        /// </Summary>
         public virtual double Order { get; set; }
 
         public new int DoCompare(FlutterSDK.Semantics.Semantics.OrdinalSortKey other)

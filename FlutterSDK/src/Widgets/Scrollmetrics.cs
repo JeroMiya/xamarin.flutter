@@ -497,6 +497,9 @@ namespace FlutterSDK.Widgets.Scrollmetrics
     /// </Summary>
     public class FixedScrollMetrics : FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics
     {
+        /// <Summary>
+        /// Creates an immutable snapshot of values associated with a [Scrollable] viewport.
+        /// </Summary>
         public FixedScrollMetrics(double minScrollExtent = default(double), double maxScrollExtent = default(double), double pixels = default(double), double viewportDimension = default(double), FlutterSDK.Painting.Basictypes.AxisDirection axisDirection = default(FlutterSDK.Painting.Basictypes.AxisDirection))
         {
             this.MinScrollExtent = minScrollExtent;

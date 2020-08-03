@@ -456,6 +456,12 @@ namespace FlutterSDK.Rendering.Sliverlist
     /// </Summary>
     public class RenderSliverList : FlutterSDK.Rendering.Slivermultiboxadaptor.RenderSliverMultiBoxAdaptor
     {
+        /// <Summary>
+        /// Creates a sliver that places multiple box children in a linear array along
+        /// the main axis.
+        ///
+        /// The [childManager] argument must not be null.
+        /// </Summary>
         public RenderSliverList(FlutterSDK.Rendering.Slivermultiboxadaptor.RenderSliverBoxChildManager childManager = default(FlutterSDK.Rendering.Slivermultiboxadaptor.RenderSliverBoxChildManager))
         : base(childManager: childManager)
         {

@@ -423,7 +423,19 @@ using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
 namespace FlutterSDK.Widgets.Dismissible
 {
+    /// <Summary>
+    /// Signature used by [Dismissible] to indicate that it has been dismissed in
+    /// the given `direction`.
+    ///
+    /// Used by [Dismissible.onDismissed].
+    /// </Summary>
     public delegate void DismissDirectionCallback(FlutterSDK.Widgets.Dismissible.DismissDirection direction);
+    /// <Summary>
+    /// Signature used by [Dismissible] to give the application an opportunity to
+    /// confirm or veto a dismiss gesture.
+    ///
+    /// Used by [Dismissible.confirmDismiss].
+    /// </Summary>
     public delegate Future<bool> ConfirmDismissCallback(FlutterSDK.Widgets.Dismissible.DismissDirection direction);
     internal static class DismissibleDefaultClass
     {
@@ -456,6 +468,16 @@ namespace FlutterSDK.Widgets.Dismissible
     /// </Summary>
     public class Dismissible : FlutterSDK.Widgets.Framework.StatefulWidget
     {
+        /// <Summary>
+        /// Creates a widget that can be dismissed.
+        ///
+        /// The [key] argument must not be null because [Dismissible]s are commonly
+        /// used in lists and removed from the list when dismissed. Without keys, the
+        /// default behavior is to sync widgets based on their index in the list,
+        /// which means the item after the dismissed item would be synced with the
+        /// state of the dismissed item. Using keys causes the widgets to sync
+        /// according to their keys and avoids this pitfall.
+        /// </Summary>
         public Dismissible(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget background = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget secondaryBackground = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Dismissible.ConfirmDismissCallback confirmDismiss = default(FlutterSDK.Widgets.Dismissible.ConfirmDismissCallback), VoidCallback onResize = default(VoidCallback), FlutterSDK.Widgets.Dismissible.DismissDirectionCallback onDismissed = default(FlutterSDK.Widgets.Dismissible.DismissDirectionCallback), FlutterSDK.Widgets.Dismissible.DismissDirection direction = default(FlutterSDK.Widgets.Dismissible.DismissDirection), TimeSpan resizeDuration = default(TimeSpan), Dictionary<FlutterSDK.Widgets.Dismissible.DismissDirection, double> dismissThresholds = default(Dictionary<FlutterSDK.Widgets.Dismissible.DismissDirection, double>), TimeSpan movementDuration = default(TimeSpan), double crossAxisEndOffset = 0.0, FlutterSDK.Gestures.Recognizer.DragStartBehavior dragStartBehavior = default(FlutterSDK.Gestures.Recognizer.DragStartBehavior))
         : base(key: key)
         {
@@ -472,17 +494,103 @@ namespace FlutterSDK.Widgets.Dismissible
             this.CrossAxisEndOffset = crossAxisEndOffset;
             this.DragStartBehavior = dragStartBehavior;
         }
+        /// <Summary>
+        /// The widget below this widget in the tree.
+        ///
+        /// {@macro flutter.widgets.child}
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+        /// <Summary>
+        /// A widget that is stacked behind the child. If secondaryBackground is also
+        /// specified then this widget only appears when the child has been dragged
+        /// down or to the right.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Background { get; set; }
+        /// <Summary>
+        /// A widget that is stacked behind the child and is exposed when the child
+        /// has been dragged up or to the left. It may only be specified when background
+        /// has also been specified.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget SecondaryBackground { get; set; }
+        /// <Summary>
+        /// Gives the app an opportunity to confirm or veto a pending dismissal.
+        ///
+        /// If the returned Future<bool> completes true, then this widget will be
+        /// dismissed, otherwise it will be moved back to its original location.
+        ///
+        /// If the returned Future<bool> completes to false or null the [onResize]
+        /// and [onDismissed] callbacks will not run.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Dismissible.ConfirmDismissCallback ConfirmDismiss { get; set; }
+        /// <Summary>
+        /// Called when the widget changes size (i.e., when contracting before being dismissed).
+        /// </Summary>
         public virtual VoidCallback OnResize { get; set; }
+        /// <Summary>
+        /// Called when the widget has been dismissed, after finishing resizing.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Dismissible.DismissDirectionCallback OnDismissed { get; set; }
+        /// <Summary>
+        /// The direction in which the widget can be dismissed.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Dismissible.DismissDirection Direction { get; set; }
+        /// <Summary>
+        /// The amount of time the widget will spend contracting before [onDismissed] is called.
+        ///
+        /// If null, the widget will not contract and [onDismissed] will be called
+        /// immediately after the widget is dismissed.
+        /// </Summary>
         public virtual TimeSpan ResizeDuration { get; set; }
+        /// <Summary>
+        /// The offset threshold the item has to be dragged in order to be considered
+        /// dismissed.
+        ///
+        /// Represented as a fraction, e.g. if it is 0.4 (the default), then the item
+        /// has to be dragged at least 40% towards one direction to be considered
+        /// dismissed. Clients can define different thresholds for each dismiss
+        /// direction.
+        ///
+        /// Flinging is treated as being equivalent to dragging almost to 1.0, so
+        /// flinging can dismiss an item past any threshold less than 1.0.
+        ///
+        /// Setting a threshold of 1.0 (or greater) prevents a drag in the given
+        /// [DismissDirection] even if it would be allowed by the [direction]
+        /// property.
+        ///
+        /// See also:
+        ///
+        ///  * [direction], which controls the directions in which the items can
+        ///    be dismissed.
+        /// </Summary>
         public virtual Dictionary<FlutterSDK.Widgets.Dismissible.DismissDirection, double> DismissThresholds { get; set; }
+        /// <Summary>
+        /// Defines the duration for card to dismiss or to come back to original position if not dismissed.
+        /// </Summary>
         public virtual TimeSpan MovementDuration { get; set; }
+        /// <Summary>
+        /// Defines the end offset across the main axis after the card is dismissed.
+        ///
+        /// If non-zero value is given then widget moves in cross direction depending on whether
+        /// it is positive or negative.
+        /// </Summary>
         public virtual double CrossAxisEndOffset { get; set; }
+        /// <Summary>
+        /// Determines the way that drag start behavior is handled.
+        ///
+        /// If set to [DragStartBehavior.start], the drag gesture used to dismiss a
+        /// dismissible will begin upon the detection of a drag gesture. If set to
+        /// [DragStartBehavior.down] it will begin when a down event is first detected.
+        ///
+        /// In general, setting this to [DragStartBehavior.start] will make drag
+        /// animation smoother and setting it to [DragStartBehavior.down] will make
+        /// drag behavior feel slightly more reactive.
+        ///
+        /// By default, the drag start behavior is [DragStartBehavior.start].
+        ///
+        /// See also:
+        ///
+        ///  * [DragGestureRecognizer.dragStartBehavior], which gives an example for the different behaviors.
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Recognizer.DragStartBehavior DragStartBehavior { get; set; }
 
         public new FlutterSDK.Widgets.Dismissible._DismissibleState CreateState() => new _DismissibleState();

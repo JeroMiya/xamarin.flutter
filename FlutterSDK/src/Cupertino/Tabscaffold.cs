@@ -354,6 +354,13 @@ namespace FlutterSDK.Cupertino.Tabscaffold
     /// </Summary>
     public class CupertinoTabController : FlutterSDK.Foundation.Changenotifier.ChangeNotifier
     {
+        /// <Summary>
+        /// Creates a [CupertinoTabController] to control the tab index of [CupertinoTabScaffold]
+        /// and [CupertinoTabBar].
+        ///
+        /// The [initialIndex] must not be null and defaults to 0. The value must be
+        /// greater than or equal to 0, and less than the total number of tabs.
+        /// </Summary>
         public CupertinoTabController(int initialIndex = 0)
         : base()
         {
@@ -476,6 +483,11 @@ namespace FlutterSDK.Cupertino.Tabscaffold
     /// </Summary>
     public class CupertinoTabScaffold : FlutterSDK.Widgets.Framework.StatefulWidget
     {
+        /// <Summary>
+        /// Creates a layout for applications with a tab bar at the bottom.
+        ///
+        /// The [tabBar] and [tabBuilder] arguments must not be null.
+        /// </Summary>
         public CupertinoTabScaffold(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Cupertino.Bottomtabbar.CupertinoTabBar tabBar = default(FlutterSDK.Cupertino.Bottomtabbar.CupertinoTabBar), FlutterSDK.Widgets.Framework.IndexedWidgetBuilder tabBuilder = default(FlutterSDK.Widgets.Framework.IndexedWidgetBuilder), FlutterSDK.Cupertino.Tabscaffold.CupertinoTabController controller = default(FlutterSDK.Cupertino.Tabscaffold.CupertinoTabController), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), bool resizeToAvoidBottomInset = true)
         : base(key: key)
         {
@@ -485,10 +497,79 @@ namespace FlutterSDK.Cupertino.Tabscaffold
             this.BackgroundColor = backgroundColor;
             this.ResizeToAvoidBottomInset = resizeToAvoidBottomInset;
         }
+        /// <Summary>
+        /// The [tabBar] is a [CupertinoTabBar] drawn at the bottom of the screen
+        /// that lets the user switch between different tabs in the main content area
+        /// when present.
+        ///
+        /// The [CupertinoTabBar.currentIndex] is only used to initialize a
+        /// [CupertinoTabController] when no [controller] is provided. Subsequently
+        /// providing a different [CupertinoTabBar.currentIndex] does not affect the
+        /// scaffold or the tab bar's active tab index. To programmatically change
+        /// the active tab index, use a [CupertinoTabController].
+        ///
+        /// If [CupertinoTabBar.onTap] is provided, it will still be called.
+        /// [CupertinoTabScaffold] automatically also listen to the
+        /// [CupertinoTabBar]'s `onTap` to change the [controller]'s `index`
+        /// and change the actively displayed tab in [CupertinoTabScaffold]'s own
+        /// main content area.
+        ///
+        /// If translucent, the main content may slide behind it.
+        /// Otherwise, the main content's bottom margin will be offset by its height.
+        ///
+        /// By default `tabBar` has its text scale factor set to 1.0 and does not
+        /// respond to text scale factor changes from the operating system, to match
+        /// the native iOS behavior. To override this behavior, wrap each of the `tabBar`'s
+        /// items inside a [MediaQuery] with the desired [MediaQueryData.textScaleFactor]
+        /// value. The text scale factor value from the operating system can be retrieved
+        /// int many ways, such as querying [MediaQuery.textScaleFactorOf] against
+        /// [CupertinoApp]'s [BuildContext].
+        ///
+        /// Must not be null.
+        /// </Summary>
         public virtual FlutterSDK.Cupertino.Bottomtabbar.CupertinoTabBar TabBar { get; set; }
+        /// <Summary>
+        /// Controls the currently selected tab index of the [tabBar], as well as the
+        /// active tab index of the [tabBuilder]. Providing a different [controller]
+        /// will also update the scaffold's current active index to the new controller's
+        /// index value.
+        ///
+        /// Defaults to null.
+        /// </Summary>
         public virtual FlutterSDK.Cupertino.Tabscaffold.CupertinoTabController Controller { get; set; }
+        /// <Summary>
+        /// An [IndexedWidgetBuilder] that's called when tabs become active.
+        ///
+        /// The widgets built by [IndexedWidgetBuilder] are typically a
+        /// [CupertinoTabView] in order to achieve the parallel hierarchical
+        /// information architecture seen on iOS apps with tab bars.
+        ///
+        /// When the tab becomes inactive, its content is cached in the widget tree
+        /// [Offstage] and its animations disabled.
+        ///
+        /// Content can slide under the [tabBar] when they're translucent.
+        /// In that case, the child's [BuildContext]'s [MediaQuery] will have a
+        /// bottom padding indicating the area of obstructing overlap from the
+        /// [tabBar].
+        ///
+        /// Must not be null.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.IndexedWidgetBuilder TabBuilder { get; set; }
+        /// <Summary>
+        /// The color of the widget that underlies the entire scaffold.
+        ///
+        /// By default uses [CupertinoTheme]'s `scaffoldBackgroundColor` when null.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
+        /// <Summary>
+        /// Whether the body should size itself to avoid the window's bottom inset.
+        ///
+        /// For example, if there is an onscreen keyboard displayed above the
+        /// scaffold, the body can be resized to avoid overlapping the keyboard, which
+        /// prevents widgets inside the body from being obscured by the keyboard.
+        ///
+        /// Defaults to true and cannot be null.
+        /// </Summary>
         public virtual bool ResizeToAvoidBottomInset { get; set; }
 
         public new FlutterSDK.Cupertino.Tabscaffold._CupertinoTabScaffoldState CreateState() => new _CupertinoTabScaffoldState();

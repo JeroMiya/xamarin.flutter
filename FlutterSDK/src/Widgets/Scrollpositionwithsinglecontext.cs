@@ -451,6 +451,19 @@ namespace FlutterSDK.Widgets.Scrollpositionwithsinglecontext
     /// </Summary>
     public class ScrollPositionWithSingleContext : FlutterSDK.Widgets.Scrollposition.ScrollPosition, IScrollActivityDelegate
     {
+        /// <Summary>
+        /// Create a [ScrollPosition] object that manages its behavior using
+        /// [ScrollActivity] objects.
+        ///
+        /// The `initialPixels` argument can be null, but in that case it is
+        /// imperative that the value be set, using [correctPixels], as soon as
+        /// [applyNewDimensions] is invoked, before calling the inherited
+        /// implementation of that method.
+        ///
+        /// If [keepScrollOffset] is true (the default), the current scroll offset is
+        /// saved with [PageStorage] and restored it if this scroll position's scrollable
+        /// is recreated.
+        /// </Summary>
         public ScrollPositionWithSingleContext(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics physics = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics), FlutterSDK.Widgets.Scrollcontext.ScrollContext context = default(FlutterSDK.Widgets.Scrollcontext.ScrollContext), double initialPixels = 0.0, bool keepScrollOffset = true, FlutterSDK.Widgets.Scrollposition.ScrollPosition oldPosition = default(FlutterSDK.Widgets.Scrollposition.ScrollPosition), string debugLabel = default(string))
         : base(physics: physics, context: context, keepScrollOffset: keepScrollOffset, oldPosition: oldPosition, debugLabel: debugLabel)
         {
@@ -461,6 +474,10 @@ namespace FlutterSDK.Widgets.Scrollpositionwithsinglecontext
         }
 
 
+        /// <Summary>
+        /// Velocity from a previous activity temporarily held by [hold] to potentially
+        /// transfer to a next activity.
+        /// </Summary>
         internal virtual double _HeldPreviousVelocity { get; set; }
         internal virtual FlutterSDK.Rendering.Viewportoffset.ScrollDirection _UserScrollDirection { get; set; }
         internal virtual FlutterSDK.Widgets.Scrollactivity.ScrollDragController _CurrentDrag { get; set; }

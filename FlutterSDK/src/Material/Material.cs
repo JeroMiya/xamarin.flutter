@@ -387,6 +387,11 @@ using FlutterSDK.Material.Inkhighlight;
 using FlutterSDK.Material.Inputborder;
 namespace FlutterSDK.Material.Material
 {
+    /// <Summary>
+    /// Signature for the callback used by ink effects to obtain the rectangle for the effect.
+    ///
+    /// Used by [InkHighlight] and [InkSplash], for example.
+    /// </Summary>
     public delegate Rect RectCallback();
     internal static class MaterialDefaultClass
     {
@@ -528,6 +533,19 @@ namespace FlutterSDK.Material.Material
     /// </Summary>
     public class Material : FlutterSDK.Widgets.Framework.StatefulWidget
     {
+        /// <Summary>
+        /// Creates a piece of material.
+        ///
+        /// The [type], [elevation], [shadowColor], [borderOnForeground],
+        /// [clipBehavior], and [animationDuration] arguments must not be null.
+        /// Additionally, [elevation] must be non-negative.
+        ///
+        /// If a [shape] is specified, then the [borderRadius] property must be
+        /// null and the [type] property must not be [MaterialType.circle]. If the
+        /// [borderRadius] is specified, then the [type] property must not be
+        /// [MaterialType.circle]. In both cases, these restrictions are intended to
+        /// catch likely errors.
+        /// </Summary>
         public Material(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Material.Material.MaterialType type = default(FlutterSDK.Material.Material.MaterialType), double elevation = 0.0, FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color shadowColor = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Textstyle.TextStyle textStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Borderradius.BorderRadiusGeometry borderRadius = default(FlutterSDK.Painting.Borderradius.BorderRadiusGeometry), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), bool borderOnForeground = true, FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip), TimeSpan animationDuration = default(TimeSpan), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key)
         {
@@ -543,17 +561,116 @@ namespace FlutterSDK.Material.Material
             this.AnimationDuration = animationDuration;
             this.Child = child;
         }
+        /// <Summary>
+        /// The widget below this widget in the tree.
+        ///
+        /// {@macro flutter.widgets.child}
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+        /// <Summary>
+        /// The kind of material to show (e.g., card or canvas). This
+        /// affects the shape of the widget, the roundness of its corners if
+        /// the shape is rectangular, and the default color.
+        /// </Summary>
         public virtual FlutterSDK.Material.Material.MaterialType Type { get; set; }
+        /// <Summary>
+        /// {@template flutter.material.material.elevation}
+        /// The z-coordinate at which to place this material relative to its parent.
+        ///
+        /// This controls the size of the shadow below the material and the opacity
+        /// of the elevation overlay color if it is applied.
+        ///
+        /// If this is non-zero, the contents of the material are clipped, because the
+        /// widget conceptually defines an independent printed piece of material.
+        ///
+        /// Defaults to 0. Changing this value will cause the shadow and the elevation
+        /// overlay to animate over [animationDuration].
+        ///
+        /// The value is non-negative.
+        ///
+        /// See also:
+        ///
+        ///  * [ThemeData.applyElevationOverlayColor] which controls the whether
+        ///    an overlay color will be applied to indicate elevation.
+        ///  * [color] which may have an elevation overlay applied.
+        ///
+        /// {@endtemplate}
+        /// </Summary>
         public virtual double Elevation { get; set; }
+        /// <Summary>
+        /// The color to paint the material.
+        ///
+        /// Must be opaque. To create a transparent piece of material, use
+        /// [MaterialType.transparency].
+        ///
+        /// To support dark themes, if the surrounding
+        /// [ThemeData.applyElevationOverlayColor] is true then a semi-transparent
+        /// overlay color will be composited on top this color to indicate
+        /// the elevation.
+        ///
+        /// By default, the color is derived from the [type] of material.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color Color { get; set; }
+        /// <Summary>
+        /// The color to paint the shadow below the material.
+        ///
+        /// Defaults to fully opaque black.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color ShadowColor { get; set; }
+        /// <Summary>
+        /// The typographical style to use for text within this material.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Textstyle.TextStyle TextStyle { get; set; }
+        /// <Summary>
+        /// Defines the material's shape as well its shadow.
+        ///
+        /// If shape is non null, the [borderRadius] is ignored and the material's
+        /// clip boundary and shadow are defined by the shape.
+        ///
+        /// A shadow is only displayed if the [elevation] is greater than
+        /// zero.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Borders.ShapeBorder Shape { get; set; }
+        /// <Summary>
+        /// Whether to paint the [shape] border in front of the [child].
+        ///
+        /// The default value is true.
+        /// If false, the border will be painted behind the [child].
+        /// </Summary>
         public virtual bool BorderOnForeground { get; set; }
+        /// <Summary>
+        /// {@template flutter.widgets.Clip}
+        /// The content will be clipped (or not) according to this option.
+        ///
+        /// See the enum [Clip] for details of all possible options and their common
+        /// use cases.
+        /// {@endtemplate}
+        ///
+        /// Defaults to [Clip.none], and must not be null.
+        /// </Summary>
         public virtual FlutterBinding.UI.Clip ClipBehavior { get; set; }
+        /// <Summary>
+        /// Defines the duration of animated changes for [shape], [elevation],
+        /// [shadowColor] and the elevation overlay if it is applied.
+        ///
+        /// The default value is [kThemeChangeDuration].
+        /// </Summary>
         public virtual TimeSpan AnimationDuration { get; set; }
+        /// <Summary>
+        /// If non-null, the corners of this box are rounded by this
+        /// [BorderRadiusGeometry] value.
+        ///
+        /// Otherwise, the corners specified for the current [type] of material are
+        /// used.
+        ///
+        /// If [shape] is non null then the border radius is ignored.
+        ///
+        /// Must be null if [type] is [MaterialType.circle].
+        /// </Summary>
         public virtual FlutterSDK.Painting.Borderradius.BorderRadiusGeometry BorderRadius { get; set; }
+        /// <Summary>
+        /// The default radius of an ink splash in logical pixels.
+        /// </Summary>
         public virtual double DefaultSplashRadius { get; set; }
 
         /// <Summary>
@@ -792,6 +909,9 @@ namespace FlutterSDK.Material.Material
     /// </Summary>
     public class InkFeature
     {
+        /// <Summary>
+        /// Initializes fields for subclasses.
+        /// </Summary>
         public InkFeature(FlutterSDK.Material.Material.MaterialInkController controller = default(FlutterSDK.Material.Material.MaterialInkController), FlutterSDK.Rendering.Box.RenderBox referenceBox = default(FlutterSDK.Rendering.Box.RenderBox), VoidCallback onRemoved = default(VoidCallback))
         : base()
         {
@@ -799,7 +919,13 @@ namespace FlutterSDK.Material.Material
             this.OnRemoved = onRemoved;
         }
         internal virtual FlutterSDK.Material.Material._RenderInkFeatures _Controller { get; set; }
+        /// <Summary>
+        /// The render box whose visual position defines the frame of reference for this ink feature.
+        /// </Summary>
         public virtual FlutterSDK.Rendering.Box.RenderBox ReferenceBox { get; set; }
+        /// <Summary>
+        /// Called when the ink feature is no longer visible on the material.
+        /// </Summary>
         public virtual VoidCallback OnRemoved { get; set; }
         internal virtual bool _DebugDisposed { get; set; }
         public virtual FlutterSDK.Material.Material.MaterialInkController Controller { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
@@ -861,6 +987,12 @@ namespace FlutterSDK.Material.Material
     /// </Summary>
     public class ShapeBorderTween : FlutterSDK.Animation.Tween.Tween<FlutterSDK.Painting.Borders.ShapeBorder>
     {
+        /// <Summary>
+        /// Creates a [ShapeBorder] tween.
+        ///
+        /// the [begin] and [end] properties may be null; see [ShapeBorder.lerp] for
+        /// the null handling semantics.
+        /// </Summary>
         public ShapeBorderTween(FlutterSDK.Painting.Borders.ShapeBorder begin = default(FlutterSDK.Painting.Borders.ShapeBorder), FlutterSDK.Painting.Borders.ShapeBorder end = default(FlutterSDK.Painting.Borders.ShapeBorder))
         : base(begin: begin, end: end)
         {
@@ -887,6 +1019,13 @@ namespace FlutterSDK.Material.Material
     /// </Summary>
     public class _MaterialInterior : FlutterSDK.Widgets.Implicitanimations.ImplicitlyAnimatedWidget
     {
+        /// <Summary>
+        /// Creates a const instance of [_MaterialInterior].
+        ///
+        /// The [child], [shape], [clipBehavior], [color], and [shadowColor] arguments
+        /// must not be null. The [elevation] must be specified and greater than or
+        /// equal to zero.
+        /// </Summary>
         public _MaterialInterior(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), bool borderOnForeground = true, FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip), double elevation = default(double), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color shadowColor = default(FlutterBinding.UI.Color), FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve), TimeSpan duration = default(TimeSpan))
         : base(key: key, curve: curve, duration: duration)
         {
@@ -898,12 +1037,46 @@ namespace FlutterSDK.Material.Material
             this.Color = color;
             this.ShadowColor = shadowColor;
         }
+        /// <Summary>
+        /// The widget below this widget in the tree.
+        ///
+        /// {@macro flutter.widgets.child}
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+        /// <Summary>
+        /// The border of the widget.
+        ///
+        /// This border will be painted, and in addition the outer path of the border
+        /// determines the physical shape.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Borders.ShapeBorder Shape { get; set; }
+        /// <Summary>
+        /// Whether to paint the border in front of the child.
+        ///
+        /// The default value is true.
+        /// If false, the border will be painted behind the child.
+        /// </Summary>
         public virtual bool BorderOnForeground { get; set; }
+        /// <Summary>
+        /// {@macro flutter.widgets.Clip}
+        ///
+        /// Defaults to [Clip.none], and must not be null.
+        /// </Summary>
         public virtual FlutterBinding.UI.Clip ClipBehavior { get; set; }
+        /// <Summary>
+        /// The target z-coordinate at which to place this physical object relative
+        /// to its parent.
+        ///
+        /// The value is non-negative.
+        /// </Summary>
         public virtual double Elevation { get; set; }
+        /// <Summary>
+        /// The target background color.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color Color { get; set; }
+        /// <Summary>
+        /// The target shadow color.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color ShadowColor { get; set; }
 
         public new FlutterSDK.Material.Material._MaterialInteriorState CreateState() => new _MaterialInteriorState();

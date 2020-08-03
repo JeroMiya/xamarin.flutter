@@ -423,11 +423,41 @@ using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
 namespace FlutterSDK.Rendering.Proxybox
 {
+    /// <Summary>
+    /// Signature for a function that creates a [Shader] for a given [Rect].
+    ///
+    /// Used by [RenderShaderMask] and the [ShaderMask] widget.
+    /// </Summary>
     public delegate SKShader ShaderCallback(FlutterBinding.UI.Rect bounds);
+    /// <Summary>
+    /// Signature for listening to [PointerDownEvent] events.
+    ///
+    /// Used by [Listener] and [RenderPointerListener].
+    /// </Summary>
     public delegate void PointerDownEventListener(FlutterSDK.Gestures.Events.PointerDownEvent @event);
+    /// <Summary>
+    /// Signature for listening to [PointerMoveEvent] events.
+    ///
+    /// Used by [Listener] and [RenderPointerListener].
+    /// </Summary>
     public delegate void PointerMoveEventListener(FlutterSDK.Gestures.Events.PointerMoveEvent @event);
+    /// <Summary>
+    /// Signature for listening to [PointerUpEvent] events.
+    ///
+    /// Used by [Listener] and [RenderPointerListener].
+    /// </Summary>
     public delegate void PointerUpEventListener(FlutterSDK.Gestures.Events.PointerUpEvent @event);
+    /// <Summary>
+    /// Signature for listening to [PointerCancelEvent] events.
+    ///
+    /// Used by [Listener] and [RenderPointerListener].
+    /// </Summary>
     public delegate void PointerCancelEventListener(FlutterSDK.Gestures.Events.PointerCancelEvent @event);
+    /// <Summary>
+    /// Signature for listening to [PointerSignalEvent] events.
+    ///
+    /// Used by [Listener] and [RenderPointerListener].
+    /// </Summary>
     public delegate void PointerSignalEventListener(FlutterSDK.Gestures.Events.PointerSignalEvent @event);
     internal static class ProxyboxDefaultClass
     {
@@ -776,6 +806,13 @@ namespace FlutterSDK.Rendering.Proxybox
     /// </Summary>
     public class RenderProxyBox : FlutterSDK.Rendering.Box.RenderBox, IRenderObjectWithChildMixin<FlutterSDK.Rendering.Box.RenderBox>, IRenderProxyBoxMixin<FlutterSDK.Rendering.Box.RenderBox>
     {
+        /// <Summary>
+        /// Creates a proxy render box.
+        ///
+        /// Proxy render boxes are rarely created directly because they simply proxy
+        /// the render box protocol to [child]. Instead, consider using one of the
+        /// subclasses.
+        /// </Summary>
         public RenderProxyBox(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox))
         {
 
@@ -792,11 +829,19 @@ namespace FlutterSDK.Rendering.Proxybox
     /// </Summary>
     public class RenderProxyBoxWithHitTestBehavior : FlutterSDK.Rendering.Proxybox.RenderProxyBox
     {
+        /// <Summary>
+        /// Initializes member variables for subclasses.
+        ///
+        /// By default, the [behavior] is [HitTestBehavior.deferToChild].
+        /// </Summary>
         public RenderProxyBoxWithHitTestBehavior(FlutterSDK.Rendering.Proxybox.HitTestBehavior behavior = default(FlutterSDK.Rendering.Proxybox.HitTestBehavior), FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox))
         : base(child)
         {
             this.Behavior = behavior;
         }
+        /// <Summary>
+        /// How to behave during hit testing.
+        /// </Summary>
         public virtual FlutterSDK.Rendering.Proxybox.HitTestBehavior Behavior { get; set; }
 
         public new bool HitTest(FlutterSDK.Rendering.Box.BoxHitTestResult result, FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset))
@@ -843,6 +888,11 @@ namespace FlutterSDK.Rendering.Proxybox
     /// </Summary>
     public class RenderConstrainedBox : FlutterSDK.Rendering.Proxybox.RenderProxyBox
     {
+        /// <Summary>
+        /// Creates a render box that constrains its child.
+        ///
+        /// The [additionalConstraints] argument must not be null and must be valid.
+        /// </Summary>
         public RenderConstrainedBox(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox), FlutterSDK.Rendering.Box.BoxConstraints additionalConstraints = default(FlutterSDK.Rendering.Box.BoxConstraints))
         : base(child)
         {
@@ -953,6 +1003,13 @@ namespace FlutterSDK.Rendering.Proxybox
     /// </Summary>
     public class RenderLimitedBox : FlutterSDK.Rendering.Proxybox.RenderProxyBox
     {
+        /// <Summary>
+        /// Creates a render box that imposes a maximum width or maximum height on its
+        /// child if the child is otherwise unconstrained.
+        ///
+        /// The [maxWidth] and [maxHeight] arguments not be null and must be
+        /// non-negative.
+        /// </Summary>
         public RenderLimitedBox(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox), double maxWidth = default(double), double maxHeight = default(double))
         : base(child)
         {
@@ -1031,6 +1088,11 @@ namespace FlutterSDK.Rendering.Proxybox
     /// </Summary>
     public class RenderAspectRatio : FlutterSDK.Rendering.Proxybox.RenderProxyBox
     {
+        /// <Summary>
+        /// Creates as render object with a specific aspect ratio.
+        ///
+        /// The [aspectRatio] argument must be a finite, positive value.
+        /// </Summary>
         public RenderAspectRatio(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox), double aspectRatio = default(double))
         : base(child)
         {
@@ -1165,6 +1227,12 @@ namespace FlutterSDK.Rendering.Proxybox
     /// </Summary>
     public class RenderIntrinsicWidth : FlutterSDK.Rendering.Proxybox.RenderProxyBox
     {
+        /// <Summary>
+        /// Creates a render object that sizes itself to its child's intrinsic width.
+        ///
+        /// If [stepWidth] is non-null it must be > 0.0. Similarly If [stepHeight] is
+        /// non-null it must be > 0.0.
+        /// </Summary>
         public RenderIntrinsicWidth(double stepWidth = default(double), double stepHeight = default(double), FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox))
         : base(child)
         {
@@ -1285,6 +1353,9 @@ namespace FlutterSDK.Rendering.Proxybox
     /// </Summary>
     public class RenderIntrinsicHeight : FlutterSDK.Rendering.Proxybox.RenderProxyBox
     {
+        /// <Summary>
+        /// Creates a render object that sizes itself to its child's intrinsic height.
+        /// </Summary>
         public RenderIntrinsicHeight(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox))
         : base(child)
         {
@@ -1361,6 +1432,11 @@ namespace FlutterSDK.Rendering.Proxybox
     /// </Summary>
     public class RenderOpacity : FlutterSDK.Rendering.Proxybox.RenderProxyBox
     {
+        /// <Summary>
+        /// Creates a partially transparent render object.
+        ///
+        /// The [opacity] argument must be between 0.0 and 1.0, inclusive.
+        /// </Summary>
         public RenderOpacity(double opacity = 1.0, bool alwaysIncludeSemantics = false, FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox))
         : base(child)
         {
@@ -1427,6 +1503,11 @@ namespace FlutterSDK.Rendering.Proxybox
     /// </Summary>
     public class RenderAnimatedOpacity : FlutterSDK.Rendering.Proxybox.RenderProxyBox, IRenderProxyBoxMixin<FlutterSDK.Rendering.Box.RenderBox>, IRenderAnimatedOpacityMixin<FlutterSDK.Rendering.Box.RenderBox>
     {
+        /// <Summary>
+        /// Creates a partially transparent render object.
+        ///
+        /// The [opacity] argument must not be null.
+        /// </Summary>
         public RenderAnimatedOpacity(FlutterSDK.Animation.Animation.Animation<double> opacity = default(FlutterSDK.Animation.Animation.Animation<double>), bool alwaysIncludeSemantics = false, FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox))
         : base(child)
         {
@@ -1447,6 +1528,11 @@ namespace FlutterSDK.Rendering.Proxybox
     /// </Summary>
     public class RenderShaderMask : FlutterSDK.Rendering.Proxybox.RenderProxyBox
     {
+        /// <Summary>
+        /// Creates a render object that applies a mask generated by a [Shader] to its child.
+        ///
+        /// The [shaderCallback] and [blendMode] arguments must not be null.
+        /// </Summary>
         public RenderShaderMask(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox), FlutterSDK.Rendering.Proxybox.ShaderCallback shaderCallback = default(FlutterSDK.Rendering.Proxybox.ShaderCallback), FlutterBinding.UI.BlendMode blendMode = default(FlutterBinding.UI.BlendMode))
         : base(child)
         {
@@ -1488,6 +1574,11 @@ namespace FlutterSDK.Rendering.Proxybox
     /// </Summary>
     public class RenderBackdropFilter : FlutterSDK.Rendering.Proxybox.RenderProxyBox
     {
+        /// <Summary>
+        /// Creates a backdrop filter.
+        ///
+        /// The [filter] argument must not be null.
+        /// </Summary>
         public RenderBackdropFilter(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox), ImageFilter filter = default(ImageFilter))
         : base(child)
         {
@@ -1546,6 +1637,11 @@ namespace FlutterSDK.Rendering.Proxybox
     /// </Summary>
     public class CustomClipper<T>
     {
+        /// <Summary>
+        /// Creates a custom clipper.
+        ///
+        /// The clipper will update its clip whenever [reclip] notifies its listeners.
+        /// </Summary>
         public CustomClipper(FlutterSDK.Foundation.Changenotifier.Listenable reclip = default(FlutterSDK.Foundation.Changenotifier.Listenable))
         : base()
         {
@@ -1608,13 +1704,32 @@ namespace FlutterSDK.Rendering.Proxybox
     /// </Summary>
     public class ShapeBorderClipper : FlutterSDK.Rendering.Proxybox.CustomClipper<Path>
     {
+        /// <Summary>
+        /// Creates a [ShapeBorder] clipper.
+        ///
+        /// The [shape] argument must not be null.
+        ///
+        /// The [textDirection] argument must be provided non-null if [shape]
+        /// has a text direction dependency (for example if it is expressed in terms
+        /// of "start" and "end" instead of "left" and "right"). It may be null if
+        /// the border will not need the text direction to paint itself.
+        /// </Summary>
         public ShapeBorderClipper(FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), TextDirection textDirection = default(TextDirection))
         : base()
         {
             this.Shape = shape;
             this.TextDirection = textDirection;
         }
+        /// <Summary>
+        /// The shape border whose outer path this clipper clips to.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Borders.ShapeBorder Shape { get; set; }
+        /// <Summary>
+        /// The text direction to use for getting the outer path for [shape].
+        ///
+        /// [ShapeBorder]s can depend on the text direction (e.g having a "dent"
+        /// towards the start of the shape).
+        /// </Summary>
         public virtual TextDirection TextDirection { get; set; }
 
         /// <Summary>
@@ -1736,6 +1851,14 @@ namespace FlutterSDK.Rendering.Proxybox
     /// </Summary>
     public class RenderClipRect : FlutterSDK.Rendering.Proxybox._RenderCustomClip<Rect>
     {
+        /// <Summary>
+        /// Creates a rectangular clip.
+        ///
+        /// If [clipper] is null, the clip will match the layout size and position of
+        /// the child.
+        ///
+        /// The [clipBehavior] must not be null or [Clip.none].
+        /// </Summary>
         public RenderClipRect(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox), FlutterSDK.Rendering.Proxybox.CustomClipper<Rect> clipper = default(FlutterSDK.Rendering.Proxybox.CustomClipper<Rect>), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip))
         : base(child: child, clipper: clipper, clipBehavior: clipBehavior)
         {
@@ -1794,6 +1917,16 @@ namespace FlutterSDK.Rendering.Proxybox
     /// </Summary>
     public class RenderClipRRect : FlutterSDK.Rendering.Proxybox._RenderCustomClip<RRect>
     {
+        /// <Summary>
+        /// Creates a rounded-rectangular clip.
+        ///
+        /// The [borderRadius] defaults to [BorderRadius.zero], i.e. a rectangle with
+        /// right-angled corners.
+        ///
+        /// If [clipper] is non-null, then [borderRadius] is ignored.
+        ///
+        /// The [clipBehavior] argument must not be null or [Clip.none].
+        /// </Summary>
         public RenderClipRRect(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox), FlutterSDK.Painting.Borderradius.BorderRadius borderRadius = default(FlutterSDK.Painting.Borderradius.BorderRadius), FlutterSDK.Rendering.Proxybox.CustomClipper<RRect> clipper = default(FlutterSDK.Rendering.Proxybox.CustomClipper<RRect>), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip))
         : base(child: child, clipper: clipper, clipBehavior: clipBehavior)
         {
@@ -1857,6 +1990,14 @@ namespace FlutterSDK.Rendering.Proxybox
     /// </Summary>
     public class RenderClipOval : FlutterSDK.Rendering.Proxybox._RenderCustomClip<Rect>
     {
+        /// <Summary>
+        /// Creates an oval-shaped clip.
+        ///
+        /// If [clipper] is null, the oval will be inscribed into the layout size and
+        /// position of the child.
+        ///
+        /// The [clipBehavior] argument must not be null or [Clip.none].
+        /// </Summary>
         public RenderClipOval(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox), FlutterSDK.Rendering.Proxybox.CustomClipper<Rect> clipper = default(FlutterSDK.Rendering.Proxybox.CustomClipper<Rect>), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip))
         : base(child: child, clipper: clipper, clipBehavior: clipBehavior)
         {
@@ -1936,6 +2077,16 @@ namespace FlutterSDK.Rendering.Proxybox
     /// </Summary>
     public class RenderClipPath : FlutterSDK.Rendering.Proxybox._RenderCustomClip<Path>
     {
+        /// <Summary>
+        /// Creates a path clip.
+        ///
+        /// If [clipper] is null, the clip will be a rectangle that matches the layout
+        /// size and location of the child. However, rather than use this default,
+        /// consider using a [RenderClipRect], which can achieve the same effect more
+        /// efficiently.
+        ///
+        /// The [clipBehavior] argument must not be null or [Clip.none].
+        /// </Summary>
         public RenderClipPath(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox), FlutterSDK.Rendering.Proxybox.CustomClipper<Path> clipper = default(FlutterSDK.Rendering.Proxybox.CustomClipper<Path>), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip))
         : base(child: child, clipper: clipper, clipBehavior: clipBehavior)
         {
@@ -1993,6 +2144,10 @@ namespace FlutterSDK.Rendering.Proxybox
     /// </Summary>
     public class _RenderPhysicalModelBase<T> : FlutterSDK.Rendering.Proxybox._RenderCustomClip<T>
     {
+        /// <Summary>
+        /// The [shape], [elevation], [color], and [shadowColor] must not be null.
+        /// Additionally, the [elevation] must be non-negative.
+        /// </Summary>
         public _RenderPhysicalModelBase(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox), double elevation = default(double), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color shadowColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip), FlutterSDK.Rendering.Proxybox.CustomClipper<T> clipper = default(FlutterSDK.Rendering.Proxybox.CustomClipper<T>))
         : base(child: child, clipBehavior: clipBehavior, clipper: clipper)
         {
@@ -2036,6 +2191,15 @@ namespace FlutterSDK.Rendering.Proxybox
     /// </Summary>
     public class RenderPhysicalModel : FlutterSDK.Rendering.Proxybox._RenderPhysicalModelBase<RRect>
     {
+        /// <Summary>
+        /// Creates a rounded-rectangular clip.
+        ///
+        /// The [color] is required.
+        ///
+        /// The [shape], [elevation], [color], [clipBehavior], and [shadowColor]
+        /// arguments must not be null. Additionally, the [elevation] must be
+        /// non-negative.
+        /// </Summary>
         public RenderPhysicalModel(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox), FlutterSDK.Painting.Boxborder.BoxShape shape = default(FlutterSDK.Painting.Boxborder.BoxShape), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip), FlutterSDK.Painting.Borderradius.BorderRadius borderRadius = default(FlutterSDK.Painting.Borderradius.BorderRadius), double elevation = 0.0, FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color shadowColor = default(FlutterBinding.UI.Color))
         : base(clipBehavior: clipBehavior, child: child, elevation: elevation, color: color, shadowColor: shadowColor)
         {
@@ -2113,6 +2277,14 @@ namespace FlutterSDK.Rendering.Proxybox
     /// </Summary>
     public class RenderPhysicalShape : FlutterSDK.Rendering.Proxybox._RenderPhysicalModelBase<Path>
     {
+        /// <Summary>
+        /// Creates an arbitrary shape clip.
+        ///
+        /// The [color] and [shape] parameters are required.
+        ///
+        /// The [clipper], [elevation], [color] and [shadowColor] must not be null.
+        /// Additionally, the [elevation] must be non-negative.
+        /// </Summary>
         public RenderPhysicalShape(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox), FlutterSDK.Rendering.Proxybox.CustomClipper<Path> clipper = default(FlutterSDK.Rendering.Proxybox.CustomClipper<Path>), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip), double elevation = 0.0, FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color shadowColor = default(FlutterBinding.UI.Color))
         : base(child: child, elevation: elevation, color: color, shadowColor: shadowColor, clipper: clipper, clipBehavior: clipBehavior)
         {
@@ -2176,6 +2348,15 @@ namespace FlutterSDK.Rendering.Proxybox
     /// </Summary>
     public class RenderDecoratedBox : FlutterSDK.Rendering.Proxybox.RenderProxyBox
     {
+        /// <Summary>
+        /// Creates a decorated box.
+        ///
+        /// The [decoration], [position], and [configuration] arguments must not be
+        /// null. By default the decoration paints behind the child.
+        ///
+        /// The [ImageConfiguration] will be passed to the decoration (with the size
+        /// filled in) to let it resolve images.
+        /// </Summary>
         public RenderDecoratedBox(FlutterSDK.Painting.Decoration.Decoration decoration = default(FlutterSDK.Painting.Decoration.Decoration), FlutterSDK.Rendering.Proxybox.DecorationPosition position = default(FlutterSDK.Rendering.Proxybox.DecorationPosition), FlutterSDK.Painting.Imageprovider.ImageConfiguration configuration = default(FlutterSDK.Painting.Imageprovider.ImageConfiguration), FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox))
         : base(child)
         {
@@ -2252,6 +2433,11 @@ namespace FlutterSDK.Rendering.Proxybox
     /// </Summary>
     public class RenderTransform : FlutterSDK.Rendering.Proxybox.RenderProxyBox
     {
+        /// <Summary>
+        /// Creates a render object that transforms its child.
+        ///
+        /// The [transform] argument must not be null.
+        /// </Summary>
         public RenderTransform(Matrix4 transform = default(Matrix4), FlutterBinding.UI.Offset origin = default(FlutterBinding.UI.Offset), FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), TextDirection textDirection = default(TextDirection), bool transformHitTests = true, FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox))
         : base(child)
         {
@@ -2266,6 +2452,14 @@ namespace FlutterSDK.Rendering.Proxybox
         internal virtual FlutterBinding.UI.Offset _Origin { get; set; }
         internal virtual FlutterSDK.Painting.Alignment.AlignmentGeometry _Alignment { get; set; }
         internal virtual TextDirection _TextDirection { get; set; }
+        /// <Summary>
+        /// When set to true, hit tests are performed based on the position of the
+        /// child as it is painted. When set to false, hit tests are performed
+        /// ignoring the transformation.
+        ///
+        /// [applyPaintTransform], and therefore [localToGlobal] and [globalToLocal],
+        /// always honor the transformation, regardless of the value of this property.
+        /// </Summary>
         public virtual bool TransformHitTests { get; set; }
         internal virtual Matrix4 _Transform { get; set; }
         public virtual FlutterBinding.UI.Offset Origin { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
@@ -2430,6 +2624,11 @@ namespace FlutterSDK.Rendering.Proxybox
     /// </Summary>
     public class RenderFittedBox : FlutterSDK.Rendering.Proxybox.RenderProxyBox
     {
+        /// <Summary>
+        /// Scales and positions its child within itself.
+        ///
+        /// The [fit] and [alignment] arguments must not be null.
+        /// </Summary>
         public RenderFittedBox(FlutterSDK.Painting.Boxfit.BoxFit fit = default(FlutterSDK.Painting.Boxfit.BoxFit), FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), TextDirection textDirection = default(TextDirection), FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox))
         : base(child)
         {
@@ -2616,12 +2815,25 @@ namespace FlutterSDK.Rendering.Proxybox
     /// </Summary>
     public class RenderFractionalTranslation : FlutterSDK.Rendering.Proxybox.RenderProxyBox
     {
+        /// <Summary>
+        /// Creates a render object that translates its child's painting.
+        ///
+        /// The [translation] argument must not be null.
+        /// </Summary>
         public RenderFractionalTranslation(FlutterBinding.UI.Offset translation = default(FlutterBinding.UI.Offset), bool transformHitTests = true, FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox))
         : base(child)
         {
             this.TransformHitTests = transformHitTests;
         }
         internal virtual FlutterBinding.UI.Offset _Translation { get; set; }
+        /// <Summary>
+        /// When set to true, hit tests are performed based on the position of the
+        /// child as it is painted. When set to false, hit tests are performed
+        /// ignoring the transformation.
+        ///
+        /// applyPaintTransform(), and therefore localToGlobal() and globalToLocal(),
+        /// always honor the transformation, regardless of the value of this property.
+        /// </Summary>
         public virtual bool TransformHitTests { get; set; }
         public virtual FlutterBinding.UI.Offset Translation { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 
@@ -2701,6 +2913,11 @@ namespace FlutterSDK.Rendering.Proxybox
     /// </Summary>
     public class RenderPointerListener : FlutterSDK.Rendering.Proxybox.RenderProxyBoxWithHitTestBehavior
     {
+        /// <Summary>
+        /// Creates a render object that forwards pointer events to callbacks.
+        ///
+        /// The [behavior] argument defaults to [HitTestBehavior.deferToChild].
+        /// </Summary>
         public RenderPointerListener(FlutterSDK.Rendering.Proxybox.PointerDownEventListener onPointerDown = default(FlutterSDK.Rendering.Proxybox.PointerDownEventListener), FlutterSDK.Rendering.Proxybox.PointerMoveEventListener onPointerMove = default(FlutterSDK.Rendering.Proxybox.PointerMoveEventListener), FlutterSDK.Rendering.Proxybox.PointerUpEventListener onPointerUp = default(FlutterSDK.Rendering.Proxybox.PointerUpEventListener), FlutterSDK.Rendering.Proxybox.PointerCancelEventListener onPointerCancel = default(FlutterSDK.Rendering.Proxybox.PointerCancelEventListener), FlutterSDK.Rendering.Proxybox.PointerSignalEventListener onPointerSignal = default(FlutterSDK.Rendering.Proxybox.PointerSignalEventListener), FlutterSDK.Rendering.Proxybox.HitTestBehavior behavior = default(FlutterSDK.Rendering.Proxybox.HitTestBehavior), FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox))
         : base(behavior: behavior, child: child)
         {
@@ -2710,10 +2927,29 @@ namespace FlutterSDK.Rendering.Proxybox
             this.OnPointerCancel = onPointerCancel;
             this.OnPointerSignal = onPointerSignal;
         }
+        /// <Summary>
+        /// Called when a pointer comes into contact with the screen (for touch
+        /// pointers), or has its button pressed (for mouse pointers) at this widget's
+        /// location.
+        /// </Summary>
         public virtual FlutterSDK.Rendering.Proxybox.PointerDownEventListener OnPointerDown { get; set; }
+        /// <Summary>
+        /// Called when a pointer that triggered an [onPointerDown] changes position.
+        /// </Summary>
         public virtual FlutterSDK.Rendering.Proxybox.PointerMoveEventListener OnPointerMove { get; set; }
+        /// <Summary>
+        /// Called when a pointer that triggered an [onPointerDown] is no longer in
+        /// contact with the screen.
+        /// </Summary>
         public virtual FlutterSDK.Rendering.Proxybox.PointerUpEventListener OnPointerUp { get; set; }
+        /// <Summary>
+        /// Called when the input from a pointer that triggered an [onPointerDown] is
+        /// no longer directed towards this receiver.
+        /// </Summary>
         public virtual FlutterSDK.Rendering.Proxybox.PointerCancelEventListener OnPointerCancel { get; set; }
+        /// <Summary>
+        /// Called when a pointer signal occurs over this object.
+        /// </Summary>
         public virtual FlutterSDK.Rendering.Proxybox.PointerSignalEventListener OnPointerSignal { get; set; }
 
         public new void PerformResize()
@@ -2770,6 +3006,12 @@ namespace FlutterSDK.Rendering.Proxybox
     /// </Summary>
     public class RenderMouseRegion : FlutterSDK.Rendering.Proxybox.RenderProxyBox
     {
+        /// <Summary>
+        /// Creates a render object that forwards pointer events to callbacks.
+        ///
+        /// All parameters are optional. By default this method creates an opaque
+        /// mouse region with no callbacks.
+        /// </Summary>
         public RenderMouseRegion(FlutterSDK.Rendering.Mousetracking.PointerEnterEventListener onEnter = default(FlutterSDK.Rendering.Mousetracking.PointerEnterEventListener), FlutterSDK.Rendering.Mousetracking.PointerHoverEventListener onHover = default(FlutterSDK.Rendering.Mousetracking.PointerHoverEventListener), FlutterSDK.Rendering.Mousetracking.PointerExitEventListener onExit = default(FlutterSDK.Rendering.Mousetracking.PointerExitEventListener), bool opaque = true, FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox))
         : base(child)
         {
@@ -2942,6 +3184,9 @@ namespace FlutterSDK.Rendering.Proxybox
     /// </Summary>
     public class RenderRepaintBoundary : FlutterSDK.Rendering.Proxybox.RenderProxyBox
     {
+        /// <Summary>
+        /// Creates a repaint boundary around [child].
+        /// </Summary>
         public RenderRepaintBoundary(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox))
         : base(child)
         {
@@ -3078,6 +3323,12 @@ namespace FlutterSDK.Rendering.Proxybox
     /// </Summary>
     public class RenderIgnorePointer : FlutterSDK.Rendering.Proxybox.RenderProxyBox
     {
+        /// <Summary>
+        /// Creates a render object that is invisible to hit testing.
+        ///
+        /// The [ignoring] argument must not be null. If [ignoringSemantics] is null,
+        /// this render object will be ignored for semantics if [ignoring] is true.
+        /// </Summary>
         public RenderIgnorePointer(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox), bool ignoring = true, bool ignoringSemantics = default(bool))
         : base(child)
         {
@@ -3127,6 +3378,9 @@ namespace FlutterSDK.Rendering.Proxybox
     /// </Summary>
     public class RenderOffstage : FlutterSDK.Rendering.Proxybox.RenderProxyBox
     {
+        /// <Summary>
+        /// Creates an offstage render object.
+        /// </Summary>
         public RenderOffstage(bool offstage = true, FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox))
         : base(child)
         {
@@ -3268,6 +3522,11 @@ namespace FlutterSDK.Rendering.Proxybox
     /// </Summary>
     public class RenderAbsorbPointer : FlutterSDK.Rendering.Proxybox.RenderProxyBox
     {
+        /// <Summary>
+        /// Creates a render object that absorbs pointers during hit testing.
+        ///
+        /// The [absorbing] argument must not be null.
+        /// </Summary>
         public RenderAbsorbPointer(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox), bool absorbing = true, bool ignoringSemantics = default(bool))
         : base(child)
         {
@@ -3317,11 +3576,19 @@ namespace FlutterSDK.Rendering.Proxybox
     /// </Summary>
     public class RenderMetaData : FlutterSDK.Rendering.Proxybox.RenderProxyBoxWithHitTestBehavior
     {
+        /// <Summary>
+        /// Creates a render object that hold opaque meta data.
+        ///
+        /// The [behavior] argument defaults to [HitTestBehavior.deferToChild].
+        /// </Summary>
         public RenderMetaData(object metaData = default(object), FlutterSDK.Rendering.Proxybox.HitTestBehavior behavior = default(FlutterSDK.Rendering.Proxybox.HitTestBehavior), FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox))
         : base(behavior: behavior, child: child)
         {
             this.MetaData = metaData;
         }
+        /// <Summary>
+        /// Opaque meta data ignored by the render tree
+        /// </Summary>
         public virtual object MetaData { get; set; }
 
         public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
@@ -3341,6 +3608,11 @@ namespace FlutterSDK.Rendering.Proxybox
     /// </Summary>
     public class RenderSemanticsGestureHandler : FlutterSDK.Rendering.Proxybox.RenderProxyBox
     {
+        /// <Summary>
+        /// Creates a render object that listens for specific semantic gestures.
+        ///
+        /// The [scrollFactor] argument must not be null.
+        /// </Summary>
         public RenderSemanticsGestureHandler(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox), FlutterSDK.Gestures.Tap.GestureTapCallback onTap = default(FlutterSDK.Gestures.Tap.GestureTapCallback), FlutterSDK.Gestures.Longpress.GestureLongPressCallback onLongPress = default(FlutterSDK.Gestures.Longpress.GestureLongPressCallback), FlutterSDK.Gestures.Dragdetails.GestureDragUpdateCallback onHorizontalDragUpdate = default(FlutterSDK.Gestures.Dragdetails.GestureDragUpdateCallback), FlutterSDK.Gestures.Dragdetails.GestureDragUpdateCallback onVerticalDragUpdate = default(FlutterSDK.Gestures.Dragdetails.GestureDragUpdateCallback), double scrollFactor = 0.8)
         : base(child)
         {
@@ -3351,6 +3623,13 @@ namespace FlutterSDK.Rendering.Proxybox
         internal virtual FlutterSDK.Gestures.Longpress.GestureLongPressCallback _OnLongPress { get; set; }
         internal virtual FlutterSDK.Gestures.Dragdetails.GestureDragUpdateCallback _OnHorizontalDragUpdate { get; set; }
         internal virtual FlutterSDK.Gestures.Dragdetails.GestureDragUpdateCallback _OnVerticalDragUpdate { get; set; }
+        /// <Summary>
+        /// The fraction of the dimension of this render box to use when
+        /// scrolling. For example, if this is 0.8 and the box is 200 pixels
+        /// wide, then when a left-scroll action is received from the
+        /// accessibility system, it will translate into a 160 pixel
+        /// leftwards drag.
+        /// </Summary>
         public virtual double ScrollFactor { get; set; }
         public virtual HashSet<SemanticsAction> ValidActions { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterSDK.Gestures.Tap.GestureTapCallback OnTap { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
@@ -3458,6 +3737,13 @@ namespace FlutterSDK.Rendering.Proxybox
     /// </Summary>
     public class RenderSemanticsAnnotations : FlutterSDK.Rendering.Proxybox.RenderProxyBox
     {
+        /// <Summary>
+        /// Creates a render object that attaches a semantic annotation.
+        ///
+        /// The [container] argument must not be null.
+        ///
+        /// If the [label] is not null, the [textDirection] must also not be null.
+        /// </Summary>
         public RenderSemanticsAnnotations(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox), bool container = false, bool explicitChildNodes = default(bool), bool excludeSemantics = false, bool enabled = default(bool), bool @checked = default(bool), bool toggled = default(bool), bool selected = default(bool), bool button = default(bool), bool link = default(bool), bool header = default(bool), bool textField = default(bool), bool readOnly = default(bool), bool focusable = default(bool), bool focused = default(bool), bool inMutuallyExclusiveGroup = default(bool), bool obscured = default(bool), bool multiline = default(bool), bool scopesRoute = default(bool), bool namesRoute = default(bool), bool hidden = default(bool), bool image = default(bool), bool liveRegion = default(bool), int maxValueLength = default(int), int currentValueLength = default(int), string label = default(string), string value = default(string), string increasedValue = default(string), string decreasedValue = default(string), string hint = default(string), FlutterSDK.Semantics.Semantics.SemanticsHintOverrides hintOverrides = default(FlutterSDK.Semantics.Semantics.SemanticsHintOverrides), TextDirection textDirection = default(TextDirection), FlutterSDK.Semantics.Semantics.SemanticsSortKey sortKey = default(FlutterSDK.Semantics.Semantics.SemanticsSortKey), VoidCallback onTap = default(VoidCallback), VoidCallback onDismiss = default(VoidCallback), VoidCallback onLongPress = default(VoidCallback), VoidCallback onScrollLeft = default(VoidCallback), VoidCallback onScrollRight = default(VoidCallback), VoidCallback onScrollUp = default(VoidCallback), VoidCallback onScrollDown = default(VoidCallback), VoidCallback onIncrease = default(VoidCallback), VoidCallback onDecrease = default(VoidCallback), VoidCallback onCopy = default(VoidCallback), VoidCallback onCut = default(VoidCallback), VoidCallback onPaste = default(VoidCallback), FlutterSDK.Semantics.Semantics.MoveCursorHandler onMoveCursorForwardByCharacter = default(FlutterSDK.Semantics.Semantics.MoveCursorHandler), FlutterSDK.Semantics.Semantics.MoveCursorHandler onMoveCursorBackwardByCharacter = default(FlutterSDK.Semantics.Semantics.MoveCursorHandler), FlutterSDK.Semantics.Semantics.MoveCursorHandler onMoveCursorForwardByWord = default(FlutterSDK.Semantics.Semantics.MoveCursorHandler), FlutterSDK.Semantics.Semantics.MoveCursorHandler onMoveCursorBackwardByWord = default(FlutterSDK.Semantics.Semantics.MoveCursorHandler), FlutterSDK.Semantics.Semantics.SetSelectionHandler onSetSelection = default(FlutterSDK.Semantics.Semantics.SetSelectionHandler), VoidCallback onDidGainAccessibilityFocus = default(VoidCallback), VoidCallback onDidLoseAccessibilityFocus = default(VoidCallback), Dictionary<FlutterSDK.Semantics.Semantics.CustomSemanticsAction, object> customSemanticsActions = default(Dictionary<FlutterSDK.Semantics.Semantics.CustomSemanticsAction, object>))
         : base(child)
         {
@@ -3809,6 +4095,10 @@ namespace FlutterSDK.Rendering.Proxybox
     /// </Summary>
     public class RenderBlockSemantics : FlutterSDK.Rendering.Proxybox.RenderProxyBox
     {
+        /// <Summary>
+        /// Create a render object that blocks semantics for nodes below it in paint
+        /// order.
+        /// </Summary>
         public RenderBlockSemantics(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox), bool blocking = true)
         : base(child)
         {
@@ -3848,6 +4138,9 @@ namespace FlutterSDK.Rendering.Proxybox
     /// </Summary>
     public class RenderMergeSemantics : FlutterSDK.Rendering.Proxybox.RenderProxyBox
     {
+        /// <Summary>
+        /// Creates a render object that merges the semantics from its descendants.
+        /// </Summary>
         public RenderMergeSemantics(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox))
         : base(child)
         {
@@ -3876,6 +4169,9 @@ namespace FlutterSDK.Rendering.Proxybox
     /// </Summary>
     public class RenderExcludeSemantics : FlutterSDK.Rendering.Proxybox.RenderProxyBox
     {
+        /// <Summary>
+        /// Creates a render object that ignores the semantics of its subtree.
+        /// </Summary>
         public RenderExcludeSemantics(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox), bool excluding = true)
         : base(child)
         {
@@ -3921,6 +4217,9 @@ namespace FlutterSDK.Rendering.Proxybox
     /// </Summary>
     public class RenderIndexedSemantics : FlutterSDK.Rendering.Proxybox.RenderProxyBox
     {
+        /// <Summary>
+        /// Creates a render object that annotates the child semantics with an index.
+        /// </Summary>
         public RenderIndexedSemantics(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox), int index = default(int))
         : base(child)
         {
@@ -3960,6 +4259,11 @@ namespace FlutterSDK.Rendering.Proxybox
     /// </Summary>
     public class RenderLeaderLayer : FlutterSDK.Rendering.Proxybox.RenderProxyBox
     {
+        /// <Summary>
+        /// Creates a render object that uses a [LeaderLayer].
+        ///
+        /// The [link] must not be null.
+        /// </Summary>
         public RenderLeaderLayer(FlutterSDK.Rendering.Layer.LayerLink link = default(FlutterSDK.Rendering.Layer.LayerLink), FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox))
         : base(child)
         {
@@ -4019,6 +4323,11 @@ namespace FlutterSDK.Rendering.Proxybox
     /// </Summary>
     public class RenderFollowerLayer : FlutterSDK.Rendering.Proxybox.RenderProxyBox
     {
+        /// <Summary>
+        /// Creates a render object that uses a [FollowerLayer].
+        ///
+        /// The [link] and [offset] arguments must not be null.
+        /// </Summary>
         public RenderFollowerLayer(FlutterSDK.Rendering.Layer.LayerLink link = default(FlutterSDK.Rendering.Layer.LayerLink), bool showWhenUnlinked = true, FlutterBinding.UI.Offset offset = default(FlutterBinding.UI.Offset), FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox))
         : base(child)
         {
@@ -4139,6 +4448,15 @@ namespace FlutterSDK.Rendering.Proxybox
     /// </Summary>
     public class RenderAnnotatedRegion<T> : FlutterSDK.Rendering.Proxybox.RenderProxyBox
     {
+        /// <Summary>
+        /// Creates a new [RenderAnnotatedRegion] to insert [value] into the
+        /// layer tree.
+        ///
+        /// If [sized] is true, the layer is provided with the size of this render
+        /// object to clip the results of [Layer.findRegion].
+        ///
+        /// Neither [value] nor [sized] can be null.
+        /// </Summary>
         public RenderAnnotatedRegion(T value = default(T), bool sized = default(bool), FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox))
         : base(child)
         {

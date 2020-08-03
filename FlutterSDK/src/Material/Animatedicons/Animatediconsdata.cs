@@ -335,19 +335,61 @@ namespace FlutterSDK.Material.Animatedicons.Animatediconsdata
 
     public class AnimatedIcons
     {
+        /// <Summary>
+        /// The material design add to event icon animation.
+        /// </Summary>
         public virtual FlutterSDK.Material.Animatedicons.Animatediconsdata.AnimatedIconData Addevent { get; set; }
+        /// <Summary>
+        /// The material design arrow to menu icon animation.
+        /// </Summary>
         public virtual FlutterSDK.Material.Animatedicons.Animatediconsdata.AnimatedIconData Arrowmenu { get; set; }
+        /// <Summary>
+        /// The material design close to menu icon animation.
+        /// </Summary>
         public virtual FlutterSDK.Material.Animatedicons.Animatediconsdata.AnimatedIconData Closemenu { get; set; }
+        /// <Summary>
+        /// The material design ellipsis to search icon animation.
+        /// </Summary>
         public virtual FlutterSDK.Material.Animatedicons.Animatediconsdata.AnimatedIconData Ellipsissearch { get; set; }
+        /// <Summary>
+        /// The material design event to add icon animation.
+        /// </Summary>
         public virtual FlutterSDK.Material.Animatedicons.Animatediconsdata.AnimatedIconData Eventadd { get; set; }
+        /// <Summary>
+        /// The material design home to menu icon animation.
+        /// </Summary>
         public virtual FlutterSDK.Material.Animatedicons.Animatediconsdata.AnimatedIconData Homemenu { get; set; }
+        /// <Summary>
+        /// The material design list to view icon animation.
+        /// </Summary>
         public virtual FlutterSDK.Material.Animatedicons.Animatediconsdata.AnimatedIconData Listview { get; set; }
+        /// <Summary>
+        /// The material design menu to arrow icon animation.
+        /// </Summary>
         public virtual FlutterSDK.Material.Animatedicons.Animatediconsdata.AnimatedIconData Menuarrow { get; set; }
+        /// <Summary>
+        /// The material design menu to close icon animation.
+        /// </Summary>
         public virtual FlutterSDK.Material.Animatedicons.Animatediconsdata.AnimatedIconData Menuclose { get; set; }
+        /// <Summary>
+        /// The material design menu to home icon animation.
+        /// </Summary>
         public virtual FlutterSDK.Material.Animatedicons.Animatediconsdata.AnimatedIconData Menuhome { get; set; }
+        /// <Summary>
+        /// The material design pause to play icon animation.
+        /// </Summary>
         public virtual FlutterSDK.Material.Animatedicons.Animatediconsdata.AnimatedIconData Pauseplay { get; set; }
+        /// <Summary>
+        /// The material design play to pause icon animation.
+        /// </Summary>
         public virtual FlutterSDK.Material.Animatedicons.Animatediconsdata.AnimatedIconData Playpause { get; set; }
+        /// <Summary>
+        /// The material design search to ellipsis icon animation.
+        /// </Summary>
         public virtual FlutterSDK.Material.Animatedicons.Animatediconsdata.AnimatedIconData Searchellipsis { get; set; }
+        /// <Summary>
+        /// The material design view to list icon animation.
+        /// </Summary>
         public virtual FlutterSDK.Material.Animatedicons.Animatediconsdata.AnimatedIconData Viewlist { get; set; }
     }
     public static class AnimatedIconsMixin
@@ -391,6 +433,10 @@ namespace FlutterSDK.Material.Animatedicons.Animatediconsdata
     /// </Summary>
     public class AnimatedIconData
     {
+        /// <Summary>
+        /// Abstract const constructor. This constructor enables subclasses to provide
+        /// const constructors so that they can be used in const expressions.
+        /// </Summary>
         public AnimatedIconData()
         {
 

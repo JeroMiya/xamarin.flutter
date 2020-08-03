@@ -303,6 +303,12 @@ namespace FlutterSDK.Cupertino.Iconthemedata
     /// </Summary>
     public class CupertinoIconThemeData : FlutterSDK.Widgets.Iconthemedata.IconThemeData, IDiagnosticable
     {
+        /// <Summary>
+        /// Creates a [CupertinoIconThemeData].
+        ///
+        /// The opacity applies to both explicit and default icon colors. The value
+        /// is clamped between 0.0 and 1.0.
+        /// </Summary>
         public CupertinoIconThemeData(FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), double opacity = default(double), double size = default(double))
         : base(color: color, opacity: opacity, size: size)
         {

@@ -389,6 +389,9 @@ namespace FlutterSDK.Material.Colorscheme
     /// </Summary>
     public class ColorScheme : IDiagnosticable
     {
+        /// <Summary>
+        /// Create a ColorScheme instance.
+        /// </Summary>
         public ColorScheme(FlutterBinding.UI.Color primary = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color primaryVariant = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color secondary = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color secondaryVariant = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color surface = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color background = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color error = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color onPrimary = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color onSecondary = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color onSurface = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color onBackground = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color onError = default(FlutterBinding.UI.Color), Brightness brightness = default(Brightness))
         : base()
         {
@@ -406,6 +409,10 @@ namespace FlutterSDK.Material.Colorscheme
             this.OnError = onError;
             this.Brightness = brightness;
         }
+        /// <Summary>
+        /// Create a ColorScheme based on a purple primary color that matches the
+        /// [baseline Material color scheme](https://material.io/design/color/the-color-system.html#color-theme-creation).
+        /// </Summary>
         public static ColorScheme Light(FlutterBinding.UI.Color primary = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color primaryVariant = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color secondary = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color secondaryVariant = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color surface = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color background = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color error = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color onPrimary = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color onSecondary = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color onSurface = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color onBackground = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color onError = default(FlutterBinding.UI.Color), Brightness brightness = default(Brightness))
         {
             var instance = new ColorScheme(); instance.Primary = primary;
@@ -422,6 +429,10 @@ namespace FlutterSDK.Material.Colorscheme
             instance.OnError = onError;
             instance.Brightness = brightness;
         }
+        /// <Summary>
+        /// Create the recommended dark color scheme that matches the
+        /// [baseline Material color scheme](https://material.io/design/color/dark-theme.html#ui-application).
+        /// </Summary>
         public static ColorScheme Dark(FlutterBinding.UI.Color primary = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color primaryVariant = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color secondary = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color secondaryVariant = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color surface = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color background = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color error = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color onPrimary = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color onSecondary = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color onSurface = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color onBackground = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color onError = default(FlutterBinding.UI.Color), Brightness brightness = default(Brightness))
         {
             var instance = new ColorScheme(); instance.Primary = primary;
@@ -438,6 +449,12 @@ namespace FlutterSDK.Material.Colorscheme
             instance.OnError = onError;
             instance.Brightness = brightness;
         }
+        /// <Summary>
+        /// Create a color scheme from a [MaterialColor] swatch.
+        ///
+        /// This constructor is used by [ThemeData] to create its default
+        /// color scheme.
+        /// </Summary>
         public static ColorScheme FromSwatch(FlutterSDK.Material.Colors.MaterialColor primarySwatch = default(FlutterSDK.Material.Colors.MaterialColor), FlutterBinding.UI.Color primaryColorDark = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color accentColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color cardColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color errorColor = default(FlutterBinding.UI.Color), Brightness brightness = default(Brightness))
         {
             var instance = new ColorScheme();
@@ -451,18 +468,79 @@ namespace FlutterSDK.Material.Colorscheme
         }
 
 
+        /// <Summary>
+        /// The color displayed most frequently across your app’s screens and components.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color Primary { get; set; }
+        /// <Summary>
+        /// A darker version of the primary color.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color PrimaryVariant { get; set; }
+        /// <Summary>
+        /// An accent color that, when used sparingly, calls attention to parts
+        /// of your app.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color Secondary { get; set; }
+        /// <Summary>
+        /// A darker version of the secondary color.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color SecondaryVariant { get; set; }
+        /// <Summary>
+        /// The background color for widgets like [Card].
+        /// </Summary>
         public virtual FlutterBinding.UI.Color Surface { get; set; }
+        /// <Summary>
+        /// A color that typically appears behind scrollable content.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color Background { get; set; }
+        /// <Summary>
+        /// The color to use for input validation errors, e.g. for
+        /// [InputDecoration.errorText].
+        /// </Summary>
         public virtual FlutterBinding.UI.Color Error { get; set; }
+        /// <Summary>
+        /// A color that's clearly legible when drawn on [primary].
+        ///
+        /// To ensure that an app is accessible, a contrast ratio of 4.5:1 for [primary]
+        /// and [onPrimary] is recommended. See
+        /// <https://www.w3.org/TR/UNDERSTANDING-WCAG20/visual-audio-contrast-contrast.html>.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color OnPrimary { get; set; }
+        /// <Summary>
+        /// A color that's clearly legible when drawn on [secondary].
+        ///
+        /// To ensure that an app is accessible, a contrast ratio of 4.5:1 for [secondary]
+        /// and [onSecondary] is recommended. See
+        /// <https://www.w3.org/TR/UNDERSTANDING-WCAG20/visual-audio-contrast-contrast.html>.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color OnSecondary { get; set; }
+        /// <Summary>
+        /// A color that's clearly legible when drawn on [surface].
+        ///
+        /// To ensure that an app is accessible, a contrast ratio of 4.5:1 for [surface]
+        /// and [onSurface] is recommended. See
+        /// <https://www.w3.org/TR/UNDERSTANDING-WCAG20/visual-audio-contrast-contrast.html>.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color OnSurface { get; set; }
+        /// <Summary>
+        /// A color that's clearly legible when drawn on [background].
+        ///
+        /// To ensure that an app is accessible, a contrast ratio of 4.5:1 for [background]
+        /// and [onBackground] is recommended. See
+        /// <https://www.w3.org/TR/UNDERSTANDING-WCAG20/visual-audio-contrast-contrast.html>.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color OnBackground { get; set; }
+        /// <Summary>
+        /// A color that's clearly legible when drawn on [error].
+        ///
+        /// To ensure that an app is accessible, a contrast ratio of 4.5:1 for [error]
+        /// and [onError] is recommended. See
+        /// <https://www.w3.org/TR/UNDERSTANDING-WCAG20/visual-audio-contrast-contrast.html>.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color OnError { get; set; }
+        /// <Summary>
+        /// The overall brightness of this color scheme.
+        /// </Summary>
         public virtual Brightness Brightness { get; set; }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 

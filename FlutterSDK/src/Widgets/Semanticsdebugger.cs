@@ -437,13 +437,28 @@ namespace FlutterSDK.Widgets.Semanticsdebugger
     /// </Summary>
     public class SemanticsDebugger : FlutterSDK.Widgets.Framework.StatefulWidget
     {
+        /// <Summary>
+        /// Creates a widget that visualizes the semantics for the child.
+        ///
+        /// The [child] argument must not be null.
+        ///
+        /// [labelStyle] dictates the [TextStyle] used for the semantics labels.
+        /// </Summary>
         public SemanticsDebugger(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Painting.Textstyle.TextStyle labelStyle = default(FlutterSDK.Painting.Textstyle.TextStyle))
         : base(key: key)
         {
             this.Child = child;
             this.LabelStyle = labelStyle;
         }
+        /// <Summary>
+        /// The widget below this widget in the tree.
+        ///
+        /// {@macro flutter.widgets.child}
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+        /// <Summary>
+        /// The [TextStyle] to use when rendering semantics labels.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Textstyle.TextStyle LabelStyle { get; set; }
 
         public new FlutterSDK.Widgets.Semanticsdebugger._SemanticsDebuggerState CreateState() => new _SemanticsDebuggerState();

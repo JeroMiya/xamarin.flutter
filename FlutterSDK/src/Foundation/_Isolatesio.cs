@@ -298,6 +298,9 @@ namespace FlutterSDK.Foundation._Isolatesio
 {
     internal static class _IsolatesioDefaultClass
     {
+        /// <Summary>
+        /// The dart:io implementation of [isolate.compute].
+        /// </Summary>
         internal static async Future<R> Compute<Q, R>(FlutterSDK.Foundation.Isolates.ComputeCallback<Q, R> callback, Q message, string debugLabel = default(string))
         {
             debugLabel = (debugLabel == null ? ConstantsDefaultClass.KReleaseMode ? "compute" : callback.ToString() : debugLabel);

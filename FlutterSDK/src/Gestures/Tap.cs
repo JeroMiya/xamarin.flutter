@@ -296,9 +296,50 @@ using FlutterSDK.Foundation._Isolatesio;
 using FlutterSDK.Foundation._Platformio;
 namespace FlutterSDK.Gestures.Tap
 {
+    /// <Summary>
+    /// Signature for when a pointer that might cause a tap has contacted the
+    /// screen.
+    ///
+    /// The position at which the pointer contacted the screen is available in the
+    /// `details`.
+    ///
+    /// See also:
+    ///
+    ///  * [GestureDetector.onTapDown], which matches this signature.
+    ///  * [TapGestureRecognizer], which uses this signature in one of its callbacks.
+    /// </Summary>
     public delegate void GestureTapDownCallback(FlutterSDK.Gestures.Tap.TapDownDetails details);
+    /// <Summary>
+    /// Signature for when a pointer that will trigger a tap has stopped contacting
+    /// the screen.
+    ///
+    /// The position at which the pointer stopped contacting the screen is available
+    /// in the `details`.
+    ///
+    /// See also:
+    ///
+    ///  * [GestureDetector.onTapUp], which matches this signature.
+    ///  * [TapGestureRecognizer], which uses this signature in one of its callbacks.
+    /// </Summary>
     public delegate void GestureTapUpCallback(FlutterSDK.Gestures.Tap.TapUpDetails details);
+    /// <Summary>
+    /// Signature for when a tap has occurred.
+    ///
+    /// See also:
+    ///
+    ///  * [GestureDetector.onTap], which matches this signature.
+    ///  * [TapGestureRecognizer], which uses this signature in one of its callbacks.
+    /// </Summary>
     public delegate void GestureTapCallback();
+    /// <Summary>
+    /// Signature for when the pointer that previously triggered a
+    /// [GestureTapDownCallback] will not end up causing a tap.
+    ///
+    /// See also:
+    ///
+    ///  * [GestureDetector.onTapCancel], which matches this signature.
+    ///  * [TapGestureRecognizer], which uses this signature in one of its callbacks.
+    /// </Summary>
     public delegate void GestureTapCancelCallback();
     internal static class TapDefaultClass
     {
@@ -363,14 +404,28 @@ namespace FlutterSDK.Gestures.Tap
     /// </Summary>
     public class TapDownDetails
     {
+        /// <Summary>
+        /// Creates details for a [GestureTapDownCallback].
+        ///
+        /// The [globalPosition] argument must not be null.
+        /// </Summary>
         public TapDownDetails(FlutterBinding.UI.Offset globalPosition = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Offset localPosition = default(FlutterBinding.UI.Offset), PointerDeviceKind kind = default(PointerDeviceKind))
         : base()
         {
             this.GlobalPosition = globalPosition;
             this.Kind = kind;
         }
+        /// <Summary>
+        /// The global position at which the pointer contacted the screen.
+        /// </Summary>
         public virtual FlutterBinding.UI.Offset GlobalPosition { get; set; }
+        /// <Summary>
+        /// The kind of the device that initiated the event.
+        /// </Summary>
         public virtual PointerDeviceKind Kind { get; set; }
+        /// <Summary>
+        /// The local position at which the pointer contacted the screen.
+        /// </Summary>
         public virtual FlutterBinding.UI.Offset LocalPosition { get; set; }
     }
 
@@ -385,12 +440,21 @@ namespace FlutterSDK.Gestures.Tap
     /// </Summary>
     public class TapUpDetails
     {
+        /// <Summary>
+        /// The [globalPosition] argument must not be null.
+        /// </Summary>
         public TapUpDetails(FlutterBinding.UI.Offset globalPosition = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Offset localPosition = default(FlutterBinding.UI.Offset))
         : base()
         {
             this.GlobalPosition = globalPosition;
         }
+        /// <Summary>
+        /// The global position at which the pointer contacted the screen.
+        /// </Summary>
         public virtual FlutterBinding.UI.Offset GlobalPosition { get; set; }
+        /// <Summary>
+        /// The local position at which the pointer contacted the screen.
+        /// </Summary>
         public virtual FlutterBinding.UI.Offset LocalPosition { get; set; }
     }
 
@@ -429,6 +493,9 @@ namespace FlutterSDK.Gestures.Tap
     /// </Summary>
     public class BaseTapGestureRecognizer : FlutterSDK.Gestures.Recognizer.PrimaryPointerGestureRecognizer
     {
+        /// <Summary>
+        /// Creates a tap gesture recognizer.
+        /// </Summary>
         public BaseTapGestureRecognizer(@Object debugOwner = default(@Object))
         : base(deadline: ConstantsDefaultClass.KPressTimeout, debugOwner: debugOwner)
         {
@@ -688,17 +755,133 @@ namespace FlutterSDK.Gestures.Tap
     /// </Summary>
     public class TapGestureRecognizer : FlutterSDK.Gestures.Tap.BaseTapGestureRecognizer
     {
+        /// <Summary>
+        /// Creates a tap gesture recognizer.
+        /// </Summary>
         public TapGestureRecognizer(@Object debugOwner = default(@Object))
         : base(debugOwner: debugOwner)
         {
 
         }
+        /// <Summary>
+        /// A pointer has contacted the screen at a particular location with a primary
+        /// button, which might be the start of a tap.
+        ///
+        /// This triggers after the down event, once a short timeout ([deadline]) has
+        /// elapsed, or once the gestures has won the arena, whichever comes first.
+        ///
+        /// If this recognizer doesn't win the arena, [onTapCancel] is called next.
+        /// Otherwise, [onTapUp] is called next.
+        ///
+        /// See also:
+        ///
+        ///  * [kPrimaryButton], the button this callback responds to.
+        ///  * [onSecondaryTapDown], a similar callback but for a secondary button.
+        ///  * [TapDownDetails], which is passed as an argument to this callback.
+        ///  * [GestureDetector.onTapDown], which exposes this callback.
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Tap.GestureTapDownCallback OnTapDown { get; set; }
+        /// <Summary>
+        /// A pointer has stopped contacting the screen at a particular location,
+        /// which is recognized as a tap of a primary button.
+        ///
+        /// This triggers on the up event, if the recognizer wins the arena with it
+        /// or has previously won, immediately followed by [onTap].
+        ///
+        /// If this recognizer doesn't win the arena, [onTapCancel] is called instead.
+        ///
+        /// See also:
+        ///
+        ///  * [kPrimaryButton], the button this callback responds to.
+        ///  * [onSecondaryTapUp], a similar callback but for a secondary button.
+        ///  * [TapUpDetails], which is passed as an argument to this callback.
+        ///  * [GestureDetector.onTapUp], which exposes this callback.
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Tap.GestureTapUpCallback OnTapUp { get; set; }
+        /// <Summary>
+        /// A pointer has stopped contacting the screen, which is recognized as a tap
+        /// of a primary button.
+        ///
+        /// This triggers on the up event, if the recognizer wins the arena with it
+        /// or has previously won, immediately following [onTap].
+        ///
+        /// If this recognizer doesn't win the arena, [onTapCancel] is called instead.
+        ///
+        /// See also:
+        ///
+        ///  * [kPrimaryButton], the button this callback responds to.
+        ///  * [onTapUp], which has the same timing but with details.
+        ///  * [GestureDetector.onTap], which exposes this callback.
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Tap.GestureTapCallback OnTap { get; set; }
+        /// <Summary>
+        /// A pointer that previously triggered [onTapDown] will not end up causing
+        /// a tap.
+        ///
+        /// This triggers once the gesture loses the arena, if [onTapDown] has
+        /// previously been triggered.
+        ///
+        /// If this recognizer wins the arena, [onTapUp] and [onTap] are called
+        /// instead.
+        ///
+        /// See also:
+        ///
+        ///  * [kPrimaryButton], the button this callback responds to.
+        ///  * [onSecondaryTapCancel], a similar callback but for a secondary button.
+        ///  * [GestureDetector.onTapCancel], which exposes this callback.
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Tap.GestureTapCancelCallback OnTapCancel { get; set; }
+        /// <Summary>
+        /// A pointer has contacted the screen at a particular location with a
+        /// secondary button, which might be the start of a secondary tap.
+        ///
+        /// This triggers after the down event, once a short timeout ([deadline]) has
+        /// elapsed, or once the gestures has won the arena, whichever comes first.
+        ///
+        /// If this recognizer doesn't win the arena, [onSecondaryTapCancel] is called
+        /// next. Otherwise, [onSecondaryTapUp] is called next.
+        ///
+        /// See also:
+        ///
+        ///  * [kSecondaryButton], the button this callback responds to.
+        ///  * [onTapDown], a similar callback but for a primary button.
+        ///  * [TapDownDetails], which is passed as an argument to this callback.
+        ///  * [GestureDetector.onSecondaryTapDown], which exposes this callback.
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Tap.GestureTapDownCallback OnSecondaryTapDown { get; set; }
+        /// <Summary>
+        /// A pointer has stopped contacting the screen at a particular location,
+        /// which is recognized as a tap of a secondary button.
+        ///
+        /// This triggers on the up event, if the recognizer wins the arena with it
+        /// or has previously won.
+        ///
+        /// If this recognizer doesn't win the arena, [onSecondaryTapCancel] is called
+        /// instead.
+        ///
+        /// See also:
+        ///
+        ///  * [kSecondaryButton], the button this callback responds to.
+        ///  * [onTapUp], a similar callback but for a primary button.
+        ///  * [TapUpDetails], which is passed as an argument to this callback.
+        ///  * [GestureDetector.onSecondaryTapUp], which exposes this callback.
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Tap.GestureTapUpCallback OnSecondaryTapUp { get; set; }
+        /// <Summary>
+        /// A pointer that previously triggered [onSecondaryTapDown] will not end up
+        /// causing a tap.
+        ///
+        /// This triggers once the gesture loses the arena, if [onSecondaryTapDown]
+        /// has previously been triggered.
+        ///
+        /// If this recognizer wins the arena, [onSecondaryTapUp] is called instead.
+        ///
+        /// See also:
+        ///
+        ///  * [kSecondaryButton], the button this callback responds to.
+        ///  * [onTapCancel], a similar callback but for a primary button.
+        ///  * [GestureDetector.onTapCancel], which exposes this callback.
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Tap.GestureTapCancelCallback OnSecondaryTapCancel { get; set; }
         public virtual string DebugDescription { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 

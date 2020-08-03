@@ -413,6 +413,13 @@ using FlutterSDK.Material.Snackbartheme;
 using FlutterSDK.Material.Textselection;
 namespace FlutterSDK.Material.Slider
 {
+    /// <Summary>
+    /// A callback that formats a numeric value from a [Slider] widget.
+    ///
+    /// See also:
+    ///
+    ///  * [Slider.semanticFormatterCallback], which shows an example use case.
+    /// </Summary>
     public delegate string SemanticFormatterCallback(double value);
     internal static class SliderDefaultClass
     {
@@ -480,6 +487,27 @@ namespace FlutterSDK.Material.Slider
     /// </Summary>
     public class Slider : FlutterSDK.Widgets.Framework.StatefulWidget
     {
+        /// <Summary>
+        /// Creates a Material Design slider.
+        ///
+        /// The slider itself does not maintain any state. Instead, when the state of
+        /// the slider changes, the widget calls the [onChanged] callback. Most
+        /// widgets that use a slider will listen for the [onChanged] callback and
+        /// rebuild the slider with a new [value] to update the visual appearance of
+        /// the slider.
+        ///
+        /// * [value] determines currently selected value for this slider.
+        /// * [onChanged] is called while the user is selecting a new value for the
+        ///   slider.
+        /// * [onChangeStart] is called when the user starts to select a new value for
+        ///   the slider.
+        /// * [onChangeEnd] is called when the user is done selecting a new value for
+        ///   the slider.
+        ///
+        /// You can override some of the colors with the [activeColor] and
+        /// [inactiveColor] properties, although more fine-grained control of the
+        /// appearance is achieved using a [SliderThemeData].
+        /// </Summary>
         public Slider(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), double value = default(double), FlutterSDK.Foundation.Basictypes.ValueChanged<double> onChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<double>), FlutterSDK.Foundation.Basictypes.ValueChanged<double> onChangeStart = default(FlutterSDK.Foundation.Basictypes.ValueChanged<double>), FlutterSDK.Foundation.Basictypes.ValueChanged<double> onChangeEnd = default(FlutterSDK.Foundation.Basictypes.ValueChanged<double>), double min = 0.0, double max = 1.0, int divisions = default(int), string label = default(string), FlutterBinding.UI.Color activeColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color inactiveColor = default(FlutterBinding.UI.Color), FlutterSDK.Material.Slider.SemanticFormatterCallback semanticFormatterCallback = default(FlutterSDK.Material.Slider.SemanticFormatterCallback))
         : base(key: key)
         {
@@ -495,6 +523,15 @@ namespace FlutterSDK.Material.Slider
             this.InactiveColor = inactiveColor;
             this.SemanticFormatterCallback = semanticFormatterCallback;
         }
+        /// <Summary>
+        /// Creates a [CupertinoSlider] if the target platform is iOS, creates a
+        /// Material Design slider otherwise.
+        ///
+        /// If a [CupertinoSlider] is created, the following parameters are
+        /// ignored: [label], [inactiveColor], [semanticFormatterCallback].
+        ///
+        /// The target platform is based on the current [Theme]: [ThemeData.platform].
+        /// </Summary>
         public static Slider Adaptive(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), double value = default(double), FlutterSDK.Foundation.Basictypes.ValueChanged<double> onChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<double>), FlutterSDK.Foundation.Basictypes.ValueChanged<double> onChangeStart = default(FlutterSDK.Foundation.Basictypes.ValueChanged<double>), FlutterSDK.Foundation.Basictypes.ValueChanged<double> onChangeEnd = default(FlutterSDK.Foundation.Basictypes.ValueChanged<double>), double min = 0.0, double max = 1.0, int divisions = default(int), string label = default(string), FlutterBinding.UI.Color activeColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color inactiveColor = default(FlutterBinding.UI.Color), FlutterSDK.Material.Slider.SemanticFormatterCallback semanticFormatterCallback = default(FlutterSDK.Material.Slider.SemanticFormatterCallback))
         {
             var instance = new Slider(key: key); instance.Value = value;
@@ -509,16 +546,228 @@ namespace FlutterSDK.Material.Slider
             instance.InactiveColor = inactiveColor;
             instance.SemanticFormatterCallback = semanticFormatterCallback;
         }
+        /// <Summary>
+        /// The currently selected value for this slider.
+        ///
+        /// The slider's thumb is drawn at a position that corresponds to this value.
+        /// </Summary>
         public virtual double Value { get; set; }
+        /// <Summary>
+        /// Called during a drag when the user is selecting a new value for the slider
+        /// by dragging.
+        ///
+        /// The slider passes the new value to the callback but does not actually
+        /// change state until the parent widget rebuilds the slider with the new
+        /// value.
+        ///
+        /// If null, the slider will be displayed as disabled.
+        ///
+        /// The callback provided to onChanged should update the state of the parent
+        /// [StatefulWidget] using the [State.setState] method, so that the parent
+        /// gets rebuilt; for example:
+        ///
+        /// {@tool snippet}
+        ///
+        /// ```dart
+        /// Slider(
+        ///   value: _duelCommandment.toDouble(),
+        ///   min: 1.0,
+        ///   max: 10.0,
+        ///   divisions: 10,
+        ///   label: '$_duelCommandment',
+        ///   onChanged: (double newValue) {
+        ///     setState(() {
+        ///       _duelCommandment = newValue.round();
+        ///     });
+        ///   },
+        /// )
+        /// ```
+        /// {@end-tool}
+        ///
+        /// See also:
+        ///
+        ///  * [onChangeStart] for a callback that is called when the user starts
+        ///    changing the value.
+        ///  * [onChangeEnd] for a callback that is called when the user stops
+        ///    changing the value.
+        /// </Summary>
         public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<double> OnChanged { get; set; }
+        /// <Summary>
+        /// Called when the user starts selecting a new value for the slider.
+        ///
+        /// This callback shouldn't be used to update the slider [value] (use
+        /// [onChanged] for that), but rather to be notified when the user has started
+        /// selecting a new value by starting a drag or with a tap.
+        ///
+        /// The value passed will be the last [value] that the slider had before the
+        /// change began.
+        ///
+        /// {@tool snippet}
+        ///
+        /// ```dart
+        /// Slider(
+        ///   value: _duelCommandment.toDouble(),
+        ///   min: 1.0,
+        ///   max: 10.0,
+        ///   divisions: 10,
+        ///   label: '$_duelCommandment',
+        ///   onChanged: (double newValue) {
+        ///     setState(() {
+        ///       _duelCommandment = newValue.round();
+        ///     });
+        ///   },
+        ///   onChangeStart: (double startValue) {
+        ///     print('Started change at $startValue');
+        ///   },
+        /// )
+        /// ```
+        /// {@end-tool}
+        ///
+        /// See also:
+        ///
+        ///  * [onChangeEnd] for a callback that is called when the value change is
+        ///    complete.
+        /// </Summary>
         public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<double> OnChangeStart { get; set; }
+        /// <Summary>
+        /// Called when the user is done selecting a new value for the slider.
+        ///
+        /// This callback shouldn't be used to update the slider [value] (use
+        /// [onChanged] for that), but rather to know when the user has completed
+        /// selecting a new [value] by ending a drag or a click.
+        ///
+        /// {@tool snippet}
+        ///
+        /// ```dart
+        /// Slider(
+        ///   value: _duelCommandment.toDouble(),
+        ///   min: 1.0,
+        ///   max: 10.0,
+        ///   divisions: 10,
+        ///   label: '$_duelCommandment',
+        ///   onChanged: (double newValue) {
+        ///     setState(() {
+        ///       _duelCommandment = newValue.round();
+        ///     });
+        ///   },
+        ///   onChangeEnd: (double newValue) {
+        ///     print('Ended change on $newValue');
+        ///   },
+        /// )
+        /// ```
+        /// {@end-tool}
+        ///
+        /// See also:
+        ///
+        ///  * [onChangeStart] for a callback that is called when a value change
+        ///    begins.
+        /// </Summary>
         public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<double> OnChangeEnd { get; set; }
+        /// <Summary>
+        /// The minimum value the user can select.
+        ///
+        /// Defaults to 0.0. Must be less than or equal to [max].
+        ///
+        /// If the [max] is equal to the [min], then the slider is disabled.
+        /// </Summary>
         public virtual double Min { get; set; }
+        /// <Summary>
+        /// The maximum value the user can select.
+        ///
+        /// Defaults to 1.0. Must be greater than or equal to [min].
+        ///
+        /// If the [max] is equal to the [min], then the slider is disabled.
+        /// </Summary>
         public virtual double Max { get; set; }
+        /// <Summary>
+        /// The number of discrete divisions.
+        ///
+        /// Typically used with [label] to show the current discrete value.
+        ///
+        /// If null, the slider is continuous.
+        /// </Summary>
         public virtual int Divisions { get; set; }
+        /// <Summary>
+        /// A label to show above the slider when the slider is active.
+        ///
+        /// It is used to display the value of a discrete slider, and it is displayed
+        /// as part of the value indicator shape.
+        ///
+        /// The label is rendered using the active [ThemeData]'s
+        /// [ThemeData.textTheme.bodyText1] text style, with the
+        /// theme data's [ThemeData.colorScheme.onPrimaryColor]. The label's text style
+        /// can be overridden with [SliderThemeData.valueIndicatorTextStyle].
+        ///
+        /// If null, then the value indicator will not be displayed.
+        ///
+        /// Ignored if this slider is created with [Slider.adaptive].
+        ///
+        /// See also:
+        ///
+        ///  * [SliderComponentShape] for how to create a custom value indicator
+        ///    shape.
+        /// </Summary>
         public virtual string Label { get; set; }
+        /// <Summary>
+        /// The color to use for the portion of the slider track that is active.
+        ///
+        /// The "active" side of the slider is the side between the thumb and the
+        /// minimum value.
+        ///
+        /// Defaults to [SliderTheme.activeTrackColor] of the current [SliderTheme].
+        ///
+        /// Using a [SliderTheme] gives much more fine-grained control over the
+        /// appearance of various components of the slider.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color ActiveColor { get; set; }
+        /// <Summary>
+        /// The color for the inactive portion of the slider track.
+        ///
+        /// The "inactive" side of the slider is the side between the thumb and the
+        /// maximum value.
+        ///
+        /// Defaults to the [SliderTheme.inactiveTrackColor] of the current
+        /// [SliderTheme].
+        ///
+        /// Using a [SliderTheme] gives much more fine-grained control over the
+        /// appearance of various components of the slider.
+        ///
+        /// Ignored if this slider is created with [Slider.adaptive].
+        /// </Summary>
         public virtual FlutterBinding.UI.Color InactiveColor { get; set; }
+        /// <Summary>
+        /// The callback used to create a semantic value from a slider value.
+        ///
+        /// Defaults to formatting values as a percentage.
+        ///
+        /// This is used by accessibility frameworks like TalkBack on Android to
+        /// inform users what the currently selected value is with more context.
+        ///
+        /// {@tool snippet}
+        ///
+        /// In the example below, a slider for currency values is configured to
+        /// announce a value with a currency label.
+        ///
+        /// ```dart
+        /// Slider(
+        ///   value: _dollars.toDouble(),
+        ///   min: 20.0,
+        ///   max: 330.0,
+        ///   label: '$_dollars dollars',
+        ///   onChanged: (double newValue) {
+        ///     setState(() {
+        ///       _dollars = newValue.round();
+        ///     });
+        ///   },
+        ///   semanticFormatterCallback: (double newValue) {
+        ///     return '${newValue.round()} dollars';
+        ///   }
+        ///  )
+        /// ```
+        /// {@end-tool}
+        ///
+        /// Ignored if this slider is created with [Slider.adaptive]
+        /// </Summary>
         public virtual FlutterSDK.Material.Slider.SemanticFormatterCallback SemanticFormatterCallback { get; set; }
         internal virtual FlutterSDK.Material.Slider._SliderType _SliderType { get; set; }
 

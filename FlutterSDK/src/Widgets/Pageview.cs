@@ -540,6 +540,11 @@ namespace FlutterSDK.Widgets.Pageview
     /// </Summary>
     public class PageController : FlutterSDK.Widgets.Scrollcontroller.ScrollController
     {
+        /// <Summary>
+        /// Creates a page controller.
+        ///
+        /// The [initialPage], [keepPage], and [viewportFraction] arguments must not be null.
+        /// </Summary>
         public PageController(int initialPage = 0, bool keepPage = true, double viewportFraction = 1.0)
         : base()
         {
@@ -547,8 +552,34 @@ namespace FlutterSDK.Widgets.Pageview
             this.KeepPage = keepPage;
             this.ViewportFraction = viewportFraction;
         }
+        /// <Summary>
+        /// The page to show when first creating the [PageView].
+        /// </Summary>
         public virtual int InitialPage { get; set; }
+        /// <Summary>
+        /// Save the current [page] with [PageStorage] and restore it if
+        /// this controller's scrollable is recreated.
+        ///
+        /// If this property is set to false, the current [page] is never saved
+        /// and [initialPage] is always used to initialize the scroll offset.
+        /// If true (the default), the initial page is used the first time the
+        /// controller's scrollable is created, since there's isn't a page to
+        /// restore yet. Subsequently the saved page is restored and
+        /// [initialPage] is ignored.
+        ///
+        /// See also:
+        ///
+        ///  * [PageStorageKey], which should be used when more than one
+        ///    scrollable appears in the same route, to distinguish the [PageStorage]
+        ///    locations used to save scroll offsets.
+        /// </Summary>
         public virtual bool KeepPage { get; set; }
+        /// <Summary>
+        /// The fraction of the viewport that each page should occupy.
+        ///
+        /// Defaults to 1.0, which means each page fills the viewport in the scrolling
+        /// direction.
+        /// </Summary>
         public virtual double ViewportFraction { get; set; }
         public virtual double Page { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 
@@ -644,11 +675,19 @@ namespace FlutterSDK.Widgets.Pageview
     /// </Summary>
     public class PageMetrics : FlutterSDK.Widgets.Scrollmetrics.FixedScrollMetrics
     {
+        /// <Summary>
+        /// Creates an immutable snapshot of values associated with a [PageView].
+        /// </Summary>
         public PageMetrics(double minScrollExtent = default(double), double maxScrollExtent = default(double), double pixels = default(double), double viewportDimension = default(double), FlutterSDK.Painting.Basictypes.AxisDirection axisDirection = default(FlutterSDK.Painting.Basictypes.AxisDirection), double viewportFraction = default(double))
         : base(minScrollExtent: minScrollExtent, maxScrollExtent: maxScrollExtent, pixels: pixels, viewportDimension: viewportDimension, axisDirection: axisDirection)
         {
             this.ViewportFraction = viewportFraction;
         }
+        /// <Summary>
+        /// The fraction of the viewport that each page occupies.
+        ///
+        /// Used to compute [page] from the current [pixels].
+        /// </Summary>
         public virtual double ViewportFraction { get; set; }
         public virtual double Page { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 
@@ -790,6 +829,9 @@ namespace FlutterSDK.Widgets.Pageview
     /// </Summary>
     public class PageScrollPhysics : FlutterSDK.Widgets.Scrollphysics.ScrollPhysics
     {
+        /// <Summary>
+        /// Creates physics for a [PageView].
+        /// </Summary>
         public PageScrollPhysics(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics parent = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics))
         : base(parent: parent)
         {
@@ -875,6 +917,22 @@ namespace FlutterSDK.Widgets.Pageview
     /// </Summary>
     public class PageView : FlutterSDK.Widgets.Framework.StatefulWidget
     {
+        /// <Summary>
+        /// Creates a scrollable list that works page by page from an explicit [List]
+        /// of widgets.
+        ///
+        /// This constructor is appropriate for page views with a small number of
+        /// children because constructing the [List] requires doing work for every
+        /// child that could possibly be displayed in the page view, instead of just
+        /// those children that are actually visible.
+        ///
+        /// {@template flutter.widgets.pageView.allowImplicitScrolling}
+        /// The [allowImplicitScrolling] parameter must not be null. If true, the
+        /// [PageView] will participate in accessibility scrolling more like a
+        /// [ListView], where implicit scroll actions will move to the next page
+        /// rather than into the contents of the [PageView].
+        /// {@endtemplate}
+        /// </Summary>
         public PageView(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Basictypes.Axis scrollDirection = default(FlutterSDK.Painting.Basictypes.Axis), bool reverse = false, FlutterSDK.Widgets.Pageview.PageController controller = default(FlutterSDK.Widgets.Pageview.PageController), FlutterSDK.Widgets.Scrollphysics.ScrollPhysics physics = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics), bool pageSnapping = true, FlutterSDK.Foundation.Basictypes.ValueChanged<int> onPageChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<int>), List<FlutterSDK.Widgets.Framework.Widget> children = default(List<FlutterSDK.Widgets.Framework.Widget>), FlutterSDK.Gestures.Recognizer.DragStartBehavior dragStartBehavior = default(FlutterSDK.Gestures.Recognizer.DragStartBehavior), bool allowImplicitScrolling = false)
         : base(key: key)
         {
@@ -886,6 +944,26 @@ namespace FlutterSDK.Widgets.Pageview
             this.DragStartBehavior = dragStartBehavior;
             this.AllowImplicitScrolling = allowImplicitScrolling;
         }
+        /// <Summary>
+        /// Creates a scrollable list that works page by page using widgets that are
+        /// created on demand.
+        ///
+        /// This constructor is appropriate for page views with a large (or infinite)
+        /// number of children because the builder is called only for those children
+        /// that are actually visible.
+        ///
+        /// Providing a non-null [itemCount] lets the [PageView] compute the maximum
+        /// scroll extent.
+        ///
+        /// [itemBuilder] will be called only with indices greater than or equal to
+        /// zero and less than [itemCount].
+        ///
+        /// [PageView.builder] by default does not support child reordering. If
+        /// you are planning to change child order at a later time, consider using
+        /// [PageView] or [PageView.custom].
+        ///
+        /// {@macro flutter.widgets.pageView.allowImplicitScrolling}
+        /// </Summary>
         public static PageView Builder(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Basictypes.Axis scrollDirection = default(FlutterSDK.Painting.Basictypes.Axis), bool reverse = false, FlutterSDK.Widgets.Pageview.PageController controller = default(FlutterSDK.Widgets.Pageview.PageController), FlutterSDK.Widgets.Scrollphysics.ScrollPhysics physics = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics), bool pageSnapping = true, FlutterSDK.Foundation.Basictypes.ValueChanged<int> onPageChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<int>), FlutterSDK.Widgets.Framework.IndexedWidgetBuilder itemBuilder = default(FlutterSDK.Widgets.Framework.IndexedWidgetBuilder), int itemCount = default(int), FlutterSDK.Gestures.Recognizer.DragStartBehavior dragStartBehavior = default(FlutterSDK.Gestures.Recognizer.DragStartBehavior), bool allowImplicitScrolling = false)
         {
             var instance = new PageView(key: key); instance.ScrollDirection = scrollDirection;
@@ -896,6 +974,90 @@ namespace FlutterSDK.Widgets.Pageview
             instance.DragStartBehavior = dragStartBehavior;
             instance.AllowImplicitScrolling = allowImplicitScrolling;
         }
+        /// <Summary>
+        /// Creates a scrollable list that works page by page with a custom child
+        /// model.
+        ///
+        /// {@tool snippet}
+        ///
+        /// This [PageView] uses a custom [SliverChildBuilderDelegate] to support child
+        /// reordering.
+        ///
+        /// ```dart
+        /// class MyPageView extends StatefulWidget {
+        ///   @override
+        ///   _MyPageViewState createState() => _MyPageViewState();
+        /// }
+        ///
+        /// class _MyPageViewState extends State<MyPageView> {
+        ///   List<String> items = <String>['1', '2', '3', '4', '5'];
+        ///
+        ///   void _reverse() {
+        ///     setState(() {
+        ///       items = items.reversed.toList();
+        ///     });
+        ///   }
+        ///
+        ///   @override
+        ///   Widget build(BuildContext context) {
+        ///     return Scaffold(
+        ///       body: SafeArea(
+        ///         child: PageView.custom(
+        ///           childrenDelegate: SliverChildBuilderDelegate(
+        ///             (BuildContext context, int index) {
+        ///               return KeepAlive(
+        ///                 data: items[index],
+        ///                 key: ValueKey<String>(items[index]),
+        ///               );
+        ///             },
+        ///             childCount: items.length,
+        ///             findChildIndexCallback: (Key key) {
+        ///               final ValueKey valueKey = key;
+        ///               final String data = valueKey.value;
+        ///               return items.indexOf(data);
+        ///             }
+        ///           ),
+        ///         ),
+        ///       ),
+        ///       bottomNavigationBar: BottomAppBar(
+        ///         child: Row(
+        ///           mainAxisAlignment: MainAxisAlignment.center,
+        ///           children: <Widget>[
+        ///             FlatButton(
+        ///               onPressed: () => _reverse(),
+        ///               child: Text('Reverse items'),
+        ///             ),
+        ///           ],
+        ///         ),
+        ///       ),
+        ///     );
+        ///   }
+        /// }
+        ///
+        /// class KeepAlive extends StatefulWidget {
+        ///   const KeepAlive({Key key, this.data}) : super(key: key);
+        ///
+        ///   final String data;
+        ///
+        ///   @override
+        ///   _KeepAliveState createState() => _KeepAliveState();
+        /// }
+        ///
+        /// class _KeepAliveState extends State<KeepAlive> with AutomaticKeepAliveClientMixin{
+        ///   @override
+        ///   bool get wantKeepAlive => true;
+        ///
+        ///   @override
+        ///   Widget build(BuildContext context) {
+        ///     super.build(context);
+        ///     return Text(widget.data);
+        ///   }
+        /// }
+        /// ```
+        /// {@end-tool}
+        ///
+        /// {@macro flutter.widgets.pageView.allowImplicitScrolling}
+        /// </Summary>
         public static PageView Custom(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Basictypes.Axis scrollDirection = default(FlutterSDK.Painting.Basictypes.Axis), bool reverse = false, FlutterSDK.Widgets.Pageview.PageController controller = default(FlutterSDK.Widgets.Pageview.PageController), FlutterSDK.Widgets.Scrollphysics.ScrollPhysics physics = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics), bool pageSnapping = true, FlutterSDK.Foundation.Basictypes.ValueChanged<int> onPageChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<int>), FlutterSDK.Widgets.Sliver.SliverChildDelegate childrenDelegate = default(FlutterSDK.Widgets.Sliver.SliverChildDelegate), FlutterSDK.Gestures.Recognizer.DragStartBehavior dragStartBehavior = default(FlutterSDK.Gestures.Recognizer.DragStartBehavior), bool allowImplicitScrolling = false)
         {
             var instance = new PageView(key: key); instance.ScrollDirection = scrollDirection;
@@ -907,14 +1069,78 @@ namespace FlutterSDK.Widgets.Pageview
             instance.DragStartBehavior = dragStartBehavior;
             instance.AllowImplicitScrolling = allowImplicitScrolling;
         }
+        /// <Summary>
+        /// Controls whether the widget's pages will respond to
+        /// [RenderObject.showOnScreen], which will allow for implicit accessibility
+        /// scrolling.
+        ///
+        /// With this flag set to false, when accessibility focus reaches the end of
+        /// the current page and the user attempts to move it to the next element, the
+        /// focus will traverse to the next widget outside of the page view.
+        ///
+        /// With this flag set to true, when accessibility focus reaches the end of
+        /// the current page and user attempts to move it to the next element, focus
+        /// will traverse to the next page in the page view.
+        /// </Summary>
         public virtual bool AllowImplicitScrolling { get; set; }
+        /// <Summary>
+        /// The axis along which the page view scrolls.
+        ///
+        /// Defaults to [Axis.horizontal].
+        /// </Summary>
         public virtual FlutterSDK.Painting.Basictypes.Axis ScrollDirection { get; set; }
+        /// <Summary>
+        /// Whether the page view scrolls in the reading direction.
+        ///
+        /// For example, if the reading direction is left-to-right and
+        /// [scrollDirection] is [Axis.horizontal], then the page view scrolls from
+        /// left to right when [reverse] is false and from right to left when
+        /// [reverse] is true.
+        ///
+        /// Similarly, if [scrollDirection] is [Axis.vertical], then the page view
+        /// scrolls from top to bottom when [reverse] is false and from bottom to top
+        /// when [reverse] is true.
+        ///
+        /// Defaults to false.
+        /// </Summary>
         public virtual bool Reverse { get; set; }
+        /// <Summary>
+        /// An object that can be used to control the position to which this page
+        /// view is scrolled.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Pageview.PageController Controller { get; set; }
+        /// <Summary>
+        /// How the page view should respond to user input.
+        ///
+        /// For example, determines how the page view continues to animate after the
+        /// user stops dragging the page view.
+        ///
+        /// The physics are modified to snap to page boundaries using
+        /// [PageScrollPhysics] prior to being used.
+        ///
+        /// Defaults to matching platform conventions.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Scrollphysics.ScrollPhysics Physics { get; set; }
+        /// <Summary>
+        /// Set to false to disable page snapping, useful for custom scroll behavior.
+        /// </Summary>
         public virtual bool PageSnapping { get; set; }
+        /// <Summary>
+        /// Called whenever the page in the center of the viewport changes.
+        /// </Summary>
         public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<int> OnPageChanged { get; set; }
+        /// <Summary>
+        /// A delegate that provides the children for the [PageView].
+        ///
+        /// The [PageView.custom] constructor lets you specify this delegate
+        /// explicitly. The [PageView] and [PageView.builder] constructors create a
+        /// [childrenDelegate] that wraps the given [List] and [IndexedWidgetBuilder],
+        /// respectively.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Sliver.SliverChildDelegate ChildrenDelegate { get; set; }
+        /// <Summary>
+        /// {@macro flutter.widgets.scrollable.dragStartBehavior}
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Recognizer.DragStartBehavior DragStartBehavior { get; set; }
 
         public new FlutterSDK.Widgets.Pageview._PageViewState CreateState() => new _PageViewState();

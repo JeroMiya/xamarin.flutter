@@ -412,6 +412,12 @@ namespace FlutterSDK.Material.Buttonbar
     /// </Summary>
     public class ButtonBar : FlutterSDK.Widgets.Framework.StatelessWidget
     {
+        /// <Summary>
+        /// Creates a button bar.
+        ///
+        /// Both [buttonMinWidth] and [buttonHeight] must be non-negative if they
+        /// are not null.
+        /// </Summary>
         public ButtonBar(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Rendering.Flex.MainAxisAlignment alignment = default(FlutterSDK.Rendering.Flex.MainAxisAlignment), FlutterSDK.Rendering.Flex.MainAxisSize mainAxisSize = default(FlutterSDK.Rendering.Flex.MainAxisSize), FlutterSDK.Material.Buttontheme.ButtonTextTheme buttonTextTheme = default(FlutterSDK.Material.Buttontheme.ButtonTextTheme), double buttonMinWidth = default(double), double buttonHeight = default(double), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry buttonPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), bool buttonAlignedDropdown = default(bool), FlutterSDK.Material.Buttontheme.ButtonBarLayoutBehavior layoutBehavior = default(FlutterSDK.Material.Buttontheme.ButtonBarLayoutBehavior), FlutterSDK.Painting.Basictypes.VerticalDirection overflowDirection = default(FlutterSDK.Painting.Basictypes.VerticalDirection), double overflowButtonSpacing = default(double), List<FlutterSDK.Widgets.Framework.Widget> children = default(List<FlutterSDK.Widgets.Framework.Widget>))
         : base(key: key)
         {
@@ -427,16 +433,110 @@ namespace FlutterSDK.Material.Buttonbar
             this.OverflowButtonSpacing = overflowButtonSpacing;
             this.Children = children;
         }
+        /// <Summary>
+        /// How the children should be placed along the horizontal axis.
+        ///
+        /// If null then it will use [ButtonBarTheme.alignment]. If that is null,
+        /// it will default to [MainAxisAlignment.end].
+        /// </Summary>
         public virtual FlutterSDK.Rendering.Flex.MainAxisAlignment Alignment { get; set; }
+        /// <Summary>
+        /// How much horizontal space is available. See [Row.mainAxisSize].
+        ///
+        /// If null then it will use the surrounding [ButtonBarTheme.mainAxisSize].
+        /// If that is null, it will default to [MainAxisSize.max].
+        /// </Summary>
         public virtual FlutterSDK.Rendering.Flex.MainAxisSize MainAxisSize { get; set; }
+        /// <Summary>
+        /// Overrides the surrounding [ButtonTheme.textTheme] to define a button's
+        /// base colors, size, internal padding and shape.
+        ///
+        /// If null then it will use the surrounding [ButtonBarTheme.buttonTextTheme].
+        /// If that is null, it will default to [ButtonTextTheme.primary].
+        /// </Summary>
         public virtual FlutterSDK.Material.Buttontheme.ButtonTextTheme ButtonTextTheme { get; set; }
+        /// <Summary>
+        /// Overrides the surrounding [ButtonThemeData.minWidth] to define a button's
+        /// minimum width.
+        ///
+        /// If null then it will use the surrounding [ButtonBarTheme.buttonMinWidth].
+        /// If that is null, it will default to 64.0 logical pixels.
+        /// </Summary>
         public virtual double ButtonMinWidth { get; set; }
+        /// <Summary>
+        /// Overrides the surrounding [ButtonThemeData.height] to define a button's
+        /// minimum height.
+        ///
+        /// If null then it will use the surrounding [ButtonBarTheme.buttonHeight].
+        /// If that is null, it will default to 36.0 logical pixels.
+        /// </Summary>
         public virtual double ButtonHeight { get; set; }
+        /// <Summary>
+        /// Overrides the surrounding [ButtonThemeData.padding] to define the padding
+        /// for a button's child (typically the button's label).
+        ///
+        /// If null then it will use the surrounding [ButtonBarTheme.buttonPadding].
+        /// If that is null, it will default to 8.0 logical pixels on the left
+        /// and right.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry ButtonPadding { get; set; }
+        /// <Summary>
+        /// Overrides the surrounding [ButtonThemeData.alignedDropdown] to define whether
+        /// a [DropdownButton] menu's width will match the button's width.
+        ///
+        /// If null then it will use the surrounding [ButtonBarTheme.buttonAlignedDropdown].
+        /// If that is null, it will default to false.
+        /// </Summary>
         public virtual bool ButtonAlignedDropdown { get; set; }
+        /// <Summary>
+        /// Defines whether a [ButtonBar] should size itself with a minimum size
+        /// constraint or with padding.
+        ///
+        /// Overrides the surrounding [ButtonThemeData.layoutBehavior].
+        ///
+        /// If null then it will use the surrounding [ButtonBarTheme.layoutBehavior].
+        /// If that is null, it will default [ButtonBarLayoutBehavior.padded].
+        /// </Summary>
         public virtual FlutterSDK.Material.Buttontheme.ButtonBarLayoutBehavior LayoutBehavior { get; set; }
+        /// <Summary>
+        /// Defines the vertical direction of a [ButtonBar]'s children if it
+        /// overflows.
+        ///
+        /// If [children] do not fit into a single row, then they
+        /// are arranged in a column. The first action is at the top of the
+        /// column if this property is set to [VerticalDirection.down], since it
+        /// "starts" at the top and "ends" at the bottom. On the other hand,
+        /// the first action will be at the bottom of the column if this
+        /// property is set to [VerticalDirection.up], since it "starts" at the
+        /// bottom and "ends" at the top.
+        ///
+        /// If null then it will use the surrounding
+        /// [ButtonBarTheme.overflowDirection]. If that is null, it will
+        /// default to [VerticalDirection.down].
+        /// </Summary>
         public virtual FlutterSDK.Painting.Basictypes.VerticalDirection OverflowDirection { get; set; }
+        /// <Summary>
+        /// The spacing between buttons when the button bar overflows.
+        ///
+        /// If the [children] do not fit into a single row, they are
+        /// arranged into a column. This parameter provides additional
+        /// vertical space in between buttons when it does overflow.
+        ///
+        /// Note that the button spacing may appear to be more than
+        /// the value provided. This is because most buttons adhere to the
+        /// [MaterialTapTargetSize] of 48px. So, even though a button
+        /// might visually be 36px in height, it might still take up to
+        /// 48px vertically.
+        ///
+        /// If null then no spacing will be added in between buttons in
+        /// an overflow state.
+        /// </Summary>
         public virtual double OverflowButtonSpacing { get; set; }
+        /// <Summary>
+        /// The buttons to arrange horizontally.
+        ///
+        /// Typically [RaisedButton] or [FlatButton] widgets.
+        /// </Summary>
         public virtual List<FlutterSDK.Widgets.Framework.Widget> Children { get; set; }
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
@@ -478,6 +578,10 @@ namespace FlutterSDK.Material.Buttonbar
     /// </Summary>
     public class _ButtonBarRow : FlutterSDK.Widgets.Basic.Flex
     {
+        /// <Summary>
+        /// Creates a button bar that attempts to display in a row, but displays in
+        /// a column if there is insufficient horizontal space.
+        /// </Summary>
         public _ButtonBarRow(List<FlutterSDK.Widgets.Framework.Widget> children = default(List<FlutterSDK.Widgets.Framework.Widget>), FlutterSDK.Painting.Basictypes.Axis direction = default(FlutterSDK.Painting.Basictypes.Axis), FlutterSDK.Rendering.Flex.MainAxisSize mainAxisSize = default(FlutterSDK.Rendering.Flex.MainAxisSize), FlutterSDK.Rendering.Flex.MainAxisAlignment mainAxisAlignment = default(FlutterSDK.Rendering.Flex.MainAxisAlignment), FlutterSDK.Rendering.Flex.CrossAxisAlignment crossAxisAlignment = default(FlutterSDK.Rendering.Flex.CrossAxisAlignment), TextDirection textDirection = default(TextDirection), FlutterSDK.Painting.Basictypes.VerticalDirection overflowDirection = default(FlutterSDK.Painting.Basictypes.VerticalDirection), TextBaseline textBaseline = default(TextBaseline), double overflowButtonSpacing = default(double))
         : base(children: children, direction: direction, mainAxisSize: mainAxisSize, mainAxisAlignment: mainAxisAlignment, crossAxisAlignment: crossAxisAlignment, textDirection: textDirection, verticalDirection: overflowDirection, textBaseline: textBaseline)
         {
@@ -527,6 +631,10 @@ namespace FlutterSDK.Material.Buttonbar
     /// </Summary>
     public class _RenderButtonBarRow : FlutterSDK.Rendering.Flex.RenderFlex
     {
+        /// <Summary>
+        /// Creates a button bar that attempts to display in a row, but displays in
+        /// a column if there is insufficient horizontal space.
+        /// </Summary>
         public _RenderButtonBarRow(List<FlutterSDK.Rendering.Box.RenderBox> children = default(List<FlutterSDK.Rendering.Box.RenderBox>), FlutterSDK.Painting.Basictypes.Axis direction = default(FlutterSDK.Painting.Basictypes.Axis), FlutterSDK.Rendering.Flex.MainAxisSize mainAxisSize = default(FlutterSDK.Rendering.Flex.MainAxisSize), FlutterSDK.Rendering.Flex.MainAxisAlignment mainAxisAlignment = default(FlutterSDK.Rendering.Flex.MainAxisAlignment), FlutterSDK.Rendering.Flex.CrossAxisAlignment crossAxisAlignment = default(FlutterSDK.Rendering.Flex.CrossAxisAlignment), TextDirection textDirection = default(TextDirection), FlutterSDK.Painting.Basictypes.VerticalDirection verticalDirection = default(FlutterSDK.Painting.Basictypes.VerticalDirection), TextBaseline textBaseline = default(TextBaseline), double overflowButtonSpacing = default(double))
         : base(children: children, direction: direction, mainAxisSize: mainAxisSize, mainAxisAlignment: mainAxisAlignment, crossAxisAlignment: crossAxisAlignment, textDirection: textDirection, verticalDirection: verticalDirection, textBaseline: textBaseline)
         {

@@ -347,6 +347,23 @@ namespace FlutterSDK.Cupertino.Segmentedcontrol
     /// </Summary>
     public class CupertinoSegmentedControl<T> : FlutterSDK.Widgets.Framework.StatefulWidget
     {
+        /// <Summary>
+        /// Creates an iOS-style segmented control bar.
+        ///
+        /// The [children] and [onValueChanged] arguments must not be null. The
+        /// [children] argument must be an ordered [Map] such as a [LinkedHashMap].
+        /// Further, the length of the [children] list must be greater than one.
+        ///
+        /// Each widget value in the map of [children] must have an associated key
+        /// that uniquely identifies this widget. This key is what will be returned
+        /// in the [onValueChanged] callback when a new value from the [children] map
+        /// is selected.
+        ///
+        /// The [groupValue] is the currently selected value for the segmented control.
+        /// If no [groupValue] is provided, or the [groupValue] is null, no widget will
+        /// appear as selected. The [groupValue] must be either null or one of the keys
+        /// in the [children] map.
+        /// </Summary>
         public CupertinoSegmentedControl(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), Dictionary<T, FlutterSDK.Widgets.Framework.Widget> children = default(Dictionary<T, FlutterSDK.Widgets.Framework.Widget>), FlutterSDK.Foundation.Basictypes.ValueChanged<T> onValueChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<T>), T groupValue = default(T), FlutterBinding.UI.Color unselectedColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color selectedColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color borderColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color pressedColor = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry))
         : base(key: key)
         {
@@ -359,13 +376,101 @@ namespace FlutterSDK.Cupertino.Segmentedcontrol
             this.PressedColor = pressedColor;
             this.Padding = padding;
         }
+        /// <Summary>
+        /// The identifying keys and corresponding widget values in the
+        /// segmented control.
+        ///
+        /// The map must have more than one entry.
+        /// This attribute must be an ordered [Map] such as a [LinkedHashMap].
+        /// </Summary>
         public virtual Dictionary<T, FlutterSDK.Widgets.Framework.Widget> Children { get; set; }
+        /// <Summary>
+        /// The identifier of the widget that is currently selected.
+        ///
+        /// This must be one of the keys in the [Map] of [children].
+        /// If this attribute is null, no widget will be initially selected.
+        /// </Summary>
         public virtual T GroupValue { get; set; }
+        /// <Summary>
+        /// The callback that is called when a new option is tapped.
+        ///
+        /// This attribute must not be null.
+        ///
+        /// The segmented control passes the newly selected widget's associated key
+        /// to the callback but does not actually change state until the parent
+        /// widget rebuilds the segmented control with the new [groupValue].
+        ///
+        /// The callback provided to [onValueChanged] should update the state of
+        /// the parent [StatefulWidget] using the [State.setState] method, so that
+        /// the parent gets rebuilt; for example:
+        ///
+        /// {@tool snippet}
+        ///
+        /// ```dart
+        /// class SegmentedControlExample extends StatefulWidget {
+        ///   @override
+        ///   State createState() => SegmentedControlExampleState();
+        /// }
+        ///
+        /// class SegmentedControlExampleState extends State<SegmentedControlExample> {
+        ///   final Map<int, Widget> children = const {
+        ///     0: Text('Child 1'),
+        ///     1: Text('Child 2'),
+        ///   };
+        ///
+        ///   int currentValue;
+        ///
+        ///   @override
+        ///   Widget build(BuildContext context) {
+        ///     return Container(
+        ///       child: CupertinoSegmentedControl<int>(
+        ///         children: children,
+        ///         onValueChanged: (int newValue) {
+        ///           setState(() {
+        ///             currentValue = newValue;
+        ///           });
+        ///         },
+        ///         groupValue: currentValue,
+        ///       ),
+        ///     );
+        ///   }
+        /// }
+        /// ```
+        /// {@end-tool}
+        /// </Summary>
         public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<T> OnValueChanged { get; set; }
+        /// <Summary>
+        /// The color used to fill the backgrounds of unselected widgets and as the
+        /// text color of the selected widget.
+        ///
+        /// Defaults to [CupertinoTheme]'s `primaryContrastingColor` if null.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color UnselectedColor { get; set; }
+        /// <Summary>
+        /// The color used to fill the background of the selected widget and as the text
+        /// color of unselected widgets.
+        ///
+        /// Defaults to [CupertinoTheme]'s `primaryColor` if null.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color SelectedColor { get; set; }
+        /// <Summary>
+        /// The color used as the border around each widget.
+        ///
+        /// Defaults to [CupertinoTheme]'s `primaryColor` if null.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color BorderColor { get; set; }
+        /// <Summary>
+        /// The color used to fill the background of the widget the user is
+        /// temporarily interacting with through a long press or drag.
+        ///
+        /// Defaults to the selectedColor at 20% opacity if null.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color PressedColor { get; set; }
+        /// <Summary>
+        /// The CupertinoSegmentedControl will be placed inside this padding
+        ///
+        /// Defaults to EdgeInsets.symmetric(horizontal: 16.0)
+        /// </Summary>
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Padding { get; set; }
 
         public new _SegmentedControlState<T> CreateState() => new _SegmentedControlState<T>();

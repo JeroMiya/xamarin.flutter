@@ -439,6 +439,11 @@ namespace FlutterSDK.Services.Rawkeyboardfuchsia
     /// </Summary>
     public class RawKeyEventDataFuchsia : FlutterSDK.Services.Rawkeyboard.RawKeyEventData
     {
+        /// <Summary>
+        /// Creates a key event data structure specific for Fuchsia.
+        ///
+        /// The [hidUsage], [codePoint], and [modifiers] arguments must not be null.
+        /// </Summary>
         public RawKeyEventDataFuchsia(int hidUsage = 0, int codePoint = 0, int modifiers = 0)
         : base()
         {
@@ -446,22 +451,164 @@ namespace FlutterSDK.Services.Rawkeyboardfuchsia
             this.CodePoint = codePoint;
             this.Modifiers = modifiers;
         }
+        /// <Summary>
+        /// The USB HID usage.
+        ///
+        /// See <http://www.usb.org/developers/hidpage/Hut1_12v2.pdf> for more
+        /// information.
+        /// </Summary>
         public virtual int HidUsage { get; set; }
+        /// <Summary>
+        /// The Unicode code point represented by the key event, if any.
+        ///
+        /// If there is no Unicode code point, this value is zero.
+        ///
+        /// Dead keys are represented as Unicode combining characters.
+        /// </Summary>
         public virtual int CodePoint { get; set; }
+        /// <Summary>
+        /// The modifiers that were present when the key event occurred.
+        ///
+        /// See <https://fuchsia.googlesource.com/garnet/+/master/public/fidl/fuchsia.ui.input/input_event_constants.fidl>
+        /// for the numerical values of the modifiers. Many of these are also
+        /// replicated as static constants in this class.
+        ///
+        /// See also:
+        ///
+        ///  * [modifiersPressed], which returns a Map of currently pressed modifiers
+        ///    and their keyboard side.
+        ///  * [isModifierPressed], to see if a specific modifier is pressed.
+        ///  * [isControlPressed], to see if a CTRL key is pressed.
+        ///  * [isShiftPressed], to see if a SHIFT key is pressed.
+        ///  * [isAltPressed], to see if an ALT key is pressed.
+        ///  * [isMetaPressed], to see if a META key is pressed.
+        /// </Summary>
         public virtual int Modifiers { get; set; }
+        /// <Summary>
+        /// The [modifiers] field indicates that no modifier keys are pressed if it
+        /// equals this value.
+        ///
+        /// Use this value if you need to decode the [modifiers] field yourself, but
+        /// it's much easier to use [isModifierPressed] if you just want to know if
+        /// a modifier is pressed.
+        /// </Summary>
         public virtual int ModifierNone { get; set; }
+        /// <Summary>
+        /// This mask is used to check the [modifiers] field to test whether the CAPS
+        /// LOCK modifier key is on.
+        ///
+        /// Use this value if you need to decode the [modifiers] field yourself, but
+        /// it's much easier to use [isModifierPressed] if you just want to know if
+        /// a modifier is pressed.
+        /// </Summary>
         public virtual int ModifierCapsLock { get; set; }
+        /// <Summary>
+        /// This mask is used to check the [modifiers] field to test whether the left
+        /// SHIFT modifier key is pressed.
+        ///
+        /// Use this value if you need to decode the [modifiers] field yourself, but
+        /// it's much easier to use [isModifierPressed] if you just want to know if
+        /// a modifier is pressed.
+        /// </Summary>
         public virtual int ModifierLeftShift { get; set; }
+        /// <Summary>
+        /// This mask is used to check the [modifiers] field to test whether the right
+        /// SHIFT modifier key is pressed.
+        ///
+        /// Use this value if you need to decode the [modifiers] field yourself, but
+        /// it's much easier to use [isModifierPressed] if you just want to know if
+        /// a modifier is pressed.
+        /// </Summary>
         public virtual int ModifierRightShift { get; set; }
+        /// <Summary>
+        /// This mask is used to check the [modifiers] field to test whether one of
+        /// the SHIFT modifier keys is pressed.
+        ///
+        /// Use this value if you need to decode the [modifiers] field yourself, but
+        /// it's much easier to use [isModifierPressed] if you just want to know if
+        /// a modifier is pressed.
+        /// </Summary>
         public virtual int ModifierShift { get; set; }
+        /// <Summary>
+        /// This mask is used to check the [modifiers] field to test whether the left
+        /// CTRL modifier key is pressed.
+        ///
+        /// Use this value if you need to decode the [modifiers] field yourself, but
+        /// it's much easier to use [isModifierPressed] if you just want to know if
+        /// a modifier is pressed.
+        /// </Summary>
         public virtual int ModifierLeftControl { get; set; }
+        /// <Summary>
+        /// This mask is used to check the [modifiers] field to test whether the right
+        /// CTRL modifier key is pressed.
+        ///
+        /// Use this value if you need to decode the [modifiers] field yourself, but
+        /// it's much easier to use [isModifierPressed] if you just want to know if
+        /// a modifier is pressed.
+        /// </Summary>
         public virtual int ModifierRightControl { get; set; }
+        /// <Summary>
+        /// This mask is used to check the [modifiers] field to test whether one of
+        /// the CTRL modifier keys is pressed.
+        ///
+        /// Use this value if you need to decode the [modifiers] field yourself, but
+        /// it's much easier to use [isModifierPressed] if you just want to know if
+        /// a modifier is pressed.
+        /// </Summary>
         public virtual int ModifierControl { get; set; }
+        /// <Summary>
+        /// This mask is used to check the [modifiers] field to test whether the left
+        /// ALT modifier key is pressed.
+        ///
+        /// Use this value if you need to decode the [modifiers] field yourself, but
+        /// it's much easier to use [isModifierPressed] if you just want to know if
+        /// a modifier is pressed.
+        /// </Summary>
         public virtual int ModifierLeftAlt { get; set; }
+        /// <Summary>
+        /// This mask is used to check the [modifiers] field to test whether the right
+        /// ALT modifier key is pressed.
+        ///
+        /// Use this value if you need to decode the [modifiers] field yourself, but
+        /// it's much easier to use [isModifierPressed] if you just want to know if
+        /// a modifier is pressed.
+        /// </Summary>
         public virtual int ModifierRightAlt { get; set; }
+        /// <Summary>
+        /// This mask is used to check the [modifiers] field to test whether one of
+        /// the ALT modifier keys is pressed.
+        ///
+        /// Use this value if you need to decode the [modifiers] field yourself, but
+        /// it's much easier to use [isModifierPressed] if you just want to know if
+        /// a modifier is pressed.
+        /// </Summary>
         public virtual int ModifierAlt { get; set; }
+        /// <Summary>
+        /// This mask is used to check the [modifiers] field to test whether the left
+        /// META modifier key is pressed.
+        ///
+        /// Use this value if you need to decode the [modifiers] field yourself, but
+        /// it's much easier to use [isModifierPressed] if you just want to know if
+        /// a modifier is pressed.
+        /// </Summary>
         public virtual int ModifierLeftMeta { get; set; }
+        /// <Summary>
+        /// This mask is used to check the [modifiers] field to test whether the right
+        /// META modifier key is pressed.
+        ///
+        /// Use this value if you need to decode the [modifiers] field yourself, but
+        /// it's much easier to use [isModifierPressed] if you just want to know if
+        /// a modifier is pressed.
+        /// </Summary>
         public virtual int ModifierRightMeta { get; set; }
+        /// <Summary>
+        /// This mask is used to check the [modifiers] field to test whether one of
+        /// the META modifier keys is pressed.
+        ///
+        /// Use this value if you need to decode the [modifiers] field yourself, but
+        /// it's much easier to use [isModifierPressed] if you just want to know if
+        /// a modifier is pressed.
+        /// </Summary>
         public virtual int ModifierMeta { get; set; }
         public virtual string KeyLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey LogicalKey { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }

@@ -296,10 +296,33 @@ using FlutterSDK.Foundation._Isolatesio;
 using FlutterSDK.Foundation._Platformio;
 namespace FlutterSDK.Gestures.Multitap
 {
+    /// <Summary>
+    /// Signature for callback when the user has tapped the screen at the same
+    /// location twice in quick succession.
+    ///
+    /// See also:
+    ///
+    ///  * [GestureDetector.onDoubleTap], which matches this signature.
+    /// </Summary>
     public delegate void GestureDoubleTapCallback();
+    /// <Summary>
+    /// Signature used by [MultiTapGestureRecognizer] for when a pointer that might
+    /// cause a tap has contacted the screen at a particular location.
+    /// </Summary>
     public delegate void GestureMultiTapDownCallback(int pointer, FlutterSDK.Gestures.Tap.TapDownDetails details);
+    /// <Summary>
+    /// Signature used by [MultiTapGestureRecognizer] for when a pointer that will
+    /// trigger a tap has stopped contacting the screen at a particular location.
+    /// </Summary>
     public delegate void GestureMultiTapUpCallback(int pointer, FlutterSDK.Gestures.Tap.TapUpDetails details);
+    /// <Summary>
+    /// Signature used by [MultiTapGestureRecognizer] for when a tap has occurred.
+    /// </Summary>
     public delegate void GestureMultiTapCallback(int pointer);
+    /// <Summary>
+    /// Signature for when the pointer that previously triggered a
+    /// [GestureMultiTapDownCallback] will not end up causing a tap.
+    /// </Summary>
     public delegate void GestureMultiTapCancelCallback(int pointer);
     internal static class MultitapDefaultClass
     {
@@ -413,11 +436,27 @@ namespace FlutterSDK.Gestures.Multitap
     /// </Summary>
     public class DoubleTapGestureRecognizer : FlutterSDK.Gestures.Recognizer.GestureRecognizer
     {
+        /// <Summary>
+        /// Create a gesture recognizer for double taps.
+        ///
+        /// {@macro flutter.gestures.gestureRecognizer.kind}
+        /// </Summary>
         public DoubleTapGestureRecognizer(@Object debugOwner = default(@Object), PointerDeviceKind kind = default(PointerDeviceKind))
         : base(debugOwner: debugOwner, kind: kind)
         {
 
         }
+        /// <Summary>
+        /// Called when the user has tapped the screen with a primary button at the
+        /// same location twice in quick succession.
+        ///
+        /// This triggers when the pointer stops contacting the device after the
+        /// second tap.
+        ///
+        /// See also:
+        ///
+        ///  * [kPrimaryButton], the button this callback responds to.
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Multitap.GestureDoubleTapCallback OnDoubleTap { get; set; }
         internal virtual Timer _DoubleTapTimer { get; set; }
         internal virtual FlutterSDK.Gestures.Multitap._TapTracker _FirstTap { get; set; }
@@ -734,16 +773,44 @@ namespace FlutterSDK.Gestures.Multitap
     /// </Summary>
     public class MultiTapGestureRecognizer : FlutterSDK.Gestures.Recognizer.GestureRecognizer
     {
+        /// <Summary>
+        /// Creates a multi-tap gesture recognizer.
+        ///
+        /// The [longTapDelay] defaults to [Duration.zero], which means
+        /// [onLongTapDown] is called immediately after [onTapDown].
+        /// </Summary>
         public MultiTapGestureRecognizer(TimeSpan longTapDelay = default(TimeSpan), @Object debugOwner = default(@Object), PointerDeviceKind kind = default(PointerDeviceKind))
         : base(debugOwner: debugOwner, kind: kind)
         {
             this.LongTapDelay = longTapDelay;
         }
+        /// <Summary>
+        /// A pointer that might cause a tap has contacted the screen at a particular
+        /// location.
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Multitap.GestureMultiTapDownCallback OnTapDown { get; set; }
+        /// <Summary>
+        /// A pointer that will trigger a tap has stopped contacting the screen at a
+        /// particular location.
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Multitap.GestureMultiTapUpCallback OnTapUp { get; set; }
+        /// <Summary>
+        /// A tap has occurred.
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Multitap.GestureMultiTapCallback OnTap { get; set; }
+        /// <Summary>
+        /// The pointer that previously triggered [onTapDown] will not end up causing
+        /// a tap.
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Multitap.GestureMultiTapCancelCallback OnTapCancel { get; set; }
+        /// <Summary>
+        /// The amount of time between [onTapDown] and [onLongTapDown].
+        /// </Summary>
         public virtual TimeSpan LongTapDelay { get; set; }
+        /// <Summary>
+        /// A pointer that might cause a tap is still in contact with the screen at a
+        /// particular location after [longTapDelay].
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Multitap.GestureMultiTapDownCallback OnLongTapDown { get; set; }
         internal virtual Dictionary<int, FlutterSDK.Gestures.Multitap._TapGesture> _GestureMap { get; set; }
         public virtual string DebugDescription { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }

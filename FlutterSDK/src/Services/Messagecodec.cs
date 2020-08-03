@@ -552,13 +552,25 @@ namespace FlutterSDK.Services.Messagecodec
     /// </Summary>
     public class MethodCall
     {
+        /// <Summary>
+        /// Creates a [MethodCall] representing the invocation of [method] with the
+        /// specified [arguments].
+        /// </Summary>
         public MethodCall(string method, object arguments = default(object))
         : base()
         {
             this.Method = method;
             this.Arguments = arguments;
         }
+        /// <Summary>
+        /// The name of the method to be called.
+        /// </Summary>
         public virtual string Method { get; set; }
+        /// <Summary>
+        /// The arguments for the method.
+        ///
+        /// Must be a valid value for the [MethodCodec] used.
+        /// </Summary>
         public virtual object Arguments { get; set; }
 
     }
@@ -581,6 +593,11 @@ namespace FlutterSDK.Services.Messagecodec
     /// </Summary>
     public class PlatformException : IException
     {
+        /// <Summary>
+        /// Creates a [PlatformException] with the specified error [code] and optional
+        /// [message], and with the optional error [details] which must be a valid
+        /// value for the [MethodCodec] involved in the interaction.
+        /// </Summary>
         public PlatformException(string code = default(string), string message = default(string), object details = default(object))
         : base()
         {
@@ -588,8 +605,17 @@ namespace FlutterSDK.Services.Messagecodec
             this.Message = message;
             this.Details = details;
         }
+        /// <Summary>
+        /// An error code.
+        /// </Summary>
         public virtual string Code { get; set; }
+        /// <Summary>
+        /// A human-readable error message, possibly null.
+        /// </Summary>
         public virtual string Message { get; set; }
+        /// <Summary>
+        /// Error details, possibly null.
+        /// </Summary>
         public virtual object Details { get; set; }
 
     }
@@ -609,10 +635,17 @@ namespace FlutterSDK.Services.Messagecodec
     /// </Summary>
     public class MissingPluginException : IException
     {
+        /// <Summary>
+        /// Creates a [MissingPluginException] with an optional human-readable
+        /// error message.
+        /// </Summary>
         public MissingPluginException(string message = default(string))
         {
             this.Message = message;
         }
+        /// <Summary>
+        /// A human-readable error message, possibly null.
+        /// </Summary>
         public virtual string Message { get; set; }
 
     }

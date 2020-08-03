@@ -803,6 +803,13 @@ namespace FlutterSDK.Painting.Textstyle
     /// </Summary>
     public class TextStyle : IDiagnosticable
     {
+        /// <Summary>
+        /// Creates a text style.
+        ///
+        /// The `package` argument must be non-null if the font family is defined in a
+        /// package. It is combined with the `fontFamily` argument to set the
+        /// [fontFamily] property.
+        /// </Summary>
         public TextStyle(bool inherit = true, FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), double fontSize = default(double), FontWeight fontWeight = default(FontWeight), FontStyle fontStyle = default(FontStyle), double letterSpacing = default(double), double wordSpacing = default(double), TextBaseline textBaseline = default(TextBaseline), double height = default(double), Locale locale = default(Locale), SKPaint foreground = default(SKPaint), SKPaint background = default(SKPaint), List<Shadow> shadows = default(List<Shadow>), List<FontFeature> fontFeatures = default(List<FontFeature>), TextDecoration decoration = default(TextDecoration), FlutterBinding.UI.Color decorationColor = default(FlutterBinding.UI.Color), TextDecorationStyle decorationStyle = default(TextDecorationStyle), double decorationThickness = default(double), string debugLabel = default(string), string fontFamily = default(string), List<string> fontFamilyFallback = default(List<string>), string package = default(string))
         : base()
         {
@@ -827,29 +834,254 @@ namespace FlutterSDK.Painting.Textstyle
             this.DecorationThickness = decorationThickness;
             this.DebugLabel = debugLabel;
         }
+        /// <Summary>
+        /// Whether null values are replaced with their value in an ancestor text
+        /// style (e.g., in a [TextSpan] tree).
+        ///
+        /// If this is false, properties that don't have explicit values will revert
+        /// to the defaults: white in color, a font size of 10 pixels, in a sans-serif
+        /// font face.
+        /// </Summary>
         public virtual bool Inherit { get; set; }
+        /// <Summary>
+        /// The color to use when painting the text.
+        ///
+        /// If [foreground] is specified, this value must be null. The [color] property
+        /// is shorthand for `Paint()..color = color`.
+        ///
+        /// In [merge], [apply], and [lerp], conflicts between [color] and [foreground]
+        /// specification are resolved in [foreground]'s favor - i.e. if [foreground] is
+        /// specified in one place, it will dominate [color] in another.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color Color { get; set; }
+        /// <Summary>
+        /// The color to use as the background for the text.
+        ///
+        /// If [background] is specified, this value must be null. The
+        /// [backgroundColor] property is shorthand for
+        /// `background: Paint()..color = backgroundColor`.
+        ///
+        /// In [merge], [apply], and [lerp], conflicts between [backgroundColor] and [background]
+        /// specification are resolved in [background]'s favor - i.e. if [background] is
+        /// specified in one place, it will dominate [color] in another.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
+        /// <Summary>
+        /// The name of the font to use when painting the text (e.g., Roboto). If the
+        /// font is defined in a package, this will be prefixed with
+        /// 'packages/package_name/' (e.g. 'packages/cool_fonts/Roboto'). The
+        /// prefixing is done by the constructor when the `package` argument is
+        /// provided.
+        ///
+        /// The value provided in [fontFamily] will act as the preferred/first font
+        /// family that glyphs are looked for in, followed in order by the font families
+        /// in [fontFamilyFallback]. When [fontFamily] is null or not provided, the
+        /// first value in [fontFamilyFallback] acts as the preferred/first font
+        /// family. When neither is provided, then the default platform font will
+        /// be used.
+        /// </Summary>
         public virtual string FontFamily { get; set; }
         internal virtual List<string> _FontFamilyFallback { get; set; }
         internal virtual string _Package { get; set; }
+        /// <Summary>
+        /// The size of glyphs (in logical pixels) to use when painting the text.
+        ///
+        /// During painting, the [fontSize] is multiplied by the current
+        /// `textScaleFactor` to let users make it easier to read text by increasing
+        /// its size.
+        ///
+        /// [getParagraphStyle] will default to 14 logical pixels if the font size
+        /// isn't specified here.
+        /// </Summary>
         public virtual double FontSize { get; set; }
         internal virtual double _DefaultFontSize { get; set; }
+        /// <Summary>
+        /// The typeface thickness to use when painting the text (e.g., bold).
+        /// </Summary>
         public virtual FontWeight FontWeight { get; set; }
+        /// <Summary>
+        /// The typeface variant to use when drawing the letters (e.g., italics).
+        /// </Summary>
         public virtual FontStyle FontStyle { get; set; }
+        /// <Summary>
+        /// The amount of space (in logical pixels) to add between each letter.
+        /// A negative value can be used to bring the letters closer.
+        /// </Summary>
         public virtual double LetterSpacing { get; set; }
+        /// <Summary>
+        /// The amount of space (in logical pixels) to add at each sequence of
+        /// white-space (i.e. between each word). A negative value can be used to
+        /// bring the words closer.
+        /// </Summary>
         public virtual double WordSpacing { get; set; }
+        /// <Summary>
+        /// The common baseline that should be aligned between this text span and its
+        /// parent text span, or, for the root text spans, with the line box.
+        /// </Summary>
         public virtual TextBaseline TextBaseline { get; set; }
+        /// <Summary>
+        /// The height of this text span, as a multiple of the font size.
+        ///
+        /// When [height] is null or omitted, the line height will be determined
+        /// by the font's metrics directly, which may differ from the fontSize.
+        /// When [height] is non-null, the line height of the span of text will be a
+        /// multiple of [fontSize] and be exactly `fontSize * height` logical pixels
+        /// tall.
+        ///
+        /// For most fonts, setting [height] to 1.0 is not the same as omitting or
+        /// setting height to null because the [fontSize] sets the height of the EM-square,
+        /// which is different than the font provided metrics for line height. The
+        /// following diagram illustrates the difference between the font-metrics
+        /// defined line height and the line height produced with `height: 1.0`
+        /// (which forms the upper and lower edges of the EM-square):
+        ///
+        /// ![Text height diagram](https://flutter.github.io/assets-for-api-docs/assets/painting/text_height_diagram.png)
+        ///
+        /// Examples of the resulting line heights from different values of `TextStyle.height`:
+        ///
+        /// ![Text height comparison diagram](https://flutter.github.io/assets-for-api-docs/assets/painting/text_height_comparison_diagram.png)
+        ///
+        /// See [StrutStyle] for further control of line height at the paragraph level.
+        /// </Summary>
         public virtual double Height { get; set; }
+        /// <Summary>
+        /// The locale used to select region-specific glyphs.
+        ///
+        /// This property is rarely set. Typically the locale used to select
+        /// region-specific glyphs is defined by the text widget's [BuildContext]
+        /// using `Localizations.localeOf(context)`. For example [RichText] defines
+        /// its locale this way. However, a rich text widget's [TextSpan]s could
+        /// specify text styles with different explicit locales in order to select
+        /// different region-specific glyphs for each text span.
+        /// </Summary>
         public virtual Locale Locale { get; set; }
+        /// <Summary>
+        /// The paint drawn as a foreground for the text.
+        ///
+        /// The value should ideally be cached and reused each time if multiple text
+        /// styles are created with the same paint settings. Otherwise, each time it
+        /// will appear like the style changed, which will result in unnecessary
+        /// updates all the way through the framework.
+        ///
+        /// If [color] is specified, this value must be null. The [color] property
+        /// is shorthand for `Paint()..color = color`.
+        ///
+        /// In [merge], [apply], and [lerp], conflicts between [color] and [foreground]
+        /// specification are resolved in [foreground]'s favor - i.e. if [foreground] is
+        /// specified in one place, it will dominate [color] in another.
+        /// </Summary>
         public virtual SKPaint Foreground { get; set; }
+        /// <Summary>
+        /// The paint drawn as a background for the text.
+        ///
+        /// The value should ideally be cached and reused each time if multiple text
+        /// styles are created with the same paint settings. Otherwise, each time it
+        /// will appear like the style changed, which will result in unnecessary
+        /// updates all the way through the framework.
+        ///
+        /// If [backgroundColor] is specified, this value must be null. The
+        /// [backgroundColor] property is shorthand for
+        /// `background: Paint()..color = backgroundColor`.
+        ///
+        /// In [merge], [apply], and [lerp], conflicts between [backgroundColor] and
+        /// [background] specification are resolved in [background]'s favor - i.e. if
+        /// [background] is specified in one place, it will dominate [backgroundColor]
+        /// in another.
+        /// </Summary>
         public virtual SKPaint Background { get; set; }
+        /// <Summary>
+        /// The decorations to paint near the text (e.g., an underline).
+        ///
+        /// Multiple decorations can be applied using [TextDecoration.combine].
+        /// </Summary>
         public virtual TextDecoration Decoration { get; set; }
+        /// <Summary>
+        /// The color in which to paint the text decorations.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color DecorationColor { get; set; }
+        /// <Summary>
+        /// The style in which to paint the text decorations (e.g., dashed).
+        /// </Summary>
         public virtual TextDecorationStyle DecorationStyle { get; set; }
+        /// <Summary>
+        /// The thickness of the decoration stroke as a multiplier of the thickness
+        /// defined by the font.
+        ///
+        /// The font provides a base stroke width for [decoration]s which scales off
+        /// of the [fontSize]. This property may be used to achieve a thinner or
+        /// thicker decoration stroke, without changing the [fontSize]. For example,
+        /// a [decorationThickness] of 2.0 will draw a decoration twice as thick as
+        /// the font defined decoration thickness.
+        ///
+        /// {@tool snippet}
+        /// To achieve a bolded strike-through, we can apply a thicker stroke for the
+        /// decoration.
+        ///
+        /// ```dart
+        /// Text(
+        ///   'This has a very BOLD strike through!',
+        ///   style: TextStyle(
+        ///     decoration: TextDecoration.lineThrough,
+        ///     decorationThickness: 2.85,
+        ///   ),
+        /// )
+        /// ```
+        /// {@end-tool}
+        ///
+        /// {@tool snippet}
+        /// We can apply a very thin and subtle wavy underline (perhaps, when words
+        /// are misspelled) by using a [decorationThickness] < 1.0.
+        ///
+        /// ```dart
+        /// Text(
+        ///   'oopsIforgottousespaces!',
+        ///   style: TextStyle(
+        ///     decoration: TextDecoration.underline,
+        ///     decorationStyle: TextDecorationStyle.wavy,
+        ///     decorationColor: Colors.red,
+        ///     decorationThickness: 0.5,
+        ///   ),
+        /// )
+        /// ```
+        /// {@end-tool}
+        ///
+        /// The default [decorationThickness] is 1.0, which will use the font's base
+        /// stroke thickness/width.
+        /// </Summary>
         public virtual double DecorationThickness { get; set; }
+        /// <Summary>
+        /// A human-readable description of this text style.
+        ///
+        /// This property is maintained only in debug builds.
+        ///
+        /// When merging ([merge]), copying ([copyWith]), modifying using [apply], or
+        /// interpolating ([lerp]), the label of the resulting style is marked with
+        /// the debug labels of the original styles. This helps figuring out where a
+        /// particular text style came from.
+        ///
+        /// This property is not considered when comparing text styles using `==` or
+        /// [compareTo], and it does not affect [hashCode].
+        /// </Summary>
         public virtual string DebugLabel { get; set; }
+        /// <Summary>
+        /// A list of [Shadow]s that will be painted underneath the text.
+        ///
+        /// Multiple shadows are supported to replicate lighting from multiple light
+        /// sources.
+        ///
+        /// Shadows must be in the same order for [TextStyle] to be considered as
+        /// equivalent as order produces differing transparency.
+        /// </Summary>
         public virtual List<Shadow> Shadows { get; set; }
+        /// <Summary>
+        /// A list of [FontFeature]s that affect how the font selects glyphs.
+        ///
+        /// Some fonts support multiple variants of how a given character can be
+        /// rendered.  For example, a font might provide both proportional and
+        /// tabular numbers, or it might offer versions of the zero digit with
+        /// and without slashes.  [FontFeature]s can be used to select which of
+        /// these variants will be used for rendering.
+        /// </Summary>
         public virtual List<FontFeature> FontFeatures { get; set; }
         public virtual List<string> FontFamilyFallback { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }

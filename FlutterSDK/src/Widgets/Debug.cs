@@ -423,6 +423,9 @@ using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
 namespace FlutterSDK.Widgets.Debug
 {
+    /// <Summary>
+    /// Signature for [debugOnRebuildDirtyWidget] implementations.
+    /// </Summary>
     public delegate void RebuildDirtyWidgetCallback(FlutterSDK.Widgets.Framework.Element e, bool builtOnce);
     internal static class DebugDefaultClass
     {
@@ -448,6 +451,22 @@ namespace FlutterSDK.Widgets.Debug
 
 
 
+        /// <Summary>
+        /// Asserts if the given child list contains any duplicate non-null keys.
+        ///
+        /// To invoke this function, use the following pattern, typically in the
+        /// relevant Widget's constructor:
+        ///
+        /// ```dart
+        /// assert(!debugChildrenHaveDuplicateKeys(this, children));
+        /// ```
+        ///
+        /// For a version of this function that can be used in contexts where
+        /// the list of items does not have a particular parent, see
+        /// [debugItemsHaveDuplicateKeys].
+        ///
+        /// Does nothing if asserts are disabled. Always returns true.
+        /// </Summary>
         internal static bool DebugChildrenHaveDuplicateKeys(FlutterSDK.Widgets.Framework.Widget parent, Iterable<FlutterSDK.Widgets.Framework.Widget> children)
         {
 
@@ -456,6 +475,20 @@ namespace FlutterSDK.Widgets.Debug
 
 
 
+        /// <Summary>
+        /// Asserts if the given list of items contains any duplicate non-null keys.
+        ///
+        /// To invoke this function, use the following pattern:
+        ///
+        /// ```dart
+        /// assert(!debugItemsHaveDuplicateKeys(items));
+        /// ```
+        ///
+        /// For a version of this function specifically intended for parents
+        /// checking their children lists, see [debugChildrenHaveDuplicateKeys].
+        ///
+        /// Does nothing if asserts are disabled. Always returns true.
+        /// </Summary>
         internal static bool DebugItemsHaveDuplicateKeys(Iterable<FlutterSDK.Widgets.Framework.Widget> items)
         {
 
@@ -464,6 +497,20 @@ namespace FlutterSDK.Widgets.Debug
 
 
 
+        /// <Summary>
+        /// Asserts that the given context has a [Table] ancestor.
+        ///
+        /// Used by [TableRowInkWell] to make sure that it is only used in an appropriate context.
+        ///
+        /// To invoke this function, use the following pattern, typically in the
+        /// relevant Widget's build method:
+        ///
+        /// ```dart
+        /// assert(debugCheckHasTable(context));
+        /// ```
+        ///
+        /// Does nothing if asserts are disabled. Always returns true.
+        /// </Summary>
         internal static bool DebugCheckHasTable(FlutterSDK.Widgets.Framework.BuildContext context)
         {
 
@@ -472,6 +519,21 @@ namespace FlutterSDK.Widgets.Debug
 
 
 
+        /// <Summary>
+        /// Asserts that the given context has a [MediaQuery] ancestor.
+        ///
+        /// Used by various widgets to make sure that they are only used in an
+        /// appropriate context.
+        ///
+        /// To invoke this function, use the following pattern, typically in the
+        /// relevant Widget's build method:
+        ///
+        /// ```dart
+        /// assert(debugCheckHasMediaQuery(context));
+        /// ```
+        ///
+        /// Does nothing if asserts are disabled. Always returns true.
+        /// </Summary>
         internal static bool DebugCheckHasMediaQuery(FlutterSDK.Widgets.Framework.BuildContext context)
         {
 
@@ -480,6 +542,21 @@ namespace FlutterSDK.Widgets.Debug
 
 
 
+        /// <Summary>
+        /// Asserts that the given context has a [Directionality] ancestor.
+        ///
+        /// Used by various widgets to make sure that they are only used in an
+        /// appropriate context.
+        ///
+        /// To invoke this function, use the following pattern, typically in the
+        /// relevant Widget's build method:
+        ///
+        /// ```dart
+        /// assert(debugCheckHasDirectionality(context));
+        /// ```
+        ///
+        /// Does nothing if asserts are disabled. Always returns true.
+        /// </Summary>
         internal static bool DebugCheckHasDirectionality(FlutterSDK.Widgets.Framework.BuildContext context)
         {
 
@@ -488,6 +565,14 @@ namespace FlutterSDK.Widgets.Debug
 
 
 
+        /// <Summary>
+        /// Asserts that the `built` widget is not null.
+        ///
+        /// Used when the given `widget` calls a builder function to check that the
+        /// function returned a non-null value, as typically required.
+        ///
+        /// Does nothing when asserts are disabled.
+        /// </Summary>
         internal static void DebugWidgetBuilderValue(FlutterSDK.Widgets.Framework.Widget widget, FlutterSDK.Widgets.Framework.Widget built)
         {
 
@@ -495,6 +580,14 @@ namespace FlutterSDK.Widgets.Debug
 
 
 
+        /// <Summary>
+        /// Returns true if none of the widget library debug variables have been changed.
+        ///
+        /// This function is used by the test framework to ensure that debug variables
+        /// haven't been inadvertently changed.
+        ///
+        /// See [the widgets library](widgets/widgets-library.html) for a complete list.
+        /// </Summary>
         internal static bool DebugAssertAllWidgetVarsUnset(string reason)
         {
 

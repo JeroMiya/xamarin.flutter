@@ -423,6 +423,11 @@ using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
 namespace FlutterSDK.Services.Platformviews
 {
+    /// <Summary>
+    /// Callback signature for when a platform view was created.
+    ///
+    /// `id` is the platform view's unique identifier.
+    /// </Summary>
     public delegate void PlatformViewCreatedCallback(int id);
     internal static class PlatformviewsDefaultClass
     {
@@ -524,6 +529,11 @@ namespace FlutterSDK.Services.Platformviews
 
 
         internal virtual FlutterSDK.Services.Platformviews.PlatformViewsService _ServiceInstance { get; set; }
+        /// <Summary>
+        /// Maps platform view IDs to focus callbacks.
+        ///
+        /// The callbacks are invoked when the platform view asks to be focused.
+        /// </Summary>
         internal virtual Dictionary<int, object> _FocusCallbacks { get; set; }
         internal virtual FlutterSDK.Services.Platformviews.PlatformViewsService _Instance { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 
@@ -628,18 +638,45 @@ namespace FlutterSDK.Services.Platformviews
     /// </Summary>
     public class AndroidPointerProperties
     {
+        /// <Summary>
+        /// Creates an AndroidPointerProperties.
+        ///
+        /// All parameters must not be null.
+        /// </Summary>
         public AndroidPointerProperties(int id = default(int), int toolType = default(int))
         : base()
         {
             this.Id = id;
             this.ToolType = toolType;
         }
+        /// <Summary>
+        /// See Android's [MotionEvent.PointerProperties#id](https://developer.android.com/reference/android/view/MotionEvent.PointerProperties.html#id).
+        /// </Summary>
         public virtual int Id { get; set; }
+        /// <Summary>
+        /// The type of tool used to make contact such as a finger or stylus, if known.
+        /// See Android's [MotionEvent.PointerProperties#toolType](https://developer.android.com/reference/android/view/MotionEvent.PointerProperties.html#toolType).
+        /// </Summary>
         public virtual int ToolType { get; set; }
+        /// <Summary>
+        /// Value for `toolType` when the tool type is unknown.
+        /// </Summary>
         public virtual int KToolTypeUnknown { get; set; }
+        /// <Summary>
+        /// Value for `toolType` when the tool type is a finger.
+        /// </Summary>
         public virtual int KToolTypeFinger { get; set; }
+        /// <Summary>
+        /// Value for `toolType` when the tool type is a stylus.
+        /// </Summary>
         public virtual int KToolTypeStylus { get; set; }
+        /// <Summary>
+        /// Value for `toolType` when the tool type is a mouse.
+        /// </Summary>
         public virtual int KToolTypeMouse { get; set; }
+        /// <Summary>
+        /// Value for `toolType` when the tool type is an eraser.
+        /// </Summary>
         public virtual int KToolTypeEraser { get; set; }
 
         private List<int> _AsList() => new List<int>() { Id, ToolType };
@@ -656,6 +693,11 @@ namespace FlutterSDK.Services.Platformviews
     /// </Summary>
     public class AndroidPointerCoords
     {
+        /// <Summary>
+        /// Creates an AndroidPointerCoords.
+        ///
+        /// All parameters must not be null.
+        /// </Summary>
         public AndroidPointerCoords(double orientation = default(double), double pressure = default(double), double size = default(double), double toolMajor = default(double), double toolMinor = default(double), double touchMajor = default(double), double touchMinor = default(double), double x = default(double), double y = default(double))
         : base()
         {
@@ -669,14 +711,51 @@ namespace FlutterSDK.Services.Platformviews
             this.x = x;
             this.y = y;
         }
+        /// <Summary>
+        /// The orientation of the touch area and tool area in radians clockwise from vertical.
+        ///
+        /// See Android's [MotionEvent.PointerCoords#orientation](https://developer.android.com/reference/android/view/MotionEvent.PointerCoords.html#orientation).
+        /// </Summary>
         public virtual double Orientation { get; set; }
+        /// <Summary>
+        /// A normalized value that describes the pressure applied to the device by a finger or other tool.
+        ///
+        /// See Android's [MotionEvent.PointerCoords#pressure](https://developer.android.com/reference/android/view/MotionEvent.PointerCoords.html#pressure).
+        /// </Summary>
         public virtual double Pressure { get; set; }
+        /// <Summary>
+        /// A normalized value that describes the approximate size of the pointer touch area in relation to the maximum detectable size of the device.
+        ///
+        /// See Android's [MotionEvent.PointerCoords#size](https://developer.android.com/reference/android/view/MotionEvent.PointerCoords.html#size).
+        /// </Summary>
         public virtual double Size { get; set; }
+        /// <Summary>
+        /// See Android's [MotionEvent.PointerCoords#toolMajor](https://developer.android.com/reference/android/view/MotionEvent.PointerCoords.html#toolMajor).
+        /// </Summary>
         public virtual double ToolMajor { get; set; }
+        /// <Summary>
+        /// See Android's [MotionEvent.PointerCoords#toolMinor](https://developer.android.com/reference/android/view/MotionEvent.PointerCoords.html#toolMinor).
+        /// </Summary>
         public virtual double ToolMinor { get; set; }
+        /// <Summary>
+        /// See Android's [MotionEvent.PointerCoords#touchMajor](https://developer.android.com/reference/android/view/MotionEvent.PointerCoords.html#touchMajor).
+        /// </Summary>
         public virtual double TouchMajor { get; set; }
+        /// <Summary>
+        /// See Android's [MotionEvent.PointerCoords#touchMinor](https://developer.android.com/reference/android/view/MotionEvent.PointerCoords.html#touchMinor).
+        /// </Summary>
         public virtual double TouchMinor { get; set; }
+        /// <Summary>
+        /// The X component of the pointer movement.
+        ///
+        /// See Android's [MotionEvent.PointerCoords#x](https://developer.android.com/reference/android/view/MotionEvent.PointerCoords.html#x).
+        /// </Summary>
         public virtual double x { get; set; }
+        /// <Summary>
+        /// The Y component of the pointer movement.
+        ///
+        /// See Android's [MotionEvent.PointerCoords#y](https://developer.android.com/reference/android/view/MotionEvent.PointerCoords.html#y).
+        /// </Summary>
         public virtual double y { get; set; }
 
         private List<double> _AsList()
@@ -695,6 +774,11 @@ namespace FlutterSDK.Services.Platformviews
     /// </Summary>
     public class AndroidMotionEvent
     {
+        /// <Summary>
+        /// Creates an AndroidMotionEvent.
+        ///
+        /// All parameters must not be null.
+        /// </Summary>
         public AndroidMotionEvent(int downTime = default(int), int eventTime = default(int), int action = default(int), int pointerCount = default(int), List<FlutterSDK.Services.Platformviews.AndroidPointerProperties> pointerProperties = default(List<FlutterSDK.Services.Platformviews.AndroidPointerProperties>), List<FlutterSDK.Services.Platformviews.AndroidPointerCoords> pointerCoords = default(List<FlutterSDK.Services.Platformviews.AndroidPointerCoords>), int metaState = default(int), int buttonState = default(int), double xPrecision = default(double), double yPrecision = default(double), int deviceId = default(int), int edgeFlags = default(int), int source = default(int), int flags = default(int))
         : base()
         {
@@ -713,19 +797,83 @@ namespace FlutterSDK.Services.Platformviews
             this.Source = source;
             this.Flags = flags;
         }
+        /// <Summary>
+        /// The time (in ms) when the user originally pressed down to start a stream of position events,
+        /// relative to an arbitrary timeline.
+        ///
+        /// See Android's [MotionEvent#getDownTime](https://developer.android.com/reference/android/view/MotionEvent.html#getDownTime()).
+        /// </Summary>
         public virtual int DownTime { get; set; }
+        /// <Summary>
+        /// The time this event occurred, relative to an arbitrary timeline.
+        ///
+        /// See Android's [MotionEvent#getEventTime](https://developer.android.com/reference/android/view/MotionEvent.html#getEventTime()).
+        /// </Summary>
         public virtual int EventTime { get; set; }
+        /// <Summary>
+        /// A value representing the kind of action being performed.
+        ///
+        /// See Android's [MotionEvent#getAction](https://developer.android.com/reference/android/view/MotionEvent.html#getAction()).
+        /// </Summary>
         public virtual int Action { get; set; }
+        /// <Summary>
+        /// The number of pointers that are part of this event.
+        /// This must be equivalent to the length of `pointerProperties` and `pointerCoords`.
+        ///
+        /// See Android's [MotionEvent#getPointerCount](https://developer.android.com/reference/android/view/MotionEvent.html#getPointerCount()).
+        /// </Summary>
         public virtual int PointerCount { get; set; }
+        /// <Summary>
+        /// List of [AndroidPointerProperties] for each pointer that is part of this event.
+        /// </Summary>
         public virtual List<FlutterSDK.Services.Platformviews.AndroidPointerProperties> PointerProperties { get; set; }
+        /// <Summary>
+        /// List of [AndroidPointerCoords] for each pointer that is part of this event.
+        /// </Summary>
         public virtual List<FlutterSDK.Services.Platformviews.AndroidPointerCoords> PointerCoords { get; set; }
+        /// <Summary>
+        /// The state of any meta / modifier keys that were in effect when the event was generated.
+        ///
+        /// See Android's [MotionEvent#getMetaState](https://developer.android.com/reference/android/view/MotionEvent.html#getMetaState()).
+        /// </Summary>
         public virtual int MetaState { get; set; }
+        /// <Summary>
+        /// The state of all buttons that are pressed such as a mouse or stylus button.
+        ///
+        /// See Android's [MotionEvent#getButtonState](https://developer.android.com/reference/android/view/MotionEvent.html#getButtonState()).
+        /// </Summary>
         public virtual int ButtonState { get; set; }
+        /// <Summary>
+        /// The precision of the X coordinates being reported, in physical pixels.
+        ///
+        /// See Android's [MotionEvent#getXPrecision](https://developer.android.com/reference/android/view/MotionEvent.html#getXPrecision()).
+        /// </Summary>
         public virtual double XPrecision { get; set; }
+        /// <Summary>
+        /// The precision of the Y coordinates being reported, in physical pixels.
+        ///
+        /// See Android's [MotionEvent#getYPrecision](https://developer.android.com/reference/android/view/MotionEvent.html#getYPrecision()).
+        /// </Summary>
         public virtual double YPrecision { get; set; }
+        /// <Summary>
+        /// See Android's [MotionEvent#getDeviceId](https://developer.android.com/reference/android/view/MotionEvent.html#getDeviceId()).
+        /// </Summary>
         public virtual int DeviceId { get; set; }
+        /// <Summary>
+        /// A bit field indicating which edges, if any, were touched by this MotionEvent.
+        ///
+        /// See Android's [MotionEvent#getEdgeFlags](https://developer.android.com/reference/android/view/MotionEvent.html#getEdgeFlags()).
+        /// </Summary>
         public virtual int EdgeFlags { get; set; }
+        /// <Summary>
+        /// The source of this event (e.g a touchpad or stylus).
+        ///
+        /// See Android's [MotionEvent#getSource](https://developer.android.com/reference/android/view/MotionEvent.html#getSource()).
+        /// </Summary>
         public virtual int Source { get; set; }
+        /// <Summary>
+        /// See Android's [MotionEvent#getFlags](https://developer.android.com/reference/android/view/MotionEvent.html#getFlags()).
+        /// </Summary>
         public virtual int Flags { get; set; }
 
         private List<object> _AsList(int viewId)
@@ -751,16 +899,58 @@ namespace FlutterSDK.Services.Platformviews
         {
             this.Id = id;
         }
+        /// <Summary>
+        /// Action code for when a primary pointer touched the screen.
+        ///
+        /// Android's [MotionEvent.ACTION_DOWN](https://developer.android.com/reference/android/view/MotionEvent#ACTION_DOWN)
+        /// </Summary>
         public virtual int KActionDown { get; set; }
+        /// <Summary>
+        /// Action code for when a primary pointer stopped touching the screen.
+        ///
+        /// Android's [MotionEvent.ACTION_UP](https://developer.android.com/reference/android/view/MotionEvent#ACTION_UP)
+        /// </Summary>
         public virtual int KActionUp { get; set; }
+        /// <Summary>
+        /// Action code for when the event only includes information about pointer movement.
+        ///
+        /// Android's [MotionEvent.ACTION_MOVE](https://developer.android.com/reference/android/view/MotionEvent#ACTION_MOVE)
+        /// </Summary>
         public virtual int KActionMove { get; set; }
+        /// <Summary>
+        /// Action code for when a motion event has been canceled.
+        ///
+        /// Android's [MotionEvent.ACTION_CANCEL](https://developer.android.com/reference/android/view/MotionEvent#ACTION_CANCEL)
+        /// </Summary>
         public virtual int KActionCancel { get; set; }
+        /// <Summary>
+        /// Action code for when a secondary pointer touched the screen.
+        ///
+        /// Android's [MotionEvent.ACTION_POINTER_DOWN](https://developer.android.com/reference/android/view/MotionEvent#ACTION_POINTER_DOWN)
+        /// </Summary>
         public virtual int KActionPointerDown { get; set; }
+        /// <Summary>
+        /// Action code for when a secondary pointer stopped touching the screen.
+        ///
+        /// Android's [MotionEvent.ACTION_POINTER_UP](https://developer.android.com/reference/android/view/MotionEvent#ACTION_POINTER_UP)
+        /// </Summary>
         public virtual int KActionPointerUp { get; set; }
+        /// <Summary>
+        /// Android's [View.LAYOUT_DIRECTION_LTR](https://developer.android.com/reference/android/view/View.html#LAYOUT_DIRECTION_LTR) value.
+        /// </Summary>
         public virtual int KAndroidLayoutDirectionLtr { get; set; }
+        /// <Summary>
+        /// Android's [View.LAYOUT_DIRECTION_RTL](https://developer.android.com/reference/android/view/View.html#LAYOUT_DIRECTION_RTL) value.
+        /// </Summary>
         public virtual int KAndroidLayoutDirectionRtl { get; set; }
+        /// <Summary>
+        /// The unique identifier of the Android view controlled by this controller.
+        /// </Summary>
         public virtual int Id { get; set; }
         internal virtual string _ViewType { get; set; }
+        /// <Summary>
+        /// The texture entry id into which the Android view is rendered.
+        /// </Summary>
         internal virtual int _TextureId { get; set; }
         internal virtual TextDirection _LayoutDirection { get; set; }
         internal virtual FlutterSDK.Services.Platformviews._AndroidViewState _State { get; set; }
@@ -937,6 +1127,12 @@ namespace FlutterSDK.Services.Platformviews
         {
             this.Id = id;
         }
+        /// <Summary>
+        /// The unique identifier of the iOS view controlled by this controller.
+        ///
+        /// This identifier is typically generated by
+        /// [PlatformViewsRegistry.getNextPlatformViewId].
+        /// </Summary>
         public virtual int Id { get; set; }
         internal virtual bool _DebugDisposed { get; set; }
         internal virtual TextDirection _LayoutDirection { get; set; }

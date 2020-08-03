@@ -570,6 +570,10 @@ namespace FlutterSDK.Widgets.Localizations
     /// </Summary>
     public class LocalizationsDelegate<T>
     {
+        /// <Summary>
+        /// Abstract const constructor. This constructor enables subclasses to provide
+        /// const constructors so that they can be used in const expressions.
+        /// </Summary>
         public LocalizationsDelegate()
         {
 
@@ -653,10 +657,22 @@ namespace FlutterSDK.Widgets.Localizations
     /// </Summary>
     public class DefaultWidgetsLocalizations : IWidgetsLocalizations
     {
+        /// <Summary>
+        /// Construct an object that defines the localized values for the widgets
+        /// library for US English (only).
+        ///
+        /// [LocalizationsDelegate] implementations typically call the static [load]
+        /// </Summary>
         public DefaultWidgetsLocalizations()
         {
 
         }
+        /// <Summary>
+        /// A [LocalizationsDelegate] that uses [DefaultWidgetsLocalizations.load]
+        /// to create an instance of this class.
+        ///
+        /// [WidgetsApp] automatically adds this value to [WidgetApp.localizationsDelegates].
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Localizations.LocalizationsDelegate<FlutterSDK.Widgets.Localizations.WidgetsLocalizations> @delegate { get; set; }
         public virtual TextDirection TextDirection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 
@@ -802,6 +818,9 @@ namespace FlutterSDK.Widgets.Localizations
     /// </Summary>
     public class Localizations : FlutterSDK.Widgets.Framework.StatefulWidget
     {
+        /// <Summary>
+        /// Create a widget from which localizations (like translated strings) can be obtained.
+        /// </Summary>
         public Localizations(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), Locale locale = default(Locale), List<FlutterSDK.Widgets.Localizations.LocalizationsDelegate<object>> delegates = default(List<FlutterSDK.Widgets.Localizations.LocalizationsDelegate<object>>), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key)
         {
@@ -809,6 +828,35 @@ namespace FlutterSDK.Widgets.Localizations
             this.Delegates = delegates;
             this.Child = child;
         }
+        /// <Summary>
+        /// Overrides the inherited [Locale] or [LocalizationsDelegate]s for `child`.
+        ///
+        /// This factory constructor is used for the (usually rare) situation where part
+        /// of an app should be localized for a different locale than the one defined
+        /// for the device, or if its localizations should come from a different list
+        /// of [LocalizationsDelegate]s than the list defined by
+        /// [WidgetsApp.localizationsDelegates].
+        ///
+        /// For example you could specify that `myWidget` was only to be localized for
+        /// the US English locale:
+        ///
+        /// ```dart
+        /// Widget build(BuildContext context) {
+        ///   return Localizations.override(
+        ///     context: context,
+        ///     locale: const Locale('en', 'US'),
+        ///     child: myWidget,
+        ///   );
+        /// }
+        /// ```
+        ///
+        /// The `locale` and `delegates` parameters default to the [Localizations.locale]
+        /// and [Localizations.delegates] values from the nearest [Localizations] ancestor.
+        ///
+        /// To override the [Localizations.locale] or [Localizations.delegates] for an
+        /// entire app, specify [WidgetsApp.locale] or [WidgetsApp.localizationsDelegates]
+        /// (or specify the same parameters for [MaterialApp]).
+        /// </Summary>
         public static Localizations Override(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.BuildContext context = default(FlutterSDK.Widgets.Framework.BuildContext), Locale locale = default(Locale), List<FlutterSDK.Widgets.Localizations.LocalizationsDelegate<object>> delegates = default(List<FlutterSDK.Widgets.Localizations.LocalizationsDelegate<object>>), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         {
             var instance = new Localizations();
@@ -818,8 +866,20 @@ namespace FlutterSDK.Widgets.Localizations
         }
 
 
+        /// <Summary>
+        /// The resources returned by [Localizations.of] will be specific to this locale.
+        /// </Summary>
         public virtual Locale Locale { get; set; }
+        /// <Summary>
+        /// This list collectively defines the localized resources objects that can
+        /// be retrieved with [Localizations.of].
+        /// </Summary>
         public virtual List<FlutterSDK.Widgets.Localizations.LocalizationsDelegate<object>> Delegates { get; set; }
+        /// <Summary>
+        /// The widget below this widget in the tree.
+        ///
+        /// {@macro flutter.widgets.child}
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
 
         /// <Summary>

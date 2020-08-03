@@ -424,6 +424,25 @@ namespace FlutterSDK.Painting.Borders
 {
     internal static class BordersDefaultClass
     {
+        /// <Summary>
+        /// Paints a border around the given rectangle on the canvas.
+        ///
+        /// The four sides can be independently specified. They are painted in the order
+        /// top, right, bottom, left. This is only notable if the widths of the borders
+        /// and the size of the given rectangle are such that the border sides will
+        /// overlap each other. No effort is made to optimize the rendering of uniform
+        /// borders (where all the borders have the same configuration); to render a
+        /// uniform border, consider using [Canvas.drawRect] directly.
+        ///
+        /// The arguments must not be null.
+        ///
+        /// See also:
+        ///
+        ///  * [paintImage], which paints an image in a rectangle on a canvas.
+        ///  * [Border], which uses this function to paint its border when the border is
+        ///    not uniform.
+        ///  * [BoxDecoration], which describes its border using the [Border] class.
+        /// </Summary>
         internal static void PaintBorder(Canvas canvas, FlutterBinding.UI.Rect rect, FlutterSDK.Painting.Borders.BorderSide top = default(FlutterSDK.Painting.Borders.BorderSide), FlutterSDK.Painting.Borders.BorderSide right = default(FlutterSDK.Painting.Borders.BorderSide), FlutterSDK.Painting.Borders.BorderSide bottom = default(FlutterSDK.Painting.Borders.BorderSide), FlutterSDK.Painting.Borders.BorderSide left = default(FlutterSDK.Painting.Borders.BorderSide))
         {
 
@@ -576,6 +595,11 @@ namespace FlutterSDK.Painting.Borders
     /// </Summary>
     public class BorderSide
     {
+        /// <Summary>
+        /// Creates the side of a border.
+        ///
+        /// By default, the border is 1.0 logical pixels wide and solid black.
+        /// </Summary>
         public BorderSide(FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), double width = 1.0, FlutterSDK.Painting.Borders.BorderStyle style = default(FlutterSDK.Painting.Borders.BorderStyle))
         : base()
         {
@@ -583,9 +607,32 @@ namespace FlutterSDK.Painting.Borders
             this.Width = width;
             this.Style = style;
         }
+        /// <Summary>
+        /// The color of this side of the border.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color Color { get; set; }
+        /// <Summary>
+        /// The width of this side of the border, in logical pixels.
+        ///
+        /// Setting width to 0.0 will result in a hairline border. This means that
+        /// the border will have the width of one physical pixel. Also, hairline
+        /// rendering takes shortcuts when the path overlaps a pixel more than once.
+        /// This means that it will render faster than otherwise, but it might
+        /// double-hit pixels, giving it a slightly darker/lighter result.
+        ///
+        /// To omit the border entirely, set the [style] to [BorderStyle.none].
+        /// </Summary>
         public virtual double Width { get; set; }
+        /// <Summary>
+        /// The style of this side of the border.
+        ///
+        /// To omit a side, set [style] to [BorderStyle.none]. This skips
+        /// painting the border, but the border still has a [width].
+        /// </Summary>
         public virtual FlutterSDK.Painting.Borders.BorderStyle Style { get; set; }
+        /// <Summary>
+        /// A hairline black border that is not rendered.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Borders.BorderSide None { get; set; }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 
@@ -757,6 +804,10 @@ namespace FlutterSDK.Painting.Borders
     /// </Summary>
     public class ShapeBorder
     {
+        /// <Summary>
+        /// Abstract const constructor. This constructor enables subclasses to provide
+        /// const constructors so that they can be used in const expressions.
+        /// </Summary>
         public ShapeBorder()
         {
 

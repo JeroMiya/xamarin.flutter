@@ -315,6 +315,12 @@ namespace FlutterSDK.Foundation.Stackframe
     /// </Summary>
     public class StackFrame
     {
+        /// <Summary>
+        /// Creates a new StackFrame instance.
+        ///
+        /// All parameters must not be null. The [className] may be the empty string
+        /// if there is no class (e.g. for a top level library method).
+        /// </Summary>
         public StackFrame(int number = default(int), int column = default(int), int line = default(int), string packageScheme = default(string), string package = default(string), string packagePath = default(string), string className = default(string), string method = default(string), bool isConstructor = false, string source = default(string))
         : base()
         {
@@ -329,18 +335,70 @@ namespace FlutterSDK.Foundation.Stackframe
             this.IsConstructor = isConstructor;
             this.Source = source;
         }
+        /// <Summary>
+        /// A stack frame representing an asynchronous suspension.
+        /// </Summary>
         public virtual FlutterSDK.Foundation.Stackframe.StackFrame AsynchronousSuspension { get; set; }
+        /// <Summary>
+        /// A stack frame representing a Dart elided stack overflow frame.
+        /// </Summary>
         public virtual FlutterSDK.Foundation.Stackframe.StackFrame StackOverFlowElision { get; set; }
         internal virtual RegExp _WebNonDebugFramePattern { get; set; }
+        /// <Summary>
+        /// The original source of this stack frame.
+        /// </Summary>
         public virtual string Source { get; set; }
+        /// <Summary>
+        /// The zero-indexed frame number.
+        ///
+        /// This value may be -1 to indicate an unknown frame number.
+        /// </Summary>
         public virtual int Number { get; set; }
+        /// <Summary>
+        /// The scheme of the package for this frame, e.g. "dart" for
+        /// dart:core/errors_patch.dart or "package" for
+        /// package:flutter/src/widgets/text.dart.
+        ///
+        /// The path property refers to the source file.
+        /// </Summary>
         public virtual string PackageScheme { get; set; }
+        /// <Summary>
+        /// The package for this frame, e.g. "core" for
+        /// dart:core/errors_patch.dart or "flutter" for
+        /// package:flutter/src/widgets/text.dart.
+        /// </Summary>
         public virtual string Package { get; set; }
+        /// <Summary>
+        /// The path of the file for this frame, e.g. "errors_patch.dart" for
+        /// dart:core/errors_patch.dart or "src/widgets/text.dart" for
+        /// package:flutter/src/widgets/text.dart.
+        /// </Summary>
         public virtual string PackagePath { get; set; }
+        /// <Summary>
+        /// The source line number.
+        /// </Summary>
         public virtual int Line { get; set; }
+        /// <Summary>
+        /// The source column number.
+        /// </Summary>
         public virtual int Column { get; set; }
+        /// <Summary>
+        /// The class name, if any, for this frame.
+        ///
+        /// This may be null for top level methods in a library or anonymous closure
+        /// methods.
+        /// </Summary>
         public virtual string ClassName { get; set; }
+        /// <Summary>
+        /// The method name for this frame.
+        ///
+        /// This will be an empty string if the stack frame is from the default
+        /// constructor.
+        /// </Summary>
         public virtual string Method { get; set; }
+        /// <Summary>
+        /// Whether or not this was thrown from a constructor.
+        /// </Summary>
         public virtual bool IsConstructor { get; set; }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 

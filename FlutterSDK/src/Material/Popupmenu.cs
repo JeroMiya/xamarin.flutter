@@ -405,8 +405,27 @@ using FlutterSDK.Material.Textformfield;
 using FlutterSDK.Material.Popupmenutheme;
 namespace FlutterSDK.Material.Popupmenu
 {
+    /// <Summary>
+    /// Signature for the callback invoked when a menu item is selected. The
+    /// argument is the value of the [PopupMenuItem] that caused its menu to be
+    /// dismissed.
+    ///
+    /// Used by [PopupMenuButton.onSelected].
+    /// </Summary>
     public delegate void PopupMenuItemSelected<T>(T value);
+    /// <Summary>
+    /// Signature for the callback invoked when a [PopupMenuButton] is dismissed
+    /// without selecting an item.
+    ///
+    /// Used by [PopupMenuButton.onCanceled].
+    /// </Summary>
     public delegate void PopupMenuCanceled();
+    /// <Summary>
+    /// Signature used by [PopupMenuButton] to lazily construct the items shown when
+    /// the button is pressed.
+    ///
+    /// Used by [PopupMenuButton.itemBuilder].
+    /// </Summary>
     public delegate List<FlutterSDK.Material.Popupmenu.PopupMenuEntry<T>> PopupMenuItemBuilder<T>(FlutterSDK.Widgets.Framework.BuildContext context);
     internal static class PopupmenuDefaultClass
     {
@@ -419,6 +438,63 @@ namespace FlutterSDK.Material.Popupmenu
         public static double _KMenuVerticalPadding = default(double);
         public static double _KMenuWidthStep = default(double);
         public static double _KMenuScreenPadding = default(double);
+        /// <Summary>
+        /// Show a popup menu that contains the `items` at `position`.
+        ///
+        /// `items` should be non-null and not empty.
+        ///
+        /// If `initialValue` is specified then the first item with a matching value
+        /// will be highlighted and the value of `position` gives the rectangle whose
+        /// vertical center will be aligned with the vertical center of the highlighted
+        /// item (when possible).
+        ///
+        /// If `initialValue` is not specified then the top of the menu will be aligned
+        /// with the top of the `position` rectangle.
+        ///
+        /// In both cases, the menu position will be adjusted if necessary to fit on the
+        /// screen.
+        ///
+        /// Horizontally, the menu is positioned so that it grows in the direction that
+        /// has the most room. For example, if the `position` describes a rectangle on
+        /// the left edge of the screen, then the left edge of the menu is aligned with
+        /// the left edge of the `position`, and the menu grows to the right. If both
+        /// edges of the `position` are equidistant from the opposite edge of the
+        /// screen, then the ambient [Directionality] is used as a tie-breaker,
+        /// preferring to grow in the reading direction.
+        ///
+        /// The positioning of the `initialValue` at the `position` is implemented by
+        /// iterating over the `items` to find the first whose
+        /// [PopupMenuEntry.represents] method returns true for `initialValue`, and then
+        /// summing the values of [PopupMenuEntry.height] for all the preceding widgets
+        /// in the list.
+        ///
+        /// The `elevation` argument specifies the z-coordinate at which to place the
+        /// menu. The elevation defaults to 8, the appropriate elevation for popup
+        /// menus.
+        ///
+        /// The `context` argument is used to look up the [Navigator] and [Theme] for
+        /// the menu. It is only used when the method is called. Its corresponding
+        /// widget can be safely removed from the tree before the popup menu is closed.
+        ///
+        /// The `useRootNavigator` argument is used to determine whether to push the
+        /// menu to the [Navigator] furthest from or nearest to the given `context`. It
+        /// is `false` by default.
+        ///
+        /// The `semanticLabel` argument is used by accessibility frameworks to
+        /// announce screen transitions when the menu is opened and closed. If this
+        /// label is not provided, it will default to
+        /// [MaterialLocalizations.popupMenuLabel].
+        ///
+        /// See also:
+        ///
+        ///  * [PopupMenuItem], a popup menu entry for a single value.
+        ///  * [PopupMenuDivider], a popup menu entry that is just a horizontal line.
+        ///  * [CheckedPopupMenuItem], a popup menu item with a checkmark.
+        ///  * [PopupMenuButton], which provides an [IconButton] that shows a menu by
+        ///    calling this method automatically.
+        ///  * [SemanticsConfiguration.namesRoute], for a description of edge triggered
+        ///    semantics.
+        /// </Summary>
         internal static Future<T> ShowMenu<T>(FlutterSDK.Widgets.Framework.BuildContext context = default(FlutterSDK.Widgets.Framework.BuildContext), FlutterSDK.Rendering.Stack.RelativeRect position = default(FlutterSDK.Rendering.Stack.RelativeRect), List<FlutterSDK.Material.Popupmenu.PopupMenuEntry<T>> items = default(List<FlutterSDK.Material.Popupmenu.PopupMenuEntry<T>>), T initialValue = default(T), double elevation = default(double), string semanticLabel = default(string), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), bool captureInheritedThemes = true, bool useRootNavigator = false)
         {
 
@@ -491,6 +567,10 @@ namespace FlutterSDK.Material.Popupmenu
     /// </Summary>
     public class PopupMenuEntry<T> : FlutterSDK.Widgets.Framework.StatefulWidget
     {
+        /// <Summary>
+        /// Abstract const constructor. This constructor enables subclasses to provide
+        /// const constructors so that they can be used in const expressions.
+        /// </Summary>
         public PopupMenuEntry(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key))
         : base(key: key)
         {
@@ -534,11 +614,21 @@ namespace FlutterSDK.Material.Popupmenu
     /// </Summary>
     public class PopupMenuDivider : FlutterSDK.Material.Popupmenu.PopupMenuEntry<Null>
     {
+        /// <Summary>
+        /// Creates a horizontal divider for a popup menu.
+        ///
+        /// By default, the divider has a height of 16 logical pixels.
+        /// </Summary>
         public PopupMenuDivider(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), double height = default(double))
         : base(key: key)
         {
             this.Height = height;
         }
+        /// <Summary>
+        /// The height of the divider entry.
+        ///
+        /// Defaults to 16 pixels.
+        /// </Summary>
         public new double Height { get; set; }
 
         public new bool Represents(void value) => false;
@@ -669,6 +759,13 @@ namespace FlutterSDK.Material.Popupmenu
     /// </Summary>
     public class PopupMenuItem<T> : FlutterSDK.Material.Popupmenu.PopupMenuEntry<T>
     {
+        /// <Summary>
+        /// Creates an item for a popup menu.
+        ///
+        /// By default, the item is [enabled].
+        ///
+        /// The `enabled` and `height` arguments must not be null.
+        /// </Summary>
         public PopupMenuItem(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), T value = default(T), bool enabled = true, double height = default(double), FlutterSDK.Painting.Textstyle.TextStyle textStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key)
         {
@@ -678,10 +775,37 @@ namespace FlutterSDK.Material.Popupmenu
             this.TextStyle = textStyle;
             this.Child = child;
         }
+        /// <Summary>
+        /// The value that will be returned by [showMenu] if this entry is selected.
+        /// </Summary>
         public virtual T Value { get; set; }
+        /// <Summary>
+        /// Whether the user is permitted to select this item.
+        ///
+        /// Defaults to true. If this is false, then the item will not react to
+        /// touches.
+        /// </Summary>
         public virtual bool Enabled { get; set; }
+        /// <Summary>
+        /// The minimum height height of the menu item.
+        ///
+        /// Defaults to [kMinInteractiveDimension] pixels.
+        /// </Summary>
         public new double Height { get; set; }
+        /// <Summary>
+        /// The text style of the popup menu item.
+        ///
+        /// If this property is null, then [PopupMenuThemeData.textStyle] is used.
+        /// If [PopupMenuThemeData.textStyle] is also null, then [ThemeData.textTheme.subtitle1] is used.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Textstyle.TextStyle TextStyle { get; set; }
+        /// <Summary>
+        /// The widget below this widget in the tree.
+        ///
+        /// Typically a single-line [ListTile] (for menus with icons) or a [Text]. An
+        /// appropriate [DefaultTextStyle] is put in scope for the child. In either
+        /// case, the text should be short enough that it won't wrap.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
 
         public new bool Represents(T value) => value == this.Value;
@@ -832,11 +956,29 @@ namespace FlutterSDK.Material.Popupmenu
     /// </Summary>
     public class CheckedPopupMenuItem<T> : FlutterSDK.Material.Popupmenu.PopupMenuItem<T>
     {
+        /// <Summary>
+        /// Creates a popup menu item with a checkmark.
+        ///
+        /// By default, the menu item is [enabled] but unchecked. To mark the item as
+        /// checked, set [checked] to true.
+        ///
+        /// The `checked` and `enabled` arguments must not be null.
+        /// </Summary>
         public CheckedPopupMenuItem(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), T value = default(T), bool @checked = false, bool enabled = true, FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, value: value, enabled: enabled, child: child)
         {
             this.@checked = @checked;
         }
+        /// <Summary>
+        /// Whether to display a checkmark next to the menu item.
+        ///
+        /// Defaults to false.
+        ///
+        /// When true, an [Icons.done] checkmark is displayed.
+        ///
+        /// When this popup menu item is selected, the checkmark will fade in or out
+        /// as appropriate to represent the implied new state.
+        /// </Summary>
         public virtual bool @checked { get; set; }
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 
@@ -1142,6 +1284,11 @@ namespace FlutterSDK.Material.Popupmenu
     /// </Summary>
     public class PopupMenuButton<T> : FlutterSDK.Widgets.Framework.StatefulWidget
     {
+        /// <Summary>
+        /// Creates a button that shows a popup menu.
+        ///
+        /// The [itemBuilder] argument must not be null.
+        /// </Summary>
         public PopupMenuButton(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Material.Popupmenu.PopupMenuItemBuilder<T> itemBuilder = default(FlutterSDK.Material.Popupmenu.PopupMenuItemBuilder<T>), T initialValue = default(T), FlutterSDK.Material.Popupmenu.PopupMenuItemSelected<T> onSelected = default(FlutterSDK.Material.Popupmenu.PopupMenuItemSelected<T>), FlutterSDK.Material.Popupmenu.PopupMenuCanceled onCanceled = default(FlutterSDK.Material.Popupmenu.PopupMenuCanceled), string tooltip = default(string), double elevation = default(double), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget icon = default(FlutterSDK.Widgets.Framework.Widget), FlutterBinding.UI.Offset offset = default(FlutterBinding.UI.Offset), bool enabled = true, FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), bool captureInheritedThemes = true)
         : base(key: key)
         {
@@ -1160,19 +1307,101 @@ namespace FlutterSDK.Material.Popupmenu
             this.Color = color;
             this.CaptureInheritedThemes = captureInheritedThemes;
         }
+        /// <Summary>
+        /// Called when the button is pressed to create the items to show in the menu.
+        /// </Summary>
         public virtual FlutterSDK.Material.Popupmenu.PopupMenuItemBuilder<T> ItemBuilder { get; set; }
+        /// <Summary>
+        /// The value of the menu item, if any, that should be highlighted when the menu opens.
+        /// </Summary>
         public virtual T InitialValue { get; set; }
+        /// <Summary>
+        /// Called when the user selects a value from the popup menu created by this button.
+        ///
+        /// If the popup menu is dismissed without selecting a value, [onCanceled] is
+        /// called instead.
+        /// </Summary>
         public virtual FlutterSDK.Material.Popupmenu.PopupMenuItemSelected<T> OnSelected { get; set; }
+        /// <Summary>
+        /// Called when the user dismisses the popup menu without selecting an item.
+        ///
+        /// If the user selects a value, [onSelected] is called instead.
+        /// </Summary>
         public virtual FlutterSDK.Material.Popupmenu.PopupMenuCanceled OnCanceled { get; set; }
+        /// <Summary>
+        /// Text that describes the action that will occur when the button is pressed.
+        ///
+        /// This text is displayed when the user long-presses on the button and is
+        /// used for accessibility.
+        /// </Summary>
         public virtual string Tooltip { get; set; }
+        /// <Summary>
+        /// The z-coordinate at which to place the menu when open. This controls the
+        /// size of the shadow below the menu.
+        ///
+        /// Defaults to 8, the appropriate elevation for popup menus.
+        /// </Summary>
         public virtual double Elevation { get; set; }
+        /// <Summary>
+        /// Matches IconButton's 8 dps padding by default. In some cases, notably where
+        /// this button appears as the trailing element of a list item, it's useful to be able
+        /// to set the padding to zero.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Padding { get; set; }
+        /// <Summary>
+        /// If provided, [child] is the widget used for this button
+        /// and the button will utilize an [InkWell] for taps.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+        /// <Summary>
+        /// If provided, the [icon] is used for this button
+        /// and the button will behave like an [IconButton].
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Icon { get; set; }
+        /// <Summary>
+        /// The offset applied to the Popup Menu Button.
+        ///
+        /// When not set, the Popup Menu Button will be positioned directly next to
+        /// the button that was used to create it.
+        /// </Summary>
         public virtual FlutterBinding.UI.Offset Offset { get; set; }
+        /// <Summary>
+        /// Whether this popup menu button is interactive.
+        ///
+        /// Must be non-null, defaults to `true`
+        ///
+        /// If `true` the button will respond to presses by displaying the menu.
+        ///
+        /// If `false`, the button is styled with the disabled color from the
+        /// current [Theme] and will not respond to presses or show the popup
+        /// menu and [onSelected], [onCanceled] and [itemBuilder] will not be called.
+        ///
+        /// This can be useful in situations where the app needs to show the button,
+        /// but doesn't currently have anything to show in the menu.
+        /// </Summary>
         public virtual bool Enabled { get; set; }
+        /// <Summary>
+        /// If provided, the shape used for the menu.
+        ///
+        /// If this property is null, then [PopupMenuThemeData.shape] is used.
+        /// If [PopupMenuThemeData.shape] is also null, then the default shape for
+        /// [MaterialType.card] is used. This default shape is a rectangle with
+        /// rounded edges of BorderRadius.circular(2.0).
+        /// </Summary>
         public virtual FlutterSDK.Painting.Borders.ShapeBorder Shape { get; set; }
+        /// <Summary>
+        /// If provided, the background color used for the menu.
+        ///
+        /// If this property is null, then [PopupMenuThemeData.color] is used.
+        /// If [PopupMenuThemeData.color] is also null, then
+        /// Theme.of(context).cardColor is used.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color Color { get; set; }
+        /// <Summary>
+        /// If true (the default) then the menu will be wrapped with copies
+        /// of the [InheritedThemes], like [Theme] and [PopupMenuTheme], which
+        /// are defined above the [BuildContext] where the menu is shown.
+        /// </Summary>
         public virtual bool CaptureInheritedThemes { get; set; }
 
         public new PopupMenuButtonState<T> CreateState() => new PopupMenuButtonState<T>();

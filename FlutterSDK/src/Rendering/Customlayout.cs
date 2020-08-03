@@ -544,6 +544,9 @@ namespace FlutterSDK.Rendering.Customlayout
     {
         public MultiChildLayoutParentData()
         { }
+        /// <Summary>
+        /// An object representing the identity of this child.
+        /// </Summary>
         public virtual @Object Id { get; set; }
 
     }
@@ -649,6 +652,11 @@ namespace FlutterSDK.Rendering.Customlayout
     /// </Summary>
     public class MultiChildLayoutDelegate
     {
+        /// <Summary>
+        /// Creates a layout delegate.
+        ///
+        /// The layout will update whenever [relayout] notifies its listeners.
+        /// </Summary>
         public MultiChildLayoutDelegate(FlutterSDK.Foundation.Changenotifier.Listenable relayout = default(FlutterSDK.Foundation.Changenotifier.Listenable))
         : base()
         {
@@ -802,6 +810,11 @@ namespace FlutterSDK.Rendering.Customlayout
     /// </Summary>
     public class RenderCustomMultiChildLayoutBox : FlutterSDK.Rendering.Box.RenderBox, IContainerRenderObjectMixin<FlutterSDK.Rendering.Box.RenderBox, FlutterSDK.Rendering.Customlayout.MultiChildLayoutParentData>, IRenderBoxContainerDefaultsMixin<FlutterSDK.Rendering.Box.RenderBox, FlutterSDK.Rendering.Customlayout.MultiChildLayoutParentData>
     {
+        /// <Summary>
+        /// Creates a render object that customizes the layout of multiple children.
+        ///
+        /// The [delegate] argument must not be null.
+        /// </Summary>
         public RenderCustomMultiChildLayoutBox(List<FlutterSDK.Rendering.Box.RenderBox> children = default(List<FlutterSDK.Rendering.Box.RenderBox>), FlutterSDK.Rendering.Customlayout.MultiChildLayoutDelegate @delegate = default(FlutterSDK.Rendering.Customlayout.MultiChildLayoutDelegate))
         : base()
         {

@@ -558,6 +558,12 @@ namespace FlutterSDK.Widgets.Scrollposition
     /// </Summary>
     public class ScrollPosition : FlutterSDK.Rendering.Viewportoffset.ViewportOffset, IScrollMetrics
     {
+        /// <Summary>
+        /// Creates an object that determines which portion of the content is visible
+        /// in a scroll view.
+        ///
+        /// The [physics], [context], and [keepScrollOffset] parameters must not be null.
+        /// </Summary>
         public ScrollPosition(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics physics = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics), FlutterSDK.Widgets.Scrollcontext.ScrollContext context = default(FlutterSDK.Widgets.Scrollcontext.ScrollContext), bool keepScrollOffset = true, FlutterSDK.Widgets.Scrollposition.ScrollPosition oldPosition = default(FlutterSDK.Widgets.Scrollposition.ScrollPosition), string debugLabel = default(string))
         : base()
         {
@@ -570,9 +576,35 @@ namespace FlutterSDK.Widgets.Scrollposition
         }
 
 
+        /// <Summary>
+        /// How the scroll position should respond to user input.
+        ///
+        /// For example, determines how the widget continues to animate after the
+        /// user stops dragging the scroll view.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Scrollphysics.ScrollPhysics Physics { get; set; }
+        /// <Summary>
+        /// Where the scrolling is taking place.
+        ///
+        /// Typically implemented by [ScrollableState].
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Scrollcontext.ScrollContext Context { get; set; }
+        /// <Summary>
+        /// Save the current scroll offset with [PageStorage] and restore it if
+        /// this scroll position's scrollable is recreated.
+        ///
+        /// See also:
+        ///
+        ///  * [ScrollController.keepScrollOffset] and [PageController.keepPage], which
+        ///    create scroll positions and initialize this property.
+        /// </Summary>
         public virtual bool KeepScrollOffset { get; set; }
+        /// <Summary>
+        /// A label that is used in the [toString] output.
+        ///
+        /// Intended to aid with identifying animation controller instances in debug
+        /// output.
+        /// </Summary>
         public virtual string DebugLabel { get; set; }
         internal virtual double _MinScrollExtent { get; set; }
         internal virtual double _MaxScrollExtent { get; set; }
@@ -581,6 +613,13 @@ namespace FlutterSDK.Widgets.Scrollposition
         internal virtual bool _HaveDimensions { get; set; }
         internal virtual bool _DidChangeViewportDimensionOrReceiveCorrection { get; set; }
         internal virtual HashSet<SemanticsAction> _SemanticActions { get; set; }
+        /// <Summary>
+        /// This notifier's value is true if a scroll is underway and false if the scroll
+        /// position is idle.
+        ///
+        /// Listeners added by stateful widgets should be removed in the widget's
+        /// [State.dispose] method.
+        /// </Summary>
         public virtual FlutterSDK.Foundation.Changenotifier.ValueNotifier<bool> IsScrollingNotifier { get; set; }
         internal virtual FlutterSDK.Widgets.Scrollactivity.ScrollActivity _Activity { get; set; }
         public virtual double MinScrollExtent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }

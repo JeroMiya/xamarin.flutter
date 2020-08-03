@@ -424,8 +424,26 @@ using FlutterSDK.Painting._Networkimageio;
 using FlutterSDK.Widgets.Constants;
 namespace FlutterSDK.Widgets.Form
 {
+    /// <Summary>
+    /// Signature for validating a form field.
+    ///
+    /// Returns an error string to display if the input is invalid, or null
+    /// otherwise.
+    ///
+    /// Used by [FormField.validator].
+    /// </Summary>
     public delegate string FormFieldValidator<T>(T value);
+    /// <Summary>
+    /// Signature for being notified when a form field changes value.
+    ///
+    /// Used by [FormField.onSaved].
+    /// </Summary>
     public delegate void FormFieldSetter<T>(T newValue);
+    /// <Summary>
+    /// Signature for building the widget representing the form field.
+    ///
+    /// Used by [FormField.builder].
+    /// </Summary>
     public delegate FlutterSDK.Widgets.Framework.Widget FormFieldBuilder<T>(FlutterSDK.Widgets.Form.FormFieldState<T> field);
     internal static class FormDefaultClass
     {
@@ -498,6 +516,11 @@ namespace FlutterSDK.Widgets.Form
     /// </Summary>
     public class Form : FlutterSDK.Widgets.Framework.StatefulWidget
     {
+        /// <Summary>
+        /// Creates a container for form fields.
+        ///
+        /// The [child] argument must not be null.
+        /// </Summary>
         public Form(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), bool autovalidate = false, FlutterSDK.Widgets.Navigator.WillPopCallback onWillPop = default(FlutterSDK.Widgets.Navigator.WillPopCallback), VoidCallback onChanged = default(VoidCallback))
         : base(key: key)
         {
@@ -506,9 +529,39 @@ namespace FlutterSDK.Widgets.Form
             this.OnWillPop = onWillPop;
             this.OnChanged = onChanged;
         }
+        /// <Summary>
+        /// The widget below this widget in the tree.
+        ///
+        /// This is the root of the widget hierarchy that contains this form.
+        ///
+        /// {@macro flutter.widgets.child}
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+        /// <Summary>
+        /// If true, form fields will validate and update their error text
+        /// immediately after every change. Otherwise, you must call
+        /// [FormState.validate] to validate.
+        /// </Summary>
         public virtual bool Autovalidate { get; set; }
+        /// <Summary>
+        /// Enables the form to veto attempts by the user to dismiss the [ModalRoute]
+        /// that contains the form.
+        ///
+        /// If the callback returns a Future that resolves to false, the form's route
+        /// will not be popped.
+        ///
+        /// See also:
+        ///
+        ///  * [WillPopScope], another widget that provides a way to intercept the
+        ///    back button.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Navigator.WillPopCallback OnWillPop { get; set; }
+        /// <Summary>
+        /// Called when one of the form fields changes.
+        ///
+        /// In addition to this callback being invoked, all the form fields themselves
+        /// will rebuild.
+        /// </Summary>
         public virtual VoidCallback OnChanged { get; set; }
 
         /// <Summary>
@@ -661,6 +714,10 @@ namespace FlutterSDK.Widgets.Form
 
         }
         internal virtual FlutterSDK.Widgets.Form.FormState _FormState { get; set; }
+        /// <Summary>
+        /// Incremented every time a form field has changed. This lets us know when
+        /// to rebuild the form.
+        /// </Summary>
         internal virtual int _Generation { get; set; }
         public virtual FlutterSDK.Widgets.Form.Form Form { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 
@@ -697,6 +754,11 @@ namespace FlutterSDK.Widgets.Form
     /// </Summary>
     public class FormField<T> : FlutterSDK.Widgets.Framework.StatefulWidget
     {
+        /// <Summary>
+        /// Creates a single form field.
+        ///
+        /// The [builder] argument must not be null.
+        /// </Summary>
         public FormField(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Form.FormFieldBuilder<T> builder = default(FlutterSDK.Widgets.Form.FormFieldBuilder<T>), FlutterSDK.Widgets.Form.FormFieldSetter<T> onSaved = default(FlutterSDK.Widgets.Form.FormFieldSetter<T>), FlutterSDK.Widgets.Form.FormFieldValidator<T> validator = default(FlutterSDK.Widgets.Form.FormFieldValidator<T>), T initialValue = default(T), bool autovalidate = false, bool enabled = true)
         : base(key: key)
         {
@@ -707,11 +769,51 @@ namespace FlutterSDK.Widgets.Form
             this.Autovalidate = autovalidate;
             this.Enabled = enabled;
         }
+        /// <Summary>
+        /// An optional method to call with the final value when the form is saved via
+        /// [FormState.save].
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Form.FormFieldSetter<T> OnSaved { get; set; }
+        /// <Summary>
+        /// An optional method that validates an input. Returns an error string to
+        /// display if the input is invalid, or null otherwise.
+        ///
+        /// The returned value is exposed by the [FormFieldState.errorText] property.
+        /// The [TextFormField] uses this to override the [InputDecoration.errorText]
+        /// value.
+        ///
+        /// Alternating between error and normal state can cause the height of the
+        /// [TextFormField] to change if no other subtext decoration is set on the
+        /// field. To create a field whose height is fixed regardless of whether or
+        /// not an error is displayed, either wrap the  [TextFormField] in a fixed
+        /// height parent like [SizedBox], or set the [TextFormField.helperText]
+        /// parameter to a space.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Form.FormFieldValidator<T> Validator { get; set; }
+        /// <Summary>
+        /// Function that returns the widget representing this form field. It is
+        /// passed the form field state as input, containing the current value and
+        /// validation state of this field.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Form.FormFieldBuilder<T> Builder { get; set; }
+        /// <Summary>
+        /// An optional value to initialize the form field to, or null otherwise.
+        /// </Summary>
         public virtual T InitialValue { get; set; }
+        /// <Summary>
+        /// If true, this form field will validate and update its error text
+        /// immediately after every change. Otherwise, you must call
+        /// [FormFieldState.validate] to validate. If part of a [Form] that
+        /// auto-validates, this value will be ignored.
+        /// </Summary>
         public virtual bool Autovalidate { get; set; }
+        /// <Summary>
+        /// Whether the form is able to receive user input.
+        ///
+        /// Defaults to true. If [autovalidate] is true, the field will be validated.
+        /// Likewise, if this field is false, the widget will not be validated
+        /// regardless of [autovalidate].
+        /// </Summary>
         public virtual bool Enabled { get; set; }
 
         public new FormFieldState<T> CreateState() => new FormFieldState<T>();

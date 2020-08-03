@@ -424,7 +424,39 @@ using FlutterSDK.Painting._Networkimageio;
 using FlutterSDK.Widgets.Constants;
 namespace FlutterSDK.Widgets.Implicitanimations
 {
+    /// <Summary>
+    /// Signature for a [Tween] factory.
+    ///
+    /// This is the type of one of the arguments of [TweenVisitor], the signature
+    /// used by [AnimatedWidgetBaseState.forEachTween].
+    ///
+    /// Instances of this function are expected to take a value and return a tween
+    /// beginning at that value.
+    /// </Summary>
     public delegate FlutterSDK.Animation.Tween.Tween<T> TweenConstructor<T>(T targetValue);
+    /// <Summary>
+    /// Signature for callbacks passed to [ImplicitlyAnimatedWidgetState.forEachTween].
+    ///
+    /// {@template flutter.widgets.implicit_animations.tweenVisitorArguments}
+    /// The `tween` argument should contain the current tween value. This will
+    /// initially be null when the state is first initialized.
+    ///
+    /// The `targetValue` argument should contain the value toward which the state
+    /// is animating. For instance, if the state is animating its widget's
+    /// opacity value, then this argument should contain the widget's current
+    /// opacity value.
+    ///
+    /// The `constructor` argument should contain a function that takes a value
+    /// (the widget's value being animated) and returns a tween beginning at that
+    /// value.
+    ///
+    /// {@endtemplate}
+    ///
+    /// `forEachTween()` is expected to update its tween value to the return value
+    /// of this visitor.
+    ///
+    /// The `<T>` parameter specifies the type of value that's being animated.
+    /// </Summary>
     public delegate FlutterSDK.Animation.Tween.Tween<T> TweenVisitor<T>(FlutterSDK.Animation.Tween.Tween<T> tween, T targetValue, FlutterSDK.Widgets.Implicitanimations.TweenConstructor<T> constructor);
     internal static class ImplicitanimationsDefaultClass
     {
@@ -549,6 +581,12 @@ namespace FlutterSDK.Widgets.Implicitanimations
     /// </Summary>
     public class BoxConstraintsTween : FlutterSDK.Animation.Tween.Tween<FlutterSDK.Rendering.Box.BoxConstraints>
     {
+        /// <Summary>
+        /// Creates a [BoxConstraints] tween.
+        ///
+        /// The [begin] and [end] properties may be null; the null value
+        /// is treated as a tight constraint of zero size.
+        /// </Summary>
         public BoxConstraintsTween(FlutterSDK.Rendering.Box.BoxConstraints begin = default(FlutterSDK.Rendering.Box.BoxConstraints), FlutterSDK.Rendering.Box.BoxConstraints end = default(FlutterSDK.Rendering.Box.BoxConstraints))
         : base(begin: begin, end: end)
         {
@@ -585,6 +623,14 @@ namespace FlutterSDK.Widgets.Implicitanimations
     /// </Summary>
     public class DecorationTween : FlutterSDK.Animation.Tween.Tween<FlutterSDK.Painting.Decoration.Decoration>
     {
+        /// <Summary>
+        /// Creates a decoration tween.
+        ///
+        /// The [begin] and [end] properties may be null. If both are null, then the
+        /// result is always null. If [end] is not null, then its lerping logic is
+        /// used (via [Decoration.lerpTo]). Otherwise, [begin]'s lerping logic is used
+        /// (via [Decoration.lerpFrom]).
+        /// </Summary>
         public DecorationTween(FlutterSDK.Painting.Decoration.Decoration begin = default(FlutterSDK.Painting.Decoration.Decoration), FlutterSDK.Painting.Decoration.Decoration end = default(FlutterSDK.Painting.Decoration.Decoration))
         : base(begin: begin, end: end)
         {
@@ -615,6 +661,12 @@ namespace FlutterSDK.Widgets.Implicitanimations
     /// </Summary>
     public class EdgeInsetsTween : FlutterSDK.Animation.Tween.Tween<FlutterSDK.Painting.Edgeinsets.EdgeInsets>
     {
+        /// <Summary>
+        /// Creates an [EdgeInsets] tween.
+        ///
+        /// The [begin] and [end] properties may be null; the null value
+        /// is treated as an [EdgeInsets] with no inset.
+        /// </Summary>
         public EdgeInsetsTween(FlutterSDK.Painting.Edgeinsets.EdgeInsets begin = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets), FlutterSDK.Painting.Edgeinsets.EdgeInsets end = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets))
         : base(begin: begin, end: end)
         {
@@ -644,6 +696,12 @@ namespace FlutterSDK.Widgets.Implicitanimations
     /// </Summary>
     public class EdgeInsetsGeometryTween : FlutterSDK.Animation.Tween.Tween<FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry>
     {
+        /// <Summary>
+        /// Creates an [EdgeInsetsGeometry] tween.
+        ///
+        /// The [begin] and [end] properties may be null; the null value
+        /// is treated as an [EdgeInsetsGeometry] with no inset.
+        /// </Summary>
         public EdgeInsetsGeometryTween(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry begin = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry end = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry))
         : base(begin: begin, end: end)
         {
@@ -669,6 +727,12 @@ namespace FlutterSDK.Widgets.Implicitanimations
     /// </Summary>
     public class BorderRadiusTween : FlutterSDK.Animation.Tween.Tween<FlutterSDK.Painting.Borderradius.BorderRadius>
     {
+        /// <Summary>
+        /// Creates a [BorderRadius] tween.
+        ///
+        /// The [begin] and [end] properties may be null; the null value
+        /// is treated as a right angle (no radius).
+        /// </Summary>
         public BorderRadiusTween(FlutterSDK.Painting.Borderradius.BorderRadius begin = default(FlutterSDK.Painting.Borderradius.BorderRadius), FlutterSDK.Painting.Borderradius.BorderRadius end = default(FlutterSDK.Painting.Borderradius.BorderRadius))
         : base(begin: begin, end: end)
         {
@@ -694,6 +758,12 @@ namespace FlutterSDK.Widgets.Implicitanimations
     /// </Summary>
     public class BorderTween : FlutterSDK.Animation.Tween.Tween<FlutterSDK.Painting.Boxborder.Border>
     {
+        /// <Summary>
+        /// Creates a [Border] tween.
+        ///
+        /// The [begin] and [end] properties may be null; the null value
+        /// is treated as having no border.
+        /// </Summary>
         public BorderTween(FlutterSDK.Painting.Boxborder.Border begin = default(FlutterSDK.Painting.Boxborder.Border), FlutterSDK.Painting.Boxborder.Border end = default(FlutterSDK.Painting.Boxborder.Border))
         : base(begin: begin, end: end)
         {
@@ -721,6 +791,13 @@ namespace FlutterSDK.Widgets.Implicitanimations
     /// </Summary>
     public class Matrix4Tween : FlutterSDK.Animation.Tween.Tween<object>
     {
+        /// <Summary>
+        /// Creates a [Matrix4] tween.
+        ///
+        /// The [begin] and [end] properties must be non-null before the tween is
+        /// first used, but the arguments can be null if the values are going to be
+        /// filled in later.
+        /// </Summary>
         public Matrix4Tween(Matrix4 begin = default(Matrix4), Matrix4 end = default(Matrix4))
         : base(begin: begin, end: end)
         {
@@ -762,6 +839,13 @@ namespace FlutterSDK.Widgets.Implicitanimations
     /// </Summary>
     public class TextStyleTween : FlutterSDK.Animation.Tween.Tween<FlutterSDK.Painting.Textstyle.TextStyle>
     {
+        /// <Summary>
+        /// Creates a text style tween.
+        ///
+        /// The [begin] and [end] properties must be non-null before the tween is
+        /// first used, but the arguments can be null if the values are going to be
+        /// filled in later.
+        /// </Summary>
         public TextStyleTween(FlutterSDK.Painting.Textstyle.TextStyle begin = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle end = default(FlutterSDK.Painting.Textstyle.TextStyle))
         : base(begin: begin, end: end)
         {
@@ -836,6 +920,11 @@ namespace FlutterSDK.Widgets.Implicitanimations
     /// </Summary>
     public class ImplicitlyAnimatedWidget : FlutterSDK.Widgets.Framework.StatefulWidget
     {
+        /// <Summary>
+        /// Initializes fields for subclasses.
+        ///
+        /// The [curve] and [duration] arguments must not be null.
+        /// </Summary>
         public ImplicitlyAnimatedWidget(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve), TimeSpan duration = default(TimeSpan), VoidCallback onEnd = default(VoidCallback))
         : base(key: key)
         {
@@ -843,8 +932,20 @@ namespace FlutterSDK.Widgets.Implicitanimations
             this.Duration = duration;
             this.OnEnd = onEnd;
         }
+        /// <Summary>
+        /// The curve to apply when animating the parameters of this container.
+        /// </Summary>
         public virtual FlutterSDK.Animation.Curves.Curve Curve { get; set; }
+        /// <Summary>
+        /// The duration over which to animate the parameters of this container.
+        /// </Summary>
         public virtual TimeSpan Duration { get; set; }
+        /// <Summary>
+        /// Called every time an animation completes.
+        ///
+        /// This can be useful to trigger additional actions (e.g. another animation)
+        /// at the end of the current animation.
+        /// </Summary>
         public virtual VoidCallback OnEnd { get; set; }
 
         public new FlutterSDK.Widgets.Implicitanimations.ImplicitlyAnimatedWidgetState<FlutterSDK.Widgets.Implicitanimations.ImplicitlyAnimatedWidget> CreateState()
@@ -1197,6 +1298,11 @@ namespace FlutterSDK.Widgets.Implicitanimations
     /// </Summary>
     public class AnimatedContainer : FlutterSDK.Widgets.Implicitanimations.ImplicitlyAnimatedWidget
     {
+        /// <Summary>
+        /// Creates a container that animates its parameters implicitly.
+        ///
+        /// The [curve] and [duration] arguments must not be null.
+        /// </Summary>
         public AnimatedContainer(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Decoration.Decoration decoration = default(FlutterSDK.Painting.Decoration.Decoration), FlutterSDK.Painting.Decoration.Decoration foregroundDecoration = default(FlutterSDK.Painting.Decoration.Decoration), double width = default(double), double height = default(double), FlutterSDK.Rendering.Box.BoxConstraints constraints = default(FlutterSDK.Rendering.Box.BoxConstraints), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry margin = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), Matrix4 transform = default(Matrix4), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve), TimeSpan duration = default(TimeSpan), VoidCallback onEnd = default(VoidCallback))
         : base(key: key, curve: curve, duration: duration, onEnd: onEnd)
         {
@@ -1207,13 +1313,67 @@ namespace FlutterSDK.Widgets.Implicitanimations
             this.Transform = transform;
             this.Child = child;
         }
+        /// <Summary>
+        /// The [child] contained by the container.
+        ///
+        /// If null, and if the [constraints] are unbounded or also null, the
+        /// container will expand to fill all available space in its parent, unless
+        /// the parent provides unbounded constraints, in which case the container
+        /// will attempt to be as small as possible.
+        ///
+        /// {@macro flutter.widgets.child}
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+        /// <Summary>
+        /// Align the [child] within the container.
+        ///
+        /// If non-null, the container will expand to fill its parent and position its
+        /// child within itself according to the given value. If the incoming
+        /// constraints are unbounded, then the child will be shrink-wrapped instead.
+        ///
+        /// Ignored if [child] is null.
+        ///
+        /// See also:
+        ///
+        ///  * [Alignment], a class with convenient constants typically used to
+        ///    specify an [AlignmentGeometry].
+        ///  * [AlignmentDirectional], like [Alignment] for specifying alignments
+        ///    relative to text direction.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Alignment.AlignmentGeometry Alignment { get; set; }
+        /// <Summary>
+        /// Empty space to inscribe inside the [decoration]. The [child], if any, is
+        /// placed inside this padding.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Padding { get; set; }
+        /// <Summary>
+        /// The decoration to paint behind the [child].
+        ///
+        /// A shorthand for specifying just a solid color is available in the
+        /// constructor: set the `color` argument instead of the `decoration`
+        /// argument.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Decoration.Decoration Decoration { get; set; }
+        /// <Summary>
+        /// The decoration to paint in front of the child.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Decoration.Decoration ForegroundDecoration { get; set; }
+        /// <Summary>
+        /// Additional constraints to apply to the child.
+        ///
+        /// The constructor `width` and `height` arguments are combined with the
+        /// `constraints` argument to set this property.
+        ///
+        /// The [padding] goes inside the constraints.
+        /// </Summary>
         public virtual FlutterSDK.Rendering.Box.BoxConstraints Constraints { get; set; }
+        /// <Summary>
+        /// Empty space to surround the [decoration] and [child].
+        /// </Summary>
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Margin { get; set; }
+        /// <Summary>
+        /// The transformation matrix to apply before painting the container.
+        /// </Summary>
         public virtual Matrix4 Transform { get; set; }
 
         public new FlutterSDK.Widgets.Implicitanimations._AnimatedContainerState CreateState() => new _AnimatedContainerState();
@@ -1306,13 +1466,27 @@ namespace FlutterSDK.Widgets.Implicitanimations
     /// </Summary>
     public class AnimatedPadding : FlutterSDK.Widgets.Implicitanimations.ImplicitlyAnimatedWidget
     {
+        /// <Summary>
+        /// Creates a widget that insets its child by a value that animates
+        /// implicitly.
+        ///
+        /// The [padding], [curve], and [duration] arguments must not be null.
+        /// </Summary>
         public AnimatedPadding(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve), TimeSpan duration = default(TimeSpan), VoidCallback onEnd = default(VoidCallback))
         : base(key: key, curve: curve, duration: duration, onEnd: onEnd)
         {
             this.Padding = padding;
             this.Child = child;
         }
+        /// <Summary>
+        /// The amount of space by which to inset the child.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Padding { get; set; }
+        /// <Summary>
+        /// The widget below this widget in the tree.
+        ///
+        /// {@macro flutter.widgets.child}
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
 
         public new FlutterSDK.Widgets.Implicitanimations._AnimatedPaddingState CreateState() => new _AnimatedPaddingState();
@@ -1390,13 +1564,42 @@ namespace FlutterSDK.Widgets.Implicitanimations
     /// </Summary>
     public class AnimatedAlign : FlutterSDK.Widgets.Implicitanimations.ImplicitlyAnimatedWidget
     {
+        /// <Summary>
+        /// Creates a widget that positions its child by an alignment that animates
+        /// implicitly.
+        ///
+        /// The [alignment], [curve], and [duration] arguments must not be null.
+        /// </Summary>
         public AnimatedAlign(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve), TimeSpan duration = default(TimeSpan), VoidCallback onEnd = default(VoidCallback))
         : base(key: key, curve: curve, duration: duration, onEnd: onEnd)
         {
             this.Alignment = alignment;
             this.Child = child;
         }
+        /// <Summary>
+        /// How to align the child.
+        ///
+        /// The x and y values of the [Alignment] control the horizontal and vertical
+        /// alignment, respectively. An x value of -1.0 means that the left edge of
+        /// the child is aligned with the left edge of the parent whereas an x value
+        /// of 1.0 means that the right edge of the child is aligned with the right
+        /// edge of the parent. Other values interpolate (and extrapolate) linearly.
+        /// For example, a value of 0.0 means that the center of the child is aligned
+        /// with the center of the parent.
+        ///
+        /// See also:
+        ///
+        ///  * [Alignment], which has more details and some convenience constants for
+        ///    common positions.
+        ///  * [AlignmentDirectional], which has a horizontal coordinate orientation
+        ///    that depends on the [TextDirection].
+        /// </Summary>
         public virtual FlutterSDK.Painting.Alignment.AlignmentGeometry Alignment { get; set; }
+        /// <Summary>
+        /// The widget below this widget in the tree.
+        ///
+        /// {@macro flutter.widgets.child}
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
 
         public new FlutterSDK.Widgets.Implicitanimations._AnimatedAlignState CreateState() => new _AnimatedAlignState();
@@ -1482,6 +1685,16 @@ namespace FlutterSDK.Widgets.Implicitanimations
     /// </Summary>
     public class AnimatedPositioned : FlutterSDK.Widgets.Implicitanimations.ImplicitlyAnimatedWidget
     {
+        /// <Summary>
+        /// Creates a widget that animates its position implicitly.
+        ///
+        /// Only two out of the three horizontal values ([left], [right],
+        /// [width]), and only two out of the three vertical values ([top],
+        /// [bottom], [height]), can be set. In each case, at least one of
+        /// the three must be null.
+        ///
+        /// The [curve] and [duration] arguments must not be null.
+        /// </Summary>
         public AnimatedPositioned(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), double left = default(double), double top = default(double), double right = default(double), double bottom = default(double), double width = default(double), double height = default(double), FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve), TimeSpan duration = default(TimeSpan), VoidCallback onEnd = default(VoidCallback))
         : base(key: key, curve: curve, duration: duration, onEnd: onEnd)
         {
@@ -1493,16 +1706,50 @@ namespace FlutterSDK.Widgets.Implicitanimations
             this.Width = width;
             this.Height = height;
         }
+        /// <Summary>
+        /// Creates a widget that animates the rectangle it occupies implicitly.
+        ///
+        /// The [curve] and [duration] arguments must not be null.
+        /// </Summary>
         public static AnimatedPositioned FromRect(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterBinding.UI.Rect rect = default(FlutterBinding.UI.Rect), FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve), TimeSpan duration = default(TimeSpan), VoidCallback onEnd = default(VoidCallback))
         {
             var instance = new AnimatedPositioned(key: key, curve: curve, duration: duration, onEnd: onEnd); instance.Child = child;
         }
+        /// <Summary>
+        /// The widget below this widget in the tree.
+        ///
+        /// {@macro flutter.widgets.child}
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+        /// <Summary>
+        /// The offset of the child's left edge from the left of the stack.
+        /// </Summary>
         public virtual double Left { get; set; }
+        /// <Summary>
+        /// The offset of the child's top edge from the top of the stack.
+        /// </Summary>
         public virtual double Top { get; set; }
+        /// <Summary>
+        /// The offset of the child's right edge from the right of the stack.
+        /// </Summary>
         public virtual double Right { get; set; }
+        /// <Summary>
+        /// The offset of the child's bottom edge from the bottom of the stack.
+        /// </Summary>
         public virtual double Bottom { get; set; }
+        /// <Summary>
+        /// The child's width.
+        ///
+        /// Only two out of the three horizontal values ([left], [right], [width]) can
+        /// be set. The third must be null.
+        /// </Summary>
         public virtual double Width { get; set; }
+        /// <Summary>
+        /// The child's height.
+        ///
+        /// Only two out of the three vertical values ([top], [bottom], [height]) can
+        /// be set. The third must be null.
+        /// </Summary>
         public virtual double Height { get; set; }
 
         public new FlutterSDK.Widgets.Implicitanimations._AnimatedPositionedState CreateState() => new _AnimatedPositionedState();
@@ -1601,6 +1848,15 @@ namespace FlutterSDK.Widgets.Implicitanimations
     /// </Summary>
     public class AnimatedPositionedDirectional : FlutterSDK.Widgets.Implicitanimations.ImplicitlyAnimatedWidget
     {
+        /// <Summary>
+        /// Creates a widget that animates its position implicitly.
+        ///
+        /// Only two out of the three horizontal values ([start], [end], [width]), and
+        /// only two out of the three vertical values ([top], [bottom], [height]), can
+        /// be set. In each case, at least one of the three must be null.
+        ///
+        /// The [curve] and [duration] arguments must not be null.
+        /// </Summary>
         public AnimatedPositionedDirectional(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), double start = default(double), double top = default(double), double end = default(double), double bottom = default(double), double width = default(double), double height = default(double), FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve), TimeSpan duration = default(TimeSpan), VoidCallback onEnd = default(VoidCallback))
         : base(key: key, curve: curve, duration: duration, onEnd: onEnd)
         {
@@ -1612,12 +1868,41 @@ namespace FlutterSDK.Widgets.Implicitanimations
             this.Width = width;
             this.Height = height;
         }
+        /// <Summary>
+        /// The widget below this widget in the tree.
+        ///
+        /// {@macro flutter.widgets.child}
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+        /// <Summary>
+        /// The offset of the child's start edge from the start of the stack.
+        /// </Summary>
         public virtual double Start { get; set; }
+        /// <Summary>
+        /// The offset of the child's top edge from the top of the stack.
+        /// </Summary>
         public virtual double Top { get; set; }
+        /// <Summary>
+        /// The offset of the child's end edge from the end of the stack.
+        /// </Summary>
         public virtual double End { get; set; }
+        /// <Summary>
+        /// The offset of the child's bottom edge from the bottom of the stack.
+        /// </Summary>
         public virtual double Bottom { get; set; }
+        /// <Summary>
+        /// The child's width.
+        ///
+        /// Only two out of the three horizontal values ([start], [end], [width]) can
+        /// be set. The third must be null.
+        /// </Summary>
         public virtual double Width { get; set; }
+        /// <Summary>
+        /// The child's height.
+        ///
+        /// Only two out of the three vertical values ([top], [bottom], [height]) can
+        /// be set. The third must be null.
+        /// </Summary>
         public virtual double Height { get; set; }
 
         public new FlutterSDK.Widgets.Implicitanimations._AnimatedPositionedDirectionalState CreateState() => new _AnimatedPositionedDirectionalState();
@@ -1749,6 +2034,12 @@ namespace FlutterSDK.Widgets.Implicitanimations
     /// </Summary>
     public class AnimatedOpacity : FlutterSDK.Widgets.Implicitanimations.ImplicitlyAnimatedWidget
     {
+        /// <Summary>
+        /// Creates a widget that animates its opacity implicitly.
+        ///
+        /// The [opacity] argument must not be null and must be between 0.0 and 1.0,
+        /// inclusive. The [curve] and [duration] arguments must not be null.
+        /// </Summary>
         public AnimatedOpacity(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), double opacity = default(double), FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve), TimeSpan duration = default(TimeSpan), VoidCallback onEnd = default(VoidCallback), bool alwaysIncludeSemantics = false)
         : base(key: key, curve: curve, duration: duration, onEnd: onEnd)
         {
@@ -1756,8 +2047,31 @@ namespace FlutterSDK.Widgets.Implicitanimations
             this.Opacity = opacity;
             this.AlwaysIncludeSemantics = alwaysIncludeSemantics;
         }
+        /// <Summary>
+        /// The widget below this widget in the tree.
+        ///
+        /// {@macro flutter.widgets.child}
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+        /// <Summary>
+        /// The target opacity.
+        ///
+        /// An opacity of 1.0 is fully opaque. An opacity of 0.0 is fully transparent
+        /// (i.e., invisible).
+        ///
+        /// The opacity must not be null.
+        /// </Summary>
         public virtual double Opacity { get; set; }
+        /// <Summary>
+        /// Whether the semantic information of the children is always included.
+        ///
+        /// Defaults to false.
+        ///
+        /// When true, regardless of the opacity settings the child semantic
+        /// information is exposed as if the widget were fully visible. This is
+        /// useful in cases where labels may be hidden during animations that
+        /// would otherwise contribute relevant semantics.
+        /// </Summary>
         public virtual bool AlwaysIncludeSemantics { get; set; }
 
         public new FlutterSDK.Widgets.Implicitanimations._AnimatedOpacityState CreateState() => new _AnimatedOpacityState();
@@ -1874,6 +2188,12 @@ namespace FlutterSDK.Widgets.Implicitanimations
     /// </Summary>
     public class SliverAnimatedOpacity : FlutterSDK.Widgets.Implicitanimations.ImplicitlyAnimatedWidget
     {
+        /// <Summary>
+        /// Creates a widget that animates its opacity implicitly.
+        ///
+        /// The [opacity] argument must not be null and must be between 0.0 and 1.0,
+        /// inclusive. The [curve] and [duration] arguments must not be null.
+        /// </Summary>
         public SliverAnimatedOpacity(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget sliver = default(FlutterSDK.Widgets.Framework.Widget), double opacity = default(double), FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve), TimeSpan duration = default(TimeSpan), VoidCallback onEnd = default(VoidCallback), bool alwaysIncludeSemantics = false)
         : base(key: key, curve: curve, duration: duration, onEnd: onEnd)
         {
@@ -1881,8 +2201,29 @@ namespace FlutterSDK.Widgets.Implicitanimations
             this.Opacity = opacity;
             this.AlwaysIncludeSemantics = alwaysIncludeSemantics;
         }
+        /// <Summary>
+        /// The sliver below this widget in the tree.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Sliver { get; set; }
+        /// <Summary>
+        /// The target opacity.
+        ///
+        /// An opacity of 1.0 is fully opaque. An opacity of 0.0 is fully transparent
+        /// (i.e., invisible).
+        ///
+        /// The opacity must not be null.
+        /// </Summary>
         public virtual double Opacity { get; set; }
+        /// <Summary>
+        /// Whether the semantic information of the children is always included.
+        ///
+        /// Defaults to false.
+        ///
+        /// When true, regardless of the opacity settings the sliver child's semantic
+        /// information is exposed as if the widget were fully visible. This is
+        /// useful in cases where labels may be hidden during animations that
+        /// would otherwise contribute relevant semantics.
+        /// </Summary>
         public virtual bool AlwaysIncludeSemantics { get; set; }
 
         public new FlutterSDK.Widgets.Implicitanimations._SliverAnimatedOpacityState CreateState() => new _SliverAnimatedOpacityState();
@@ -1957,6 +2298,12 @@ namespace FlutterSDK.Widgets.Implicitanimations
     /// </Summary>
     public class AnimatedDefaultTextStyle : FlutterSDK.Widgets.Implicitanimations.ImplicitlyAnimatedWidget
     {
+        /// <Summary>
+        /// Creates a widget that animates the default text style implicitly.
+        ///
+        /// The [child], [style], [softWrap], [overflow], [curve], and [duration]
+        /// arguments must not be null.
+        /// </Summary>
         public AnimatedDefaultTextStyle(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Painting.Textstyle.TextStyle style = default(FlutterSDK.Painting.Textstyle.TextStyle), TextAlign textAlign = default(TextAlign), bool softWrap = true, FlutterSDK.Rendering.Paragraph.TextOverflow overflow = default(FlutterSDK.Rendering.Paragraph.TextOverflow), int maxLines = default(int), FlutterSDK.Painting.Textpainter.TextWidthBasis textWidthBasis = default(FlutterSDK.Painting.Textpainter.TextWidthBasis), TextHeightBehavior textHeightBehavior = default(TextHeightBehavior), FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve), TimeSpan duration = default(TimeSpan), VoidCallback onEnd = default(VoidCallback))
         : base(key: key, curve: curve, duration: duration, onEnd: onEnd)
         {
@@ -1969,13 +2316,57 @@ namespace FlutterSDK.Widgets.Implicitanimations
             this.TextWidthBasis = textWidthBasis;
             this.TextHeightBehavior = textHeightBehavior;
         }
+        /// <Summary>
+        /// The widget below this widget in the tree.
+        ///
+        /// {@macro flutter.widgets.child}
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+        /// <Summary>
+        /// The target text style.
+        ///
+        /// The text style must not be null.
+        ///
+        /// When this property is changed, the style will be animated over [duration] time.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Textstyle.TextStyle Style { get; set; }
+        /// <Summary>
+        /// How the text should be aligned horizontally.
+        ///
+        /// This property takes effect immediately when changed, it is not animated.
+        /// </Summary>
         public virtual TextAlign TextAlign { get; set; }
+        /// <Summary>
+        /// Whether the text should break at soft line breaks.
+        ///
+        /// This property takes effect immediately when changed, it is not animated.
+        ///
+        /// See [DefaultTextStyle.softWrap] for more details.
+        /// </Summary>
         public virtual bool SoftWrap { get; set; }
+        /// <Summary>
+        /// How visual overflow should be handled.
+        ///
+        /// This property takes effect immediately when changed, it is not animated.
+        /// </Summary>
         public virtual FlutterSDK.Rendering.Paragraph.TextOverflow Overflow { get; set; }
+        /// <Summary>
+        /// An optional maximum number of lines for the text to span, wrapping if necessary.
+        ///
+        /// This property takes effect immediately when changed, it is not animated.
+        ///
+        /// See [DefaultTextStyle.maxLines] for more details.
+        /// </Summary>
         public virtual int MaxLines { get; set; }
+        /// <Summary>
+        /// The strategy to use when calculating the width of the Text.
+        ///
+        /// See [TextWidthBasis] for possible values and their implications.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Textpainter.TextWidthBasis TextWidthBasis { get; set; }
+        /// <Summary>
+        /// {@macro flutter.dart:ui.textHeightBehavior}
+        /// </Summary>
         public virtual TextHeightBehavior TextHeightBehavior { get; set; }
 
         public new FlutterSDK.Widgets.Implicitanimations._AnimatedDefaultTextStyleState CreateState() => new _AnimatedDefaultTextStyleState();
@@ -2041,6 +2432,17 @@ namespace FlutterSDK.Widgets.Implicitanimations
     /// </Summary>
     public class AnimatedPhysicalModel : FlutterSDK.Widgets.Implicitanimations.ImplicitlyAnimatedWidget
     {
+        /// <Summary>
+        /// Creates a widget that animates the properties of a [PhysicalModel].
+        ///
+        /// The [child], [shape], [borderRadius], [elevation], [color], [shadowColor],
+        /// [curve], [clipBehavior], and [duration] arguments must not be null.
+        /// Additionally, [elevation] must be non-negative.
+        ///
+        /// Animating [color] is optional and is controlled by the [animateColor] flag.
+        ///
+        /// Animating [shadowColor] is optional and is controlled by the [animateShadowColor] flag.
+        /// </Summary>
         public AnimatedPhysicalModel(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Painting.Boxborder.BoxShape shape = default(FlutterSDK.Painting.Boxborder.BoxShape), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip), FlutterSDK.Painting.Borderradius.BorderRadius borderRadius = default(FlutterSDK.Painting.Borderradius.BorderRadius), double elevation = default(double), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), bool animateColor = true, FlutterBinding.UI.Color shadowColor = default(FlutterBinding.UI.Color), bool animateShadowColor = true, FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve), TimeSpan duration = default(TimeSpan), VoidCallback onEnd = default(VoidCallback))
         : base(key: key, curve: curve, duration: duration, onEnd: onEnd)
         {
@@ -2054,14 +2456,50 @@ namespace FlutterSDK.Widgets.Implicitanimations
             this.ShadowColor = shadowColor;
             this.AnimateShadowColor = animateShadowColor;
         }
+        /// <Summary>
+        /// The widget below this widget in the tree.
+        ///
+        /// {@macro flutter.widgets.child}
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+        /// <Summary>
+        /// The type of shape.
+        ///
+        /// This property is not animated.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Boxborder.BoxShape Shape { get; set; }
+        /// <Summary>
+        /// {@macro flutter.widgets.Clip}
+        ///
+        /// Defaults to [Clip.none].
+        /// </Summary>
         public virtual FlutterBinding.UI.Clip ClipBehavior { get; set; }
+        /// <Summary>
+        /// The target border radius of the rounded corners for a rectangle shape.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Borderradius.BorderRadius BorderRadius { get; set; }
+        /// <Summary>
+        /// The target z-coordinate relative to the parent at which to place this
+        /// physical object.
+        ///
+        /// The value will always be non-negative.
+        /// </Summary>
         public virtual double Elevation { get; set; }
+        /// <Summary>
+        /// The target background color.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color Color { get; set; }
+        /// <Summary>
+        /// Whether the color should be animated.
+        /// </Summary>
         public virtual bool AnimateColor { get; set; }
+        /// <Summary>
+        /// The target shadow color.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color ShadowColor { get; set; }
+        /// <Summary>
+        /// Whether the shadow color should be animated.
+        /// </Summary>
         public virtual bool AnimateShadowColor { get; set; }
 
         public new FlutterSDK.Widgets.Implicitanimations._AnimatedPhysicalModelState CreateState() => new _AnimatedPhysicalModelState();

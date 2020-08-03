@@ -296,6 +296,9 @@ using FlutterSDK.Foundation._Isolatesio;
 using FlutterSDK.Foundation._Platformio;
 namespace FlutterSDK.Foundation.Print
 {
+    /// <Summary>
+    /// Signature for [debugPrint] implementations.
+    /// </Summary>
     public delegate void DebugPrintCallback(string message, int wrapWidth = default(int));
     internal static class PrintDefaultClass
     {
@@ -309,6 +312,10 @@ namespace FlutterSDK.Foundation.Print
         public static bool _DebugPrintScheduled = default(bool);
         public static Future<object> DebugPrintDone = default(Future<object>);
         public static RegExp _IndentPattern = default(RegExp);
+        /// <Summary>
+        /// Alternative implementation of [debugPrint] that does not throttle.
+        /// Used by tests.
+        /// </Summary>
         internal static void DebugPrintSynchronously(string message, int wrapWidth = default(int))
         {
             if (wrapWidth != null)
@@ -324,6 +331,10 @@ namespace FlutterSDK.Foundation.Print
 
 
 
+        /// <Summary>
+        /// Implementation of [debugPrint] that throttles messages. This avoids dropping
+        /// messages on platforms that rate-limit their logging (for example, Android).
+        /// </Summary>
         internal static void DebugPrintThrottled(string message, int wrapWidth = default(int))
         {
             List<string> messageLines = message?.Split('\n').ToList() ?? new List<string>() { "null" };
@@ -376,6 +387,24 @@ namespace FlutterSDK.Foundation.Print
 
 
 
+        /// <Summary>
+        /// Wraps the given string at the given width.
+        ///
+        /// Wrapping occurs at space characters (U+0020). Lines that start with an
+        /// octothorpe ("#", U+0023) are not wrapped (so for example, Dart stack traces
+        /// won't be wrapped).
+        ///
+        /// Subsequent lines attempt to duplicate the indentation of the first line, for
+        /// example if the first line starts with multiple spaces. In addition, if a
+        /// `wrapIndent` argument is provided, each line after the first is prefixed by
+        /// that string.
+        ///
+        /// This is not suitable for use with arbitrary Unicode text. For example, it
+        /// doesn't implement UAX #14, can't handle ideographic text, doesn't hyphenate,
+        /// and so forth. It is only intended for formatting error messages.
+        ///
+        /// The default [debugPrint] implementation uses this for its line wrapping.
+        /// </Summary>
         internal static Iterable<string> DebugWordWrap(string message, int width, string wrapIndent = default(string))
         {
             if (message.Length < width || message.TrimStart()[0] == '#')

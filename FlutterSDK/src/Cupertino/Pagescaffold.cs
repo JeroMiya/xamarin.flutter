@@ -345,6 +345,9 @@ namespace FlutterSDK.Cupertino.Pagescaffold
     /// </Summary>
     public class CupertinoPageScaffold : FlutterSDK.Widgets.Framework.StatefulWidget
     {
+        /// <Summary>
+        /// Creates a layout for pages with a navigation bar at the top.
+        /// </Summary>
         public CupertinoPageScaffold(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Cupertino.Pagescaffold.ObstructingPreferredSizeWidget navigationBar = default(FlutterSDK.Cupertino.Pagescaffold.ObstructingPreferredSizeWidget), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), bool resizeToAvoidBottomInset = true, FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key)
         {
@@ -353,9 +356,49 @@ namespace FlutterSDK.Cupertino.Pagescaffold
             this.ResizeToAvoidBottomInset = resizeToAvoidBottomInset;
             this.Child = child;
         }
+        /// <Summary>
+        /// The [navigationBar], typically a [CupertinoNavigationBar], is drawn at the
+        /// top of the screen.
+        ///
+        /// If translucent, the main content may slide behind it.
+        /// Otherwise, the main content's top margin will be offset by its height.
+        ///
+        /// The scaffold assumes the navigation bar will account for the [MediaQuery]
+        /// top padding, also consume it if the navigation bar is opaque.
+        ///
+        /// By default `navigationBar` has its text scale factor set to 1.0 and does
+        /// not respond to text scale factor changes from the operating system, to match
+        /// the native iOS behavior. To override such behavior, wrap each of the `navigationBar`'s
+        /// components inside a [MediaQuery] with the desired [MediaQueryData.textScaleFactor]
+        /// value. The text scale factor value from the operating system can be retrieved
+        /// in many ways, such as querying [MediaQuery.textScaleFactorOf] against
+        /// [CupertinoApp]'s [BuildContext].
+        /// </Summary>
         public virtual FlutterSDK.Cupertino.Pagescaffold.ObstructingPreferredSizeWidget NavigationBar { get; set; }
+        /// <Summary>
+        /// Widget to show in the main content area.
+        ///
+        /// Content can slide under the [navigationBar] when they're translucent.
+        /// In that case, the child's [BuildContext]'s [MediaQuery] will have a
+        /// top padding indicating the area of obstructing overlap from the
+        /// [navigationBar].
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+        /// <Summary>
+        /// The color of the widget that underlies the entire scaffold.
+        ///
+        /// By default uses [CupertinoTheme]'s `scaffoldBackgroundColor` when null.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
+        /// <Summary>
+        /// Whether the [child] should size itself to avoid the window's bottom inset.
+        ///
+        /// For example, if there is an onscreen keyboard displayed above the
+        /// scaffold, the body can be resized to avoid overlapping the keyboard, which
+        /// prevents widgets inside the body from being obscured by the keyboard.
+        ///
+        /// Defaults to true and cannot be null.
+        /// </Summary>
         public virtual bool ResizeToAvoidBottomInset { get; set; }
 
         public new FlutterSDK.Cupertino.Pagescaffold._CupertinoPageScaffoldState CreateState() => new _CupertinoPageScaffoldState();

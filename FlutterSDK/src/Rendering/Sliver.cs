@@ -423,9 +423,31 @@ using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
 namespace FlutterSDK.Rendering.Sliver
 {
+    /// <Summary>
+    /// Method signature for hit testing a [RenderSLiver].
+    ///
+    /// Used by [SliverHitTestResult.addWithAxisOffset] to hit test [RenderSliver]
+    /// children.
+    ///
+    /// See also:
+    ///
+    ///  * [RenderSliver.hitTest], which documents more details around hit testing
+    ///    [RenderSliver]s.
+    /// </Summary>
     public delegate bool SliverHitTest(FlutterSDK.Rendering.Sliver.SliverHitTestResult result, double mainAxisPosition = default(double), double crossAxisPosition = default(double));
     internal static class SliverDefaultClass
     {
+        /// <Summary>
+        /// Flips the [AxisDirection] if the [GrowthDirection] is [GrowthDirection.reverse].
+        ///
+        /// Specifically, returns `axisDirection` if `growthDirection` is
+        /// [GrowthDirection.forward], otherwise returns [flipAxisDirection] applied to
+        /// `axisDirection`.
+        ///
+        /// This function is useful in [RenderSliver] subclasses that are given both an
+        /// [AxisDirection] and a [GrowthDirection] and wish to compute the
+        /// [AxisDirection] in which growth will occur.
+        /// </Summary>
         internal static FlutterSDK.Painting.Basictypes.AxisDirection ApplyGrowthDirectionToAxisDirection(FlutterSDK.Painting.Basictypes.AxisDirection axisDirection, FlutterSDK.Rendering.Sliver.GrowthDirection growthDirection)
         {
 
@@ -436,6 +458,17 @@ namespace FlutterSDK.Rendering.Sliver
 
 
 
+        /// <Summary>
+        /// Flips the [ScrollDirection] if the [GrowthDirection] is [GrowthDirection.reverse].
+        ///
+        /// Specifically, returns `scrollDirection` if `scrollDirection` is
+        /// [GrowthDirection.forward], otherwise returns [flipScrollDirection] applied to
+        /// `scrollDirection`.
+        ///
+        /// This function is useful in [RenderSliver] subclasses that are given both an
+        /// [ScrollDirection] and a [GrowthDirection] and wish to compute the
+        /// [ScrollDirection] in which growth will occur.
+        /// </Summary>
         internal static FlutterSDK.Rendering.Viewportoffset.ScrollDirection ApplyGrowthDirectionToScrollDirection(FlutterSDK.Rendering.Viewportoffset.ScrollDirection scrollDirection, FlutterSDK.Rendering.Sliver.GrowthDirection growthDirection)
         {
 
@@ -1090,6 +1123,11 @@ namespace FlutterSDK.Rendering.Sliver
     /// </Summary>
     public class SliverConstraints : FlutterSDK.Rendering.@object.Constraints
     {
+        /// <Summary>
+        /// Creates sliver constraints with the given information.
+        ///
+        /// All of the argument must not be null.
+        /// </Summary>
         public SliverConstraints(FlutterSDK.Painting.Basictypes.AxisDirection axisDirection = default(FlutterSDK.Painting.Basictypes.AxisDirection), FlutterSDK.Rendering.Sliver.GrowthDirection growthDirection = default(FlutterSDK.Rendering.Sliver.GrowthDirection), FlutterSDK.Rendering.Viewportoffset.ScrollDirection userScrollDirection = default(FlutterSDK.Rendering.Viewportoffset.ScrollDirection), double scrollOffset = default(double), double precedingScrollExtent = default(double), double overlap = default(double), double remainingPaintExtent = default(double), double crossAxisExtent = default(double), FlutterSDK.Painting.Basictypes.AxisDirection crossAxisDirection = default(FlutterSDK.Painting.Basictypes.AxisDirection), double viewportMainAxisExtent = default(double), double remainingCacheExtent = default(double), double cacheOrigin = default(double))
         : base()
         {
@@ -1106,17 +1144,196 @@ namespace FlutterSDK.Rendering.Sliver
             this.RemainingCacheExtent = remainingCacheExtent;
             this.CacheOrigin = cacheOrigin;
         }
+        /// <Summary>
+        /// The direction in which the [scrollOffset] and [remainingPaintExtent]
+        /// increase.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Basictypes.AxisDirection AxisDirection { get; set; }
+        /// <Summary>
+        /// The direction in which the contents of slivers are ordered, relative to
+        /// the [axisDirection].
+        ///
+        /// For example, if the [axisDirection] is [AxisDirection.up], and the
+        /// [growthDirection] is [GrowthDirection.forward], then an alphabetical list
+        /// will have A at the bottom, then B, then C, and so forth, with Z at the
+        /// top, with the bottom of the A at scroll offset zero, and the top of the Z
+        /// at the highest scroll offset.
+        ///
+        /// If a viewport has an overall [AxisDirection] of [AxisDirection.down], then
+        /// slivers above the absolute zero offset will have an axis of
+        /// [AxisDirection.up] and a growth direction of [GrowthDirection.reverse],
+        /// while slivers below the absolute zero offset will have the same axis
+        /// direction as the viewport and a growth direction of
+        /// [GrowthDirection.forward]. (The slivers with a reverse growth direction
+        /// still see only positive scroll offsets; the scroll offsets are reversed as
+        /// well, with zero at the absolute zero point, and positive numbers going
+        /// away from there.)
+        ///
+        /// Normally, the absolute zero offset is determined by the viewport's
+        /// [RenderViewport.center] and [RenderViewport.anchor] properties.
+        /// </Summary>
         public virtual FlutterSDK.Rendering.Sliver.GrowthDirection GrowthDirection { get; set; }
+        /// <Summary>
+        /// The direction in which the user is attempting to scroll, relative to the
+        /// [axisDirection] and [growthDirection].
+        ///
+        /// For example, if [growthDirection] is [GrowthDirection.reverse] and
+        /// [axisDirection] is [AxisDirection.down], then a
+        /// [ScrollDirection.forward] means that the user is scrolling up, in the
+        /// positive [scrollOffset] direction.
+        ///
+        /// If the _user_ is not scrolling, this will return [ScrollDirection.idle]
+        /// even if there is (for example) a [ScrollActivity] currently animating the
+        /// position.
+        ///
+        /// This is used by some slivers to determine how to react to a change in
+        /// scroll offset. For example, [RenderSliverFloatingPersistentHeader] will
+        /// only expand a floating app bar when the [userScrollDirection] is in the
+        /// positive scroll offset direction.
+        /// </Summary>
         public virtual FlutterSDK.Rendering.Viewportoffset.ScrollDirection UserScrollDirection { get; set; }
+        /// <Summary>
+        /// The scroll offset, in this sliver's coordinate system, that corresponds to
+        /// the earliest visible part of this sliver in the [AxisDirection] if
+        /// [growthDirection] is [GrowthDirection.forward] or in the opposite
+        /// [AxisDirection] direction if [growthDirection] is [GrowthDirection.reverse].
+        ///
+        /// For example, if [AxisDirection] is [AxisDirection.down] and [growthDirection]
+        /// is [GrowthDirection.forward], then scroll offset is the amount the top of
+        /// the sliver has been scrolled past the top of the viewport.
+        ///
+        /// This value is typically used to compute whether this sliver should still
+        /// protrude into the viewport via [SliverGeometry.paintExtent] and
+        /// [SliverGeometry.layoutExtent] considering how far the beginning of the
+        /// sliver is above the beginning of the viewport.
+        ///
+        /// For slivers whose top is not past the top of the viewport, the
+        /// [scrollOffset] is `0` when [AxisDirection] is [AxisDirection.down] and
+        /// [growthDirection] is [GrowthDirection.forward]. The set of slivers with
+        /// [scrollOffset] `0` includes all the slivers that are below the bottom of the
+        /// viewport.
+        ///
+        /// [SliverConstraints.remainingPaintExtent] is typically used to accomplish
+        /// the same goal of computing whether scrolled out slivers should still
+        /// partially 'protrude in' from the bottom of the viewport.
+        ///
+        /// Whether this corresponds to the beginning or the end of the sliver's
+        /// contents depends on the [growthDirection].
+        /// </Summary>
         public virtual double ScrollOffset { get; set; }
+        /// <Summary>
+        /// The scroll distance that has been consumed by all [Sliver]s that came
+        /// before this [Sliver].
+        ///
+        /// # Edge Cases
+        ///
+        /// [Sliver]s often lazily create their internal content as layout occurs,
+        /// e.g., [SliverList]. In this case, when [Sliver]s exceed the viewport,
+        /// their children are built lazily, and the [Sliver] does not have enough
+        /// information to estimate its total extent, [precedingScrollExtent] will be
+        /// [double.infinity] for all [Sliver]s that appear after the lazily
+        /// constructed child. This is because a total [scrollExtent] cannot be
+        /// calculated unless all inner children have been created and sized, or the
+        /// number of children and estimated extents are provided. The infinite
+        /// [scrollExtent] will become finite as soon as enough information is
+        /// available to estimate the overall extent of all children within the given
+        /// [Sliver].
+        ///
+        /// [Sliver]s may legitimately be infinite, meaning that they can scroll
+        /// content forever without reaching the end. For any [Sliver]s that appear
+        /// after the infinite [Sliver], the [precedingScrollExtent] will be
+        /// [double.infinity].
+        /// </Summary>
         public virtual double PrecedingScrollExtent { get; set; }
+        /// <Summary>
+        /// The number of pixels from where the pixels corresponding to the
+        /// [scrollOffset] will be painted up to the first pixel that has not yet been
+        /// painted on by an earlier sliver, in the [axisDirection].
+        ///
+        /// For example, if the previous sliver had a [SliverGeometry.paintExtent] of
+        /// 100.0 pixels but a [SliverGeometry.layoutExtent] of only 50.0 pixels,
+        /// then the [overlap] of this sliver will be 50.0.
+        ///
+        /// This is typically ignored unless the sliver is itself going to be pinned
+        /// or floating and wants to avoid doing so under the previous sliver.
+        /// </Summary>
         public virtual double Overlap { get; set; }
+        /// <Summary>
+        /// The number of pixels of content that the sliver should consider providing.
+        /// (Providing more pixels than this is inefficient.)
+        ///
+        /// The actual number of pixels provided should be specified in the
+        /// [RenderSliver.geometry] as [SliverGeometry.paintExtent].
+        ///
+        /// This value may be infinite, for example if the viewport is an
+        /// unconstrained [RenderShrinkWrappingViewport].
+        ///
+        /// This value may be 0.0, for example if the sliver is scrolled off the
+        /// bottom of a downwards vertical viewport.
+        /// </Summary>
         public virtual double RemainingPaintExtent { get; set; }
+        /// <Summary>
+        /// The number of pixels in the cross-axis.
+        ///
+        /// For a vertical list, this is the width of the sliver.
+        /// </Summary>
         public virtual double CrossAxisExtent { get; set; }
+        /// <Summary>
+        /// The direction in which children should be placed in the cross axis.
+        ///
+        /// Typically used in vertical lists to describe whether the ambient
+        /// [TextDirection] is [TextDirection.rtl] or [TextDirection.ltr].
+        /// </Summary>
         public virtual FlutterSDK.Painting.Basictypes.AxisDirection CrossAxisDirection { get; set; }
+        /// <Summary>
+        /// The number of pixels the viewport can display in the main axis.
+        ///
+        /// For a vertical list, this is the height of the viewport.
+        /// </Summary>
         public virtual double ViewportMainAxisExtent { get; set; }
+        /// <Summary>
+        /// Where the cache area starts relative to the [scrollOffset].
+        ///
+        /// Slivers that fall into the cache area located before the leading edge and
+        /// after the trailing edge of the viewport should still render content
+        /// because they are about to become visible when the user scrolls.
+        ///
+        /// The [cacheOrigin] describes where the [remainingCacheExtent] starts relative
+        /// to the [scrollOffset]. A cache origin of 0 means that the sliver does not
+        /// have to provide any content before the current [scrollOffset]. A
+        /// [cacheOrigin] of -250.0 means that even though the first visible part of
+        /// the sliver will be at the provided [scrollOffset], the sliver should
+        /// render content starting 250.0 before the [scrollOffset] to fill the
+        /// cache area of the viewport.
+        ///
+        /// The [cacheOrigin] is always negative or zero and will never exceed
+        /// -[scrollOffset]. In other words, a sliver is never asked to provide
+        /// content before its zero [scrollOffset].
+        ///
+        /// See also:
+        ///
+        ///  * [RenderViewport.cacheExtent] for a description of a viewport's cache area.
+        /// </Summary>
         public virtual double CacheOrigin { get; set; }
+        /// <Summary>
+        /// Describes how much content the sliver should provide starting from the
+        /// [cacheOrigin].
+        ///
+        /// Not all content in the [remainingCacheExtent] will be visible as some
+        /// of it might fall into the cache area of the viewport.
+        ///
+        /// Each sliver should start laying out content at the [cacheOrigin] and
+        /// try to provide as much content as the [remainingCacheExtent] allows.
+        ///
+        /// The [remainingCacheExtent] is always larger or equal to the
+        /// [remainingPaintExtent]. Content, that falls in the [remainingCacheExtent],
+        /// but is outside of the [remainingPaintExtent] is currently not visible
+        /// in the viewport.
+        ///
+        /// See also:
+        ///
+        ///  * [RenderViewport.cacheExtent] for a description of a viewport's cache area.
+        /// </Summary>
         public virtual double RemainingCacheExtent { get; set; }
         public virtual FlutterSDK.Painting.Basictypes.Axis Axis { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterSDK.Rendering.Sliver.GrowthDirection NormalizedGrowthDirection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
@@ -1187,6 +1404,16 @@ namespace FlutterSDK.Rendering.Sliver
     /// </Summary>
     public class SliverGeometry : IDiagnosticable
     {
+        /// <Summary>
+        /// Creates an object that describes the amount of space occupied by a sliver.
+        ///
+        /// If the [layoutExtent] argument is null, [layoutExtent] defaults to the
+        /// [paintExtent]. If the [hitTestExtent] argument is null, [hitTestExtent]
+        /// defaults to the [paintExtent]. If [visible] is null, [visible] defaults to
+        /// whether [paintExtent] is greater than zero.
+        ///
+        /// The other arguments must not be null.
+        /// </Summary>
         public SliverGeometry(double scrollExtent = 0.0, double paintExtent = 0.0, double paintOrigin = 0.0, double layoutExtent = default(double), double maxPaintExtent = 0.0, double maxScrollObstructionExtent = 0.0, double hitTestExtent = default(double), bool visible = default(bool), bool hasVisualOverflow = false, double scrollOffsetCorrection = default(double), double cacheExtent = default(double))
         : base()
         {
@@ -1198,17 +1425,165 @@ namespace FlutterSDK.Rendering.Sliver
             this.HasVisualOverflow = hasVisualOverflow;
             this.ScrollOffsetCorrection = scrollOffsetCorrection;
         }
+        /// <Summary>
+        /// A sliver that occupies no space at all.
+        /// </Summary>
         public virtual FlutterSDK.Rendering.Sliver.SliverGeometry Zero { get; set; }
+        /// <Summary>
+        /// The (estimated) total scrollable extent that this sliver has content for.
+        ///
+        /// This is the amount of scrolling the user needs to do to get from the
+        /// beginning of this sliver to the end of this sliver.
+        ///
+        /// The value is used to calculate the [SliverConstraints.scrollOffset] of
+        /// all slivers in the scrollable and thus should be provided whether the
+        /// sliver is currently in the viewport or not.
+        ///
+        /// In a typical scrolling scenario, the [scrollExtent] is constant for a
+        /// sliver throughout the scrolling while [paintExtent] and [layoutExtent]
+        /// will progress from `0` when offscreen to between `0` and [scrollExtent]
+        /// as the sliver scrolls partially into and out of the screen and is
+        /// equal to [scrollExtent] while the sliver is entirely on screen. However,
+        /// these relationships can be customized to achieve more special effects.
+        ///
+        /// This value must be accurate if the [paintExtent] is less than the
+        /// [SliverConstraints.remainingPaintExtent] provided during layout.
+        /// </Summary>
         public virtual double ScrollExtent { get; set; }
+        /// <Summary>
+        /// The visual location of the first visible part of this sliver relative to
+        /// its layout position.
+        ///
+        /// For example, if the sliver wishes to paint visually before its layout
+        /// position, the [paintOrigin] is negative. The coordinate system this sliver
+        /// uses for painting is relative to this [paintOrigin]. In other words,
+        /// when [RenderSliver.paint] is called, the (0, 0) position of the [Offset]
+        /// given to it is at this [paintOrigin].
+        ///
+        /// The coordinate system used for the [paintOrigin] itself is relative
+        /// to the start of this sliver's layout position rather than relative to
+        /// its current position on the viewport. In other words, in a typical
+        /// scrolling scenario, [paintOrigin] remains constant at 0.0 rather than
+        /// tracking from 0.0 to [SliverConstraints.viewportMainAxisExtent] as the
+        /// sliver scrolls past the viewport.
+        ///
+        /// This value does not affect the layout of subsequent slivers. The next
+        /// sliver is still placed at [layoutExtent] after this sliver's layout
+        /// position. This value does affect where the [paintExtent] extent is
+        /// measured from when computing the [SliverConstraints.overlap] for the next
+        /// sliver.
+        ///
+        /// Defaults to 0.0, which means slivers start painting at their layout
+        /// position by default.
+        /// </Summary>
         public virtual double PaintOrigin { get; set; }
+        /// <Summary>
+        /// The amount of currently visible visual space that was taken by the sliver
+        /// to render the subset of the sliver that covers all or part of the
+        /// [SliverConstraints.remainingPaintExtent] in the current viewport.
+        ///
+        /// This value does not affect how the next sliver is positioned. In other
+        /// words, if this value was 100 and [layoutExtent] was 0, typical slivers
+        /// placed after it would end up drawing in the same 100 pixel space while
+        /// painting.
+        ///
+        /// This must be between zero and [SliverConstraints.remainingPaintExtent].
+        ///
+        /// This value is typically 0 when outside of the viewport and grows or
+        /// shrinks from 0 or to 0 as the sliver is being scrolled into and out of the
+        /// viewport unless the sliver wants to achieve a special effect and paint
+        /// even when scrolled away.
+        ///
+        /// This contributes to the calculation for the next sliver's
+        /// [SliverConstraints.overlap].
+        /// </Summary>
         public virtual double PaintExtent { get; set; }
+        /// <Summary>
+        /// The distance from the first visible part of this sliver to the first
+        /// visible part of the next sliver, assuming the next sliver's
+        /// [SliverConstraints.scrollOffset] is zero.
+        ///
+        /// This must be between zero and [paintExtent]. It defaults to [paintExtent].
+        ///
+        /// This value is typically 0 when outside of the viewport and grows or
+        /// shrinks from 0 or to 0 as the sliver is being scrolled into and out of the
+        /// viewport unless then sliver wants to achieve a special effect and push
+        /// down the layout start position of subsequent slivers before the sliver is
+        /// even scrolled into the viewport.
+        /// </Summary>
         public virtual double LayoutExtent { get; set; }
+        /// <Summary>
+        /// The (estimated) total paint extent that this sliver would be able to
+        /// provide if the [SliverConstraints.remainingPaintExtent] was infinite.
+        ///
+        /// This is used by viewports that implement shrink-wrapping.
+        ///
+        /// By definition, this cannot be less than [paintExtent].
+        /// </Summary>
         public virtual double MaxPaintExtent { get; set; }
+        /// <Summary>
+        /// The maximum extent by which this sliver can reduce the area in which
+        /// content can scroll if the sliver were pinned at the edge.
+        ///
+        /// Slivers that never get pinned at the edge, should return zero.
+        ///
+        /// A pinned app bar is an example for a sliver that would use this setting:
+        /// When the app bar is pinned to the top, the area in which content can
+        /// actually scroll is reduced by the height of the app bar.
+        /// </Summary>
         public virtual double MaxScrollObstructionExtent { get; set; }
+        /// <Summary>
+        /// The distance from where this sliver started painting to the bottom of
+        /// where it should accept hits.
+        ///
+        /// This must be between zero and [paintExtent]. It defaults to [paintExtent].
+        /// </Summary>
         public virtual double HitTestExtent { get; set; }
+        /// <Summary>
+        /// Whether this sliver should be painted.
+        ///
+        /// By default, this is true if [paintExtent] is greater than zero, and
+        /// false if [paintExtent] is zero.
+        /// </Summary>
         public virtual bool Visible { get; set; }
+        /// <Summary>
+        /// Whether this sliver has visual overflow.
+        ///
+        /// By default, this is false, which means the viewport does not need to clip
+        /// its children. If any slivers have visual overflow, the viewport will apply
+        /// a clip to its children.
+        /// </Summary>
         public virtual bool HasVisualOverflow { get; set; }
+        /// <Summary>
+        /// If this is non-zero after [RenderSliver.performLayout] returns, the scroll
+        /// offset will be adjusted by the parent and then the entire layout of the
+        /// parent will be rerun.
+        ///
+        /// When the value is non-zero, the [RenderSliver] does not need to compute
+        /// the rest of the values when constructing the [SliverGeometry] or call
+        /// [RenderObject.layout] on its children since [RenderSliver.performLayout]
+        /// will be called again on this sliver in the same frame after the
+        /// [SliverConstraints.scrollOffset] correction has been applied, when the
+        /// proper [SliverGeometry] and layout of its children can be computed.
+        ///
+        /// If the parent is also a [RenderSliver], it must propagate this value
+        /// in its own [RenderSliver.geometry] property until a viewport which adjusts
+        /// its offset based on this value.
+        /// </Summary>
         public virtual double ScrollOffsetCorrection { get; set; }
+        /// <Summary>
+        /// How many pixels the sliver has consumed in the
+        /// [SliverConstraints.remainingCacheExtent].
+        ///
+        /// This value should be equal to or larger than the [layoutExtent] because
+        /// the sliver always consumes at least the [layoutExtent] from the
+        /// [SliverConstraints.remainingCacheExtent] and possibly more if it falls
+        /// into the cache area of the viewport.
+        ///
+        /// See also:
+        ///
+        ///  * [RenderViewport.cacheExtent] for a description of a viewport's cache area.
+        /// </Summary>
         public virtual double CacheExtent { get; set; }
 
         /// <Summary>
@@ -1273,11 +1648,34 @@ namespace FlutterSDK.Rendering.Sliver
     /// </Summary>
     public class SliverHitTestResult : FlutterSDK.Gestures.Hittest.HitTestResult
     {
+        /// <Summary>
+        /// Creates an empty hit test result for hit testing on [RenderSliver].
+        /// </Summary>
         public SliverHitTestResult()
         : base()
         {
 
         }
+        /// <Summary>
+        /// Wraps `result` to create a [HitTestResult] that implements the
+        /// [SliverHitTestResult] protocol for hit testing on [RenderSliver]s.
+        ///
+        /// This method is used by [RenderObject]s that adapt between the
+        /// [RenderSliver]-world and the non-[RenderSliver]-world to convert a
+        /// (subtype of) [HitTestResult] to a [SliverHitTestResult] for hit testing on
+        /// [RenderSliver]s.
+        ///
+        /// The [HitTestEntry] instances added to the returned [SliverHitTestResult]
+        /// are also added to the wrapped `result` (both share the same underlying
+        /// data structure to store [HitTestEntry] instances).
+        ///
+        /// See also:
+        ///
+        ///  * [HitTestResult.wrap], which turns a [SliverHitTestResult] back into a
+        ///    generic [HitTestResult].
+        ///  * [BoxHitTestResult.wrap], which turns a [SliverHitTestResult] into a
+        ///    [BoxHitTestResult] for hit testing on [RenderBox] children.
+        /// </Summary>
         public static SliverHitTestResult Wrap(FlutterSDK.Gestures.Hittest.HitTestResult result)
         {
             var instance = new SliverHitTestResult(result);
@@ -1339,13 +1737,39 @@ namespace FlutterSDK.Rendering.Sliver
     /// </Summary>
     public class SliverHitTestEntry : FlutterSDK.Gestures.Hittest.HitTestEntry
     {
+        /// <Summary>
+        /// Creates a sliver hit test entry.
+        ///
+        /// The [mainAxisPosition] and [crossAxisPosition] arguments must not be null.
+        /// </Summary>
         public SliverHitTestEntry(FlutterSDK.Rendering.Sliver.RenderSliver target, double mainAxisPosition = default(double), double crossAxisPosition = default(double))
         : base(target)
         {
             this.MainAxisPosition = mainAxisPosition;
             this.CrossAxisPosition = crossAxisPosition;
         }
+        /// <Summary>
+        /// The distance in the [AxisDirection] from the edge of the sliver's painted
+        /// area (as given by the [SliverConstraints.scrollOffset]) to the hit point.
+        /// This can be an unusual direction, for example in the [AxisDirection.up]
+        /// case this is a distance from the _bottom_ of the sliver's painted area.
+        /// </Summary>
         public virtual double MainAxisPosition { get; set; }
+        /// <Summary>
+        /// The distance to the hit point in the axis opposite the
+        /// [SliverConstraints.axis].
+        ///
+        /// If the cross axis is horizontal (i.e. the
+        /// [SliverConstraints.axisDirection] is either [AxisDirection.down] or
+        /// [AxisDirection.up]), then the `crossAxisPosition` is a distance from the
+        /// left edge of the sliver. If the cross axis is vertical (i.e. the
+        /// [SliverConstraints.axisDirection] is either [AxisDirection.right] or
+        /// [AxisDirection.left]), then the `crossAxisPosition` is a distance from the
+        /// top edge of the sliver.
+        ///
+        /// This is always a distance from the left or top of the parent, never a
+        /// distance from the right or bottom.
+        /// </Summary>
         public virtual double CrossAxisPosition { get; set; }
         public virtual FlutterSDK.Rendering.Sliver.RenderSliver Target { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 
@@ -1364,6 +1788,18 @@ namespace FlutterSDK.Rendering.Sliver
     {
         public SliverLogicalParentData()
         { }
+        /// <Summary>
+        /// The position of the child relative to the zero scroll offset.
+        ///
+        /// The number of pixels from from the zero scroll offset of the parent sliver
+        /// (the line at which its [SliverConstraints.scrollOffset] is zero) to the
+        /// side of the child closest to that offset. A [layoutOffset] can be null
+        /// when it cannot be determined. The value will be set after layout.
+        ///
+        /// In a typical list, this does not change as the parent is scrolled.
+        ///
+        /// Defaults to null.
+        /// </Summary>
         public virtual double LayoutOffset { get; set; }
 
     }
@@ -1395,6 +1831,12 @@ namespace FlutterSDK.Rendering.Sliver
     {
         public SliverPhysicalParentData()
         { }
+        /// <Summary>
+        /// The position of the child relative to the parent.
+        ///
+        /// This is the distance from the top left visible corner of the parent to the
+        /// top left visible corner of the sliver.
+        /// </Summary>
         public virtual FlutterBinding.UI.Offset PaintOffset { get; set; }
 
         /// <Summary>
@@ -1911,6 +2353,9 @@ namespace FlutterSDK.Rendering.Sliver
     /// </Summary>
     public class RenderSliverSingleBoxAdapter : FlutterSDK.Rendering.Sliver.RenderSliver, IRenderObjectWithChildMixin<FlutterSDK.Rendering.Box.RenderBox>, IRenderSliverHelpers
     {
+        /// <Summary>
+        /// Creates a [RenderSliver] that wraps a [RenderBox].
+        /// </Summary>
         public RenderSliverSingleBoxAdapter(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox))
         {
 
@@ -2010,6 +2455,9 @@ namespace FlutterSDK.Rendering.Sliver
     /// </Summary>
     public class RenderSliverToBoxAdapter : FlutterSDK.Rendering.Sliver.RenderSliverSingleBoxAdapter
     {
+        /// <Summary>
+        /// Creates a [RenderSliver] that wraps a [RenderBox].
+        /// </Summary>
         public RenderSliverToBoxAdapter(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox))
         : base(child: child)
         {

@@ -309,6 +309,11 @@ namespace FlutterSDK.Gestures.Eager
     /// </Summary>
     public class EagerGestureRecognizer : FlutterSDK.Gestures.Recognizer.OneSequenceGestureRecognizer
     {
+        /// <Summary>
+        /// Create an eager gesture recognizer.
+        ///
+        /// {@macro flutter.gestures.gestureRecognizer.kind}
+        /// </Summary>
         public EagerGestureRecognizer(PointerDeviceKind kind = default(PointerDeviceKind))
         : base(kind: kind)
         {

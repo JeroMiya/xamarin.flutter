@@ -440,13 +440,30 @@ namespace FlutterSDK.Widgets.Willpopscope
     /// </Summary>
     public class WillPopScope : FlutterSDK.Widgets.Framework.StatefulWidget
     {
+        /// <Summary>
+        /// Creates a widget that registers a callback to veto attempts by the user to
+        /// dismiss the enclosing [ModalRoute].
+        ///
+        /// The [child] argument must not be null.
+        /// </Summary>
         public WillPopScope(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Navigator.WillPopCallback onWillPop = default(FlutterSDK.Widgets.Navigator.WillPopCallback))
         : base(key: key)
         {
             this.Child = child;
             this.OnWillPop = onWillPop;
         }
+        /// <Summary>
+        /// The widget below this widget in the tree.
+        ///
+        /// {@macro flutter.widgets.child}
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+        /// <Summary>
+        /// Called to veto attempts by the user to dismiss the enclosing [ModalRoute].
+        ///
+        /// If the callback returns a Future that resolves to false, the enclosing
+        /// route will not be popped.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Navigator.WillPopCallback OnWillPop { get; set; }
 
         public new FlutterSDK.Widgets.Willpopscope._WillPopScopeState CreateState() => new _WillPopScopeState();

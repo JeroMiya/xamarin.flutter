@@ -488,6 +488,21 @@ namespace FlutterSDK.Material.Radio
     /// </Summary>
     public class Radio<T> : FlutterSDK.Widgets.Framework.StatefulWidget
     {
+        /// <Summary>
+        /// Creates a material design radio button.
+        ///
+        /// The radio button itself does not maintain any state. Instead, when the
+        /// radio button is selected, the widget calls the [onChanged] callback. Most
+        /// widgets that use a radio button will listen for the [onChanged] callback
+        /// and rebuild the radio button with a new [groupValue] to update the visual
+        /// appearance of the radio button.
+        ///
+        /// The following arguments are required:
+        ///
+        /// * [value] and [groupValue] together determine whether the radio button is
+        ///   selected.
+        /// * [onChanged] is called when the user selects this radio button.
+        /// </Summary>
         public Radio(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), T value = default(T), T groupValue = default(T), FlutterSDK.Foundation.Basictypes.ValueChanged<T> onChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<T>), FlutterBinding.UI.Color activeColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color focusColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color hoverColor = default(FlutterBinding.UI.Color), FlutterSDK.Material.Themedata.MaterialTapTargetSize materialTapTargetSize = default(FlutterSDK.Material.Themedata.MaterialTapTargetSize), FlutterSDK.Material.Themedata.VisualDensity visualDensity = default(FlutterSDK.Material.Themedata.VisualDensity), FlutterSDK.Widgets.Focusmanager.FocusNode focusNode = default(FlutterSDK.Widgets.Focusmanager.FocusNode), bool autofocus = false)
         : base(key: key)
         {
@@ -502,15 +517,88 @@ namespace FlutterSDK.Material.Radio
             this.FocusNode = focusNode;
             this.Autofocus = autofocus;
         }
+        /// <Summary>
+        /// The value represented by this radio button.
+        /// </Summary>
         public virtual T Value { get; set; }
+        /// <Summary>
+        /// The currently selected value for a group of radio buttons.
+        ///
+        /// This radio button is considered selected if its [value] matches the
+        /// [groupValue].
+        /// </Summary>
         public virtual T GroupValue { get; set; }
+        /// <Summary>
+        /// Called when the user selects this radio button.
+        ///
+        /// The radio button passes [value] as a parameter to this callback. The radio
+        /// button does not actually change state until the parent widget rebuilds the
+        /// radio button with the new [groupValue].
+        ///
+        /// If null, the radio button will be displayed as disabled.
+        ///
+        /// The provided callback will not be invoked if this radio button is already
+        /// selected.
+        ///
+        /// The callback provided to [onChanged] should update the state of the parent
+        /// [StatefulWidget] using the [State.setState] method, so that the parent
+        /// gets rebuilt; for example:
+        ///
+        /// ```dart
+        /// Radio<SingingCharacter>(
+        ///   value: SingingCharacter.lafayette,
+        ///   groupValue: _character,
+        ///   onChanged: (SingingCharacter newValue) {
+        ///     setState(() {
+        ///       _character = newValue;
+        ///     });
+        ///   },
+        /// )
+        /// ```
+        /// </Summary>
         public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<T> OnChanged { get; set; }
+        /// <Summary>
+        /// The color to use when this radio button is selected.
+        ///
+        /// Defaults to [ThemeData.toggleableActiveColor].
+        /// </Summary>
         public virtual FlutterBinding.UI.Color ActiveColor { get; set; }
+        /// <Summary>
+        /// Configures the minimum size of the tap target.
+        ///
+        /// Defaults to [ThemeData.materialTapTargetSize].
+        ///
+        /// See also:
+        ///
+        ///  * [MaterialTapTargetSize], for a description of how this affects tap targets.
+        /// </Summary>
         public virtual FlutterSDK.Material.Themedata.MaterialTapTargetSize MaterialTapTargetSize { get; set; }
+        /// <Summary>
+        /// Defines how compact the radio's layout will be.
+        ///
+        /// {@macro flutter.material.themedata.visualDensity}
+        ///
+        /// See also:
+        ///
+        ///  * [ThemeData.visualDensity], which specifies the [density] for all widgets
+        ///    within a [Theme].
+        /// </Summary>
         public virtual FlutterSDK.Material.Themedata.VisualDensity VisualDensity { get; set; }
+        /// <Summary>
+        /// The color for the radio's [Material] when it has the input focus.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color FocusColor { get; set; }
+        /// <Summary>
+        /// The color for the radio's [Material] when a pointer is hovering over it.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color HoverColor { get; set; }
+        /// <Summary>
+        /// {@macro flutter.widgets.Focus.focusNode}
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Focusmanager.FocusNode FocusNode { get; set; }
+        /// <Summary>
+        /// {@macro flutter.widgets.Focus.autofocus}
+        /// </Summary>
         public virtual bool Autofocus { get; set; }
 
         public new _RadioState<T> CreateState() => new _RadioState<T>();

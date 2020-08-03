@@ -404,6 +404,11 @@ namespace FlutterSDK.Material.Gridtilebar
     /// </Summary>
     public class GridTileBar : FlutterSDK.Widgets.Framework.StatelessWidget
     {
+        /// <Summary>
+        /// Creates a grid tile bar.
+        ///
+        /// Typically used to with [GridTile].
+        /// </Summary>
         public GridTileBar(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), FlutterSDK.Widgets.Framework.Widget leading = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget title = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget subtitle = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget trailing = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key)
         {
@@ -413,10 +418,35 @@ namespace FlutterSDK.Material.Gridtilebar
             this.Subtitle = subtitle;
             this.Trailing = trailing;
         }
+        /// <Summary>
+        /// The color to paint behind the child widgets.
+        ///
+        /// Defaults to transparent.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
+        /// <Summary>
+        /// A widget to display before the title.
+        ///
+        /// Typically an [Icon] or an [IconButton] widget.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Leading { get; set; }
+        /// <Summary>
+        /// The primary content of the list item.
+        ///
+        /// Typically a [Text] widget.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Title { get; set; }
+        /// <Summary>
+        /// Additional content displayed below the title.
+        ///
+        /// Typically a [Text] widget.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Subtitle { get; set; }
+        /// <Summary>
+        /// A widget to display after the title.
+        ///
+        /// Typically an [Icon] or an [IconButton] widget.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Trailing { get; set; }
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)

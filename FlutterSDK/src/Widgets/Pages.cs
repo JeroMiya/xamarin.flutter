@@ -454,11 +454,22 @@ namespace FlutterSDK.Widgets.Pages
     /// </Summary>
     public class PageRoute<T> : FlutterSDK.Widgets.Routes.ModalRoute<T>
     {
+        /// <Summary>
+        /// Creates a modal route that replaces the entire screen.
+        /// </Summary>
         public PageRoute(FlutterSDK.Widgets.Navigator.RouteSettings settings = default(FlutterSDK.Widgets.Navigator.RouteSettings), bool fullscreenDialog = false)
         : base(settings: settings)
         {
             this.FullscreenDialog = fullscreenDialog;
         }
+        /// <Summary>
+        /// Whether this page route is a full-screen dialog.
+        ///
+        /// In Material and Cupertino, being fullscreen has the effects of making
+        /// the app bars have a close button instead of a back button. On
+        /// iOS, dialogs transitions animate differently and are also not closeable
+        /// with the back swipe gesture.
+        /// </Summary>
         public virtual bool FullscreenDialog { get; set; }
         public virtual bool Opaque { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool BarrierDismissible { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
@@ -481,6 +492,12 @@ namespace FlutterSDK.Widgets.Pages
     /// </Summary>
     public class PageRouteBuilder<T> : FlutterSDK.Widgets.Pages.PageRoute<T>
     {
+        /// <Summary>
+        /// Creates a route that delegates to builder callbacks.
+        ///
+        /// The [pageBuilder], [transitionsBuilder], [opaque], [barrierDismissible],
+        /// [maintainState], and [fullscreenDialog] arguments must not be null.
+        /// </Summary>
         public PageRouteBuilder(FlutterSDK.Widgets.Navigator.RouteSettings settings = default(FlutterSDK.Widgets.Navigator.RouteSettings), FlutterSDK.Widgets.Routes.RoutePageBuilder pageBuilder = default(FlutterSDK.Widgets.Routes.RoutePageBuilder), FlutterSDK.Widgets.Routes.RouteTransitionsBuilder transitionsBuilder = default(FlutterSDK.Widgets.Routes.RouteTransitionsBuilder), TimeSpan transitionDuration = default(TimeSpan), bool opaque = true, bool barrierDismissible = false, FlutterBinding.UI.Color barrierColor = default(FlutterBinding.UI.Color), string barrierLabel = default(string), bool maintainState = true, bool fullscreenDialog = false)
         : base(settings: settings, fullscreenDialog: fullscreenDialog)
         {
@@ -493,7 +510,17 @@ namespace FlutterSDK.Widgets.Pages
             this.BarrierLabel = barrierLabel;
             this.MaintainState = maintainState;
         }
+        /// <Summary>
+        /// Used build the route's primary contents.
+        ///
+        /// See [ModalRoute.buildPage] for complete definition of the parameters.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Routes.RoutePageBuilder PageBuilder { get; set; }
+        /// <Summary>
+        /// Used to build the route's transitions.
+        ///
+        /// See [ModalRoute.buildTransitions] for complete definition of the parameters.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Routes.RouteTransitionsBuilder TransitionsBuilder { get; set; }
         public new TimeSpan TransitionDuration { get; set; }
         public new bool Opaque { get; set; }

@@ -4,6 +4,7 @@ import 'package:analyzer/src/dart/element/element.dart';
 import 'package:analyzer/dart/ast/ast.dart';
 import '../implementation/implementation.dart';
 import '../naming.dart';
+import '../comments.dart';
 import 'methods.dart';
 import '../config.dart';
 import 'package:front_end/src/scanner/token.dart';
@@ -18,6 +19,8 @@ class Constructors {
       var callsBaseCtor = constructor.redirectedConstructor != null ||
           (constructor.constantInitializers != null &&
               constructor.constantInitializers.length > 0);
+
+      Comments.appendComment(code, constructor);
 
       var parameters = Methods.printParameter(constructor, null, null);
       // normal constructors do not have any special key chars

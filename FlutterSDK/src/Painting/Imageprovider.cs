@@ -423,8 +423,24 @@ using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
 namespace FlutterSDK.Painting.Imageprovider
 {
+    /// <Summary>
+    /// Signature for the callback taken by [_createErrorHandlerAndKey].
+    /// </Summary>
     public delegate void _KeyAndErrorHandlerCallback<T>(T key, FlutterSDK.Painting.Imagestream.ImageErrorListener handleError);
+    /// <Summary>
+    /// Signature used for error handling by [_createErrorHandlerAndKey].
+    /// </Summary>
     public delegate Future<object> _AsyncKeyErrorHandler<T>(T key, object exception, StackTrace stack);
+    /// <Summary>
+    /// Performs the decode process for use in [ImageProvider.load].
+    ///
+    /// This callback allows decoupling of the `cacheWidth` and `cacheHeight`
+    /// parameters from implementations of [ImageProvider] that do not use them.
+    ///
+    /// See also:
+    ///
+    ///  * [ResizeImage], which uses this to override the `cacheWidth` and `cacheHeight` parameters.
+    /// </Summary>
     public delegate Future<SKCodec> DecoderCallback(Uint8List bytes, int cacheWidth = default(int), int cacheHeight = default(int));
     internal static class ImageproviderDefaultClass
     {
@@ -626,6 +642,12 @@ namespace FlutterSDK.Painting.Imageprovider
     /// </Summary>
     public class ImageConfiguration
     {
+        /// <Summary>
+        /// Creates an object holding the configuration information for an [ImageProvider].
+        ///
+        /// All the arguments are optional. Configuration information is merely
+        /// advisory and best-effort.
+        /// </Summary>
         public ImageConfiguration(FlutterSDK.Services.Assetbundle.AssetBundle bundle = default(FlutterSDK.Services.Assetbundle.AssetBundle), double devicePixelRatio = default(double), Locale locale = default(Locale), TextDirection textDirection = default(TextDirection), Size size = default(Size), FlutterSDK.Foundation.Platform.TargetPlatform platform = default(FlutterSDK.Foundation.Platform.TargetPlatform))
         {
             this.Bundle = bundle;
@@ -635,12 +657,39 @@ namespace FlutterSDK.Painting.Imageprovider
             this.Size = size;
             this.Platform = platform;
         }
+        /// <Summary>
+        /// The preferred [AssetBundle] to use if the [ImageProvider] needs one and
+        /// does not have one already selected.
+        /// </Summary>
         public virtual FlutterSDK.Services.Assetbundle.AssetBundle Bundle { get; set; }
+        /// <Summary>
+        /// The device pixel ratio where the image will be shown.
+        /// </Summary>
         public virtual double DevicePixelRatio { get; set; }
+        /// <Summary>
+        /// The language and region for which to select the image.
+        /// </Summary>
         public virtual Locale Locale { get; set; }
+        /// <Summary>
+        /// The reading direction of the language for which to select the image.
+        /// </Summary>
         public virtual TextDirection TextDirection { get; set; }
+        /// <Summary>
+        /// The size at which the image will be rendered.
+        /// </Summary>
         public virtual Size Size { get; set; }
+        /// <Summary>
+        /// The [TargetPlatform] for which assets should be used. This allows images
+        /// to be specified in a platform-neutral fashion yet use different assets on
+        /// different platforms, to match local conventions e.g. for color matching or
+        /// shadows.
+        /// </Summary>
         public virtual FlutterSDK.Foundation.Platform.TargetPlatform Platform { get; set; }
+        /// <Summary>
+        /// An image configuration that provides no additional information.
+        ///
+        /// Useful when resolving an [ImageProvider] without any context.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Imageprovider.ImageConfiguration Empty { get; set; }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 
@@ -807,6 +856,10 @@ namespace FlutterSDK.Painting.Imageprovider
     /// </Summary>
     public class ImageProvider<T>
     {
+        /// <Summary>
+        /// Abstract const constructor. This constructor enables subclasses to provide
+        /// const constructors so that they can be used in const expressions.
+        /// </Summary>
         public ImageProvider()
         {
 
@@ -1099,6 +1152,11 @@ public virtual FlutterSDK.Painting.Imagestream.ImageStreamCompleter Load(T key, 
 /// </Summary>
 public class AssetBundleImageKey
 {
+    /// <Summary>
+    /// Creates the key for an [AssetImage] or [AssetBundleImageProvider].
+    ///
+    /// The arguments must not be null.
+    /// </Summary>
     public AssetBundleImageKey(FlutterSDK.Services.Assetbundle.AssetBundle bundle = default(FlutterSDK.Services.Assetbundle.AssetBundle), string name = default(string), double scale = default(double))
     : base()
     {
@@ -1106,8 +1164,21 @@ public class AssetBundleImageKey
         this.Name = name;
         this.Scale = scale;
     }
+    /// <Summary>
+    /// The bundle from which the image will be obtained.
+    ///
+    /// The image is obtained by calling [AssetBundle.load] on the given [bundle]
+    /// using the key given by [name].
+    /// </Summary>
     public virtual FlutterSDK.Services.Assetbundle.AssetBundle Bundle { get; set; }
+    /// <Summary>
+    /// The key to use to obtain the resource from the [bundle]. This is the
+    /// argument passed to [AssetBundle.load].
+    /// </Summary>
     public virtual string Name { get; set; }
+    /// <Summary>
+    /// The scale to place in the [ImageInfo] object of the image.
+    /// </Summary>
     public virtual double Scale { get; set; }
     public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 
@@ -1131,6 +1202,10 @@ public class AssetBundleImageKey
 /// </Summary>
 public class AssetBundleImageProvider : FlutterSDK.Painting.Imageprovider.ImageProvider<FlutterSDK.Painting.Imageprovider.AssetBundleImageKey>
 {
+    /// <Summary>
+    /// Abstract const constructor. This constructor enables subclasses to provide
+    /// const constructors so that they can be used in const expressions.
+    /// </Summary>
     public AssetBundleImageProvider()
     {
 
@@ -1218,6 +1293,13 @@ public class _SizeAwareCacheKey
 /// </Summary>
 public class ResizeImage : FlutterSDK.Painting.Imageprovider.ImageProvider<FlutterSDK.Painting.Imageprovider._SizeAwareCacheKey>
 {
+    /// <Summary>
+    /// Creates an ImageProvider that decodes the image to the specified size.
+    ///
+    /// The cached image will be directly decoded and stored at the resolution
+    /// defined by `width` and `height`. The image will lose detail and
+    /// use less memory if resized to a size smaller than the native size.
+    /// </Summary>
     public ResizeImage(FlutterSDK.Painting.Imageprovider.ImageProvider<object> imageProvider, int width = default(int), int height = default(int))
     : base()
     {
@@ -1225,8 +1307,17 @@ public class ResizeImage : FlutterSDK.Painting.Imageprovider.ImageProvider<Flutt
         this.Width = width;
         this.Height = height;
     }
+    /// <Summary>
+    /// The [ImageProvider] that this class wraps.
+    /// </Summary>
     public virtual FlutterSDK.Painting.Imageprovider.ImageProvider<object> ImageProvider { get; set; }
+    /// <Summary>
+    /// The width the image should decode to and cache.
+    /// </Summary>
     public virtual int Width { get; set; }
+    /// <Summary>
+    /// The height the image should decode to and cache.
+    /// </Summary>
     public virtual int Height { get; set; }
 
     /// <Summary>
@@ -1310,6 +1401,11 @@ public new Future<FlutterSDK.Painting.Imageprovider._SizeAwareCacheKey> ObtainKe
 /// </Summary>
 public class NetworkImage : FlutterSDK.Painting.Imageprovider.ImageProvider<FlutterSDK.Painting.Imageprovider.NetworkImage>
 {
+    /// <Summary>
+    /// Creates an object that fetches the image at the given URL.
+    ///
+    /// The arguments [url] and [scale] must not be null.
+    /// </Summary>
     public NetworkImage(string url, double scale = default(double), Dictionary<string, string> headers = default(Dictionary<string, string>))
     : base()
     {
@@ -1337,13 +1433,24 @@ public class NetworkImage : FlutterSDK.Painting.Imageprovider.ImageProvider<Flut
 /// </Summary>
 public class FileImage : FlutterSDK.Painting.Imageprovider.ImageProvider<FlutterSDK.Painting.Imageprovider.FileImage>
 {
+    /// <Summary>
+    /// Creates an object that decodes a [File] as an image.
+    ///
+    /// The arguments must not be null.
+    /// </Summary>
     public FileImage(File file, double scale = 1.0)
     : base()
     {
         this.File = file;
         this.Scale = scale;
     }
+    /// <Summary>
+    /// The file to decode into an image.
+    /// </Summary>
     public virtual File File { get; set; }
+    /// <Summary>
+    /// The scale to place in the [ImageInfo] object of the image.
+    /// </Summary>
     public virtual double Scale { get; set; }
     public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 
@@ -1411,13 +1518,24 @@ public class FileImage : FlutterSDK.Painting.Imageprovider.ImageProvider<Flutter
 /// </Summary>
 public class MemoryImage : FlutterSDK.Painting.Imageprovider.ImageProvider<FlutterSDK.Painting.Imageprovider.MemoryImage>
 {
+    /// <Summary>
+    /// Creates an object that decodes a [Uint8List] buffer as an image.
+    ///
+    /// The arguments must not be null.
+    /// </Summary>
     public MemoryImage(Uint8List bytes, double scale = 1.0)
     : base()
     {
         this.Bytes = bytes;
         this.Scale = scale;
     }
+    /// <Summary>
+    /// The bytes to decode into an image.
+    /// </Summary>
     public virtual Uint8List Bytes { get; set; }
+    /// <Summary>
+    /// The scale to place in the [ImageInfo] object of the image.
+    /// </Summary>
     public virtual double Scale { get; set; }
     public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 
@@ -1531,6 +1649,18 @@ public class MemoryImage : FlutterSDK.Painting.Imageprovider.ImageProvider<Flutt
 /// </Summary>
 public class ExactAssetImage : FlutterSDK.Painting.Imageprovider.AssetBundleImageProvider
 {
+    /// <Summary>
+    /// Creates an object that fetches the given image from an asset bundle.
+    ///
+    /// The [assetName] and [scale] arguments must not be null. The [scale] arguments
+    /// defaults to 1.0. The [bundle] argument may be null, in which case the
+    /// bundle provided in the [ImageConfiguration] passed to the [resolve] call
+    /// will be used instead.
+    ///
+    /// The [package] argument must be non-null when fetching an asset that is
+    /// included in a package. See the documentation for the [ExactAssetImage] class
+    /// itself for details.
+    /// </Summary>
     public ExactAssetImage(string assetName, double scale = 1.0, FlutterSDK.Services.Assetbundle.AssetBundle bundle = default(FlutterSDK.Services.Assetbundle.AssetBundle), string package = default(string))
     : base()
     {
@@ -1539,9 +1669,29 @@ public class ExactAssetImage : FlutterSDK.Painting.Imageprovider.AssetBundleImag
         this.Bundle = bundle;
         this.Package = package;
     }
+    /// <Summary>
+    /// The name of the asset.
+    /// </Summary>
     public virtual string AssetName { get; set; }
+    /// <Summary>
+    /// The scale to place in the [ImageInfo] object of the image.
+    /// </Summary>
     public virtual double Scale { get; set; }
+    /// <Summary>
+    /// The bundle from which the image will be obtained.
+    ///
+    /// If the provided [bundle] is null, the bundle provided in the
+    /// [ImageConfiguration] passed to the [resolve] call will be used instead. If
+    /// that is also null, the [rootBundle] is used.
+    ///
+    /// The image is obtained by calling [AssetBundle.load] on the given [bundle]
+    /// using the key given by [keyName].
+    /// </Summary>
     public virtual FlutterSDK.Services.Assetbundle.AssetBundle Bundle { get; set; }
+    /// <Summary>
+    /// The name of the package from which the image is included. See the
+    /// documentation for the [ExactAssetImage] class itself for details.
+    /// </Summary>
     public virtual string Package { get; set; }
     public virtual string KeyName { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
     public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
@@ -1588,14 +1738,27 @@ public class _ErrorImageCompleter : FlutterSDK.Painting.Imagestream.ImageStreamC
 /// </Summary>
 public class NetworkImageLoadException : IException
 {
+    /// <Summary>
+    /// Creates a [NetworkImageLoadException] with the specified http status
+    /// [code] and the [uri]
+    /// </Summary>
     public NetworkImageLoadException(int statusCode = default(int), Uri uri = default(Uri))
     : base()
     {
         this.StatusCode = statusCode;
         this.Uri = uri;
     }
+    /// <Summary>
+    /// The HTTP status code from the server.
+    /// </Summary>
     public virtual int StatusCode { get; set; }
+    /// <Summary>
+    /// A human-readable error message.
+    /// </Summary>
     internal virtual string _Message { get; set; }
+    /// <Summary>
+    /// Resolved URL of the requested image.
+    /// </Summary>
     public virtual Uri Uri { get; set; }
 
 }

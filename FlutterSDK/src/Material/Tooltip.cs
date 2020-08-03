@@ -450,6 +450,18 @@ namespace FlutterSDK.Material.Tooltip
     /// </Summary>
     public class Tooltip : FlutterSDK.Widgets.Framework.StatefulWidget
     {
+        /// <Summary>
+        /// Creates a tooltip.
+        ///
+        /// By default, tooltips should adhere to the
+        /// [Material specification](https://material.io/design/components/tooltips.html#spec).
+        /// If the optional constructor parameters are not defined, the values
+        /// provided by [TooltipTheme.of] will be used if a [TooltipTheme] is present
+        /// or specified in [ThemeData].
+        ///
+        /// All parameters that are defined in the constructor will
+        /// override the default values _and_ the values in [TooltipTheme.of].
+        /// </Summary>
         public Tooltip(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), string message = default(string), double height = default(double), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry margin = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), double verticalOffset = default(double), bool preferBelow = default(bool), bool excludeFromSemantics = default(bool), FlutterSDK.Painting.Decoration.Decoration decoration = default(FlutterSDK.Painting.Decoration.Decoration), FlutterSDK.Painting.Textstyle.TextStyle textStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), TimeSpan waitDuration = default(TimeSpan), TimeSpan showDuration = default(TimeSpan), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key)
         {
@@ -466,17 +478,104 @@ namespace FlutterSDK.Material.Tooltip
             this.ShowDuration = showDuration;
             this.Child = child;
         }
+        /// <Summary>
+        /// The text to display in the tooltip.
+        /// </Summary>
         public virtual string Message { get; set; }
+        /// <Summary>
+        /// The height of the tooltip's [child].
+        ///
+        /// If the [child] is null, then this is the tooltip's intrinsic height.
+        /// </Summary>
         public virtual double Height { get; set; }
+        /// <Summary>
+        /// The amount of space by which to inset the tooltip's [child].
+        ///
+        /// Defaults to 16.0 logical pixels in each direction.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Padding { get; set; }
+        /// <Summary>
+        /// The empty space that surrounds the tooltip.
+        ///
+        /// Defines the tooltip's outer [Container.margin]. By default, a
+        /// long tooltip will span the width of its window. If long enough,
+        /// a tooltip might also span the window's height. This property allows
+        /// one to define how much space the tooltip must be inset from the edges
+        /// of their display window.
+        ///
+        /// If this property is null, then [TooltipThemeData.margin] is used.
+        /// If [TooltipThemeData.margin] is also null, the default margin is
+        /// 0.0 logical pixels on all sides.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Margin { get; set; }
+        /// <Summary>
+        /// The vertical gap between the widget and the displayed tooltip.
+        ///
+        /// When [preferBelow] is set to true and tooltips have sufficient space to
+        /// display themselves, this property defines how much vertical space
+        /// tooltips will position themselves under their corresponding widgets.
+        /// Otherwise, tooltips will position themselves above their corresponding
+        /// widgets with the given offset.
+        /// </Summary>
         public virtual double VerticalOffset { get; set; }
+        /// <Summary>
+        /// Whether the tooltip defaults to being displayed below the widget.
+        ///
+        /// Defaults to true. If there is insufficient space to display the tooltip in
+        /// the preferred direction, the tooltip will be displayed in the opposite
+        /// direction.
+        /// </Summary>
         public virtual bool PreferBelow { get; set; }
+        /// <Summary>
+        /// Whether the tooltip's [message] should be excluded from the semantics
+        /// tree.
+        ///
+        /// Defaults to false. A tooltip will add a [Semantics.label] that is set to
+        /// [Tooltip.message]. Set this property to true if the app is going to
+        /// provide its own custom semantics label.
+        /// </Summary>
         public virtual bool ExcludeFromSemantics { get; set; }
+        /// <Summary>
+        /// The widget below this widget in the tree.
+        ///
+        /// {@macro flutter.widgets.child}
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+        /// <Summary>
+        /// Specifies the tooltip's shape and background color.
+        ///
+        /// The tooltip shape defaults to a rounded rectangle with a border radius of
+        /// 4.0. Tooltips will also default to an opacity of 90% and with the color
+        /// [Colors.grey[700]] if [ThemeData.brightness] is [Brightness.dark], and
+        /// [Colors.white] if it is [Brightness.light].
+        /// </Summary>
         public virtual FlutterSDK.Painting.Decoration.Decoration Decoration { get; set; }
+        /// <Summary>
+        /// The style to use for the message of the tooltip.
+        ///
+        /// If null, the message's [TextStyle] will be determined based on
+        /// [ThemeData]. If [ThemeData.brightness] is set to [Brightness.dark],
+        /// [ThemeData.textTheme.bodyText2] will be used with [Colors.white]. Otherwise,
+        /// if [ThemeData.brightness] is set to [Brightness.light],
+        /// [ThemeData.textTheme.bodyText2] will be used with [Colors.black].
+        /// </Summary>
         public virtual FlutterSDK.Painting.Textstyle.TextStyle TextStyle { get; set; }
+        /// <Summary>
+        /// The length of time that a pointer must hover over a tooltip's widget
+        /// before the tooltip will be shown.
+        ///
+        /// Once the pointer leaves the widget, the tooltip will immediately
+        /// disappear.
+        ///
+        /// Defaults to 0 milliseconds (tooltips are shown immediately upon hover).
+        /// </Summary>
         public virtual TimeSpan WaitDuration { get; set; }
+        /// <Summary>
+        /// The length of time that the tooltip will be shown after a long press
+        /// is released.
+        ///
+        /// Defaults to 1.5 seconds.
+        /// </Summary>
         public virtual TimeSpan ShowDuration { get; set; }
 
         public new FlutterSDK.Material.Tooltip._TooltipState CreateState() => new _TooltipState();
@@ -776,6 +875,11 @@ namespace FlutterSDK.Material.Tooltip
     /// </Summary>
     public class _TooltipPositionDelegate : FlutterSDK.Rendering.Shiftedbox.SingleChildLayoutDelegate
     {
+        /// <Summary>
+        /// Creates a delegate for computing the layout of a tooltip.
+        ///
+        /// The arguments must not be null.
+        /// </Summary>
         public _TooltipPositionDelegate(FlutterBinding.UI.Offset target = default(FlutterBinding.UI.Offset), double verticalOffset = default(double), bool preferBelow = default(bool))
         : base()
         {
@@ -783,8 +887,22 @@ namespace FlutterSDK.Material.Tooltip
             this.VerticalOffset = verticalOffset;
             this.PreferBelow = preferBelow;
         }
+        /// <Summary>
+        /// The offset of the target the tooltip is positioned near in the global
+        /// coordinate system.
+        /// </Summary>
         public virtual FlutterBinding.UI.Offset Target { get; set; }
+        /// <Summary>
+        /// The amount of vertical distance between the target and the displayed
+        /// tooltip.
+        /// </Summary>
         public virtual double VerticalOffset { get; set; }
+        /// <Summary>
+        /// Whether the tooltip is displayed below its widget by default.
+        ///
+        /// If there is insufficient space to display the tooltip in the preferred
+        /// direction, the tooltip will be displayed in the opposite direction.
+        /// </Summary>
         public virtual bool PreferBelow { get; set; }
 
         public new FlutterSDK.Rendering.Box.BoxConstraints GetConstraintsForChild(FlutterSDK.Rendering.Box.BoxConstraints constraints) => constraints.Loosen();

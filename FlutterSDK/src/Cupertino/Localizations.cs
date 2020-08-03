@@ -587,6 +587,13 @@ namespace FlutterSDK.Cupertino.Localizations
     /// </Summary>
     public class DefaultCupertinoLocalizations : ICupertinoLocalizations
     {
+        /// <Summary>
+        /// Constructs an object that defines the cupertino widgets' localized strings
+        /// for US English (only).
+        ///
+        /// [LocalizationsDelegate] implementations typically call the static [load]
+        /// function, rather than constructing this class directly.
+        /// </Summary>
         public DefaultCupertinoLocalizations()
         {
 
@@ -594,6 +601,10 @@ namespace FlutterSDK.Cupertino.Localizations
         internal virtual List<string> _ShortWeekdays { get; set; }
         internal virtual List<string> _ShortMonths { get; set; }
         internal virtual List<string> _Months { get; set; }
+        /// <Summary>
+        /// A [LocalizationsDelegate] that uses [DefaultCupertinoLocalizations.load]
+        /// to create an instance of this class.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Localizations.LocalizationsDelegate<FlutterSDK.Cupertino.Localizations.CupertinoLocalizations> @delegate { get; set; }
         public virtual FlutterSDK.Cupertino.Localizations.DatePickerDateOrder DatePickerDateOrder { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterSDK.Cupertino.Localizations.DatePickerDateTimeOrder DatePickerDateTimeOrder { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }

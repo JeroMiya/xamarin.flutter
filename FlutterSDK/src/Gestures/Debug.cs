@@ -302,6 +302,15 @@ namespace FlutterSDK.Gestures.Debug
         public static bool DebugPrintMouseHoverEvents = default(bool);
         public static bool DebugPrintGestureArenaDiagnostics = default(bool);
         public static bool DebugPrintRecognizerCallbacksTrace = default(bool);
+        /// <Summary>
+        /// Returns true if none of the gestures library debug variables have been changed.
+        ///
+        /// This function is used by the test framework to ensure that debug variables
+        /// haven't been inadvertently changed.
+        ///
+        /// See [the gestures library](gestures/gestures-library.html) for a complete
+        /// list.
+        /// </Summary>
         internal static bool DebugAssertAllGesturesVarsUnset(string reason)
         {
 

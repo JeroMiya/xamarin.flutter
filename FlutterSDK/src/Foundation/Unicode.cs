@@ -316,17 +316,101 @@ namespace FlutterSDK.Foundation.Unicode
         {
 
         }
+        /// <Summary>
+        /// U+202A LEFT-TO-RIGHT EMBEDDING
+        ///
+        /// Treat the following text as embedded left-to-right.
+        ///
+        /// Use [PDF] to end the embedding.
+        /// </Summary>
         public virtual string LRE { get; set; }
+        /// <Summary>
+        /// U+202B RIGHT-TO-LEFT EMBEDDING
+        ///
+        /// Treat the following text as embedded right-to-left.
+        ///
+        /// Use [PDF] to end the embedding.
+        /// </Summary>
         public virtual string RLE { get; set; }
+        /// <Summary>
+        /// U+202C POP DIRECTIONAL FORMATTING
+        ///
+        /// End the scope of the last [LRE], [RLE], [RLO], or [LRO].
+        /// </Summary>
         public virtual string PDF { get; set; }
+        /// <Summary>
+        /// U+202A LEFT-TO-RIGHT OVERRIDE
+        ///
+        /// Force following characters to be treated as strong left-to-right characters.
+        ///
+        /// For example, this causes Hebrew text to render backwards.
+        ///
+        /// Use [PDF] to end the override.
+        /// </Summary>
         public virtual string LRO { get; set; }
+        /// <Summary>
+        /// U+202B RIGHT-TO-LEFT OVERRIDE
+        ///
+        /// Force following characters to be treated as strong right-to-left characters.
+        ///
+        /// For example, this causes English text to render backwards.
+        ///
+        /// Use [PDF] to end the override.
+        /// </Summary>
         public virtual string RLO { get; set; }
+        /// <Summary>
+        /// U+2066 LEFT-TO-RIGHT ISOLATE
+        ///
+        /// Treat the following text as isolated and left-to-right.
+        ///
+        /// Use [PDI] to end the isolated scope.
+        /// </Summary>
         public virtual string LRI { get; set; }
+        /// <Summary>
+        /// U+2067 RIGHT-TO-LEFT ISOLATE
+        ///
+        /// Treat the following text as isolated and right-to-left.
+        ///
+        /// Use [PDI] to end the isolated scope.
+        /// </Summary>
         public virtual string RLI { get; set; }
+        /// <Summary>
+        /// U+2068 FIRST STRONG ISOLATE
+        ///
+        /// Treat the following text as isolated and in the direction of its first
+        /// strong directional character that is not inside a nested isolate.
+        ///
+        /// This essentially "auto-detects" the directionality of the text. It is not
+        /// 100% reliable. For example, Arabic text that starts with an English quote
+        /// will be detected as LTR, not RTL, which will lead to the text being in a
+        /// weird order.
+        ///
+        /// Use [PDI] to end the isolated scope.
+        /// </Summary>
         public virtual string FSI { get; set; }
+        /// <Summary>
+        /// U+2069 POP DIRECTIONAL ISOLATE
+        ///
+        /// End the scope of the last [LRI], [RLI], or [FSI].
+        /// </Summary>
         public virtual string PDI { get; set; }
+        /// <Summary>
+        /// U+200E LEFT-TO-RIGHT MARK
+        ///
+        /// Left-to-right zero-width character.
+        /// </Summary>
         public virtual string LRM { get; set; }
+        /// <Summary>
+        /// U+200F RIGHT-TO-LEFT MARK
+        ///
+        /// Right-to-left zero-width non-Arabic character.
+        /// </Summary>
         public virtual string RLM { get; set; }
+        /// <Summary>
+        /// U+061C ARABIC LETTER MARK
+        ///
+        /// Right-to-left zero-width Arabic character.
+        /// </Summary>
         public virtual string ALM { get; set; }
     }
 

@@ -501,6 +501,10 @@ namespace FlutterSDK.Widgets.Sliverpersistentheader
     /// </Summary>
     public class SliverPersistentHeaderDelegate
     {
+        /// <Summary>
+        /// Abstract const constructor. This constructor enables subclasses to provide
+        /// const constructors so that they can be used in const expressions.
+        /// </Summary>
         public SliverPersistentHeaderDelegate()
         {
 
@@ -569,6 +573,12 @@ namespace FlutterSDK.Widgets.Sliverpersistentheader
     /// </Summary>
     public class SliverPersistentHeader : FlutterSDK.Widgets.Framework.StatelessWidget
     {
+        /// <Summary>
+        /// Creates a sliver that varies its size when it is scrolled to the start of
+        /// a viewport.
+        ///
+        /// The [delegate], [pinned], and [floating] arguments must not be null.
+        /// </Summary>
         public SliverPersistentHeader(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Sliverpersistentheader.SliverPersistentHeaderDelegate @delegate = default(FlutterSDK.Widgets.Sliverpersistentheader.SliverPersistentHeaderDelegate), bool pinned = false, bool floating = false)
         : base(key: key)
         {
@@ -576,8 +586,36 @@ namespace FlutterSDK.Widgets.Sliverpersistentheader
             this.Pinned = pinned;
             this.Floating = floating;
         }
+        /// <Summary>
+        /// Configuration for the sliver's layout.
+        ///
+        /// The delegate provides the following information:
+        ///
+        ///  * The minimum and maximum dimensions of the sliver.
+        ///
+        ///  * The builder for generating the widgets of the sliver.
+        ///
+        ///  * The instructions for snapping the scroll offset, if [floating] is true.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Sliverpersistentheader.SliverPersistentHeaderDelegate @delegate { get; set; }
+        /// <Summary>
+        /// Whether to stick the header to the start of the viewport once it has
+        /// reached its minimum size.
+        ///
+        /// If this is false, the header will continue scrolling off the screen after
+        /// it has shrunk to its minimum extent.
+        /// </Summary>
         public virtual bool Pinned { get; set; }
+        /// <Summary>
+        /// Whether the header should immediately grow again if the user reverses
+        /// scroll direction.
+        ///
+        /// If this is false, the header only grows again once the user reaches the
+        /// part of the viewport that contains the sliver.
+        ///
+        /// The [delegate]'s [SliverPersistentHeaderDelegate.snapConfiguration] is
+        /// ignored unless [floating] is true.
+        /// </Summary>
         public virtual bool Floating { get; set; }
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)

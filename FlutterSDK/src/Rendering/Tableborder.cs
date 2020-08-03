@@ -437,6 +437,11 @@ namespace FlutterSDK.Rendering.Tableborder
     /// </Summary>
     public class TableBorder
     {
+        /// <Summary>
+        /// Creates a border for a table.
+        ///
+        /// All the sides of the border default to [BorderSide.none].
+        /// </Summary>
         public TableBorder(FlutterSDK.Painting.Borders.BorderSide top = default(FlutterSDK.Painting.Borders.BorderSide), FlutterSDK.Painting.Borders.BorderSide right = default(FlutterSDK.Painting.Borders.BorderSide), FlutterSDK.Painting.Borders.BorderSide bottom = default(FlutterSDK.Painting.Borders.BorderSide), FlutterSDK.Painting.Borders.BorderSide left = default(FlutterSDK.Painting.Borders.BorderSide), FlutterSDK.Painting.Borders.BorderSide horizontalInside = default(FlutterSDK.Painting.Borders.BorderSide), FlutterSDK.Painting.Borders.BorderSide verticalInside = default(FlutterSDK.Painting.Borders.BorderSide))
         {
             this.Top = top;
@@ -446,6 +451,11 @@ namespace FlutterSDK.Rendering.Tableborder
             this.HorizontalInside = horizontalInside;
             this.VerticalInside = verticalInside;
         }
+        /// <Summary>
+        /// A uniform border with all sides the same color and width.
+        ///
+        /// The sides default to black solid borders, one logical pixel wide.
+        /// </Summary>
         public static TableBorder All(FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), double width = 1.0, FlutterSDK.Painting.Borders.BorderStyle style = default(FlutterSDK.Painting.Borders.BorderStyle))
         {
             var instance = new TableBorder();
@@ -454,6 +464,10 @@ namespace FlutterSDK.Rendering.Tableborder
         }
 
 
+        /// <Summary>
+        /// Creates a border for a table where all the interior sides use the same
+        /// styling and all the exterior sides use the same styling.
+        /// </Summary>
         public static TableBorder Symmetric(FlutterSDK.Painting.Borders.BorderSide inside = default(FlutterSDK.Painting.Borders.BorderSide), FlutterSDK.Painting.Borders.BorderSide outside = default(FlutterSDK.Painting.Borders.BorderSide))
         {
             var instance = new TableBorder();
@@ -461,11 +475,29 @@ namespace FlutterSDK.Rendering.Tableborder
         }
 
 
+        /// <Summary>
+        /// The top side of this border.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Borders.BorderSide Top { get; set; }
+        /// <Summary>
+        /// The right side of this border.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Borders.BorderSide Right { get; set; }
+        /// <Summary>
+        /// The bottom side of this border.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Borders.BorderSide Bottom { get; set; }
+        /// <Summary>
+        /// The left side of this border.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Borders.BorderSide Left { get; set; }
+        /// <Summary>
+        /// The horizontal interior sides of this border.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Borders.BorderSide HorizontalInside { get; set; }
+        /// <Summary>
+        /// The vertical interior sides of this border.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Borders.BorderSide VerticalInside { get; set; }
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets Dimensions { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool IsUniform { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }

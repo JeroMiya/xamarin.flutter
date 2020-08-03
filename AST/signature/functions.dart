@@ -3,11 +3,14 @@ import 'package:analyzer/src/dart/element/type.dart';
 
 import '../implementation/implementation.dart';
 import '../naming.dart';
+import '../comments.dart';
 import 'methods.dart';
 
 class Functions {
   static String printFunction(FunctionElement element) {
     var code = new StringBuffer();
+    Comments.appendComment(code, element);
+
     code.write("internal static ");
     if (element.isAsynchronous) {
       code.write('async ');

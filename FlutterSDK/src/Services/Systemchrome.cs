@@ -439,12 +439,24 @@ namespace FlutterSDK.Services.Systemchrome
     /// </Summary>
     public class ApplicationSwitcherDescription
     {
+        /// <Summary>
+        /// Creates an ApplicationSwitcherDescription.
+        /// </Summary>
         public ApplicationSwitcherDescription(string label = default(string), int primaryColor = default(int))
         {
             this.Label = label;
             this.PrimaryColor = primaryColor;
         }
+        /// <Summary>
+        /// A label and description of the current state of the application.
+        /// </Summary>
         public virtual string Label { get; set; }
+        /// <Summary>
+        /// The application's primary color.
+        ///
+        /// This may influence the color that the operating system uses to represent
+        /// the application.
+        /// </Summary>
         public virtual int PrimaryColor { get; set; }
     }
 
@@ -456,6 +468,9 @@ namespace FlutterSDK.Services.Systemchrome
     /// </Summary>
     public class SystemUiOverlayStyle
     {
+        /// <Summary>
+        /// Creates a new [SystemUiOverlayStyle].
+        /// </Summary>
         public SystemUiOverlayStyle(FlutterBinding.UI.Color systemNavigationBarColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color systemNavigationBarDividerColor = default(FlutterBinding.UI.Color), Brightness systemNavigationBarIconBrightness = default(Brightness), FlutterBinding.UI.Color statusBarColor = default(FlutterBinding.UI.Color), Brightness statusBarBrightness = default(Brightness), Brightness statusBarIconBrightness = default(Brightness))
         {
             this.SystemNavigationBarColor = systemNavigationBarColor;
@@ -465,13 +480,51 @@ namespace FlutterSDK.Services.Systemchrome
             this.StatusBarBrightness = statusBarBrightness;
             this.StatusBarIconBrightness = statusBarIconBrightness;
         }
+        /// <Summary>
+        /// The color of the system bottom navigation bar.
+        ///
+        /// Only honored in Android versions O and greater.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color SystemNavigationBarColor { get; set; }
+        /// <Summary>
+        /// The color of the divider between the system's bottom navigation bar and the app's content.
+        ///
+        /// Only honored in Android versions P and greater.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color SystemNavigationBarDividerColor { get; set; }
+        /// <Summary>
+        /// The brightness of the system navigation bar icons.
+        ///
+        /// Only honored in Android versions O and greater.
+        /// </Summary>
         public virtual Brightness SystemNavigationBarIconBrightness { get; set; }
+        /// <Summary>
+        /// The color of top status bar.
+        ///
+        /// Only honored in Android version M and greater.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color StatusBarColor { get; set; }
+        /// <Summary>
+        /// The brightness of top status bar.
+        ///
+        /// Only honored in iOS.
+        /// </Summary>
         public virtual Brightness StatusBarBrightness { get; set; }
+        /// <Summary>
+        /// The brightness of the top status bar icons.
+        ///
+        /// Only honored in Android version M and greater.
+        /// </Summary>
         public virtual Brightness StatusBarIconBrightness { get; set; }
+        /// <Summary>
+        /// System overlays should be drawn with a light color. Intended for
+        /// applications with a dark background.
+        /// </Summary>
         public virtual FlutterSDK.Services.Systemchrome.SystemUiOverlayStyle Light { get; set; }
+        /// <Summary>
+        /// System overlays should be drawn with a dark color. Intended for
+        /// applications with a light background.
+        /// </Summary>
         public virtual FlutterSDK.Services.Systemchrome.SystemUiOverlayStyle Dark { get; set; }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 

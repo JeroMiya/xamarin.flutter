@@ -414,6 +414,39 @@ namespace FlutterSDK.Material.Search
 {
     internal static class SearchDefaultClass
     {
+        /// <Summary>
+        /// Shows a full screen search page and returns the search result selected by
+        /// the user when the page is closed.
+        ///
+        /// The search page consists of an app bar with a search field and a body which
+        /// can either show suggested search queries or the search results.
+        ///
+        /// The appearance of the search page is determined by the provided
+        /// `delegate`. The initial query string is given by `query`, which defaults
+        /// to the empty string. When `query` is set to null, `delegate.query` will
+        /// be used as the initial query.
+        ///
+        /// This method returns the selected search result, which can be set in the
+        /// [SearchDelegate.close] call. If the search page is closed with the system
+        /// back button, it returns null.
+        ///
+        /// A given [SearchDelegate] can only be associated with one active [showSearch]
+        /// call. Call [SearchDelegate.close] before re-using the same delegate instance
+        /// for another [showSearch] call.
+        ///
+        /// The transition to the search page triggered by this method looks best if the
+        /// screen triggering the transition contains an [AppBar] at the top and the
+        /// transition is called from an [IconButton] that's part of [AppBar.actions].
+        /// The animation provided by [SearchDelegate.transitionAnimation] can be used
+        /// to trigger additional animations in the underlying page while the search
+        /// page fades in or out. This is commonly used to animate an [AnimatedIcon] in
+        /// the [AppBar.leading] position e.g. from the hamburger menu to the back arrow
+        /// used to exit the search page.
+        ///
+        /// See also:
+        ///
+        ///  * [SearchDelegate] to define the content of the search page.
+        /// </Summary>
         internal static Future<T> ShowSearch<T>(FlutterSDK.Widgets.Framework.BuildContext context = default(FlutterSDK.Widgets.Framework.BuildContext), FlutterSDK.Material.Search.SearchDelegate<T> @delegate = default(FlutterSDK.Material.Search.SearchDelegate<T>), string query = default(string))
         {
 
@@ -501,14 +534,60 @@ namespace FlutterSDK.Material.Search
     /// </Summary>
     public class SearchDelegate<T>
     {
+        /// <Summary>
+        /// Constructor to be called by subclasses which may specify [searchFieldLabel], [keyboardType] and/or
+        /// [textInputAction].
+        ///
+        /// {@tool snippet}
+        /// ```dart
+        /// class CustomSearchHintDelegate extends SearchDelegate {
+        ///   CustomSearchHintDelegate({
+        ///     String hintText,
+        ///   }) : super(
+        ///     searchFieldLabel: hintText,
+        ///     keyboardType: TextInputType.text,
+        ///     textInputAction: TextInputAction.search,
+        ///   );
+        ///
+        ///   @override
+        ///   Widget buildLeading(BuildContext context) => Text("leading");
+        ///
+        ///   @override
+        ///   Widget buildSuggestions(BuildContext context) => Text("suggestions");
+        ///
+        ///   @override
+        ///   Widget buildResults(BuildContext context) => Text('results');
+        ///
+        ///   @override
+        ///   List<Widget> buildActions(BuildContext context) => [];
+        /// }
+        /// ```
+        /// {@end-tool}
+        /// </Summary>
         public SearchDelegate(string searchFieldLabel = default(string), FlutterSDK.Services.Textinput.TextInputType keyboardType = default(FlutterSDK.Services.Textinput.TextInputType), FlutterSDK.Services.Textinput.TextInputAction textInputAction = default(FlutterSDK.Services.Textinput.TextInputAction))
         {
             this.SearchFieldLabel = searchFieldLabel;
             this.KeyboardType = keyboardType;
             this.TextInputAction = textInputAction;
         }
+        /// <Summary>
+        /// The hint text that is shown in the search field when it is empty.
+        ///
+        /// If this value is set to null, the value of MaterialLocalizations.of(context).searchFieldLabel will be used instead.
+        /// </Summary>
         public virtual string SearchFieldLabel { get; set; }
+        /// <Summary>
+        /// The type of action button to use for the keyboard.
+        ///
+        /// Defaults to the default value specified in [TextField].
+        /// </Summary>
         public virtual FlutterSDK.Services.Textinput.TextInputType KeyboardType { get; set; }
+        /// <Summary>
+        /// The text input action configuring the soft keyboard to a particular action
+        /// button.
+        ///
+        /// Defaults to [TextInputAction.search].
+        /// </Summary>
         public virtual FlutterSDK.Services.Textinput.TextInputAction TextInputAction { get; set; }
         internal virtual FlutterSDK.Widgets.Focusmanager.FocusNode _FocusNode { get; set; }
         internal virtual FlutterSDK.Widgets.Editabletext.TextEditingController _QueryTextController { get; set; }

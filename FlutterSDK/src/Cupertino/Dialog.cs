@@ -348,6 +348,11 @@ namespace FlutterSDK.Cupertino.Dialog
     /// </Summary>
     public class CupertinoAlertDialog : FlutterSDK.Widgets.Framework.StatelessWidget
     {
+        /// <Summary>
+        /// Creates an iOS-style alert dialog.
+        ///
+        /// The [actions] must not be null.
+        /// </Summary>
         public CupertinoAlertDialog(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget title = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget content = default(FlutterSDK.Widgets.Framework.Widget), List<FlutterSDK.Widgets.Framework.Widget> actions = default(List<FlutterSDK.Widgets.Framework.Widget>), FlutterSDK.Widgets.Scrollcontroller.ScrollController scrollController = default(FlutterSDK.Widgets.Scrollcontroller.ScrollController), FlutterSDK.Widgets.Scrollcontroller.ScrollController actionScrollController = default(FlutterSDK.Widgets.Scrollcontroller.ScrollController), TimeSpan insetAnimationDuration = default(TimeSpan), FlutterSDK.Animation.Curves.Curve insetAnimationCurve = default(FlutterSDK.Animation.Curves.Curve))
         : base(key: key)
         {
@@ -359,12 +364,59 @@ namespace FlutterSDK.Cupertino.Dialog
             this.InsetAnimationDuration = insetAnimationDuration;
             this.InsetAnimationCurve = insetAnimationCurve;
         }
+        /// <Summary>
+        /// The (optional) title of the dialog is displayed in a large font at the top
+        /// of the dialog.
+        ///
+        /// Typically a [Text] widget.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Title { get; set; }
+        /// <Summary>
+        /// The (optional) content of the dialog is displayed in the center of the
+        /// dialog in a lighter font.
+        ///
+        /// Typically a [Text] widget.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Content { get; set; }
+        /// <Summary>
+        /// The (optional) set of actions that are displayed at the bottom of the
+        /// dialog.
+        ///
+        /// Typically this is a list of [CupertinoDialogAction] widgets.
+        /// </Summary>
         public virtual List<FlutterSDK.Widgets.Framework.Widget> Actions { get; set; }
+        /// <Summary>
+        /// A scroll controller that can be used to control the scrolling of the
+        /// [content] in the dialog.
+        ///
+        /// Defaults to null, and is typically not needed, since most alert messages
+        /// are short.
+        ///
+        /// See also:
+        ///
+        ///  * [actionScrollController], which can be used for controlling the actions
+        ///    section when there are many actions.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Scrollcontroller.ScrollController ScrollController { get; set; }
+        /// <Summary>
+        /// A scroll controller that can be used to control the scrolling of the
+        /// actions in the dialog.
+        ///
+        /// Defaults to null, and is typically not needed.
+        ///
+        /// See also:
+        ///
+        ///  * [scrollController], which can be used for controlling the [content]
+        ///    section when it is long.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Scrollcontroller.ScrollController ActionScrollController { get; set; }
+        /// <Summary>
+        /// {@macro flutter.material.dialog.insetAnimationDuration}
+        /// </Summary>
         public virtual TimeSpan InsetAnimationDuration { get; set; }
+        /// <Summary>
+        /// {@macro flutter.material.dialog.insetAnimationCurve}
+        /// </Summary>
         public virtual FlutterSDK.Animation.Curves.Curve InsetAnimationCurve { get; set; }
 
         private FlutterSDK.Widgets.Framework.Widget _BuildContent(FlutterSDK.Widgets.Framework.BuildContext context)
@@ -425,11 +477,17 @@ namespace FlutterSDK.Cupertino.Dialog
     /// </Summary>
     public class CupertinoDialog : FlutterSDK.Widgets.Framework.StatelessWidget
     {
+        /// <Summary>
+        /// Creates an iOS-style dialog.
+        /// </Summary>
         public CupertinoDialog(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key)
         {
             this.Child = child;
         }
+        /// <Summary>
+        /// The widget below this widget in the tree.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
@@ -461,13 +519,29 @@ namespace FlutterSDK.Cupertino.Dialog
     /// </Summary>
     public class CupertinoPopupSurface : FlutterSDK.Widgets.Framework.StatelessWidget
     {
+        /// <Summary>
+        /// Creates an iOS-style rounded rectangle popup surface.
+        /// </Summary>
         public CupertinoPopupSurface(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), bool isSurfacePainted = true, FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key)
         {
             this.IsSurfacePainted = isSurfacePainted;
             this.Child = child;
         }
+        /// <Summary>
+        /// Whether or not to paint a translucent white on top of this surface's
+        /// blurred background. [isSurfacePainted] should be true for a typical popup
+        /// that contains content without any dividers. A popup that requires dividers
+        /// should set [isSurfacePainted] to false and then paint its own surface area.
+        ///
+        /// Some popups, like iOS's volume control popup, choose to render a blurred
+        /// area without any white paint covering it. To achieve this effect,
+        /// [isSurfacePainted] should be set to false.
+        /// </Summary>
         public virtual bool IsSurfacePainted { get; set; }
+        /// <Summary>
+        /// The widget below this widget in the tree.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
@@ -1091,6 +1165,9 @@ namespace FlutterSDK.Cupertino.Dialog
     /// </Summary>
     public class CupertinoDialogAction : FlutterSDK.Widgets.Framework.StatelessWidget
     {
+        /// <Summary>
+        /// Creates an action for an iOS-style dialog.
+        /// </Summary>
         public CupertinoDialogAction(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), VoidCallback onPressed = default(VoidCallback), bool isDefaultAction = false, bool isDestructiveAction = false, FlutterSDK.Painting.Textstyle.TextStyle textStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key)
         {
@@ -1100,10 +1177,46 @@ namespace FlutterSDK.Cupertino.Dialog
             this.TextStyle = textStyle;
             this.Child = child;
         }
+        /// <Summary>
+        /// The callback that is called when the button is tapped or otherwise
+        /// activated.
+        ///
+        /// If this is set to null, the button will be disabled.
+        /// </Summary>
         public virtual VoidCallback OnPressed { get; set; }
+        /// <Summary>
+        /// Set to true if button is the default choice in the dialog.
+        ///
+        /// Default buttons have bold text. Similar to
+        /// [UIAlertController.preferredAction](https://developer.apple.com/documentation/uikit/uialertcontroller/1620102-preferredaction),
+        /// but more than one action can have this attribute set to true in the same
+        /// [CupertinoAlertDialog].
+        ///
+        /// This parameters defaults to false and cannot be null.
+        /// </Summary>
         public virtual bool IsDefaultAction { get; set; }
+        /// <Summary>
+        /// Whether this action destroys an object.
+        ///
+        /// For example, an action that deletes an email is destructive.
+        ///
+        /// Defaults to false and cannot be null.
+        /// </Summary>
         public virtual bool IsDestructiveAction { get; set; }
+        /// <Summary>
+        /// [TextStyle] to apply to any text that appears in this button.
+        ///
+        /// Dialog actions have a built-in text resizing policy for long text. To
+        /// ensure that this resizing policy always works as expected, [textStyle]
+        /// must be used if a text size is desired other than that specified in
+        /// [_kCupertinoDialogActionStyle].
+        /// </Summary>
         public virtual FlutterSDK.Painting.Textstyle.TextStyle TextStyle { get; set; }
+        /// <Summary>
+        /// The widget below this widget in the tree.
+        ///
+        /// Typically a [Text] widget.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
         public virtual bool Enabled { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 

@@ -561,6 +561,21 @@ namespace FlutterSDK.Material.Togglebuttons
     /// </Summary>
     public class ToggleButtons : FlutterSDK.Widgets.Framework.StatelessWidget
     {
+        /// <Summary>
+        /// Creates a horizontal set of toggle buttons.
+        ///
+        /// It displays its widgets provided in a [List] of [children] horizontally.
+        /// The state of each button is controlled by [isSelected], which is a list
+        /// of bools that determine if a button is in an active, disabled, or
+        /// selected state. They are both correlated by their index in the list.
+        /// The length of [isSelected] has to match the length of the [children]
+        /// list.
+        ///
+        /// Both [children] and [isSelected] properties arguments are required.
+        ///
+        /// [isSelected] values must be non-null. [focusNodes] must be null or a
+        /// list of non-null nodes. [renderBorder] must not be null.
+        /// </Summary>
         public ToggleButtons(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), List<FlutterSDK.Widgets.Framework.Widget> children = default(List<FlutterSDK.Widgets.Framework.Widget>), List<bool> isSelected = default(List<bool>), Action<int> onPressed = default(Action<int>), FlutterSDK.Painting.Textstyle.TextStyle textStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Rendering.Box.BoxConstraints constraints = default(FlutterSDK.Rendering.Box.BoxConstraints), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color selectedColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color disabledColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color fillColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color focusColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color highlightColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color hoverColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color splashColor = default(FlutterBinding.UI.Color), List<FlutterSDK.Widgets.Focusmanager.FocusNode> focusNodes = default(List<FlutterSDK.Widgets.Focusmanager.FocusNode>), bool renderBorder = true, FlutterBinding.UI.Color borderColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color selectedBorderColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color disabledBorderColor = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Borderradius.BorderRadius borderRadius = default(FlutterSDK.Painting.Borderradius.BorderRadius), double borderWidth = default(double))
         : base(key: key)
         {
@@ -586,25 +601,210 @@ namespace FlutterSDK.Material.Togglebuttons
             this.BorderWidth = borderWidth;
         }
         internal virtual double _DefaultBorderWidth { get; set; }
+        /// <Summary>
+        /// The toggle button widgets.
+        ///
+        /// These are typically [Icon] or [Text] widgets. The boolean selection
+        /// state of each widget is defined by the corresponding [isSelected]
+        /// list item.
+        ///
+        /// The length of children has to match the length of [isSelected]. If
+        /// [focusNodes] is not null, the length of children has to also match
+        /// the length of [focusNodes].
+        /// </Summary>
         public virtual List<FlutterSDK.Widgets.Framework.Widget> Children { get; set; }
+        /// <Summary>
+        /// The corresponding selection state of each toggle button.
+        ///
+        /// Each value in this list represents the selection state of the [children]
+        /// widget at the same index.
+        ///
+        /// The length of [isSelected] has to match the length of [children].
+        /// </Summary>
         public virtual List<bool> IsSelected { get; set; }
+        /// <Summary>
+        /// The callback that is called when a button is tapped.
+        ///
+        /// The index parameter of the callback is the index of the button that is
+        /// tapped or otherwise activated.
+        ///
+        /// When the callback is null, all toggle buttons will be disabled.
+        /// </Summary>
         public virtual Action<int> OnPressed { get; set; }
+        /// <Summary>
+        /// The [TextStyle] to apply to any text in these toggle buttons.
+        ///
+        /// [TextStyle.color] will be ignored and substituted by [color],
+        /// [selectedColor] or [disabledColor] depending on whether the buttons
+        /// are active, selected, or disabled.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Textstyle.TextStyle TextStyle { get; set; }
+        /// <Summary>
+        /// Defines the button's size.
+        ///
+        /// Typically used to constrain the button's minimum size.
+        ///
+        /// If this property is null, then
+        /// BoxConstraints(minWidth: 48.0, minHeight: 48.0) is be used.
+        /// </Summary>
         public virtual FlutterSDK.Rendering.Box.BoxConstraints Constraints { get; set; }
+        /// <Summary>
+        /// The color for descendant [Text] and [Icon] widgets if the button is
+        /// enabled and not selected.
+        ///
+        /// If [onPressed] is not null, this color will be used for values in
+        /// [isSelected] that are false.
+        ///
+        /// If this property is null, then ToggleButtonTheme.of(context).color
+        /// is used. If [ToggleButtonsThemeData.color] is also null, then
+        /// Theme.of(context).colorScheme.onSurface is used.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color Color { get; set; }
+        /// <Summary>
+        /// The color for descendant [Text] and [Icon] widgets if the button is
+        /// selected.
+        ///
+        /// If [onPressed] is not null, this color will be used for values in
+        /// [isSelected] that are true.
+        ///
+        /// If this property is null, then
+        /// ToggleButtonTheme.of(context).selectedColor is used. If
+        /// [ToggleButtonsThemeData.selectedColor] is also null, then
+        /// Theme.of(context).colorScheme.primary is used.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color SelectedColor { get; set; }
+        /// <Summary>
+        /// The color for descendant [Text] and [Icon] widgets if the button is
+        /// disabled.
+        ///
+        /// If [onPressed] is null, this color will be used.
+        ///
+        /// If this property is null, then
+        /// ToggleButtonTheme.of(context).disabledColor is used. If
+        /// [ToggleButtonsThemeData.disabledColor] is also null, then
+        /// Theme.of(context).colorScheme.onSurface.withOpacity(0.38) is used.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color DisabledColor { get; set; }
+        /// <Summary>
+        /// The fill color for selected toggle buttons.
+        ///
+        /// If this property is null, then
+        /// ToggleButtonTheme.of(context).fillColor is used. If
+        /// [ToggleButtonsThemeData.fillColor] is also null, then
+        /// the fill color is null.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color FillColor { get; set; }
+        /// <Summary>
+        /// The color to use for filling the button when the button has input focus.
+        ///
+        /// If this property is null, then
+        /// ToggleButtonTheme.of(context).focusColor is used. If
+        /// [ToggleButtonsThemeData.focusColor] is also null, then
+        /// Theme.of(context).focusColor is used.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color FocusColor { get; set; }
+        /// <Summary>
+        /// The highlight color for the button's [InkWell].
+        ///
+        /// If this property is null, then
+        /// ToggleButtonTheme.of(context).highlightColor is used. If
+        /// [ToggleButtonsThemeData.highlightColor] is also null, then
+        /// Theme.of(context).highlightColor is used.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color HighlightColor { get; set; }
+        /// <Summary>
+        /// The splash color for the button's [InkWell].
+        ///
+        /// If this property is null, then
+        /// ToggleButtonTheme.of(context).splashColor is used. If
+        /// [ToggleButtonsThemeData.splashColor] is also null, then
+        /// Theme.of(context).splashColor is used.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color SplashColor { get; set; }
+        /// <Summary>
+        /// The color to use for filling the button when the button has a pointer
+        /// hovering over it.
+        ///
+        /// If this property is null, then
+        /// ToggleButtonTheme.of(context).hoverColor is used. If
+        /// [ToggleButtonsThemeData.hoverColor] is also null, then
+        /// Theme.of(context).hoverColor is used.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color HoverColor { get; set; }
+        /// <Summary>
+        /// The list of [FocusNode]s, corresponding to each toggle button.
+        ///
+        /// Focus is used to determine which widget should be affected by keyboard
+        /// events. The focus tree keeps track of which widget is currently focused
+        /// on by the user.
+        ///
+        /// If not null, the length of focusNodes has to match the length of
+        /// [children].
+        ///
+        /// See [FocusNode] for more information about how focus nodes are used.
+        /// </Summary>
         public virtual List<FlutterSDK.Widgets.Focusmanager.FocusNode> FocusNodes { get; set; }
+        /// <Summary>
+        /// Whether or not to render a border around each toggle button.
+        ///
+        /// When true, a border with [borderWidth], [borderRadius] and the
+        /// appropriate border color will render. Otherwise, no border will be
+        /// rendered.
+        /// </Summary>
         public virtual bool RenderBorder { get; set; }
+        /// <Summary>
+        /// The border color to display when the toggle button is enabled and not
+        /// selected.
+        ///
+        /// If this property is null, then
+        /// ToggleButtonTheme.of(context).borderColor is used. If
+        /// [ToggleButtonsThemeData.borderColor] is also null, then
+        /// Theme.of(context).colorScheme.onSurface is used.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color BorderColor { get; set; }
+        /// <Summary>
+        /// The border color to display when the toggle button is selected.
+        ///
+        /// If this property is null, then
+        /// ToggleButtonTheme.of(context).selectedBorderColor is used. If
+        /// [ToggleButtonsThemeData.selectedBorderColor] is also null, then
+        /// Theme.of(context).colorScheme.primary is used.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color SelectedBorderColor { get; set; }
+        /// <Summary>
+        /// The border color to display when the toggle button is disabled.
+        ///
+        /// If this property is null, then
+        /// ToggleButtonTheme.of(context).disabledBorderColor is used. If
+        /// [ToggleButtonsThemeData.disabledBorderColor] is also null, then
+        /// Theme.of(context).disabledBorderColor is used.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color DisabledBorderColor { get; set; }
+        /// <Summary>
+        /// The width of the border surrounding each toggle button.
+        ///
+        /// This applies to both the greater surrounding border, as well as the
+        /// borders rendered between toggle buttons.
+        ///
+        /// To render a hairline border (one physical pixel), set borderWidth to 0.0.
+        /// See [BorderSide.width] for more details on hairline borders.
+        ///
+        /// To omit the border entirely, set [renderBorder] to false.
+        ///
+        /// If this property is null, then
+        /// ToggleButtonTheme.of(context).borderWidth is used. If
+        /// [ToggleButtonsThemeData.borderWidth] is also null, then
+        /// a width of 1.0 is used.
+        /// </Summary>
         public virtual double BorderWidth { get; set; }
+        /// <Summary>
+        /// The radii of the border's corners.
+        ///
+        /// If this property is null, then
+        /// ToggleButtonTheme.of(context).borderRadius is used. If
+        /// [ToggleButtonsThemeData.borderRadius] is also null, then
+        /// the buttons default to non-rounded borders.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Borderradius.BorderRadius BorderRadius { get; set; }
 
         private bool _IsFirstIndex(int index, int length, TextDirection textDirection)
@@ -786,6 +986,16 @@ namespace FlutterSDK.Material.Togglebuttons
     /// </Summary>
     public class _ToggleButton : FlutterSDK.Widgets.Framework.StatelessWidget
     {
+        /// <Summary>
+        /// Creates a toggle button based on [RawMaterialButton].
+        ///
+        /// This class adds some logic to distinguish between enabled, active, and
+        /// disabled states, to determine the appropriate colors to use.
+        ///
+        /// It takes in a [shape] property to modify the borders of the button,
+        /// which is used by [ToggleButtons] to customize borders based on the
+        /// order in which this button appears in the list.
+        /// </Summary>
         public _ToggleButton(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), bool selected = false, FlutterSDK.Painting.Textstyle.TextStyle textStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Rendering.Box.BoxConstraints constraints = default(FlutterSDK.Rendering.Box.BoxConstraints), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color selectedColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color disabledColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color fillColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color focusColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color highlightColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color hoverColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color splashColor = default(FlutterBinding.UI.Color), FlutterSDK.Widgets.Focusmanager.FocusNode focusNode = default(FlutterSDK.Widgets.Focusmanager.FocusNode), VoidCallback onPressed = default(VoidCallback), FlutterSDK.Painting.Borders.BorderSide leadingBorderSide = default(FlutterSDK.Painting.Borders.BorderSide), FlutterSDK.Painting.Borders.BorderSide horizontalBorderSide = default(FlutterSDK.Painting.Borders.BorderSide), FlutterSDK.Painting.Borders.BorderSide trailingBorderSide = default(FlutterSDK.Painting.Borders.BorderSide), FlutterSDK.Painting.Borderradius.BorderRadius borderRadius = default(FlutterSDK.Painting.Borderradius.BorderRadius), FlutterSDK.Painting.Borderradius.BorderRadius clipRadius = default(FlutterSDK.Painting.Borderradius.BorderRadius), bool isFirstButton = default(bool), bool isLastButton = default(bool), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key)
         {
@@ -811,26 +1021,102 @@ namespace FlutterSDK.Material.Togglebuttons
             this.IsLastButton = isLastButton;
             this.Child = child;
         }
+        /// <Summary>
+        /// Determines if the button is displayed as active/selected or enabled.
+        /// </Summary>
         public virtual bool Selected { get; set; }
+        /// <Summary>
+        /// The [TextStyle] to apply to any text that appears in this button.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Textstyle.TextStyle TextStyle { get; set; }
+        /// <Summary>
+        /// Defines the button's size.
+        ///
+        /// Typically used to constrain the button's minimum size.
+        /// </Summary>
         public virtual FlutterSDK.Rendering.Box.BoxConstraints Constraints { get; set; }
+        /// <Summary>
+        /// The color for [Text] and [Icon] widgets if the button is enabled.
+        ///
+        /// If [selected] is false and [onPressed] is not null, this color will be used.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color Color { get; set; }
+        /// <Summary>
+        /// The color for [Text] and [Icon] widgets if the button is selected.
+        ///
+        /// If [selected] is true and [onPressed] is not null, this color will be used.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color SelectedColor { get; set; }
+        /// <Summary>
+        /// The color for [Text] and [Icon] widgets if the button is disabled.
+        ///
+        /// If [onPressed] is null, this color will be used.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color DisabledColor { get; set; }
+        /// <Summary>
+        /// The color of the button's [Material].
+        /// </Summary>
         public virtual FlutterBinding.UI.Color FillColor { get; set; }
+        /// <Summary>
+        /// The color for the button's [Material] when it has the input focus.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color FocusColor { get; set; }
+        /// <Summary>
+        /// The color for the button's [Material] when a pointer is hovering over it.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color HoverColor { get; set; }
+        /// <Summary>
+        /// The highlight color for the button's [InkWell].
+        /// </Summary>
         public virtual FlutterBinding.UI.Color HighlightColor { get; set; }
+        /// <Summary>
+        /// The splash color for the button's [InkWell].
+        /// </Summary>
         public virtual FlutterBinding.UI.Color SplashColor { get; set; }
+        /// <Summary>
+        /// {@macro flutter.widgets.Focus.focusNode}
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Focusmanager.FocusNode FocusNode { get; set; }
+        /// <Summary>
+        /// Called when the button is tapped or otherwise activated.
+        ///
+        /// If this is null, the button will be disabled, see [enabled].
+        /// </Summary>
         public virtual VoidCallback OnPressed { get; set; }
+        /// <Summary>
+        /// The width and color of the button's leading side border.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Borders.BorderSide LeadingBorderSide { get; set; }
+        /// <Summary>
+        /// The width and color of the button's top and bottom side borders.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Borders.BorderSide HorizontalBorderSide { get; set; }
+        /// <Summary>
+        /// The width and color of the button's trailing side border.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Borders.BorderSide TrailingBorderSide { get; set; }
+        /// <Summary>
+        /// The border radii of each corner of the button.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Borderradius.BorderRadius BorderRadius { get; set; }
+        /// <Summary>
+        /// The corner radii used to clip the button's contents.
+        ///
+        /// This is used to have the button's contents be properly clipped taking
+        /// the [borderRadius] and the border's width into account.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Borderradius.BorderRadius ClipRadius { get; set; }
+        /// <Summary>
+        /// Whether or not this toggle button is the first button in the list.
+        /// </Summary>
         public virtual bool IsFirstButton { get; set; }
+        /// <Summary>
+        /// Whether or not this toggle button is the last button in the list.
+        /// </Summary>
         public virtual bool IsLastButton { get; set; }
+        /// <Summary>
+        /// The button's label, which is usually an [Icon] or a [Text] widget.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)

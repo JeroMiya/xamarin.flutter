@@ -423,8 +423,26 @@ using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
 namespace FlutterSDK.Rendering.@object
 {
+    /// <Summary>
+    /// Signature for painting into a [PaintingContext].
+    ///
+    /// The `offset` argument is the offset from the origin of the coordinate system
+    /// of the [PaintingContext.canvas] to the coordinate system of the callee.
+    ///
+    /// Used by many of the methods of [PaintingContext].
+    /// </Summary>
     public delegate void PaintingContextCallback(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset);
+    /// <Summary>
+    /// Signature for a function that is called for each [RenderObject].
+    ///
+    /// Used by [RenderObject.visitChildren] and [RenderObject.visitChildrenForSemantics].
+    /// </Summary>
     public delegate void RenderObjectVisitor(FlutterSDK.Rendering.@object.RenderObject child);
+    /// <Summary>
+    /// Signature for a function that is called during layout.
+    ///
+    /// Used by [RenderObject.invokeLayoutCallback].
+    /// </Summary>
     public delegate void LayoutCallback<T>(T constraints);
     internal static class ObjectDefaultClass
     {
@@ -809,7 +827,13 @@ namespace FlutterSDK.Rendering.@object
 
     public class ContainerParentDataMixin<ChildType>
     {
+        /// <Summary>
+        /// The previous sibling in the parent's child list.
+        /// </Summary>
         public virtual ChildType PreviousSibling { get; set; }
+        /// <Summary>
+        /// The next sibling in the parent's child list.
+        /// </Summary>
         public virtual ChildType NextSibling { get; set; }
 
         /// <Summary>
@@ -1372,6 +1396,12 @@ namespace FlutterSDK.Rendering.@object
     /// </Summary>
     public class PaintingContext : FlutterSDK.Painting.Clip.ClipContext
     {
+        /// <Summary>
+        /// Creates a painting context.
+        ///
+        /// Typically only called by [PaintingContext.repaintCompositedChild]
+        /// and [pushLayer].
+        /// </Summary>
         public PaintingContext(FlutterSDK.Rendering.Layer.ContainerLayer _containerLayer, FlutterBinding.UI.Rect estimatedBounds)
         : base()
         {
@@ -1379,6 +1409,14 @@ namespace FlutterSDK.Rendering.@object
             this.EstimatedBounds = estimatedBounds;
         }
         internal virtual FlutterSDK.Rendering.Layer.ContainerLayer _ContainerLayer { get; set; }
+        /// <Summary>
+        /// An estimate of the bounds within which the painting context's [canvas]
+        /// will record painting commands. This can be useful for debugging.
+        ///
+        /// The canvas will allow painting outside these bounds.
+        ///
+        /// The [estimatedBounds] rectangle is in the [canvas] coordinate system.
+        /// </Summary>
         public virtual FlutterBinding.UI.Rect EstimatedBounds { get; set; }
         internal virtual FlutterSDK.Rendering.Layer.PictureLayer _CurrentLayer { get; set; }
         internal virtual PictureRecorder _Recorder { get; set; }
@@ -1985,6 +2023,10 @@ namespace FlutterSDK.Rendering.@object
     /// </Summary>
     public class Constraints
     {
+        /// <Summary>
+        /// Abstract const constructor. This constructor enables subclasses to provide
+        /// const constructors so that they can be used in const expressions.
+        /// </Summary>
         public Constraints()
         {
 
@@ -2056,6 +2098,9 @@ namespace FlutterSDK.Rendering.@object
 
 
         internal virtual FlutterSDK.Rendering.@object.PipelineOwner _Owner { get; set; }
+        /// <Summary>
+        /// The callback that will be notified when the semantics tree updates.
+        /// </Summary>
         public virtual VoidCallback Listener { get; set; }
 
         /// <Summary>
@@ -2116,14 +2161,41 @@ namespace FlutterSDK.Rendering.@object
     /// </Summary>
     public class PipelineOwner
     {
+        /// <Summary>
+        /// Creates a pipeline owner.
+        ///
+        /// Typically created by the binding (e.g., [RendererBinding]), but can be
+        /// created separately from the binding to drive off-screen render objects
+        /// through the rendering pipeline.
+        /// </Summary>
         public PipelineOwner(VoidCallback onNeedVisualUpdate = default(VoidCallback), VoidCallback onSemanticsOwnerCreated = default(VoidCallback), VoidCallback onSemanticsOwnerDisposed = default(VoidCallback))
         {
             this.OnNeedVisualUpdate = onNeedVisualUpdate;
             this.OnSemanticsOwnerCreated = onSemanticsOwnerCreated;
             this.OnSemanticsOwnerDisposed = onSemanticsOwnerDisposed;
         }
+        /// <Summary>
+        /// Called when a render object associated with this pipeline owner wishes to
+        /// update its visual appearance.
+        ///
+        /// Typical implementations of this function will schedule a task to flush the
+        /// various stages of the pipeline. This function might be called multiple
+        /// times in quick succession. Implementations should take care to discard
+        /// duplicate calls quickly.
+        /// </Summary>
         public virtual VoidCallback OnNeedVisualUpdate { get; set; }
+        /// <Summary>
+        /// Called whenever this pipeline owner creates a semantics object.
+        ///
+        /// Typical implementations will schedule the creation of the initial
+        /// semantics tree.
+        /// </Summary>
         public virtual VoidCallback OnSemanticsOwnerCreated { get; set; }
+        /// <Summary>
+        /// Called whenever this pipeline owner disposes its semantics owner.
+        ///
+        /// Typical implementations will tear down the semantics tree.
+        /// </Summary>
         public virtual VoidCallback OnSemanticsOwnerDisposed { get; set; }
         internal virtual FlutterSDK.Foundation.Node.AbstractNode _RootNode { get; set; }
         internal virtual List<FlutterSDK.Rendering.@object.RenderObject> _NodesNeedingLayout { get; set; }
@@ -2520,6 +2592,9 @@ namespace FlutterSDK.Rendering.@object
     /// </Summary>
     public class RenderObject : FlutterSDK.Foundation.Node.AbstractNode, IHitTestTarget, IDiagnosticableTreeMixin
     {
+        /// <Summary>
+        /// Initializes internal fields for subclasses.
+        /// </Summary>
         public RenderObject()
         {
 
@@ -2527,7 +2602,29 @@ namespace FlutterSDK.Rendering.@object
         }
 
 
+        /// <Summary>
+        /// Data for use by the parent render object.
+        ///
+        /// The parent data is used by the render object that lays out this object
+        /// (typically this object's parent in the render tree) to store information
+        /// relevant to itself and to any other nodes who happen to know exactly what
+        /// the data means. The parent data is opaque to the child.
+        ///
+        ///  * The parent data field must not be directly set, except by calling
+        ///    [setupParentData] on the parent node.
+        ///  * The parent data can be set before the child is added to the parent, by
+        ///    calling [setupParentData] on the future parent node.
+        ///  * The conventions for using the parent data depend on the layout protocol
+        ///    used between the parent and child. For example, in box layout, the
+        ///    parent data is completely opaque but in sector layout the child is
+        ///    permitted to read some fields of the parent data.
+        /// </Summary>
         public virtual FlutterSDK.Rendering.@object.ParentData ParentData { get; set; }
+        /// <Summary>
+        /// The object responsible for creating this render object.
+        ///
+        /// Used in debug messages.
+        /// </Summary>
         public virtual object DebugCreator { get; set; }
         internal virtual bool _DebugDoingThisResize { get; set; }
         internal virtual bool _DebugDoingThisLayout { get; set; }
@@ -2538,6 +2635,17 @@ namespace FlutterSDK.Rendering.@object
         internal virtual FlutterSDK.Rendering.@object.RenderObject _RelayoutBoundary { get; set; }
         internal virtual bool _DoingThisLayoutWithCallback { get; set; }
         internal virtual FlutterSDK.Rendering.@object.Constraints _Constraints { get; set; }
+        /// <Summary>
+        /// When true, debugAssertDoesMeetConstraints() is currently
+        /// executing asserts for verifying the consistent behavior of
+        /// intrinsic dimensions methods.
+        ///
+        /// This should only be set by debugAssertDoesMeetConstraints()
+        /// implementations. It is used by tests to selectively ignore
+        /// custom layout callbacks. It should not be set outside of
+        /// debugAssertDoesMeetConstraints(), and should not be checked in
+        /// release mode (where it will always be false).
+        /// </Summary>
         public virtual bool DebugCheckingIntrinsics { get; set; }
         internal virtual bool _DebugDoingThisPaint { get; set; }
         internal virtual FlutterSDK.Rendering.@object.RenderObject _DebugActivePaint { get; set; }
@@ -4046,11 +4154,21 @@ namespace FlutterSDK.Rendering.@object
     /// </Summary>
     public class FlutterErrorDetailsForRendering : FlutterSDK.Foundation.Assertions.FlutterErrorDetails
     {
+        /// <Summary>
+        /// Creates a [FlutterErrorDetailsForRendering] object with the given
+        /// arguments setting the object's properties.
+        ///
+        /// The rendering library calls this constructor when catching an exception
+        /// that will subsequently be reported using [FlutterError.onError].
+        /// </Summary>
         public FlutterErrorDetailsForRendering(object exception = default(object), StackTrace stack = default(StackTrace), string library = default(string), FlutterSDK.Foundation.Diagnostics.DiagnosticsNode context = default(FlutterSDK.Foundation.Diagnostics.DiagnosticsNode), FlutterSDK.Rendering.@object.RenderObject renderObject = default(FlutterSDK.Rendering.@object.RenderObject), FlutterSDK.Foundation.Assertions.InformationCollector informationCollector = default(FlutterSDK.Foundation.Assertions.InformationCollector), bool silent = false)
         : base(exception: exception, stack: stack, library: library, context: context, informationCollector: informationCollector, silent: silent)
         {
             this.RenderObject = renderObject;
         }
+        /// <Summary>
+        /// The RenderObject that was being processed when the exception was caught.
+        /// </Summary>
         public virtual FlutterSDK.Rendering.@object.RenderObject RenderObject { get; set; }
     }
 
@@ -4072,6 +4190,15 @@ namespace FlutterSDK.Rendering.@object
         {
             this.DropsSemanticsOfPreviousSiblings = dropsSemanticsOfPreviousSiblings;
         }
+        /// <Summary>
+        /// Whether this fragment wants to make the semantics information of
+        /// previously painted [RenderObject]s unreachable for accessibility purposes.
+        ///
+        /// See also:
+        ///
+        ///  * [SemanticsConfiguration.isBlockingSemanticsOfPreviouslyPaintedNodes]
+        ///    describes what semantics are dropped in more detail.
+        /// </Summary>
         public virtual bool DropsSemanticsOfPreviousSiblings { get; set; }
         public virtual Iterable<FlutterSDK.Rendering.@object._InterestingSemanticsFragment> InterestingFragments { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool AbortsWalk { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
@@ -4450,6 +4577,14 @@ namespace FlutterSDK.Rendering.@object
     /// </Summary>
     public class _SemanticsGeometry
     {
+        /// <Summary>
+        /// The `parentClippingRect` may be null if no clip is to be applied.
+        ///
+        /// The `ancestors` list has to include all [RenderObject] in order that are
+        /// located between the [SemanticsNode] whose geometry is represented here
+        /// (first [RenderObject] in the list) and its closest ancestor [RenderObject]
+        /// that also owns its own [SemanticsNode] (last [RenderObject] in the list).
+        /// </Summary>
         public _SemanticsGeometry(FlutterBinding.UI.Rect parentSemanticsClipRect = default(FlutterBinding.UI.Rect), FlutterBinding.UI.Rect parentPaintClipRect = default(FlutterBinding.UI.Rect), List<FlutterSDK.Rendering.@object.RenderObject> ancestors = default(List<FlutterSDK.Rendering.@object.RenderObject>))
         {
 
@@ -4570,6 +4705,10 @@ namespace FlutterSDK.Rendering.@object
     /// </Summary>
     public class DiagnosticsDebugCreator : FlutterSDK.Foundation.Diagnostics.DiagnosticsProperty<@Object>
     {
+        /// <Summary>
+        /// Create a [DiagnosticsProperty] with its [value] initialized to input
+        /// [RenderObject.debugCreator].
+        /// </Summary>
         public DiagnosticsDebugCreator(@Object value)
         : base("debugCreator", value, level: DiagnosticLevel.Hidden)
         {

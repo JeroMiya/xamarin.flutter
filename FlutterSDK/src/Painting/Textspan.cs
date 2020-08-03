@@ -477,6 +477,12 @@ namespace FlutterSDK.Painting.Textspan
     /// </Summary>
     public class TextSpan : FlutterSDK.Painting.Inlinespan.InlineSpan
     {
+        /// <Summary>
+        /// Creates a [TextSpan] with the given values.
+        ///
+        /// For the object to be useful, at least one of [text] or
+        /// [children] should be set.
+        /// </Summary>
         public TextSpan(string text = default(string), List<FlutterSDK.Painting.Inlinespan.InlineSpan> children = default(List<FlutterSDK.Painting.Inlinespan.InlineSpan>), FlutterSDK.Painting.Textstyle.TextStyle style = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Gestures.Recognizer.GestureRecognizer recognizer = default(FlutterSDK.Gestures.Recognizer.GestureRecognizer), string semanticsLabel = default(string))
         : base(style: style)
         {
@@ -485,9 +491,118 @@ namespace FlutterSDK.Painting.Textspan
             this.Recognizer = recognizer;
             this.SemanticsLabel = semanticsLabel;
         }
+        /// <Summary>
+        /// The text contained in this span.
+        ///
+        /// If both [text] and [children] are non-null, the text will precede the
+        /// children.
+        ///
+        /// This getter does not include the contents of its children.
+        /// </Summary>
         public new string Text { get; set; }
+        /// <Summary>
+        /// Additional spans to include as children.
+        ///
+        /// If both [text] and [children] are non-null, the text will precede the
+        /// children.
+        ///
+        /// Modifying the list after the [TextSpan] has been created is not supported
+        /// and may have unexpected results.
+        ///
+        /// The list must not contain any nulls.
+        /// </Summary>
         public new List<FlutterSDK.Painting.Inlinespan.InlineSpan> Children { get; set; }
+        /// <Summary>
+        /// A gesture recognizer that will receive events that hit this span.
+        ///
+        /// [InlineSpan] itself does not implement hit testing or event dispatch. The
+        /// object that manages the [InlineSpan] painting is also responsible for
+        /// dispatching events. In the rendering library, that is the
+        /// [RenderParagraph] object, which corresponds to the [RichText] widget in
+        /// the widgets layer; these objects do not bubble events in [InlineSpan]s,
+        /// so a [recognizer] is only effective for events that directly hit the
+        /// [text] of that [InlineSpan], not any of its [children].
+        ///
+        /// [InlineSpan] also does not manage the lifetime of the gesture recognizer.
+        /// The code that owns the [GestureRecognizer] object must call
+        /// [GestureRecognizer.dispose] when the [InlineSpan] object is no longer
+        /// used.
+        ///
+        /// {@tool snippet}
+        ///
+        /// This example shows how to manage the lifetime of a gesture recognizer
+        /// provided to an [InlineSpan] object. It defines a `BuzzingText` widget
+        /// which uses the [HapticFeedback] class to vibrate the device when the user
+        /// long-presses the "find the" span, which is underlined in wavy green. The
+        /// hit-testing is handled by the [RichText] widget.
+        ///
+        /// ```dart
+        /// class BuzzingText extends StatefulWidget {
+        ///   @override
+        ///   _BuzzingTextState createState() => _BuzzingTextState();
+        /// }
+        ///
+        /// class _BuzzingTextState extends State<BuzzingText> {
+        ///   LongPressGestureRecognizer _longPressRecognizer;
+        ///
+        ///   @override
+        ///   void initState() {
+        ///     super.initState();
+        ///     _longPressRecognizer = LongPressGestureRecognizer()
+        ///       ..onLongPress = _handlePress;
+        ///   }
+        ///
+        ///   @override
+        ///   void dispose() {
+        ///     _longPressRecognizer.dispose();
+        ///     super.dispose();
+        ///   }
+        ///
+        ///   void _handlePress() {
+        ///     HapticFeedback.vibrate();
+        ///   }
+        ///
+        ///   @override
+        ///   Widget build(BuildContext context) {
+        ///     return Text.rich(
+        ///       TextSpan(
+        ///         text: 'Can you ',
+        ///         style: TextStyle(color: Colors.black),
+        ///         children: <InlineSpan>[
+        ///           TextSpan(
+        ///             text: 'find the',
+        ///             style: TextStyle(
+        ///               color: Colors.green,
+        ///               decoration: TextDecoration.underline,
+        ///               decorationStyle: TextDecorationStyle.wavy,
+        ///             ),
+        ///             recognizer: _longPressRecognizer,
+        ///           ),
+        ///           TextSpan(
+        ///             text: ' secret?',
+        ///           ),
+        ///         ],
+        ///       ),
+        ///     );
+        ///   }
+        /// }
+        /// ```
+        /// {@end-tool}
+        /// </Summary>
         public new FlutterSDK.Gestures.Recognizer.GestureRecognizer Recognizer { get; set; }
+        /// <Summary>
+        /// An alternative semantics label for this [TextSpan].
+        ///
+        /// If present, the semantics of this span will contain this value instead
+        /// of the actual text.
+        ///
+        /// This is useful for replacing abbreviations or shorthands with the full
+        /// text value:
+        ///
+        /// ```dart
+        /// TextSpan(text: r'$$', semanticsLabel: 'Double dollars')
+        /// ```
+        /// </Summary>
         public virtual string SemanticsLabel { get; set; }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 

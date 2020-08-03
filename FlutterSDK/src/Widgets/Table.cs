@@ -439,14 +439,34 @@ namespace FlutterSDK.Widgets.Table
     /// </Summary>
     public class TableRow
     {
+        /// <Summary>
+        /// Creates a row in a [Table].
+        /// </Summary>
         public TableRow(FlutterSDK.Foundation.Key.LocalKey key = default(FlutterSDK.Foundation.Key.LocalKey), FlutterSDK.Painting.Decoration.Decoration decoration = default(FlutterSDK.Painting.Decoration.Decoration), List<FlutterSDK.Widgets.Framework.Widget> children = default(List<FlutterSDK.Widgets.Framework.Widget>))
         {
             this.Key = key;
             this.Decoration = decoration;
             this.Children = children;
         }
+        /// <Summary>
+        /// An identifier for the row.
+        /// </Summary>
         public virtual FlutterSDK.Foundation.Key.LocalKey Key { get; set; }
+        /// <Summary>
+        /// A decoration to paint behind this row.
+        ///
+        /// Row decorations fill the horizontal and vertical extent of each row in
+        /// the table, unlike decorations for individual cells, which might not fill
+        /// either.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Decoration.Decoration Decoration { get; set; }
+        /// <Summary>
+        /// The widgets that comprise the cells in this row.
+        ///
+        /// Children may be wrapped in [TableCell] widgets to provide per-cell
+        /// configuration to the [Table], but children are not required to be wrapped
+        /// in [TableCell] widgets.
+        /// </Summary>
         public virtual List<FlutterSDK.Widgets.Framework.Widget> Children { get; set; }
 
     }
@@ -485,6 +505,12 @@ namespace FlutterSDK.Widgets.Table
     /// </Summary>
     public class Table : FlutterSDK.Widgets.Framework.RenderObjectWidget
     {
+        /// <Summary>
+        /// Creates a table.
+        ///
+        /// The [children], [defaultColumnWidth], and [defaultVerticalAlignment]
+        /// arguments must not be null.
+        /// </Summary>
         public Table(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), List<FlutterSDK.Widgets.Table.TableRow> children = default(List<FlutterSDK.Widgets.Table.TableRow>), Dictionary<int, FlutterSDK.Rendering.Table.TableColumnWidth> columnWidths = default(Dictionary<int, FlutterSDK.Rendering.Table.TableColumnWidth>), FlutterSDK.Rendering.Table.TableColumnWidth defaultColumnWidth = default(FlutterSDK.Rendering.Table.TableColumnWidth), TextDirection textDirection = default(TextDirection), FlutterSDK.Rendering.Tableborder.TableBorder border = default(FlutterSDK.Rendering.Tableborder.TableBorder), FlutterSDK.Rendering.Table.TableCellVerticalAlignment defaultVerticalAlignment = default(FlutterSDK.Rendering.Table.TableCellVerticalAlignment), TextBaseline textBaseline = default(TextBaseline))
         : base(key: key)
         {
@@ -499,12 +525,53 @@ namespace FlutterSDK.Widgets.Table
         }
 
 
+        /// <Summary>
+        /// The rows of the table.
+        ///
+        /// Every row in a table must have the same number of children, and all the
+        /// children must be non-null.
+        /// </Summary>
         public virtual List<FlutterSDK.Widgets.Table.TableRow> Children { get; set; }
+        /// <Summary>
+        /// How the horizontal extents of the columns of this table should be determined.
+        ///
+        /// If the [Map] has a null entry for a given column, the table uses the
+        /// [defaultColumnWidth] instead. By default, that uses flex sizing to
+        /// distribute free space equally among the columns.
+        ///
+        /// The [FixedColumnWidth] class can be used to specify a specific width in
+        /// pixels. That is the cheapest way to size a table's columns.
+        ///
+        /// The layout performance of the table depends critically on which column
+        /// sizing algorithms are used here. In particular, [IntrinsicColumnWidth] is
+        /// quite expensive because it needs to measure each cell in the column to
+        /// determine the intrinsic size of the column.
+        /// </Summary>
         public virtual Dictionary<int, FlutterSDK.Rendering.Table.TableColumnWidth> ColumnWidths { get; set; }
+        /// <Summary>
+        /// How to determine with widths of columns that don't have an explicit sizing algorithm.
+        ///
+        /// Specifically, the [defaultColumnWidth] is used for column `i` if
+        /// `columnWidths[i]` is null.
+        /// </Summary>
         public virtual FlutterSDK.Rendering.Table.TableColumnWidth DefaultColumnWidth { get; set; }
+        /// <Summary>
+        /// The direction in which the columns are ordered.
+        ///
+        /// Defaults to the ambient [Directionality].
+        /// </Summary>
         public virtual TextDirection TextDirection { get; set; }
+        /// <Summary>
+        /// The style to use when painting the boundary and interior divisions of the table.
+        /// </Summary>
         public virtual FlutterSDK.Rendering.Tableborder.TableBorder Border { get; set; }
+        /// <Summary>
+        /// How cells that do not explicitly specify a vertical alignment are aligned vertically.
+        /// </Summary>
         public virtual FlutterSDK.Rendering.Table.TableCellVerticalAlignment DefaultVerticalAlignment { get; set; }
+        /// <Summary>
+        /// The text baseline to use when aligning rows using [TableCellVerticalAlignment.baseline].
+        /// </Summary>
         public virtual TextBaseline TextBaseline { get; set; }
         internal virtual List<FlutterSDK.Painting.Decoration.Decoration> _RowDecorations { get; set; }
 
@@ -748,11 +815,17 @@ namespace FlutterSDK.Widgets.Table
     /// </Summary>
     public class TableCell : FlutterSDK.Widgets.Framework.ParentDataWidget<FlutterSDK.Rendering.Table.TableCellParentData>
     {
+        /// <Summary>
+        /// Creates a widget that controls how a child of a [Table] is aligned.
+        /// </Summary>
         public TableCell(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Rendering.Table.TableCellVerticalAlignment verticalAlignment = default(FlutterSDK.Rendering.Table.TableCellVerticalAlignment), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
             this.VerticalAlignment = verticalAlignment;
         }
+        /// <Summary>
+        /// How this cell is aligned vertically.
+        /// </Summary>
         public virtual FlutterSDK.Rendering.Table.TableCellVerticalAlignment VerticalAlignment { get; set; }
         public virtual Type DebugTypicalAncestorWidgetClass { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 

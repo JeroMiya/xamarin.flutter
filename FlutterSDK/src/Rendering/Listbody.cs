@@ -452,6 +452,12 @@ namespace FlutterSDK.Rendering.Listbody
     /// </Summary>
     public class RenderListBody : FlutterSDK.Rendering.Box.RenderBox, IContainerRenderObjectMixin<FlutterSDK.Rendering.Box.RenderBox, FlutterSDK.Rendering.Listbody.ListBodyParentData>, IRenderBoxContainerDefaultsMixin<FlutterSDK.Rendering.Box.RenderBox, FlutterSDK.Rendering.Listbody.ListBodyParentData>
     {
+        /// <Summary>
+        /// Creates a render object that arranges its children sequentially along a
+        /// given axis.
+        ///
+        /// By default, children are arranged along the vertical axis.
+        /// </Summary>
         public RenderListBody(List<FlutterSDK.Rendering.Box.RenderBox> children = default(List<FlutterSDK.Rendering.Box.RenderBox>), FlutterSDK.Painting.Basictypes.AxisDirection axisDirection = default(FlutterSDK.Painting.Basictypes.AxisDirection))
         : base()
         {

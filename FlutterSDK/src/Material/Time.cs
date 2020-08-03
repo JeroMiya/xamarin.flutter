@@ -423,6 +423,9 @@ namespace FlutterSDK.Material.Time
 {
     internal static class TimeDefaultClass
     {
+        /// <Summary>
+        /// The [HourFormat] used for the given [TimeOfDayFormat].
+        /// </Summary>
         internal static FlutterSDK.Material.Time.HourFormat HourFormat(FlutterSDK.Material.Time.TimeOfDayFormat of = default(FlutterSDK.Material.Time.TimeOfDayFormat))
         {
             switch (of) { case TimeOfDayFormat.H_colon_mm_space_a: case TimeOfDayFormat.A_space_h_colon_mm: return HourFormat.h; case TimeOfDayFormat.H_colon_mm: return HourFormat.H; case TimeOfDayFormat.HH_dot_mm: case TimeOfDayFormat.HH_colon_mm: case TimeOfDayFormat.FrenchCanadian: return HourFormat.HH; }
@@ -463,15 +466,33 @@ namespace FlutterSDK.Material.Time
     /// </Summary>
     public class TimeOfDay
     {
+        /// <Summary>
+        /// Creates a time of day.
+        ///
+        /// The [hour] argument must be between 0 and 23, inclusive. The [minute]
+        /// argument must be between 0 and 59, inclusive.
+        /// </Summary>
         public TimeOfDay(int hour = default(int), int minute = default(int))
         {
             this.Hour = hour;
             this.Minute = minute;
         }
+        /// <Summary>
+        /// Creates a time of day based on the given time.
+        ///
+        /// The [hour] is set to the time's hour and the [minute] is set to the time's
+        /// minute in the timezone of the given [DateTime].
+        /// </Summary>
         public static TimeOfDay FromDateTime(DateTime time)
         {
             var instance = new TimeOfDay();
         }
+        /// <Summary>
+        /// Creates a time of day based on the current time.
+        ///
+        /// The [hour] is set to the current hour and the [minute] is set to the
+        /// current minute in the local time zone.
+        /// </Summary>
         public static TimeOfDay Now()
         {
             var instance = new TimeOfDay();
@@ -479,10 +500,25 @@ namespace FlutterSDK.Material.Time
         }
 
 
+        /// <Summary>
+        /// The number of hours in one day, i.e. 24.
+        /// </Summary>
         public virtual int HoursPerDay { get; set; }
+        /// <Summary>
+        /// The number of hours in one day period (see also [DayPeriod]), i.e. 12.
+        /// </Summary>
         public virtual int HoursPerPeriod { get; set; }
+        /// <Summary>
+        /// The number of minutes in one hour, i.e. 60.
+        /// </Summary>
         public virtual int MinutesPerHour { get; set; }
+        /// <Summary>
+        /// The selected hour, in 24 hour time from 0..23.
+        /// </Summary>
         public virtual int Hour { get; set; }
+        /// <Summary>
+        /// The selected minute.
+        /// </Summary>
         public virtual int Minute { get; set; }
         public virtual FlutterSDK.Material.Time.DayPeriod Period { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual int HourOfPeriod { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }

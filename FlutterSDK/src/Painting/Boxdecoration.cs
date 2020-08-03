@@ -484,6 +484,21 @@ namespace FlutterSDK.Painting.Boxdecoration
     /// </Summary>
     public class BoxDecoration : FlutterSDK.Painting.Decoration.Decoration
     {
+        /// <Summary>
+        /// Creates a box decoration.
+        ///
+        /// * If [color] is null, this decoration does not paint a background color.
+        /// * If [image] is null, this decoration does not paint a background image.
+        /// * If [border] is null, this decoration does not paint a border.
+        /// * If [borderRadius] is null, this decoration uses more efficient background
+        ///   painting commands. The [borderRadius] argument must be null if [shape] is
+        ///   [BoxShape.circle].
+        /// * If [boxShadow] is null, this decoration does not paint a shadow.
+        /// * If [gradient] is null, this decoration does not paint gradients.
+        /// * If [backgroundBlendMode] is null, this decoration paints with [BlendMode.srcOver]
+        ///
+        /// The [shape] argument must not be null.
+        /// </Summary>
         public BoxDecoration(FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Decorationimage.DecorationImage image = default(FlutterSDK.Painting.Decorationimage.DecorationImage), FlutterSDK.Painting.Boxborder.BoxBorder border = default(FlutterSDK.Painting.Boxborder.BoxBorder), FlutterSDK.Painting.Borderradius.BorderRadiusGeometry borderRadius = default(FlutterSDK.Painting.Borderradius.BorderRadiusGeometry), List<FlutterSDK.Painting.Boxshadow.BoxShadow> boxShadow = default(List<FlutterSDK.Painting.Boxshadow.BoxShadow>), FlutterSDK.Painting.Gradient.Gradient gradient = default(FlutterSDK.Painting.Gradient.Gradient), FlutterBinding.UI.BlendMode backgroundBlendMode = default(FlutterBinding.UI.BlendMode), FlutterSDK.Painting.Boxborder.BoxShape shape = default(FlutterSDK.Painting.Boxborder.BoxShape))
         : base()
         {
@@ -496,13 +511,91 @@ namespace FlutterSDK.Painting.Boxdecoration
             this.BackgroundBlendMode = backgroundBlendMode;
             this.Shape = shape;
         }
+        /// <Summary>
+        /// The color to fill in the background of the box.
+        ///
+        /// The color is filled into the [shape] of the box (e.g., either a rectangle,
+        /// potentially with a [borderRadius], or a circle).
+        ///
+        /// This is ignored if [gradient] is non-null.
+        ///
+        /// The [color] is drawn under the [image].
+        /// </Summary>
         public virtual FlutterBinding.UI.Color Color { get; set; }
+        /// <Summary>
+        /// An image to paint above the background [color] or [gradient].
+        ///
+        /// If [shape] is [BoxShape.circle] then the image is clipped to the circle's
+        /// boundary; if [borderRadius] is non-null then the image is clipped to the
+        /// given radii.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Decorationimage.DecorationImage Image { get; set; }
+        /// <Summary>
+        /// A border to draw above the background [color], [gradient], or [image].
+        ///
+        /// Follows the [shape] and [borderRadius].
+        ///
+        /// Use [Border] objects to describe borders that do not depend on the reading
+        /// direction.
+        ///
+        /// Use [BoxBorder] objects to describe borders that should flip their left
+        /// and right edges based on whether the text is being read left-to-right or
+        /// right-to-left.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Boxborder.BoxBorder Border { get; set; }
+        /// <Summary>
+        /// If non-null, the corners of this box are rounded by this [BorderRadius].
+        ///
+        /// Applies only to boxes with rectangular shapes; ignored if [shape] is not
+        /// [BoxShape.rectangle].
+        ///
+        /// {@macro flutter.painting.boxDecoration.clip}
+        /// </Summary>
         public virtual FlutterSDK.Painting.Borderradius.BorderRadiusGeometry BorderRadius { get; set; }
+        /// <Summary>
+        /// A list of shadows cast by this box behind the box.
+        ///
+        /// The shadow follows the [shape] of the box.
+        ///
+        /// See also:
+        ///
+        ///  * [kElevationToShadow], for some predefined shadows used in Material
+        ///    Design.
+        ///  * [PhysicalModel], a widget for showing shadows.
+        /// </Summary>
         public virtual List<FlutterSDK.Painting.Boxshadow.BoxShadow> BoxShadow { get; set; }
+        /// <Summary>
+        /// A gradient to use when filling the box.
+        ///
+        /// If this is specified, [color] has no effect.
+        ///
+        /// The [gradient] is drawn under the [image].
+        /// </Summary>
         public virtual FlutterSDK.Painting.Gradient.Gradient Gradient { get; set; }
+        /// <Summary>
+        /// The blend mode applied to the [color] or [gradient] background of the box.
+        ///
+        /// If no [backgroundBlendMode] is provided then the default painting blend
+        /// mode is used.
+        ///
+        /// If no [color] or [gradient] is provided then the blend mode has no impact.
+        /// </Summary>
         public virtual FlutterBinding.UI.BlendMode BackgroundBlendMode { get; set; }
+        /// <Summary>
+        /// The shape to fill the background [color], [gradient], and [image] into and
+        /// to cast as the [boxShadow].
+        ///
+        /// If this is [BoxShape.circle] then [borderRadius] is ignored.
+        ///
+        /// The [shape] cannot be interpolated; animating between two [BoxDecoration]s
+        /// with different [shape]s will result in a discontinuity in the rendering.
+        /// To interpolate between two shapes, consider using [ShapeDecoration] and
+        /// different [ShapeBorder]s; in particular, [CircleBorder] instead of
+        /// [BoxShape.circle] and [RoundedRectangleBorder] instead of
+        /// [BoxShape.rectangle].
+        ///
+        /// {@macro flutter.painting.boxDecoration.clip}
+        /// </Summary>
         public virtual FlutterSDK.Painting.Boxborder.BoxShape Shape { get; set; }
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Padding { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool IsComplex { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }

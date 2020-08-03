@@ -471,6 +471,19 @@ namespace FlutterSDK.Painting.Shapedecoration
     /// </Summary>
     public class ShapeDecoration : FlutterSDK.Painting.Decoration.Decoration
     {
+        /// <Summary>
+        /// Creates a shape decoration.
+        ///
+        /// * If [color] is null, this decoration does not paint a background color.
+        /// * If [gradient] is null, this decoration does not paint gradients.
+        /// * If [image] is null, this decoration does not paint a background image.
+        /// * If [shadows] is null, this decoration does not paint a shadow.
+        ///
+        /// The [color] and [gradient] properties are mutually exclusive, one (or
+        /// both) of them must be null.
+        ///
+        /// The [shape] must not be null.
+        /// </Summary>
         public ShapeDecoration(FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Decorationimage.DecorationImage image = default(FlutterSDK.Painting.Decorationimage.DecorationImage), FlutterSDK.Painting.Gradient.Gradient gradient = default(FlutterSDK.Painting.Gradient.Gradient), List<FlutterSDK.Painting.Boxshadow.BoxShadow> shadows = default(List<FlutterSDK.Painting.Boxshadow.BoxShadow>), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder))
         : base()
         {
@@ -480,6 +493,18 @@ namespace FlutterSDK.Painting.Shapedecoration
             this.Shadows = shadows;
             this.Shape = shape;
         }
+        /// <Summary>
+        /// Creates a shape decoration configured to match a [BoxDecoration].
+        ///
+        /// The [BoxDecoration] class is more efficient for shapes that it can
+        /// describe than the [ShapeDecoration] class is for those same shapes,
+        /// because [ShapeDecoration] has to be more general as it can support any
+        /// shape. However, having a [ShapeDecoration] is sometimes necessary, for
+        /// example when calling [ShapeDecoration.lerp] to transition between
+        /// different shapes (e.g. from a [CircleBorder] to a
+        /// [RoundedRectangleBorder]; the [BoxDecoration] class cannot animate the
+        /// transition from a [BoxShape.circle] to [BoxShape.rectangle]).
+        /// </Summary>
         public static ShapeDecoration FromBoxDecoration(FlutterSDK.Painting.Boxdecoration.BoxDecoration source)
         {
             var instance = new ShapeDecoration();
@@ -514,10 +539,62 @@ namespace FlutterSDK.Painting.Shapedecoration
         }
 
 
+        /// <Summary>
+        /// The color to fill in the background of the shape.
+        ///
+        /// The color is under the [image].
+        ///
+        /// If a [gradient] is specified, [color] must be null.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color Color { get; set; }
+        /// <Summary>
+        /// A gradient to use when filling the shape.
+        ///
+        /// The gradient is under the [image].
+        ///
+        /// If a [color] is specified, [gradient] must be null.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Gradient.Gradient Gradient { get; set; }
+        /// <Summary>
+        /// An image to paint inside the shape (clipped to its outline).
+        ///
+        /// The image is drawn over the [color] or [gradient].
+        /// </Summary>
         public virtual FlutterSDK.Painting.Decorationimage.DecorationImage Image { get; set; }
+        /// <Summary>
+        /// A list of shadows cast by the [shape].
+        ///
+        /// See also:
+        ///
+        ///  * [kElevationToShadow], for some predefined shadows used in Material
+        ///    Design.
+        ///  * [PhysicalModel], a widget for showing shadows.
+        /// </Summary>
         public virtual List<FlutterSDK.Painting.Boxshadow.BoxShadow> Shadows { get; set; }
+        /// <Summary>
+        /// The shape to fill the [color], [gradient], and [image] into and to cast as
+        /// the [shadows].
+        ///
+        /// Shapes can be stacked (using the `+` operator). The color, gradient, and
+        /// image are drawn into the inner-most shape specified.
+        ///
+        /// The [shape] property specifies the outline (border) of the decoration. The
+        /// shape must not be null.
+        ///
+        /// ## Directionality-dependent shapes
+        ///
+        /// Some [ShapeBorder] subclasses are sensitive to the [TextDirection]. The
+        /// direction that is provided to the border (e.g. for its [ShapeBorder.paint]
+        /// method) is the one specified in the [ImageConfiguration]
+        /// ([ImageConfiguration.textDirection]) provided to the [BoxPainter] (via its
+        /// [BoxPainter.paint method). The [BoxPainter] is obtained when
+        /// [createBoxPainter] is called.
+        ///
+        /// When a [ShapeDecoration] is used with a [Container] widget or a
+        /// [DecoratedBox] widget (which is what [Container] uses), the
+        /// [TextDirection] specified in the [ImageConfiguration] is obtained from the
+        /// ambient [Directionality], using [createLocalImageConfiguration].
+        /// </Summary>
         public virtual FlutterSDK.Painting.Borders.ShapeBorder Shape { get; set; }
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Padding { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool IsComplex { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }

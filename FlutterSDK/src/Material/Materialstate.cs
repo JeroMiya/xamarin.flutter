@@ -390,6 +390,10 @@ using FlutterSDK.Material.Time;
 using FlutterSDK.Material.Typography;
 namespace FlutterSDK.Material.Materialstate
 {
+    /// <Summary>
+    /// Signature for the function that returns a value of type `T` based on a given
+    /// set of states.
+    /// </Summary>
     public delegate T MaterialPropertyResolver<T>(HashSet<FlutterSDK.Material.Materialstate.MaterialState> states);
     internal static class MaterialstateDefaultClass
     {
@@ -562,6 +566,37 @@ namespace FlutterSDK.Material.Materialstate
     /// </Summary>
     public class MaterialStateColor : Color, IMaterialStateProperty<Color>
     {
+        /// <Summary>
+        /// Creates a [MaterialStateColor].
+        ///
+        /// If you want a `const` [MaterialStateColor], you'll need to extend
+        /// [MaterialStateColor] and override the [resolve] method. You'll also need
+        /// to provide a `defaultValue` to the super constructor, so that we can know
+        /// at compile-time what the value of the default [Color] is.
+        ///
+        /// {@tool snippet}
+        ///
+        /// In this next example, we see how you can create a `MaterialStateColor` by
+        /// extending the abstract class and overriding the `resolve` method.
+        ///
+        /// ```dart
+        /// class TextColor extends MaterialStateColor {
+        ///   static const int _defaultColor = 0xcafefeed;
+        ///   static const int _pressedColor = 0xdeadbeef;
+        ///
+        ///   const TextColor() : super(_defaultColor);
+        ///
+        ///   @override
+        ///   Color resolve(Set<MaterialState> states) {
+        ///     if (states.contains(MaterialState.pressed)) {
+        ///       return const Color(_pressedColor);
+        ///     }
+        ///     return const Color(_defaultColor);
+        ///   }
+        /// }
+        /// ```
+        /// {@end-tool}
+        /// </Summary>
         public MaterialStateColor(int defaultValue)
         : base(defaultValue)
         {
@@ -611,6 +646,9 @@ namespace FlutterSDK.Material.Materialstate
             this._Resolve = _resolve;
         }
         internal virtual FlutterSDK.Material.Materialstate.MaterialPropertyResolver<Color> _Resolve { get; set; }
+        /// <Summary>
+        /// The default state for a Material component, the empty set of interaction states.
+        /// </Summary>
         internal virtual HashSet<FlutterSDK.Material.Materialstate.MaterialState> _DefaultStates { get; set; }
 
         public new Color Resolve(HashSet<FlutterSDK.Material.Materialstate.MaterialState> states) => _Resolve(states);

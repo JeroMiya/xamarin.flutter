@@ -403,6 +403,10 @@ namespace FlutterSDK.Material.Listtile
     /// </Summary>
     public class ListTileTheme : FlutterSDK.Widgets.Inheritedtheme.InheritedTheme
     {
+        /// <Summary>
+        /// Creates a list tile theme that controls the color and style parameters for
+        /// [ListTile]s.
+        /// </Summary>
         public ListTileTheme(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), bool dense = false, FlutterSDK.Material.Listtile.ListTileStyle style = default(FlutterSDK.Material.Listtile.ListTileStyle), FlutterBinding.UI.Color selectedColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color iconColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color textColor = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry contentPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
@@ -413,11 +417,32 @@ namespace FlutterSDK.Material.Listtile
             this.TextColor = textColor;
             this.ContentPadding = contentPadding;
         }
+        /// <Summary>
+        /// If true then [ListTile]s will have the vertically dense layout.
+        /// </Summary>
         public virtual bool Dense { get; set; }
+        /// <Summary>
+        /// If specified, [style] defines the font used for [ListTile] titles.
+        /// </Summary>
         public virtual FlutterSDK.Material.Listtile.ListTileStyle Style { get; set; }
+        /// <Summary>
+        /// If specified, the color used for icons and text when a [ListTile] is selected.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color SelectedColor { get; set; }
+        /// <Summary>
+        /// If specified, the icon color used for enabled [ListTile]s that are not selected.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color IconColor { get; set; }
+        /// <Summary>
+        /// If specified, the text color used for enabled [ListTile]s that are not selected.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color TextColor { get; set; }
+        /// <Summary>
+        /// The tile's internal padding.
+        ///
+        /// Insets a [ListTile]'s contents: its [leading], [title], [subtitle],
+        /// and [trailing] widgets.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry ContentPadding { get; set; }
 
         /// <Summary>
@@ -944,6 +969,13 @@ namespace FlutterSDK.Material.Listtile
     /// </Summary>
     public class ListTile : FlutterSDK.Widgets.Framework.StatelessWidget
     {
+        /// <Summary>
+        /// Creates a list tile.
+        ///
+        /// If [isThreeLine] is true, then [subtitle] must not be null.
+        ///
+        /// Requires one of its ancestors to be a [Material] widget.
+        /// </Summary>
         public ListTile(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget leading = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget title = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget subtitle = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget trailing = default(FlutterSDK.Widgets.Framework.Widget), bool isThreeLine = false, bool dense = default(bool), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry contentPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), bool enabled = true, FlutterSDK.Gestures.Tap.GestureTapCallback onTap = default(FlutterSDK.Gestures.Tap.GestureTapCallback), FlutterSDK.Gestures.Longpress.GestureLongPressCallback onLongPress = default(FlutterSDK.Gestures.Longpress.GestureLongPressCallback), bool selected = false)
         : base(key: key)
         {
@@ -959,16 +991,96 @@ namespace FlutterSDK.Material.Listtile
             this.OnLongPress = onLongPress;
             this.Selected = selected;
         }
+        /// <Summary>
+        /// A widget to display before the title.
+        ///
+        /// Typically an [Icon] or a [CircleAvatar] widget.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Leading { get; set; }
+        /// <Summary>
+        /// The primary content of the list tile.
+        ///
+        /// Typically a [Text] widget.
+        ///
+        /// This should not wrap.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Title { get; set; }
+        /// <Summary>
+        /// Additional content displayed below the title.
+        ///
+        /// Typically a [Text] widget.
+        ///
+        /// If [isThreeLine] is false, this should not wrap.
+        ///
+        /// If [isThreeLine] is true, this should be configured to take a maximum of
+        /// two lines.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Subtitle { get; set; }
+        /// <Summary>
+        /// A widget to display after the title.
+        ///
+        /// Typically an [Icon] widget.
+        ///
+        /// To show right-aligned metadata (assuming left-to-right reading order;
+        /// left-aligned for right-to-left reading order), consider using a [Row] with
+        /// [MainAxisAlign.baseline] alignment whose first item is [Expanded] and
+        /// whose second child is the metadata text, instead of using the [trailing]
+        /// property.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Trailing { get; set; }
+        /// <Summary>
+        /// Whether this list tile is intended to display three lines of text.
+        ///
+        /// If true, then [subtitle] must be non-null (since it is expected to give
+        /// the second and third lines of text).
+        ///
+        /// If false, the list tile is treated as having one line if the subtitle is
+        /// null and treated as having two lines if the subtitle is non-null.
+        /// </Summary>
         public virtual bool IsThreeLine { get; set; }
+        /// <Summary>
+        /// Whether this list tile is part of a vertically dense list.
+        ///
+        /// If this property is null then its value is based on [ListTileTheme.dense].
+        ///
+        /// Dense list tiles default to a smaller height.
+        /// </Summary>
         public virtual bool Dense { get; set; }
+        /// <Summary>
+        /// The tile's internal padding.
+        ///
+        /// Insets a [ListTile]'s contents: its [leading], [title], [subtitle],
+        /// and [trailing] widgets.
+        ///
+        /// If null, `EdgeInsets.symmetric(horizontal: 16.0)` is used.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry ContentPadding { get; set; }
+        /// <Summary>
+        /// Whether this list tile is interactive.
+        ///
+        /// If false, this list tile is styled with the disabled color from the
+        /// current [Theme] and the [onTap] and [onLongPress] callbacks are
+        /// inoperative.
+        /// </Summary>
         public virtual bool Enabled { get; set; }
+        /// <Summary>
+        /// Called when the user taps this list tile.
+        ///
+        /// Inoperative if [enabled] is false.
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Tap.GestureTapCallback OnTap { get; set; }
+        /// <Summary>
+        /// Called when the user long-presses on this list tile.
+        ///
+        /// Inoperative if [enabled] is false.
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Longpress.GestureLongPressCallback OnLongPress { get; set; }
+        /// <Summary>
+        /// If this tile is also [enabled] then icons and text are rendered with the same color.
+        ///
+        /// By default the selected color is the theme's primary color. The selected color
+        /// can be overridden with a [ListTileTheme].
+        /// </Summary>
         public virtual bool Selected { get; set; }
 
         /// <Summary>

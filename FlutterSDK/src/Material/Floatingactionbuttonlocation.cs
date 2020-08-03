@@ -519,16 +519,83 @@ namespace FlutterSDK.Material.Floatingactionbuttonlocation
     /// </Summary>
     public class FloatingActionButtonLocation
     {
+        /// <Summary>
+        /// Abstract const constructor. This constructor enables subclasses to provide
+        /// const constructors so that they can be used in const expressions.
+        /// </Summary>
         public FloatingActionButtonLocation()
         {
 
         }
+        /// <Summary>
+        /// End-aligned [FloatingActionButton], floating at the bottom of the screen.
+        ///
+        /// This is the default alignment of [FloatingActionButton]s in Material applications.
+        /// </Summary>
         public virtual FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonLocation EndFloat { get; set; }
+        /// <Summary>
+        /// Centered [FloatingActionButton], floating at the bottom of the screen.
+        /// </Summary>
         public virtual FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonLocation CenterFloat { get; set; }
+        /// <Summary>
+        /// End-aligned [FloatingActionButton], floating over the
+        /// [Scaffold.bottomNavigationBar] so that the center of the floating
+        /// action button lines up with the top of the bottom navigation bar.
+        ///
+        /// If the value of [Scaffold.bottomNavigationBar] is a [BottomAppBar],
+        /// the bottom app bar can include a "notch" in its shape that accommodates
+        /// the overlapping floating action button.
+        ///
+        /// This is unlikely to be a useful location for apps that lack a bottom
+        /// navigation bar.
+        /// </Summary>
         public virtual FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonLocation EndDocked { get; set; }
+        /// <Summary>
+        /// Center-aligned [FloatingActionButton], floating over the
+        /// [Scaffold.bottomNavigationBar] so that the center of the floating
+        /// action button lines up with the top of the bottom navigation bar.
+        ///
+        /// If the value of [Scaffold.bottomNavigationBar] is a [BottomAppBar],
+        /// the bottom app bar can include a "notch" in its shape that accommodates
+        /// the overlapping floating action button.
+        ///
+        /// This is unlikely to be a useful location for apps that lack a bottom
+        /// navigation bar.
+        /// </Summary>
         public virtual FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonLocation CenterDocked { get; set; }
+        /// <Summary>
+        /// Start-aligned [FloatingActionButton], floating over the transition between
+        /// the [Scaffold.appBar] and the [Scaffold.body].
+        ///
+        /// To align a floating action button with [FloatingActionButton.mini] set to
+        /// true with [CircleAvatar]s in the [ListTile.leading] slots of [ListTile]s
+        /// in a [ListView] in the [Scaffold.body], consider using [miniStartTop].
+        ///
+        /// This is unlikely to be a useful location for apps that lack a top [AppBar]
+        /// or that use a [SliverAppBar] in the scaffold body itself.
+        /// </Summary>
         public virtual FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonLocation StartTop { get; set; }
+        /// <Summary>
+        /// Start-aligned [FloatingActionButton], floating over the transition between
+        /// the [Scaffold.appBar] and the [Scaffold.body], optimized for mini floating
+        /// action buttons.
+        ///
+        /// This is intended to be used with [FloatingActionButton.mini] set to true,
+        /// so that the floating action button appears to align with [CircleAvatar]s
+        /// in the [ListTile.leading] slot of a [ListTile] in a [ListView] in the
+        /// [Scaffold.body].
+        ///
+        /// This is unlikely to be a useful location for apps that lack a top [AppBar]
+        /// or that use a [SliverAppBar] in the scaffold body itself.
+        /// </Summary>
         public virtual FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonLocation MiniStartTop { get; set; }
+        /// <Summary>
+        /// End-aligned [FloatingActionButton], floating over the transition between
+        /// the [Scaffold.appBar] and the [Scaffold.body].
+        ///
+        /// This is unlikely to be a useful location for apps that lack a top [AppBar]
+        /// or that use a [SliverAppBar] in the scaffold body itself.
+        /// </Summary>
         public virtual FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonLocation EndTop { get; set; }
 
         /// <Summary>
@@ -738,10 +805,23 @@ namespace FlutterSDK.Material.Floatingactionbuttonlocation
     /// </Summary>
     public class FloatingActionButtonAnimator
     {
+        /// <Summary>
+        /// Abstract const constructor. This constructor enables subclasses to provide
+        /// const constructors so that they can be used in const expressions.
+        /// </Summary>
         public FloatingActionButtonAnimator()
         {
 
         }
+        /// <Summary>
+        /// Moves the [FloatingActionButton] by scaling out and then in at a new
+        /// [FloatingActionButtonLocation].
+        ///
+        /// This animator shrinks the [FloatingActionButton] down until it disappears, then
+        /// grows it back to full size at its new [FloatingActionButtonLocation].
+        ///
+        /// This is the default [FloatingActionButton] motion animation.
+        /// </Summary>
         public virtual FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonAnimator Scaling { get; set; }
 
         /// <Summary>
@@ -890,6 +970,12 @@ namespace FlutterSDK.Material.Floatingactionbuttonlocation
     /// </Summary>
     public class _AnimationSwap<T> : FlutterSDK.Animation.Animations.CompoundAnimation<T>
     {
+        /// <Summary>
+        /// Creates an [_AnimationSwap].
+        ///
+        /// Both arguments must be non-null. Either can be an [_AnimationSwap] itself
+        /// to combine multiple animations.
+        /// </Summary>
         public _AnimationSwap(FlutterSDK.Animation.Animation.Animation<T> first, FlutterSDK.Animation.Animation.Animation<T> next, FlutterSDK.Animation.Animation.Animation<double> parent, double swapThreshold)
         : base(first: first, next: next)
         {

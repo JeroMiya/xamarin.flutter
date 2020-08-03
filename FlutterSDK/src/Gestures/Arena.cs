@@ -358,6 +358,12 @@ namespace FlutterSDK.Gestures.Arena
         public virtual bool IsOpen { get; set; }
         public virtual bool IsHeld { get; set; }
         public virtual bool HasPendingSweep { get; set; }
+        /// <Summary>
+        /// If a member attempts to win while the arena is still open, it becomes the
+        /// "eager winner". We look for an eager winner when closing the arena to new
+        /// participants, and if there is one, we resolve the arena in its favor at
+        /// that time.
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Arena.GestureArenaMember EagerWinner { get; set; }
 
         public virtual void Add(FlutterSDK.Gestures.Arena.GestureArenaMember member)

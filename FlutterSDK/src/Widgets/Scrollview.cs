@@ -536,6 +536,17 @@ namespace FlutterSDK.Widgets.Scrollview
     /// </Summary>
     public class ScrollView : FlutterSDK.Widgets.Framework.StatelessWidget
     {
+        /// <Summary>
+        /// Creates a widget that scrolls.
+        ///
+        /// If the [primary] argument is true, the [controller] must be null.
+        ///
+        /// If the [shrinkWrap] argument is true, the [center] argument must be null.
+        ///
+        /// The [scrollDirection], [reverse], and [shrinkWrap] arguments must not be null.
+        ///
+        /// The [anchor] argument must be non-null and in the range 0.0 to 1.0.
+        /// </Summary>
         public ScrollView(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Basictypes.Axis scrollDirection = default(FlutterSDK.Painting.Basictypes.Axis), bool reverse = false, FlutterSDK.Widgets.Scrollcontroller.ScrollController controller = default(FlutterSDK.Widgets.Scrollcontroller.ScrollController), bool primary = default(bool), FlutterSDK.Widgets.Scrollphysics.ScrollPhysics physics = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics), bool shrinkWrap = false, FlutterSDK.Foundation.Key.Key center = default(FlutterSDK.Foundation.Key.Key), double anchor = 0.0, double cacheExtent = default(double), int semanticChildCount = default(int), FlutterSDK.Gestures.Recognizer.DragStartBehavior dragStartBehavior = default(FlutterSDK.Gestures.Recognizer.DragStartBehavior), FlutterSDK.Widgets.Scrollview.ScrollViewKeyboardDismissBehavior keyboardDismissBehavior = default(FlutterSDK.Widgets.Scrollview.ScrollViewKeyboardDismissBehavior))
         : base(key: key)
         {
@@ -550,17 +561,168 @@ namespace FlutterSDK.Widgets.Scrollview
             this.DragStartBehavior = dragStartBehavior;
             this.KeyboardDismissBehavior = keyboardDismissBehavior;
         }
+        /// <Summary>
+        /// The axis along which the scroll view scrolls.
+        ///
+        /// Defaults to [Axis.vertical].
+        /// </Summary>
         public virtual FlutterSDK.Painting.Basictypes.Axis ScrollDirection { get; set; }
+        /// <Summary>
+        /// Whether the scroll view scrolls in the reading direction.
+        ///
+        /// For example, if the reading direction is left-to-right and
+        /// [scrollDirection] is [Axis.horizontal], then the scroll view scrolls from
+        /// left to right when [reverse] is false and from right to left when
+        /// [reverse] is true.
+        ///
+        /// Similarly, if [scrollDirection] is [Axis.vertical], then the scroll view
+        /// scrolls from top to bottom when [reverse] is false and from bottom to top
+        /// when [reverse] is true.
+        ///
+        /// Defaults to false.
+        /// </Summary>
         public virtual bool Reverse { get; set; }
+        /// <Summary>
+        /// An object that can be used to control the position to which this scroll
+        /// view is scrolled.
+        ///
+        /// Must be null if [primary] is true.
+        ///
+        /// A [ScrollController] serves several purposes. It can be used to control
+        /// the initial scroll position (see [ScrollController.initialScrollOffset]).
+        /// It can be used to control whether the scroll view should automatically
+        /// save and restore its scroll position in the [PageStorage] (see
+        /// [ScrollController.keepScrollOffset]). It can be used to read the current
+        /// scroll position (see [ScrollController.offset]), or change it (see
+        /// [ScrollController.animateTo]).
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Scrollcontroller.ScrollController Controller { get; set; }
+        /// <Summary>
+        /// Whether this is the primary scroll view associated with the parent
+        /// [PrimaryScrollController].
+        ///
+        /// When this is true, the scroll view is scrollable even if it does not have
+        /// sufficient content to actually scroll. Otherwise, by default the user can
+        /// only scroll the view if it has sufficient content. See [physics].
+        ///
+        /// On iOS, this also identifies the scroll view that will scroll to top in
+        /// response to a tap in the status bar.
+        ///
+        /// Defaults to true when [scrollDirection] is [Axis.vertical] and
+        /// [controller] is null.
+        /// </Summary>
         public virtual bool Primary { get; set; }
+        /// <Summary>
+        /// How the scroll view should respond to user input.
+        ///
+        /// For example, determines how the scroll view continues to animate after the
+        /// user stops dragging the scroll view.
+        ///
+        /// Defaults to matching platform conventions. Furthermore, if [primary] is
+        /// false, then the user cannot scroll if there is insufficient content to
+        /// scroll, while if [primary] is true, they can always attempt to scroll.
+        ///
+        /// To force the scroll view to always be scrollable even if there is
+        /// insufficient content, as if [primary] was true but without necessarily
+        /// setting it to true, provide an [AlwaysScrollableScrollPhysics] physics
+        /// object, as in:
+        ///
+        /// ```dart
+        ///   physics: const AlwaysScrollableScrollPhysics(),
+        /// ```
+        ///
+        /// To force the scroll view to use the default platform conventions and not
+        /// be scrollable if there is insufficient content, regardless of the value of
+        /// [primary], provide an explicit [ScrollPhysics] object, as in:
+        ///
+        /// ```dart
+        ///   physics: const ScrollPhysics(),
+        /// ```
+        ///
+        /// The physics can be changed dynamically (by providing a new object in a
+        /// subsequent build), but new physics will only take effect if the _class_ of
+        /// the provided object changes. Merely constructing a new instance with a
+        /// different configuration is insufficient to cause the physics to be
+        /// reapplied. (This is because the final object used is generated
+        /// dynamically, which can be relatively expensive, and it would be
+        /// inefficient to speculatively create this object each frame to see if the
+        /// physics should be updated.)
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Scrollphysics.ScrollPhysics Physics { get; set; }
+        /// <Summary>
+        /// Whether the extent of the scroll view in the [scrollDirection] should be
+        /// determined by the contents being viewed.
+        ///
+        /// If the scroll view does not shrink wrap, then the scroll view will expand
+        /// to the maximum allowed size in the [scrollDirection]. If the scroll view
+        /// has unbounded constraints in the [scrollDirection], then [shrinkWrap] must
+        /// be true.
+        ///
+        /// Shrink wrapping the content of the scroll view is significantly more
+        /// expensive than expanding to the maximum allowed size because the content
+        /// can expand and contract during scrolling, which means the size of the
+        /// scroll view needs to be recomputed whenever the scroll position changes.
+        ///
+        /// Defaults to false.
+        /// </Summary>
         public virtual bool ShrinkWrap { get; set; }
+        /// <Summary>
+        /// The first child in the [GrowthDirection.forward] growth direction.
+        ///
+        /// Children after [center] will be placed in the [axisDirection] relative to
+        /// the [center]. Children before [center] will be placed in the opposite of
+        /// the [axisDirection] relative to the [center]. This makes the [center] the
+        /// inflection point of the growth direction.
+        ///
+        /// The [center] must be the key of one of the slivers built by [buildSlivers].
+        ///
+        /// Of the built-in subclasses of [ScrollView], only [CustomScrollView]
+        /// supports [center]; for that class, the given key must be the key of one of
+        /// the slivers in the [CustomScrollView.slivers] list.
+        ///
+        /// See also:
+        ///
+        ///  * [anchor], which controls where the [center] as aligned in the viewport.
+        /// </Summary>
         public virtual FlutterSDK.Foundation.Key.Key Center { get; set; }
+        /// <Summary>
+        /// The relative position of the zero scroll offset.
+        ///
+        /// For example, if [anchor] is 0.5 and the [axisDirection] is
+        /// [AxisDirection.down] or [AxisDirection.up], then the zero scroll offset is
+        /// vertically centered within the viewport. If the [anchor] is 1.0, and the
+        /// [axisDirection] is [AxisDirection.right], then the zero scroll offset is
+        /// on the left edge of the viewport.
+        /// </Summary>
         public virtual double Anchor { get; set; }
+        /// <Summary>
+        /// {@macro flutter.rendering.viewport.cacheExtent}
+        /// </Summary>
         public virtual double CacheExtent { get; set; }
+        /// <Summary>
+        /// The number of children that will contribute semantic information.
+        ///
+        /// Some subtypes of [ScrollView] can infer this value automatically. For
+        /// example [ListView] will use the number of widgets in the child list,
+        /// while the [ListView.separated] constructor will use half that amount.
+        ///
+        /// For [CustomScrollView] and other types which do not receive a builder
+        /// or list of widgets, the child count must be explicitly provided. If the
+        /// number is unknown or unbounded this should be left unset or set to null.
+        ///
+        /// See also:
+        ///
+        ///  * [SemanticsConfiguration.scrollChildCount], the corresponding semantics property.
+        /// </Summary>
         public virtual int SemanticChildCount { get; set; }
+        /// <Summary>
+        /// {@macro flutter.widgets.scrollable.dragStartBehavior}
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Recognizer.DragStartBehavior DragStartBehavior { get; set; }
+        /// <Summary>
+        /// [ScrollViewKeyboardDismissBehavior] the defines how this [ScrollView] will
+        /// dismiss the keyboard automatically.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Scrollview.ScrollViewKeyboardDismissBehavior KeyboardDismissBehavior { get; set; }
 
         /// <Summary>
@@ -792,11 +954,19 @@ namespace FlutterSDK.Widgets.Scrollview
     /// </Summary>
     public class CustomScrollView : FlutterSDK.Widgets.Scrollview.ScrollView
     {
+        /// <Summary>
+        /// Creates a [ScrollView] that creates custom scroll effects using slivers.
+        ///
+        /// See the [ScrollView] constructor for more details on these arguments.
+        /// </Summary>
         public CustomScrollView(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Basictypes.Axis scrollDirection = default(FlutterSDK.Painting.Basictypes.Axis), bool reverse = false, FlutterSDK.Widgets.Scrollcontroller.ScrollController controller = default(FlutterSDK.Widgets.Scrollcontroller.ScrollController), bool primary = default(bool), FlutterSDK.Widgets.Scrollphysics.ScrollPhysics physics = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics), bool shrinkWrap = false, FlutterSDK.Foundation.Key.Key center = default(FlutterSDK.Foundation.Key.Key), double anchor = 0.0, double cacheExtent = default(double), List<FlutterSDK.Widgets.Framework.Widget> slivers = default(List<FlutterSDK.Widgets.Framework.Widget>), int semanticChildCount = default(int), FlutterSDK.Gestures.Recognizer.DragStartBehavior dragStartBehavior = default(FlutterSDK.Gestures.Recognizer.DragStartBehavior))
         : base(key: key, scrollDirection: scrollDirection, reverse: reverse, controller: controller, primary: primary, physics: physics, shrinkWrap: shrinkWrap, center: center, anchor: anchor, cacheExtent: cacheExtent, semanticChildCount: semanticChildCount, dragStartBehavior: dragStartBehavior)
         {
             this.Slivers = slivers;
         }
+        /// <Summary>
+        /// The slivers to place inside the viewport.
+        /// </Summary>
         public virtual List<FlutterSDK.Widgets.Framework.Widget> Slivers { get; set; }
 
         public new List<FlutterSDK.Widgets.Framework.Widget> BuildSlivers(FlutterSDK.Widgets.Framework.BuildContext context) => Slivers;
@@ -817,11 +987,19 @@ namespace FlutterSDK.Widgets.Scrollview
     /// </Summary>
     public class BoxScrollView : FlutterSDK.Widgets.Scrollview.ScrollView
     {
+        /// <Summary>
+        /// Creates a [ScrollView] uses a single child layout model.
+        ///
+        /// If the [primary] argument is true, the [controller] must be null.
+        /// </Summary>
         public BoxScrollView(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Basictypes.Axis scrollDirection = default(FlutterSDK.Painting.Basictypes.Axis), bool reverse = false, FlutterSDK.Widgets.Scrollcontroller.ScrollController controller = default(FlutterSDK.Widgets.Scrollcontroller.ScrollController), bool primary = default(bool), FlutterSDK.Widgets.Scrollphysics.ScrollPhysics physics = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics), bool shrinkWrap = false, FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), double cacheExtent = default(double), int semanticChildCount = default(int), FlutterSDK.Gestures.Recognizer.DragStartBehavior dragStartBehavior = default(FlutterSDK.Gestures.Recognizer.DragStartBehavior), FlutterSDK.Widgets.Scrollview.ScrollViewKeyboardDismissBehavior keyboardDismissBehavior = default(FlutterSDK.Widgets.Scrollview.ScrollViewKeyboardDismissBehavior))
         : base(key: key, scrollDirection: scrollDirection, reverse: reverse, controller: controller, primary: primary, physics: physics, shrinkWrap: shrinkWrap, cacheExtent: cacheExtent, semanticChildCount: semanticChildCount, dragStartBehavior: dragStartBehavior, keyboardDismissBehavior: keyboardDismissBehavior)
         {
             this.Padding = padding;
         }
+        /// <Summary>
+        /// The amount of space by which to inset the children.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Padding { get; set; }
 
         public new List<FlutterSDK.Widgets.Framework.Widget> BuildSlivers(FlutterSDK.Widgets.Framework.BuildContext context)
@@ -1150,25 +1328,226 @@ namespace FlutterSDK.Widgets.Scrollview
     /// </Summary>
     public class ListView : FlutterSDK.Widgets.Scrollview.BoxScrollView
     {
+        /// <Summary>
+        /// Creates a scrollable, linear array of widgets from an explicit [List].
+        ///
+        /// This constructor is appropriate for list views with a small number of
+        /// children because constructing the [List] requires doing work for every
+        /// child that could possibly be displayed in the list view instead of just
+        /// those children that are actually visible.
+        ///
+        /// It is usually more efficient to create children on demand using
+        /// [ListView.builder].
+        ///
+        /// The `addAutomaticKeepAlives` argument corresponds to the
+        /// [SliverChildListDelegate.addAutomaticKeepAlives] property. The
+        /// `addRepaintBoundaries` argument corresponds to the
+        /// [SliverChildListDelegate.addRepaintBoundaries] property. The
+        /// `addSemanticIndexes` argument corresponds to the
+        /// [SliverChildListDelegate.addSemanticIndexes] property. None
+        /// may be null.
+        /// </Summary>
         public ListView(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Basictypes.Axis scrollDirection = default(FlutterSDK.Painting.Basictypes.Axis), bool reverse = false, FlutterSDK.Widgets.Scrollcontroller.ScrollController controller = default(FlutterSDK.Widgets.Scrollcontroller.ScrollController), bool primary = default(bool), FlutterSDK.Widgets.Scrollphysics.ScrollPhysics physics = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics), bool shrinkWrap = false, FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), double itemExtent = default(double), bool addAutomaticKeepAlives = true, bool addRepaintBoundaries = true, bool addSemanticIndexes = true, double cacheExtent = default(double), List<FlutterSDK.Widgets.Framework.Widget> children = default(List<FlutterSDK.Widgets.Framework.Widget>), int semanticChildCount = default(int), FlutterSDK.Gestures.Recognizer.DragStartBehavior dragStartBehavior = default(FlutterSDK.Gestures.Recognizer.DragStartBehavior), FlutterSDK.Widgets.Scrollview.ScrollViewKeyboardDismissBehavior keyboardDismissBehavior = default(FlutterSDK.Widgets.Scrollview.ScrollViewKeyboardDismissBehavior))
         : base(key: key, scrollDirection: scrollDirection, reverse: reverse, controller: controller, primary: primary, physics: physics, shrinkWrap: shrinkWrap, padding: padding, cacheExtent: cacheExtent, semanticChildCount: semanticChildCount ?? children.Count, dragStartBehavior: dragStartBehavior, keyboardDismissBehavior: keyboardDismissBehavior)
         {
             this.ItemExtent = itemExtent;
         }
+        /// <Summary>
+        /// Creates a scrollable, linear array of widgets that are created on demand.
+        ///
+        /// This constructor is appropriate for list views with a large (or infinite)
+        /// number of children because the builder is called only for those children
+        /// that are actually visible.
+        ///
+        /// Providing a non-null `itemCount` improves the ability of the [ListView] to
+        /// estimate the maximum scroll extent.
+        ///
+        /// The `itemBuilder` callback will be called only with indices greater than
+        /// or equal to zero and less than `itemCount`.
+        ///
+        /// The `itemBuilder` should actually create the widget instances when called.
+        /// Avoid using a builder that returns a previously-constructed widget; if the
+        /// list view's children are created in advance, or all at once when the
+        /// [ListView] itself is created, it is more efficient to use the [ListView]
+        /// constructor. Even more efficient, however, is to create the instances on
+        /// demand using this constructor's `itemBuilder` callback.
+        ///
+        /// The `addAutomaticKeepAlives` argument corresponds to the
+        /// [SliverChildBuilderDelegate.addAutomaticKeepAlives] property. The
+        /// `addRepaintBoundaries` argument corresponds to the
+        /// [SliverChildBuilderDelegate.addRepaintBoundaries] property. The
+        /// `addSemanticIndexes` argument corresponds to the
+        /// [SliverChildBuilderDelegate.addSemanticIndexes] property. None may be
+        /// null.
+        ///
+        /// [ListView.builder] by default does not support child reordering. If
+        /// you are planning to change child order at a later time, consider using
+        /// [ListView] or [ListView.custom].
+        /// </Summary>
         public static ListView Builder(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Basictypes.Axis scrollDirection = default(FlutterSDK.Painting.Basictypes.Axis), bool reverse = false, FlutterSDK.Widgets.Scrollcontroller.ScrollController controller = default(FlutterSDK.Widgets.Scrollcontroller.ScrollController), bool primary = default(bool), FlutterSDK.Widgets.Scrollphysics.ScrollPhysics physics = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics), bool shrinkWrap = false, FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), double itemExtent = default(double), FlutterSDK.Widgets.Framework.IndexedWidgetBuilder itemBuilder = default(FlutterSDK.Widgets.Framework.IndexedWidgetBuilder), int itemCount = default(int), bool addAutomaticKeepAlives = true, bool addRepaintBoundaries = true, bool addSemanticIndexes = true, double cacheExtent = default(double), int semanticChildCount = default(int), FlutterSDK.Gestures.Recognizer.DragStartBehavior dragStartBehavior = default(FlutterSDK.Gestures.Recognizer.DragStartBehavior))
         {
             var instance = new ListView(key: key, scrollDirection: scrollDirection, reverse: reverse, controller: controller, primary: primary, physics: physics, shrinkWrap: shrinkWrap, padding: padding, cacheExtent: cacheExtent, semanticChildCount: semanticChildCount ?? itemCount, dragStartBehavior: dragStartBehavior); instance.ItemExtent = itemExtent;
         }
+        /// <Summary>
+        /// Creates a fixed-length scrollable linear array of list "items" separated
+        /// by list item "separators".
+        ///
+        /// This constructor is appropriate for list views with a large number of
+        /// item and separator children because the builders are only called for
+        /// the children that are actually visible.
+        ///
+        /// The `itemBuilder` callback will be called with indices greater than
+        /// or equal to zero and less than `itemCount`.
+        ///
+        /// Separators only appear between list items: separator 0 appears after item
+        /// 0 and the last separator appears before the last item.
+        ///
+        /// The `separatorBuilder` callback will be called with indices greater than
+        /// or equal to zero and less than `itemCount - 1`.
+        ///
+        /// The `itemBuilder` and `separatorBuilder` callbacks should actually create
+        /// widget instances when called. Avoid using a builder that returns a
+        /// previously-constructed widget; if the list view's children are created in
+        /// advance, or all at once when the [ListView] itself is created, it is more
+        /// efficient to use the [ListView] constructor.
+        ///
+        /// {@tool snippet}
+        ///
+        /// This example shows how to create [ListView] whose [ListTile] list items
+        /// are separated by [Divider]s.
+        ///
+        /// ```dart
+        /// ListView.separated(
+        ///   itemCount: 25,
+        ///   separatorBuilder: (BuildContext context, int index) => Divider(),
+        ///   itemBuilder: (BuildContext context, int index) {
+        ///     return ListTile(
+        ///       title: Text('item $index'),
+        ///     );
+        ///   },
+        /// )
+        /// ```
+        /// {@end-tool}
+        ///
+        /// The `addAutomaticKeepAlives` argument corresponds to the
+        /// [SliverChildBuilderDelegate.addAutomaticKeepAlives] property. The
+        /// `addRepaintBoundaries` argument corresponds to the
+        /// [SliverChildBuilderDelegate.addRepaintBoundaries] property. The
+        /// `addSemanticIndexes` argument corresponds to the
+        /// [SliverChildBuilderDelegate.addSemanticIndexes] property. None may be
+        /// null.
+        /// </Summary>
         public static ListView Separated(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Basictypes.Axis scrollDirection = default(FlutterSDK.Painting.Basictypes.Axis), bool reverse = false, FlutterSDK.Widgets.Scrollcontroller.ScrollController controller = default(FlutterSDK.Widgets.Scrollcontroller.ScrollController), bool primary = default(bool), FlutterSDK.Widgets.Scrollphysics.ScrollPhysics physics = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics), bool shrinkWrap = false, FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Widgets.Framework.IndexedWidgetBuilder itemBuilder = default(FlutterSDK.Widgets.Framework.IndexedWidgetBuilder), FlutterSDK.Widgets.Framework.IndexedWidgetBuilder separatorBuilder = default(FlutterSDK.Widgets.Framework.IndexedWidgetBuilder), int itemCount = default(int), bool addAutomaticKeepAlives = true, bool addRepaintBoundaries = true, bool addSemanticIndexes = true, double cacheExtent = default(double), FlutterSDK.Widgets.Scrollview.ScrollViewKeyboardDismissBehavior keyboardDismissBehavior = default(FlutterSDK.Widgets.Scrollview.ScrollViewKeyboardDismissBehavior))
         {
             var instance = new ListView(key: key, scrollDirection: scrollDirection, reverse: reverse, controller: controller, primary: primary, physics: physics, shrinkWrap: shrinkWrap, padding: padding, cacheExtent: cacheExtent, semanticChildCount: itemCount, keyboardDismissBehavior: keyboardDismissBehavior);
         }
+        /// <Summary>
+        /// Creates a scrollable, linear array of widgets with a custom child model.
+        ///
+        /// For example, a custom child model can control the algorithm used to
+        /// estimate the size of children that are not actually visible.
+        ///
+        /// {@tool snippet}
+        ///
+        /// This [ListView] uses a custom [SliverChildBuilderDelegate] to support child
+        /// reordering.
+        ///
+        /// ```dart
+        /// class MyListView extends StatefulWidget {
+        ///   @override
+        ///   _MyListViewState createState() => _MyListViewState();
+        /// }
+        ///
+        /// class _MyListViewState extends State<MyListView> {
+        ///   List<String> items = <String>['1', '2', '3', '4', '5'];
+        ///
+        ///   void _reverse() {
+        ///     setState(() {
+        ///       items = items.reversed.toList();
+        ///     });
+        ///   }
+        ///
+        ///   @override
+        ///   Widget build(BuildContext context) {
+        ///     return Scaffold(
+        ///       body: SafeArea(
+        ///         child: ListView.custom(
+        ///           childrenDelegate: SliverChildBuilderDelegate(
+        ///             (BuildContext context, int index) {
+        ///               return KeepAlive(
+        ///                 data: items[index],
+        ///                 key: ValueKey<String>(items[index]),
+        ///               );
+        ///             },
+        ///             childCount: items.length,
+        ///             findChildIndexCallback: (Key key) {
+        ///               final ValueKey valueKey = key;
+        ///               final String data = valueKey.value;
+        ///               return items.indexOf(data);
+        ///             }
+        ///           ),
+        ///         ),
+        ///       ),
+        ///       bottomNavigationBar: BottomAppBar(
+        ///         child: Row(
+        ///           mainAxisAlignment: MainAxisAlignment.center,
+        ///           children: <Widget>[
+        ///             FlatButton(
+        ///               onPressed: () => _reverse(),
+        ///               child: Text('Reverse items'),
+        ///             ),
+        ///           ],
+        ///         ),
+        ///       ),
+        ///     );
+        ///   }
+        /// }
+        ///
+        /// class KeepAlive extends StatefulWidget {
+        ///   const KeepAlive({Key key, this.data}) : super(key: key);
+        ///
+        ///   final String data;
+        ///
+        ///   @override
+        ///   _KeepAliveState createState() => _KeepAliveState();
+        /// }
+        ///
+        /// class _KeepAliveState extends State<KeepAlive> with AutomaticKeepAliveClientMixin{
+        ///   @override
+        ///   bool get wantKeepAlive => true;
+        ///
+        ///   @override
+        ///   Widget build(BuildContext context) {
+        ///     super.build(context);
+        ///     return Text(widget.data);
+        ///   }
+        /// }
+        /// ```
+        /// {@end-tool}
+        /// </Summary>
         public static ListView Custom(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Basictypes.Axis scrollDirection = default(FlutterSDK.Painting.Basictypes.Axis), bool reverse = false, FlutterSDK.Widgets.Scrollcontroller.ScrollController controller = default(FlutterSDK.Widgets.Scrollcontroller.ScrollController), bool primary = default(bool), FlutterSDK.Widgets.Scrollphysics.ScrollPhysics physics = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics), bool shrinkWrap = false, FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), double itemExtent = default(double), FlutterSDK.Widgets.Sliver.SliverChildDelegate childrenDelegate = default(FlutterSDK.Widgets.Sliver.SliverChildDelegate), double cacheExtent = default(double), int semanticChildCount = default(int))
         {
             var instance = new ListView(key: key, scrollDirection: scrollDirection, reverse: reverse, controller: controller, primary: primary, physics: physics, shrinkWrap: shrinkWrap, padding: padding, cacheExtent: cacheExtent, semanticChildCount: semanticChildCount); instance.ItemExtent = itemExtent;
             instance.ChildrenDelegate = childrenDelegate;
         }
+        /// <Summary>
+        /// If non-null, forces the children to have the given extent in the scroll
+        /// direction.
+        ///
+        /// Specifying an [itemExtent] is more efficient than letting the children
+        /// determine their own extent because the scrolling machinery can make use of
+        /// the foreknowledge of the children's extent to save work, for example when
+        /// the scroll position changes drastically.
+        /// </Summary>
         public virtual double ItemExtent { get; set; }
+        /// <Summary>
+        /// A delegate that provides the children for the [ListView].
+        ///
+        /// The [ListView.custom] constructor lets you specify this delegate
+        /// explicitly. The [ListView] and [ListView.builder] constructors create a
+        /// [childrenDelegate] that wraps the given [List] and [IndexedWidgetBuilder],
+        /// respectively.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Sliver.SliverChildDelegate ChildrenDelegate { get; set; }
 
         public new FlutterSDK.Widgets.Framework.Widget BuildChildLayout(FlutterSDK.Widgets.Framework.BuildContext context)
@@ -1397,29 +1776,117 @@ namespace FlutterSDK.Widgets.Scrollview
     /// </Summary>
     public class GridView : FlutterSDK.Widgets.Scrollview.BoxScrollView
     {
+        /// <Summary>
+        /// Creates a scrollable, 2D array of widgets with a custom
+        /// [SliverGridDelegate].
+        ///
+        /// The [gridDelegate] argument must not be null.
+        ///
+        /// The `addAutomaticKeepAlives` argument corresponds to the
+        /// [SliverChildListDelegate.addAutomaticKeepAlives] property. The
+        /// `addRepaintBoundaries` argument corresponds to the
+        /// [SliverChildListDelegate.addRepaintBoundaries] property. Both must not be
+        /// null.
+        /// </Summary>
         public GridView(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Basictypes.Axis scrollDirection = default(FlutterSDK.Painting.Basictypes.Axis), bool reverse = false, FlutterSDK.Widgets.Scrollcontroller.ScrollController controller = default(FlutterSDK.Widgets.Scrollcontroller.ScrollController), bool primary = default(bool), FlutterSDK.Widgets.Scrollphysics.ScrollPhysics physics = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics), bool shrinkWrap = false, FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Rendering.Slivergrid.SliverGridDelegate gridDelegate = default(FlutterSDK.Rendering.Slivergrid.SliverGridDelegate), bool addAutomaticKeepAlives = true, bool addRepaintBoundaries = true, bool addSemanticIndexes = true, double cacheExtent = default(double), List<FlutterSDK.Widgets.Framework.Widget> children = default(List<FlutterSDK.Widgets.Framework.Widget>), int semanticChildCount = default(int))
         : base(key: key, scrollDirection: scrollDirection, reverse: reverse, controller: controller, primary: primary, physics: physics, shrinkWrap: shrinkWrap, padding: padding, cacheExtent: cacheExtent, semanticChildCount: semanticChildCount ?? children.Count)
         {
             this.GridDelegate = gridDelegate;
         }
+        /// <Summary>
+        /// Creates a scrollable, 2D array of widgets that are created on demand.
+        ///
+        /// This constructor is appropriate for grid views with a large (or infinite)
+        /// number of children because the builder is called only for those children
+        /// that are actually visible.
+        ///
+        /// Providing a non-null `itemCount` improves the ability of the [GridView] to
+        /// estimate the maximum scroll extent.
+        ///
+        /// `itemBuilder` will be called only with indices greater than or equal to
+        /// zero and less than `itemCount`.
+        ///
+        /// The [gridDelegate] argument must not be null.
+        ///
+        /// The `addAutomaticKeepAlives` argument corresponds to the
+        /// [SliverChildBuilderDelegate.addAutomaticKeepAlives] property. The
+        /// `addRepaintBoundaries` argument corresponds to the
+        /// [SliverChildBuilderDelegate.addRepaintBoundaries] property. Both must not
+        /// be null.
+        /// </Summary>
         public static GridView Builder(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Basictypes.Axis scrollDirection = default(FlutterSDK.Painting.Basictypes.Axis), bool reverse = false, FlutterSDK.Widgets.Scrollcontroller.ScrollController controller = default(FlutterSDK.Widgets.Scrollcontroller.ScrollController), bool primary = default(bool), FlutterSDK.Widgets.Scrollphysics.ScrollPhysics physics = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics), bool shrinkWrap = false, FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Rendering.Slivergrid.SliverGridDelegate gridDelegate = default(FlutterSDK.Rendering.Slivergrid.SliverGridDelegate), FlutterSDK.Widgets.Framework.IndexedWidgetBuilder itemBuilder = default(FlutterSDK.Widgets.Framework.IndexedWidgetBuilder), int itemCount = default(int), bool addAutomaticKeepAlives = true, bool addRepaintBoundaries = true, bool addSemanticIndexes = true, double cacheExtent = default(double), int semanticChildCount = default(int))
         {
             var instance = new GridView(key: key, scrollDirection: scrollDirection, reverse: reverse, controller: controller, primary: primary, physics: physics, shrinkWrap: shrinkWrap, padding: padding, cacheExtent: cacheExtent, semanticChildCount: semanticChildCount ?? itemCount); instance.GridDelegate = gridDelegate;
         }
+        /// <Summary>
+        /// Creates a scrollable, 2D array of widgets with both a custom
+        /// [SliverGridDelegate] and a custom [SliverChildDelegate].
+        ///
+        /// To use an [IndexedWidgetBuilder] callback to build children, either use
+        /// a [SliverChildBuilderDelegate] or use the [GridView.builder] constructor.
+        ///
+        /// The [gridDelegate] and [childrenDelegate] arguments must not be null.
+        /// </Summary>
         public static GridView Custom(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Basictypes.Axis scrollDirection = default(FlutterSDK.Painting.Basictypes.Axis), bool reverse = false, FlutterSDK.Widgets.Scrollcontroller.ScrollController controller = default(FlutterSDK.Widgets.Scrollcontroller.ScrollController), bool primary = default(bool), FlutterSDK.Widgets.Scrollphysics.ScrollPhysics physics = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics), bool shrinkWrap = false, FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Rendering.Slivergrid.SliverGridDelegate gridDelegate = default(FlutterSDK.Rendering.Slivergrid.SliverGridDelegate), FlutterSDK.Widgets.Sliver.SliverChildDelegate childrenDelegate = default(FlutterSDK.Widgets.Sliver.SliverChildDelegate), double cacheExtent = default(double), int semanticChildCount = default(int), FlutterSDK.Gestures.Recognizer.DragStartBehavior dragStartBehavior = default(FlutterSDK.Gestures.Recognizer.DragStartBehavior))
         {
             var instance = new GridView(key: key, scrollDirection: scrollDirection, reverse: reverse, controller: controller, primary: primary, physics: physics, shrinkWrap: shrinkWrap, padding: padding, cacheExtent: cacheExtent, semanticChildCount: semanticChildCount, dragStartBehavior: dragStartBehavior); instance.GridDelegate = gridDelegate;
             instance.ChildrenDelegate = childrenDelegate;
         }
+        /// <Summary>
+        /// Creates a scrollable, 2D array of widgets with a fixed number of tiles in
+        /// the cross axis.
+        ///
+        /// Uses a [SliverGridDelegateWithFixedCrossAxisCount] as the [gridDelegate].
+        ///
+        /// The `addAutomaticKeepAlives` argument corresponds to the
+        /// [SliverChildListDelegate.addAutomaticKeepAlives] property. The
+        /// `addRepaintBoundaries` argument corresponds to the
+        /// [SliverChildListDelegate.addRepaintBoundaries] property. Both must not be
+        /// null.
+        ///
+        /// See also:
+        ///
+        ///  * [SliverGrid.count], the equivalent constructor for [SliverGrid].
+        /// </Summary>
         public static GridView Count(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Basictypes.Axis scrollDirection = default(FlutterSDK.Painting.Basictypes.Axis), bool reverse = false, FlutterSDK.Widgets.Scrollcontroller.ScrollController controller = default(FlutterSDK.Widgets.Scrollcontroller.ScrollController), bool primary = default(bool), FlutterSDK.Widgets.Scrollphysics.ScrollPhysics physics = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics), bool shrinkWrap = false, FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), int crossAxisCount = default(int), double mainAxisSpacing = 0.0, double crossAxisSpacing = 0.0, double childAspectRatio = 1.0, bool addAutomaticKeepAlives = true, bool addRepaintBoundaries = true, bool addSemanticIndexes = true, double cacheExtent = default(double), List<FlutterSDK.Widgets.Framework.Widget> children = default(List<FlutterSDK.Widgets.Framework.Widget>), int semanticChildCount = default(int), FlutterSDK.Gestures.Recognizer.DragStartBehavior dragStartBehavior = default(FlutterSDK.Gestures.Recognizer.DragStartBehavior))
         {
             var instance = new GridView(key: key, scrollDirection: scrollDirection, reverse: reverse, controller: controller, primary: primary, physics: physics, shrinkWrap: shrinkWrap, padding: padding, cacheExtent: cacheExtent, semanticChildCount: semanticChildCount ?? children.Count, dragStartBehavior: dragStartBehavior);
         }
+        /// <Summary>
+        /// Creates a scrollable, 2D array of widgets with tiles that each have a
+        /// maximum cross-axis extent.
+        ///
+        /// Uses a [SliverGridDelegateWithMaxCrossAxisExtent] as the [gridDelegate].
+        ///
+        /// The `addAutomaticKeepAlives` argument corresponds to the
+        /// [SliverChildListDelegate.addAutomaticKeepAlives] property. The
+        /// `addRepaintBoundaries` argument corresponds to the
+        /// [SliverChildListDelegate.addRepaintBoundaries] property. Both must not be
+        /// null.
+        ///
+        /// See also:
+        ///
+        ///  * [SliverGrid.extent], the equivalent constructor for [SliverGrid].
+        /// </Summary>
         public static GridView Extent(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Basictypes.Axis scrollDirection = default(FlutterSDK.Painting.Basictypes.Axis), bool reverse = false, FlutterSDK.Widgets.Scrollcontroller.ScrollController controller = default(FlutterSDK.Widgets.Scrollcontroller.ScrollController), bool primary = default(bool), FlutterSDK.Widgets.Scrollphysics.ScrollPhysics physics = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics), bool shrinkWrap = false, FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), double maxCrossAxisExtent = default(double), double mainAxisSpacing = 0.0, double crossAxisSpacing = 0.0, double childAspectRatio = 1.0, bool addAutomaticKeepAlives = true, bool addRepaintBoundaries = true, bool addSemanticIndexes = true, List<FlutterSDK.Widgets.Framework.Widget> children = default(List<FlutterSDK.Widgets.Framework.Widget>), int semanticChildCount = default(int), FlutterSDK.Gestures.Recognizer.DragStartBehavior dragStartBehavior = default(FlutterSDK.Gestures.Recognizer.DragStartBehavior))
         {
             var instance = new GridView(key: key, scrollDirection: scrollDirection, reverse: reverse, controller: controller, primary: primary, physics: physics, shrinkWrap: shrinkWrap, padding: padding, semanticChildCount: semanticChildCount ?? children.Count, dragStartBehavior: dragStartBehavior);
         }
+        /// <Summary>
+        /// A delegate that controls the layout of the children within the [GridView].
+        ///
+        /// The [GridView], [GridView.builder], and [GridView.custom] constructors let you specify this
+        /// delegate explicitly. The other constructors create a [gridDelegate]
+        /// implicitly.
+        /// </Summary>
         public virtual FlutterSDK.Rendering.Slivergrid.SliverGridDelegate GridDelegate { get; set; }
+        /// <Summary>
+        /// A delegate that provides the children for the [GridView].
+        ///
+        /// The [GridView.custom] constructor lets you specify this delegate
+        /// explicitly. The other constructors create a [childrenDelegate] that wraps
+        /// the given child list.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Sliver.SliverChildDelegate ChildrenDelegate { get; set; }
 
         public new FlutterSDK.Widgets.Framework.Widget BuildChildLayout(FlutterSDK.Widgets.Framework.BuildContext context)

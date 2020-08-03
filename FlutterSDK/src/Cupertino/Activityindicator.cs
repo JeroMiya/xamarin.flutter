@@ -310,13 +310,26 @@ namespace FlutterSDK.Cupertino.Activityindicator
     /// </Summary>
     public class CupertinoActivityIndicator : FlutterSDK.Widgets.Framework.StatefulWidget
     {
+        /// <Summary>
+        /// Creates an iOS-style activity indicator that spins clockwise.
+        /// </Summary>
         public CupertinoActivityIndicator(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), bool animating = true, double radius = default(double))
         : base(key: key)
         {
             this.Animating = animating;
             this.Radius = radius;
         }
+        /// <Summary>
+        /// Whether the activity indicator is running its animation.
+        ///
+        /// Defaults to true.
+        /// </Summary>
         public virtual bool Animating { get; set; }
+        /// <Summary>
+        /// Radius of the spinner widget.
+        ///
+        /// Defaults to 10px. Must be positive and cannot be null.
+        /// </Summary>
         public virtual double Radius { get; set; }
 
         public new FlutterSDK.Cupertino.Activityindicator._CupertinoActivityIndicatorState CreateState() => new _CupertinoActivityIndicatorState();

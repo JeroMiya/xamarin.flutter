@@ -471,11 +471,25 @@ namespace FlutterSDK.Widgets.Overlay
     /// </Summary>
     public class OverlayEntry
     {
+        /// <Summary>
+        /// Creates an overlay entry.
+        ///
+        /// To insert the entry into an [Overlay], first find the overlay using
+        /// [Overlay.of] and then call [OverlayState.insert]. To remove the entry,
+        /// call [remove] on the overlay entry itself.
+        /// </Summary>
         public OverlayEntry(FlutterSDK.Widgets.Framework.WidgetBuilder builder = default(FlutterSDK.Widgets.Framework.WidgetBuilder), bool opaque = false, bool maintainState = false)
         : base()
         {
             this.Builder = builder;
         }
+        /// <Summary>
+        /// This entry will include the widget built by this builder in the overlay at
+        /// the entry's position.
+        ///
+        /// To cause this builder to be called again, call [markNeedsBuild] on this
+        /// overlay entry.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.WidgetBuilder Builder { get; set; }
         internal virtual bool _Opaque { get; set; }
         internal virtual bool _MaintainState { get; set; }
@@ -600,11 +614,35 @@ namespace FlutterSDK.Widgets.Overlay
     /// </Summary>
     public class Overlay : FlutterSDK.Widgets.Framework.StatefulWidget
     {
+        /// <Summary>
+        /// Creates an overlay.
+        ///
+        /// The initial entries will be inserted into the overlay when its associated
+        /// [OverlayState] is initialized.
+        ///
+        /// Rather than creating an overlay, consider using the overlay that is
+        /// created by the [WidgetsApp] or the [MaterialApp] for the application.
+        /// </Summary>
         public Overlay(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), List<FlutterSDK.Widgets.Overlay.OverlayEntry> initialEntries = default(List<FlutterSDK.Widgets.Overlay.OverlayEntry>))
         : base(key: key)
         {
             this.InitialEntries = initialEntries;
         }
+        /// <Summary>
+        /// The entries to include in the overlay initially.
+        ///
+        /// These entries are only used when the [OverlayState] is initialized. If you
+        /// are providing a new [Overlay] description for an overlay that's already in
+        /// the tree, then the new entries are ignored.
+        ///
+        /// To add entries to an [Overlay] that is already in the tree, use
+        /// [Overlay.of] to obtain the [OverlayState] (or assign a [GlobalKey] to the
+        /// [Overlay] widget and obtain the [OverlayState] via
+        /// [GlobalKey.currentState]), and then use [OverlayState.insert] or
+        /// [OverlayState.insertAll].
+        ///
+        /// To remove an entry from an [Overlay], use [OverlayEntry.remove].
+        /// </Summary>
         public virtual List<FlutterSDK.Widgets.Overlay.OverlayEntry> InitialEntries { get; set; }
 
         /// <Summary>

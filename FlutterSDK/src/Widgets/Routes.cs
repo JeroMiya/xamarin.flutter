@@ -425,11 +425,79 @@ using FlutterSDK.Widgets.Constants;
 using FlutterSDK.Widgets.Routenotificationmessages;
 namespace FlutterSDK.Widgets.Routes
 {
+    /// <Summary>
+    /// Signature for the function that builds a route's primary contents.
+    /// Used in [PageRouteBuilder] and [showGeneralDialog].
+    ///
+    /// See [ModalRoute.buildPage] for complete definition of the parameters.
+    /// </Summary>
     public delegate FlutterSDK.Widgets.Framework.Widget RoutePageBuilder(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Animation.Animation.Animation<double> animation, FlutterSDK.Animation.Animation.Animation<double> secondaryAnimation);
+    /// <Summary>
+    /// Signature for the function that builds a route's transitions.
+    /// Used in [PageRouteBuilder] and [showGeneralDialog].
+    ///
+    /// See [ModalRoute.buildTransitions] for complete definition of the parameters.
+    /// </Summary>
     public delegate FlutterSDK.Widgets.Framework.Widget RouteTransitionsBuilder(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Animation.Animation.Animation<double> animation, FlutterSDK.Animation.Animation.Animation<double> secondaryAnimation, FlutterSDK.Widgets.Framework.Widget child);
     internal static class RoutesDefaultClass
     {
         public static Color _KTransparent = default(Color);
+        /// <Summary>
+        /// Displays a dialog above the current contents of the app.
+        ///
+        /// This function allows for customization of aspects of the dialog popup.
+        ///
+        /// This function takes a `pageBuilder` which is used to build the primary
+        /// content of the route (typically a dialog widget). Content below the dialog
+        /// is dimmed with a [ModalBarrier]. The widget returned by the `pageBuilder`
+        /// does not share a context with the location that `showGeneralDialog` is
+        /// originally called from. Use a [StatefulBuilder] or a custom
+        /// [StatefulWidget] if the dialog needs to update dynamically. The
+        /// `pageBuilder` argument can not be null.
+        ///
+        /// The `context` argument is used to look up the [Navigator] for the
+        /// dialog. It is only used when the method is called. Its corresponding widget
+        /// can be safely removed from the tree before the dialog is closed.
+        ///
+        /// The `useRootNavigator` argument is used to determine whether to push the
+        /// dialog to the [Navigator] furthest from or nearest to the given `context`.
+        /// By default, `useRootNavigator` is `true` and the dialog route created by
+        /// this method is pushed to the root navigator.
+        ///
+        /// If the application has multiple [Navigator] objects, it may be necessary to
+        /// call `Navigator.of(context, rootNavigator: true).pop(result)` to close the
+        /// dialog rather than just `Navigator.pop(context, result)`.
+        ///
+        /// The `barrierDismissible` argument is used to determine whether this route
+        /// can be dismissed by tapping the modal barrier. This argument defaults
+        /// to true. If `barrierDismissible` is true, a non-null `barrierLabel` must be
+        /// provided.
+        ///
+        /// The `barrierLabel` argument is the semantic label used for a dismissible
+        /// barrier. This argument defaults to "Dismiss".
+        ///
+        /// The `barrierColor` argument is the color used for the modal barrier. This
+        /// argument defaults to `Color(0x80000000)`.
+        ///
+        /// The `transitionDuration` argument is used to determine how long it takes
+        /// for the route to arrive on or leave off the screen. This argument defaults
+        /// to 200 milliseconds.
+        ///
+        /// The `transitionBuilder` argument is used to define how the route arrives on
+        /// and leaves off the screen. By default, the transition is a linear fade of
+        /// the page's contents.
+        ///
+        /// The `routeSettings` will be used in the construction of the dialog's route.
+        /// See [RouteSettings] for more details.
+        ///
+        /// Returns a [Future] that resolves to the value (if any) that was passed to
+        /// [Navigator.pop] when the dialog was closed.
+        ///
+        /// See also:
+        ///
+        ///  * [showDialog], which displays a Material-style dialog.
+        ///  * [showCupertinoDialog], which displays an iOS-style dialog.
+        /// </Summary>
         internal static Future<T> ShowGeneralDialog<T>(FlutterSDK.Widgets.Framework.BuildContext context = default(FlutterSDK.Widgets.Framework.BuildContext), FlutterSDK.Widgets.Routes.RoutePageBuilder pageBuilder = default(FlutterSDK.Widgets.Routes.RoutePageBuilder), bool barrierDismissible = default(bool), string barrierLabel = default(string), FlutterBinding.UI.Color barrierColor = default(FlutterBinding.UI.Color), TimeSpan transitionDuration = default(TimeSpan), FlutterSDK.Widgets.Routes.RouteTransitionsBuilder transitionBuilder = default(FlutterSDK.Widgets.Routes.RouteTransitionsBuilder), bool useRootNavigator = true, FlutterSDK.Widgets.Navigator.RouteSettings routeSettings = default(FlutterSDK.Widgets.Navigator.RouteSettings))
         {
 
@@ -842,6 +910,9 @@ namespace FlutterSDK.Widgets.Routes
     /// </Summary>
     public class OverlayRoute<T> : FlutterSDK.Widgets.Navigator.Route<T>
     {
+        /// <Summary>
+        /// Creates a route that knows how to interact with an [Overlay].
+        /// </Summary>
         public OverlayRoute(FlutterSDK.Widgets.Navigator.RouteSettings settings = default(FlutterSDK.Widgets.Navigator.RouteSettings))
         : base(settings: settings)
         {
@@ -897,6 +968,9 @@ namespace FlutterSDK.Widgets.Routes
     /// </Summary>
     public class TransitionRoute<T> : FlutterSDK.Widgets.Routes.OverlayRoute<T>
     {
+        /// <Summary>
+        /// Creates a route that animates itself when it is pushed or popped.
+        /// </Summary>
         public TransitionRoute(FlutterSDK.Widgets.Navigator.RouteSettings settings = default(FlutterSDK.Widgets.Navigator.RouteSettings))
         : base(settings: settings)
         {
@@ -1245,10 +1319,16 @@ namespace FlutterSDK.Widgets.Routes
     /// </Summary>
     public class LocalHistoryEntry
     {
+        /// <Summary>
+        /// Creates an entry in the history of a [LocalHistoryRoute].
+        /// </Summary>
         public LocalHistoryEntry(VoidCallback onRemove = default(VoidCallback))
         {
             this.OnRemove = onRemove;
         }
+        /// <Summary>
+        /// Called when this entry is removed from the history of its associated [LocalHistoryRoute].
+        /// </Summary>
         public virtual VoidCallback OnRemove { get; set; }
         internal virtual FlutterSDK.Widgets.Routes.LocalHistoryRoute<object> _Owner { get; set; }
 
@@ -1334,6 +1414,9 @@ namespace FlutterSDK.Widgets.Routes
         { }
         internal virtual FlutterSDK.Widgets.Framework.Widget _Page { get; set; }
         internal virtual FlutterSDK.Foundation.Changenotifier.Listenable _Listenable { get; set; }
+        /// <Summary>
+        /// The node this scope will use for its root [FocusScope] widget.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Focusmanager.FocusScopeNode FocusScopeNode { get; set; }
         internal virtual bool _ShouldIgnoreFocusRequest { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 
@@ -1445,11 +1528,20 @@ namespace FlutterSDK.Widgets.Routes
     /// </Summary>
     public class ModalRoute<T> : FlutterSDK.Widgets.Routes.TransitionRoute<T>, ILocalHistoryRoute<T>
     {
+        /// <Summary>
+        /// Creates a route that blocks interaction with previous routes.
+        /// </Summary>
         public ModalRoute(FlutterSDK.Widgets.Navigator.RouteSettings settings = default(FlutterSDK.Widgets.Navigator.RouteSettings), ImageFilter filter = default(ImageFilter))
         : base(settings: settings)
         {
 
         }
+        /// <Summary>
+        /// The filter to add to the barrier.
+        ///
+        /// If given, this filter will be applied to the modal barrier using
+        /// [BackdropFilter]. This allows blur effects, for example.
+        /// </Summary>
         internal virtual ImageFilter _Filter { get; set; }
         internal virtual bool _Offstage { get; set; }
         internal virtual FlutterSDK.Animation.Animations.ProxyAnimation _AnimationProxy { get; set; }
@@ -1940,6 +2032,9 @@ namespace FlutterSDK.Widgets.Routes
     /// </Summary>
     public class PopupRoute<T> : FlutterSDK.Widgets.Routes.ModalRoute<T>
     {
+        /// <Summary>
+        /// Initializes the [PopupRoute].
+        /// </Summary>
         public PopupRoute(FlutterSDK.Widgets.Navigator.RouteSettings settings = default(FlutterSDK.Widgets.Navigator.RouteSettings), ImageFilter filter = default(ImageFilter))
         : base(filter: filter, settings: settings)
         {

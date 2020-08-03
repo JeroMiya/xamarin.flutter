@@ -306,9 +306,26 @@ namespace FlutterSDK.Gestures.Binding
     {
         internal virtual FlutterSDK.Gestures.Binding.GestureBinding _Instance { get; set; }
         internal virtual Queue<FlutterSDK.Gestures.Events.PointerEvent> _PendingPointerEvents { get; set; }
+        /// <Summary>
+        /// A router that routes all pointer events received from the engine.
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Pointerrouter.PointerRouter PointerRouter { get; set; }
+        /// <Summary>
+        /// The gesture arenas used for disambiguating the meaning of sequences of
+        /// pointer events.
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Arena.GestureArenaManager GestureArena { get; set; }
+        /// <Summary>
+        /// The resolver used for determining which widget handles a pointer
+        /// signal event.
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Pointersignalresolver.PointerSignalResolver PointerSignalResolver { get; set; }
+        /// <Summary>
+        /// State for all pointers which are currently down.
+        ///
+        /// The state of hovering pointers is not tracked because that would require
+        /// hit-testing on every frame.
+        /// </Summary>
         internal virtual Dictionary<int, FlutterSDK.Gestures.Hittest.HitTestResult> _HitTests { get; set; }
         public virtual FlutterSDK.Gestures.Binding.GestureBinding Instance { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 
@@ -519,13 +536,31 @@ public new void HandleEvent(FlutterSDK.Gestures.Events.PointerEvent @event, Flut
     /// </Summary>
     public class FlutterErrorDetailsForPointerEventDispatcher : FlutterSDK.Foundation.Assertions.FlutterErrorDetails
     {
+        /// <Summary>
+        /// Creates a [FlutterErrorDetailsForPointerEventDispatcher] object with the given
+        /// arguments setting the object's properties.
+        ///
+        /// The gesture library calls this constructor when catching an exception
+        /// that will subsequently be reported using [FlutterError.onError].
+        /// </Summary>
         public FlutterErrorDetailsForPointerEventDispatcher(object exception = default(object), StackTrace stack = default(StackTrace), string library = default(string), FlutterSDK.Foundation.Diagnostics.DiagnosticsNode context = default(FlutterSDK.Foundation.Diagnostics.DiagnosticsNode), FlutterSDK.Gestures.Events.PointerEvent @event = default(FlutterSDK.Gestures.Events.PointerEvent), FlutterSDK.Gestures.Hittest.HitTestEntry hitTestEntry = default(FlutterSDK.Gestures.Hittest.HitTestEntry), FlutterSDK.Foundation.Assertions.InformationCollector informationCollector = default(FlutterSDK.Foundation.Assertions.InformationCollector), bool silent = false)
         : base(exception: exception, stack: stack, library: library, context: context, informationCollector: informationCollector, silent: silent)
         {
             this.@event = @event;
             this.HitTestEntry = hitTestEntry;
         }
+        /// <Summary>
+        /// The pointer event that was being routed when the exception was raised.
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Events.PointerEvent @event { get; set; }
+        /// <Summary>
+        /// The hit test result entry for the object whose handleEvent method threw
+        /// the exception. May be null if no hit test entry is associated with the
+        /// event (e.g. hover and pointer add/remove events).
+        ///
+        /// The target object itself is given by the [HitTestEntry.target] property of
+        /// the hitTestEntry object.
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Hittest.HitTestEntry HitTestEntry { get; set; }
     }
 

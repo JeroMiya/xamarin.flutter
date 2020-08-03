@@ -443,6 +443,9 @@ namespace FlutterSDK.Material.Tooltiptheme
     /// </Summary>
     public class TooltipThemeData : IDiagnosticable
     {
+        /// <Summary>
+        /// Creates the set of properties used to configure [Tooltip]s.
+        /// </Summary>
         public TooltipThemeData(double height = default(double), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry margin = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), double verticalOffset = default(double), bool preferBelow = default(bool), bool excludeFromSemantics = default(bool), FlutterSDK.Painting.Decoration.Decoration decoration = default(FlutterSDK.Painting.Decoration.Decoration), FlutterSDK.Painting.Textstyle.TextStyle textStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), TimeSpan waitDuration = default(TimeSpan), TimeSpan showDuration = default(TimeSpan))
         {
             this.Height = height;
@@ -456,15 +459,60 @@ namespace FlutterSDK.Material.Tooltiptheme
             this.WaitDuration = waitDuration;
             this.ShowDuration = showDuration;
         }
+        /// <Summary>
+        /// The height of [Tooltip.child].
+        /// </Summary>
         public virtual double Height { get; set; }
+        /// <Summary>
+        /// If provided, the amount of space by which to inset [Tooltip.child].
+        /// </Summary>
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Padding { get; set; }
+        /// <Summary>
+        /// If provided, the amount of empty space to surround the [Tooltip].
+        /// </Summary>
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Margin { get; set; }
+        /// <Summary>
+        /// The vertical gap between the widget and the displayed tooltip.
+        ///
+        /// When [preferBelow] is set to true and tooltips have sufficient space to
+        /// display themselves, this property defines how much vertical space
+        /// tooltips will position themselves under their corresponding widgets.
+        /// Otherwise, tooltips will position themselves above their corresponding
+        /// widgets with the given offset.
+        /// </Summary>
         public virtual double VerticalOffset { get; set; }
+        /// <Summary>
+        /// Whether the tooltip is displayed below its widget by default.
+        ///
+        /// If there is insufficient space to display the tooltip in the preferred
+        /// direction, the tooltip will be displayed in the opposite direction.
+        /// </Summary>
         public virtual bool PreferBelow { get; set; }
+        /// <Summary>
+        /// Whether the tooltip's [message] should be excluded from the semantics
+        /// tree.
+        ///
+        /// By default, [Tooltip]s will add a [Semantics.label] that is set to
+        /// [Tooltip.message]. Set this property to true if the app is going to
+        /// provide its own custom semantics label.
+        /// </Summary>
         public virtual bool ExcludeFromSemantics { get; set; }
+        /// <Summary>
+        /// The [Tooltip]'s shape and background color.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Decoration.Decoration Decoration { get; set; }
+        /// <Summary>
+        /// The style to use for the message of [Tooltip]s.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Textstyle.TextStyle TextStyle { get; set; }
+        /// <Summary>
+        /// The length of time that a pointer must hover over a tooltip's widget
+        /// before the tooltip will be shown.
+        /// </Summary>
         public virtual TimeSpan WaitDuration { get; set; }
+        /// <Summary>
+        /// The length of time that the tooltip will be shown once it has appeared.
+        /// </Summary>
         public virtual TimeSpan ShowDuration { get; set; }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 
@@ -561,11 +609,20 @@ namespace FlutterSDK.Material.Tooltiptheme
     /// </Summary>
     public class TooltipTheme : FlutterSDK.Widgets.Inheritedtheme.InheritedTheme
     {
+        /// <Summary>
+        /// Creates a tooltip theme that controls the configurations for
+        /// [Tooltip].
+        ///
+        /// The data argument must not be null.
+        /// </Summary>
         public TooltipTheme(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Material.Tooltiptheme.TooltipThemeData data = default(FlutterSDK.Material.Tooltiptheme.TooltipThemeData), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
             this.Data = data;
         }
+        /// <Summary>
+        /// The properties for descendant [Tooltip] widgets.
+        /// </Summary>
         public virtual FlutterSDK.Material.Tooltiptheme.TooltipThemeData Data { get; set; }
 
         /// <Summary>

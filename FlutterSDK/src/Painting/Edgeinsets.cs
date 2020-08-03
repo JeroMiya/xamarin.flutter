@@ -485,10 +485,19 @@ namespace FlutterSDK.Painting.Edgeinsets
     /// </Summary>
     public class EdgeInsetsGeometry
     {
+        /// <Summary>
+        /// Abstract const constructor. This constructor enables subclasses to provide
+        /// const constructors so that they can be used in const expressions.
+        /// </Summary>
         public EdgeInsetsGeometry()
         {
 
         }
+        /// <Summary>
+        /// An [EdgeInsetsGeometry] with infinite offsets in each direction.
+        ///
+        /// Can be used as an infinite upper bound for [clamp].
+        /// </Summary>
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Infinity { get; set; }
         internal virtual double _Bottom { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         internal virtual double _End { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
@@ -784,6 +793,9 @@ namespace FlutterSDK.Painting.Edgeinsets
     /// </Summary>
     public class EdgeInsets : FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry
     {
+        /// <Summary>
+        /// Creates insets from offsets from the left, top, right, and bottom.
+        /// </Summary>
         public static EdgeInsets FromLTRB(double left, double top, double right, double bottom)
         {
             var instance = new EdgeInsets(); instance.Left = left;
@@ -791,10 +803,34 @@ namespace FlutterSDK.Painting.Edgeinsets
             instance.Right = right;
             instance.Bottom = bottom;
         }
+        /// <Summary>
+        /// Creates insets where all the offsets are `value`.
+        ///
+        /// {@tool snippet}
+        ///
+        /// Typical eight-pixel margin on all sides:
+        ///
+        /// ```dart
+        /// const EdgeInsets.all(8.0)
+        /// ```
+        /// {@end-tool}
+        /// </Summary>
         public static EdgeInsets All(double value)
         {
             var instance = new EdgeInsets();
         }
+        /// <Summary>
+        /// Creates insets with only the given values non-zero.
+        ///
+        /// {@tool snippet}
+        ///
+        /// Left margin indent of 40 pixels:
+        ///
+        /// ```dart
+        /// const EdgeInsets.only(left: 40.0)
+        /// ```
+        /// {@end-tool}
+        /// </Summary>
         public static EdgeInsets Only(double left = 0.0, double top = 0.0, double right = 0.0, double bottom = 0.0)
         {
             var instance = new EdgeInsets(); instance.Left = left;
@@ -802,18 +838,53 @@ namespace FlutterSDK.Painting.Edgeinsets
             instance.Right = right;
             instance.Bottom = bottom;
         }
+        /// <Summary>
+        /// Creates insets with symmetrical vertical and horizontal offsets.
+        ///
+        /// {@tool snippet}
+        ///
+        /// Eight pixel margin above and below, no horizontal margins:
+        ///
+        /// ```dart
+        /// const EdgeInsets.symmetric(vertical: 8.0)
+        /// ```
+        /// {@end-tool}
+        /// </Summary>
         public static EdgeInsets Symmetric(double vertical = 0.0, double horizontal = 0.0)
         {
             var instance = new EdgeInsets();
         }
+        /// <Summary>
+        /// Creates insets that match the given window padding.
+        ///
+        /// If you need the current system padding or view insets in the context of a
+        /// widget, consider using [MediaQuery.of] to obtain these values rather than
+        /// using the value from [dart:ui.window], so that you get notified of
+        /// changes.
+        /// </Summary>
         public static EdgeInsets FromWindowPadding(WindowPadding padding, double devicePixelRatio)
         {
             var instance = new EdgeInsets();
         }
+        /// <Summary>
+        /// An [EdgeInsets] with zero offsets in each direction.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets Zero { get; set; }
+        /// <Summary>
+        /// The offset from the left.
+        /// </Summary>
         public virtual double Left { get; set; }
+        /// <Summary>
+        /// The offset from the top.
+        /// </Summary>
         public virtual double Top { get; set; }
+        /// <Summary>
+        /// The offset from the right.
+        /// </Summary>
         public virtual double Right { get; set; }
+        /// <Summary>
+        /// The offset from the bottom.
+        /// </Summary>
         public virtual double Bottom { get; set; }
         internal virtual double _Left { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         internal virtual double _Top { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
@@ -1027,6 +1098,9 @@ namespace FlutterSDK.Painting.Edgeinsets
     /// </Summary>
     public class EdgeInsetsDirectional : FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry
     {
+        /// <Summary>
+        /// Creates insets from offsets from the start, top, end, and bottom.
+        /// </Summary>
         public static EdgeInsetsDirectional FromSTEB(double start, double top, double end, double bottom)
         {
             var instance = new EdgeInsetsDirectional(); instance.Start = start;
@@ -1034,6 +1108,18 @@ namespace FlutterSDK.Painting.Edgeinsets
             instance.End = end;
             instance.Bottom = bottom;
         }
+        /// <Summary>
+        /// Creates insets with only the given values non-zero.
+        ///
+        /// {@tool snippet}
+        ///
+        /// A margin indent of 40 pixels on the leading side:
+        ///
+        /// ```dart
+        /// const EdgeInsetsDirectional.only(start: 40.0)
+        /// ```
+        /// {@end-tool}
+        /// </Summary>
         public static EdgeInsetsDirectional Only(double start = 0.0, double top = 0.0, double end = 0.0, double bottom = 0.0)
         {
             var instance = new EdgeInsetsDirectional(); instance.Start = start;
@@ -1041,10 +1127,42 @@ namespace FlutterSDK.Painting.Edgeinsets
             instance.End = end;
             instance.Bottom = bottom;
         }
+        /// <Summary>
+        /// An [EdgeInsetsDirectional] with zero offsets in each direction.
+        ///
+        /// Consider using [EdgeInsets.zero] instead, since that object has the same
+        /// effect, but will be cheaper to [resolve].
+        /// </Summary>
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsDirectional Zero { get; set; }
+        /// <Summary>
+        /// The offset from the start side, the side from which the user will start
+        /// reading text.
+        ///
+        /// This value is normalized into an [EdgeInsets.left] or [EdgeInsets.right]
+        /// value by the [resolve] method.
+        /// </Summary>
         public virtual double Start { get; set; }
+        /// <Summary>
+        /// The offset from the top.
+        ///
+        /// This value is passed through to [EdgeInsets.top] unmodified by the
+        /// [resolve] method.
+        /// </Summary>
         public virtual double Top { get; set; }
+        /// <Summary>
+        /// The offset from the end side, the side on which the user ends reading
+        /// text.
+        ///
+        /// This value is normalized into an [EdgeInsets.left] or [EdgeInsets.right]
+        /// value by the [resolve] method.
+        /// </Summary>
         public virtual double End { get; set; }
+        /// <Summary>
+        /// The offset from the bottom.
+        ///
+        /// This value is passed through to [EdgeInsets.bottom] unmodified by the
+        /// [resolve] method.
+        /// </Summary>
         public virtual double Bottom { get; set; }
         internal virtual double _Start { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         internal virtual double _Top { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }

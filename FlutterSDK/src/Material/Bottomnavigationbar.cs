@@ -469,6 +469,40 @@ namespace FlutterSDK.Material.Bottomnavigationbar
     /// </Summary>
     public class BottomNavigationBar : FlutterSDK.Widgets.Framework.StatefulWidget
     {
+        /// <Summary>
+        /// Creates a bottom navigation bar which is typically used as a
+        /// [Scaffold]'s [Scaffold.bottomNavigationBar] argument.
+        ///
+        /// The length of [items] must be at least two and each item's icon and title
+        /// must not be null.
+        ///
+        /// If [type] is null then [BottomNavigationBarType.fixed] is used when there
+        /// are two or three [items], [BottomNavigationBarType.shifting] otherwise.
+        ///
+        /// The [iconSize], [selectedFontSize], [unselectedFontSize], and [elevation]
+        /// arguments must be non-null and non-negative.
+        ///
+        /// If [selectedLabelStyle.color] and [unselectedLabelStyle.color] values
+        /// are non-null, they will be used instead of [selectedItemColor] and
+        /// [unselectedItemColor].
+        ///
+        /// If custom [IconThemData]s are used, you must provide both
+        /// [selectedIconTheme] and [unselectedIconTheme], and both
+        /// [IconThemeData.color] and [IconThemeData.size] must be set.
+        ///
+        /// If both [selectedLabelStyle.fontSize] and [selectedFontSize] are set,
+        /// [selectedLabelStyle.fontSize] will be used.
+        ///
+        /// Only one of [selectedItemColor] and [fixedColor] can be specified. The
+        /// former is preferred, [fixedColor] only exists for the sake of
+        /// backwards compatibility.
+        ///
+        /// The [showSelectedLabels] argument must not be non-null.
+        ///
+        /// The [showUnselectedLabels] argument defaults to `true` if [type] is
+        /// [BottomNavigationBarType.fixed] and `false` if [type] is
+        /// [BottomNavigationBarType.shifting].
+        /// </Summary>
         public BottomNavigationBar(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), List<FlutterSDK.Widgets.Bottomnavigationbaritem.BottomNavigationBarItem> items = default(List<FlutterSDK.Widgets.Bottomnavigationbaritem.BottomNavigationBarItem>), FlutterSDK.Foundation.Basictypes.ValueChanged<int> onTap = default(FlutterSDK.Foundation.Basictypes.ValueChanged<int>), int currentIndex = 0, double elevation = 8.0, FlutterSDK.Material.Bottomnavigationbar.BottomNavigationBarType type = default(FlutterSDK.Material.Bottomnavigationbar.BottomNavigationBarType), FlutterBinding.UI.Color fixedColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), double iconSize = 24.0, FlutterBinding.UI.Color selectedItemColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color unselectedItemColor = default(FlutterBinding.UI.Color), FlutterSDK.Widgets.Iconthemedata.IconThemeData selectedIconTheme = default(FlutterSDK.Widgets.Iconthemedata.IconThemeData), FlutterSDK.Widgets.Iconthemedata.IconThemeData unselectedIconTheme = default(FlutterSDK.Widgets.Iconthemedata.IconThemeData), double selectedFontSize = 14.0, double unselectedFontSize = 12.0, FlutterSDK.Painting.Textstyle.TextStyle selectedLabelStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle unselectedLabelStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), bool showSelectedLabels = true, bool showUnselectedLabels = default(bool))
         : base(key: key)
         {
@@ -487,22 +521,124 @@ namespace FlutterSDK.Material.Bottomnavigationbar
             this.UnselectedLabelStyle = unselectedLabelStyle;
             this.ShowSelectedLabels = showSelectedLabels;
         }
+        /// <Summary>
+        /// Defines the appearance of the button items that are arrayed within the
+        /// bottom navigation bar.
+        /// </Summary>
         public virtual List<FlutterSDK.Widgets.Bottomnavigationbaritem.BottomNavigationBarItem> Items { get; set; }
+        /// <Summary>
+        /// Called when one of the [items] is tapped.
+        ///
+        /// The stateful widget that creates the bottom navigation bar needs to keep
+        /// track of the index of the selected [BottomNavigationBarItem] and call
+        /// `setState` to rebuild the bottom navigation bar with the new [currentIndex].
+        /// </Summary>
         public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<int> OnTap { get; set; }
+        /// <Summary>
+        /// The index into [items] for the current active [BottomNavigationBarItem].
+        /// </Summary>
         public virtual int CurrentIndex { get; set; }
+        /// <Summary>
+        /// The z-coordinate of this [BottomNavigationBar].
+        ///
+        /// If null, defaults to `8.0`.
+        ///
+        /// {@macro flutter.material.material.elevation}
+        /// </Summary>
         public virtual double Elevation { get; set; }
+        /// <Summary>
+        /// Defines the layout and behavior of a [BottomNavigationBar].
+        ///
+        /// See documentation for [BottomNavigationBarType] for information on the
+        /// meaning of different types.
+        /// </Summary>
         public virtual FlutterSDK.Material.Bottomnavigationbar.BottomNavigationBarType Type { get; set; }
+        /// <Summary>
+        /// The color of the [BottomNavigationBar] itself.
+        ///
+        /// If [type] is [BottomNavigationBarType.shifting] and the
+        /// [items]s, have [BottomNavigationBarItem.backgroundColor] set, the [item]'s
+        /// backgroundColor will splash and overwrite this color.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
+        /// <Summary>
+        /// The size of all of the [BottomNavigationBarItem] icons.
+        ///
+        /// See [BottomNavigationBarItem.icon] for more information.
+        /// </Summary>
         public virtual double IconSize { get; set; }
+        /// <Summary>
+        /// The color of the selected [BottomNavigationBarItem.icon] and
+        /// [BottomNavigationBarItem.label].
+        ///
+        /// If null then the [ThemeData.primaryColor] is used.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color SelectedItemColor { get; set; }
+        /// <Summary>
+        /// The color of the unselected [BottomNavigationBarItem.icon] and
+        /// [BottomNavigationBarItem.label]s.
+        ///
+        /// If null then the [TextTheme.caption]'s color is used.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color UnselectedItemColor { get; set; }
+        /// <Summary>
+        /// The size, opacity, and color of the icon in the currently selected
+        /// [BottomNavigationBarItem.icon].
+        ///
+        /// If this is not provided, the size will default to [iconSize], the color
+        /// will default to [selectedItemColor].
+        ///
+        /// It this field is provided, it must contain non-null [IconThemeData.size]
+        /// and [IconThemeData.color] properties. Also, if this field is supplied,
+        /// [unselectedIconTheme] must be provided.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Iconthemedata.IconThemeData SelectedIconTheme { get; set; }
+        /// <Summary>
+        /// The size, opacity, and color of the icon in the currently unselected
+        /// [BottomNavigationBarItem.icon]s
+        ///
+        /// If this is not provided, the size will default to [iconSize], the color
+        /// will default to [unselectedItemColor].
+        ///
+        /// It this field is provided, it must contain non-null [IconThemeData.size]
+        /// and [IconThemeData.color] properties. Also, if this field is supplied,
+        /// [unselectedIconTheme] must be provided.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Iconthemedata.IconThemeData UnselectedIconTheme { get; set; }
+        /// <Summary>
+        /// The [TextStyle] of the [BottomNavigationBarItem] labels when they are
+        /// selected.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Textstyle.TextStyle SelectedLabelStyle { get; set; }
+        /// <Summary>
+        /// The [TextStyle] of the [BottomNavigationBarItem] labels when they are not
+        /// selected.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Textstyle.TextStyle UnselectedLabelStyle { get; set; }
+        /// <Summary>
+        /// The font size of the [BottomNavigationBarItem] labels when they are selected.
+        ///
+        /// If [selectedLabelStyle.fontSize] is non-null, it will be used instead of this.
+        ///
+        /// Defaults to `14.0`.
+        /// </Summary>
         public virtual double SelectedFontSize { get; set; }
+        /// <Summary>
+        /// The font size of the [BottomNavigationBarItem] labels when they are not
+        /// selected.
+        ///
+        /// If [unselectedLabelStyle.fontSize] is non-null, it will be used instead of this.
+        ///
+        /// Defaults to `12.0`.
+        /// </Summary>
         public virtual double UnselectedFontSize { get; set; }
+        /// <Summary>
+        /// Whether the labels are shown for the selected [BottomNavigationBarItem].
+        /// </Summary>
         public virtual bool ShowUnselectedLabels { get; set; }
+        /// <Summary>
+        /// Whether the labels are shown for the unselected [BottomNavigationBarItem]s.
+        /// </Summary>
         public virtual bool ShowSelectedLabels { get; set; }
         public virtual FlutterBinding.UI.Color FixedColor { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 

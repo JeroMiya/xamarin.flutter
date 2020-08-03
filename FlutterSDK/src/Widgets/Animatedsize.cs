@@ -437,6 +437,11 @@ namespace FlutterSDK.Widgets.Animatedsize
     /// </Summary>
     public class AnimatedSize : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
+        /// <Summary>
+        /// Creates a widget that animates its size to match that of its child.
+        ///
+        /// The [curve] and [duration] arguments must not be null.
+        /// </Summary>
         public AnimatedSize(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve), TimeSpan duration = default(TimeSpan), TimeSpan reverseDuration = default(TimeSpan), FlutterSDK.Scheduler.Ticker.TickerProvider vsync = default(FlutterSDK.Scheduler.Ticker.TickerProvider))
         : base(key: key, child: child)
         {
@@ -446,10 +451,48 @@ namespace FlutterSDK.Widgets.Animatedsize
             this.ReverseDuration = reverseDuration;
             this.Vsync = vsync;
         }
+        /// <Summary>
+        /// The alignment of the child within the parent when the parent is not yet
+        /// the same size as the child.
+        ///
+        /// The x and y values of the alignment control the horizontal and vertical
+        /// alignment, respectively. An x value of -1.0 means that the left edge of
+        /// the child is aligned with the left edge of the parent whereas an x value
+        /// of 1.0 means that the right edge of the child is aligned with the right
+        /// edge of the parent. Other values interpolate (and extrapolate) linearly.
+        /// For example, a value of 0.0 means that the center of the child is aligned
+        /// with the center of the parent.
+        ///
+        /// Defaults to [Alignment.center].
+        ///
+        /// See also:
+        ///
+        ///  * [Alignment], a class with convenient constants typically used to
+        ///    specify an [AlignmentGeometry].
+        ///  * [AlignmentDirectional], like [Alignment] for specifying alignments
+        ///    relative to text direction.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Alignment.AlignmentGeometry Alignment { get; set; }
+        /// <Summary>
+        /// The animation curve when transitioning this widget's size to match the
+        /// child's size.
+        /// </Summary>
         public virtual FlutterSDK.Animation.Curves.Curve Curve { get; set; }
+        /// <Summary>
+        /// The duration when transitioning this widget's size to match the child's
+        /// size.
+        /// </Summary>
         public virtual TimeSpan Duration { get; set; }
+        /// <Summary>
+        /// The duration when transitioning this widget's size to match the child's
+        /// size when going in reverse.
+        ///
+        /// If not specified, defaults to [duration].
+        /// </Summary>
         public virtual TimeSpan ReverseDuration { get; set; }
+        /// <Summary>
+        /// The [TickerProvider] for this widget.
+        /// </Summary>
         public virtual FlutterSDK.Scheduler.Ticker.TickerProvider Vsync { get; set; }
 
         public new FlutterSDK.Rendering.Animatedsize.RenderAnimatedSize CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)

@@ -407,6 +407,11 @@ namespace FlutterSDK.Material.Expansiontile
     /// </Summary>
     public class ExpansionTile : FlutterSDK.Widgets.Framework.StatefulWidget
     {
+        /// <Summary>
+        /// Creates a single-line [ListTile] with a trailing button that expands or collapses
+        /// the tile to reveal or hide the [children]. The [initiallyExpanded] property must
+        /// be non-null.
+        /// </Summary>
         public ExpansionTile(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget leading = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget title = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget subtitle = default(FlutterSDK.Widgets.Framework.Widget), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onExpansionChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>), List<FlutterSDK.Widgets.Framework.Widget> children = default(List<FlutterSDK.Widgets.Framework.Widget>), FlutterSDK.Widgets.Framework.Widget trailing = default(FlutterSDK.Widgets.Framework.Widget), bool initiallyExpanded = false)
         : base(key: key)
         {
@@ -419,13 +424,49 @@ namespace FlutterSDK.Material.Expansiontile
             this.Trailing = trailing;
             this.InitiallyExpanded = initiallyExpanded;
         }
+        /// <Summary>
+        /// A widget to display before the title.
+        ///
+        /// Typically a [CircleAvatar] widget.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Leading { get; set; }
+        /// <Summary>
+        /// The primary content of the list item.
+        ///
+        /// Typically a [Text] widget.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Title { get; set; }
+        /// <Summary>
+        /// Additional content displayed below the title.
+        ///
+        /// Typically a [Text] widget.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Subtitle { get; set; }
+        /// <Summary>
+        /// Called when the tile expands or collapses.
+        ///
+        /// When the tile starts expanding, this function is called with the value
+        /// true. When the tile starts collapsing, this function is called with
+        /// the value false.
+        /// </Summary>
         public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<bool> OnExpansionChanged { get; set; }
+        /// <Summary>
+        /// The widgets that are displayed when the tile expands.
+        ///
+        /// Typically [ListTile] widgets.
+        /// </Summary>
         public virtual List<FlutterSDK.Widgets.Framework.Widget> Children { get; set; }
+        /// <Summary>
+        /// The color to display behind the sublist when expanded.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
+        /// <Summary>
+        /// A widget to display instead of a rotating arrow icon.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Trailing { get; set; }
+        /// <Summary>
+        /// Specifies if the list tile is initially expanded (true) or collapsed (false, the default).
+        /// </Summary>
         public virtual bool InitiallyExpanded { get; set; }
 
         public new FlutterSDK.Material.Expansiontile._ExpansionTileState CreateState() => new _ExpansionTileState();

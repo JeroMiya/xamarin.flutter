@@ -454,6 +454,11 @@ namespace FlutterSDK.Material.Pickers.Datepickerdeprecated
     /// </Summary>
     public class DayPicker : FlutterSDK.Widgets.Framework.StatelessWidget
     {
+        /// <Summary>
+        /// Creates a day picker.
+        ///
+        /// Rarely used directly. Instead, typically used as part of a [MonthPicker].
+        /// </Summary>
         public DayPicker(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), DateTime selectedDate = default(DateTime), DateTime currentDate = default(DateTime), FlutterSDK.Foundation.Basictypes.ValueChanged<DateTime> onChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<DateTime>), DateTime firstDate = default(DateTime), DateTime lastDate = default(DateTime), DateTime displayedMonth = default(DateTime), FlutterSDK.Material.Pickers.Datepickercommon.SelectableDayPredicate selectableDayPredicate = default(FlutterSDK.Material.Pickers.Datepickercommon.SelectableDayPredicate), FlutterSDK.Gestures.Recognizer.DragStartBehavior dragStartBehavior = default(FlutterSDK.Gestures.Recognizer.DragStartBehavior))
         : base(key: key)
         {
@@ -466,13 +471,54 @@ namespace FlutterSDK.Material.Pickers.Datepickerdeprecated
             this.SelectableDayPredicate = selectableDayPredicate;
             this.DragStartBehavior = dragStartBehavior;
         }
+        /// <Summary>
+        /// The currently selected date.
+        ///
+        /// This date is highlighted in the picker.
+        /// </Summary>
         public virtual DateTime SelectedDate { get; set; }
+        /// <Summary>
+        /// The current date at the time the picker is displayed.
+        /// </Summary>
         public virtual DateTime CurrentDate { get; set; }
+        /// <Summary>
+        /// Called when the user picks a day.
+        /// </Summary>
         public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<DateTime> OnChanged { get; set; }
+        /// <Summary>
+        /// The earliest date the user is permitted to pick.
+        /// </Summary>
         public virtual DateTime FirstDate { get; set; }
+        /// <Summary>
+        /// The latest date the user is permitted to pick.
+        /// </Summary>
         public virtual DateTime LastDate { get; set; }
+        /// <Summary>
+        /// The month whose days are displayed by this picker.
+        /// </Summary>
         public virtual DateTime DisplayedMonth { get; set; }
+        /// <Summary>
+        /// Optional user supplied predicate function to customize selectable days.
+        /// </Summary>
         public virtual FlutterSDK.Material.Pickers.Datepickercommon.SelectableDayPredicate SelectableDayPredicate { get; set; }
+        /// <Summary>
+        /// Determines the way that drag start behavior is handled.
+        ///
+        /// If set to [DragStartBehavior.start], the drag gesture used to scroll a
+        /// date picker wheel will begin upon the detection of a drag gesture. If set
+        /// to [DragStartBehavior.down] it will begin when a down event is first
+        /// detected.
+        ///
+        /// In general, setting this to [DragStartBehavior.start] will make drag
+        /// animation smoother and setting it to [DragStartBehavior.down] will make
+        /// drag behavior feel slightly more reactive.
+        ///
+        /// By default, the drag start behavior is [DragStartBehavior.start].
+        ///
+        /// See also:
+        ///
+        ///  * [DragGestureRecognizer.dragStartBehavior], which gives an example for the different behaviors.
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Recognizer.DragStartBehavior DragStartBehavior { get; set; }
         internal virtual List<int> _DaysInMonth { get; set; }
 
@@ -659,6 +705,12 @@ namespace FlutterSDK.Material.Pickers.Datepickerdeprecated
     /// </Summary>
     public class MonthPicker : FlutterSDK.Widgets.Framework.StatefulWidget
     {
+        /// <Summary>
+        /// Creates a month picker.
+        ///
+        /// Rarely used directly. Instead, typically used as part of the dialog shown
+        /// by [showDatePicker].
+        /// </Summary>
         public MonthPicker(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), DateTime selectedDate = default(DateTime), FlutterSDK.Foundation.Basictypes.ValueChanged<DateTime> onChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<DateTime>), DateTime firstDate = default(DateTime), DateTime lastDate = default(DateTime), FlutterSDK.Material.Pickers.Datepickercommon.SelectableDayPredicate selectableDayPredicate = default(FlutterSDK.Material.Pickers.Datepickercommon.SelectableDayPredicate), FlutterSDK.Gestures.Recognizer.DragStartBehavior dragStartBehavior = default(FlutterSDK.Gestures.Recognizer.DragStartBehavior))
         : base(key: key)
         {
@@ -669,11 +721,31 @@ namespace FlutterSDK.Material.Pickers.Datepickerdeprecated
             this.SelectableDayPredicate = selectableDayPredicate;
             this.DragStartBehavior = dragStartBehavior;
         }
+        /// <Summary>
+        /// The currently selected date.
+        ///
+        /// This date is highlighted in the picker.
+        /// </Summary>
         public virtual DateTime SelectedDate { get; set; }
+        /// <Summary>
+        /// Called when the user picks a month.
+        /// </Summary>
         public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<DateTime> OnChanged { get; set; }
+        /// <Summary>
+        /// The earliest date the user is permitted to pick.
+        /// </Summary>
         public virtual DateTime FirstDate { get; set; }
+        /// <Summary>
+        /// The latest date the user is permitted to pick.
+        /// </Summary>
         public virtual DateTime LastDate { get; set; }
+        /// <Summary>
+        /// Optional user supplied predicate function to customize selectable days.
+        /// </Summary>
         public virtual FlutterSDK.Material.Pickers.Datepickercommon.SelectableDayPredicate SelectableDayPredicate { get; set; }
+        /// <Summary>
+        /// {@macro flutter.widgets.scrollable.dragStartBehavior}
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Recognizer.DragStartBehavior DragStartBehavior { get; set; }
 
         public new FlutterSDK.Material.Pickers.Datepickerdeprecated._MonthPickerState CreateState() => new _MonthPickerState();
@@ -888,6 +960,15 @@ return false ;
     /// </Summary>
     public class YearPicker : FlutterSDK.Widgets.Framework.StatefulWidget
     {
+        /// <Summary>
+        /// Creates a year picker.
+        ///
+        /// The [selectedDate] and [onChanged] arguments must not be null. The
+        /// [lastDate] must be after the [firstDate].
+        ///
+        /// Rarely used directly. Instead, typically used as part of the dialog shown
+        /// by [showDatePicker].
+        /// </Summary>
         public YearPicker(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), DateTime selectedDate = default(DateTime), FlutterSDK.Foundation.Basictypes.ValueChanged<DateTime> onChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<DateTime>), DateTime firstDate = default(DateTime), DateTime lastDate = default(DateTime), FlutterSDK.Gestures.Recognizer.DragStartBehavior dragStartBehavior = default(FlutterSDK.Gestures.Recognizer.DragStartBehavior))
         : base(key: key)
         {
@@ -897,10 +978,27 @@ return false ;
             this.LastDate = lastDate;
             this.DragStartBehavior = dragStartBehavior;
         }
+        /// <Summary>
+        /// The currently selected date.
+        ///
+        /// This date is highlighted in the picker.
+        /// </Summary>
         public virtual DateTime SelectedDate { get; set; }
+        /// <Summary>
+        /// Called when the user picks a year.
+        /// </Summary>
         public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<DateTime> OnChanged { get; set; }
+        /// <Summary>
+        /// The earliest date the user is permitted to pick.
+        /// </Summary>
         public virtual DateTime FirstDate { get; set; }
+        /// <Summary>
+        /// The latest date the user is permitted to pick.
+        /// </Summary>
         public virtual DateTime LastDate { get; set; }
+        /// <Summary>
+        /// {@macro flutter.widgets.scrollable.dragStartBehavior}
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Recognizer.DragStartBehavior DragStartBehavior { get; set; }
 
         public new FlutterSDK.Material.Pickers.Datepickerdeprecated._YearPickerState CreateState() => new _YearPickerState();

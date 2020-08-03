@@ -293,9 +293,21 @@ using FlutterSDK.Widgets.Scrollview;
 using FlutterSDK.Foundation;
 namespace FlutterSDK.Foundation.Binding
 {
+    /// <Summary>
+    /// Signature for service extensions.
+    ///
+    /// The returned map must not contain the keys "type" or "method", as
+    /// they will be replaced before the value is sent to the client. The
+    /// "type" key will be set to the string `_extensionType` to indicate
+    /// that this is a return value from a service extension, and the
+    /// "method" key will be set to the full name of the method.
+    /// </Summary>
     public delegate Future<Dictionary<string, object>> ServiceExtensionCallback(Dictionary<string, string> parameters);
     internal static class BindingDefaultClass
     {
+        /// <Summary>
+        /// Terminate the Flutter application.
+        /// </Summary>
         internal static async Future<object> _ExitApplication()
         {
             Dart.IoDefaultClass.Exit(0);
@@ -361,6 +373,14 @@ namespace FlutterSDK.Foundation.Binding
     /// </Summary>
     public class BindingBase
     {
+        /// <Summary>
+        /// Default abstract constructor for bindings.
+        ///
+        /// First calls [initInstances] to have bindings initialize their
+        /// instance pointers and other state, then calls
+        /// [initServiceExtensions] to have bindings initialize their
+        /// observatory service extensions, if any.
+        /// </Summary>
         public BindingBase()
         {
 

@@ -459,6 +459,10 @@ namespace FlutterSDK.Painting.Notchedshapes
     /// </Summary>
     public class NotchedShape
     {
+        /// <Summary>
+        /// Abstract const constructor. This constructor enables subclasses to provide
+        /// const constructors so that they can be used in const expressions.
+        /// </Summary>
         public NotchedShape()
         {
 
@@ -489,6 +493,11 @@ namespace FlutterSDK.Painting.Notchedshapes
     /// </Summary>
     public class CircularNotchedRectangle : FlutterSDK.Painting.Notchedshapes.NotchedShape
     {
+        /// <Summary>
+        /// Creates a [CircularNotchedRectangle].
+        ///
+        /// The same object can be used to create multiple shapes.
+        /// </Summary>
         public CircularNotchedRectangle()
         {
 
@@ -558,12 +567,35 @@ namespace FlutterSDK.Painting.Notchedshapes
     /// </Summary>
     public class AutomaticNotchedShape : FlutterSDK.Painting.Notchedshapes.NotchedShape
     {
+        /// <Summary>
+        /// Creates a [NotchedShape] that is defined by two [ShapeBorder]s.
+        ///
+        /// The [host] must not be null.
+        ///
+        /// The [guest] may be null, in which case no notch is created even
+        /// if a guest rectangle is provided to [getOuterPath].
+        /// </Summary>
         public AutomaticNotchedShape(FlutterSDK.Painting.Borders.ShapeBorder host, FlutterSDK.Painting.Borders.ShapeBorder guest = default(FlutterSDK.Painting.Borders.ShapeBorder))
         {
             this.Host = host;
             this.Guest = guest;
         }
+        /// <Summary>
+        /// The shape of the widget that uses the [NotchedShape] (typically a
+        /// [BottomAppBar]).
+        ///
+        /// This shape cannot depend on the [TextDirection], as no text direction
+        /// is available to [NotchedShape]s.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Borders.ShapeBorder Host { get; set; }
+        /// <Summary>
+        /// The shape to subtract from the [host] to make the notch.
+        ///
+        /// This shape cannot depend on the [TextDirection], as no text direction
+        /// is available to [NotchedShape]s.
+        ///
+        /// If this is null, [getOuterPath] ignores the guest rectangle.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Borders.ShapeBorder Guest { get; set; }
 
         public new Path GetOuterPath(FlutterBinding.UI.Rect hostRect, FlutterBinding.UI.Rect guestRect)

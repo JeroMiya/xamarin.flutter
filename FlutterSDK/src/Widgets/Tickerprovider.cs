@@ -589,13 +589,36 @@ namespace FlutterSDK.Widgets.Tickerprovider
     /// </Summary>
     public class TickerMode : FlutterSDK.Widgets.Framework.StatelessWidget
     {
+        /// <Summary>
+        /// Creates a widget that enables or disables tickers.
+        ///
+        /// The [enabled] argument must not be null.
+        /// </Summary>
         public TickerMode(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), bool enabled = default(bool), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key)
         {
             this.Enabled = enabled;
             this.Child = child;
         }
+        /// <Summary>
+        /// The requested ticker mode for this subtree.
+        ///
+        /// The effective ticker mode of this subtree may differ from this value
+        /// if there is an ancestor [TickerMode] with this field set to false.
+        ///
+        /// If true and all ancestor [TickerMode]s are also enabled, then tickers in
+        /// this subtree will tick.
+        ///
+        /// If false, then tickers in this subtree will not tick regardless of any
+        /// ancestor [TickerMode]s. Animations driven by such tickers are not paused,
+        /// they just don't call their callbacks. Time still elapses.
+        /// </Summary>
         public virtual bool Enabled { get; set; }
+        /// <Summary>
+        /// The widget below this widget in the tree.
+        ///
+        /// {@template flutter.widgets.child}
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
 
         /// <Summary>

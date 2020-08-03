@@ -398,10 +398,16 @@ namespace FlutterSDK.Gestures.Hittest
     /// </Summary>
     public class HitTestEntry
     {
+        /// <Summary>
+        /// Creates a hit test entry.
+        /// </Summary>
         public HitTestEntry(FlutterSDK.Gestures.Hittest.HitTestTarget target)
         {
             this.Target = target;
         }
+        /// <Summary>
+        /// The [HitTestTarget] encountered during the hit test.
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Hittest.HitTestTarget Target { get; set; }
         internal virtual Matrix4 _Transform { get; set; }
         public virtual object Transform { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
@@ -414,11 +420,22 @@ namespace FlutterSDK.Gestures.Hittest
     /// </Summary>
     public class HitTestResult
     {
+        /// <Summary>
+        /// Creates an empty hit test result.
+        /// </Summary>
         public HitTestResult()
         : base()
         {
 
         }
+        /// <Summary>
+        /// Wraps `result` (usually a subtype of [HitTestResult]) to create a
+        /// generic [HitTestResult].
+        ///
+        /// The [HitTestEntry]s added to the returned [HitTestResult] are also
+        /// added to the wrapped `result` (both share the same underlying data
+        /// structure to store [HitTestEntry]s).
+        /// </Summary>
         public static HitTestResult Wrap(FlutterSDK.Gestures.Hittest.HitTestResult result)
         {
             var instance = new HitTestResult();

@@ -432,6 +432,29 @@ namespace FlutterSDK.Painting.Binding
     public class PaintingBinding
     {
         internal virtual FlutterSDK.Painting.Binding.PaintingBinding _Instance { get; set; }
+        /// <Summary>
+        /// [ShaderWarmUp] to be executed during [initInstances].
+        ///
+        /// If the application has scenes that require the compilation of complex
+        /// shaders that are not covered by [DefaultShaderWarmUp], it may cause jank
+        /// in the middle of an animation or interaction. In that case, set
+        /// [shaderWarmUp] to a custom [ShaderWarmUp] before calling [initInstances]
+        /// (usually before [runApp] for normal Flutter apps, and before
+        /// [enableFlutterDriverExtension] for Flutter driver tests). Paint the scene
+        /// in the custom [ShaderWarmUp] so Flutter can pre-compile and cache the
+        /// shaders during startup. The warm up is only costly (100ms-200ms,
+        /// depending on the shaders to compile) during the first run after the
+        /// installation or a data wipe. The warm up does not block the main thread
+        /// so there should be no "Application Not Responding" warning.
+        ///
+        /// Currently the warm-up happens synchronously on the GPU thread which means
+        /// the rendering of the first frame on the GPU thread will be postponed until
+        /// the warm-up is finished.
+        ///
+        /// See also:
+        ///
+        ///  * [ShaderWarmUp], the interface of how this warm up works.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Shaderwarmup.ShaderWarmUp ShaderWarmUp { get; set; }
         internal virtual FlutterSDK.Painting.Imagecache.ImageCache _ImageCache { get; set; }
         internal virtual FlutterSDK.Painting.Binding._SystemFontsNotifier _SystemFonts { get; set; }

@@ -425,7 +425,26 @@ using FlutterSDK.Widgets.Constants;
 using FlutterSDK.Widgets.Routenotificationmessages;
 namespace FlutterSDK.Widgets.Platformview
 {
+    /// <Summary>
+    /// A factory for a surface presenting a platform view as part of the widget hierarchy.
+    ///
+    /// The returned widget should present the platform view associated with `controller`.
+    ///
+    /// See also:
+    ///
+    ///  * [PlatformViewSurface], a common widget for presenting platform views.
+    /// </Summary>
     public delegate FlutterSDK.Widgets.Framework.Widget PlatformViewSurfaceFactory(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Services.Platformviews.PlatformViewController controller);
+    /// <Summary>
+    /// Constructs a [PlatformViewController].
+    ///
+    /// The [PlatformViewController.id] field of the created controller must match the value of the
+    /// params [PlatformViewCreationParams.id] field.
+    ///
+    /// See also:
+    ///
+    ///  * [PlatformViewLink], which links a platform view with the Flutter framework.
+    /// </Summary>
     public delegate FlutterSDK.Services.Platformviews.PlatformViewController CreatePlatformViewCallback(FlutterSDK.Widgets.Platformview.PlatformViewCreationParams params);
     internal static class PlatformviewDefaultClass
     {
@@ -477,6 +496,14 @@ namespace FlutterSDK.Widgets.Platformview
     /// </Summary>
     public class AndroidView : FlutterSDK.Widgets.Framework.StatefulWidget
     {
+        /// <Summary>
+        /// Creates a widget that embeds an Android view.
+        ///
+        /// {@template flutter.widgets.platformViews.constructorParams}
+        /// The `viewType` and `hitTestBehavior` parameters must not be null.
+        /// If `creationParams` is not null then `creationParamsCodec` must not be null.
+        /// {@endtemplate}
+        /// </Summary>
         public AndroidView(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), string viewType = default(string), FlutterSDK.Services.Platformviews.PlatformViewCreatedCallback onPlatformViewCreated = default(FlutterSDK.Services.Platformviews.PlatformViewCreatedCallback), FlutterSDK.Rendering.Platformview.PlatformViewHitTestBehavior hitTestBehavior = default(FlutterSDK.Rendering.Platformview.PlatformViewHitTestBehavior), TextDirection layoutDirection = default(TextDirection), HashSet<FlutterSDK.Foundation.Basictypes.Factory<FlutterSDK.Gestures.Recognizer.OneSequenceGestureRecognizer>> gestureRecognizers = default(HashSet<FlutterSDK.Foundation.Basictypes.Factory<FlutterSDK.Gestures.Recognizer.OneSequenceGestureRecognizer>>), object creationParams = default(object), FlutterSDK.Services.Messagecodec.MessageCodec<object> creationParamsCodec = default(FlutterSDK.Services.Messagecodec.MessageCodec<object>))
         : base(key: key)
         {
@@ -488,12 +515,114 @@ namespace FlutterSDK.Widgets.Platformview
             this.CreationParams = creationParams;
             this.CreationParamsCodec = creationParamsCodec;
         }
+        /// <Summary>
+        /// The unique identifier for Android view type to be embedded by this widget.
+        ///
+        /// A [PlatformViewFactory](/javadoc/io/flutter/plugin/platform/PlatformViewFactory.html)
+        /// for this type must have been registered.
+        ///
+        /// See also:
+        ///
+        ///  * [AndroidView] for an example of registering a platform view factory.
+        /// </Summary>
         public virtual string ViewType { get; set; }
+        /// <Summary>
+        /// {@template flutter.widgets.platformViews.createdParam}
+        /// Callback to invoke after the platform view has been created.
+        ///
+        /// May be null.
+        /// {@endtemplate}
+        /// </Summary>
         public virtual FlutterSDK.Services.Platformviews.PlatformViewCreatedCallback OnPlatformViewCreated { get; set; }
+        /// <Summary>
+        /// {@template flutter.widgets.platformViews.hittestParam}
+        /// How this widget should behave during hit testing.
+        ///
+        /// This defaults to [PlatformViewHitTestBehavior.opaque].
+        /// {@endtemplate}
+        /// </Summary>
         public virtual FlutterSDK.Rendering.Platformview.PlatformViewHitTestBehavior HitTestBehavior { get; set; }
+        /// <Summary>
+        /// {@template flutter.widgets.platformViews.directionParam}
+        /// The text direction to use for the embedded view.
+        ///
+        /// If this is null, the ambient [Directionality] is used instead.
+        /// {@endtemplate}
+        /// </Summary>
         public virtual TextDirection LayoutDirection { get; set; }
+        /// <Summary>
+        /// Which gestures should be forwarded to the Android view.
+        ///
+        /// {@template flutter.widgets.platformViews.gestureRecognizersDescHead}
+        /// The gesture recognizers built by factories in this set participate in the gesture arena for
+        /// each pointer that was put down on the widget. If any of these recognizers win the
+        /// gesture arena, the entire pointer event sequence starting from the pointer down event
+        /// will be dispatched to the platform view.
+        ///
+        /// When null, an empty set of gesture recognizer factories is used, in which case a pointer event sequence
+        /// will only be dispatched to the platform view if no other member of the arena claimed it.
+        /// {@endtemplate}
+        ///
+        /// For example, with the following setup vertical drags will not be dispatched to the Android
+        /// view as the vertical drag gesture is claimed by the parent [GestureDetector].
+        ///
+        /// ```dart
+        /// GestureDetector(
+        ///   onVerticalDragStart: (DragStartDetails d) {},
+        ///   child: AndroidView(
+        ///     viewType: 'webview',
+        ///   ),
+        /// )
+        /// ```
+        ///
+        /// To get the [AndroidView] to claim the vertical drag gestures we can pass a vertical drag
+        /// gesture recognizer factory in [gestureRecognizers] e.g:
+        ///
+        /// ```dart
+        /// GestureDetector(
+        ///   onVerticalDragStart: (DragStartDetails details) {},
+        ///   child: SizedBox(
+        ///     width: 200.0,
+        ///     height: 100.0,
+        ///     child: AndroidView(
+        ///       viewType: 'webview',
+        ///       gestureRecognizers: <Factory<OneSequenceGestureRecognizer>>[
+        ///         new Factory<OneSequenceGestureRecognizer>(
+        ///           () => new EagerGestureRecognizer(),
+        ///         ),
+        ///       ].toSet(),
+        ///     ),
+        ///   ),
+        /// )
+        /// ```
+        ///
+        /// {@template flutter.widgets.platformViews.gestureRecognizersDescFoot}
+        /// A platform view can be configured to consume all pointers that were put down in its bounds
+        /// by passing a factory for an [EagerGestureRecognizer] in [gestureRecognizers].
+        /// [EagerGestureRecognizer] is a special gesture recognizer that immediately claims the gesture
+        /// after a pointer down event.
+        ///
+        /// The `gestureRecognizers` property must not contain more than one factory with the same [Factory.type].
+        ///
+        /// Changing `gestureRecognizers` results in rejection of any active gesture arenas (if the
+        /// platform view is actively participating in an arena).
+        /// {@endtemplate}
+        /// </Summary>
         public virtual HashSet<FlutterSDK.Foundation.Basictypes.Factory<FlutterSDK.Gestures.Recognizer.OneSequenceGestureRecognizer>> GestureRecognizers { get; set; }
+        /// <Summary>
+        /// Passed as the args argument of [PlatformViewFactory#create](/javadoc/io/flutter/plugin/platform/PlatformViewFactory.html#create-android.content.Context-int-java.lang.Object-)
+        ///
+        /// This can be used by plugins to pass constructor parameters to the embedded Android view.
+        /// </Summary>
         public virtual object CreationParams { get; set; }
+        /// <Summary>
+        /// The codec used to encode `creationParams` before sending it to the
+        /// platform side. It should match the codec passed to the constructor of [PlatformViewFactory](/javadoc/io/flutter/plugin/platform/PlatformViewFactory.html#PlatformViewFactory-io.flutter.plugin.common.MessageCodec-).
+        ///
+        /// This is typically one of: [StandardMessageCodec], [JSONMessageCodec], [StringCodec], or [BinaryCodec].
+        ///
+        /// This must not be null if [creationParams] is not null.
+        /// </Summary>
         public virtual FlutterSDK.Services.Messagecodec.MessageCodec<object> CreationParamsCodec { get; set; }
 
         public new FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Platformview.AndroidView> CreateState() => new _AndroidViewState();
@@ -524,6 +653,11 @@ namespace FlutterSDK.Widgets.Platformview
     /// </Summary>
     public class UiKitView : FlutterSDK.Widgets.Framework.StatefulWidget
     {
+        /// <Summary>
+        /// Creates a widget that embeds an iOS view.
+        ///
+        /// {@macro flutter.widgets.platformViews.constructorParams}
+        /// </Summary>
         public UiKitView(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), string viewType = default(string), FlutterSDK.Services.Platformviews.PlatformViewCreatedCallback onPlatformViewCreated = default(FlutterSDK.Services.Platformviews.PlatformViewCreatedCallback), FlutterSDK.Rendering.Platformview.PlatformViewHitTestBehavior hitTestBehavior = default(FlutterSDK.Rendering.Platformview.PlatformViewHitTestBehavior), TextDirection layoutDirection = default(TextDirection), object creationParams = default(object), FlutterSDK.Services.Messagecodec.MessageCodec<object> creationParamsCodec = default(FlutterSDK.Services.Messagecodec.MessageCodec<object>), HashSet<FlutterSDK.Foundation.Basictypes.Factory<FlutterSDK.Gestures.Recognizer.OneSequenceGestureRecognizer>> gestureRecognizers = default(HashSet<FlutterSDK.Foundation.Basictypes.Factory<FlutterSDK.Gestures.Recognizer.OneSequenceGestureRecognizer>>))
         : base(key: key)
         {
@@ -535,12 +669,79 @@ namespace FlutterSDK.Widgets.Platformview
             this.CreationParamsCodec = creationParamsCodec;
             this.GestureRecognizers = gestureRecognizers;
         }
+        /// <Summary>
+        /// The unique identifier for iOS view type to be embedded by this widget.
+        ///
+        /// A PlatformViewFactory for this type must have been registered.
+        /// </Summary>
         public virtual string ViewType { get; set; }
+        /// <Summary>
+        /// {@macro flutter.widgets.platformViews.createdParam}
+        /// </Summary>
         public virtual FlutterSDK.Services.Platformviews.PlatformViewCreatedCallback OnPlatformViewCreated { get; set; }
+        /// <Summary>
+        /// {@macro flutter.widgets.platformViews.hittestParam}
+        /// </Summary>
         public virtual FlutterSDK.Rendering.Platformview.PlatformViewHitTestBehavior HitTestBehavior { get; set; }
+        /// <Summary>
+        /// {@macro flutter.widgets.platformViews.directionParam}
+        /// </Summary>
         public virtual TextDirection LayoutDirection { get; set; }
+        /// <Summary>
+        /// Passed as the `arguments` argument of [-\[FlutterPlatformViewFactory createWithFrame:viewIdentifier:arguments:\]](/objcdoc/Protocols/FlutterPlatformViewFactory.html#/c:objc(pl)FlutterPlatformViewFactory(im)createWithFrame:viewIdentifier:arguments:)
+        ///
+        /// This can be used by plugins to pass constructor parameters to the embedded iOS view.
+        /// </Summary>
         public virtual object CreationParams { get; set; }
+        /// <Summary>
+        /// The codec used to encode `creationParams` before sending it to the
+        /// platform side. It should match the codec returned by [-\[FlutterPlatformViewFactory createArgsCodec:\]](/objcdoc/Protocols/FlutterPlatformViewFactory.html#/c:objc(pl)FlutterPlatformViewFactory(im)createArgsCodec)
+        ///
+        /// This is typically one of: [StandardMessageCodec], [JSONMessageCodec], [StringCodec], or [BinaryCodec].
+        ///
+        /// This must not be null if [creationParams] is not null.
+        /// </Summary>
         public virtual FlutterSDK.Services.Messagecodec.MessageCodec<object> CreationParamsCodec { get; set; }
+        /// <Summary>
+        /// Which gestures should be forwarded to the UIKit view.
+        ///
+        /// {@macro flutter.widgets.platformViews.gestureRecognizersDescHead}
+        ///
+        /// For example, with the following setup vertical drags will not be dispatched to the UIKit
+        /// view as the vertical drag gesture is claimed by the parent [GestureDetector].
+        ///
+        /// ```dart
+        /// GestureDetector(
+        ///   onVerticalDragStart: (DragStartDetails details) {},
+        ///   child: UiKitView(
+        ///     viewType: 'webview',
+        ///   ),
+        /// )
+        /// ```
+        ///
+        /// To get the [UiKitView] to claim the vertical drag gestures we can pass a vertical drag
+        /// gesture recognizer factory in [gestureRecognizers] e.g:
+        ///
+        /// ```dart
+        /// GestureDetector(
+        ///   onVerticalDragStart: (DragStartDetails details) {},
+        ///   child: SizedBox(
+        ///     width: 200.0,
+        ///     height: 100.0,
+        ///     child: UiKitView(
+        ///       viewType: 'webview',
+        ///       gestureRecognizers: <Factory<OneSequenceGestureRecognizer>>[
+        ///         new Factory<OneSequenceGestureRecognizer>(
+        ///           () => new EagerGestureRecognizer(),
+        ///         ),
+        ///       ].toSet(),
+        ///     ),
+        ///   ),
+        /// )
+        /// ```
+        ///
+        /// {@macro flutter.widgets.platformViews.gestureRecognizersDescFoot}
+        /// </Summary>
         public virtual HashSet<FlutterSDK.Foundation.Basictypes.Factory<FlutterSDK.Gestures.Recognizer.OneSequenceGestureRecognizer>> GestureRecognizers { get; set; }
 
         public new FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Platformview.UiKitView> CreateState() => new _UiKitViewState();
@@ -586,11 +787,21 @@ namespace FlutterSDK.Widgets.Platformview
     /// </Summary>
     public class HtmlElementView : FlutterSDK.Widgets.Framework.StatelessWidget
     {
+        /// <Summary>
+        /// Creates a platform view for Flutter Web.
+        ///
+        /// `viewType` identifies the type of platform view to create.
+        /// </Summary>
         public HtmlElementView(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), string viewType = default(string))
         : base(key: key)
         {
             this.ViewType = viewType;
         }
+        /// <Summary>
+        /// The unique identifier for the HTML view type to be embedded by this widget.
+        ///
+        /// A PlatformViewFactory for this type must have been registered.
+        /// </Summary>
         public virtual string ViewType { get; set; }
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
@@ -632,6 +843,11 @@ params.OnPlatformViewCreated(params.Id);
             this.ViewType = viewType;
         }
         public new int ViewId { get; set; }
+        /// <Summary>
+        /// The unique identifier for the HTML view type to be embedded by this widget.
+        ///
+        /// A PlatformViewFactory for this type must have been registered.
+        /// </Summary>
         public virtual string ViewType { get; set; }
         internal virtual bool _Initialized { get; set; }
 
@@ -1036,9 +1252,28 @@ params.OnPlatformViewCreated(params.Id);
             this.OnPlatformViewCreated = onPlatformViewCreated;
             this.OnFocusChanged = onFocusChanged;
         }
+        /// <Summary>
+        /// The unique identifier for the new platform view.
+        ///
+        /// [PlatformViewController.viewId] should match this id.
+        /// </Summary>
         public virtual int Id { get; set; }
+        /// <Summary>
+        /// The unique identifier for the type of platform view to be embedded.
+        ///
+        /// This viewType is used to tell the platform which type of view to
+        /// associate with the [id].
+        /// </Summary>
         public virtual string ViewType { get; set; }
+        /// <Summary>
+        /// Callback invoked after the platform view has been created.
+        /// </Summary>
         public virtual FlutterSDK.Services.Platformviews.PlatformViewCreatedCallback OnPlatformViewCreated { get; set; }
+        /// <Summary>
+        /// Callback invoked when the platform view's focus is changed on the platform side.
+        ///
+        /// The value is true when the platform view gains focus and false when it loses focus.
+        /// </Summary>
         public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<bool> OnFocusChanged { get; set; }
     }
 
@@ -1077,6 +1312,16 @@ params.OnPlatformViewCreated(params.Id);
     /// </Summary>
     public class PlatformViewLink : FlutterSDK.Widgets.Framework.StatefulWidget
     {
+        /// <Summary>
+        /// Construct a [PlatformViewLink] widget.
+        ///
+        /// The `surfaceFactory` and the `onCreatePlatformView` must not be null.
+        ///
+        /// See also:
+        ///
+        ///  * [PlatformViewSurface] for details on the widget returned by `surfaceFactory`.
+        ///  * [PlatformViewCreationParams] for how each parameter can be used when implementing `createPlatformView`.
+        /// </Summary>
         public PlatformViewLink(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Platformview.PlatformViewSurfaceFactory surfaceFactory = default(FlutterSDK.Widgets.Platformview.PlatformViewSurfaceFactory), FlutterSDK.Widgets.Platformview.CreatePlatformViewCallback onCreatePlatformView = default(FlutterSDK.Widgets.Platformview.CreatePlatformViewCallback), string viewType = default(string))
         : base(key: key)
         {
@@ -1084,6 +1329,11 @@ params.OnPlatformViewCreated(params.Id);
         }
         internal virtual FlutterSDK.Widgets.Platformview.PlatformViewSurfaceFactory _SurfaceFactory { get; set; }
         internal virtual FlutterSDK.Widgets.Platformview.CreatePlatformViewCallback _OnCreatePlatformView { get; set; }
+        /// <Summary>
+        /// The unique identifier for the view type to be embedded.
+        ///
+        /// Typically, this viewType has already been registered on the platform side.
+        /// </Summary>
         public virtual string ViewType { get; set; }
 
         public new FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget> CreateState() => new _PlatformViewLinkState();
@@ -1218,6 +1468,11 @@ params.OnPlatformViewCreated(params.Id);
     /// </Summary>
     public class PlatformViewSurface : FlutterSDK.Widgets.Framework.LeafRenderObjectWidget
     {
+        /// <Summary>
+        /// Construct a `PlatformViewSurface`.
+        ///
+        /// The [controller] must not be null.
+        /// </Summary>
         public PlatformViewSurface(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Services.Platformviews.PlatformViewController controller = default(FlutterSDK.Services.Platformviews.PlatformViewController), FlutterSDK.Rendering.Platformview.PlatformViewHitTestBehavior hitTestBehavior = default(FlutterSDK.Rendering.Platformview.PlatformViewHitTestBehavior), HashSet<FlutterSDK.Foundation.Basictypes.Factory<FlutterSDK.Gestures.Recognizer.OneSequenceGestureRecognizer>> gestureRecognizers = default(HashSet<FlutterSDK.Foundation.Basictypes.Factory<FlutterSDK.Gestures.Recognizer.OneSequenceGestureRecognizer>>))
         : base(key: key)
         {
@@ -1225,8 +1480,55 @@ params.OnPlatformViewCreated(params.Id);
             this.HitTestBehavior = hitTestBehavior;
             this.GestureRecognizers = gestureRecognizers;
         }
+        /// <Summary>
+        /// The controller for the platform view integrated by this [PlatformViewSurface].
+        ///
+        /// [PlatformViewController] is used for dispatching touch events to the platform view.
+        /// [PlatformViewController.viewId] identifies the platform view whose contents are painted by this widget.
+        /// </Summary>
         public virtual FlutterSDK.Services.Platformviews.PlatformViewController Controller { get; set; }
+        /// <Summary>
+        /// Which gestures should be forwarded to the PlatformView.
+        ///
+        /// {@macro flutter.widgets.platformViews.gestureRecognizersDescHead}
+        ///
+        /// For example, with the following setup vertical drags will not be dispatched to the platform view
+        /// as the vertical drag gesture is claimed by the parent [GestureDetector].
+        ///
+        /// ```dart
+        /// GestureDetector(
+        ///   onVerticalDragStart: (DragStartDetails details) {},
+        ///   child: PlatformViewSurface(
+        ///   ),
+        /// )
+        /// ```
+        ///
+        /// To get the [PlatformViewSurface] to claim the vertical drag gestures we can pass a vertical drag
+        /// gesture recognizer factory in [gestureRecognizers] e.g:
+        ///
+        /// ```dart
+        /// GestureDetector(
+        ///   onVerticalDragStart: (DragStartDetails details) {},
+        ///   child: SizedBox(
+        ///     width: 200.0,
+        ///     height: 100.0,
+        ///     child: PlatformViewSurface(
+        ///       gestureRecognizers: <Factory<OneSequenceGestureRecognizer>>[
+        ///         new Factory<OneSequenceGestureRecognizer>(
+        ///           () => new EagerGestureRecognizer(),
+        ///         ),
+        ///       ].toSet(),
+        ///     ),
+        ///   ),
+        /// )
+        /// ```
+        ///
+        /// {@macro flutter.widgets.platformViews.gestureRecognizersDescFoot}
+        /// </Summary>
         public virtual HashSet<FlutterSDK.Foundation.Basictypes.Factory<FlutterSDK.Gestures.Recognizer.OneSequenceGestureRecognizer>> GestureRecognizers { get; set; }
+        /// <Summary>
+        /// {@macro flutter.widgets.platformViews.hittestParam}
+        /// </Summary>
         public virtual FlutterSDK.Rendering.Platformview.PlatformViewHitTestBehavior HitTestBehavior { get; set; }
 
         public new FlutterSDK.Rendering.@object.RenderObject CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)

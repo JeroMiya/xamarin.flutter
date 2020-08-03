@@ -484,6 +484,11 @@ namespace FlutterSDK.Widgets.Icon
     /// </Summary>
     public class Icon : FlutterSDK.Widgets.Framework.StatelessWidget
     {
+        /// <Summary>
+        /// Creates an icon.
+        ///
+        /// The [size] and [color] default to the value given by the current [IconTheme].
+        /// </Summary>
         public Icon(FlutterSDK.Widgets.Icondata.IconData icon, FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), double size = default(double), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), string semanticLabel = default(string), TextDirection textDirection = default(TextDirection))
         : base(key: key)
         {
@@ -493,10 +498,85 @@ namespace FlutterSDK.Widgets.Icon
             this.SemanticLabel = semanticLabel;
             this.TextDirection = textDirection;
         }
+        /// <Summary>
+        /// The icon to display. The available icons are described in [Icons].
+        ///
+        /// The icon can be null, in which case the widget will render as an empty
+        /// space of the specified [size].
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Icondata.IconData IconValue { get; set; }
+        /// <Summary>
+        /// The size of the icon in logical pixels.
+        ///
+        /// Icons occupy a square with width and height equal to size.
+        ///
+        /// Defaults to the current [IconTheme] size, if any. If there is no
+        /// [IconTheme], or it does not specify an explicit size, then it defaults to
+        /// 24.0.
+        ///
+        /// If this [Icon] is being placed inside an [IconButton], then use
+        /// [IconButton.iconSize] instead, so that the [IconButton] can make the splash
+        /// area the appropriate size as well. The [IconButton] uses an [IconTheme] to
+        /// pass down the size to the [Icon].
+        /// </Summary>
         public virtual double Size { get; set; }
+        /// <Summary>
+        /// The color to use when drawing the icon.
+        ///
+        /// Defaults to the current [IconTheme] color, if any.
+        ///
+        /// The given color will be adjusted by the opacity of the current
+        /// [IconTheme], if any.
+        ///
+        ///
+        /// In material apps, if there is a [Theme] without any [IconTheme]s
+        /// specified, icon colors default to white if the theme is dark
+        /// and black if the theme is light.
+        ///
+        /// If no [IconTheme] and no [Theme] is specified, icons will default to black.
+        ///
+        /// See [Theme] to set the current theme and [ThemeData.brightness]
+        /// for setting the current theme's brightness.
+        ///
+        /// {@tool snippet}
+        /// Typically, a material design color will be used, as follows:
+        ///
+        /// ```dart
+        /// Icon(
+        ///   Icons.widgets,
+        ///   color: Colors.blue.shade400,
+        /// )
+        /// ```
+        /// {@end-tool}
+        /// </Summary>
         public virtual FlutterBinding.UI.Color Color { get; set; }
+        /// <Summary>
+        /// Semantic label for the icon.
+        ///
+        /// Announced in accessibility modes (e.g TalkBack/VoiceOver).
+        /// This label does not show in the UI.
+        ///
+        /// See also:
+        ///
+        ///  * [Semantics.label], which is set to [semanticLabel] in the underlying
+        ///    [Semantics] widget.
+        /// </Summary>
         public virtual string SemanticLabel { get; set; }
+        /// <Summary>
+        /// The text direction to use for rendering the icon.
+        ///
+        /// If this is null, the ambient [Directionality] is used instead.
+        ///
+        /// Some icons follow the reading direction. For example, "back" buttons point
+        /// left in left-to-right environments and right in right-to-left
+        /// environments. Such icons have their [IconData.matchTextDirection] field
+        /// set to true, and the [Icon] widget uses the [textDirection] to determine
+        /// the orientation in which to draw the icon.
+        ///
+        /// This property has no effect if the [icon]'s [IconData.matchTextDirection]
+        /// field is false, but for consistency a text direction value must always be
+        /// specified, either directly using this property or using [Directionality].
+        /// </Summary>
         public virtual TextDirection TextDirection { get; set; }
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)

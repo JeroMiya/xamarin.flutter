@@ -447,6 +447,16 @@ namespace FlutterSDK.Widgets.Rawkeyboardlistener
     /// </Summary>
     public class RawKeyboardListener : FlutterSDK.Widgets.Framework.StatefulWidget
     {
+        /// <Summary>
+        /// Creates a widget that receives raw keyboard events.
+        ///
+        /// For text entry, consider using a [EditableText], which integrates with
+        /// on-screen keyboards and input method editors (IMEs).
+        ///
+        /// The [focusNode] and [child] arguments are required and must not be null.
+        ///
+        /// The [autofocus] argument must not be null.
+        /// </Summary>
         public RawKeyboardListener(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Focusmanager.FocusNode focusNode = default(FlutterSDK.Widgets.Focusmanager.FocusNode), bool autofocus = false, FlutterSDK.Foundation.Basictypes.ValueChanged<RawKeyEvent> onKey = default(FlutterSDK.Foundation.Basictypes.ValueChanged<RawKeyEvent>), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key)
         {
@@ -455,9 +465,23 @@ namespace FlutterSDK.Widgets.Rawkeyboardlistener
             this.OnKey = onKey;
             this.Child = child;
         }
+        /// <Summary>
+        /// Controls whether this widget has keyboard focus.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Focusmanager.FocusNode FocusNode { get; set; }
+        /// <Summary>
+        /// {@macro flutter.widgets.Focus.autofocus}
+        /// </Summary>
         public virtual bool Autofocus { get; set; }
+        /// <Summary>
+        /// Called whenever this widget receives a raw keyboard event.
+        /// </Summary>
         public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<RawKeyEvent> OnKey { get; set; }
+        /// <Summary>
+        /// The widget below this widget in the tree.
+        ///
+        /// {@macro flutter.widgets.child}
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
 
         public new FlutterSDK.Widgets.Rawkeyboardlistener._RawKeyboardListenerState CreateState() => new _RawKeyboardListenerState();

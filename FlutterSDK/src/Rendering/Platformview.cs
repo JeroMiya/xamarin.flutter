@@ -457,7 +457,20 @@ namespace FlutterSDK.Rendering.Platformview
 
     public class _PlatformViewGestureMixin
     {
+        /// <Summary>
+        /// How to behave during hit testing.
+        /// </Summary>
         public virtual FlutterSDK.Rendering.Platformview.PlatformViewHitTestBehavior HitTestBehavior { get; set; }
+        /// <Summary>
+        /// [MouseTrackerAnnotation] associated with the platform view layer.
+        ///
+        /// Gesture recognizers don't receive hover events due to the performance
+        /// cost associated with hit testing a sequence of potentially thousands of
+        /// events -- move events only hit-test the down event, then cache the result
+        /// and apply it to all subsequent move events, but there is no down event
+        /// for a hover. To support native hover gesture handling by platform views,
+        /// we attach/detach this layer annotation as necessary.
+        /// </Summary>
         internal virtual FlutterSDK.Rendering.Mousetracking.MouseTrackerAnnotation _HoverAnnotation { get; set; }
         internal virtual FlutterSDK.Rendering.Platformview._HandlePointerEvent _HandlePointerEvent { get; set; }
         internal virtual FlutterSDK.Rendering.Platformview._PlatformViewGestureRecognizer _GestureRecognizer { get; set; }
@@ -600,6 +613,9 @@ namespace FlutterSDK.Rendering.Platformview
     /// </Summary>
     public class RenderAndroidView : FlutterSDK.Rendering.Box.RenderBox, I_PlatformViewGestureMixin
     {
+        /// <Summary>
+        /// Creates a render object for an Android view.
+        /// </Summary>
         public RenderAndroidView(FlutterSDK.Services.Platformviews.AndroidViewController viewController = default(FlutterSDK.Services.Platformviews.AndroidViewController), FlutterSDK.Rendering.Platformview.PlatformViewHitTestBehavior hitTestBehavior = default(FlutterSDK.Rendering.Platformview.PlatformViewHitTestBehavior), HashSet<FlutterSDK.Foundation.Basictypes.Factory<FlutterSDK.Gestures.Recognizer.OneSequenceGestureRecognizer>> gestureRecognizers = default(HashSet<FlutterSDK.Foundation.Basictypes.Factory<FlutterSDK.Gestures.Recognizer.OneSequenceGestureRecognizer>>))
         : base()
         {
@@ -753,6 +769,11 @@ namespace FlutterSDK.Rendering.Platformview
     /// </Summary>
     public class RenderUiKitView : FlutterSDK.Rendering.Box.RenderBox
     {
+        /// <Summary>
+        /// Creates a render object for an iOS UIView.
+        ///
+        /// The `viewId`, `hitTestBehavior`, and `gestureRecognizers` parameters must not be null.
+        /// </Summary>
         public RenderUiKitView(FlutterSDK.Services.Platformviews.UiKitViewController viewController = default(FlutterSDK.Services.Platformviews.UiKitViewController), FlutterSDK.Rendering.Platformview.PlatformViewHitTestBehavior hitTestBehavior = default(FlutterSDK.Rendering.Platformview.PlatformViewHitTestBehavior), HashSet<FlutterSDK.Foundation.Basictypes.Factory<FlutterSDK.Gestures.Recognizer.OneSequenceGestureRecognizer>> gestureRecognizers = default(HashSet<FlutterSDK.Foundation.Basictypes.Factory<FlutterSDK.Gestures.Recognizer.OneSequenceGestureRecognizer>>))
         : base()
         {
@@ -762,6 +783,9 @@ namespace FlutterSDK.Rendering.Platformview
 
 
         internal virtual FlutterSDK.Services.Platformviews.UiKitViewController _ViewController { get; set; }
+        /// <Summary>
+        /// How to behave during hit testing.
+        /// </Summary>
         public virtual FlutterSDK.Rendering.Platformview.PlatformViewHitTestBehavior HitTestBehavior { get; set; }
         internal virtual FlutterSDK.Rendering.Platformview._UiKitViewGestureRecognizer _GestureRecognizer { get; set; }
         internal virtual FlutterSDK.Gestures.Events.PointerEvent _LastPointerDownEvent { get; set; }
@@ -1191,6 +1215,11 @@ namespace FlutterSDK.Rendering.Platformview
     /// </Summary>
     public class PlatformViewRenderBox : FlutterSDK.Rendering.Box.RenderBox, I_PlatformViewGestureMixin
     {
+        /// <Summary>
+        /// Creating a render object for a [PlatformViewSurface].
+        ///
+        /// The `controller` parameter must not be null.
+        /// </Summary>
         public PlatformViewRenderBox(FlutterSDK.Services.Platformviews.PlatformViewController controller = default(FlutterSDK.Services.Platformviews.PlatformViewController), FlutterSDK.Rendering.Platformview.PlatformViewHitTestBehavior hitTestBehavior = default(FlutterSDK.Rendering.Platformview.PlatformViewHitTestBehavior), HashSet<FlutterSDK.Foundation.Basictypes.Factory<FlutterSDK.Gestures.Recognizer.OneSequenceGestureRecognizer>> gestureRecognizers = default(HashSet<FlutterSDK.Foundation.Basictypes.Factory<FlutterSDK.Gestures.Recognizer.OneSequenceGestureRecognizer>>))
         : base()
         {

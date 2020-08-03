@@ -382,6 +382,15 @@ namespace FlutterSDK.Material.Button
     /// </Summary>
     public class RawMaterialButton : FlutterSDK.Widgets.Framework.StatefulWidget
     {
+        /// <Summary>
+        /// Create a button based on [Semantics], [Material], and [InkWell] widgets.
+        ///
+        /// The [shape], [elevation], [focusElevation], [hoverElevation],
+        /// [highlightElevation], [disabledElevation], [padding], [constraints],
+        /// [autofocus], and [clipBehavior] arguments must not be null. Additionally,
+        /// [elevation], [focusElevation], [hoverElevation], [highlightElevation], and
+        /// [disabledElevation] must be non-negative.
+        /// </Summary>
         public RawMaterialButton(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), VoidCallback onPressed = default(VoidCallback), VoidCallback onLongPress = default(VoidCallback), FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onHighlightChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>), FlutterSDK.Painting.Textstyle.TextStyle textStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterBinding.UI.Color fillColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color focusColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color hoverColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color highlightColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color splashColor = default(FlutterBinding.UI.Color), double elevation = 2.0, double focusElevation = 4.0, double hoverElevation = 4.0, double highlightElevation = 8.0, double disabledElevation = 0.0, FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Material.Themedata.VisualDensity visualDensity = default(FlutterSDK.Material.Themedata.VisualDensity), FlutterSDK.Rendering.Box.BoxConstraints constraints = default(FlutterSDK.Rendering.Box.BoxConstraints), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), TimeSpan animationDuration = default(TimeSpan), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip), FlutterSDK.Widgets.Focusmanager.FocusNode focusNode = default(FlutterSDK.Widgets.Focusmanager.FocusNode), bool autofocus = false, FlutterSDK.Material.Themedata.MaterialTapTargetSize materialTapTargetSize = default(FlutterSDK.Material.Themedata.MaterialTapTargetSize), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), bool enableFeedback = true)
         : base(key: key)
         {
@@ -410,30 +419,229 @@ namespace FlutterSDK.Material.Button
             this.Child = child;
             this.EnableFeedback = enableFeedback;
         }
+        /// <Summary>
+        /// Called when the button is tapped or otherwise activated.
+        ///
+        /// If this callback and [onLongPress] are null, then the button will be disabled.
+        ///
+        /// See also:
+        ///
+        ///  * [enabled], which is true if the button is enabled.
+        /// </Summary>
         public virtual VoidCallback OnPressed { get; set; }
+        /// <Summary>
+        /// Called when the button is long-pressed.
+        ///
+        /// If this callback and [onPressed] are null, then the button will be disabled.
+        ///
+        /// See also:
+        ///
+        ///  * [enabled], which is true if the button is enabled.
+        /// </Summary>
         public virtual VoidCallback OnLongPress { get; set; }
+        /// <Summary>
+        /// Called by the underlying [InkWell] widget's [InkWell.onHighlightChanged]
+        /// callback.
+        ///
+        /// If [onPressed] changes from null to non-null while a gesture is ongoing,
+        /// this can fire during the build phase (in which case calling
+        /// [State.setState] is not allowed).
+        /// </Summary>
         public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<bool> OnHighlightChanged { get; set; }
+        /// <Summary>
+        /// Defines the default text style, with [Material.textStyle], for the
+        /// button's [child].
+        ///
+        /// If [textStyle.color] is a [MaterialStateProperty<Color>], [MaterialStateProperty.resolve]
+        /// is used for the following [MaterialState]s:
+        ///
+        ///  * [MaterialState.pressed].
+        ///  * [MaterialState.hovered].
+        ///  * [MaterialState.focused].
+        ///  * [MaterialState.disabled].
+        /// </Summary>
         public virtual FlutterSDK.Painting.Textstyle.TextStyle TextStyle { get; set; }
+        /// <Summary>
+        /// The color of the button's [Material].
+        /// </Summary>
         public virtual FlutterBinding.UI.Color FillColor { get; set; }
+        /// <Summary>
+        /// The color for the button's [Material] when it has the input focus.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color FocusColor { get; set; }
+        /// <Summary>
+        /// The color for the button's [Material] when a pointer is hovering over it.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color HoverColor { get; set; }
+        /// <Summary>
+        /// The highlight color for the button's [InkWell].
+        /// </Summary>
         public virtual FlutterBinding.UI.Color HighlightColor { get; set; }
+        /// <Summary>
+        /// The splash color for the button's [InkWell].
+        /// </Summary>
         public virtual FlutterBinding.UI.Color SplashColor { get; set; }
+        /// <Summary>
+        /// The elevation for the button's [Material] when the button
+        /// is [enabled] but not pressed.
+        ///
+        /// Defaults to 2.0. The value is always non-negative.
+        ///
+        /// See also:
+        ///
+        ///  * [highlightElevation], the default elevation.
+        ///  * [hoverElevation], the elevation when a pointer is hovering over the
+        ///    button.
+        ///  * [focusElevation], the elevation when the button is focused.
+        ///  * [disabledElevation], the elevation when the button is disabled.
+        /// </Summary>
         public virtual double Elevation { get; set; }
+        /// <Summary>
+        /// The elevation for the button's [Material] when the button
+        /// is [enabled] and a pointer is hovering over it.
+        ///
+        /// Defaults to 4.0. The value is always non-negative.
+        ///
+        /// If the button is [enabled], and being pressed (in the highlighted state),
+        /// then the [highlightElevation] take precedence over the [hoverElevation].
+        ///
+        /// See also:
+        ///
+        ///  * [elevation], the default elevation.
+        ///  * [focusElevation], the elevation when the button is focused.
+        ///  * [disabledElevation], the elevation when the button is disabled.
+        ///  * [highlightElevation], the elevation when the button is pressed.
+        /// </Summary>
         public virtual double HoverElevation { get; set; }
+        /// <Summary>
+        /// The elevation for the button's [Material] when the button
+        /// is [enabled] and has the input focus.
+        ///
+        /// Defaults to 4.0. The value is always non-negative.
+        ///
+        /// If the button is [enabled], and being pressed (in the highlighted state),
+        /// or a mouse cursor is hovering over the button, then the [hoverElevation]
+        /// and [highlightElevation] take precedence over the [focusElevation].
+        ///
+        /// See also:
+        ///
+        ///  * [elevation], the default elevation.
+        ///  * [hoverElevation], the elevation when a pointer is hovering over the
+        ///    button.
+        ///  * [disabledElevation], the elevation when the button is disabled.
+        ///  * [highlightElevation], the elevation when the button is pressed.
+        /// </Summary>
         public virtual double FocusElevation { get; set; }
+        /// <Summary>
+        /// The elevation for the button's [Material] when the button
+        /// is [enabled] and pressed.
+        ///
+        /// Defaults to 8.0. The value is always non-negative.
+        ///
+        /// See also:
+        ///
+        ///  * [elevation], the default elevation.
+        ///  * [hoverElevation], the elevation when a pointer is hovering over the
+        ///    button.
+        ///  * [focusElevation], the elevation when the button is focused.
+        ///  * [disabledElevation], the elevation when the button is disabled.
+        /// </Summary>
         public virtual double HighlightElevation { get; set; }
+        /// <Summary>
+        /// The elevation for the button's [Material] when the button
+        /// is not [enabled].
+        ///
+        /// Defaults to 0.0. The value is always non-negative.
+        ///
+        /// See also:
+        ///
+        ///  * [elevation], the default elevation.
+        ///  * [hoverElevation], the elevation when a pointer is hovering over the
+        ///    button.
+        ///  * [focusElevation], the elevation when the button is focused.
+        ///  * [highlightElevation], the elevation when the button is pressed.
+        /// </Summary>
         public virtual double DisabledElevation { get; set; }
+        /// <Summary>
+        /// The internal padding for the button's [child].
+        /// </Summary>
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Padding { get; set; }
+        /// <Summary>
+        /// Defines how compact the button's layout will be.
+        ///
+        /// {@macro flutter.material.themedata.visualDensity}
+        ///
+        /// See also:
+        ///
+        ///  * [ThemeData.visualDensity], which specifies the [visualDensity] for all widgets
+        ///    within a [Theme].
+        /// </Summary>
         public virtual FlutterSDK.Material.Themedata.VisualDensity VisualDensity { get; set; }
+        /// <Summary>
+        /// Defines the button's size.
+        ///
+        /// Typically used to constrain the button's minimum size.
+        /// </Summary>
         public virtual FlutterSDK.Rendering.Box.BoxConstraints Constraints { get; set; }
+        /// <Summary>
+        /// The shape of the button's [Material].
+        ///
+        /// The button's highlight and splash are clipped to this shape. If the
+        /// button has an elevation, then its drop shadow is defined by this shape.
+        ///
+        /// If [shape] is a [MaterialStateProperty<ShapeBorder>], [MaterialStateProperty.resolve]
+        /// is used for the following [MaterialState]s:
+        ///
+        /// * [MaterialState.pressed].
+        /// * [MaterialState.hovered].
+        /// * [MaterialState.focused].
+        /// * [MaterialState.disabled].
+        /// </Summary>
         public virtual FlutterSDK.Painting.Borders.ShapeBorder Shape { get; set; }
+        /// <Summary>
+        /// Defines the duration of animated changes for [shape] and [elevation].
+        ///
+        /// The default value is [kThemeChangeDuration].
+        /// </Summary>
         public virtual TimeSpan AnimationDuration { get; set; }
+        /// <Summary>
+        /// Typically the button's label.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+        /// <Summary>
+        /// Configures the minimum size of the tap target.
+        ///
+        /// Defaults to [MaterialTapTargetSize.padded].
+        ///
+        /// See also:
+        ///
+        ///  * [MaterialTapTargetSize], for a description of how this affects tap targets.
+        /// </Summary>
         public virtual FlutterSDK.Material.Themedata.MaterialTapTargetSize MaterialTapTargetSize { get; set; }
+        /// <Summary>
+        /// {@macro flutter.widgets.Focus.focusNode}
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Focusmanager.FocusNode FocusNode { get; set; }
+        /// <Summary>
+        /// {@macro flutter.widgets.Focus.autofocus}
+        /// </Summary>
         public virtual bool Autofocus { get; set; }
+        /// <Summary>
+        /// {@macro flutter.widgets.Clip}
+        ///
+        /// Defaults to [Clip.none], and must not be null.
+        /// </Summary>
         public virtual FlutterBinding.UI.Clip ClipBehavior { get; set; }
+        /// <Summary>
+        /// Whether detected gestures should provide acoustic and/or haptic feedback.
+        ///
+        /// For example, on Android a tap will produce a clicking sound and a
+        /// long-press will produce a short vibration, when feedback is enabled.
+        ///
+        /// See also:
+        ///
+        ///  * [Feedback] for providing platform-specific feedback to certain actions.
+        /// </Summary>
         public virtual bool EnableFeedback { get; set; }
         public virtual bool Enabled { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 

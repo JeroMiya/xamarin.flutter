@@ -295,6 +295,9 @@ using FlutterSDK.Foundation._Bitfieldio;
 using FlutterSDK.Foundation._Isolatesio;
 namespace FlutterSDK.Foundation.Licenses
 {
+    /// <Summary>
+    /// Signature for callbacks passed to [LicenseRegistry.addLicense].
+    /// </Summary>
     public delegate Stream<FlutterSDK.Foundation.Licenses.LicenseEntry> LicenseEntryCollector();
     internal static class LicensesDefaultClass
     {
@@ -322,13 +325,34 @@ namespace FlutterSDK.Foundation.Licenses
     /// </Summary>
     public class LicenseParagraph
     {
+        /// <Summary>
+        /// Creates a string for a license entry paragraph.
+        /// </Summary>
         public LicenseParagraph(string text, int indent)
         {
             this.Text = text;
             this.Indent = indent;
         }
+        /// <Summary>
+        /// The text of the paragraph. Should not have any leading or trailing whitespace.
+        /// </Summary>
         public virtual string Text { get; set; }
+        /// <Summary>
+        /// How many steps of indentation the paragraph has.
+        ///
+        /// * 0 means the paragraph is not indented.
+        /// * 1 means the paragraph is indented one unit of indentation.
+        /// * 2 means the paragraph is indented two units of indentation.
+        ///
+        /// ...and so forth.
+        ///
+        /// In addition, the special value [centeredIndent] can be used to indicate
+        /// that rather than being indented, the paragraph is centered.
+        /// </Summary>
         public virtual int Indent { get; set; }
+        /// <Summary>
+        /// A constant that represents "centered" alignment for [indent].
+        /// </Summary>
         public virtual int CenteredIndent { get; set; }
     }
 
@@ -343,6 +367,10 @@ namespace FlutterSDK.Foundation.Licenses
     /// </Summary>
     public class LicenseEntry
     {
+        /// <Summary>
+        /// Abstract const constructor. This constructor enables subclasses to provide
+        /// const constructors so that they can be used in const expressions.
+        /// </Summary>
         public LicenseEntry()
         {
 
@@ -412,12 +440,32 @@ namespace FlutterSDK.Foundation.Licenses
     /// </Summary>
     public class LicenseEntryWithLineBreaks : FlutterSDK.Foundation.Licenses.LicenseEntry
     {
+        /// <Summary>
+        /// Create a license entry for a license whose text is hard-wrapped within
+        /// paragraphs and has paragraph breaks denoted by blank lines or with
+        /// indented text.
+        /// </Summary>
         public LicenseEntryWithLineBreaks(List<string> packages, string text)
         {
             this.Packages = packages;
             this.Text = text;
         }
         public new List<string> Packages { get; set; }
+        /// <Summary>
+        /// The text of the license.
+        ///
+        /// The text will be split into paragraphs according to the following
+        /// conventions:
+        ///
+        /// * Lines starting with a different number of space characters than the
+        ///   previous line start a new paragraph, with those spaces removed.
+        /// * Blank lines start a new paragraph.
+        /// * Other line breaks are replaced by a single space character.
+        /// * Leading spaces on a line are removed.
+        ///
+        /// For each paragraph, the algorithm attempts (using some rough heuristics)
+        /// to identify how indented the paragraph is, or whether it is centered.
+        /// </Summary>
         public virtual string Text { get; set; }
         public virtual Iterable<FlutterSDK.Foundation.Licenses.LicenseParagraph> Paragraphs { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
     }

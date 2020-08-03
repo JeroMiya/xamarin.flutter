@@ -404,6 +404,10 @@ namespace FlutterSDK.Material.Dividertheme
     /// </Summary>
     public class DividerThemeData : IDiagnosticable
     {
+        /// <Summary>
+        /// Creates a theme that can be used for [DividerTheme] or
+        /// [ThemeData.dividerTheme].
+        /// </Summary>
         public DividerThemeData(FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), double space = default(double), double thickness = default(double), double indent = default(double), double endIndent = default(double))
         {
             this.Color = color;
@@ -412,10 +416,31 @@ namespace FlutterSDK.Material.Dividertheme
             this.Indent = indent;
             this.EndIndent = endIndent;
         }
+        /// <Summary>
+        /// The color of [Divider]s and [VerticalDivider]s, also
+        /// used between [ListTile]s, between rows in [DataTable]s, and so forth.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color Color { get; set; }
+        /// <Summary>
+        /// The [Divider]'s width or the [VerticalDivider]'s height.
+        ///
+        /// This represents the amount of horizontal or vertical space the divider
+        /// takes up.
+        /// </Summary>
         public virtual double Space { get; set; }
+        /// <Summary>
+        /// The thickness of the line drawn within the divider.
+        /// </Summary>
         public virtual double Thickness { get; set; }
+        /// <Summary>
+        /// The amount of empty space at the leading edge of [Divider] or top edge of
+        /// [VerticalDivider].
+        /// </Summary>
         public virtual double Indent { get; set; }
+        /// <Summary>
+        /// The amount of empty space at the trailing edge of [Divider] or bottom edge
+        /// of [VerticalDivider].
+        /// </Summary>
         public virtual double EndIndent { get; set; }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 
@@ -479,11 +504,20 @@ namespace FlutterSDK.Material.Dividertheme
     /// </Summary>
     public class DividerTheme : FlutterSDK.Widgets.Inheritedtheme.InheritedTheme
     {
+        /// <Summary>
+        /// Creates a divider theme that controls the configurations for
+        /// [Divider]s, [VerticalDivider]s, dividers between [ListTile]s, and dividers
+        /// between rows in [DataTable]s in its widget subtree.
+        /// </Summary>
         public DividerTheme(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Material.Dividertheme.DividerThemeData data = default(FlutterSDK.Material.Dividertheme.DividerThemeData), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
             this.Data = data;
         }
+        /// <Summary>
+        /// The properties for descendant [Divider]s, [VerticalDivider]s, dividers
+        /// between [ListTile]s, and dividers between rows in [DataTable]s.
+        /// </Summary>
         public virtual FlutterSDK.Material.Dividertheme.DividerThemeData Data { get; set; }
 
         /// <Summary>

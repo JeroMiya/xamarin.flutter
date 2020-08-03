@@ -458,6 +458,9 @@ namespace FlutterSDK.Rendering.Texture
     /// </Summary>
     public class TextureBox : FlutterSDK.Rendering.Box.RenderBox
     {
+        /// <Summary>
+        /// Creates a box backed by the texture identified by [textureId].
+        /// </Summary>
         public TextureBox(int textureId = default(int))
         : base()
         {

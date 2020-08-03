@@ -307,19 +307,39 @@ namespace FlutterSDK.Cupertino.Thumbpainter
     /// </Summary>
     public class CupertinoThumbPainter
     {
+        /// <Summary>
+        /// Creates an object that paints an iOS-style slider thumb.
+        /// </Summary>
         public CupertinoThumbPainter(FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), List<FlutterSDK.Painting.Boxshadow.BoxShadow> shadows = default(List<FlutterSDK.Painting.Boxshadow.BoxShadow>))
         : base()
         {
             this.Color = color;
             this.Shadows = shadows;
         }
+        /// <Summary>
+        /// Creates an object that paints an iOS-style switch thumb.
+        /// </Summary>
         public static CupertinoThumbPainter SwitchThumb(FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), List<FlutterSDK.Painting.Boxshadow.BoxShadow> shadows = default(List<FlutterSDK.Painting.Boxshadow.BoxShadow>))
         {
             var instance = new CupertinoThumbPainter();
         }
+        /// <Summary>
+        /// The color of the interior of the thumb.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color Color { get; set; }
+        /// <Summary>
+        /// The list of [BoxShadow] to paint below the thumb.
+        ///
+        /// Must not be null.
+        /// </Summary>
         public virtual List<FlutterSDK.Painting.Boxshadow.BoxShadow> Shadows { get; set; }
+        /// <Summary>
+        /// Half the default diameter of the thumb.
+        /// </Summary>
         public virtual double Radius { get; set; }
+        /// <Summary>
+        /// The default amount the thumb should be extended horizontally when pressed.
+        /// </Summary>
         public virtual double Extension { get; set; }
 
         /// <Summary>

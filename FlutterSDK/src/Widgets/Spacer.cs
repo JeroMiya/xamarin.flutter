@@ -466,11 +466,25 @@ namespace FlutterSDK.Widgets.Spacer
     /// </Summary>
     public class Spacer : FlutterSDK.Widgets.Framework.StatelessWidget
     {
+        /// <Summary>
+        /// Creates a flexible space to insert into a [Flexible] widget.
+        ///
+        /// The [flex] parameter may not be null or less than one.
+        /// </Summary>
         public Spacer(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), int flex = 1)
         : base(key: key)
         {
             this.Flex = flex;
         }
+        /// <Summary>
+        /// The flex factor to use in determining how much space to take up.
+        ///
+        /// The amount of space the [Spacer] can occupy in the main axis is determined
+        /// by dividing the free space proportionately, after placing the inflexible
+        /// children, according to the flex factors of the flexible children.
+        ///
+        /// Defaults to one.
+        /// </Summary>
         public virtual int Flex { get; set; }
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)

@@ -515,13 +515,27 @@ namespace FlutterSDK.Widgets.Container
     /// </Summary>
     public class DecoratedBox : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
+        /// <Summary>
+        /// Creates a widget that paints a [Decoration].
+        ///
+        /// The [decoration] and [position] arguments must not be null. By default the
+        /// decoration paints behind the child.
+        /// </Summary>
         public DecoratedBox(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Decoration.Decoration decoration = default(FlutterSDK.Painting.Decoration.Decoration), FlutterSDK.Rendering.Proxybox.DecorationPosition position = default(FlutterSDK.Rendering.Proxybox.DecorationPosition), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
             this.Decoration = decoration;
             this.Position = position;
         }
+        /// <Summary>
+        /// What decoration to paint.
+        ///
+        /// Commonly a [BoxDecoration].
+        /// </Summary>
         public virtual FlutterSDK.Painting.Decoration.Decoration Decoration { get; set; }
+        /// <Summary>
+        /// Whether to paint the box decoration behind or in front of the child.
+        /// </Summary>
         public virtual FlutterSDK.Rendering.Proxybox.DecorationPosition Position { get; set; }
 
         public new FlutterSDK.Rendering.Proxybox.RenderDecoratedBox CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
@@ -699,6 +713,16 @@ namespace FlutterSDK.Widgets.Container
     /// </Summary>
     public class Container : FlutterSDK.Widgets.Framework.StatelessWidget
     {
+        /// <Summary>
+        /// Creates a widget that combines common painting, positioning, and sizing widgets.
+        ///
+        /// The `height` and `width` values include the padding.
+        ///
+        /// The `color` and `decoration` arguments cannot both be supplied, since
+        /// it would potentially result in the decoration drawing over the background
+        /// color. To supply a decoration with a color, use `decoration:
+        /// BoxDecoration(color: color)`.
+        /// </Summary>
         public Container(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Decoration.Decoration decoration = default(FlutterSDK.Painting.Decoration.Decoration), FlutterSDK.Painting.Decoration.Decoration foregroundDecoration = default(FlutterSDK.Painting.Decoration.Decoration), double width = default(double), double height = default(double), FlutterSDK.Rendering.Box.BoxConstraints constraints = default(FlutterSDK.Rendering.Box.BoxConstraints), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry margin = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), Matrix4 transform = default(Matrix4), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip))
         : base(key: key)
         {
@@ -712,15 +736,89 @@ namespace FlutterSDK.Widgets.Container
             this.Child = child;
             this.ClipBehavior = clipBehavior;
         }
+        /// <Summary>
+        /// The [child] contained by the container.
+        ///
+        /// If null, and if the [constraints] are unbounded or also null, the
+        /// container will expand to fill all available space in its parent, unless
+        /// the parent provides unbounded constraints, in which case the container
+        /// will attempt to be as small as possible.
+        ///
+        /// {@macro flutter.widgets.child}
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+        /// <Summary>
+        /// Align the [child] within the container.
+        ///
+        /// If non-null, the container will expand to fill its parent and position its
+        /// child within itself according to the given value. If the incoming
+        /// constraints are unbounded, then the child will be shrink-wrapped instead.
+        ///
+        /// Ignored if [child] is null.
+        ///
+        /// See also:
+        ///
+        ///  * [Alignment], a class with convenient constants typically used to
+        ///    specify an [AlignmentGeometry].
+        ///  * [AlignmentDirectional], like [Alignment] for specifying alignments
+        ///    relative to text direction.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Alignment.AlignmentGeometry Alignment { get; set; }
+        /// <Summary>
+        /// Empty space to inscribe inside the [decoration]. The [child], if any, is
+        /// placed inside this padding.
+        ///
+        /// This padding is in addition to any padding inherent in the [decoration];
+        /// see [Decoration.padding].
+        /// </Summary>
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Padding { get; set; }
+        /// <Summary>
+        /// The color to paint behind the [child].
+        ///
+        /// This property should be preferred when the background is a simple color.
+        /// For other cases, such as gradients or images, use the [decoration]
+        /// property.
+        ///
+        /// If the [decoration] is used, this property must be null. A background
+        /// color may still be painted by the [decoration] even if this property is
+        /// null.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color Color { get; set; }
+        /// <Summary>
+        /// The decoration to paint behind the [child].
+        ///
+        /// Use the [color] property to specify a simple solid color.
+        ///
+        /// The [child] is not clipped to the decoration. To clip a child to the shape
+        /// of a particular [ShapeDecoration], consider using a [ClipPath] widget.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Decoration.Decoration Decoration { get; set; }
+        /// <Summary>
+        /// The decoration to paint in front of the [child].
+        /// </Summary>
         public virtual FlutterSDK.Painting.Decoration.Decoration ForegroundDecoration { get; set; }
+        /// <Summary>
+        /// Additional constraints to apply to the child.
+        ///
+        /// The constructor `width` and `height` arguments are combined with the
+        /// `constraints` argument to set this property.
+        ///
+        /// The [padding] goes inside the constraints.
+        /// </Summary>
         public virtual FlutterSDK.Rendering.Box.BoxConstraints Constraints { get; set; }
+        /// <Summary>
+        /// Empty space to surround the [decoration] and [child].
+        /// </Summary>
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Margin { get; set; }
+        /// <Summary>
+        /// The transformation matrix to apply before painting the container.
+        /// </Summary>
         public virtual Matrix4 Transform { get; set; }
+        /// <Summary>
+        /// The clip behavior when [Container.decoration] has a clipPath.
+        ///
+        /// Defaults to [Clip.none].
+        /// </Summary>
         public virtual FlutterBinding.UI.Clip ClipBehavior { get; set; }
         internal virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry _PaddingIncludingDecoration { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 

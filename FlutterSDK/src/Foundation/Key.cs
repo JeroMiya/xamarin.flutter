@@ -375,11 +375,22 @@ namespace FlutterSDK.Foundation.Key
     /// </Summary>
     public class Key
     {
+        /// <Summary>
+        /// Construct a [ValueKey<String>] with the given [String].
+        ///
+        /// This is the simplest way to create keys.
+        /// </Summary>
         public Key(string value)
         : base()
         {
 
         }
+        /// <Summary>
+        /// Default constructor, used by subclasses.
+        ///
+        /// Useful so that subclasses can call us, because the [new Key] factory
+        /// constructor shadows the implicit constructor.
+        /// </Summary>
         public static Key Empty()
         {
             var instance = new Key();
@@ -399,6 +410,9 @@ namespace FlutterSDK.Foundation.Key
     /// </Summary>
     public class LocalKey : FlutterSDK.Foundation.Key.Key
     {
+        /// <Summary>
+        /// Default constructor, used by subclasses.
+        /// </Summary>
         public LocalKey()
         : base()
         {
@@ -425,10 +439,16 @@ namespace FlutterSDK.Foundation.Key
     /// </Summary>
     public class ValueKey<T> : FlutterSDK.Foundation.Key.LocalKey
     {
+        /// <Summary>
+        /// Creates a key that delegates its [operator==] to the given value.
+        /// </Summary>
         public ValueKey(T value)
         {
             this.Value = value;
         }
+        /// <Summary>
+        /// The value to which this key delegates its [operator==]
+        /// </Summary>
         public virtual T Value { get; set; }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 

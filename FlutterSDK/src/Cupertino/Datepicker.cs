@@ -401,6 +401,44 @@ namespace FlutterSDK.Cupertino.Datepicker
     /// </Summary>
     public class CupertinoDatePicker : FlutterSDK.Widgets.Framework.StatefulWidget
     {
+        /// <Summary>
+        /// Constructs an iOS style date picker.
+        ///
+        /// [mode] is one of the mode listed in [CupertinoDatePickerMode] and defaults
+        /// to [CupertinoDatePickerMode.dateAndTime].
+        ///
+        /// [onDateTimeChanged] is the callback called when the selected date or time
+        /// changes and must not be null. When in [CupertinoDatePickerMode.time] mode,
+        /// the year, month and day will be the same as [initialDateTime]. When in
+        /// [CupertinoDatePickerMode.date] mode, this callback will always report the
+        /// start time of the currently selected day.
+        ///
+        /// [initialDateTime] is the initial date time of the picker. Defaults to the
+        /// present date and time and must not be null. The present must conform to
+        /// the intervals set in [minimumDate], [maximumDate], [minimumYear], and
+        /// [maximumYear].
+        ///
+        /// [minimumDate] is the minimum [DateTime] that the picker can be scrolled to.
+        /// Null if there's no limit. In [CupertinoDatePickerMode.time] mode, if the
+        /// date part of [initialDateTime] is after that of the [minimumDate], [minimumDate]
+        /// has no effect.
+        ///
+        /// [maximumDate] is the maximum [DateTime] that the picker can be scrolled to.
+        /// Null if there's no limit. In [CupertinoDatePickerMode.time] mode, if the
+        /// date part of [initialDateTime] is before that of the [maximumDate], [maximumDate]
+        /// has no effect.
+        ///
+        /// [minimumYear] is the minimum year that the picker can be scrolled to in
+        /// [CupertinoDatePickerMode.date] mode. Defaults to 1 and must not be null.
+        ///
+        /// [maximumYear] is the maximum year that the picker can be scrolled to in
+        /// [CupertinoDatePickerMode.date] mode. Null if there's no limit.
+        ///
+        /// [minuteInterval] is the granularity of the minute spinner. Must be a
+        /// positive integer factor of 60.
+        ///
+        /// [use24hFormat] decides whether 24 hour format is used. Defaults to false.
+        /// </Summary>
         public CupertinoDatePicker(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Cupertino.Datepicker.CupertinoDatePickerMode mode = default(FlutterSDK.Cupertino.Datepicker.CupertinoDatePickerMode), FlutterSDK.Foundation.Basictypes.ValueChanged<DateTime> onDateTimeChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<DateTime>), DateTime initialDateTime = default(DateTime), DateTime minimumDate = default(DateTime), DateTime maximumDate = default(DateTime), int minimumYear = 1, int maximumYear = default(int), int minuteInterval = 1, bool use24hFormat = false, FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color))
         : base(key: key)
         {
@@ -424,15 +462,63 @@ namespace FlutterSDK.Cupertino.Datepicker
         }
 
 
+        /// <Summary>
+        /// The mode of the date picker as one of [CupertinoDatePickerMode].
+        /// Defaults to [CupertinoDatePickerMode.dateAndTime]. Cannot be null and
+        /// value cannot change after initial build.
+        /// </Summary>
         public virtual FlutterSDK.Cupertino.Datepicker.CupertinoDatePickerMode Mode { get; set; }
+        /// <Summary>
+        /// The initial date and/or time of the picker. Defaults to the present date
+        /// and time and must not be null. The present must conform to the intervals
+        /// set in [minimumDate], [maximumDate], [minimumYear], and [maximumYear].
+        ///
+        /// Changing this value after the initial build will not affect the currently
+        /// selected date time.
+        /// </Summary>
         public virtual DateTime InitialDateTime { get; set; }
+        /// <Summary>
+        /// Minimum date that the picker can be scrolled to in [CupertinoDatePickerMode.date]
+        /// and [CupertinoDatePickerMode.dateAndTime] mode. Null if there's no limit.
+        /// </Summary>
         public virtual DateTime MinimumDate { get; set; }
+        /// <Summary>
+        /// Maximum date that the picker can be scrolled to in [CupertinoDatePickerMode.date]
+        /// and [CupertinoDatePickerMode.dateAndTime] mode. Null if there's no limit.
+        /// </Summary>
         public virtual DateTime MaximumDate { get; set; }
+        /// <Summary>
+        /// Minimum year that the picker can be scrolled to in
+        /// [CupertinoDatePickerMode.date] mode. Defaults to 1 and must not be null.
+        /// </Summary>
         public virtual int MinimumYear { get; set; }
+        /// <Summary>
+        /// Maximum year that the picker can be scrolled to in
+        /// [CupertinoDatePickerMode.date] mode. Null if there's no limit.
+        /// </Summary>
         public virtual int MaximumYear { get; set; }
+        /// <Summary>
+        /// The granularity of the minutes spinner, if it is shown in the current mode.
+        /// Must be an integer factor of 60.
+        /// </Summary>
         public virtual int MinuteInterval { get; set; }
+        /// <Summary>
+        /// Whether to use 24 hour format. Defaults to false.
+        /// </Summary>
         public virtual bool Use24hFormat { get; set; }
+        /// <Summary>
+        /// Callback called when the selected date and/or time changes. If the new selected
+        /// [DateTime] is not valid, or is not in the [minimumDate] through [maximumDate]
+        /// range, this callback will not be called.
+        ///
+        /// Must not be null.
+        /// </Summary>
         public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<DateTime> OnDateTimeChanged { get; set; }
+        /// <Summary>
+        /// Background color of date picker.
+        ///
+        /// Defaults to null, which disables background painting entirely.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
 
         public new FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget> CreateState()
@@ -1198,6 +1284,24 @@ public class _CupertinoDatePickerDateState : FlutterSDK.Widgets.Framework.State<
 /// </Summary>
 public class CupertinoTimerPicker : FlutterSDK.Widgets.Framework.StatefulWidget
 {
+    /// <Summary>
+    /// Constructs an iOS style countdown timer picker.
+    ///
+    /// [mode] is one of the modes listed in [CupertinoTimerPickerMode] and
+    /// defaults to [CupertinoTimerPickerMode.hms].
+    ///
+    /// [onTimerDurationChanged] is the callback called when the selected duration
+    /// changes and must not be null.
+    ///
+    /// [initialTimerDuration] defaults to 0 second and is limited from 0 second
+    /// to 23 hours 59 minutes 59 seconds.
+    ///
+    /// [minuteInterval] is the granularity of the minute spinner. Must be a
+    /// positive integer factor of 60.
+    ///
+    /// [secondInterval] is the granularity of the second spinner. Must be a
+    /// positive integer factor of 60.
+    /// </Summary>
     public CupertinoTimerPicker(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Cupertino.Datepicker.CupertinoTimerPickerMode mode = default(FlutterSDK.Cupertino.Datepicker.CupertinoTimerPickerMode), TimeSpan initialTimerDuration = default(TimeSpan), int minuteInterval = 1, int secondInterval = 1, FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), FlutterSDK.Foundation.Basictypes.ValueChanged<TimeSpan> onTimerDurationChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<TimeSpan>))
     : base(key: key)
     {
@@ -1209,12 +1313,39 @@ public class CupertinoTimerPicker : FlutterSDK.Widgets.Framework.StatefulWidget
         this.BackgroundColor = backgroundColor;
         this.OnTimerDurationChanged = onTimerDurationChanged;
     }
+    /// <Summary>
+    /// The mode of the timer picker.
+    /// </Summary>
     public virtual FlutterSDK.Cupertino.Datepicker.CupertinoTimerPickerMode Mode { get; set; }
+    /// <Summary>
+    /// The initial duration of the countdown timer.
+    /// </Summary>
     public virtual TimeSpan InitialTimerDuration { get; set; }
+    /// <Summary>
+    /// The granularity of the minute spinner. Must be a positive integer factor
+    /// of 60.
+    /// </Summary>
     public virtual int MinuteInterval { get; set; }
+    /// <Summary>
+    /// The granularity of the second spinner. Must be a positive integer factor
+    /// of 60.
+    /// </Summary>
     public virtual int SecondInterval { get; set; }
+    /// <Summary>
+    /// Callback called when the timer duration changes.
+    /// </Summary>
     public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<TimeSpan> OnTimerDurationChanged { get; set; }
+    /// <Summary>
+    /// Defines how the timer picker should be positioned within its parent.
+    ///
+    /// This property must not be null. It defaults to [Alignment.center].
+    /// </Summary>
     public virtual FlutterSDK.Painting.Alignment.AlignmentGeometry Alignment { get; set; }
+    /// <Summary>
+    /// Background color of timer picker.
+    ///
+    /// Defaults to null, which disables background painting entirely.
+    /// </Summary>
     public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
 
     public new FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget> CreateState() => new _CupertinoTimerPickerState();

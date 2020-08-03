@@ -436,6 +436,12 @@ namespace FlutterSDK.Material.Outlinebutton
     /// </Summary>
     public class OutlineButton : FlutterSDK.Material.Materialbutton.MaterialButton
     {
+        /// <Summary>
+        /// Create an outline button.
+        ///
+        /// The [highlightElevation] argument must be null or a positive value
+        /// and the [autofocus] and [clipBehavior] arguments must not be null.
+        /// </Summary>
         public OutlineButton(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), VoidCallback onPressed = default(VoidCallback), VoidCallback onLongPress = default(VoidCallback), FlutterSDK.Material.Buttontheme.ButtonTextTheme textTheme = default(FlutterSDK.Material.Buttontheme.ButtonTextTheme), FlutterBinding.UI.Color textColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color disabledTextColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color focusColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color hoverColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color highlightColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color splashColor = default(FlutterBinding.UI.Color), double highlightElevation = default(double), FlutterSDK.Painting.Borders.BorderSide borderSide = default(FlutterSDK.Painting.Borders.BorderSide), FlutterBinding.UI.Color disabledBorderColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color highlightedBorderColor = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Material.Themedata.VisualDensity visualDensity = default(FlutterSDK.Material.Themedata.VisualDensity), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip), FlutterSDK.Widgets.Focusmanager.FocusNode focusNode = default(FlutterSDK.Widgets.Focusmanager.FocusNode), bool autofocus = false, FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, onPressed: onPressed, onLongPress: onLongPress, textTheme: textTheme, textColor: textColor, disabledTextColor: disabledTextColor, color: color, focusColor: focusColor, hoverColor: hoverColor, highlightColor: highlightColor, splashColor: splashColor, highlightElevation: highlightElevation, padding: padding, visualDensity: visualDensity, shape: shape, clipBehavior: clipBehavior, focusNode: focusNode, autofocus: autofocus, child: child)
         {
@@ -443,12 +449,52 @@ namespace FlutterSDK.Material.Outlinebutton
             this.DisabledBorderColor = disabledBorderColor;
             this.HighlightedBorderColor = highlightedBorderColor;
         }
+        /// <Summary>
+        /// Create an outline button from a pair of widgets that serve as the button's
+        /// [icon] and [label].
+        ///
+        /// The icon and label are arranged in a row and padded by 12 logical pixels
+        /// at the start, and 16 at the end, with an 8 pixel gap in between.
+        ///
+        /// The [highlightElevation] argument must be null or a positive value. The
+        /// [icon], [label], [autofocus], and [clipBehavior] arguments must not be null.
+        /// </Summary>
         public static OutlineButton Icon(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), VoidCallback onPressed = default(VoidCallback), VoidCallback onLongPress = default(VoidCallback), FlutterSDK.Material.Buttontheme.ButtonTextTheme textTheme = default(FlutterSDK.Material.Buttontheme.ButtonTextTheme), FlutterBinding.UI.Color textColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color disabledTextColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color focusColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color hoverColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color highlightColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color splashColor = default(FlutterBinding.UI.Color), double highlightElevation = default(double), FlutterBinding.UI.Color highlightedBorderColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color disabledBorderColor = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Borders.BorderSide borderSide = default(FlutterSDK.Painting.Borders.BorderSide), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Material.Themedata.VisualDensity visualDensity = default(FlutterSDK.Material.Themedata.VisualDensity), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip), FlutterSDK.Widgets.Focusmanager.FocusNode focusNode = default(FlutterSDK.Widgets.Focusmanager.FocusNode), bool autofocus = default(bool), FlutterSDK.Widgets.Framework.Widget icon = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget label = default(FlutterSDK.Widgets.Framework.Widget))
         {
             var instance = new OutlineButton();
         }
+        /// <Summary>
+        /// The outline border's color when the button is [enabled] and pressed.
+        ///
+        /// By default the border's color does not change when the button
+        /// is pressed.
+        ///
+        /// This field is ignored if [borderSide.color] is a [MaterialStateProperty<Color>].
+        /// </Summary>
         public virtual FlutterBinding.UI.Color HighlightedBorderColor { get; set; }
+        /// <Summary>
+        /// The outline border's color when the button is not [enabled].
+        ///
+        /// By default the outline border's color does not change when the
+        /// button is disabled.
+        ///
+        /// This field is ignored if [borderSide.color] is a [MaterialStateProperty<Color>].
+        /// </Summary>
         public virtual FlutterBinding.UI.Color DisabledBorderColor { get; set; }
+        /// <Summary>
+        /// Defines the color of the border when the button is enabled but not
+        /// pressed, and the border outline's width and style in general.
+        ///
+        /// If the border side's [BorderSide.style] is [BorderStyle.none], then
+        /// an outline is not drawn.
+        ///
+        /// If null the default border's style is [BorderStyle.solid], its
+        /// [BorderSide.width] is 1.0, and its color is a light shade of grey.
+        ///
+        /// If [borderSide.color] is a [MaterialStateProperty<Color>], [MaterialStateProperty.resolve]
+        /// is used in all states and both [highlightedBorderColor] and [disabledBorderColor]
+        /// are ignored.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Borders.BorderSide BorderSide { get; set; }
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)

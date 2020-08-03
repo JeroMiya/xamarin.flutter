@@ -440,6 +440,21 @@ namespace FlutterSDK.Rendering.Animatedsize
     /// </Summary>
     public class RenderAnimatedSize : FlutterSDK.Rendering.Shiftedbox.RenderAligningShiftedBox
     {
+        /// <Summary>
+        /// Creates a render object that animates its size to match its child.
+        /// The [duration] and [curve] arguments define the animation.
+        ///
+        /// The [alignment] argument is used to align the child when the parent is not
+        /// (yet) the same size as the child.
+        ///
+        /// The [duration] is required.
+        ///
+        /// The [vsync] should specify a [TickerProvider] for the animation
+        /// controller.
+        ///
+        /// The arguments [duration], [curve], [alignment], and [vsync] must
+        /// not be null.
+        /// </Summary>
         public RenderAnimatedSize(FlutterSDK.Scheduler.Ticker.TickerProvider vsync = default(FlutterSDK.Scheduler.Ticker.TickerProvider), TimeSpan duration = default(TimeSpan), TimeSpan reverseDuration = default(TimeSpan), FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve), FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), TextDirection textDirection = default(TextDirection), FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox))
         : base(child: child, alignment: alignment, textDirection: textDirection)
         {

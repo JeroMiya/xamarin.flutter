@@ -298,6 +298,17 @@ namespace FlutterSDK.Foundation.Profile
 {
     internal static class ProfileDefaultClass
     {
+        /// <Summary>
+        /// DEPRECATED. `function` cannot be tree-shaken out of release builds.
+        ///
+        /// Instead use:
+        ///
+        /// ```dart
+        /// if (!kReleaseMode) {
+        ///   function();
+        /// }
+        /// ```
+        /// </Summary>
         internal static void Profile(VoidCallback function)
         {
             if (ConstantsDefaultClass.KReleaseMode) return;

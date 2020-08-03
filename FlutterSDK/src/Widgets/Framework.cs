@@ -424,12 +424,84 @@ using FlutterSDK.Painting._Networkimageio;
 using FlutterSDK.Widgets.Constants;
 namespace FlutterSDK.Widgets.Framework
 {
+    /// <Summary>
+    /// The signature of [State.setState] functions.
+    /// </Summary>
     public delegate void StateSetter(VoidCallback fn);
+    /// <Summary>
+    /// Signature for the callback to [BuildContext.visitChildElements].
+    ///
+    /// The argument is the child being visited.
+    ///
+    /// It is safe to call `element.visitChildElements` reentrantly within
+    /// this callback.
+    /// </Summary>
     public delegate void ElementVisitor(FlutterSDK.Widgets.Framework.Element element);
+    /// <Summary>
+    /// Signature for the constructor that is called when an error occurs while
+    /// building a widget.
+    ///
+    /// The argument provides information regarding the cause of the error.
+    ///
+    /// See also:
+    ///
+    ///  * [ErrorWidget.builder], which can be set to override the default
+    ///    [ErrorWidget] builder.
+    ///  * [FlutterError.reportError], which is typically called with the same
+    ///    [FlutterErrorDetails] object immediately prior to [ErrorWidget.builder]
+    ///    being called.
+    /// </Summary>
     public delegate FlutterSDK.Widgets.Framework.Widget ErrorWidgetBuilder(FlutterSDK.Foundation.Assertions.FlutterErrorDetails details);
+    /// <Summary>
+    /// Signature for a function that creates a widget, e.g. [StatelessWidget.build]
+    /// or [State.build].
+    ///
+    /// Used by [Builder.builder], [OverlayEntry.builder], etc.
+    ///
+    /// See also:
+    ///
+    ///  * [IndexedWidgetBuilder], which is similar but also takes an index.
+    ///  * [TransitionBuilder], which is similar but also takes a child.
+    ///  * [ValueWidgetBuilder], which is similar but takes a value and a child.
+    /// </Summary>
     public delegate FlutterSDK.Widgets.Framework.Widget WidgetBuilder(FlutterSDK.Widgets.Framework.BuildContext context);
+    /// <Summary>
+    /// Signature for a function that creates a widget for a given index, e.g., in a
+    /// list.
+    ///
+    /// Used by [ListView.builder] and other APIs that use lazily-generated widgets.
+    ///
+    /// See also:
+    ///
+    ///  * [WidgetBuilder], which is similar but only takes a [BuildContext].
+    ///  * [TransitionBuilder], which is similar but also takes a child.
+    /// </Summary>
     public delegate FlutterSDK.Widgets.Framework.Widget IndexedWidgetBuilder(FlutterSDK.Widgets.Framework.BuildContext context, int index);
+    /// <Summary>
+    /// A builder that builds a widget given a child.
+    ///
+    /// The child should typically be part of the returned widget tree.
+    ///
+    /// Used by [AnimatedBuilder.builder], as well as [WidgetsApp.builder] and
+    /// [MaterialApp.builder].
+    ///
+    /// See also:
+    ///
+    ///  * [WidgetBuilder], which is similar but only takes a [BuildContext].
+    ///  * [IndexedWidgetBuilder], which is similar but also takes an index.
+    ///  * [ValueWidgetBuilder], which is similar but takes a value and a child.
+    /// </Summary>
     public delegate FlutterSDK.Widgets.Framework.Widget TransitionBuilder(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Widgets.Framework.Widget child);
+    /// <Summary>
+    /// A builder that creates a widget given the two callbacks `onStepContinue` and
+    /// `onStepCancel`.
+    ///
+    /// Used by [Stepper.builder].
+    ///
+    /// See also:
+    ///
+    ///  * [WidgetBuilder], which is similar but only takes a [BuildContext].
+    /// </Summary>
     public delegate FlutterSDK.Widgets.Framework.Widget ControlsWidgetBuilder(FlutterSDK.Widgets.Framework.BuildContext context, VoidCallback onStepContinue = default(VoidCallback), VoidCallback onStepCancel = default(VoidCallback));
     internal static class FrameworkDefaultClass
     {
@@ -2103,6 +2175,13 @@ namespace FlutterSDK.Widgets.Framework
     /// </Summary>
     public class UniqueKey : FlutterSDK.Foundation.Key.LocalKey
     {
+        /// <Summary>
+        /// Creates a key that is equal only to itself.
+        ///
+        /// The key cannot be created with a const constructor because that implies
+        /// that all instantiated keys would be the same instance and therefore not
+        /// be unique.
+        /// </Summary>
         public UniqueKey()
         {
 
@@ -2125,10 +2204,16 @@ namespace FlutterSDK.Widgets.Framework
     /// </Summary>
     public class ObjectKey : FlutterSDK.Foundation.Key.LocalKey
     {
+        /// <Summary>
+        /// Creates a key that uses [identical] on [value] for its [operator==].
+        /// </Summary>
         public ObjectKey(@Object value)
         {
             this.Value = value;
         }
+        /// <Summary>
+        /// The object whose identity is used by this key's [operator==].
+        /// </Summary>
         public virtual @Object Value { get; set; }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 
@@ -2171,10 +2256,23 @@ namespace FlutterSDK.Widgets.Framework
     /// </Summary>
     public class GlobalKey<T> : FlutterSDK.Foundation.Key.Key
     {
+        /// <Summary>
+        /// Creates a [LabeledGlobalKey], which is a [GlobalKey] with a label used for
+        /// debugging.
+        ///
+        /// The label is purely for debugging and not used for comparing the identity
+        /// of the key.
+        /// </Summary>
         public GlobalKey(string debugLabel = default(string))
         {
             new LabeledGlobalKey<T>(debugLabel);
 
+            /// <Summary>
+            /// Creates a global key without a label.
+            ///
+            /// Used by subclasses because the factory constructor shadows the implicit
+            /// constructor.
+            /// </Summary>
             public static GlobalKey<T> Constructor()
             {
                 var instance = new GlobalKey<T>();
@@ -2247,6 +2345,11 @@ internal virtual Dictionary<FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Wi
     /// </Summary>
     public class LabeledGlobalKey<T> : FlutterSDK.Widgets.Framework.GlobalKey<T>
     {
+        /// <Summary>
+        /// Creates a global key with a debugging label.
+        ///
+        /// The label does not affect the key's identity.
+        /// </Summary>
         public LabeledGlobalKey(string _debugLabel)
         : base()
         {
@@ -2283,11 +2386,17 @@ internal virtual Dictionary<FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Wi
     /// </Summary>
     public class GlobalObjectKey<T> : FlutterSDK.Widgets.Framework.GlobalKey<T>
     {
+        /// <Summary>
+        /// Creates a global key that uses [identical] on [value] for its [operator==].
+        /// </Summary>
         public GlobalObjectKey(@Object value)
         : base()
         {
             this.Value = value;
         }
+        /// <Summary>
+        /// The object whose identity is used by this key's [operator==].
+        /// </Summary>
         public virtual @Object Value { get; set; }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 
@@ -2310,6 +2419,9 @@ internal virtual Dictionary<FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Wi
     /// </Summary>
     public class TypeMatcher<T>
     {
+        /// <Summary>
+        /// Creates a type matcher for the given type parameter.
+        /// </Summary>
         public TypeMatcher()
         {
 
@@ -2362,10 +2474,37 @@ internal virtual Dictionary<FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Wi
     /// </Summary>
     public class Widget : FlutterSDK.Foundation.Diagnostics.DiagnosticableTree
     {
+        /// <Summary>
+        /// Initializes [key] for subclasses.
+        /// </Summary>
         public Widget(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key))
         {
             this.Key = key;
         }
+        /// <Summary>
+        /// Controls how one widget replaces another widget in the tree.
+        ///
+        /// If the [runtimeType] and [key] properties of the two widgets are
+        /// [operator==], respectively, then the new widget replaces the old widget by
+        /// updating the underlying element (i.e., by calling [Element.update] with the
+        /// new widget). Otherwise, the old element is removed from the tree, the new
+        /// widget is inflated into an element, and the new element is inserted into the
+        /// tree.
+        ///
+        /// In addition, using a [GlobalKey] as the widget's [key] allows the element
+        /// to be moved around the tree (changing parent) without losing state. When a
+        /// new widget is found (its key and type do not match a previous widget in
+        /// the same location), but there was a widget with that same global key
+        /// elsewhere in the tree in the previous frame, then that widget's element is
+        /// moved to the new location.
+        ///
+        /// Generally, a widget that is the only child of another widget does not need
+        /// an explicit key.
+        ///
+        /// See also:
+        ///
+        ///  * The discussions at [Key] and [GlobalKey].
+        /// </Summary>
         public virtual FlutterSDK.Foundation.Key.Key Key { get; set; }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 
@@ -2554,6 +2693,9 @@ internal virtual Dictionary<FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Wi
     /// </Summary>
     public class StatelessWidget : FlutterSDK.Widgets.Framework.Widget
     {
+        /// <Summary>
+        /// Initializes [key] for subclasses.
+        /// </Summary>
         public StatelessWidget(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key))
         : base(key: key)
         {
@@ -2804,6 +2946,9 @@ internal virtual Dictionary<FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Wi
     /// </Summary>
     public class StatefulWidget : FlutterSDK.Widgets.Framework.Widget
     {
+        /// <Summary>
+        /// Initializes [key] for subclasses.
+        /// </Summary>
         public StatefulWidget(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key))
         : base(key: key)
         {
@@ -2942,6 +3087,12 @@ internal virtual Dictionary<FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Wi
         public State()
         { }
         internal virtual T _Widget { get; set; }
+        /// <Summary>
+        /// The current stage in the lifecycle for this state object.
+        ///
+        /// This field is used by the framework when asserts are enabled to verify
+        /// that [State] objects move through their lifecycle in an orderly fashion.
+        /// </Summary>
         internal virtual FlutterSDK.Widgets.Framework._StateLifecycle _DebugLifecycleState { get; set; }
         internal virtual FlutterSDK.Widgets.Framework.StatefulElement _Element { get; set; }
         public virtual T Widget { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
@@ -3328,11 +3479,23 @@ internal virtual Dictionary<FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Wi
     /// </Summary>
     public class ProxyWidget : FlutterSDK.Widgets.Framework.Widget
     {
+        /// <Summary>
+        /// Creates a widget that has exactly one child widget.
+        /// </Summary>
         public ProxyWidget(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key)
         {
             this.Child = child;
         }
+        /// <Summary>
+        /// The widget below this widget in the tree.
+        ///
+        /// {@template flutter.widgets.child}
+        /// This widget can only have one child. To lay out multiple children, let this
+        /// widget's child be a widget such as [Row], [Column], or [Stack], which have a
+        /// `children` property, and then provide the children to that widget.
+        /// {@endtemplate}
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
     }
 
@@ -3394,6 +3557,10 @@ internal virtual Dictionary<FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Wi
     /// </Summary>
     public class ParentDataWidget<T> : FlutterSDK.Widgets.Framework.ProxyWidget
     {
+        /// <Summary>
+        /// Abstract const constructor. This constructor enables subclasses to provide
+        /// const constructors so that they can be used in const expressions.
+        /// </Summary>
         public ParentDataWidget(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
@@ -3571,6 +3738,10 @@ internal virtual Dictionary<FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Wi
     /// </Summary>
     public class InheritedWidget : FlutterSDK.Widgets.Framework.ProxyWidget
     {
+        /// <Summary>
+        /// Abstract const constructor. This constructor enables subclasses to provide
+        /// const constructors so that they can be used in const expressions.
+        /// </Summary>
         public InheritedWidget(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
@@ -3610,6 +3781,10 @@ internal virtual Dictionary<FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Wi
     /// </Summary>
     public class RenderObjectWidget : FlutterSDK.Widgets.Framework.Widget
     {
+        /// <Summary>
+        /// Abstract const constructor. This constructor enables subclasses to provide
+        /// const constructors so that they can be used in const expressions.
+        /// </Summary>
         public RenderObjectWidget(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key))
         : base(key: key)
         {
@@ -3680,6 +3855,10 @@ internal virtual Dictionary<FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Wi
     /// </Summary>
     public class LeafRenderObjectWidget : FlutterSDK.Widgets.Framework.RenderObjectWidget
     {
+        /// <Summary>
+        /// Abstract const constructor. This constructor enables subclasses to provide
+        /// const constructors so that they can be used in const expressions.
+        /// </Summary>
         public LeafRenderObjectWidget(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key))
         : base(key: key)
         {
@@ -3704,11 +3883,20 @@ internal virtual Dictionary<FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Wi
     /// </Summary>
     public class SingleChildRenderObjectWidget : FlutterSDK.Widgets.Framework.RenderObjectWidget
     {
+        /// <Summary>
+        /// Abstract const constructor. This constructor enables subclasses to provide
+        /// const constructors so that they can be used in const expressions.
+        /// </Summary>
         public SingleChildRenderObjectWidget(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key)
         {
             this.Child = child;
         }
+        /// <Summary>
+        /// The widget below this widget in the tree.
+        ///
+        /// {@macro flutter.widgets.child}
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
 
         public new FlutterSDK.Widgets.Framework.SingleChildRenderObjectElement CreateElement() => new SingleChildRenderObjectElement(this);
@@ -3735,11 +3923,76 @@ internal virtual Dictionary<FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Wi
     /// </Summary>
     public class MultiChildRenderObjectWidget : FlutterSDK.Widgets.Framework.RenderObjectWidget
     {
+        /// <Summary>
+        /// Initializes fields for subclasses.
+        ///
+        /// The [children] argument must not be null and must not contain any null
+        /// objects.
+        /// </Summary>
         public MultiChildRenderObjectWidget(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), List<FlutterSDK.Widgets.Framework.Widget> children = default(List<FlutterSDK.Widgets.Framework.Widget>))
         : base(key: key)
         {
             this.Children = children;
         }
+        /// <Summary>
+        /// The widgets below this widget in the tree.
+        ///
+        /// If this list is going to be mutated, it is usually wise to put a [Key] on
+        /// each of the child widgets, so that the framework can match old
+        /// configurations to new configurations and maintain the underlying render
+        /// objects.
+        ///
+        /// Also, a [Widget] in Flutter is immutable, so directly modifying the
+        /// [children] such as `someMultiChildRenderObjectWidget.children.add(...)` or
+        /// as the example code below will result in incorrect behaviors. Whenever the
+        /// children list is modified, a new list object should be provided.
+        ///
+        /// ```dart
+        /// class SomeWidgetState extends State<SomeWidget> {
+        ///   List<Widget> _children;
+        ///
+        ///   void initState() {
+        ///     _children = [];
+        ///   }
+        ///
+        ///   void someHandler() {
+        ///     setState(() {
+        ///         _children.add(...);
+        ///     });
+        ///   }
+        ///
+        ///   Widget build(...) {
+        ///     // Reusing `List<Widget> _children` here is problematic.
+        ///     return Row(children: _children);
+        ///   }
+        /// }
+        /// ```
+        ///
+        /// The following code corrects the problem mentioned above.
+        ///
+        /// ```dart
+        /// class SomeWidgetState extends State<SomeWidget> {
+        ///   List<Widget> _children;
+        ///
+        ///   void initState() {
+        ///     _children = [];
+        ///   }
+        ///
+        ///   void someHandler() {
+        ///     setState(() {
+        ///       // The key here allows Flutter to reuse the underlying render
+        ///       // objects even if the children list is recreated.
+        ///       _children.add(ChildWidget(key: ...));
+        ///     });
+        ///   }
+        ///
+        ///   Widget build(...) {
+        ///     // Always create a new list of children as a Widget is immutable.
+        ///     return Row(children: List.from(_children));
+        ///   }
+        /// }
+        /// ```
+        /// </Summary>
         public virtual List<FlutterSDK.Widgets.Framework.Widget> Children { get; set; }
 
         public new FlutterSDK.Widgets.Framework.MultiChildRenderObjectElement CreateElement() => new MultiChildRenderObjectElement(this);
@@ -3768,15 +4021,39 @@ internal virtual Dictionary<FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Wi
     /// </Summary>
     public class BuildOwner
     {
+        /// <Summary>
+        /// Creates an object that manages widgets.
+        /// </Summary>
         public BuildOwner(VoidCallback onBuildScheduled = default(VoidCallback))
         {
             this.OnBuildScheduled = onBuildScheduled;
         }
+        /// <Summary>
+        /// Called on each build pass when the first buildable element is marked
+        /// dirty.
+        /// </Summary>
         public virtual VoidCallback OnBuildScheduled { get; set; }
         internal virtual FlutterSDK.Widgets.Framework._InactiveElements _InactiveElements { get; set; }
         internal virtual List<FlutterSDK.Widgets.Framework.Element> _DirtyElements { get; set; }
         internal virtual bool _ScheduledFlushDirtyElements { get; set; }
+        /// <Summary>
+        /// Whether [_dirtyElements] need to be sorted again as a result of more
+        /// elements becoming dirty during the build.
+        ///
+        /// This is necessary to preserve the sort order defined by [Element._sort].
+        ///
+        /// This field is set to null when [buildScope] is not actively rebuilding
+        /// the widget tree.
+        /// </Summary>
         internal virtual bool _DirtyElementsNeedsResorting { get; set; }
+        /// <Summary>
+        /// The object in charge of the focus tree.
+        ///
+        /// Rarely used directly. Instead, consider using [FocusScope.of] to obtain
+        /// the [FocusScopeNode] for a given [BuildContext].
+        ///
+        /// See [FocusManager] for more details.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Focusmanager.FocusManager FocusManager { get; set; }
         internal virtual int _DebugStateLockLevel { get; set; }
         internal virtual bool _DebugBuilding { get; set; }
@@ -4097,6 +4374,11 @@ finally
     /// </Summary>
     public class Element : FlutterSDK.Foundation.Diagnostics.DiagnosticableTree, IBuildContext
     {
+        /// <Summary>
+        /// Creates an element that uses the given widget as its configuration.
+        ///
+        /// Typically called by an override of [Widget.createElement].
+        /// </Summary>
         public Element(FlutterSDK.Widgets.Framework.Widget widget)
         : base()
         {
@@ -5335,16 +5617,67 @@ finally
     /// </Summary>
     public class ErrorWidget : FlutterSDK.Widgets.Framework.LeafRenderObjectWidget
     {
+        /// <Summary>
+        /// Creates a widget that displays the given exception.
+        ///
+        /// The message will be the stringification of the given exception, unless
+        /// computing that value itself throws an exception, in which case it will
+        /// be the string "Error".
+        ///
+        /// If this object is inspected from an IDE or the devtools, and the original
+        /// exception is a [FlutterError] object, the original exception itself will
+        /// be shown in the inspection output.
+        /// </Summary>
         public ErrorWidget(@Object exception)
         : base(key: new UniqueKey())
         {
 
         }
+        /// <Summary>
+        /// Creates a widget that displays the given error message.
+        ///
+        /// An explicit [FlutterError] can be provided to be reported to inspection
+        /// tools. It need not match the message.
+        /// </Summary>
         public static ErrorWidget WithDetails(string message = default(string), FlutterSDK.Foundation.Assertions.FlutterError error = default(FlutterSDK.Foundation.Assertions.FlutterError))
         {
             var instance = new ErrorWidget(key: new UniqueKey()); instance.Message = message;
         }
+        /// <Summary>
+        /// The configurable factory for [ErrorWidget].
+        ///
+        /// When an error occurs while building a widget, the broken widget is
+        /// replaced by the widget returned by this function. By default, an
+        /// [ErrorWidget] is returned.
+        ///
+        /// The system is typically in an unstable state when this function is called.
+        /// An exception has just been thrown in the middle of build (and possibly
+        /// layout), so surrounding widgets and render objects may be in a rather
+        /// fragile state. The framework itself (especially the [BuildOwner]) may also
+        /// be confused, and additional exceptions are quite likely to be thrown.
+        ///
+        /// Because of this, it is highly recommended that the widget returned from
+        /// this function perform the least amount of work possible. A
+        /// [LeafRenderObjectWidget] is the best choice, especially one that
+        /// corresponds to a [RenderBox] that can handle the most absurd of incoming
+        /// constraints. The default constructor maps to a [RenderErrorBox].
+        ///
+        /// The default behavior is to show the exception's message in debug mode,
+        /// and to show nothing but a gray background in release builds.
+        ///
+        /// See also:
+        ///
+        ///  * [FlutterError.onError], which is typically called with the same
+        ///    [FlutterErrorDetails] object immediately prior to this callback being
+        ///    invoked, and which can also be configured to control how errors are
+        ///    reported.
+        ///  * <https://flutter.dev/docs/testing/errors>, more information about error
+        ///    handling in Flutter.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.ErrorWidgetBuilder Builder { get; set; }
+        /// <Summary>
+        /// The message to display.
+        /// </Summary>
         public virtual string Message { get; set; }
         internal virtual FlutterSDK.Foundation.Assertions.FlutterError _FlutterError { get; set; }
 
@@ -5400,6 +5733,9 @@ finally
     /// </Summary>
     public class ComponentElement : FlutterSDK.Widgets.Framework.Element
     {
+        /// <Summary>
+        /// Creates an element that uses the given widget as its configuration.
+        /// </Summary>
         public ComponentElement(FlutterSDK.Widgets.Framework.Widget widget)
         : base(widget)
         {
@@ -5519,6 +5855,9 @@ finally
     /// </Summary>
     public class StatelessElement : FlutterSDK.Widgets.Framework.ComponentElement
     {
+        /// <Summary>
+        /// Creates an element that uses the given widget as its configuration.
+        /// </Summary>
         public StatelessElement(FlutterSDK.Widgets.Framework.StatelessWidget widget)
         : base(widget)
         {
@@ -5557,6 +5896,9 @@ finally
     /// </Summary>
     public class StatefulElement : FlutterSDK.Widgets.Framework.ComponentElement
     {
+        /// <Summary>
+        /// Creates an element that uses the given widget as its configuration.
+        /// </Summary>
         public StatefulElement(FlutterSDK.Widgets.Framework.StatefulWidget widget)
         : base(widget)
         {
@@ -5571,6 +5913,17 @@ finally
 
 
         internal virtual FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget> _State { get; set; }
+        /// <Summary>
+        /// This controls whether we should call [State.didChangeDependencies] from
+        /// the start of [build], to avoid calls when the [State] will not get built.
+        /// This can happen when the widget has dropped out of the tree, but depends
+        /// on an [InheritedWidget] that is still in the tree.
+        ///
+        /// It is set initially to false, since [_firstBuild] makes the initial call
+        /// on the [state]. When it is true, [build] will call
+        /// `state.didChangeDependencies` and then sets it to false. Subsequent calls
+        /// to [didChangeDependencies] set it to true.
+        /// </Summary>
         internal virtual bool _DidChangeDependencies { get; set; }
         public virtual FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget> State { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 
@@ -5752,6 +6105,9 @@ finally
     /// </Summary>
     public class ProxyElement : FlutterSDK.Widgets.Framework.ComponentElement
     {
+        /// <Summary>
+        /// Initializes fields for subclasses.
+        /// </Summary>
         public ProxyElement(FlutterSDK.Widgets.Framework.ProxyWidget widget)
         : base(widget)
         {
@@ -5825,6 +6181,9 @@ finally
     /// </Summary>
     public class ParentDataElement<T> : FlutterSDK.Widgets.Framework.ProxyElement
     {
+        /// <Summary>
+        /// Creates an element that uses the given widget as its configuration.
+        /// </Summary>
         public ParentDataElement(FlutterSDK.Widgets.Framework.ParentDataWidget<T> widget)
         : base(widget)
         {
@@ -5914,6 +6273,9 @@ finally
     /// </Summary>
     public class InheritedElement : FlutterSDK.Widgets.Framework.ProxyElement
     {
+        /// <Summary>
+        /// Creates an element that uses the given widget as its configuration.
+        /// </Summary>
         public InheritedElement(FlutterSDK.Widgets.Framework.InheritedWidget widget)
         : base(widget)
         {
@@ -6301,6 +6663,9 @@ finally
     /// </Summary>
     public class RenderObjectElement : FlutterSDK.Widgets.Framework.Element
     {
+        /// <Summary>
+        /// Creates an element that uses the given widget as its configuration.
+        /// </Summary>
         public RenderObjectElement(FlutterSDK.Widgets.Framework.RenderObjectWidget widget)
         : base(widget)
         {
@@ -6713,6 +7078,9 @@ finally
     /// </Summary>
     public class RootRenderObjectElement : FlutterSDK.Widgets.Framework.RenderObjectElement
     {
+        /// <Summary>
+        /// Initializes fields for subclasses.
+        /// </Summary>
         public RootRenderObjectElement(FlutterSDK.Widgets.Framework.RenderObjectWidget widget)
         : base(widget)
         {
@@ -6756,6 +7124,9 @@ finally
     /// </Summary>
     public class LeafRenderObjectElement : FlutterSDK.Widgets.Framework.RenderObjectElement
     {
+        /// <Summary>
+        /// Creates an element that uses the given widget as its configuration.
+        /// </Summary>
         public LeafRenderObjectElement(FlutterSDK.Widgets.Framework.LeafRenderObjectWidget widget)
         : base(widget)
         {
@@ -6816,6 +7187,9 @@ finally
     /// </Summary>
     public class SingleChildRenderObjectElement : FlutterSDK.Widgets.Framework.RenderObjectElement
     {
+        /// <Summary>
+        /// Creates an element that uses the given widget as its configuration.
+        /// </Summary>
         public SingleChildRenderObjectElement(FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget widget)
         : base(widget)
         {
@@ -6919,6 +7293,9 @@ finally
     /// </Summary>
     public class MultiChildRenderObjectElement : FlutterSDK.Widgets.Framework.RenderObjectElement
     {
+        /// <Summary>
+        /// Creates an element that uses the given widget as its configuration.
+        /// </Summary>
         public MultiChildRenderObjectElement(FlutterSDK.Widgets.Framework.MultiChildRenderObjectWidget widget)
         : base(widget)
         {
@@ -7050,10 +7427,16 @@ finally
     /// </Summary>
     public class DebugCreator
     {
+        /// <Summary>
+        /// Create a [DebugCreator] instance with input [Element].
+        /// </Summary>
         public DebugCreator(FlutterSDK.Widgets.Framework.Element element)
         {
             this.Element = element;
         }
+        /// <Summary>
+        /// The creator of the [RenderObject].
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Element Element { get; set; }
 
     }
@@ -7076,12 +7459,22 @@ finally
     /// </Summary>
     public class IndexedSlot<T>
     {
+        /// <Summary>
+        /// Creates an [IndexedSlot] with the provided [index] and slot [value].
+        /// </Summary>
         public IndexedSlot(int index, T value)
         {
             this.Index = index;
             this.Value = value;
         }
+        /// <Summary>
+        /// Information to define where the child occupying this slot fits in its
+        /// parent's child list.
+        /// </Summary>
         public virtual T Value { get; set; }
+        /// <Summary>
+        /// The index of this slot in the parent's child list.
+        /// </Summary>
         public virtual int Index { get; set; }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 

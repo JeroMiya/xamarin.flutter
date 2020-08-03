@@ -299,6 +299,21 @@ namespace FlutterSDK.Foundation.Debug
         public static bool DebugInstrumentationEnabled = default(bool);
         public static Dictionary<string, string> TimelineWhitelistArguments = default(Dictionary<string, string>);
         public static int DebugDoublePrecision = default(int);
+        /// <Summary>
+        /// Returns true if none of the foundation library debug variables have been
+        /// changed.
+        ///
+        /// This function is used by the test framework to ensure that debug variables
+        /// haven't been inadvertently changed.
+        ///
+        /// The `debugPrintOverride` argument can be specified to indicate the expected
+        /// value of the [debugPrint] variable. This is useful for test frameworks that
+        /// override [debugPrint] themselves and want to check that their own custom
+        /// value wasn't overridden by a test.
+        ///
+        /// See [the foundation library](foundation/foundation-library.html)
+        /// for a complete list.
+        /// </Summary>
         internal static bool DebugAssertAllFoundationVarsUnset(string reason, FlutterSDK.Foundation.Print.DebugPrintCallback debugPrintOverride = default(FlutterSDK.Foundation.Print.DebugPrintCallback))
         {
 
@@ -307,6 +322,22 @@ namespace FlutterSDK.Foundation.Debug
 
 
 
+        /// <Summary>
+        /// Runs the specified [action], timing how long the action takes in debug
+        /// builds when [debugInstrumentationEnabled] is true.
+        ///
+        /// The instrumentation will be printed to the logs using [debugPrint]. In
+        /// non-debug builds, or when [debugInstrumentationEnabled] is false, this will
+        /// run [action] without any instrumentation.
+        ///
+        /// Returns the result of running [action].
+        ///
+        /// See also:
+        ///
+        ///  * [Timeline], which is used to record synchronous tracing events for
+        ///    visualization in Chrome's tracing format. This method does not
+        ///    implicitly add any timeline events.
+        /// </Summary>
         internal static Future<T> DebugInstrumentAction<T>(string description, Func<Future<T>> action)
         {
             bool instrument = false;
@@ -331,6 +362,11 @@ return action();
 
 
 
+/// <Summary>
+/// Formats a double to have standard formatting.
+///
+/// This behavior can be overridden by [debugDoublePrecision].
+/// </Summary>
 internal static string DebugFormatDouble(double value)
 {
     if (value == null)

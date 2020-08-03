@@ -536,11 +536,20 @@ namespace FlutterSDK.Widgets.Automatickeepalive
     /// </Summary>
     public class AutomaticKeepAlive : FlutterSDK.Widgets.Framework.StatefulWidget
     {
+        /// <Summary>
+        /// Creates a widget that listens to [KeepAliveNotification]s and maintains a
+        /// [KeepAlive] widget appropriately.
+        /// </Summary>
         public AutomaticKeepAlive(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key)
         {
             this.Child = child;
         }
+        /// <Summary>
+        /// The widget below this widget in the tree.
+        ///
+        /// {@macro flutter.widgets.child}
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
 
         public new FlutterSDK.Widgets.Automatickeepalive._AutomaticKeepAliveState CreateState() => new _AutomaticKeepAliveState();
@@ -771,11 +780,29 @@ namespace FlutterSDK.Widgets.Automatickeepalive
     /// </Summary>
     public class KeepAliveNotification : FlutterSDK.Widgets.Notificationlistener.Notification
     {
+        /// <Summary>
+        /// Creates a notification to indicate that a subtree must be kept alive.
+        ///
+        /// The [handle] must not be null.
+        /// </Summary>
         public KeepAliveNotification(FlutterSDK.Foundation.Changenotifier.Listenable handle)
         : base()
         {
             this.Handle = handle;
         }
+        /// <Summary>
+        /// A [Listenable] that will inform its clients when the widget that fired the
+        /// notification no longer needs to be kept alive.
+        ///
+        /// The [Listenable] should be triggered any time the sending widget is
+        /// removed from the tree (in [State.deactivate]). If the widget is then
+        /// rebuilt and still needs to be kept alive, it should immediately send a new
+        /// notification (possible with the very same [Listenable]) during build.
+        ///
+        /// See also:
+        ///
+        ///  * [KeepAliveHandle], a convenience class for use with this property.
+        /// </Summary>
         public virtual FlutterSDK.Foundation.Changenotifier.Listenable Handle { get; set; }
     }
 

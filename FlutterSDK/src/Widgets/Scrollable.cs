@@ -425,7 +425,18 @@ using FlutterSDK.Widgets.Constants;
 using FlutterSDK.Widgets.Routenotificationmessages;
 namespace FlutterSDK.Widgets.Scrollable
 {
+    /// <Summary>
+    /// Signature used by [Scrollable] to build the viewport through which the
+    /// scrollable content is displayed.
+    /// </Summary>
     public delegate FlutterSDK.Widgets.Framework.Widget ViewportBuilder(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.Viewportoffset.ViewportOffset position);
+    /// <Summary>
+    /// A typedef for a function that can calculate the offset for a type of scroll
+    /// increment given a [ScrollIncrementDetails].
+    ///
+    /// This function is used as the type for [Scrollable.incrementCalculator],
+    /// which is called from a [ScrollAction].
+    /// </Summary>
     public delegate double ScrollIncrementCalculator(FlutterSDK.Widgets.Scrollable.ScrollIncrementDetails details);
     internal static class ScrollableDefaultClass
     {
@@ -476,6 +487,11 @@ namespace FlutterSDK.Widgets.Scrollable
     /// </Summary>
     public class Scrollable : FlutterSDK.Widgets.Framework.StatefulWidget
     {
+        /// <Summary>
+        /// Creates a widget that scrolls.
+        ///
+        /// The [axisDirection] and [viewportBuilder] arguments must not be null.
+        /// </Summary>
         public Scrollable(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Basictypes.AxisDirection axisDirection = default(FlutterSDK.Painting.Basictypes.AxisDirection), FlutterSDK.Widgets.Scrollcontroller.ScrollController controller = default(FlutterSDK.Widgets.Scrollcontroller.ScrollController), FlutterSDK.Widgets.Scrollphysics.ScrollPhysics physics = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics), FlutterSDK.Widgets.Scrollable.ViewportBuilder viewportBuilder = default(FlutterSDK.Widgets.Scrollable.ViewportBuilder), FlutterSDK.Widgets.Scrollable.ScrollIncrementCalculator incrementCalculator = default(FlutterSDK.Widgets.Scrollable.ScrollIncrementCalculator), bool excludeFromSemantics = false, int semanticChildCount = default(int), FlutterSDK.Gestures.Recognizer.DragStartBehavior dragStartBehavior = default(FlutterSDK.Gestures.Recognizer.DragStartBehavior))
         : base(key: key)
         {
@@ -488,13 +504,141 @@ namespace FlutterSDK.Widgets.Scrollable
             this.SemanticChildCount = semanticChildCount;
             this.DragStartBehavior = dragStartBehavior;
         }
+        /// <Summary>
+        /// The direction in which this widget scrolls.
+        ///
+        /// For example, if the [axisDirection] is [AxisDirection.down], increasing
+        /// the scroll position will cause content below the bottom of the viewport to
+        /// become visible through the viewport. Similarly, if [axisDirection] is
+        /// [AxisDirection.right], increasing the scroll position will cause content
+        /// beyond the right edge of the viewport to become visible through the
+        /// viewport.
+        ///
+        /// Defaults to [AxisDirection.down].
+        /// </Summary>
         public virtual FlutterSDK.Painting.Basictypes.AxisDirection AxisDirection { get; set; }
+        /// <Summary>
+        /// An object that can be used to control the position to which this widget is
+        /// scrolled.
+        ///
+        /// A [ScrollController] serves several purposes. It can be used to control
+        /// the initial scroll position (see [ScrollController.initialScrollOffset]).
+        /// It can be used to control whether the scroll view should automatically
+        /// save and restore its scroll position in the [PageStorage] (see
+        /// [ScrollController.keepScrollOffset]). It can be used to read the current
+        /// scroll position (see [ScrollController.offset]), or change it (see
+        /// [ScrollController.animateTo]).
+        ///
+        /// See also:
+        ///
+        ///  * [ensureVisible], which animates the scroll position to reveal a given
+        ///    [BuildContext].
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Scrollcontroller.ScrollController Controller { get; set; }
+        /// <Summary>
+        /// How the widgets should respond to user input.
+        ///
+        /// For example, determines how the widget continues to animate after the
+        /// user stops dragging the scroll view.
+        ///
+        /// Defaults to matching platform conventions via the physics provided from
+        /// the ambient [ScrollConfiguration].
+        ///
+        /// The physics can be changed dynamically, but new physics will only take
+        /// effect if the _class_ of the provided object changes. Merely constructing
+        /// a new instance with a different configuration is insufficient to cause the
+        /// physics to be reapplied. (This is because the final object used is
+        /// generated dynamically, which can be relatively expensive, and it would be
+        /// inefficient to speculatively create this object each frame to see if the
+        /// physics should be updated.)
+        ///
+        /// See also:
+        ///
+        ///  * [AlwaysScrollableScrollPhysics], which can be used to indicate that the
+        ///    scrollable should react to scroll requests (and possible overscroll)
+        ///    even if the scrollable's contents fit without scrolling being necessary.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Scrollphysics.ScrollPhysics Physics { get; set; }
+        /// <Summary>
+        /// Builds the viewport through which the scrollable content is displayed.
+        ///
+        /// A typical viewport uses the given [ViewportOffset] to determine which part
+        /// of its content is actually visible through the viewport.
+        ///
+        /// See also:
+        ///
+        ///  * [Viewport], which is a viewport that displays a list of slivers.
+        ///  * [ShrinkWrappingViewport], which is a viewport that displays a list of
+        ///    slivers and sizes itself based on the size of the slivers.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Scrollable.ViewportBuilder ViewportBuilder { get; set; }
+        /// <Summary>
+        /// An optional function that will be called to calculate the distance to
+        /// scroll when the scrollable is asked to scroll via the keyboard using a
+        /// [ScrollAction].
+        ///
+        /// If not supplied, the [Scrollable] will scroll a default amount when a
+        /// keyboard navigation key is pressed (e.g. pageUp/pageDown, control-upArrow,
+        /// etc.), or otherwise invoked by a [ScrollAction].
+        ///
+        /// If [incrementCalculator] is null, the default for
+        /// [ScrollIncrementType.page] is 80% of the size of the scroll window, and
+        /// for [ScrollIncrementType.line], 50 logical pixels.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Scrollable.ScrollIncrementCalculator IncrementCalculator { get; set; }
+        /// <Summary>
+        /// Whether the scroll actions introduced by this [Scrollable] are exposed
+        /// in the semantics tree.
+        ///
+        /// Text fields with an overflow are usually scrollable to make sure that the
+        /// user can get to the beginning/end of the entered text. However, these
+        /// scrolling actions are generally not exposed to the semantics layer.
+        ///
+        /// See also:
+        ///
+        ///  * [GestureDetector.excludeFromSemantics], which is used to accomplish the
+        ///    exclusion.
+        /// </Summary>
         public virtual bool ExcludeFromSemantics { get; set; }
+        /// <Summary>
+        /// The number of children that will contribute semantic information.
+        ///
+        /// The value will be null if the number of children is unknown or unbounded.
+        ///
+        /// Some subtypes of [ScrollView] can infer this value automatically. For
+        /// example [ListView] will use the number of widgets in the child list,
+        /// while the [new ListView.separated] constructor will use half that amount.
+        ///
+        /// For [CustomScrollView] and other types which do not receive a builder
+        /// or list of widgets, the child count must be explicitly provided.
+        ///
+        /// See also:
+        ///
+        ///  * [CustomScrollView], for an explanation of scroll semantics.
+        ///  * [SemanticsConfiguration.scrollChildCount], the corresponding semantics property.
+        /// </Summary>
         public virtual int SemanticChildCount { get; set; }
+        /// <Summary>
+        /// {@template flutter.widgets.scrollable.dragStartBehavior}
+        /// Determines the way that drag start behavior is handled.
+        ///
+        /// If set to [DragStartBehavior.start], scrolling drag behavior will
+        /// begin upon the detection of a drag gesture. If set to
+        /// [DragStartBehavior.down] it will begin when a down event is first detected.
+        ///
+        /// In general, setting this to [DragStartBehavior.start] will make drag
+        /// animation smoother and setting it to [DragStartBehavior.down] will make
+        /// drag behavior feel slightly more reactive.
+        ///
+        /// By default, the drag start behavior is [DragStartBehavior.start].
+        ///
+        /// See also:
+        ///
+        ///  * [DragGestureRecognizer.dragStartBehavior], which gives an example for
+        ///    the different behaviors.
+        ///
+        /// {@endtemplate}
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Recognizer.DragStartBehavior DragStartBehavior { get; set; }
         public virtual FlutterSDK.Painting.Basictypes.Axis Axis { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 
@@ -1058,13 +1202,26 @@ namespace FlutterSDK.Widgets.Scrollable
     /// </Summary>
     public class ScrollIncrementDetails
     {
+        /// <Summary>
+        /// A const constructor for a [ScrollIncrementDetails].
+        ///
+        /// All of the arguments must not be null, and are required.
+        /// </Summary>
         public ScrollIncrementDetails(FlutterSDK.Widgets.Scrollable.ScrollIncrementType type = default(FlutterSDK.Widgets.Scrollable.ScrollIncrementType), FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics metrics = default(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics))
         : base()
         {
             this.Type = type;
             this.Metrics = metrics;
         }
+        /// <Summary>
+        /// The type of scroll this is (e.g. line, page, etc.).
+        ///
+        /// {@macro flutter.widgets.scrollable.scroll_increment_type.intent}
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Scrollable.ScrollIncrementType Type { get; set; }
+        /// <Summary>
+        /// The current metrics of the scrollable that is being scrolled.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics Metrics { get; set; }
     }
 
@@ -1079,13 +1236,27 @@ namespace FlutterSDK.Widgets.Scrollable
     /// </Summary>
     public class ScrollIntent : FlutterSDK.Widgets.Actions.Intent
     {
+        /// <Summary>
+        /// Creates a const [ScrollIntent] that requests scrolling in the given
+        /// [direction], with the given [type].
+        ///
+        /// If [reversed] is specified, then the scroll will happen in the opposite
+        /// direction from the normal scroll direction.
+        /// </Summary>
         public ScrollIntent(FlutterSDK.Painting.Basictypes.AxisDirection direction = default(FlutterSDK.Painting.Basictypes.AxisDirection), FlutterSDK.Widgets.Scrollable.ScrollIncrementType type = default(FlutterSDK.Widgets.Scrollable.ScrollIncrementType))
         : base(ScrollableDefaultClass.ScrollAction.Key)
         {
             this.Direction = direction;
             this.Type = type;
         }
+        /// <Summary>
+        /// The direction in which to scroll the scrollable containing the focused
+        /// widget.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Basictypes.AxisDirection Direction { get; set; }
+        /// <Summary>
+        /// The type of scrolling that is intended.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Scrollable.ScrollIncrementType Type { get; set; }
 
         public new bool IsEnabled(FlutterSDK.Widgets.Framework.BuildContext context)
@@ -1109,11 +1280,17 @@ namespace FlutterSDK.Widgets.Scrollable
     /// </Summary>
     public class ScrollAction : FlutterSDK.Widgets.Actions.Action
     {
+        /// <Summary>
+        /// Creates a const [ScrollAction].
+        /// </Summary>
         public ScrollAction()
         : base(Key)
         {
 
         }
+        /// <Summary>
+        /// The [LocalKey] that uniquely connects this action to a [ScrollIntent].
+        /// </Summary>
         public virtual FlutterSDK.Foundation.Key.LocalKey Key { get; set; }
 
         private double _CalculateScrollIncrement(FlutterSDK.Widgets.Scrollable.ScrollableState state, FlutterSDK.Widgets.Scrollable.ScrollIncrementType type = default(FlutterSDK.Widgets.Scrollable.ScrollIncrementType))

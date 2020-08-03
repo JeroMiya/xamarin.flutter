@@ -347,6 +347,12 @@ namespace FlutterSDK.Cupertino.Scrollbar
     /// </Summary>
     public class CupertinoScrollbar : FlutterSDK.Widgets.Framework.StatefulWidget
     {
+        /// <Summary>
+        /// Creates an iOS style scrollbar that wraps the given [child].
+        ///
+        /// The [child] should be a source of [ScrollNotification] notifications,
+        /// typically a [Scrollable] widget.
+        /// </Summary>
         public CupertinoScrollbar(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Scrollcontroller.ScrollController controller = default(FlutterSDK.Widgets.Scrollcontroller.ScrollController), bool isAlwaysShown = false, FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key)
         {
@@ -354,8 +360,124 @@ namespace FlutterSDK.Cupertino.Scrollbar
             this.IsAlwaysShown = isAlwaysShown;
             this.Child = child;
         }
+        /// <Summary>
+        /// The subtree to place inside the [CupertinoScrollbar].
+        ///
+        /// This should include a source of [ScrollNotification] notifications,
+        /// typically a [Scrollable] widget.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+        /// <Summary>
+        /// {@template flutter.cupertino.cupertinoScrollbar.controller}
+        /// The [ScrollController] used to implement Scrollbar dragging.
+        ///
+        /// introduced in iOS 13.
+        ///
+        /// If nothing is passed to controller, the default behavior is to automatically
+        /// enable scrollbar dragging on the nearest ScrollController using
+        /// [PrimaryScrollController.of].
+        ///
+        /// If a ScrollController is passed, then scrollbar dragging will be enabled on
+        /// the given ScrollController. A stateful ancestor of this CupertinoScrollbar
+        /// needs to manage the ScrollController and either pass it to a scrollable
+        /// descendant or use a PrimaryScrollController to share it.
+        ///
+        /// Here is an example of using the `controller` parameter to enable
+        /// scrollbar dragging for multiple independent ListViews:
+        ///
+        /// {@tool snippet}
+        ///
+        /// ```dart
+        /// final ScrollController _controllerOne = ScrollController();
+        /// final ScrollController _controllerTwo = ScrollController();
+        ///
+        /// build(BuildContext context) {
+        /// return Column(
+        ///   children: <Widget>[
+        ///     Container(
+        ///        height: 200,
+        ///        child: CupertinoScrollbar(
+        ///          controller: _controllerOne,
+        ///          child: ListView.builder(
+        ///            controller: _controllerOne,
+        ///            itemCount: 120,
+        ///            itemBuilder: (BuildContext context, int index) => Text('item $index'),
+        ///          ),
+        ///        ),
+        ///      ),
+        ///      Container(
+        ///        height: 200,
+        ///        child: CupertinoScrollbar(
+        ///          controller: _controllerTwo,
+        ///          child: ListView.builder(
+        ///            controller: _controllerTwo,
+        ///            itemCount: 120,
+        ///            itemBuilder: (BuildContext context, int index) => Text('list 2 item $index'),
+        ///          ),
+        ///        ),
+        ///      ),
+        ///    ],
+        ///   );
+        /// }
+        /// ```
+        /// {@end-tool}
+        /// {@endtemplate}
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Scrollcontroller.ScrollController Controller { get; set; }
+        /// <Summary>
+        /// {@template flutter.cupertino.cupertinoScrollbar.isAlwaysShown}
+        /// Indicates whether the [Scrollbar] should always be visible.
+        ///
+        /// When false, the scrollbar will be shown during scrolling
+        /// and will fade out otherwise.
+        ///
+        /// When true, the scrollbar will always be visible and never fade out.
+        ///
+        /// The [controller] property must be set in this case.
+        /// It should be passed the relevant [Scrollable]'s [ScrollController].
+        ///
+        /// Defaults to false.
+        ///
+        /// {@tool snippet}
+        ///
+        /// ```dart
+        /// final ScrollController _controllerOne = ScrollController();
+        /// final ScrollController _controllerTwo = ScrollController();
+        ///
+        /// build(BuildContext context) {
+        /// return Column(
+        ///   children: <Widget>[
+        ///     Container(
+        ///        height: 200,
+        ///        child: Scrollbar(
+        ///          isAlwaysShown: true,
+        ///          controller: _controllerOne,
+        ///          child: ListView.builder(
+        ///            controller: _controllerOne,
+        ///            itemCount: 120,
+        ///            itemBuilder: (BuildContext context, int index)
+        ///                => Text('item $index'),
+        ///          ),
+        ///        ),
+        ///      ),
+        ///      Container(
+        ///        height: 200,
+        ///        child: CupertinoScrollbar(
+        ///          isAlwaysShown: true,
+        ///          controller: _controllerTwo,
+        ///          child: SingleChildScrollView(
+        ///            controller: _controllerTwo,
+        ///            child: SizedBox(height: 2000, width: 500,),
+        ///          ),
+        ///        ),
+        ///      ),
+        ///    ],
+        ///   );
+        /// }
+        /// ```
+        /// {@end-tool}
+        /// {@endtemplate}
+        /// </Summary>
         public virtual bool IsAlwaysShown { get; set; }
 
         public new FlutterSDK.Cupertino.Scrollbar._CupertinoScrollbarState CreateState() => new _CupertinoScrollbarState();

@@ -435,6 +435,13 @@ namespace FlutterSDK.Material.Timepicker
         public static double _KTimePickerHeightPortraitCollapsed = default(double);
         public static double _KTimePickerHeightLandscapeCollapsed = default(double);
         public static FlutterSDK.Rendering.Box.BoxConstraints _KMinTappableRegion = default(FlutterSDK.Rendering.Box.BoxConstraints);
+        /// <Summary>
+        /// Provides time picker header layout configuration for the given
+        /// [timeOfDayFormat] passing [context] to each widget in the
+        /// configuration.
+        ///
+        /// The [timeOfDayFormat] and [context] arguments must not be null.
+        /// </Summary>
         internal static FlutterSDK.Material.Timepicker._TimePickerHeaderFormat _BuildHeaderFormat(FlutterSDK.Material.Time.TimeOfDayFormat timeOfDayFormat, FlutterSDK.Material.Timepicker._TimePickerFragmentContext context, FlutterSDK.Widgets.Mediaquery.Orientation orientation)
         {
             _TimePickerHeaderFragment Hour()
@@ -486,6 +493,69 @@ namespace FlutterSDK.Material.Timepicker
 
 
 
+        /// <Summary>
+        /// Shows a dialog containing a material design time picker.
+        ///
+        /// The returned Future resolves to the time selected by the user when the user
+        /// closes the dialog. If the user cancels the dialog, null is returned.
+        ///
+        /// {@tool snippet}
+        /// Show a dialog with [initialTime] equal to the current time.
+        ///
+        /// ```dart
+        /// Future<TimeOfDay> selectedTime = showTimePicker(
+        ///   initialTime: TimeOfDay.now(),
+        ///   context: context,
+        /// );
+        /// ```
+        /// {@end-tool}
+        ///
+        /// The [context], [useRootNavigator] and [routeSettings] arguments are passed to
+        /// [showDialog], the documentation for which discusses how it is used.
+        ///
+        /// The [builder] parameter can be used to wrap the dialog widget
+        /// to add inherited widgets like [Localizations.override],
+        /// [Directionality], or [MediaQuery].
+        ///
+        /// {@tool snippet}
+        /// Show a dialog with the text direction overridden to be [TextDirection.rtl].
+        ///
+        /// ```dart
+        /// Future<TimeOfDay> selectedTimeRTL = showTimePicker(
+        ///   context: context,
+        ///   initialTime: TimeOfDay.now(),
+        ///   builder: (BuildContext context, Widget child) {
+        ///     return Directionality(
+        ///       textDirection: TextDirection.rtl,
+        ///       child: child,
+        ///     );
+        ///   },
+        /// );
+        /// ```
+        /// {@end-tool}
+        ///
+        /// {@tool snippet}
+        /// Show a dialog with time unconditionally displayed in 24 hour format.
+        ///
+        /// ```dart
+        /// Future<TimeOfDay> selectedTime24Hour = showTimePicker(
+        ///   context: context,
+        ///   initialTime: TimeOfDay(hour: 10, minute: 47),
+        ///   builder: (BuildContext context, Widget child) {
+        ///     return MediaQuery(
+        ///       data: MediaQuery.of(context).copyWith(alwaysUse24HourFormat: true),
+        ///       child: child,
+        ///     );
+        ///   },
+        /// );
+        /// ```
+        /// {@end-tool}
+        ///
+        /// See also:
+        ///
+        ///  * [showDatePicker], which shows a dialog that contains a material design
+        ///    date picker.
+        /// </Summary>
         internal static async Future<FlutterSDK.Material.Time.TimeOfDay> ShowTimePicker(FlutterSDK.Widgets.Framework.BuildContext context = default(FlutterSDK.Widgets.Framework.BuildContext), FlutterSDK.Material.Time.TimeOfDay initialTime = default(FlutterSDK.Material.Time.TimeOfDay), FlutterSDK.Widgets.Framework.TransitionBuilder builder = default(FlutterSDK.Widgets.Framework.TransitionBuilder), bool useRootNavigator = true, FlutterSDK.Widgets.Navigator.RouteSettings routeSettings = default(FlutterSDK.Widgets.Navigator.RouteSettings))
         {
 
@@ -561,8 +631,22 @@ namespace FlutterSDK.Material.Timepicker
             this.Widget = widget;
             this.StartMargin = startMargin;
         }
+        /// <Summary>
+        /// Identifier used by the custom layout to refer to the widget.
+        /// </Summary>
         public virtual FlutterSDK.Material.Timepicker._TimePickerHeaderId LayoutId { get; set; }
+        /// <Summary>
+        /// The widget that renders a piece of time information.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Widget { get; set; }
+        /// <Summary>
+        /// Horizontal distance from the fragment appearing at the start of this
+        /// fragment.
+        ///
+        /// This value contributes to the total horizontal width of all fragments
+        /// appearing on the same line, unless it is the first fragment on the line,
+        /// in which case this value is ignored.
+        /// </Summary>
         public virtual double StartMargin { get; set; }
     }
 
@@ -575,6 +659,12 @@ namespace FlutterSDK.Material.Timepicker
     /// </Summary>
     public class _TimePickerHeaderPiece
     {
+        /// <Summary>
+        /// Creates a time picker header piece.
+        ///
+        /// All arguments must be non-null. If the piece does not contain a pivot
+        /// fragment, use the value -1 as a convention.
+        /// </Summary>
         public _TimePickerHeaderPiece(int pivotIndex, List<FlutterSDK.Material.Timepicker._TimePickerHeaderFragment> fragments, double bottomMargin = 0.0)
         : base()
         {
@@ -582,8 +672,20 @@ namespace FlutterSDK.Material.Timepicker
             this.Fragments = fragments;
             this.BottomMargin = bottomMargin;
         }
+        /// <Summary>
+        /// Index into the [fragments] list, pointing at the fragment that's centered
+        /// horizontally.
+        /// </Summary>
         public virtual int PivotIndex { get; set; }
+        /// <Summary>
+        /// Fragments this piece is made of.
+        /// </Summary>
         public virtual List<FlutterSDK.Material.Timepicker._TimePickerHeaderFragment> Fragments { get; set; }
+        /// <Summary>
+        /// Vertical distance between this piece and the next piece.
+        ///
+        /// This property applies only when the header is laid out vertically.
+        /// </Summary>
         public virtual double BottomMargin { get; set; }
     }
 
@@ -614,7 +716,14 @@ namespace FlutterSDK.Material.Timepicker
             this.CenterpieceIndex = centerpieceIndex;
             this.Pieces = pieces;
         }
+        /// <Summary>
+        /// Index into the [pieces] list pointing at the piece that contains the
+        /// pivot fragment.
+        /// </Summary>
         public virtual int CenterpieceIndex { get; set; }
+        /// <Summary>
+        /// Pieces that constitute a time picker header.
+        /// </Summary>
         public virtual List<FlutterSDK.Material.Timepicker._TimePickerHeaderPiece> Pieces { get; set; }
     }
 
@@ -1023,8 +1132,17 @@ namespace FlutterSDK.Material.Timepicker
             this.Painter = painter;
             this.OnTap = onTap;
         }
+        /// <Summary>
+        /// The value this label is displaying.
+        /// </Summary>
         public virtual int Value { get; set; }
+        /// <Summary>
+        /// Paints the text of the label.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Textpainter.TextPainter Painter { get; set; }
+        /// <Summary>
+        /// Called when a tap gesture is detected on the label.
+        /// </Summary>
         public virtual VoidCallback OnTap { get; set; }
     }
 
@@ -1588,11 +1706,19 @@ namespace FlutterSDK.Material.Timepicker
     /// </Summary>
     public class _TimePickerDialog : FlutterSDK.Widgets.Framework.StatefulWidget
     {
+        /// <Summary>
+        /// Creates a material time picker.
+        ///
+        /// [initialTime] must not be null.
+        /// </Summary>
         public _TimePickerDialog(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Material.Time.TimeOfDay initialTime = default(FlutterSDK.Material.Time.TimeOfDay))
         : base(key: key)
         {
             this.InitialTime = initialTime;
         }
+        /// <Summary>
+        /// The time initially selected when the dialog is shown.
+        /// </Summary>
         public virtual FlutterSDK.Material.Time.TimeOfDay InitialTime { get; set; }
 
         public new FlutterSDK.Material.Timepicker._TimePickerDialogState CreateState() => new _TimePickerDialogState();

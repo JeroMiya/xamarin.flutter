@@ -392,19 +392,75 @@ namespace FlutterSDK.Material.Buttontheme
     /// </Summary>
     public class ButtonTheme : FlutterSDK.Widgets.Inheritedtheme.InheritedTheme
     {
+        /// <Summary>
+        /// Creates a button theme.
+        ///
+        /// The [textTheme], [minWidth], [height], and [colorScheme] arguments
+        /// must not be null.
+        /// </Summary>
         public ButtonTheme(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Material.Buttontheme.ButtonTextTheme textTheme = default(FlutterSDK.Material.Buttontheme.ButtonTextTheme), FlutterSDK.Material.Buttontheme.ButtonBarLayoutBehavior layoutBehavior = default(FlutterSDK.Material.Buttontheme.ButtonBarLayoutBehavior), double minWidth = 88.0, double height = 36.0, FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), bool alignedDropdown = false, FlutterBinding.UI.Color buttonColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color disabledColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color focusColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color hoverColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color highlightColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color splashColor = default(FlutterBinding.UI.Color), FlutterSDK.Material.Colorscheme.ColorScheme colorScheme = default(FlutterSDK.Material.Colorscheme.ColorScheme), FlutterSDK.Material.Themedata.MaterialTapTargetSize materialTapTargetSize = default(FlutterSDK.Material.Themedata.MaterialTapTargetSize), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
 
         }
+        /// <Summary>
+        /// Creates a button theme from [data].
+        ///
+        /// The [data] argument must not be null.
+        /// </Summary>
         public static ButtonTheme FromButtonThemeData(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Material.Buttontheme.ButtonThemeData data = default(FlutterSDK.Material.Buttontheme.ButtonThemeData), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         {
             var instance = new ButtonTheme(key: key, child: child); instance.Data = data;
         }
+        /// <Summary>
+        /// Creates a button theme that is appropriate for button bars, as used in
+        /// dialog footers and in the headers of data tables.
+        ///
+        /// Deprecated. Please use [ButtonBarTheme] instead which offers more
+        /// flexibility to configure [ButtonBar] widgets.
+        ///
+        /// To migrate instances of code that were just wrapping a [ButtonBar]:
+        ///
+        /// ```dart
+        /// ButtonTheme.bar(
+        ///   child: ButtonBar(...)
+        /// );
+        /// ```
+        ///
+        /// you can just remove the `ButtonTheme.bar` as the defaults are now handled
+        /// by [ButtonBar] directly.
+        ///
+        /// If you have more complicated usages of `ButtonTheme.bar` like:
+        ///
+        /// ```dart
+        /// ButtonTheme.bar(
+        ///   padding: EdgeInsets.symmetric(horizontal: 10.0),
+        ///   textTheme: ButtonTextTheme.accent,
+        ///   child: ButtonBar(...),
+        /// );
+        /// ```
+        ///
+        /// you can remove the `ButtonTheme.bar` and move the parameters to the
+        /// [ButtonBar] instance directly:
+        ///
+        /// ```dart
+        /// ButtonBar(
+        ///   padding: EdgeInsets.symmetric(horizontal: 10.0),
+        ///   textTheme: ButtonTextTheme.accent,
+        ///   ...
+        /// );
+        /// ```
+        ///
+        /// You can also replace the defaults for all [ButtonBar] widgets by updating
+        /// [ThemeData.buttonBarTheme] for your app.
+        /// </Summary>
         public static ButtonTheme Bar(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Material.Buttontheme.ButtonTextTheme textTheme = default(FlutterSDK.Material.Buttontheme.ButtonTextTheme), double minWidth = 64.0, double height = 36.0, FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), bool alignedDropdown = false, FlutterBinding.UI.Color buttonColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color disabledColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color focusColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color hoverColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color highlightColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color splashColor = default(FlutterBinding.UI.Color), FlutterSDK.Material.Colorscheme.ColorScheme colorScheme = default(FlutterSDK.Material.Colorscheme.ColorScheme), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Material.Buttontheme.ButtonBarLayoutBehavior layoutBehavior = default(FlutterSDK.Material.Buttontheme.ButtonBarLayoutBehavior))
         {
             var instance = new ButtonTheme(key: key, child: child);
         }
+        /// <Summary>
+        /// Specifies the color and geometry of buttons.
+        /// </Summary>
         public virtual FlutterSDK.Material.Buttontheme.ButtonThemeData Data { get; set; }
 
         /// <Summary>
@@ -464,6 +520,18 @@ namespace FlutterSDK.Material.Buttontheme
     /// </Summary>
     public class ButtonThemeData : IDiagnosticable
     {
+        /// <Summary>
+        /// Create a button theme object that can be used with [ButtonTheme]
+        /// or [ThemeData].
+        ///
+        /// The [textTheme], [minWidth], [height], [alignedDropDown], and
+        /// [layoutBehavior] parameters must not be null. The [minWidth] and
+        /// [height] parameters must greater than or equal to zero.
+        ///
+        /// The ButtonTheme's methods that have a [MaterialButton] parameter and
+        /// have a name with a `get` prefix are used by [RaisedButton],
+        /// [OutlineButton], and [FlatButton] to configure a [RawMaterialButton].
+        /// </Summary>
         public ButtonThemeData(FlutterSDK.Material.Buttontheme.ButtonTextTheme textTheme = default(FlutterSDK.Material.Buttontheme.ButtonTextTheme), double minWidth = 88.0, double height = 36.0, FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), FlutterSDK.Material.Buttontheme.ButtonBarLayoutBehavior layoutBehavior = default(FlutterSDK.Material.Buttontheme.ButtonBarLayoutBehavior), bool alignedDropdown = false, FlutterBinding.UI.Color buttonColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color disabledColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color focusColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color hoverColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color highlightColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color splashColor = default(FlutterBinding.UI.Color), FlutterSDK.Material.Colorscheme.ColorScheme colorScheme = default(FlutterSDK.Material.Colorscheme.ColorScheme), FlutterSDK.Material.Themedata.MaterialTapTargetSize materialTapTargetSize = default(FlutterSDK.Material.Themedata.MaterialTapTargetSize))
         : base()
         {
@@ -474,19 +542,138 @@ namespace FlutterSDK.Material.Buttontheme
             this.AlignedDropdown = alignedDropdown;
             this.ColorScheme = colorScheme;
         }
+        /// <Summary>
+        /// The minimum width for buttons.
+        ///
+        /// The actual horizontal space allocated for a button's child is
+        /// at least this value less the theme's horizontal [padding].
+        ///
+        /// Defaults to 88.0 logical pixels.
+        /// </Summary>
         public virtual double MinWidth { get; set; }
+        /// <Summary>
+        /// The minimum height for buttons.
+        ///
+        /// Defaults to 36.0 logical pixels.
+        /// </Summary>
         public virtual double Height { get; set; }
+        /// <Summary>
+        /// Defines a button's base colors, and the defaults for the button's minimum
+        /// size, internal padding, and shape.
+        ///
+        /// Despite the name, this property is not a [TextTheme], its value is not a
+        /// collection of [TextStyle]s.
+        /// </Summary>
         public virtual FlutterSDK.Material.Buttontheme.ButtonTextTheme TextTheme { get; set; }
+        /// <Summary>
+        /// Defines whether a [ButtonBar] should size itself with a minimum size
+        /// constraint or with padding.
+        ///
+        /// Defaults to [ButtonBarLayoutBehavior.padded].
+        /// </Summary>
         public virtual FlutterSDK.Material.Buttontheme.ButtonBarLayoutBehavior LayoutBehavior { get; set; }
         internal virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry _Padding { get; set; }
         internal virtual FlutterSDK.Painting.Borders.ShapeBorder _Shape { get; set; }
+        /// <Summary>
+        /// If true, then a [DropdownButton] menu's width will match the button's
+        /// width.
+        ///
+        /// If false (the default), then the dropdown's menu will be wider than
+        /// its button. In either case the dropdown button will line up the leading
+        /// edge of the menu's value with the leading edge of the values
+        /// displayed by the menu items.
+        ///
+        /// This property only affects [DropdownButton] and its menu.
+        /// </Summary>
         public virtual bool AlignedDropdown { get; set; }
+        /// <Summary>
+        /// The background fill color for [RaisedButton]s.
+        ///
+        /// This property is null by default.
+        ///
+        /// If the button is in the focused, hovering, or highlighted state, then the
+        /// [focusColor], [hoverColor], or [highlightColor] will take precedence over
+        /// the [focusColor].
+        ///
+        /// See also:
+        ///
+        ///  * [getFillColor], which is used by [RaisedButton] to compute its
+        ///    background fill color.
+        /// </Summary>
         internal virtual FlutterBinding.UI.Color _ButtonColor { get; set; }
+        /// <Summary>
+        /// The background fill color for disabled [RaisedButton]s.
+        ///
+        /// This property is null by default.
+        ///
+        /// See also:
+        ///
+        ///  * [getDisabledFillColor], which is used by [RaisedButton] to compute its
+        ///    background fill color.
+        /// </Summary>
         internal virtual FlutterBinding.UI.Color _DisabledColor { get; set; }
+        /// <Summary>
+        /// The fill color of the button when it has the input focus.
+        ///
+        /// This property is null by default.
+        ///
+        /// If the button is in the hovering or highlighted state, then the [hoverColor]
+        /// or [highlightColor] will take precedence over the [focusColor].
+        ///
+        /// See also:
+        ///
+        ///  * [getFocusColor], which is used by [RaisedButton], [OutlineButton]
+        ///    and [FlatButton].
+        /// </Summary>
         internal virtual FlutterBinding.UI.Color _FocusColor { get; set; }
+        /// <Summary>
+        /// The fill color of the button when a pointer is hovering over it.
+        ///
+        /// This property is null by default.
+        ///
+        /// If the button is in the highlighted state, then the [highlightColor] will
+        /// take precedence over the [hoverColor].
+        ///
+        /// See also:
+        ///
+        ///  * [getHoverColor], which is used by [RaisedButton], [OutlineButton]
+        ///    and [FlatButton].
+        /// </Summary>
         internal virtual FlutterBinding.UI.Color _HoverColor { get; set; }
+        /// <Summary>
+        /// The color of the overlay that appears when a button is pressed.
+        ///
+        /// This property is null by default.
+        ///
+        /// See also:
+        ///
+        ///  * [getHighlightColor], which is used by [RaisedButton], [OutlineButton]
+        ///    and [FlatButton].
+        /// </Summary>
         internal virtual FlutterBinding.UI.Color _HighlightColor { get; set; }
+        /// <Summary>
+        /// The color of the ink "splash" overlay that appears when a button is tapped.
+        ///
+        /// This property is null by default.
+        ///
+        /// See also:
+        ///
+        ///  * [getSplashColor], which is used by [RaisedButton], [OutlineButton]
+        ///    and [FlatButton].
+        /// </Summary>
         internal virtual FlutterBinding.UI.Color _SplashColor { get; set; }
+        /// <Summary>
+        /// A set of thirteen colors that can be used to derive the button theme's
+        /// colors.
+        ///
+        /// This property was added much later than the theme's set of highly
+        /// specific colors, like [ThemeData.buttonColor], [ThemeData.highlightColor],
+        /// [ThemeData.splashColor] etc.
+        ///
+        /// The colors for new button classes can be defined exclusively in terms
+        /// of [colorScheme]. When it's possible, the existing buttons will
+        /// (continue to) gradually migrate to it.
+        /// </Summary>
         public virtual FlutterSDK.Material.Colorscheme.ColorScheme ColorScheme { get; set; }
         internal virtual FlutterSDK.Material.Themedata.MaterialTapTargetSize _MaterialTapTargetSize { get; set; }
         public virtual FlutterSDK.Rendering.Box.BoxConstraints Constraints { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }

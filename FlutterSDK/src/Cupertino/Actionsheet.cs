@@ -343,6 +343,15 @@ namespace FlutterSDK.Cupertino.Actionsheet
     /// </Summary>
     public class CupertinoActionSheet : FlutterSDK.Widgets.Framework.StatelessWidget
     {
+        /// <Summary>
+        /// Creates an iOS-style action sheet.
+        ///
+        /// An action sheet must have a non-null value for at least one of the
+        /// following arguments: [actions], [title], [message], or [cancelButton].
+        ///
+        /// Generally, action sheets are used to give the user a choice between
+        /// two or more choices for the current context.
+        /// </Summary>
         public CupertinoActionSheet(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget title = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget message = default(FlutterSDK.Widgets.Framework.Widget), List<FlutterSDK.Widgets.Framework.Widget> actions = default(List<FlutterSDK.Widgets.Framework.Widget>), FlutterSDK.Widgets.Scrollcontroller.ScrollController messageScrollController = default(FlutterSDK.Widgets.Scrollcontroller.ScrollController), FlutterSDK.Widgets.Scrollcontroller.ScrollController actionScrollController = default(FlutterSDK.Widgets.Scrollcontroller.ScrollController), FlutterSDK.Widgets.Framework.Widget cancelButton = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key)
         {
@@ -353,11 +362,47 @@ namespace FlutterSDK.Cupertino.Actionsheet
             this.ActionScrollController = actionScrollController;
             this.CancelButton = cancelButton;
         }
+        /// <Summary>
+        /// An optional title of the action sheet. When the [message] is non-null,
+        /// the font of the [title] is bold.
+        ///
+        /// Typically a [Text] widget.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Title { get; set; }
+        /// <Summary>
+        /// An optional descriptive message that provides more details about the
+        /// reason for the alert.
+        ///
+        /// Typically a [Text] widget.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Message { get; set; }
+        /// <Summary>
+        /// The set of actions that are displayed for the user to select.
+        ///
+        /// Typically this is a list of [CupertinoActionSheetAction] widgets.
+        /// </Summary>
         public virtual List<FlutterSDK.Widgets.Framework.Widget> Actions { get; set; }
+        /// <Summary>
+        /// A scroll controller that can be used to control the scrolling of the
+        /// [message] in the action sheet.
+        ///
+        /// This attribute is typically not needed, as alert messages should be
+        /// short.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Scrollcontroller.ScrollController MessageScrollController { get; set; }
+        /// <Summary>
+        /// A scroll controller that can be used to control the scrolling of the
+        /// [actions] in the action sheet.
+        ///
+        /// This attribute is typically not needed.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Scrollcontroller.ScrollController ActionScrollController { get; set; }
+        /// <Summary>
+        /// The optional cancel button that is grouped separately from the other
+        /// actions.
+        ///
+        /// Typically this is an [CupertinoActionSheetAction] widget.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget CancelButton { get; set; }
 
         private FlutterSDK.Widgets.Framework.Widget _BuildContent(FlutterSDK.Widgets.Framework.BuildContext context)
@@ -429,6 +474,11 @@ namespace FlutterSDK.Cupertino.Actionsheet
     /// </Summary>
     public class CupertinoActionSheetAction : FlutterSDK.Widgets.Framework.StatelessWidget
     {
+        /// <Summary>
+        /// Creates an action for an iOS-style action sheet.
+        ///
+        /// The [child] and [onPressed] arguments must not be null.
+        /// </Summary>
         public CupertinoActionSheetAction(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), VoidCallback onPressed = default(VoidCallback), bool isDefaultAction = false, bool isDestructiveAction = false, FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key)
         {
@@ -437,9 +487,29 @@ namespace FlutterSDK.Cupertino.Actionsheet
             this.IsDestructiveAction = isDestructiveAction;
             this.Child = child;
         }
+        /// <Summary>
+        /// The callback that is called when the button is tapped.
+        ///
+        /// This attribute must not be null.
+        /// </Summary>
         public virtual VoidCallback OnPressed { get; set; }
+        /// <Summary>
+        /// Whether this action is the default choice in the action sheet.
+        ///
+        /// Default buttons have bold text.
+        /// </Summary>
         public virtual bool IsDefaultAction { get; set; }
+        /// <Summary>
+        /// Whether this action might change or delete data.
+        ///
+        /// Destructive buttons have red text.
+        /// </Summary>
         public virtual bool IsDestructiveAction { get; set; }
+        /// <Summary>
+        /// The widget below this widget in the tree.
+        ///
+        /// Typically a [Text] widget.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)

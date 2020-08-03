@@ -488,6 +488,9 @@ namespace FlutterSDK.Widgets.Placeholder
     /// </Summary>
     public class Placeholder : FlutterSDK.Widgets.Framework.StatelessWidget
     {
+        /// <Summary>
+        /// Creates a widget which draws a box.
+        /// </Summary>
         public Placeholder(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), double strokeWidth = 2.0, double fallbackWidth = 400.0, double fallbackHeight = 400.0)
         : base(key: key)
         {
@@ -496,9 +499,31 @@ namespace FlutterSDK.Widgets.Placeholder
             this.FallbackWidth = fallbackWidth;
             this.FallbackHeight = fallbackHeight;
         }
+        /// <Summary>
+        /// The color to draw the placeholder box.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color Color { get; set; }
+        /// <Summary>
+        /// The width of the lines in the placeholder box.
+        /// </Summary>
         public virtual double StrokeWidth { get; set; }
+        /// <Summary>
+        /// The width to use when the placeholder is in a situation with an unbounded
+        /// width.
+        ///
+        /// See also:
+        ///
+        ///  * [fallbackHeight], the same but vertically.
+        /// </Summary>
         public virtual double FallbackWidth { get; set; }
+        /// <Summary>
+        /// The height to use when the placeholder is in a situation with an unbounded
+        /// height.
+        ///
+        /// See also:
+        ///
+        ///  * [fallbackWidth], the same but horizontally.
+        /// </Summary>
         public virtual double FallbackHeight { get; set; }
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)

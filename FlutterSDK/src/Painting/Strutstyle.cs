@@ -699,6 +699,16 @@ namespace FlutterSDK.Painting.Strutstyle
     /// </Summary>
     public class StrutStyle : IDiagnosticable
     {
+        /// <Summary>
+        /// Creates a strut style.
+        ///
+        /// The `package` argument must be non-null if the font family is defined in a
+        /// package. It is combined with the `fontFamily` argument to set the
+        /// [fontFamily] property.
+        ///
+        /// If provided, fontSize must be positive and non-zero, leading must be
+        /// zero or positive.
+        /// </Summary>
         public StrutStyle(string fontFamily = default(string), List<string> fontFamilyFallback = default(List<string>), double fontSize = default(double), double height = default(double), double leading = default(double), FontWeight fontWeight = default(FontWeight), FontStyle fontStyle = default(FontStyle), bool forceStrutHeight = default(bool), string debugLabel = default(string), string package = default(string))
         : base()
         {
@@ -710,21 +720,146 @@ namespace FlutterSDK.Painting.Strutstyle
             this.ForceStrutHeight = forceStrutHeight;
             this.DebugLabel = debugLabel;
         }
+        /// <Summary>
+        /// Builds a StrutStyle that contains values of the equivalent properties in
+        /// the provided [textStyle].
+        ///
+        /// The [textStyle] parameter must not be null.
+        ///
+        /// The named parameters override the [textStyle]'s argument's properties.
+        /// Since TextStyle does not contain [leading] or [forceStrutHeight], these
+        /// values will take on default values (null and false) unless otherwise
+        /// specified.
+        ///
+        /// If provided, fontSize must be positive and non-zero, leading must be
+        /// zero or positive.
+        ///
+        /// When [textStyle] has a package and a new [package] is also specified,
+        /// the entire font family fallback list should be redefined since the
+        /// [textStyle]'s package data is inherited by being prepended onto the
+        /// font family names. If [fontFamilyFallback] is meant to be empty, pass
+        /// an empty list instead of null. This prevents the previous package name
+        /// from being prepended twice.
+        /// </Summary>
         public static StrutStyle FromTextStyle(FlutterSDK.Painting.Textstyle.TextStyle textStyle, string fontFamily = default(string), List<string> fontFamilyFallback = default(List<string>), double fontSize = default(double), double height = default(double), double leading = default(double), FontWeight fontWeight = default(FontWeight), FontStyle fontStyle = default(FontStyle), bool forceStrutHeight = default(bool), string debugLabel = default(string), string package = default(string))
         {
             var instance = new StrutStyle(); instance.Leading = leading;
             instance.ForceStrutHeight = forceStrutHeight;
         }
+        /// <Summary>
+        /// A [StrutStyle] that will have no impact on the text layout.
+        ///
+        /// Equivalent to having no strut at all. All lines will be laid out according to
+        /// the properties defined in [TextStyle].
+        /// </Summary>
         public virtual FlutterSDK.Painting.Strutstyle.StrutStyle Disabled { get; set; }
+        /// <Summary>
+        /// The name of the font to use when calculating the strut (e.g., Roboto). If
+        /// the font is defined in a package, this will be prefixed with
+        /// 'packages/package_name/' (e.g. 'packages/cool_fonts/Roboto'). The
+        /// prefixing is done by the constructor when the `package` argument is
+        /// provided.
+        ///
+        /// The value provided in [fontFamily] will act as the preferred/first font
+        /// family that will be searched for, followed in order by the font families
+        /// in [fontFamilyFallback]. If all font families are exhausted and no match
+        /// was found, the default platform font family will be used instead. Unlike
+        /// [TextStyle.fontFamilyFallback], the font does not need to contain the
+        /// desired glyphs to match.
+        /// </Summary>
         public virtual string FontFamily { get; set; }
         internal virtual List<string> _FontFamilyFallback { get; set; }
         internal virtual string _Package { get; set; }
+        /// <Summary>
+        /// The size of text (in logical pixels) to use when obtaining metrics from the font.
+        ///
+        /// The [fontSize] is used to get the base set of metrics that are then used to calculated
+        /// the metrics of strut. The height and leading are expressed as a multiple of
+        /// [fontSize].
+        ///
+        /// The default fontSize is 14 logical pixels.
+        /// </Summary>
         public virtual double FontSize { get; set; }
+        /// <Summary>
+        /// The multiple of [fontSize] to multiply the ascent and descent by where
+        /// `ascent + descent = fontSize`.
+        ///
+        /// Ascent is the spacing above the baseline and descent is the spacing below
+        /// the baseline.
+        ///
+        /// When [height] is omitted or null, then the font defined ascent and descent
+        /// will be used. The font's combined ascent and descent may be taller or
+        /// shorter than the [fontSize]. When [height] is provided, the line's EM-square
+        /// ascent and descent (which sums to [fontSize]) will be scaled by [height] to
+        /// achieve a final line height of `fontSize * height + fontSize * leading`
+        /// logical pixels. The following diagram illustrates the differences between
+        /// the font metrics defined height and the EM-square height:
+        ///
+        /// ![Text height diagram](https://flutter.github.io/assets-for-api-docs/assets/painting/text_height_diagram.png)
+        ///
+        /// The [height] will impact the spacing above and below the baseline differently
+        /// depending on the ratios between the font's ascent and descent. This property is
+        /// separate from the leading multiplier, which is controlled through [leading].
+        ///
+        /// The ratio of ascent:descent with [height] specified is the same as the
+        /// font metrics defined ascent:descent ratio when [height] is null or omitted.
+        ///
+        /// See [TextStyle.height], which works in a similar manner.
+        ///
+        /// The default height is null.
+        /// </Summary>
         public virtual double Height { get; set; }
+        /// <Summary>
+        /// The typeface thickness to use when calculating the strut (e.g., bold).
+        ///
+        /// The default fontWeight is [FontWeight.w400].
+        /// </Summary>
         public virtual FontWeight FontWeight { get; set; }
+        /// <Summary>
+        /// The typeface variant to use when calculating the strut (e.g., italics).
+        ///
+        /// The default fontStyle is [FontStyle.normal].
+        /// </Summary>
         public virtual FontStyle FontStyle { get; set; }
+        /// <Summary>
+        /// The custom leading to apply to the strut as a multiple of [fontSize].
+        ///
+        /// Leading is additional spacing between lines. Half of the leading is added
+        /// to the top and the other half to the bottom of the line. This differs
+        /// from [height] since the spacing is equally distributed above and below the
+        /// baseline.
+        ///
+        /// The default leading is null, which will use the font-specified leading.
+        /// </Summary>
         public virtual double Leading { get; set; }
+        /// <Summary>
+        /// Whether the strut height should be forced.
+        ///
+        /// When true, all lines will be laid out with the height of the
+        /// strut. All line and run-specific metrics will be ignored/overridden
+        /// and only strut metrics will be used instead. This property guarantees
+        /// uniform line spacing, however text in adjacent lines may overlap.
+        ///
+        /// This property should be enabled with caution as
+        /// it bypasses a large portion of the vertical layout system.
+        ///
+        /// This is equivalent to setting [TextStyle.height] to zero for all [TextStyle]s
+        /// in the paragraph. Since the height of each line is calculated as a max of the
+        /// metrics of each run of text, zero height [TextStyle]s cause the minimums
+        /// defined by strut to always manifest, resulting in all lines having the height
+        /// of the strut.
+        ///
+        /// The default is false.
+        /// </Summary>
         public virtual bool ForceStrutHeight { get; set; }
+        /// <Summary>
+        /// A human-readable description of this strut style.
+        ///
+        /// This property is maintained only in debug builds.
+        ///
+        /// This property is not considered when comparing strut styles using `==` or
+        /// [compareTo], and it does not affect [hashCode].
+        /// </Summary>
         public virtual string DebugLabel { get; set; }
         public virtual List<string> FontFamilyFallback { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }

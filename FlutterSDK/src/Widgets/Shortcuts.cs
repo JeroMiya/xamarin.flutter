@@ -446,6 +446,14 @@ namespace FlutterSDK.Widgets.Shortcuts
     /// </Summary>
     public class KeySet<T>
     {
+        /// <Summary>
+        /// A constructor for making a [KeySet] of up to four keys.
+        ///
+        /// If you need a set of more than four keys, use [KeySet.fromSet].
+        ///
+        /// The `key1` parameter must not be null. The same [KeyboardKey] may
+        /// not be appear more than once in the set.
+        /// </Summary>
         public KeySet(T key1, T key2 = default(T), T key3 = default(T), T key4 = default(T))
         : base()
         {
@@ -473,6 +481,13 @@ namespace FlutterSDK.Widgets.Shortcuts
         }
 
 
+        /// <Summary>
+        /// Create  a [KeySet] from a set of [KeyboardKey]s.
+        ///
+        /// Do not mutate the `keys` set after passing it to this object.
+        ///
+        /// The `keys` set must not be null, contain nulls, or be empty.
+        /// </Summary>
         public static KeySet<T> FromSet(HashSet<T> keys)
         {
             var instance = new KeySet<T>();
@@ -514,11 +529,26 @@ namespace FlutterSDK.Widgets.Shortcuts
     /// </Summary>
     public class LogicalKeySet : FlutterSDK.Widgets.Shortcuts.KeySet<FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey>, IDiagnosticable
     {
+        /// <Summary>
+        /// A constructor for making a [LogicalKeySet] of up to four keys.
+        ///
+        /// If you need a set of more than four keys, use [LogicalKeySet.fromSet].
+        ///
+        /// The `key1` parameter must not be null. The same [LogicalKeyboardKey] may
+        /// not be appear more than once in the set.
+        /// </Summary>
         public LogicalKeySet(FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey key1, FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey key2 = default(FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey), FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey key3 = default(FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey), FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey key4 = default(FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey))
         : base(key1, key2, key3, key4)
         {
 
         }
+        /// <Summary>
+        /// Create  a [LogicalKeySet] from a set of [LogicalKeyboardKey]s.
+        ///
+        /// Do not mutate the `keys` set after passing it to this object.
+        ///
+        /// The `keys` must not be null.
+        /// </Summary>
         public static LogicalKeySet FromSet(HashSet<FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey> keys)
         {
             var instance = new LogicalKeySet(keys);
@@ -572,6 +602,12 @@ namespace FlutterSDK.Widgets.Shortcuts
     /// </Summary>
     public class ShortcutMapProperty : FlutterSDK.Foundation.Diagnostics.DiagnosticsProperty<Dictionary<FlutterSDK.Widgets.Shortcuts.LogicalKeySet, FlutterSDK.Widgets.Actions.Intent>>
     {
+        /// <Summary>
+        /// Create a diagnostics property for `Map<LogicalKeySet, Intent>` objects,
+        /// which are the same type as the [Shortcuts.shortcuts] property.
+        ///
+        /// The [showName] and [level] arguments must not be null.
+        /// </Summary>
         public ShortcutMapProperty(string name, Dictionary<FlutterSDK.Widgets.Shortcuts.LogicalKeySet, FlutterSDK.Widgets.Actions.Intent> value, bool showName = true, @Object defaultValue = default(@Object), FlutterSDK.Foundation.Diagnostics.DiagnosticLevel level = default(FlutterSDK.Foundation.Diagnostics.DiagnosticLevel), string description = default(string))
         : base(name, value, showName: showName, defaultValue: defaultValue, level: level, description: description)
         {
@@ -596,11 +632,24 @@ namespace FlutterSDK.Widgets.Shortcuts
     /// </Summary>
     public class ShortcutManager : FlutterSDK.Foundation.Changenotifier.ChangeNotifier, IDiagnosticable
     {
+        /// <Summary>
+        /// Constructs a [ShortcutManager].
+        ///
+        /// The [shortcuts] argument must not  be null.
+        /// </Summary>
         public ShortcutManager(Dictionary<FlutterSDK.Widgets.Shortcuts.LogicalKeySet, FlutterSDK.Widgets.Actions.Intent> shortcuts = default(Dictionary<FlutterSDK.Widgets.Shortcuts.LogicalKeySet, FlutterSDK.Widgets.Actions.Intent>), bool modal = false)
         : base()
         {
             this.Modal = modal;
         }
+        /// <Summary>
+        /// True if the [ShortcutManager] should not pass on keys that it doesn't
+        /// handle to any key-handling widgets that are ancestors to this one.
+        ///
+        /// Setting [modal] to true is the equivalent of always handling any key given
+        /// to it, even if that key doesn't appear in the [shortcuts] map. Keys that
+        /// don't appear in the map will be dropped.
+        /// </Summary>
         public virtual bool Modal { get; set; }
         internal virtual Dictionary<FlutterSDK.Widgets.Shortcuts.LogicalKeySet, FlutterSDK.Widgets.Actions.Intent> _Shortcuts { get; set; }
         public virtual Dictionary<FlutterSDK.Widgets.Shortcuts.LogicalKeySet, FlutterSDK.Widgets.Actions.Intent> Shortcuts { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
@@ -684,6 +733,11 @@ namespace FlutterSDK.Widgets.Shortcuts
     /// </Summary>
     public class Shortcuts : FlutterSDK.Widgets.Framework.StatefulWidget
     {
+        /// <Summary>
+        /// Creates a ActionManager object.
+        ///
+        /// The [child] argument must not be null.
+        /// </Summary>
         public Shortcuts(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Shortcuts.ShortcutManager manager = default(FlutterSDK.Widgets.Shortcuts.ShortcutManager), Dictionary<FlutterSDK.Widgets.Shortcuts.LogicalKeySet, FlutterSDK.Widgets.Actions.Intent> shortcuts = default(Dictionary<FlutterSDK.Widgets.Shortcuts.LogicalKeySet, FlutterSDK.Widgets.Actions.Intent>), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), string debugLabel = default(string))
         : base(key: key)
         {
@@ -692,9 +746,41 @@ namespace FlutterSDK.Widgets.Shortcuts
             this.Child = child;
             this.DebugLabel = debugLabel;
         }
+        /// <Summary>
+        /// The [ShortcutManager] that will manage the mapping between key
+        /// combinations and [Action]s.
+        ///
+        /// If not specified, uses a default-constructed [ShortcutManager].
+        ///
+        /// This manager will be given new [shortcuts] to manage whenever the
+        /// [shortcuts] change materially.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Shortcuts.ShortcutManager Manager { get; set; }
+        /// <Summary>
+        /// {@template flutter.widgets.shortcuts.shortcuts}
+        /// The map of shortcuts that the [ShortcutManager] will be given to manage.
+        ///
+        /// For performance reasons, it is recommended that a pre-built map is passed
+        /// in here (e.g. a final variable from your widget class) instead of defining
+        /// it inline in the build function.
+        /// {@endtemplate}
+        /// </Summary>
         public virtual Dictionary<FlutterSDK.Widgets.Shortcuts.LogicalKeySet, FlutterSDK.Widgets.Actions.Intent> ShortcutsValue { get; set; }
+        /// <Summary>
+        /// The child widget for this [Shortcuts] widget.
+        ///
+        /// {@macro flutter.widgets.child}
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+        /// <Summary>
+        /// The debug label that is printed for this node when logged.
+        ///
+        /// If this label is set, then it will be displayed instead of the shortcut
+        /// map when logged.
+        ///
+        /// This allows simplifying the diagnostic output to avoid cluttering it
+        /// unnecessarily with the default shortcut map.
+        /// </Summary>
         public virtual string DebugLabel { get; set; }
 
         /// <Summary>

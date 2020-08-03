@@ -520,6 +520,9 @@ namespace FlutterSDK.Rendering.Flow
     /// </Summary>
     public class FlowDelegate
     {
+        /// <Summary>
+        /// The flow will repaint whenever [repaint] notifies its listeners.
+        /// </Summary>
         public FlowDelegate(FlutterSDK.Foundation.Changenotifier.Listenable repaint = default(FlutterSDK.Foundation.Changenotifier.Listenable))
         : base()
         {
@@ -664,6 +667,12 @@ namespace FlutterSDK.Rendering.Flow
     /// </Summary>
     public class RenderFlow : FlutterSDK.Rendering.Box.RenderBox, IFlowPaintingContext, IContainerRenderObjectMixin<FlutterSDK.Rendering.Box.RenderBox, FlutterSDK.Rendering.Flow.FlowParentData>, IRenderBoxContainerDefaultsMixin<FlutterSDK.Rendering.Box.RenderBox, FlutterSDK.Rendering.Flow.FlowParentData>
     {
+        /// <Summary>
+        /// Creates a render object for a flow layout.
+        ///
+        /// For optimal performance, consider using children that return true from
+        /// [isRepaintBoundary].
+        /// </Summary>
         public RenderFlow(List<FlutterSDK.Rendering.Box.RenderBox> children = default(List<FlutterSDK.Rendering.Box.RenderBox>), FlutterSDK.Rendering.Flow.FlowDelegate @delegate = default(FlutterSDK.Rendering.Flow.FlowDelegate))
         : base()
         {

@@ -424,6 +424,16 @@ namespace FlutterSDK.Painting.Basictypes
 {
     internal static class BasictypesDefaultClass
     {
+        /// <Summary>
+        /// Returns the opposite of the given [Axis].
+        ///
+        /// Specifically, returns [Axis.horizontal] for [Axis.vertical], and
+        /// vice versa.
+        ///
+        /// See also:
+        ///
+        ///  * [flipAxisDirection], which does the same thing for [AxisDirection] values.
+        /// </Summary>
         internal static FlutterSDK.Painting.Basictypes.Axis FlipAxis(FlutterSDK.Painting.Basictypes.Axis direction)
         {
 
@@ -433,6 +443,13 @@ namespace FlutterSDK.Painting.Basictypes
 
 
 
+        /// <Summary>
+        /// Returns the [Axis] that contains the given [AxisDirection].
+        ///
+        /// Specifically, returns [Axis.vertical] for [AxisDirection.up] and
+        /// [AxisDirection.down] and returns [Axis.horizontal] for [AxisDirection.left]
+        /// and [AxisDirection.right].
+        /// </Summary>
         internal static FlutterSDK.Painting.Basictypes.Axis AxisDirectionToAxis(FlutterSDK.Painting.Basictypes.AxisDirection axisDirection)
         {
 
@@ -442,6 +459,12 @@ namespace FlutterSDK.Painting.Basictypes
 
 
 
+        /// <Summary>
+        /// Returns the [AxisDirection] in which reading occurs in the given [TextDirection].
+        ///
+        /// Specifically, returns [AxisDirection.left] for [TextDirection.rtl] and
+        /// [AxisDirection.right] for [TextDirection.ltr].
+        /// </Summary>
         internal static FlutterSDK.Painting.Basictypes.AxisDirection TextDirectionToAxisDirection(TextDirection textDirection)
         {
 
@@ -451,6 +474,17 @@ namespace FlutterSDK.Painting.Basictypes
 
 
 
+        /// <Summary>
+        /// Returns the opposite of the given [AxisDirection].
+        ///
+        /// Specifically, returns [AxisDirection.up] for [AxisDirection.down] (and
+        /// vice versa), as well as [AxisDirection.left] for [AxisDirection.right] (and
+        /// vice versa).
+        ///
+        /// See also:
+        ///
+        ///  * [flipAxis], which does the same thing for [Axis] values.
+        /// </Summary>
         internal static FlutterSDK.Painting.Basictypes.AxisDirection FlipAxisDirection(FlutterSDK.Painting.Basictypes.AxisDirection axisDirection)
         {
 
@@ -460,6 +494,13 @@ namespace FlutterSDK.Painting.Basictypes
 
 
 
+        /// <Summary>
+        /// Returns whether traveling along the given axis direction visits coordinates
+        /// along that axis in numerically decreasing order.
+        ///
+        /// Specifically, returns true for [AxisDirection.up] and [AxisDirection.left]
+        /// and false for [AxisDirection.down] and [AxisDirection.right].
+        /// </Summary>
         internal static bool AxisDirectionIsReversed(FlutterSDK.Painting.Basictypes.AxisDirection axisDirection)
         {
 

@@ -455,6 +455,12 @@ namespace FlutterSDK.Widgets.Safearea
     /// </Summary>
     public class SafeArea : FlutterSDK.Widgets.Framework.StatelessWidget
     {
+        /// <Summary>
+        /// Creates a widget that avoids operating system interfaces.
+        ///
+        /// The [left], [top], [right], [bottom], and [minimum] arguments must not be
+        /// null.
+        /// </Summary>
         public SafeArea(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), bool left = true, bool top = true, bool right = true, bool bottom = true, FlutterSDK.Painting.Edgeinsets.EdgeInsets minimum = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets), bool maintainBottomViewPadding = false, FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key)
         {
@@ -466,12 +472,50 @@ namespace FlutterSDK.Widgets.Safearea
             this.MaintainBottomViewPadding = maintainBottomViewPadding;
             this.Child = child;
         }
+        /// <Summary>
+        /// Whether to avoid system intrusions on the left.
+        /// </Summary>
         public virtual bool Left { get; set; }
+        /// <Summary>
+        /// Whether to avoid system intrusions at the top of the screen, typically the
+        /// system status bar.
+        /// </Summary>
         public virtual bool Top { get; set; }
+        /// <Summary>
+        /// Whether to avoid system intrusions on the right.
+        /// </Summary>
         public virtual bool Right { get; set; }
+        /// <Summary>
+        /// Whether to avoid system intrusions on the bottom side of the screen.
+        /// </Summary>
         public virtual bool Bottom { get; set; }
+        /// <Summary>
+        /// This minimum padding to apply.
+        ///
+        /// The greater of the minimum insets and the media padding will be applied.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets Minimum { get; set; }
+        /// <Summary>
+        /// Specifies whether the [SafeArea] should maintain the [viewPadding] instead
+        /// of the [padding] when consumed by the [viewInsets] of the current
+        /// context's [MediaQuery], defaults to false.
+        ///
+        /// For example, if there is an onscreen keyboard displayed above the
+        /// SafeArea, the padding can be maintained below the obstruction rather than
+        /// being consumed. This can be helpful in cases where your layout contains
+        /// flexible widgets, which could visibly move when opening a software
+        /// keyboard due to the change in the padding value. Setting this to true will
+        /// avoid the UI shift.
+        /// </Summary>
         public virtual bool MaintainBottomViewPadding { get; set; }
+        /// <Summary>
+        /// The widget below this widget in the tree.
+        ///
+        /// The padding on the [MediaQuery] for the [child] will be suitably adjusted
+        /// to zero out any sides that were avoided by this widget.
+        ///
+        /// {@macro flutter.widgets.child}
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
@@ -524,6 +568,11 @@ namespace FlutterSDK.Widgets.Safearea
     /// </Summary>
     public class SliverSafeArea : FlutterSDK.Widgets.Framework.StatelessWidget
     {
+        /// <Summary>
+        /// Creates a sliver that avoids operating system interfaces.
+        ///
+        /// The [left], [top], [right], [bottom], and [minimum] arguments must not be null.
+        /// </Summary>
         public SliverSafeArea(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), bool left = true, bool top = true, bool right = true, bool bottom = true, FlutterSDK.Painting.Edgeinsets.EdgeInsets minimum = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets), FlutterSDK.Widgets.Framework.Widget sliver = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key)
         {
@@ -534,11 +583,35 @@ namespace FlutterSDK.Widgets.Safearea
             this.Minimum = minimum;
             this.Sliver = sliver;
         }
+        /// <Summary>
+        /// Whether to avoid system intrusions on the left.
+        /// </Summary>
         public virtual bool Left { get; set; }
+        /// <Summary>
+        /// Whether to avoid system intrusions at the top of the screen, typically the
+        /// system status bar.
+        /// </Summary>
         public virtual bool Top { get; set; }
+        /// <Summary>
+        /// Whether to avoid system intrusions on the right.
+        /// </Summary>
         public virtual bool Right { get; set; }
+        /// <Summary>
+        /// Whether to avoid system intrusions on the bottom side of the screen.
+        /// </Summary>
         public virtual bool Bottom { get; set; }
+        /// <Summary>
+        /// This minimum padding to apply.
+        ///
+        /// The greater of the minimum padding and the media padding is be applied.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets Minimum { get; set; }
+        /// <Summary>
+        /// The sliver below this sliver in the tree.
+        ///
+        /// The padding on the [MediaQuery] for the [sliver] will be suitably adjusted
+        /// to zero out any sides that were avoided by this sliver.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Sliver { get; set; }
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)

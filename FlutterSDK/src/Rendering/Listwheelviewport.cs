@@ -493,6 +493,9 @@ namespace FlutterSDK.Rendering.Listwheelviewport
     {
         public ListWheelParentData()
         { }
+        /// <Summary>
+        /// Index of this child in its parent's child list.
+        /// </Summary>
         public virtual int Index { get; set; }
     }
 
@@ -572,6 +575,11 @@ namespace FlutterSDK.Rendering.Listwheelviewport
     /// </Summary>
     public class RenderListWheelViewport : FlutterSDK.Rendering.Box.RenderBox, IRenderAbstractViewport, IContainerRenderObjectMixin<FlutterSDK.Rendering.Box.RenderBox, FlutterSDK.Rendering.Listwheelviewport.ListWheelParentData>
     {
+        /// <Summary>
+        /// Creates a [RenderListWheelViewport] which renders children on a wheel.
+        ///
+        /// All arguments must not be null. Optional arguments have reasonable defaults.
+        /// </Summary>
         public RenderListWheelViewport(FlutterSDK.Rendering.Listwheelviewport.ListWheelChildManager childManager = default(FlutterSDK.Rendering.Listwheelviewport.ListWheelChildManager), FlutterSDK.Rendering.Viewportoffset.ViewportOffset offset = default(FlutterSDK.Rendering.Viewportoffset.ViewportOffset), double diameterRatio = default(double), double perspective = default(double), double offAxisFraction = 0, bool useMagnifier = false, double magnification = 1, double overAndUnderCenterOpacity = 1, double itemExtent = default(double), double squeeze = 1, bool clipToSize = true, bool renderChildrenOutsideViewport = false, List<FlutterSDK.Rendering.Box.RenderBox> children = default(List<FlutterSDK.Rendering.Box.RenderBox>))
         : base()
         {
@@ -580,11 +588,30 @@ namespace FlutterSDK.Rendering.Listwheelviewport
         }
 
 
+        /// <Summary>
+        /// An arbitrary but aesthetically reasonable default value for [diameterRatio].
+        /// </Summary>
         public virtual double DefaultDiameterRatio { get; set; }
+        /// <Summary>
+        /// An arbitrary but aesthetically reasonable default value for [perspective].
+        /// </Summary>
         public virtual double DefaultPerspective { get; set; }
+        /// <Summary>
+        /// An error message to show when the provided [diameterRatio] is zero.
+        /// </Summary>
         public virtual string DiameterRatioZeroMessage { get; set; }
+        /// <Summary>
+        /// An error message to show when the [perspective] value is too high.
+        /// </Summary>
         public virtual string PerspectiveTooHighMessage { get; set; }
+        /// <Summary>
+        /// An error message to show when [clipToSize] and [renderChildrenOutsideViewport]
+        /// are set to conflicting values.
+        /// </Summary>
         public virtual string ClipToSizeAndRenderChildrenOutsideViewportConflict { get; set; }
+        /// <Summary>
+        /// The delegate that manages the children of this object.
+        /// </Summary>
         public virtual FlutterSDK.Rendering.Listwheelviewport.ListWheelChildManager ChildManager { get; set; }
         internal virtual FlutterSDK.Rendering.Viewportoffset.ViewportOffset _Offset { get; set; }
         internal virtual double _DiameterRatio { get; set; }

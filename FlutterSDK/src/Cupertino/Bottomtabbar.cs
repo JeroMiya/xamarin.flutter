@@ -332,6 +332,9 @@ namespace FlutterSDK.Cupertino.Bottomtabbar
     /// </Summary>
     public class CupertinoTabBar : FlutterSDK.Widgets.Framework.StatelessWidget, IPreferredSizeWidget
     {
+        /// <Summary>
+        /// Creates a tab bar in the iOS style.
+        /// </Summary>
         public CupertinoTabBar(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), List<FlutterSDK.Widgets.Bottomnavigationbaritem.BottomNavigationBarItem> items = default(List<FlutterSDK.Widgets.Bottomnavigationbaritem.BottomNavigationBarItem>), FlutterSDK.Foundation.Basictypes.ValueChanged<int> onTap = default(FlutterSDK.Foundation.Basictypes.ValueChanged<int>), int currentIndex = 0, FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color activeColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color inactiveColor = default(FlutterBinding.UI.Color), double iconSize = 30.0, FlutterSDK.Painting.Boxborder.Border border = default(FlutterSDK.Painting.Boxborder.Border))
         : base(key: key)
         {
@@ -344,13 +347,65 @@ namespace FlutterSDK.Cupertino.Bottomtabbar
             this.IconSize = iconSize;
             this.Border = border;
         }
+        /// <Summary>
+        /// The interactive items laid out within the bottom navigation bar.
+        ///
+        /// Must not be null.
+        /// </Summary>
         public virtual List<FlutterSDK.Widgets.Bottomnavigationbaritem.BottomNavigationBarItem> Items { get; set; }
+        /// <Summary>
+        /// The callback that is called when a item is tapped.
+        ///
+        /// The widget creating the bottom navigation bar needs to keep track of the
+        /// current index and call `setState` to rebuild it with the newly provided
+        /// index.
+        /// </Summary>
         public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<int> OnTap { get; set; }
+        /// <Summary>
+        /// The index into [items] of the current active item.
+        ///
+        /// Must not be null and must inclusively be between 0 and the number of tabs
+        /// minus 1.
+        /// </Summary>
         public virtual int CurrentIndex { get; set; }
+        /// <Summary>
+        /// The background color of the tab bar. If it contains transparency, the
+        /// tab bar will automatically produce a blurring effect to the content
+        /// behind it.
+        ///
+        /// Defaults to [CupertinoTheme]'s `barBackgroundColor` when null.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
+        /// <Summary>
+        /// The foreground color of the icon and title for the [BottomNavigationBarItem]
+        /// of the selected tab.
+        ///
+        /// Defaults to [CupertinoTheme]'s `primaryColor` if null.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color ActiveColor { get; set; }
+        /// <Summary>
+        /// The foreground color of the icon and title for the [BottomNavigationBarItem]s
+        /// in the unselected state.
+        ///
+        /// Defaults to a [CupertinoDynamicColor] that matches the disabled foreground
+        /// color of the native `UITabBar` component. Cannot be null.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color InactiveColor { get; set; }
+        /// <Summary>
+        /// The size of all of the [BottomNavigationBarItem] icons.
+        ///
+        /// This value is used to configure the [IconTheme] for the navigation bar.
+        /// When a [BottomNavigationBarItem.icon] widget is not an [Icon] the widget
+        /// should configure itself to match the icon theme's size and color.
+        ///
+        /// Must not be null.
+        /// </Summary>
         public virtual double IconSize { get; set; }
+        /// <Summary>
+        /// The border of the [CupertinoTabBar].
+        ///
+        /// The default value is a one physical pixel top border with grey color.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Boxborder.Border Border { get; set; }
         public virtual Size PreferredSize { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 

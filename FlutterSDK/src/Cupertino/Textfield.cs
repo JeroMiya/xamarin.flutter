@@ -407,6 +407,43 @@ namespace FlutterSDK.Cupertino.Textfield
     /// </Summary>
     public class CupertinoTextField : FlutterSDK.Widgets.Framework.StatefulWidget
     {
+        /// <Summary>
+        /// Creates an iOS-style text field.
+        ///
+        /// To provide a prefilled text entry, pass in a [TextEditingController] with
+        /// an initial value to the [controller] parameter.
+        ///
+        /// To provide a hint placeholder text that appears when the text entry is
+        /// empty, pass a [String] to the [placeholder] parameter.
+        ///
+        /// The [maxLines] property can be set to null to remove the restriction on
+        /// the number of lines. In this mode, the intrinsic height of the widget will
+        /// grow as the number of lines of text grows. By default, it is `1`, meaning
+        /// this is a single-line text field and will scroll horizontally when
+        /// overflown. [maxLines] must not be zero.
+        ///
+        /// The text cursor is not shown if [showCursor] is false or if [showCursor]
+        /// is null (the default) and [readOnly] is true.
+        ///
+        /// If specified, the [maxLength] property must be greater than zero.
+        ///
+        /// The [selectionHeightStyle] and [selectionWidthStyle] properties allow
+        /// changing the shape of the selection highlighting. These properties default
+        /// to [ui.BoxHeightStyle.tight] and [ui.BoxWidthStyle.tight] respectively and
+        /// must not be null.
+        ///
+        /// The [autocorrect], [autofocus], [clearButtonMode], [dragStartBehavior],
+        /// [expands], [maxLengthEnforced], [obscureText], [prefixMode], [readOnly],
+        /// [scrollPadding], [suffixMode], [textAlign], [selectionHeightStyle],
+        /// [selectionWidthStyle], and [enableSuggestions] properties must not be null.
+        ///
+        /// See also:
+        ///
+        ///  * [minLines]
+        ///  * [expands], to allow the widget to size itself to its parent's height.
+        ///  * [maxLength], which discusses the precise meaning of "number of
+        ///    characters" and how it may differ from the intuitive meaning.
+        /// </Summary>
         public CupertinoTextField(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Editabletext.TextEditingController controller = default(FlutterSDK.Widgets.Editabletext.TextEditingController), FlutterSDK.Widgets.Focusmanager.FocusNode focusNode = default(FlutterSDK.Widgets.Focusmanager.FocusNode), FlutterSDK.Painting.Boxdecoration.BoxDecoration decoration = default(FlutterSDK.Painting.Boxdecoration.BoxDecoration), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), string placeholder = default(string), FlutterSDK.Painting.Textstyle.TextStyle placeholderStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Widgets.Framework.Widget prefix = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Cupertino.Textfield.OverlayVisibilityMode prefixMode = default(FlutterSDK.Cupertino.Textfield.OverlayVisibilityMode), FlutterSDK.Widgets.Framework.Widget suffix = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Cupertino.Textfield.OverlayVisibilityMode suffixMode = default(FlutterSDK.Cupertino.Textfield.OverlayVisibilityMode), FlutterSDK.Cupertino.Textfield.OverlayVisibilityMode clearButtonMode = default(FlutterSDK.Cupertino.Textfield.OverlayVisibilityMode), FlutterSDK.Services.Textinput.TextInputType keyboardType = default(FlutterSDK.Services.Textinput.TextInputType), FlutterSDK.Services.Textinput.TextInputAction textInputAction = default(FlutterSDK.Services.Textinput.TextInputAction), FlutterSDK.Services.Textinput.TextCapitalization textCapitalization = default(FlutterSDK.Services.Textinput.TextCapitalization), FlutterSDK.Painting.Textstyle.TextStyle style = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Strutstyle.StrutStyle strutStyle = default(FlutterSDK.Painting.Strutstyle.StrutStyle), TextAlign textAlign = default(TextAlign), FlutterSDK.Painting.Alignment.TextAlignVertical textAlignVertical = default(FlutterSDK.Painting.Alignment.TextAlignVertical), bool readOnly = false, FlutterSDK.Widgets.Editabletext.ToolbarOptions toolbarOptions = default(FlutterSDK.Widgets.Editabletext.ToolbarOptions), bool showCursor = default(bool), bool autofocus = false, bool obscureText = false, bool autocorrect = true, FlutterSDK.Services.Textinput.SmartDashesType smartDashesType = default(FlutterSDK.Services.Textinput.SmartDashesType), FlutterSDK.Services.Textinput.SmartQuotesType smartQuotesType = default(FlutterSDK.Services.Textinput.SmartQuotesType), bool enableSuggestions = true, int maxLines = 1, int minLines = default(int), bool expands = false, int maxLength = default(int), bool maxLengthEnforced = true, FlutterSDK.Foundation.Basictypes.ValueChanged<string> onChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<string>), VoidCallback onEditingComplete = default(VoidCallback), FlutterSDK.Foundation.Basictypes.ValueChanged<string> onSubmitted = default(FlutterSDK.Foundation.Basictypes.ValueChanged<string>), List<FlutterSDK.Services.Textformatter.TextInputFormatter> inputFormatters = default(List<FlutterSDK.Services.Textformatter.TextInputFormatter>), bool enabled = default(bool), double cursorWidth = 2.0, Radius cursorRadius = default(Radius), FlutterBinding.UI.Color cursorColor = default(FlutterBinding.UI.Color), BoxHeightStyle selectionHeightStyle = default(BoxHeightStyle), BoxWidthStyle selectionWidthStyle = default(BoxWidthStyle), Brightness keyboardAppearance = default(Brightness), FlutterSDK.Painting.Edgeinsets.EdgeInsets scrollPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets), FlutterSDK.Gestures.Recognizer.DragStartBehavior dragStartBehavior = default(FlutterSDK.Gestures.Recognizer.DragStartBehavior), bool enableInteractiveSelection = true, FlutterSDK.Gestures.Tap.GestureTapCallback onTap = default(FlutterSDK.Gestures.Tap.GestureTapCallback), FlutterSDK.Widgets.Scrollcontroller.ScrollController scrollController = default(FlutterSDK.Widgets.Scrollcontroller.ScrollController), FlutterSDK.Widgets.Scrollphysics.ScrollPhysics scrollPhysics = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics))
         : base(key: key)
         {
@@ -456,54 +493,319 @@ namespace FlutterSDK.Cupertino.Textfield
             this.ScrollController = scrollController;
             this.ScrollPhysics = scrollPhysics;
         }
+        /// <Summary>
+        /// Controls the text being edited.
+        ///
+        /// If null, this widget will create its own [TextEditingController].
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Editabletext.TextEditingController Controller { get; set; }
+        /// <Summary>
+        /// {@macro flutter.widgets.Focus.focusNode}
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Focusmanager.FocusNode FocusNode { get; set; }
+        /// <Summary>
+        /// Controls the [BoxDecoration] of the box behind the text input.
+        ///
+        /// Defaults to having a rounded rectangle grey border and can be null to have
+        /// no box decoration.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Boxdecoration.BoxDecoration Decoration { get; set; }
+        /// <Summary>
+        /// Padding around the text entry area between the [prefix] and [suffix]
+        /// or the clear button when [clearButtonMode] is not never.
+        ///
+        /// Defaults to a padding of 6 pixels on all sides and can be null.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Padding { get; set; }
+        /// <Summary>
+        /// A lighter colored placeholder hint that appears on the first line of the
+        /// text field when the text entry is empty.
+        ///
+        /// Defaults to having no placeholder text.
+        ///
+        /// The text style of the placeholder text matches that of the text field's
+        /// main text entry except a lighter font weight and a grey font color.
+        /// </Summary>
         public virtual string Placeholder { get; set; }
+        /// <Summary>
+        /// The style to use for the placeholder text.
+        ///
+        /// The [placeholderStyle] is merged with the [style] [TextStyle] when applied
+        /// to the [placeholder] text. To avoid merging with [style], specify
+        /// [TextStyle.inherit] as false.
+        ///
+        /// Defaults to the [style] property with w300 font weight and grey color.
+        ///
+        /// If specifically set to null, placeholder's style will be the same as [style].
+        /// </Summary>
         public virtual FlutterSDK.Painting.Textstyle.TextStyle PlaceholderStyle { get; set; }
+        /// <Summary>
+        /// An optional [Widget] to display before the text.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Prefix { get; set; }
+        /// <Summary>
+        /// Controls the visibility of the [prefix] widget based on the state of
+        /// text entry when the [prefix] argument is not null.
+        ///
+        /// Defaults to [OverlayVisibilityMode.always] and cannot be null.
+        ///
+        /// Has no effect when [prefix] is null.
+        /// </Summary>
         public virtual FlutterSDK.Cupertino.Textfield.OverlayVisibilityMode PrefixMode { get; set; }
+        /// <Summary>
+        /// An optional [Widget] to display after the text.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Suffix { get; set; }
+        /// <Summary>
+        /// Controls the visibility of the [suffix] widget based on the state of
+        /// text entry when the [suffix] argument is not null.
+        ///
+        /// Defaults to [OverlayVisibilityMode.always] and cannot be null.
+        ///
+        /// Has no effect when [suffix] is null.
+        /// </Summary>
         public virtual FlutterSDK.Cupertino.Textfield.OverlayVisibilityMode SuffixMode { get; set; }
+        /// <Summary>
+        /// Show an iOS-style clear button to clear the current text entry.
+        ///
+        /// Can be made to appear depending on various text states of the
+        /// [TextEditingController].
+        ///
+        /// Will only appear if no [suffix] widget is appearing.
+        ///
+        /// Defaults to never appearing and cannot be null.
+        /// </Summary>
         public virtual FlutterSDK.Cupertino.Textfield.OverlayVisibilityMode ClearButtonMode { get; set; }
+        /// <Summary>
+        /// {@macro flutter.widgets.editableText.keyboardType}
+        /// </Summary>
         public virtual FlutterSDK.Services.Textinput.TextInputType KeyboardType { get; set; }
+        /// <Summary>
+        /// The type of action button to use for the keyboard.
+        ///
+        /// Defaults to [TextInputAction.newline] if [keyboardType] is
+        /// [TextInputType.multiline] and [TextInputAction.done] otherwise.
+        /// </Summary>
         public virtual FlutterSDK.Services.Textinput.TextInputAction TextInputAction { get; set; }
+        /// <Summary>
+        /// {@macro flutter.widgets.editableText.textCapitalization}
+        /// </Summary>
         public virtual FlutterSDK.Services.Textinput.TextCapitalization TextCapitalization { get; set; }
+        /// <Summary>
+        /// The style to use for the text being edited.
+        ///
+        /// Also serves as a base for the [placeholder] text's style.
+        ///
+        /// Defaults to the standard iOS font style from [CupertinoTheme] if null.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Textstyle.TextStyle Style { get; set; }
+        /// <Summary>
+        /// {@macro flutter.widgets.editableText.strutStyle}
+        /// </Summary>
         public virtual FlutterSDK.Painting.Strutstyle.StrutStyle StrutStyle { get; set; }
+        /// <Summary>
+        /// {@macro flutter.widgets.editableText.textAlign}
+        /// </Summary>
         public virtual TextAlign TextAlign { get; set; }
+        /// <Summary>
+        /// Configuration of toolbar options.
+        ///
+        /// If not set, select all and paste will default to be enabled. Copy and cut
+        /// will be disabled if [obscureText] is true. If [readOnly] is true,
+        /// paste and cut will be disabled regardless.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Editabletext.ToolbarOptions ToolbarOptions { get; set; }
+        /// <Summary>
+        /// {@macro flutter.widgets.inputDecorator.textAlignVertical}
+        /// </Summary>
         public virtual FlutterSDK.Painting.Alignment.TextAlignVertical TextAlignVertical { get; set; }
+        /// <Summary>
+        /// {@macro flutter.widgets.editableText.readOnly}
+        /// </Summary>
         public virtual bool ReadOnly { get; set; }
+        /// <Summary>
+        /// {@macro flutter.widgets.editableText.showCursor}
+        /// </Summary>
         public virtual bool ShowCursor { get; set; }
+        /// <Summary>
+        /// {@macro flutter.widgets.editableText.autofocus}
+        /// </Summary>
         public virtual bool Autofocus { get; set; }
+        /// <Summary>
+        /// {@macro flutter.widgets.editableText.obscureText}
+        /// </Summary>
         public virtual bool ObscureText { get; set; }
+        /// <Summary>
+        /// {@macro flutter.widgets.editableText.autocorrect}
+        /// </Summary>
         public virtual bool Autocorrect { get; set; }
+        /// <Summary>
+        /// {@macro flutter.services.textInput.smartDashesType}
+        /// </Summary>
         public virtual FlutterSDK.Services.Textinput.SmartDashesType SmartDashesType { get; set; }
+        /// <Summary>
+        /// {@macro flutter.services.textInput.smartQuotesType}
+        /// </Summary>
         public virtual FlutterSDK.Services.Textinput.SmartQuotesType SmartQuotesType { get; set; }
+        /// <Summary>
+        /// {@macro flutter.services.textInput.enableSuggestions}
+        /// </Summary>
         public virtual bool EnableSuggestions { get; set; }
+        /// <Summary>
+        /// {@macro flutter.widgets.editableText.maxLines}
+        /// </Summary>
         public virtual int MaxLines { get; set; }
+        /// <Summary>
+        /// {@macro flutter.widgets.editableText.minLines}
+        /// </Summary>
         public virtual int MinLines { get; set; }
+        /// <Summary>
+        /// {@macro flutter.widgets.editableText.expands}
+        /// </Summary>
         public virtual bool Expands { get; set; }
+        /// <Summary>
+        /// The maximum number of characters (Unicode scalar values) to allow in the
+        /// text field.
+        ///
+        /// If set, a character counter will be displayed below the
+        /// field, showing how many characters have been entered and how many are
+        /// allowed. After [maxLength] characters have been input, additional input
+        /// is ignored, unless [maxLengthEnforced] is set to false. The TextField
+        /// enforces the length with a [LengthLimitingTextInputFormatter], which is
+        /// evaluated after the supplied [inputFormatters], if any.
+        ///
+        /// This value must be either null or greater than zero. If set to null
+        /// (the default), there is no limit to the number of characters allowed.
+        ///
+        /// Whitespace characters (e.g. newline, space, tab) are included in the
+        /// character count.
+        ///
+        /// ## Limitations
+        ///
+        /// The CupertinoTextField does not currently count Unicode grapheme clusters
+        /// (i.e. characters visible to the user), it counts Unicode scalar values,
+        /// which leaves out a number of useful possible characters (like many emoji
+        /// and composed characters), so this will be inaccurate in the presence of
+        /// those characters. If you expect to encounter these kinds of characters, be
+        /// generous in the maxLength used.
+        ///
+        /// For instance, the character "ö" can be represented as '\u{006F}\u{0308}',
+        /// which is the letter "o" followed by a composed diaeresis "¨", or it can
+        /// be represented as '\u{00F6}', which is the Unicode scalar value "LATIN
+        /// SMALL LETTER O WITH DIAERESIS". In the first case, the text field will
+        /// count two characters, and the second case will be counted as one
+        /// character, even though the user can see no difference in the input.
+        ///
+        /// Similarly, some emoji are represented by multiple scalar values. The
+        /// Unicode "THUMBS UP SIGN + MEDIUM SKIN TONE MODIFIER", "👍🏽", should be
+        /// counted as a single character, but because it is a combination of two
+        /// Unicode scalar values, '\u{1F44D}\u{1F3FD}', it is counted as two
+        /// characters.
+        ///
+        /// See also:
+        ///
+        ///  * [LengthLimitingTextInputFormatter] for more information on how it
+        ///    counts characters, and how it may differ from the intuitive meaning.
+        /// </Summary>
         public virtual int MaxLength { get; set; }
+        /// <Summary>
+        /// If true, prevents the field from allowing more than [maxLength]
+        /// characters.
+        ///
+        /// If [maxLength] is set, [maxLengthEnforced] indicates whether or not to
+        /// enforce the limit, or merely provide a character counter and warning when
+        /// [maxLength] is exceeded.
+        /// </Summary>
         public virtual bool MaxLengthEnforced { get; set; }
+        /// <Summary>
+        /// {@macro flutter.widgets.editableText.onChanged}
+        /// </Summary>
         public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<string> OnChanged { get; set; }
+        /// <Summary>
+        /// {@macro flutter.widgets.editableText.onEditingComplete}
+        /// </Summary>
         public virtual VoidCallback OnEditingComplete { get; set; }
+        /// <Summary>
+        /// {@macro flutter.widgets.editableText.onSubmitted}
+        ///
+        /// See also:
+        ///
+        ///  * [EditableText.onSubmitted] for an example of how to handle moving to
+        ///    the next/previous field when using [TextInputAction.next] and
+        ///    [TextInputAction.previous] for [textInputAction].
+        /// </Summary>
         public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<string> OnSubmitted { get; set; }
+        /// <Summary>
+        /// {@macro flutter.widgets.editableText.inputFormatters}
+        /// </Summary>
         public virtual List<FlutterSDK.Services.Textformatter.TextInputFormatter> InputFormatters { get; set; }
+        /// <Summary>
+        /// Disables the text field when false.
+        ///
+        /// Text fields in disabled states have a light grey background and don't
+        /// respond to touch events including the [prefix], [suffix] and the clear
+        /// button.
+        /// </Summary>
         public virtual bool Enabled { get; set; }
+        /// <Summary>
+        /// {@macro flutter.widgets.editableText.cursorWidth}
+        /// </Summary>
         public virtual double CursorWidth { get; set; }
+        /// <Summary>
+        /// {@macro flutter.widgets.editableText.cursorRadius}
+        /// </Summary>
         public virtual Radius CursorRadius { get; set; }
+        /// <Summary>
+        /// The color to use when painting the cursor.
+        ///
+        /// Defaults to the [CupertinoThemeData.primaryColor] of the ambient theme,
+        /// which itself defaults to [CupertinoColors.activeBlue] in the light theme
+        /// and [CupertinoColors.activeOrange] in the dark theme.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color CursorColor { get; set; }
+        /// <Summary>
+        /// Controls how tall the selection highlight boxes are computed to be.
+        ///
+        /// See [ui.BoxHeightStyle] for details on available styles.
+        /// </Summary>
         public virtual BoxHeightStyle SelectionHeightStyle { get; set; }
+        /// <Summary>
+        /// Controls how wide the selection highlight boxes are computed to be.
+        ///
+        /// See [ui.BoxWidthStyle] for details on available styles.
+        /// </Summary>
         public virtual BoxWidthStyle SelectionWidthStyle { get; set; }
+        /// <Summary>
+        /// The appearance of the keyboard.
+        ///
+        /// This setting is only honored on iOS devices.
+        ///
+        /// If null, defaults to [Brightness.light].
+        /// </Summary>
         public virtual Brightness KeyboardAppearance { get; set; }
+        /// <Summary>
+        /// {@macro flutter.widgets.editableText.scrollPadding}
+        /// </Summary>
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets ScrollPadding { get; set; }
+        /// <Summary>
+        /// {@macro flutter.widgets.editableText.enableInteractiveSelection}
+        /// </Summary>
         public virtual bool EnableInteractiveSelection { get; set; }
+        /// <Summary>
+        /// {@macro flutter.widgets.scrollable.dragStartBehavior}
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Recognizer.DragStartBehavior DragStartBehavior { get; set; }
+        /// <Summary>
+        /// {@macro flutter.widgets.editableText.scrollController}
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Scrollcontroller.ScrollController ScrollController { get; set; }
+        /// <Summary>
+        /// {@macro flutter.widgets.editableText.scrollPhysics}
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Scrollphysics.ScrollPhysics ScrollPhysics { get; set; }
+        /// <Summary>
+        /// {@macro flutter.material.textfield.onTap}
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Tap.GestureTapCallback OnTap { get; set; }
         public virtual bool SelectionEnabled { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 

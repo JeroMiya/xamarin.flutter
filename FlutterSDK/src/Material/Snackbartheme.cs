@@ -438,6 +438,11 @@ namespace FlutterSDK.Material.Snackbartheme
     /// </Summary>
     public class SnackBarThemeData : IDiagnosticable
     {
+        /// <Summary>
+        /// Creates a theme that can be used for [ThemeData.snackBarTheme].
+        ///
+        /// The [elevation] must be null or non-negative.
+        /// </Summary>
         public SnackBarThemeData(FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color actionTextColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color disabledActionTextColor = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Textstyle.TextStyle contentTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), double elevation = default(double), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), FlutterSDK.Material.Snackbartheme.SnackBarBehavior behavior = default(FlutterSDK.Material.Snackbartheme.SnackBarBehavior))
         : base()
         {
@@ -449,12 +454,53 @@ namespace FlutterSDK.Material.Snackbartheme
             this.Shape = shape;
             this.Behavior = behavior;
         }
+        /// <Summary>
+        /// Default value for [SnackBar.backgroundColor].
+        ///
+        /// If null, [SnackBar] defaults to dark grey: `Color(0xFF323232)`.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
+        /// <Summary>
+        /// Default value for [SnackBarAction.textColor].
+        ///
+        /// If null, [SnackBarAction] defaults to [ThemeData.colorScheme.secondaryColor].
+        /// </Summary>
         public virtual FlutterBinding.UI.Color ActionTextColor { get; set; }
+        /// <Summary>
+        /// Default value for [SnackBarAction.disabledTextColor].
+        ///
+        /// If null, [SnackBarAction] defaults to [ColorScheme.onSurface] with its
+        /// opacity set to 0.30 if the [Theme]'s brightness is [Brightness.dark], 0.38
+        /// otherwise.
+        /// </Summary>
         public virtual FlutterBinding.UI.Color DisabledActionTextColor { get; set; }
+        /// <Summary>
+        /// Used to configure the [DefaultTextStyle] for the [SnackBar.content] widget.
+        ///
+        /// If null, [SnackBar] defines its default.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Textstyle.TextStyle ContentTextStyle { get; set; }
+        /// <Summary>
+        /// Default value for [SnackBar.elevation].
+        ///
+        /// If null, [SnackBar] uses a default of 6.0.
+        /// </Summary>
         public virtual double Elevation { get; set; }
+        /// <Summary>
+        /// Default value for [SnackBar.shape].
+        ///
+        /// If null, [SnackBar] provides different defaults depending on the
+        /// [SnackBarBehavior]. For [SnackBarBehavior.fixed], no overriding shape is
+        /// specified, so the [SnackBar] is rectangular. For
+        /// [SnackBarBehavior.floating], it uses a [RoundedRectangleBorder] with a
+        /// circular corner radius of 4.0.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Borders.ShapeBorder Shape { get; set; }
+        /// <Summary>
+        /// Default value for [SnackBar.behavior].
+        ///
+        /// If null, [SnackBar] will default to [SnackBarBehavior.fixed].
+        /// </Summary>
         public virtual FlutterSDK.Material.Snackbartheme.SnackBarBehavior Behavior { get; set; }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 

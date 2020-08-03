@@ -448,6 +448,9 @@ namespace FlutterSDK.Widgets.Sliverfill
     /// </Summary>
     public class SliverFillViewport : FlutterSDK.Widgets.Framework.StatelessWidget
     {
+        /// <Summary>
+        /// Creates a sliver whose box children that each fill the viewport.
+        /// </Summary>
         public SliverFillViewport(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Sliver.SliverChildDelegate @delegate = default(FlutterSDK.Widgets.Sliver.SliverChildDelegate), double viewportFraction = 1.0, bool padEnds = true)
         : base(key: key)
         {
@@ -455,8 +458,31 @@ namespace FlutterSDK.Widgets.Sliverfill
             this.ViewportFraction = viewportFraction;
             this.PadEnds = padEnds;
         }
+        /// <Summary>
+        /// The fraction of the viewport that each child should fill in the main axis.
+        ///
+        /// If this fraction is less than 1.0, more than one child will be visible at
+        /// once. If this fraction is greater than 1.0, each child will be larger than
+        /// the viewport in the main axis.
+        /// </Summary>
         public virtual double ViewportFraction { get; set; }
+        /// <Summary>
+        /// Whether to add padding to both ends of the list.
+        ///
+        /// If this is set to true and [viewportFraction] < 1.0, padding will be added
+        /// such that the first and last child slivers will be in the center of
+        /// the viewport when scrolled all the way to the start or end, respectively.
+        /// You may want to set this to false if this [SliverFillViewport] is not the only
+        /// widget along this main axis, such as in a [CustomScrollView] with multiple
+        /// children.
+        ///
+        /// This option cannot be [null]. If [viewportFraction] >= 1.0, this option has no
+        /// effect. Defaults to [true].
+        /// </Summary>
         public virtual bool PadEnds { get; set; }
+        /// <Summary>
+        /// {@macro flutter.widgets.sliverMultiBoxAdaptor.delegate}
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Sliver.SliverChildDelegate @delegate { get; set; }
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
@@ -801,6 +827,9 @@ namespace FlutterSDK.Widgets.Sliverfill
     /// </Summary>
     public class SliverFillRemaining : FlutterSDK.Widgets.Framework.StatelessWidget
     {
+        /// <Summary>
+        /// Creates a sliver that fills the remaining space in the viewport.
+        /// </Summary>
         public SliverFillRemaining(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), bool hasScrollBody = true, bool fillOverscroll = false)
         : base(key: key)
         {
@@ -808,8 +837,33 @@ namespace FlutterSDK.Widgets.Sliverfill
             this.HasScrollBody = hasScrollBody;
             this.FillOverscroll = fillOverscroll;
         }
+        /// <Summary>
+        /// Doc
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+        /// <Summary>
+        /// Indicates whether the child has a scrollable body, this value cannot be
+        /// null.
+        ///
+        /// Defaults to true such that the child will extend beyond the viewport and
+        /// scroll, as seen in [NestedScrollView].
+        ///
+        /// Setting this value to false will allow the child to fill the remainder of
+        /// the viewport and not extend further. However, if the
+        /// [precedingScrollExtent] of the [SliverConstraints] and/or the [child]'s
+        /// extent exceeds the size of the viewport, the sliver will defer to the
+        /// child's size rather than overriding it.
+        /// </Summary>
         public virtual bool HasScrollBody { get; set; }
+        /// <Summary>
+        /// Indicates whether the child should stretch to fill the overscroll area
+        /// created by certain scroll physics, such as iOS' default scroll physics.
+        /// This value cannot be null. This flag is only relevant when the
+        /// [hasScrollBody] value is false.
+        ///
+        /// Defaults to false, meaning the default behavior is for the child to
+        /// maintain its size and not extend into the overscroll area.
+        /// </Summary>
         public virtual bool FillOverscroll { get; set; }
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)

@@ -332,6 +332,9 @@ namespace FlutterSDK.Cupertino.Tabview
     /// </Summary>
     public class CupertinoTabView : FlutterSDK.Widgets.Framework.StatefulWidget
     {
+        /// <Summary>
+        /// Creates the content area for a tab in a [CupertinoTabScaffold].
+        /// </Summary>
         public CupertinoTabView(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.WidgetBuilder builder = default(FlutterSDK.Widgets.Framework.WidgetBuilder), FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Navigator.NavigatorState> navigatorKey = default(FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Navigator.NavigatorState>), string defaultTitle = default(string), Dictionary<string, object> routes = default(Dictionary<string, object>), FlutterSDK.Widgets.Navigator.RouteFactory onGenerateRoute = default(FlutterSDK.Widgets.Navigator.RouteFactory), FlutterSDK.Widgets.Navigator.RouteFactory onUnknownRoute = default(FlutterSDK.Widgets.Navigator.RouteFactory), List<FlutterSDK.Widgets.Navigator.NavigatorObserver> navigatorObservers = default(List<FlutterSDK.Widgets.Navigator.NavigatorObserver>))
         : base(key: key)
         {
@@ -343,12 +346,85 @@ namespace FlutterSDK.Cupertino.Tabview
             this.OnUnknownRoute = onUnknownRoute;
             this.NavigatorObservers = navigatorObservers;
         }
+        /// <Summary>
+        /// The widget builder for the default route of the tab view
+        /// ([Navigator.defaultRouteName], which is `/`).
+        ///
+        /// If a [builder] is specified, then [routes] must not include an entry for `/`,
+        /// as [builder] takes its place.
+        ///
+        /// Rebuilding a [CupertinoTabView] with a different [builder] will not clear
+        /// its current navigation stack or update its descendant. Instead, trigger a
+        /// rebuild from a descendant in its subtree. This can be done via methods such
+        /// as:
+        ///
+        ///  * Calling [State.setState] on a descendant [StatefulWidget]'s [State]
+        ///  * Modifying an [InheritedWidget] that a descendant registered itself
+        ///    as a dependent to.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.WidgetBuilder Builder { get; set; }
+        /// <Summary>
+        /// A key to use when building this widget's [Navigator].
+        ///
+        /// If a [navigatorKey] is specified, the [Navigator] can be directly
+        /// manipulated without first obtaining it from a [BuildContext] via
+        /// [Navigator.of]: from the [navigatorKey], use the [GlobalKey.currentState]
+        /// getter.
+        ///
+        /// If this is changed, a new [Navigator] will be created, losing all the
+        /// tab's state in the process; in that case, the [navigatorObservers]
+        /// must also be changed, since the previous observers will be attached to the
+        /// previous navigator.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Navigator.NavigatorState> NavigatorKey { get; set; }
+        /// <Summary>
+        /// The title of the default route.
+        /// </Summary>
         public virtual string DefaultTitle { get; set; }
+        /// <Summary>
+        /// This tab view's routing table.
+        ///
+        /// When a named route is pushed with [Navigator.pushNamed] inside this tab view,
+        /// the route name is looked up in this map. If the name is present,
+        /// the associated [WidgetBuilder] is used to construct a [CupertinoPageRoute]
+        /// that performs an appropriate transition to the new route.
+        ///
+        /// If the tab view only has one page, then you can specify it using [builder] instead.
+        ///
+        /// If [builder] is specified, then it implies an entry in this table for the
+        /// [Navigator.defaultRouteName] route (`/`), and it is an error to
+        /// redundantly provide such a route in the [routes] table.
+        ///
+        /// If a route is requested that is not specified in this table (or by
+        /// [builder]), then the [onGenerateRoute] callback is called to build the page
+        /// instead.
+        ///
+        /// This routing table is not shared with any routing tables of ancestor or
+        /// descendant [Navigator]s.
+        /// </Summary>
         public virtual Dictionary<string, object> Routes { get; set; }
+        /// <Summary>
+        /// The route generator callback used when the tab view is navigated to a named route.
+        ///
+        /// This is used if [routes] does not contain the requested route.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Navigator.RouteFactory OnGenerateRoute { get; set; }
+        /// <Summary>
+        /// Called when [onGenerateRoute] also fails to generate a route.
+        ///
+        /// This callback is typically used for error handling. For example, this
+        /// callback might always generate a "not found" page that describes the route
+        /// that wasn't found.
+        ///
+        /// The default implementation pushes a route that displays an ugly error
+        /// message.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Navigator.RouteFactory OnUnknownRoute { get; set; }
+        /// <Summary>
+        /// The list of observers for the [Navigator] created in this tab view.
+        ///
+        /// This list of observers is not shared with ancestor or descendant [Navigator]s.
+        /// </Summary>
         public virtual List<FlutterSDK.Widgets.Navigator.NavigatorObserver> NavigatorObservers { get; set; }
 
         public new FlutterSDK.Cupertino.Tabview._CupertinoTabViewState CreateState()

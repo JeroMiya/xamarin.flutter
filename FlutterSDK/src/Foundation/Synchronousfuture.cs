@@ -314,6 +314,14 @@ namespace FlutterSDK.Foundation.Synchronousfuture
     /// </Summary>
     public class SynchronousFuture<T> : IFuture<T>
     {
+        /// <Summary>
+        /// Creates a synchronous future.
+        ///
+        /// See also:
+        ///
+        ///  * [new Future.value] for information about creating a regular
+        ///    [Future] that completes with a value.
+        /// </Summary>
         public SynchronousFuture(T _value)
         {
             this._Value = _value;

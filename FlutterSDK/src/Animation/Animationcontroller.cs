@@ -208,6 +208,29 @@ namespace FlutterSDK.Animation.Animationcontroller
     /// </Summary>
     public class AnimationController : FlutterSDK.Animation.Animation.Animation<double>, IAnimationEagerListenerMixin, IAnimationLocalListenersMixin, IAnimationLocalStatusListenersMixin
     {
+        /// <Summary>
+        /// Creates an animation controller.
+        ///
+        /// * `value` is the initial value of the animation. If defaults to the lower
+        ///   bound.
+        ///
+        /// * [duration] is the length of time this animation should last.
+        ///
+        /// * [debugLabel] is a string to help identify this animation during
+        ///   debugging (used by [toString]).
+        ///
+        /// * [lowerBound] is the smallest value this animation can obtain and the
+        ///   value at which this animation is deemed to be dismissed. It cannot be
+        ///   null.
+        ///
+        /// * [upperBound] is the largest value this animation can obtain and the
+        ///   value at which this animation is deemed to be completed. It cannot be
+        ///   null.
+        ///
+        /// * `vsync` is the [TickerProvider] for the current context. It can be
+        ///   changed by calling [resync]. It is required and must not be null. See
+        ///   [TickerProvider] for advice on obtaining a ticker provider.
+        /// </Summary>
         public AnimationController(double value = default(double), TimeSpan duration = default(TimeSpan), TimeSpan reverseDuration = default(TimeSpan), string debugLabel = default(string), double lowerBound = 0.0, double upperBound = 1.0, FlutterSDK.Animation.Animationcontroller.AnimationBehavior animationBehavior = default(FlutterSDK.Animation.Animationcontroller.AnimationBehavior), FlutterSDK.Scheduler.Ticker.TickerProvider vsync = default(FlutterSDK.Scheduler.Ticker.TickerProvider))
         : base()
         {
@@ -222,6 +245,25 @@ namespace FlutterSDK.Animation.Animationcontroller
         }
 
 
+        /// <Summary>
+        /// Creates an animation controller with no upper or lower bound for its
+        /// value.
+        ///
+        /// * [value] is the initial value of the animation.
+        ///
+        /// * [duration] is the length of time this animation should last.
+        ///
+        /// * [debugLabel] is a string to help identify this animation during
+        ///   debugging (used by [toString]).
+        ///
+        /// * `vsync` is the [TickerProvider] for the current context. It can be
+        ///   changed by calling [resync]. It is required and must not be null. See
+        ///   [TickerProvider] for advice on obtaining a ticker provider.
+        ///
+        /// This constructor is most useful for animations that will be driven using a
+        /// physics simulation, especially when the physics simulation has no
+        /// pre-determined bounds.
+        /// </Summary>
         public static AnimationController Unbounded(double value = 0.0, TimeSpan duration = default(TimeSpan), TimeSpan reverseDuration = default(TimeSpan), string debugLabel = default(string), FlutterSDK.Scheduler.Ticker.TickerProvider vsync = default(FlutterSDK.Scheduler.Ticker.TickerProvider), FlutterSDK.Animation.Animationcontroller.AnimationBehavior animationBehavior = default(FlutterSDK.Animation.Animationcontroller.AnimationBehavior))
         {
             var instance = new AnimationController(); instance.Duration = duration;
@@ -233,11 +275,41 @@ namespace FlutterSDK.Animation.Animationcontroller
         }
 
 
+        /// <Summary>
+        /// The value at which this animation is deemed to be dismissed.
+        /// </Summary>
         public virtual double LowerBound { get; set; }
+        /// <Summary>
+        /// The value at which this animation is deemed to be completed.
+        /// </Summary>
         public virtual double UpperBound { get; set; }
+        /// <Summary>
+        /// A label that is used in the [toString] output. Intended to aid with
+        /// identifying animation controller instances in debug output.
+        /// </Summary>
         public virtual string DebugLabel { get; set; }
+        /// <Summary>
+        /// The behavior of the controller when [AccessibilityFeatures.disableAnimations]
+        /// is true.
+        ///
+        /// Defaults to [AnimationBehavior.normal] for the [new AnimationController]
+        /// constructor, and [AnimationBehavior.preserve] for the
+        /// [new AnimationController.unbounded] constructor.
+        /// </Summary>
         public virtual FlutterSDK.Animation.Animationcontroller.AnimationBehavior AnimationBehavior { get; set; }
+        /// <Summary>
+        /// The length of time this animation should last.
+        ///
+        /// If [reverseDuration] is specified, then [duration] is only used when going
+        /// [forward]. Otherwise, it specifies the duration going in both directions.
+        /// </Summary>
         public virtual TimeSpan Duration { get; set; }
+        /// <Summary>
+        /// The length of time this animation should last when going in [reverse].
+        ///
+        /// The value of [duration] us used if [reverseDuration] is not specified or
+        /// set to null.
+        /// </Summary>
         public virtual TimeSpan ReverseDuration { get; set; }
         internal virtual FlutterSDK.Scheduler.Ticker.Ticker _Ticker { get; set; }
         internal virtual FlutterSDK.Physics.Simulation.Simulation _Simulation { get; set; }

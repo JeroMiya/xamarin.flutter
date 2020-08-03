@@ -462,6 +462,21 @@ namespace FlutterSDK.Widgets.Visibility
     /// </Summary>
     public class Visibility : FlutterSDK.Widgets.Framework.StatelessWidget
     {
+        /// <Summary>
+        /// Control whether the given [child] is [visible].
+        ///
+        /// The [child] and [replacement] arguments must not be null.
+        ///
+        /// The boolean arguments must not be null.
+        ///
+        /// The [maintainSemantics] and [maintainInteractivity] arguments can only be
+        /// set if [maintainSize] is set.
+        ///
+        /// The [maintainSize] argument can only be set if [maintainAnimation] is set.
+        ///
+        /// The [maintainAnimation] argument can only be set if [maintainState] is
+        /// set.
+        /// </Summary>
         public Visibility(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget replacement = default(FlutterSDK.Widgets.Framework.Widget), bool visible = true, bool maintainState = false, bool maintainAnimation = false, bool maintainSize = false, bool maintainSemantics = false, bool maintainInteractivity = false)
         : base(key: key)
         {
@@ -474,13 +489,139 @@ namespace FlutterSDK.Widgets.Visibility
             this.MaintainSemantics = maintainSemantics;
             this.MaintainInteractivity = maintainInteractivity;
         }
+        /// <Summary>
+        /// The widget to show or hide, as controlled by [visible].
+        ///
+        /// {@macro flutter.widgets.child}
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+        /// <Summary>
+        /// The widget to use when the child is not [visible], assuming that none of
+        /// the `maintain` flags (in particular, [maintainState]) are set.
+        ///
+        /// The normal behavior is to replace the widget with a zero by zero box
+        /// ([SizedBox.shrink]).
+        ///
+        /// See also:
+        ///
+        ///  * [AnimatedCrossFade], which can animate between two children.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Replacement { get; set; }
+        /// <Summary>
+        /// Switches between showing the [child] or hiding it.
+        ///
+        /// The `maintain` flags should be set to the same values regardless of the
+        /// state of the [visible] property, otherwise they will not operate correctly
+        /// (specifically, the state will be lost regardless of the state of
+        /// [maintainState] whenever any of the `maintain` flags are changed, since
+        /// doing so will result in a subtree shape change).
+        ///
+        /// Unless [maintainState] is set, the [child] subtree will be disposed
+        /// (removed from the tree) while hidden.
+        /// </Summary>
         public virtual bool Visible { get; set; }
+        /// <Summary>
+        /// Whether to maintain the [State] objects of the [child] subtree when it is
+        /// not [visible].
+        ///
+        /// Keeping the state of the subtree is potentially expensive (because it
+        /// means all the objects are still in memory; their resources are not
+        /// released). It should only be maintained if it cannot be recreated on
+        /// demand. One example of when the state would be maintained is if the child
+        /// subtree contains a [Navigator], since that widget maintains elaborate
+        /// state that cannot be recreated on the fly.
+        ///
+        /// If this property is true, an [Offstage] widget is used to hide the child
+        /// instead of replacing it with [replacement].
+        ///
+        /// If this property is false, then [maintainAnimation] must also be false.
+        ///
+        /// Dynamically changing this value may cause the current state of the
+        /// subtree to be lost (and a new instance of the subtree, with new [State]
+        /// objects, to be immediately created if [visible] is true).
+        /// </Summary>
         public virtual bool MaintainState { get; set; }
+        /// <Summary>
+        /// Whether to maintain animations within the [child] subtree when it is
+        /// not [visible].
+        ///
+        /// To set this, [maintainState] must also be set.
+        ///
+        /// Keeping animations active when the widget is not visible is even more
+        /// expensive than only maintaining the state.
+        ///
+        /// One example when this might be useful is if the subtree is animating its
+        /// layout in time with an [AnimationController], and the result of that
+        /// layout is being used to influence some other logic. If this flag is false,
+        /// then any [AnimationController]s hosted inside the [child] subtree will be
+        /// muted while the [visible] flag is false.
+        ///
+        /// If this property is true, no [TickerMode] widget is used.
+        ///
+        /// If this property is false, then [maintainSize] must also be false.
+        ///
+        /// Dynamically changing this value may cause the current state of the
+        /// subtree to be lost (and a new instance of the subtree, with new [State]
+        /// objects, to be immediately created if [visible] is true).
+        /// </Summary>
         public virtual bool MaintainAnimation { get; set; }
+        /// <Summary>
+        /// Whether to maintain space for where the widget would have been.
+        ///
+        /// To set this, [maintainAnimation] must also be set.
+        ///
+        /// Maintaining the size when the widget is not [visible] is not notably more
+        /// expensive than just keeping animations running without maintaining the
+        /// size, and may in some circumstances be slightly cheaper if the subtree is
+        /// simple and the [visible] property is frequently toggled, since it avoids
+        /// triggering a layout change when the [visible] property is toggled. If the
+        /// [child] subtree is not trivial then it is significantly cheaper to not
+        /// even keep the state (see [maintainState]).
+        ///
+        /// If this property is true, [Opacity] is used instead of [Offstage].
+        ///
+        /// If this property is false, then [maintainSemantics] and
+        /// [maintainInteractivity] must also be false.
+        ///
+        /// Dynamically changing this value may cause the current state of the
+        /// subtree to be lost (and a new instance of the subtree, with new [State]
+        /// objects, to be immediately created if [visible] is true).
+        ///
+        /// See also:
+        ///
+        ///  * [AnimatedOpacity] and [FadeTransition], which apply animations to the
+        ///    opacity for a more subtle effect.
+        /// </Summary>
         public virtual bool MaintainSize { get; set; }
+        /// <Summary>
+        /// Whether to maintain the semantics for the widget when it is hidden (e.g.
+        /// for accessibility).
+        ///
+        /// To set this, [maintainSize] must also be set.
+        ///
+        /// By default, with [maintainSemantics] set to false, the [child] is not
+        /// visible to accessibility tools when it is hidden from the user. If this
+        /// flag is set to true, then accessibility tools will report the widget as if
+        /// it was present.
+        ///
+        /// Dynamically changing this value may cause the current state of the
+        /// subtree to be lost (and a new instance of the subtree, with new [State]
+        /// objects, to be immediately created if [visible] is true).
+        /// </Summary>
         public virtual bool MaintainSemantics { get; set; }
+        /// <Summary>
+        /// Whether to allow the widget to be interactive when hidden.
+        ///
+        /// To set this, [maintainSize] must also be set.
+        ///
+        /// By default, with [maintainInteractivity] set to false, touch events cannot
+        /// reach the [child] when it is hidden from the user. If this flag is set to
+        /// true, then touch events will nonetheless be passed through.
+        ///
+        /// Dynamically changing this value may cause the current state of the
+        /// subtree to be lost (and a new instance of the subtree, with new [State]
+        /// objects, to be immediately created if [visible] is true).
+        /// </Summary>
         public virtual bool MaintainInteractivity { get; set; }
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
@@ -559,6 +700,21 @@ namespace FlutterSDK.Widgets.Visibility
     /// </Summary>
     public class SliverVisibility : FlutterSDK.Widgets.Framework.StatelessWidget
     {
+        /// <Summary>
+        /// Control whether the given [sliver] is [visible].
+        ///
+        /// The [sliver] and [replacementSliver] arguments must not be null.
+        ///
+        /// The boolean arguments must not be null.
+        ///
+        /// The [maintainSemantics] and [maintainInteractivity] arguments can only be
+        /// set if [maintainSize] is set.
+        ///
+        /// The [maintainSize] argument can only be set if [maintainAnimation] is set.
+        ///
+        /// The [maintainAnimation] argument can only be set if [maintainState] is
+        /// set.
+        /// </Summary>
         public SliverVisibility(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget sliver = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget replacementSliver = default(FlutterSDK.Widgets.Framework.Widget), bool visible = true, bool maintainState = false, bool maintainAnimation = false, bool maintainSize = false, bool maintainSemantics = false, bool maintainInteractivity = false)
         : base(key: key)
         {
@@ -571,13 +727,130 @@ namespace FlutterSDK.Widgets.Visibility
             this.MaintainSemantics = maintainSemantics;
             this.MaintainInteractivity = maintainInteractivity;
         }
+        /// <Summary>
+        /// The sliver to show or hide, as controlled by [visible].
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Sliver { get; set; }
+        /// <Summary>
+        /// The widget to use when the sliver child is not [visible], assuming that
+        /// none of the `maintain` flags (in particular, [maintainState]) are set.
+        ///
+        /// The normal behavior is to replace the widget with a childless
+        /// [SliverToBoxAdapter], which by default has a geometry of
+        /// [SliverGeometry.zero].
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget ReplacementSliver { get; set; }
+        /// <Summary>
+        /// Switches between showing the [sliver] or hiding it.
+        ///
+        /// The `maintain` flags should be set to the same values regardless of the
+        /// state of the [visible] property, otherwise they will not operate correctly
+        /// (specifically, the state will be lost regardless of the state of
+        /// [maintainState] whenever any of the `maintain` flags are changed, since
+        /// doing so will result in a subtree shape change).
+        ///
+        /// Unless [maintainState] is set, the [sliver] subtree will be disposed
+        /// (removed from the tree) while hidden.
+        /// </Summary>
         public virtual bool Visible { get; set; }
+        /// <Summary>
+        /// Whether to maintain the [State] objects of the [sliver] subtree when it is
+        /// not [visible].
+        ///
+        /// Keeping the state of the subtree is potentially expensive (because it
+        /// means all the objects are still in memory; their resources are not
+        /// released). It should only be maintained if it cannot be recreated on
+        /// demand. One example of when the state would be maintained is if the sliver
+        /// subtree contains a [Navigator], since that widget maintains elaborate
+        /// state that cannot be recreated on the fly.
+        ///
+        /// If this property is true, a [SliverOffstage] widget is used to hide the
+        /// sliver instead of replacing it with [replacementSliver].
+        ///
+        /// If this property is false, then [maintainAnimation] must also be false.
+        ///
+        /// Dynamically changing this value may cause the current state of the
+        /// subtree to be lost (and a new instance of the subtree, with new [State]
+        /// objects, to be immediately created if [visible] is true).
+        /// </Summary>
         public virtual bool MaintainState { get; set; }
+        /// <Summary>
+        /// Whether to maintain animations within the [sliver] subtree when it is
+        /// not [visible].
+        ///
+        /// To set this, [maintainState] must also be set.
+        ///
+        /// Keeping animations active when the widget is not visible is even more
+        /// expensive than only maintaining the state.
+        ///
+        /// One example when this might be useful is if the subtree is animating its
+        /// layout in time with an [AnimationController], and the result of that
+        /// layout is being used to influence some other logic. If this flag is false,
+        /// then any [AnimationController]s hosted inside the [sliver] subtree will be
+        /// muted while the [visible] flag is false.
+        ///
+        /// If this property is true, no [TickerMode] widget is used.
+        ///
+        /// If this property is false, then [maintainSize] must also be false.
+        ///
+        /// Dynamically changing this value may cause the current state of the
+        /// subtree to be lost (and a new instance of the subtree, with new [State]
+        /// objects, to be immediately created if [visible] is true).
+        /// </Summary>
         public virtual bool MaintainAnimation { get; set; }
+        /// <Summary>
+        /// Whether to maintain space for where the sliver would have been.
+        ///
+        /// To set this, [maintainAnimation] must also be set.
+        ///
+        /// Maintaining the size when the sliver is not [visible] is not notably more
+        /// expensive than just keeping animations running without maintaining the
+        /// size, and may in some circumstances be slightly cheaper if the subtree is
+        /// simple and the [visible] property is frequently toggled, since it avoids
+        /// triggering a layout change when the [visible] property is toggled. If the
+        /// [sliver] subtree is not trivial then it is significantly cheaper to not
+        /// even keep the state (see [maintainState]).
+        ///
+        /// If this property is true, [SliverOpacity] is used instead of
+        /// [SliverOffstage].
+        ///
+        /// If this property is false, then [maintainSemantics] and
+        /// [maintainInteractivity] must also be false.
+        ///
+        /// Dynamically changing this value may cause the current state of the
+        /// subtree to be lost (and a new instance of the subtree, with new [State]
+        /// objects, to be immediately created if [visible] is true).
+        /// </Summary>
         public virtual bool MaintainSize { get; set; }
+        /// <Summary>
+        /// Whether to maintain the semantics for the sliver when it is hidden (e.g.
+        /// for accessibility).
+        ///
+        /// To set this, [maintainSize] must also be set.
+        ///
+        /// By default, with [maintainSemantics] set to false, the [sliver] is not
+        /// visible to accessibility tools when it is hidden from the user. If this
+        /// flag is set to true, then accessibility tools will report the widget as if
+        /// it was present.
+        ///
+        /// Dynamically changing this value may cause the current state of the
+        /// subtree to be lost (and a new instance of the subtree, with new [State]
+        /// objects, to be immediately created if [visible] is true).
+        /// </Summary>
         public virtual bool MaintainSemantics { get; set; }
+        /// <Summary>
+        /// Whether to allow the sliver to be interactive when hidden.
+        ///
+        /// To set this, [maintainSize] must also be set.
+        ///
+        /// By default, with [maintainInteractivity] set to false, touch events cannot
+        /// reach the [sliver] when it is hidden from the user. If this flag is set to
+        /// true, then touch events will nonetheless be passed through.
+        ///
+        /// Dynamically changing this value may cause the current state of the
+        /// subtree to be lost (and a new instance of the subtree, with new [State]
+        /// objects, to be immediately created if [visible] is true).
+        /// </Summary>
         public virtual bool MaintainInteractivity { get; set; }
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
