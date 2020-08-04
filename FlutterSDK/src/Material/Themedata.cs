@@ -1,424 +1,424 @@
-using System;
-using FlutterSDK;
-using FlutterSDK.Widgets.Framework;
-using System.Net.Http;
-using FlutterBinding.UI;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Diagnostics;
-using SkiaSharp;
+using System.Linq;
+using System.Net.Http;
 using FlutterBinding.Engine.Painting;
-using static FlutterSDK.Global;
 using FlutterBinding.Mapping;
-using FlutterSDK.Foundation.Binding;
-using FlutterSDK.Foundation.Consolidateresponse;
-using FlutterSDK.Foundation.Synchronousfuture;
-using FlutterSDK.Foundation.Node;
-using FlutterSDK.Foundation.Diagnostics;
-using FlutterSDK.Foundation.Profile;
-using FlutterSDK.Foundation.@object;
-using FlutterSDK.Foundation.Bitfield;
-using FlutterSDK.Foundation.Isolates;
-using FlutterSDK.Foundation.Platform;
-using FlutterSDK.Foundation.Assertions;
-using FlutterSDK.Foundation.Debug;
-using FlutterSDK.Foundation.Unicode;
-using FlutterSDK.Foundation.Observerlist;
-using FlutterSDK.Foundation.Key;
-using FlutterSDK.Foundation.Stackframe;
-using FlutterSDK.Foundation.Print;
-using FlutterSDK.Foundation.Changenotifier;
-using FlutterSDK.Foundation.Serialization;
-using FlutterSDK.Foundation.Annotations;
-using FlutterSDK.Foundation.Constants;
-using FlutterSDK.Foundation.Licenses;
-using FlutterSDK.Foundation.Collections;
-using FlutterSDK.Foundation.Basictypes;
-using FlutterSDK.Animation.Tween;
+using FlutterBinding.UI;
+using FlutterSDK;
 using FlutterSDK.Animation.Animation;
+using FlutterSDK.Animation.Animationcontroller;
+using FlutterSDK.Animation.Animations;
 using FlutterSDK.Animation.Curves;
 using FlutterSDK.Animation.Listenerhelpers;
-using FlutterSDK.Physics.Clampedsimulation;
-using FlutterSDK.Physics.Frictionsimulation;
-using FlutterSDK.Physics.Gravitysimulation;
-using FlutterSDK.Physics.Tolerance;
-using FlutterSDK.Physics.Simulation;
-using FlutterSDK.Physics.Springsimulation;
-using FlutterSDK.Physics.Utils;
-using FlutterSDK.Scheduler.Binding;
-using FlutterSDK.Scheduler.Ticker;
-using FlutterSDK.Scheduler.Priority;
-using FlutterSDK.Scheduler.Debug;
-using FlutterSDK.Semantics.Binding;
-using FlutterSDK.Semantics.Debug;
-using FlutterSDK.Semantics.Semanticsservice;
-using FlutterSDK.Semantics.Semanticsevent;
-using FlutterSDK.Semantics.Semantics;
-using FlutterSDK.Animation.Animations;
-using FlutterSDK.Rendering.Texture;
-using FlutterSDK.Gestures.Eager;
-using FlutterSDK.Gestures.Debug;
-using FlutterSDK.Gestures.Pointerrouter;
-using FlutterSDK.Gestures.Recognizer;
-using FlutterSDK.Gestures.Dragdetails;
-using FlutterSDK.Gestures.Lsqsolver;
-using FlutterSDK.Gestures.Scale;
-using FlutterSDK.Gestures.Drag;
-using FlutterSDK.Gestures.Forcepress;
-using FlutterSDK.Gestures.Events;
-using FlutterSDK.Gestures.Monodrag;
-using FlutterSDK.Gestures.Arena;
-using FlutterSDK.Gestures.Multidrag;
-using FlutterSDK.Gestures.Constants;
-using FlutterSDK.Gestures.Converter;
-using FlutterSDK.Gestures.Tap;
-using FlutterSDK.Gestures.Binding;
-using FlutterSDK.Gestures.Pointersignalresolver;
-using FlutterSDK.Gestures.Team;
-using FlutterSDK.Gestures.Hittest;
-using FlutterSDK.Gestures.Velocitytracker;
-using FlutterSDK.Gestures.Multitap;
-using FlutterSDK.Gestures.Longpress;
-using FlutterSDK.Rendering.Proxybox;
-using FlutterSDK.Rendering.Viewportoffset;
-using FlutterSDK.Rendering.Flex;
-using FlutterSDK.Rendering.Sliverfill;
-using FlutterSDK.Rendering.Sliverfixedextentlist;
-using FlutterSDK.Rendering.View;
-using FlutterSDK.Rendering.Editable;
-using FlutterSDK.Rendering.Animatedsize;
-using FlutterSDK.Rendering.Custompaint;
-using FlutterSDK.Rendering.Performanceoverlay;
-using FlutterSDK.Rendering.Sliverpadding;
-using FlutterSDK.Rendering.Shiftedbox;
-using FlutterSDK.Rendering.Debug;
-using FlutterSDK.Rendering.Debugoverflowindicator;
-using FlutterSDK.Rendering.Tweens;
-using FlutterSDK.Painting.Borders;
-using FlutterSDK.Painting.Textstyle;
-using FlutterSDK.Painting.Colors;
-using FlutterSDK.Painting.Circleborder;
-using FlutterSDK.Painting.Edgeinsets;
-using FlutterSDK.Painting.Decoration;
-using FlutterSDK.Painting.Textspan;
-using FlutterSDK.Painting.Strutstyle;
-using FlutterSDK.Painting.Beveledrectangleborder;
-using FlutterSDK.Painting.Placeholderspan;
-using FlutterSDK.Painting.Imagecache;
-using FlutterSDK.Painting.Shapedecoration;
-using FlutterSDK.Services.Platformviews;
-using FlutterSDK.Services.Systemchannels;
-using FlutterSDK.Services.Assetbundle;
-using FlutterSDK.Services.Binding;
-using FlutterSDK.Services.Keyboardkey;
-using FlutterSDK.Services.Textformatter;
-using FlutterSDK.Services.Rawkeyboardmacos;
-using FlutterSDK.Services.Binarymessenger;
-using FlutterSDK.Services.Messagecodecs;
-using FlutterSDK.Services.Rawkeyboardfuchsia;
-using FlutterSDK.Services.Hapticfeedback;
-using FlutterSDK.Services.Platformmessages;
-using FlutterSDK.Services.Clipboard;
-using FlutterSDK.Services.Textediting;
-using FlutterSDK.Services.Rawkeyboardlinux;
-using FlutterSDK.Services.Textinput;
-using FlutterSDK.Services.Rawkeyboardweb;
-using FlutterSDK.Services.Rawkeyboard;
-using FlutterSDK.Services.Systemchrome;
-using FlutterSDK.Services.Systemsound;
-using FlutterSDK.Services.Keyboardmaps;
-using FlutterSDK.Services.Fontloader;
-using FlutterSDK.Services.Systemnavigator;
-using FlutterSDK.Services.Rawkeyboardandroid;
-using FlutterSDK.Services.Platformchannel;
-using FlutterSDK.Services.Messagecodec;
-using FlutterSDK.Painting.Textpainter;
-using FlutterSDK.Painting.Boxdecoration;
-using FlutterSDK.Painting.Paintutilities;
-using FlutterSDK.Painting.Stadiumborder;
-using FlutterSDK.Painting.Basictypes;
-using FlutterSDK.Painting.Alignment;
-using FlutterSDK.Painting.Imageprovider;
-using FlutterSDK.Painting.Boxfit;
-using FlutterSDK.Painting.Continuousrectangleborder;
-using FlutterSDK.Painting.Roundedrectangleborder;
-using FlutterSDK.Painting.Matrixutils;
-using FlutterSDK.Painting.Gradient;
-using FlutterSDK.Painting.Notchedshapes;
-using FlutterSDK.Painting.Fractionaloffset;
-using FlutterSDK.Painting.Borderradius;
-using FlutterSDK.Painting.Imageresolution;
-using FlutterSDK.Painting.Flutterlogo;
-using FlutterSDK.Painting.Imagedecoder;
-using FlutterSDK.Painting.Boxshadow;
-using FlutterSDK.Painting.Binding;
-using FlutterSDK.Painting.Imagestream;
-using FlutterSDK.Painting.Boxborder;
-using FlutterSDK.Painting.Decorationimage;
-using FlutterSDK.Painting.Clip;
-using FlutterSDK.Painting.Debug;
-using FlutterSDK.Painting.Shaderwarmup;
-using FlutterSDK.Painting.Inlinespan;
-using FlutterSDK.Painting.Geometry;
-using FlutterSDK.Rendering.Image;
-using FlutterSDK.Rendering.Box;
-using FlutterSDK.Rendering.Slivermultiboxadaptor;
-using FlutterSDK.Rendering.Error;
-using FlutterSDK.Rendering.Table;
-using FlutterSDK.Rendering.Tableborder;
-using FlutterSDK.Rendering.Platformview;
-using FlutterSDK.Rendering.Binding;
-using FlutterSDK.Rendering.Sliverpersistentheader;
-using FlutterSDK.Rendering.Listbody;
-using FlutterSDK.Rendering.Paragraph;
-using FlutterSDK.Rendering.Proxysliver;
-using FlutterSDK.Rendering.@object;
-using FlutterSDK.Rendering.Rotatedbox;
-using FlutterSDK.Rendering.Viewport;
-using FlutterSDK.Rendering.Customlayout;
-using FlutterSDK.Rendering.Layer;
-using FlutterSDK.Rendering.Listwheelviewport;
-using FlutterSDK.Rendering.Sliverlist;
-using FlutterSDK.Rendering.Flow;
-using FlutterSDK.Rendering.Wrap;
-using FlutterSDK.Rendering.Sliver;
-using FlutterSDK.Rendering.Slivergrid;
-using FlutterSDK.Rendering.Stack;
-using FlutterSDK.Rendering.Mousetracking;
-using FlutterSDK.Widgets.Pages;
-using FlutterSDK.Widgets.Performanceoverlay;
-using FlutterSDK.Widgets.Automatickeepalive;
-using FlutterSDK.Widgets.Scrollcontroller;
-using FlutterSDK.Widgets.Widgetinspector;
-using FlutterSDK.Widgets.Icon;
-using FlutterSDK.Widgets.Scrollcontext;
-using FlutterSDK.Widgets.Inheritedmodel;
-using FlutterSDK.Widgets.Annotatedregion;
-using FlutterSDK.Widgets.Scrollnotification;
-using FlutterSDK.Widgets.Scrollpositionwithsinglecontext;
-using FlutterSDK.Widgets.Mediaquery;
-using FlutterSDK.Widgets.Actions;
-using FlutterSDK.Widgets.App;
-using FlutterSDK.Widgets.Focusmanager;
-using FlutterSDK.Widgets.Visibility;
-using FlutterSDK.Widgets.Icondata;
-using FlutterSDK.Widgets.Valuelistenablebuilder;
-using FlutterSDK.Widgets.Placeholder;
-using FlutterSDK.Widgets.Overlay;
-using FlutterSDK.Widgets.Focustraversal;
-using FlutterSDK.Widgets.Animatedlist;
-using FlutterSDK.Widgets.Scrollbar;
-using FlutterSDK.Widgets.Iconthemedata;
-using FlutterSDK.Widgets.Sliver;
-using FlutterSDK.Widgets.Animatedswitcher;
-using FlutterSDK.Widgets.Orientationbuilder;
-using FlutterSDK.Widgets.Dismissible;
-using FlutterSDK.Widgets.Binding;
-using FlutterSDK.Widgets.Scrollactivity;
-using FlutterSDK.Widgets.Dragtarget;
-using FlutterSDK.Widgets.Draggablescrollablesheet;
-using FlutterSDK.Widgets.Tweenanimationbuilder;
-using FlutterSDK.Widgets.Widgetspan;
-using FlutterSDK.Widgets.Image;
-using FlutterSDK.Widgets.Title;
-using FlutterSDK.Widgets.Willpopscope;
-using FlutterSDK.Widgets.Banner;
-using FlutterSDK.Widgets.Debug;
-using FlutterSDK.Widgets.Imagefilter;
-using FlutterSDK.Widgets.Fadeinimage;
-using FlutterSDK.Widgets.Sliverlayoutbuilder;
-using FlutterSDK.Widgets.Pageview;
-using FlutterSDK.Widgets.Heroes;
-using FlutterSDK.Widgets.Nestedscrollview;
-using FlutterSDK.Widgets.Tickerprovider;
-using FlutterSDK.Widgets.Overscrollindicator;
-using FlutterSDK.Widgets.Scrollconfiguration;
-using FlutterSDK.Widgets.Uniquewidget;
-using FlutterSDK.Widgets.Table;
-using FlutterSDK.Widgets.Pagestorage;
-using FlutterSDK.Widgets.Singlechildscrollview;
-using FlutterSDK.Widgets.Gridpaper;
-using FlutterSDK.Widgets.Sizechangedlayoutnotifier;
-using FlutterSDK.Widgets.Sliverfill;
-using FlutterSDK.Widgets.Scrollawareimageprovider;
-using FlutterSDK.Widgets.Routes;
-using FlutterSDK.Widgets.Texture;
-using FlutterSDK.Widgets.Safearea;
-using FlutterSDK.Widgets.Navigator;
-using FlutterSDK.Widgets.Gesturedetector;
-using FlutterSDK.Widgets.Localizations;
-using FlutterSDK.Widgets.Animatedcrossfade;
-using FlutterSDK.Widgets.Imageicon;
-using FlutterSDK.Widgets.Async;
-using FlutterSDK.Widgets.Scrollable;
-using FlutterSDK.Widgets.Statustransitions;
-using FlutterSDK.Widgets.Inheritedtheme;
-using FlutterSDK.Widgets.Viewport;
-using FlutterSDK.Widgets.Inheritednotifier;
-using FlutterSDK.Widgets.Sliverpersistentheader;
-using FlutterSDK.Widgets.Colorfilter;
-using FlutterSDK.Widgets.Form;
-using FlutterSDK.Widgets.Scrollsimulation;
-using FlutterSDK.Widgets.Sliverprototypeextentlist;
-using FlutterSDK.Widgets.Rawkeyboardlistener;
-using FlutterSDK.Widgets.Shortcuts;
-using FlutterSDK.Widgets.Bottomnavigationbaritem;
-using FlutterSDK.Widgets.Disposablebuildcontext;
-using FlutterSDK.Widgets.Scrollmetrics;
-using FlutterSDK.Widgets.Modalbarrier;
-using FlutterSDK.Widgets.Text;
-using FlutterSDK.Widgets.Editabletext;
-using FlutterSDK.Widgets.Listwheelscrollview;
-using FlutterSDK.Widgets.Notificationlistener;
-using FlutterSDK.Widgets.Layoutbuilder;
-using FlutterSDK.Widgets.Focusscope;
-using FlutterSDK.Widgets.Textselection;
-using FlutterSDK.Widgets.Implicitanimations;
-using FlutterSDK.Widgets.Icontheme;
-using FlutterSDK.Widgets.Container;
-using FlutterSDK.Widgets.Primaryscrollcontroller;
-using FlutterSDK.Animation.Animationcontroller;
+using FlutterSDK.Animation.Tween;
 using FlutterSDK.Animation.Tweensequence;
-using FlutterSDK.Widgets.Basic;
-using FlutterSDK.Widgets.Semanticsdebugger;
-using FlutterSDK.Widgets.Navigationtoolbar;
-using FlutterSDK.Widgets.Platformview;
-using FlutterSDK.Widgets.Transitions;
-using FlutterSDK.Widgets.Preferredsize;
-using FlutterSDK.Widgets.Scrollphysics;
-using FlutterSDK.Widgets.Animatedsize;
-using FlutterSDK.Widgets.Scrollposition;
-using FlutterSDK.Widgets.Spacer;
-using FlutterSDK.Widgets.Scrollview;
 using FlutterSDK.Foundation;
 using FlutterSDK.Foundation._Bitfieldio;
 using FlutterSDK.Foundation._Isolatesio;
 using FlutterSDK.Foundation._Platformio;
+using FlutterSDK.Foundation.Annotations;
+using FlutterSDK.Foundation.Assertions;
+using FlutterSDK.Foundation.Basictypes;
+using FlutterSDK.Foundation.Binding;
+using FlutterSDK.Foundation.Bitfield;
+using FlutterSDK.Foundation.Changenotifier;
+using FlutterSDK.Foundation.Collections;
+using FlutterSDK.Foundation.Consolidateresponse;
+using FlutterSDK.Foundation.Constants;
+using FlutterSDK.Foundation.Debug;
+using FlutterSDK.Foundation.Diagnostics;
+using FlutterSDK.Foundation.Isolates;
+using FlutterSDK.Foundation.Key;
+using FlutterSDK.Foundation.Licenses;
+using FlutterSDK.Foundation.Node;
+using FlutterSDK.Foundation.@object;
+using FlutterSDK.Foundation.Observerlist;
+using FlutterSDK.Foundation.Platform;
+using FlutterSDK.Foundation.Print;
+using FlutterSDK.Foundation.Profile;
+using FlutterSDK.Foundation.Serialization;
+using FlutterSDK.Foundation.Stackframe;
+using FlutterSDK.Foundation.Synchronousfuture;
+using FlutterSDK.Foundation.Unicode;
+using FlutterSDK.Gestures.Arena;
+using FlutterSDK.Gestures.Binding;
+using FlutterSDK.Gestures.Constants;
+using FlutterSDK.Gestures.Converter;
+using FlutterSDK.Gestures.Debug;
+using FlutterSDK.Gestures.Drag;
+using FlutterSDK.Gestures.Dragdetails;
+using FlutterSDK.Gestures.Eager;
+using FlutterSDK.Gestures.Events;
+using FlutterSDK.Gestures.Forcepress;
+using FlutterSDK.Gestures.Hittest;
+using FlutterSDK.Gestures.Longpress;
+using FlutterSDK.Gestures.Lsqsolver;
+using FlutterSDK.Gestures.Monodrag;
+using FlutterSDK.Gestures.Multidrag;
+using FlutterSDK.Gestures.Multitap;
+using FlutterSDK.Gestures.Pointerrouter;
+using FlutterSDK.Gestures.Pointersignalresolver;
+using FlutterSDK.Gestures.Recognizer;
+using FlutterSDK.Gestures.Scale;
+using FlutterSDK.Gestures.Tap;
+using FlutterSDK.Gestures.Team;
+using FlutterSDK.Gestures.Velocitytracker;
+using FlutterSDK.Material.Animatedicons.Animatedicons;
+using FlutterSDK.Material.Animatedicons.Animatedicons;
+using FlutterSDK.Material.Animatedicons.Animatedicons;
+using FlutterSDK.Material.Animatedicons.Animatedicons;
+using FlutterSDK.Material.Animatedicons.Animatedicons;
+using FlutterSDK.Material.Animatedicons.Animatedicons;
+using FlutterSDK.Material.Animatedicons.Animatedicons;
+using FlutterSDK.Material.Animatedicons.Animatedicons;
+using FlutterSDK.Material.Animatedicons.Animatedicons;
+using FlutterSDK.Material.Animatedicons.Animatedicons;
+using FlutterSDK.Material.Animatedicons.Animatedicons;
+using FlutterSDK.Material.Animatedicons.Animatedicons;
+using FlutterSDK.Material.Animatedicons.Animatedicons;
+using FlutterSDK.Material.Animatedicons.Animatedicons;
+using FlutterSDK.Material.Animatedicons.Animatedicons;
+using FlutterSDK.Material.Animatedicons.Animatedicons;
+using FlutterSDK.Material.Animatedicons.Animatedicons;
+using FlutterSDK.Material.Animatedicons.Animatediconsdata;
+using FlutterSDK.Material.Animatedicons.Animatediconsdata;
+using FlutterSDK.Material.Animatedicons.Animatediconsdata;
+using FlutterSDK.Material.Animatedicons.Animatediconsdata;
+using FlutterSDK.Material.Animatedicons.Animatediconsdata;
+using FlutterSDK.Material.Animatedicons.Animatediconsdata;
+using FlutterSDK.Material.Animatedicons.Animatediconsdata;
+using FlutterSDK.Material.Animatedicons.Animatediconsdata;
+using FlutterSDK.Material.Animatedicons.Animatediconsdata;
+using FlutterSDK.Material.Animatedicons.Animatediconsdata;
+using FlutterSDK.Material.Animatedicons.Animatediconsdata;
+using FlutterSDK.Material.Animatedicons.Animatediconsdata;
+using FlutterSDK.Material.Animatedicons.Animatediconsdata;
+using FlutterSDK.Material.Animatedicons.Animatediconsdata;
+using FlutterSDK.Material.Animatedicons.Animatediconsdata;
+using FlutterSDK.Material.Animatedicons.Animatediconsdata;
+using FlutterSDK.Material.Animatedicons.Animatediconsdata;
 using FlutterSDK.Material.Appbar;
-using FlutterSDK.Material.Debug;
-using FlutterSDK.Material.Dialog;
-using FlutterSDK.Material.Flatbutton;
-using FlutterSDK.Material.Listtile;
-using FlutterSDK.Material.Materiallocalizations;
-using FlutterSDK.Material.Page;
-using FlutterSDK.Material.Progressindicator;
-using FlutterSDK.Material.Scaffold;
-using FlutterSDK.Material.Scrollbar;
-using FlutterSDK.Material.Theme;
-using FlutterSDK.Material.Animatedicons.Animatedicons;
-using FlutterSDK.Material.Animatedicons.Animatediconsdata;
-using FlutterSDK.Material.Animatedicons.Animatedicons;
-using FlutterSDK.Material.Animatedicons.Animatediconsdata;
-using FlutterSDK.Material.Animatedicons.Animatedicons;
-using FlutterSDK.Material.Animatedicons.Animatediconsdata;
-using FlutterSDK.Material.Animatedicons.Animatedicons;
-using FlutterSDK.Material.Animatedicons.Animatediconsdata;
-using FlutterSDK.Material.Animatedicons.Animatedicons;
-using FlutterSDK.Material.Animatedicons.Animatediconsdata;
-using FlutterSDK.Material.Animatedicons.Animatedicons;
-using FlutterSDK.Material.Animatedicons.Animatediconsdata;
-using FlutterSDK.Material.Animatedicons.Animatedicons;
-using FlutterSDK.Material.Animatedicons.Animatediconsdata;
-using FlutterSDK.Material.Animatedicons.Animatedicons;
-using FlutterSDK.Material.Animatedicons.Animatediconsdata;
-using FlutterSDK.Material.Animatedicons.Animatedicons;
-using FlutterSDK.Material.Animatedicons.Animatediconsdata;
-using FlutterSDK.Material.Animatedicons.Animatedicons;
-using FlutterSDK.Material.Animatedicons.Animatediconsdata;
-using FlutterSDK.Material.Animatedicons.Animatedicons;
-using FlutterSDK.Material.Animatedicons.Animatediconsdata;
-using FlutterSDK.Material.Animatedicons.Animatedicons;
-using FlutterSDK.Material.Animatedicons.Animatediconsdata;
-using FlutterSDK.Material.Animatedicons.Animatedicons;
-using FlutterSDK.Material.Animatedicons.Animatediconsdata;
-using FlutterSDK.Material.Animatedicons.Animatedicons;
-using FlutterSDK.Material.Animatedicons.Animatediconsdata;
-using FlutterSDK.Material.Animatedicons.Animatedicons;
-using FlutterSDK.Material.Animatedicons.Animatediconsdata;
-using FlutterSDK.Material.Animatedicons.Animatedicons;
-using FlutterSDK.Material.Animatedicons.Animatediconsdata;
-using FlutterSDK.Material.Animatedicons.Animatedicons;
-using FlutterSDK.Material.Animatedicons.Animatediconsdata;
-using FlutterSDK.Material.Arc;
-using FlutterSDK.Material.Colors;
-using FlutterSDK.Material.Floatingactionbutton;
-using FlutterSDK.Material.Icons;
 using FlutterSDK.Material.Appbartheme;
+using FlutterSDK.Material.Arc;
 using FlutterSDK.Material.Backbutton;
-using FlutterSDK.Material.Constants;
-using FlutterSDK.Material.Flexiblespacebar;
-using FlutterSDK.Material.Iconbutton;
-using FlutterSDK.Material.Material;
-using FlutterSDK.Material.Tabs;
-using FlutterSDK.Material.Texttheme;
 using FlutterSDK.Material.Bannertheme;
-using FlutterSDK.Material.Buttonbar;
-using FlutterSDK.Material.Buttontheme;
-using FlutterSDK.Material.Divider;
 using FlutterSDK.Material.Bottomappbartheme;
-using FlutterSDK.Material.Elevationoverlay;
-using FlutterSDK.Material.Inkwell;
+using FlutterSDK.Material.Bottomsheet;
 using FlutterSDK.Material.Bottomsheettheme;
-using FlutterSDK.Material.Curves;
-using FlutterSDK.Material.Materialstate;
-using FlutterSDK.Material.Themedata;
+using FlutterSDK.Material.Button;
+using FlutterSDK.Material.Buttonbar;
 using FlutterSDK.Material.Buttonbartheme;
-using FlutterSDK.Material.Raisedbutton;
-using FlutterSDK.Material.Colorscheme;
-using FlutterSDK.Material.Materialbutton;
-using FlutterSDK.Material.Outlinebutton;
+using FlutterSDK.Material.Buttontheme;
+using FlutterSDK.Material.Card;
 using FlutterSDK.Material.Cardtheme;
-using FlutterSDK.Material.Toggleable;
 using FlutterSDK.Material.Checkbox;
 using FlutterSDK.Material.Chiptheme;
-using FlutterSDK.Material.Feedback;
-using FlutterSDK.Material.Tooltip;
-using FlutterSDK.Material.Dropdown;
+using FlutterSDK.Material.Colors;
+using FlutterSDK.Material.Colorscheme;
+using FlutterSDK.Material.Constants;
+using FlutterSDK.Material.Curves;
 using FlutterSDK.Material.Datatable;
-using FlutterSDK.Material.Dialogtheme;
-using FlutterSDK.Material.Dividertheme;
-using FlutterSDK.Material.Inputdecorator;
-using FlutterSDK.Material.Shadows;
-using FlutterSDK.Material.Expandicon;
-using FlutterSDK.Material.Mergeablematerial;
-using FlutterSDK.Material.Button;
-using FlutterSDK.Material.Floatingactionbuttontheme;
-using FlutterSDK.Material.Inkhighlight;
-using FlutterSDK.Material.Inputborder;
-using FlutterSDK.Material.Reorderablelist;
-using FlutterSDK.Material.Time;
-using FlutterSDK.Material.Typography;
-using FlutterSDK.Scheduler;
-using FlutterSDK.Material.Navigationrailtheme;
-using FlutterSDK.Material.Navigationrail;
-using FlutterSDK.Material.Pagetransitionstheme;
-using FlutterSDK.Material.Card;
 using FlutterSDK.Material.Datatablesource;
-using FlutterSDK.Material.Inkdecoration;
-using FlutterSDK.Material.Pickers.Datepickercommon;
-using FlutterSDK.Material.Pickers.Dateutils;
-using FlutterSDK.Material.Pickers.Calendardatepicker;
-using FlutterSDK.Material.Pickers.Datepickerheader;
-using FlutterSDK.Material.Pickers.Inputdatepicker;
-using FlutterSDK.Material.Textfield;
-using FlutterSDK.Material.Textformfield;
-using FlutterSDK.Material.Popupmenutheme;
-using FlutterSDK.Material.Radio;
-using FlutterSDK.Material.Slidertheme;
-using FlutterSDK.Material.Bottomsheet;
+using FlutterSDK.Material.Debug;
+using FlutterSDK.Material.Dialog;
+using FlutterSDK.Material.Dialogtheme;
+using FlutterSDK.Material.Divider;
+using FlutterSDK.Material.Dividertheme;
 using FlutterSDK.Material.Drawer;
+using FlutterSDK.Material.Dropdown;
+using FlutterSDK.Material.Elevationoverlay;
+using FlutterSDK.Material.Expandicon;
+using FlutterSDK.Material.Feedback;
+using FlutterSDK.Material.Flatbutton;
+using FlutterSDK.Material.Flexiblespacebar;
+using FlutterSDK.Material.Floatingactionbutton;
 using FlutterSDK.Material.Floatingactionbuttonlocation;
+using FlutterSDK.Material.Floatingactionbuttontheme;
+using FlutterSDK.Material.Iconbutton;
+using FlutterSDK.Material.Icons;
+using FlutterSDK.Material.Inkdecoration;
+using FlutterSDK.Material.Inkhighlight;
+using FlutterSDK.Material.Inksplash;
+using FlutterSDK.Material.Inkwell;
+using FlutterSDK.Material.Inputborder;
+using FlutterSDK.Material.Inputdecorator;
+using FlutterSDK.Material.Listtile;
+using FlutterSDK.Material.Material;
+using FlutterSDK.Material.Materialbutton;
+using FlutterSDK.Material.Materiallocalizations;
+using FlutterSDK.Material.Materialstate;
+using FlutterSDK.Material.Mergeablematerial;
+using FlutterSDK.Material.Navigationrail;
+using FlutterSDK.Material.Navigationrailtheme;
+using FlutterSDK.Material.Outlinebutton;
+using FlutterSDK.Material.Page;
+using FlutterSDK.Material.Pagetransitionstheme;
+using FlutterSDK.Material.Pickers.Calendardatepicker;
+using FlutterSDK.Material.Pickers.Datepickercommon;
+using FlutterSDK.Material.Pickers.Datepickerheader;
+using FlutterSDK.Material.Pickers.Dateutils;
+using FlutterSDK.Material.Pickers.Inputdatepicker;
+using FlutterSDK.Material.Popupmenutheme;
+using FlutterSDK.Material.Progressindicator;
+using FlutterSDK.Material.Radio;
+using FlutterSDK.Material.Raisedbutton;
+using FlutterSDK.Material.Reorderablelist;
+using FlutterSDK.Material.Scaffold;
+using FlutterSDK.Material.Scrollbar;
+using FlutterSDK.Material.Selectabletext;
+using FlutterSDK.Material.Shadows;
+using FlutterSDK.Material.Slidertheme;
 using FlutterSDK.Material.Snackbar;
 using FlutterSDK.Material.Snackbartheme;
-using FlutterSDK.Material.Textselection;
 using FlutterSDK.Material.Switch;
 using FlutterSDK.Material.Tabbartheme;
 using FlutterSDK.Material.Tabcontroller;
 using FlutterSDK.Material.Tabindicator;
-using FlutterSDK.Material.Selectabletext;
-using FlutterSDK.Material.Inksplash;
+using FlutterSDK.Material.Tabs;
+using FlutterSDK.Material.Textfield;
+using FlutterSDK.Material.Textformfield;
+using FlutterSDK.Material.Textselection;
+using FlutterSDK.Material.Texttheme;
+using FlutterSDK.Material.Theme;
+using FlutterSDK.Material.Themedata;
+using FlutterSDK.Material.Time;
+using FlutterSDK.Material.Toggleable;
 using FlutterSDK.Material.Togglebuttonstheme;
+using FlutterSDK.Material.Tooltip;
 using FlutterSDK.Material.Tooltiptheme;
+using FlutterSDK.Material.Typography;
+using FlutterSDK.Painting.Alignment;
+using FlutterSDK.Painting.Basictypes;
+using FlutterSDK.Painting.Beveledrectangleborder;
+using FlutterSDK.Painting.Binding;
+using FlutterSDK.Painting.Borderradius;
+using FlutterSDK.Painting.Borders;
+using FlutterSDK.Painting.Boxborder;
+using FlutterSDK.Painting.Boxdecoration;
+using FlutterSDK.Painting.Boxfit;
+using FlutterSDK.Painting.Boxshadow;
+using FlutterSDK.Painting.Circleborder;
+using FlutterSDK.Painting.Clip;
+using FlutterSDK.Painting.Colors;
+using FlutterSDK.Painting.Continuousrectangleborder;
+using FlutterSDK.Painting.Debug;
+using FlutterSDK.Painting.Decoration;
+using FlutterSDK.Painting.Decorationimage;
+using FlutterSDK.Painting.Edgeinsets;
+using FlutterSDK.Painting.Flutterlogo;
+using FlutterSDK.Painting.Fractionaloffset;
+using FlutterSDK.Painting.Geometry;
+using FlutterSDK.Painting.Gradient;
+using FlutterSDK.Painting.Imagecache;
+using FlutterSDK.Painting.Imagedecoder;
+using FlutterSDK.Painting.Imageprovider;
+using FlutterSDK.Painting.Imageresolution;
+using FlutterSDK.Painting.Imagestream;
+using FlutterSDK.Painting.Inlinespan;
+using FlutterSDK.Painting.Matrixutils;
+using FlutterSDK.Painting.Notchedshapes;
+using FlutterSDK.Painting.Paintutilities;
+using FlutterSDK.Painting.Placeholderspan;
+using FlutterSDK.Painting.Roundedrectangleborder;
+using FlutterSDK.Painting.Shaderwarmup;
+using FlutterSDK.Painting.Shapedecoration;
+using FlutterSDK.Painting.Stadiumborder;
+using FlutterSDK.Painting.Strutstyle;
+using FlutterSDK.Painting.Textpainter;
+using FlutterSDK.Painting.Textspan;
+using FlutterSDK.Painting.Textstyle;
+using FlutterSDK.Physics.Clampedsimulation;
+using FlutterSDK.Physics.Frictionsimulation;
+using FlutterSDK.Physics.Gravitysimulation;
+using FlutterSDK.Physics.Simulation;
+using FlutterSDK.Physics.Springsimulation;
+using FlutterSDK.Physics.Tolerance;
+using FlutterSDK.Physics.Utils;
+using FlutterSDK.Rendering.Animatedsize;
+using FlutterSDK.Rendering.Binding;
+using FlutterSDK.Rendering.Box;
+using FlutterSDK.Rendering.Customlayout;
+using FlutterSDK.Rendering.Custompaint;
+using FlutterSDK.Rendering.Debug;
+using FlutterSDK.Rendering.Debugoverflowindicator;
+using FlutterSDK.Rendering.Editable;
+using FlutterSDK.Rendering.Error;
+using FlutterSDK.Rendering.Flex;
+using FlutterSDK.Rendering.Flow;
+using FlutterSDK.Rendering.Image;
+using FlutterSDK.Rendering.Layer;
+using FlutterSDK.Rendering.Listbody;
+using FlutterSDK.Rendering.Listwheelviewport;
+using FlutterSDK.Rendering.Mousetracking;
+using FlutterSDK.Rendering.@object;
+using FlutterSDK.Rendering.Paragraph;
+using FlutterSDK.Rendering.Performanceoverlay;
+using FlutterSDK.Rendering.Platformview;
+using FlutterSDK.Rendering.Proxybox;
+using FlutterSDK.Rendering.Proxysliver;
+using FlutterSDK.Rendering.Rotatedbox;
+using FlutterSDK.Rendering.Shiftedbox;
+using FlutterSDK.Rendering.Sliver;
+using FlutterSDK.Rendering.Sliverfill;
+using FlutterSDK.Rendering.Sliverfixedextentlist;
+using FlutterSDK.Rendering.Slivergrid;
+using FlutterSDK.Rendering.Sliverlist;
+using FlutterSDK.Rendering.Slivermultiboxadaptor;
+using FlutterSDK.Rendering.Sliverpadding;
+using FlutterSDK.Rendering.Sliverpersistentheader;
+using FlutterSDK.Rendering.Stack;
+using FlutterSDK.Rendering.Table;
+using FlutterSDK.Rendering.Tableborder;
+using FlutterSDK.Rendering.Texture;
+using FlutterSDK.Rendering.Tweens;
+using FlutterSDK.Rendering.View;
+using FlutterSDK.Rendering.Viewport;
+using FlutterSDK.Rendering.Viewportoffset;
+using FlutterSDK.Rendering.Wrap;
+using FlutterSDK.Scheduler;
+using FlutterSDK.Scheduler.Binding;
+using FlutterSDK.Scheduler.Debug;
+using FlutterSDK.Scheduler.Priority;
+using FlutterSDK.Scheduler.Ticker;
+using FlutterSDK.Semantics.Binding;
+using FlutterSDK.Semantics.Debug;
+using FlutterSDK.Semantics.Semantics;
+using FlutterSDK.Semantics.Semanticsevent;
+using FlutterSDK.Semantics.Semanticsservice;
+using FlutterSDK.Services.Assetbundle;
+using FlutterSDK.Services.Binarymessenger;
+using FlutterSDK.Services.Binding;
+using FlutterSDK.Services.Clipboard;
+using FlutterSDK.Services.Fontloader;
+using FlutterSDK.Services.Hapticfeedback;
+using FlutterSDK.Services.Keyboardkey;
+using FlutterSDK.Services.Keyboardmaps;
+using FlutterSDK.Services.Messagecodec;
+using FlutterSDK.Services.Messagecodecs;
+using FlutterSDK.Services.Platformchannel;
+using FlutterSDK.Services.Platformmessages;
+using FlutterSDK.Services.Platformviews;
+using FlutterSDK.Services.Rawkeyboard;
+using FlutterSDK.Services.Rawkeyboardandroid;
+using FlutterSDK.Services.Rawkeyboardfuchsia;
+using FlutterSDK.Services.Rawkeyboardlinux;
+using FlutterSDK.Services.Rawkeyboardmacos;
+using FlutterSDK.Services.Rawkeyboardweb;
+using FlutterSDK.Services.Systemchannels;
+using FlutterSDK.Services.Systemchrome;
+using FlutterSDK.Services.Systemnavigator;
+using FlutterSDK.Services.Systemsound;
+using FlutterSDK.Services.Textediting;
+using FlutterSDK.Services.Textformatter;
+using FlutterSDK.Services.Textinput;
+using FlutterSDK.Widgets.Actions;
+using FlutterSDK.Widgets.Animatedcrossfade;
+using FlutterSDK.Widgets.Animatedlist;
+using FlutterSDK.Widgets.Animatedsize;
+using FlutterSDK.Widgets.Animatedswitcher;
+using FlutterSDK.Widgets.Annotatedregion;
+using FlutterSDK.Widgets.App;
+using FlutterSDK.Widgets.Async;
+using FlutterSDK.Widgets.Automatickeepalive;
+using FlutterSDK.Widgets.Banner;
+using FlutterSDK.Widgets.Basic;
+using FlutterSDK.Widgets.Binding;
+using FlutterSDK.Widgets.Bottomnavigationbaritem;
+using FlutterSDK.Widgets.Colorfilter;
+using FlutterSDK.Widgets.Container;
+using FlutterSDK.Widgets.Debug;
+using FlutterSDK.Widgets.Dismissible;
+using FlutterSDK.Widgets.Disposablebuildcontext;
+using FlutterSDK.Widgets.Draggablescrollablesheet;
+using FlutterSDK.Widgets.Dragtarget;
+using FlutterSDK.Widgets.Editabletext;
+using FlutterSDK.Widgets.Fadeinimage;
+using FlutterSDK.Widgets.Focusmanager;
+using FlutterSDK.Widgets.Focusscope;
+using FlutterSDK.Widgets.Focustraversal;
+using FlutterSDK.Widgets.Form;
+using FlutterSDK.Widgets.Framework;
+using FlutterSDK.Widgets.Gesturedetector;
+using FlutterSDK.Widgets.Gridpaper;
+using FlutterSDK.Widgets.Heroes;
+using FlutterSDK.Widgets.Icon;
+using FlutterSDK.Widgets.Icondata;
+using FlutterSDK.Widgets.Icontheme;
+using FlutterSDK.Widgets.Iconthemedata;
+using FlutterSDK.Widgets.Image;
+using FlutterSDK.Widgets.Imagefilter;
+using FlutterSDK.Widgets.Imageicon;
+using FlutterSDK.Widgets.Implicitanimations;
+using FlutterSDK.Widgets.Inheritedmodel;
+using FlutterSDK.Widgets.Inheritednotifier;
+using FlutterSDK.Widgets.Inheritedtheme;
+using FlutterSDK.Widgets.Layoutbuilder;
+using FlutterSDK.Widgets.Listwheelscrollview;
+using FlutterSDK.Widgets.Localizations;
+using FlutterSDK.Widgets.Mediaquery;
+using FlutterSDK.Widgets.Modalbarrier;
+using FlutterSDK.Widgets.Navigationtoolbar;
+using FlutterSDK.Widgets.Navigator;
+using FlutterSDK.Widgets.Nestedscrollview;
+using FlutterSDK.Widgets.Notificationlistener;
+using FlutterSDK.Widgets.Orientationbuilder;
+using FlutterSDK.Widgets.Overlay;
+using FlutterSDK.Widgets.Overscrollindicator;
+using FlutterSDK.Widgets.Pages;
+using FlutterSDK.Widgets.Pagestorage;
+using FlutterSDK.Widgets.Pageview;
+using FlutterSDK.Widgets.Performanceoverlay;
+using FlutterSDK.Widgets.Placeholder;
+using FlutterSDK.Widgets.Platformview;
+using FlutterSDK.Widgets.Preferredsize;
+using FlutterSDK.Widgets.Primaryscrollcontroller;
+using FlutterSDK.Widgets.Rawkeyboardlistener;
+using FlutterSDK.Widgets.Routes;
+using FlutterSDK.Widgets.Safearea;
+using FlutterSDK.Widgets.Scrollable;
+using FlutterSDK.Widgets.Scrollactivity;
+using FlutterSDK.Widgets.Scrollawareimageprovider;
+using FlutterSDK.Widgets.Scrollbar;
+using FlutterSDK.Widgets.Scrollconfiguration;
+using FlutterSDK.Widgets.Scrollcontext;
+using FlutterSDK.Widgets.Scrollcontroller;
+using FlutterSDK.Widgets.Scrollmetrics;
+using FlutterSDK.Widgets.Scrollnotification;
+using FlutterSDK.Widgets.Scrollphysics;
+using FlutterSDK.Widgets.Scrollposition;
+using FlutterSDK.Widgets.Scrollpositionwithsinglecontext;
+using FlutterSDK.Widgets.Scrollsimulation;
+using FlutterSDK.Widgets.Scrollview;
+using FlutterSDK.Widgets.Semanticsdebugger;
+using FlutterSDK.Widgets.Shortcuts;
+using FlutterSDK.Widgets.Singlechildscrollview;
+using FlutterSDK.Widgets.Sizechangedlayoutnotifier;
+using FlutterSDK.Widgets.Sliver;
+using FlutterSDK.Widgets.Sliverfill;
+using FlutterSDK.Widgets.Sliverlayoutbuilder;
+using FlutterSDK.Widgets.Sliverpersistentheader;
+using FlutterSDK.Widgets.Sliverprototypeextentlist;
+using FlutterSDK.Widgets.Spacer;
+using FlutterSDK.Widgets.Statustransitions;
+using FlutterSDK.Widgets.Table;
+using FlutterSDK.Widgets.Text;
+using FlutterSDK.Widgets.Textselection;
+using FlutterSDK.Widgets.Texture;
+using FlutterSDK.Widgets.Tickerprovider;
+using FlutterSDK.Widgets.Title;
+using FlutterSDK.Widgets.Transitions;
+using FlutterSDK.Widgets.Tweenanimationbuilder;
+using FlutterSDK.Widgets.Uniquewidget;
+using FlutterSDK.Widgets.Valuelistenablebuilder;
+using FlutterSDK.Widgets.Viewport;
+using FlutterSDK.Widgets.Visibility;
+using FlutterSDK.Widgets.Widgetinspector;
+using FlutterSDK.Widgets.Widgetspan;
+using FlutterSDK.Widgets.Willpopscope;
+using SkiaSharp;
+using static FlutterSDK.Global;
 namespace FlutterSDK.Material.Themedata
 {
     internal static class ThemedataDefaultClass
@@ -541,7 +541,7 @@ namespace FlutterSDK.Material.Themedata
         /// See <https://material.io/design/color/> for
         /// more discussion on how to pick the right colors.
         /// </Summary>
-        public ThemeData(Brightness brightness = default(Brightness), FlutterSDK.Material.Themedata.VisualDensity visualDensity = default(FlutterSDK.Material.Themedata.VisualDensity), FlutterSDK.Material.Colors.MaterialColor primarySwatch = default(FlutterSDK.Material.Colors.MaterialColor), FlutterBinding.UI.Color primaryColor = default(FlutterBinding.UI.Color), Brightness primaryColorBrightness = default(Brightness), FlutterBinding.UI.Color primaryColorLight = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color primaryColorDark = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color accentColor = default(FlutterBinding.UI.Color), Brightness accentColorBrightness = default(Brightness), FlutterBinding.UI.Color canvasColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color scaffoldBackgroundColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color bottomAppBarColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color cardColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color dividerColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color focusColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color hoverColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color highlightColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color splashColor = default(FlutterBinding.UI.Color), FlutterSDK.Material.Inkwell.InteractiveInkFeatureFactory splashFactory = default(FlutterSDK.Material.Inkwell.InteractiveInkFeatureFactory), FlutterBinding.UI.Color selectedRowColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color unselectedWidgetColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color disabledColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color buttonColor = default(FlutterBinding.UI.Color), FlutterSDK.Material.Buttontheme.ButtonThemeData buttonTheme = default(FlutterSDK.Material.Buttontheme.ButtonThemeData), FlutterSDK.Material.Togglebuttonstheme.ToggleButtonsThemeData toggleButtonsTheme = default(FlutterSDK.Material.Togglebuttonstheme.ToggleButtonsThemeData), FlutterBinding.UI.Color secondaryHeaderColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color textSelectionColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color cursorColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color textSelectionHandleColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color dialogBackgroundColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color indicatorColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color hintColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color errorColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color toggleableActiveColor = default(FlutterBinding.UI.Color), string fontFamily = default(string), FlutterSDK.Material.Texttheme.TextTheme textTheme = default(FlutterSDK.Material.Texttheme.TextTheme), FlutterSDK.Material.Texttheme.TextTheme primaryTextTheme = default(FlutterSDK.Material.Texttheme.TextTheme), FlutterSDK.Material.Texttheme.TextTheme accentTextTheme = default(FlutterSDK.Material.Texttheme.TextTheme), FlutterSDK.Material.Inputdecorator.InputDecorationTheme inputDecorationTheme = default(FlutterSDK.Material.Inputdecorator.InputDecorationTheme), FlutterSDK.Widgets.Iconthemedata.IconThemeData iconTheme = default(FlutterSDK.Widgets.Iconthemedata.IconThemeData), FlutterSDK.Widgets.Iconthemedata.IconThemeData primaryIconTheme = default(FlutterSDK.Widgets.Iconthemedata.IconThemeData), FlutterSDK.Widgets.Iconthemedata.IconThemeData accentIconTheme = default(FlutterSDK.Widgets.Iconthemedata.IconThemeData), FlutterSDK.Material.Slidertheme.SliderThemeData sliderTheme = default(FlutterSDK.Material.Slidertheme.SliderThemeData), FlutterSDK.Material.Tabbartheme.TabBarTheme tabBarTheme = default(FlutterSDK.Material.Tabbartheme.TabBarTheme), FlutterSDK.Material.Tooltiptheme.TooltipThemeData tooltipTheme = default(FlutterSDK.Material.Tooltiptheme.TooltipThemeData), FlutterSDK.Material.Cardtheme.CardTheme cardTheme = default(FlutterSDK.Material.Cardtheme.CardTheme), FlutterSDK.Material.Chiptheme.ChipThemeData chipTheme = default(FlutterSDK.Material.Chiptheme.ChipThemeData), FlutterSDK.Foundation.Platform.TargetPlatform platform = default(FlutterSDK.Foundation.Platform.TargetPlatform), FlutterSDK.Material.Themedata.MaterialTapTargetSize materialTapTargetSize = default(FlutterSDK.Material.Themedata.MaterialTapTargetSize), bool applyElevationOverlayColor = default(bool), FlutterSDK.Material.Pagetransitionstheme.PageTransitionsTheme pageTransitionsTheme = default(FlutterSDK.Material.Pagetransitionstheme.PageTransitionsTheme), FlutterSDK.Material.Appbartheme.AppBarTheme appBarTheme = default(FlutterSDK.Material.Appbartheme.AppBarTheme), FlutterSDK.Material.Bottomappbartheme.BottomAppBarTheme bottomAppBarTheme = default(FlutterSDK.Material.Bottomappbartheme.BottomAppBarTheme), FlutterSDK.Material.Colorscheme.ColorScheme colorScheme = default(FlutterSDK.Material.Colorscheme.ColorScheme), FlutterSDK.Material.Dialogtheme.DialogTheme dialogTheme = default(FlutterSDK.Material.Dialogtheme.DialogTheme), FlutterSDK.Material.Floatingactionbuttontheme.FloatingActionButtonThemeData floatingActionButtonTheme = default(FlutterSDK.Material.Floatingactionbuttontheme.FloatingActionButtonThemeData), FlutterSDK.Material.Navigationrailtheme.NavigationRailThemeData navigationRailTheme = default(FlutterSDK.Material.Navigationrailtheme.NavigationRailThemeData), FlutterSDK.Material.Typography.Typography typography = default(FlutterSDK.Material.Typography.Typography), FlutterSDK.Cupertino.Theme.CupertinoThemeData cupertinoOverrideTheme = default(FlutterSDK.Cupertino.Theme.CupertinoThemeData), FlutterSDK.Material.Snackbartheme.SnackBarThemeData snackBarTheme = default(FlutterSDK.Material.Snackbartheme.SnackBarThemeData), FlutterSDK.Material.Bottomsheettheme.BottomSheetThemeData bottomSheetTheme = default(FlutterSDK.Material.Bottomsheettheme.BottomSheetThemeData), FlutterSDK.Material.Popupmenutheme.PopupMenuThemeData popupMenuTheme = default(FlutterSDK.Material.Popupmenutheme.PopupMenuThemeData), FlutterSDK.Material.Bannertheme.MaterialBannerThemeData bannerTheme = default(FlutterSDK.Material.Bannertheme.MaterialBannerThemeData), FlutterSDK.Material.Dividertheme.DividerThemeData dividerTheme = default(FlutterSDK.Material.Dividertheme.DividerThemeData), FlutterSDK.Material.Buttonbartheme.ButtonBarThemeData buttonBarTheme = default(FlutterSDK.Material.Buttonbartheme.ButtonBarThemeData))
+        public static ThemeData CreateNew(Brightness brightness = default(Brightness), FlutterSDK.Material.Themedata.VisualDensity visualDensity = default(FlutterSDK.Material.Themedata.VisualDensity), FlutterSDK.Material.Colors.MaterialColor primarySwatch = default(FlutterSDK.Material.Colors.MaterialColor), FlutterBinding.UI.Color primaryColor = default(FlutterBinding.UI.Color), Brightness primaryColorBrightness = default(Brightness), FlutterBinding.UI.Color primaryColorLight = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color primaryColorDark = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color accentColor = default(FlutterBinding.UI.Color), Brightness accentColorBrightness = default(Brightness), FlutterBinding.UI.Color canvasColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color scaffoldBackgroundColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color bottomAppBarColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color cardColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color dividerColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color focusColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color hoverColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color highlightColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color splashColor = default(FlutterBinding.UI.Color), FlutterSDK.Material.Inkwell.InteractiveInkFeatureFactory splashFactory = default(FlutterSDK.Material.Inkwell.InteractiveInkFeatureFactory), FlutterBinding.UI.Color selectedRowColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color unselectedWidgetColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color disabledColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color buttonColor = default(FlutterBinding.UI.Color), FlutterSDK.Material.Buttontheme.ButtonThemeData buttonTheme = default(FlutterSDK.Material.Buttontheme.ButtonThemeData), FlutterSDK.Material.Togglebuttonstheme.ToggleButtonsThemeData toggleButtonsTheme = default(FlutterSDK.Material.Togglebuttonstheme.ToggleButtonsThemeData), FlutterBinding.UI.Color secondaryHeaderColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color textSelectionColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color cursorColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color textSelectionHandleColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color dialogBackgroundColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color indicatorColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color hintColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color errorColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color toggleableActiveColor = default(FlutterBinding.UI.Color), string fontFamily = default(string), FlutterSDK.Material.Texttheme.TextTheme textTheme = default(FlutterSDK.Material.Texttheme.TextTheme), FlutterSDK.Material.Texttheme.TextTheme primaryTextTheme = default(FlutterSDK.Material.Texttheme.TextTheme), FlutterSDK.Material.Texttheme.TextTheme accentTextTheme = default(FlutterSDK.Material.Texttheme.TextTheme), FlutterSDK.Material.Inputdecorator.InputDecorationTheme inputDecorationTheme = default(FlutterSDK.Material.Inputdecorator.InputDecorationTheme), FlutterSDK.Widgets.Iconthemedata.IconThemeData iconTheme = default(FlutterSDK.Widgets.Iconthemedata.IconThemeData), FlutterSDK.Widgets.Iconthemedata.IconThemeData primaryIconTheme = default(FlutterSDK.Widgets.Iconthemedata.IconThemeData), FlutterSDK.Widgets.Iconthemedata.IconThemeData accentIconTheme = default(FlutterSDK.Widgets.Iconthemedata.IconThemeData), FlutterSDK.Material.Slidertheme.SliderThemeData sliderTheme = default(FlutterSDK.Material.Slidertheme.SliderThemeData), FlutterSDK.Material.Tabbartheme.TabBarTheme tabBarTheme = default(FlutterSDK.Material.Tabbartheme.TabBarTheme), FlutterSDK.Material.Tooltiptheme.TooltipThemeData tooltipTheme = default(FlutterSDK.Material.Tooltiptheme.TooltipThemeData), FlutterSDK.Material.Cardtheme.CardTheme cardTheme = default(FlutterSDK.Material.Cardtheme.CardTheme), FlutterSDK.Material.Chiptheme.ChipThemeData chipTheme = default(FlutterSDK.Material.Chiptheme.ChipThemeData), FlutterSDK.Foundation.Platform.TargetPlatform platform = default(FlutterSDK.Foundation.Platform.TargetPlatform), FlutterSDK.Material.Themedata.MaterialTapTargetSize materialTapTargetSize = default(FlutterSDK.Material.Themedata.MaterialTapTargetSize), bool applyElevationOverlayColor = default(bool), FlutterSDK.Material.Pagetransitionstheme.PageTransitionsTheme pageTransitionsTheme = default(FlutterSDK.Material.Pagetransitionstheme.PageTransitionsTheme), FlutterSDK.Material.Appbartheme.AppBarTheme appBarTheme = default(FlutterSDK.Material.Appbartheme.AppBarTheme), FlutterSDK.Material.Bottomappbartheme.BottomAppBarTheme bottomAppBarTheme = default(FlutterSDK.Material.Bottomappbartheme.BottomAppBarTheme), FlutterSDK.Material.Colorscheme.ColorScheme colorScheme = default(FlutterSDK.Material.Colorscheme.ColorScheme), FlutterSDK.Material.Dialogtheme.DialogTheme dialogTheme = default(FlutterSDK.Material.Dialogtheme.DialogTheme), FlutterSDK.Material.Floatingactionbuttontheme.FloatingActionButtonThemeData floatingActionButtonTheme = default(FlutterSDK.Material.Floatingactionbuttontheme.FloatingActionButtonThemeData), FlutterSDK.Material.Navigationrailtheme.NavigationRailThemeData navigationRailTheme = default(FlutterSDK.Material.Navigationrailtheme.NavigationRailThemeData), FlutterSDK.Material.Typography.Typography typography = default(FlutterSDK.Material.Typography.Typography), FlutterSDK.Cupertino.Theme.CupertinoThemeData cupertinoOverrideTheme = default(FlutterSDK.Cupertino.Theme.CupertinoThemeData), FlutterSDK.Material.Snackbartheme.SnackBarThemeData snackBarTheme = default(FlutterSDK.Material.Snackbartheme.SnackBarThemeData), FlutterSDK.Material.Bottomsheettheme.BottomSheetThemeData bottomSheetTheme = default(FlutterSDK.Material.Bottomsheettheme.BottomSheetThemeData), FlutterSDK.Material.Popupmenutheme.PopupMenuThemeData popupMenuTheme = default(FlutterSDK.Material.Popupmenutheme.PopupMenuThemeData), FlutterSDK.Material.Bannertheme.MaterialBannerThemeData bannerTheme = default(FlutterSDK.Material.Bannertheme.MaterialBannerThemeData), FlutterSDK.Material.Dividertheme.DividerThemeData dividerTheme = default(FlutterSDK.Material.Dividertheme.DividerThemeData), FlutterSDK.Material.Buttonbartheme.ButtonBarThemeData buttonBarTheme = default(FlutterSDK.Material.Buttonbartheme.ButtonBarThemeData))
         {
 
             brightness = (brightness == null ? Brightness.Light : brightness);
@@ -636,71 +636,75 @@ namespace FlutterSDK.Material.Themedata
         /// [new ThemeData] constructor.
         /// </Summary>
         public static ThemeData Raw(Brightness brightness = default(Brightness), FlutterSDK.Material.Themedata.VisualDensity visualDensity = default(FlutterSDK.Material.Themedata.VisualDensity), FlutterBinding.UI.Color primaryColor = default(FlutterBinding.UI.Color), Brightness primaryColorBrightness = default(Brightness), FlutterBinding.UI.Color primaryColorLight = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color primaryColorDark = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color canvasColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color accentColor = default(FlutterBinding.UI.Color), Brightness accentColorBrightness = default(Brightness), FlutterBinding.UI.Color scaffoldBackgroundColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color bottomAppBarColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color cardColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color dividerColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color focusColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color hoverColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color highlightColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color splashColor = default(FlutterBinding.UI.Color), FlutterSDK.Material.Inkwell.InteractiveInkFeatureFactory splashFactory = default(FlutterSDK.Material.Inkwell.InteractiveInkFeatureFactory), FlutterBinding.UI.Color selectedRowColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color unselectedWidgetColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color disabledColor = default(FlutterBinding.UI.Color), FlutterSDK.Material.Buttontheme.ButtonThemeData buttonTheme = default(FlutterSDK.Material.Buttontheme.ButtonThemeData), FlutterBinding.UI.Color buttonColor = default(FlutterBinding.UI.Color), FlutterSDK.Material.Togglebuttonstheme.ToggleButtonsThemeData toggleButtonsTheme = default(FlutterSDK.Material.Togglebuttonstheme.ToggleButtonsThemeData), FlutterBinding.UI.Color secondaryHeaderColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color textSelectionColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color cursorColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color textSelectionHandleColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color dialogBackgroundColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color indicatorColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color hintColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color errorColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color toggleableActiveColor = default(FlutterBinding.UI.Color), FlutterSDK.Material.Texttheme.TextTheme textTheme = default(FlutterSDK.Material.Texttheme.TextTheme), FlutterSDK.Material.Texttheme.TextTheme primaryTextTheme = default(FlutterSDK.Material.Texttheme.TextTheme), FlutterSDK.Material.Texttheme.TextTheme accentTextTheme = default(FlutterSDK.Material.Texttheme.TextTheme), FlutterSDK.Material.Inputdecorator.InputDecorationTheme inputDecorationTheme = default(FlutterSDK.Material.Inputdecorator.InputDecorationTheme), FlutterSDK.Widgets.Iconthemedata.IconThemeData iconTheme = default(FlutterSDK.Widgets.Iconthemedata.IconThemeData), FlutterSDK.Widgets.Iconthemedata.IconThemeData primaryIconTheme = default(FlutterSDK.Widgets.Iconthemedata.IconThemeData), FlutterSDK.Widgets.Iconthemedata.IconThemeData accentIconTheme = default(FlutterSDK.Widgets.Iconthemedata.IconThemeData), FlutterSDK.Material.Slidertheme.SliderThemeData sliderTheme = default(FlutterSDK.Material.Slidertheme.SliderThemeData), FlutterSDK.Material.Tabbartheme.TabBarTheme tabBarTheme = default(FlutterSDK.Material.Tabbartheme.TabBarTheme), FlutterSDK.Material.Tooltiptheme.TooltipThemeData tooltipTheme = default(FlutterSDK.Material.Tooltiptheme.TooltipThemeData), FlutterSDK.Material.Cardtheme.CardTheme cardTheme = default(FlutterSDK.Material.Cardtheme.CardTheme), FlutterSDK.Material.Chiptheme.ChipThemeData chipTheme = default(FlutterSDK.Material.Chiptheme.ChipThemeData), FlutterSDK.Foundation.Platform.TargetPlatform platform = default(FlutterSDK.Foundation.Platform.TargetPlatform), FlutterSDK.Material.Themedata.MaterialTapTargetSize materialTapTargetSize = default(FlutterSDK.Material.Themedata.MaterialTapTargetSize), bool applyElevationOverlayColor = default(bool), FlutterSDK.Material.Pagetransitionstheme.PageTransitionsTheme pageTransitionsTheme = default(FlutterSDK.Material.Pagetransitionstheme.PageTransitionsTheme), FlutterSDK.Material.Appbartheme.AppBarTheme appBarTheme = default(FlutterSDK.Material.Appbartheme.AppBarTheme), FlutterSDK.Material.Bottomappbartheme.BottomAppBarTheme bottomAppBarTheme = default(FlutterSDK.Material.Bottomappbartheme.BottomAppBarTheme), FlutterSDK.Material.Colorscheme.ColorScheme colorScheme = default(FlutterSDK.Material.Colorscheme.ColorScheme), FlutterSDK.Material.Dialogtheme.DialogTheme dialogTheme = default(FlutterSDK.Material.Dialogtheme.DialogTheme), FlutterSDK.Material.Floatingactionbuttontheme.FloatingActionButtonThemeData floatingActionButtonTheme = default(FlutterSDK.Material.Floatingactionbuttontheme.FloatingActionButtonThemeData), FlutterSDK.Material.Navigationrailtheme.NavigationRailThemeData navigationRailTheme = default(FlutterSDK.Material.Navigationrailtheme.NavigationRailThemeData), FlutterSDK.Material.Typography.Typography typography = default(FlutterSDK.Material.Typography.Typography), FlutterSDK.Cupertino.Theme.CupertinoThemeData cupertinoOverrideTheme = default(FlutterSDK.Cupertino.Theme.CupertinoThemeData), FlutterSDK.Material.Snackbartheme.SnackBarThemeData snackBarTheme = default(FlutterSDK.Material.Snackbartheme.SnackBarThemeData), FlutterSDK.Material.Bottomsheettheme.BottomSheetThemeData bottomSheetTheme = default(FlutterSDK.Material.Bottomsheettheme.BottomSheetThemeData), FlutterSDK.Material.Popupmenutheme.PopupMenuThemeData popupMenuTheme = default(FlutterSDK.Material.Popupmenutheme.PopupMenuThemeData), FlutterSDK.Material.Bannertheme.MaterialBannerThemeData bannerTheme = default(FlutterSDK.Material.Bannertheme.MaterialBannerThemeData), FlutterSDK.Material.Dividertheme.DividerThemeData dividerTheme = default(FlutterSDK.Material.Dividertheme.DividerThemeData), FlutterSDK.Material.Buttonbartheme.ButtonBarThemeData buttonBarTheme = default(FlutterSDK.Material.Buttonbartheme.ButtonBarThemeData))
+        => new ThemeData(brightness, visualDensity, primaryColor, primaryColorBrightness, primaryColorLight, primaryColorDark, canvasColor, accentColor, accentColorBrightness, scaffoldBackgroundColor, bottomAppBarColor, cardColor, dividerColor, focusColor, hoverColor, highlightColor, splashColor, splashFactory, selectedRowColor, unselectedWidgetColor, disabledColor, buttonTheme, buttonColor, toggleButtonsTheme, secondaryHeaderColor, textSelectionColor, cursorColor, textSelectionHandleColor, backgroundColor, dialogBackgroundColor, indicatorColor, hintColor, errorColor, toggleableActiveColor, textTheme, primaryTextTheme, accentTextTheme, inputDecorationTheme, iconTheme, primaryIconTheme, accentIconTheme, sliderTheme, tabBarTheme, tooltipTheme, cardTheme, chipTheme, platform, materialTapTargetSize, applyElevationOverlayColor, pageTransitionsTheme, appBarTheme, bottomAppBarTheme, colorScheme, dialogTheme, floatingActionButtonTheme, navigationRailTheme, typography, cupertinoOverrideTheme, snackBarTheme, bottomSheetTheme, popupMenuTheme, bannerTheme, dividerTheme, buttonBarTheme);
+
+        private ThemeData(Brightness brightness, FlutterSDK.Material.Themedata.VisualDensity visualDensity, FlutterBinding.UI.Color primaryColor, Brightness primaryColorBrightness, FlutterBinding.UI.Color primaryColorLight, FlutterBinding.UI.Color primaryColorDark, FlutterBinding.UI.Color canvasColor, FlutterBinding.UI.Color accentColor, Brightness accentColorBrightness, FlutterBinding.UI.Color scaffoldBackgroundColor, FlutterBinding.UI.Color bottomAppBarColor, FlutterBinding.UI.Color cardColor, FlutterBinding.UI.Color dividerColor, FlutterBinding.UI.Color focusColor, FlutterBinding.UI.Color hoverColor, FlutterBinding.UI.Color highlightColor, FlutterBinding.UI.Color splashColor, FlutterSDK.Material.Inkwell.InteractiveInkFeatureFactory splashFactory, FlutterBinding.UI.Color selectedRowColor, FlutterBinding.UI.Color unselectedWidgetColor, FlutterBinding.UI.Color disabledColor, FlutterSDK.Material.Buttontheme.ButtonThemeData buttonTheme, FlutterBinding.UI.Color buttonColor, FlutterSDK.Material.Togglebuttonstheme.ToggleButtonsThemeData toggleButtonsTheme, FlutterBinding.UI.Color secondaryHeaderColor, FlutterBinding.UI.Color textSelectionColor, FlutterBinding.UI.Color cursorColor, FlutterBinding.UI.Color textSelectionHandleColor, FlutterBinding.UI.Color backgroundColor, FlutterBinding.UI.Color dialogBackgroundColor, FlutterBinding.UI.Color indicatorColor, FlutterBinding.UI.Color hintColor, FlutterBinding.UI.Color errorColor, FlutterBinding.UI.Color toggleableActiveColor, FlutterSDK.Material.Texttheme.TextTheme textTheme, FlutterSDK.Material.Texttheme.TextTheme primaryTextTheme, FlutterSDK.Material.Texttheme.TextTheme accentTextTheme, FlutterSDK.Material.Inputdecorator.InputDecorationTheme inputDecorationTheme, FlutterSDK.Widgets.Iconthemedata.IconThemeData iconTheme, FlutterSDK.Widgets.Iconthemedata.IconThemeData primaryIconTheme, FlutterSDK.Widgets.Iconthemedata.IconThemeData accentIconTheme, FlutterSDK.Material.Slidertheme.SliderThemeData sliderTheme, FlutterSDK.Material.Tabbartheme.TabBarTheme tabBarTheme, FlutterSDK.Material.Tooltiptheme.TooltipThemeData tooltipTheme, FlutterSDK.Material.Cardtheme.CardTheme cardTheme, FlutterSDK.Material.Chiptheme.ChipThemeData chipTheme, FlutterSDK.Foundation.Platform.TargetPlatform platform, FlutterSDK.Material.Themedata.MaterialTapTargetSize materialTapTargetSize, bool applyElevationOverlayColor, FlutterSDK.Material.Pagetransitionstheme.PageTransitionsTheme pageTransitionsTheme, FlutterSDK.Material.Appbartheme.AppBarTheme appBarTheme, FlutterSDK.Material.Bottomappbartheme.BottomAppBarTheme bottomAppBarTheme, FlutterSDK.Material.Colorscheme.ColorScheme colorScheme, FlutterSDK.Material.Dialogtheme.DialogTheme dialogTheme, FlutterSDK.Material.Floatingactionbuttontheme.FloatingActionButtonThemeData floatingActionButtonTheme, FlutterSDK.Material.Navigationrailtheme.NavigationRailThemeData navigationRailTheme, FlutterSDK.Material.Typography.Typography typography, FlutterSDK.Cupertino.Theme.CupertinoThemeData cupertinoOverrideTheme, FlutterSDK.Material.Snackbartheme.SnackBarThemeData snackBarTheme, FlutterSDK.Material.Bottomsheettheme.BottomSheetThemeData bottomSheetTheme, FlutterSDK.Material.Popupmenutheme.PopupMenuThemeData popupMenuTheme, FlutterSDK.Material.Bannertheme.MaterialBannerThemeData bannerTheme, FlutterSDK.Material.Dividertheme.DividerThemeData dividerTheme, FlutterSDK.Material.Buttonbartheme.ButtonBarThemeData buttonBarTheme)
+        : base()
         {
-            var instance = new ThemeData(); instance.Brightness = brightness;
-            instance.VisualDensity = visualDensity;
-            instance.PrimaryColor = primaryColor;
-            instance.PrimaryColorBrightness = primaryColorBrightness;
-            instance.PrimaryColorLight = primaryColorLight;
-            instance.PrimaryColorDark = primaryColorDark;
-            instance.CanvasColor = canvasColor;
-            instance.AccentColor = accentColor;
-            instance.AccentColorBrightness = accentColorBrightness;
-            instance.ScaffoldBackgroundColor = scaffoldBackgroundColor;
-            instance.BottomAppBarColor = bottomAppBarColor;
-            instance.CardColor = cardColor;
-            instance.DividerColor = dividerColor;
-            instance.FocusColor = focusColor;
-            instance.HoverColor = hoverColor;
-            instance.HighlightColor = highlightColor;
-            instance.SplashColor = splashColor;
-            instance.SplashFactory = splashFactory;
-            instance.SelectedRowColor = selectedRowColor;
-            instance.UnselectedWidgetColor = unselectedWidgetColor;
-            instance.DisabledColor = disabledColor;
-            instance.ButtonTheme = buttonTheme;
-            instance.ButtonColor = buttonColor;
-            instance.ToggleButtonsTheme = toggleButtonsTheme;
-            instance.SecondaryHeaderColor = secondaryHeaderColor;
-            instance.TextSelectionColor = textSelectionColor;
-            instance.CursorColor = cursorColor;
-            instance.TextSelectionHandleColor = textSelectionHandleColor;
-            instance.BackgroundColor = backgroundColor;
-            instance.DialogBackgroundColor = dialogBackgroundColor;
-            instance.IndicatorColor = indicatorColor;
-            instance.HintColor = hintColor;
-            instance.ErrorColor = errorColor;
-            instance.ToggleableActiveColor = toggleableActiveColor;
-            instance.TextTheme = textTheme;
-            instance.PrimaryTextTheme = primaryTextTheme;
-            instance.AccentTextTheme = accentTextTheme;
-            instance.InputDecorationTheme = inputDecorationTheme;
-            instance.IconTheme = iconTheme;
-            instance.PrimaryIconTheme = primaryIconTheme;
-            instance.AccentIconTheme = accentIconTheme;
-            instance.SliderTheme = sliderTheme;
-            instance.TabBarTheme = tabBarTheme;
-            instance.TooltipTheme = tooltipTheme;
-            instance.CardTheme = cardTheme;
-            instance.ChipTheme = chipTheme;
-            instance.Platform = platform;
-            instance.MaterialTapTargetSize = materialTapTargetSize;
-            instance.ApplyElevationOverlayColor = applyElevationOverlayColor;
-            instance.PageTransitionsTheme = pageTransitionsTheme;
-            instance.AppBarTheme = appBarTheme;
-            instance.BottomAppBarTheme = bottomAppBarTheme;
-            instance.ColorScheme = colorScheme;
-            instance.DialogTheme = dialogTheme;
-            instance.FloatingActionButtonTheme = floatingActionButtonTheme;
-            instance.NavigationRailTheme = navigationRailTheme;
-            instance.Typography = typography;
-            instance.CupertinoOverrideTheme = cupertinoOverrideTheme;
-            instance.SnackBarTheme = snackBarTheme;
-            instance.BottomSheetTheme = bottomSheetTheme;
-            instance.PopupMenuTheme = popupMenuTheme;
-            instance.BannerTheme = bannerTheme;
-            instance.DividerTheme = dividerTheme;
-            instance.ButtonBarTheme = buttonBarTheme;
+            this.Brightness = brightness;
+            this.VisualDensity = visualDensity;
+            this.PrimaryColor = primaryColor;
+            this.PrimaryColorBrightness = primaryColorBrightness;
+            this.PrimaryColorLight = primaryColorLight;
+            this.PrimaryColorDark = primaryColorDark;
+            this.CanvasColor = canvasColor;
+            this.AccentColor = accentColor;
+            this.AccentColorBrightness = accentColorBrightness;
+            this.ScaffoldBackgroundColor = scaffoldBackgroundColor;
+            this.BottomAppBarColor = bottomAppBarColor;
+            this.CardColor = cardColor;
+            this.DividerColor = dividerColor;
+            this.FocusColor = focusColor;
+            this.HoverColor = hoverColor;
+            this.HighlightColor = highlightColor;
+            this.SplashColor = splashColor;
+            this.SplashFactory = splashFactory;
+            this.SelectedRowColor = selectedRowColor;
+            this.UnselectedWidgetColor = unselectedWidgetColor;
+            this.DisabledColor = disabledColor;
+            this.ButtonTheme = buttonTheme;
+            this.ButtonColor = buttonColor;
+            this.ToggleButtonsTheme = toggleButtonsTheme;
+            this.SecondaryHeaderColor = secondaryHeaderColor;
+            this.TextSelectionColor = textSelectionColor;
+            this.CursorColor = cursorColor;
+            this.TextSelectionHandleColor = textSelectionHandleColor;
+            this.BackgroundColor = backgroundColor;
+            this.DialogBackgroundColor = dialogBackgroundColor;
+            this.IndicatorColor = indicatorColor;
+            this.HintColor = hintColor;
+            this.ErrorColor = errorColor;
+            this.ToggleableActiveColor = toggleableActiveColor;
+            this.TextTheme = textTheme;
+            this.PrimaryTextTheme = primaryTextTheme;
+            this.AccentTextTheme = accentTextTheme;
+            this.InputDecorationTheme = inputDecorationTheme;
+            this.IconTheme = iconTheme;
+            this.PrimaryIconTheme = primaryIconTheme;
+            this.AccentIconTheme = accentIconTheme;
+            this.SliderTheme = sliderTheme;
+            this.TabBarTheme = tabBarTheme;
+            this.TooltipTheme = tooltipTheme;
+            this.CardTheme = cardTheme;
+            this.ChipTheme = chipTheme;
+            this.Platform = platform;
+            this.MaterialTapTargetSize = materialTapTargetSize;
+            this.ApplyElevationOverlayColor = applyElevationOverlayColor;
+            this.PageTransitionsTheme = pageTransitionsTheme;
+            this.AppBarTheme = appBarTheme;
+            this.BottomAppBarTheme = bottomAppBarTheme;
+            this.ColorScheme = colorScheme;
+            this.DialogTheme = dialogTheme;
+            this.FloatingActionButtonTheme = floatingActionButtonTheme;
+            this.NavigationRailTheme = navigationRailTheme;
+            this.Typography = typography;
+            this.CupertinoOverrideTheme = cupertinoOverrideTheme;
+            this.SnackBarTheme = snackBarTheme;
+            this.BottomSheetTheme = bottomSheetTheme;
+            this.PopupMenuTheme = popupMenuTheme;
+            this.BannerTheme = bannerTheme;
+            this.DividerTheme = dividerTheme;
+            this.ButtonBarTheme = buttonBarTheme;
         }
         /// <Summary>
         /// Create a [ThemeData] based on the colors in the given [colorScheme] and
@@ -734,12 +738,12 @@ namespace FlutterSDK.Material.Themedata
         /// </Summary>
         public static ThemeData From(FlutterSDK.Material.Colorscheme.ColorScheme colorScheme = default(FlutterSDK.Material.Colorscheme.ColorScheme), FlutterSDK.Material.Texttheme.TextTheme textTheme = default(FlutterSDK.Material.Texttheme.TextTheme))
         {
-            var instance = new ThemeData();
+
 
             bool isDark = colorScheme.Brightness == Brightness.Dark;
             Color primarySurfaceColor = isDark ? colorScheme.Surface : colorScheme.Primary;
             Color onPrimarySurfaceColor = isDark ? colorScheme.OnSurface : colorScheme.OnPrimary;
-            return new ThemeData(brightness: colorScheme.Brightness, primaryColor: primarySurfaceColor, primaryColorBrightness: ThemedataDefaultClass.ThemeData.EstimateBrightnessForColor(primarySurfaceColor), canvasColor: colorScheme.Background, accentColor: colorScheme.Secondary, accentColorBrightness: ThemedataDefaultClass.ThemeData.EstimateBrightnessForColor(colorScheme.Secondary), scaffoldBackgroundColor: colorScheme.Background, bottomAppBarColor: colorScheme.Surface, cardColor: colorScheme.Surface, dividerColor: colorScheme.OnSurface.WithOpacity(0.12), backgroundColor: colorScheme.Background, dialogBackgroundColor: colorScheme.Background, errorColor: colorScheme.Error, textTheme: textTheme, indicatorColor: onPrimarySurfaceColor, applyElevationOverlayColor: isDark, colorScheme: colorScheme);
+            return ThemeData.CreateNew(brightness: colorScheme.Brightness, primaryColor: primarySurfaceColor, primaryColorBrightness: ThemedataDefaultClass.ThemeData.EstimateBrightnessForColor(primarySurfaceColor), canvasColor: colorScheme.Background, accentColor: colorScheme.Secondary, accentColorBrightness: ThemedataDefaultClass.ThemeData.EstimateBrightnessForColor(colorScheme.Secondary), scaffoldBackgroundColor: colorScheme.Background, bottomAppBarColor: colorScheme.Surface, cardColor: colorScheme.Surface, dividerColor: colorScheme.OnSurface.WithOpacity(0.12), backgroundColor: colorScheme.Background, dialogBackgroundColor: colorScheme.Background, errorColor: colorScheme.Error, textTheme: textTheme, indicatorColor: onPrimarySurfaceColor, applyElevationOverlayColor: isDark, colorScheme: colorScheme);
         }
 
 
@@ -750,46 +754,43 @@ namespace FlutterSDK.Material.Themedata
         /// this theme is localized using text geometry using [ThemeData.localize].
         /// </Summary>
         public static ThemeData Light()
-        {
-            var instance = new ThemeData(); new ThemeData(brightness: Brightness.Light);
+        => ThemeData.CreateNew(brightness: Brightness.Light);
 
-            /// <Summary>
-            /// A default dark theme with a teal accent color.
-            ///
-            /// This theme does not contain text geometry. Instead, it is expected that
-            /// this theme is localized using text geometry using [ThemeData.localize].
-            /// </Summary>
-            public static ThemeData Dark()
-            {
-                var instance = new ThemeData(); new ThemeData(brightness: Brightness.Dark);
+        /// <Summary>
+        /// A default dark theme with a teal accent color.
+        ///
+        /// This theme does not contain text geometry. Instead, it is expected that
+        /// this theme is localized using text geometry using [ThemeData.localize].
+        /// </Summary>
+        public static ThemeData Dark()
+        => ThemeData.CreateNew(brightness: Brightness.Dark);
 
-                /// <Summary>
-                /// The default color theme. Same as [new ThemeData.light].
-                ///
-                /// This is used by [Theme.of] when no theme has been specified.
-                ///
-                /// This theme does not contain text geometry. Instead, it is expected that
-                /// this theme is localized using text geometry using [ThemeData.localize].
-                ///
-                /// Most applications would use [Theme.of], which provides correct localized
-                /// text geometry.
-                /// </Summary>
-                public static ThemeData Fallback()
-                {
-                    var instance = new ThemeData(); ThemeData.Light();
+        /// <Summary>
+        /// The default color theme. Same as [new ThemeData.light].
+        ///
+        /// This is used by [Theme.of] when no theme has been specified.
+        ///
+        /// This theme does not contain text geometry. Instead, it is expected that
+        /// this theme is localized using text geometry using [ThemeData.localize].
+        ///
+        /// Most applications would use [Theme.of], which provides correct localized
+        /// text geometry.
+        /// </Summary>
+        public static ThemeData Fallback()
+        => ThemeData.Light();
 
-/// <Summary>
-/// The brightness of the overall theme of the application. Used by widgets
-/// like buttons to determine what color to pick when not using the primary or
-/// accent color.
-///
-/// When the [Brightness] is dark, the canvas, card, and primary colors are
-/// all dark. When the [Brightness] is light, the canvas and card colors
-/// are bright, and the primary color's darkness varies as described by
-/// primaryColorBrightness. The primaryColor does not contrast well with the
-/// card and canvas colors when the brightness is dark; when the brightness is
-/// dark, use Colors.white or the accentColor for a contrasting color.
-/// </Summary>
+        /// <Summary>
+        /// The brightness of the overall theme of the application. Used by widgets
+        /// like buttons to determine what color to pick when not using the primary or
+        /// accent color.
+        ///
+        /// When the [Brightness] is dark, the canvas, card, and primary colors are
+        /// all dark. When the [Brightness] is light, the canvas and card colors
+        /// are bright, and the primary color's darkness varies as described by
+        /// primaryColorBrightness. The primaryColor does not contrast well with the
+        /// card and canvas colors when the brightness is dark; when the brightness is
+        /// dark, use Colors.white or the accentColor for a contrasting color.
+        /// </Summary>
         public virtual Brightness Brightness { get; set; }
         /// <Summary>
         /// The density value for specifying the compactness of various UI components.

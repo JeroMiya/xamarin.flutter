@@ -7,35 +7,122 @@ import '../naming.dart';
 import '../comments.dart';
 import 'methods.dart';
 import '../config.dart';
+import '../codeBuilder.dart';
 import 'package:front_end/src/scanner/token.dart';
 
 class Constructors {
   static void printConstructor(
-      StringBuffer code, ConstructorElementImpl constructor, String generics) {
+      CodeBuilder code, ConstructorElementImpl constructor, String generics) {
     if (constructor.enclosingElement is ClassElement) {
-      var isFactory = false;
+      var isFactory = constructor.isFactory;
       var className = constructor.enclosingElement.name;
       var constructorName = constructor.name;
       var callsBaseCtor = constructor.redirectedConstructor != null ||
           (constructor.constantInitializers != null &&
               constructor.constantInitializers.length > 0);
 
+      //TODO: handle constructor.redirectedConstructor with 'this' or other type
+
       Comments.appendComment(code, constructor);
 
-      var parameters = Methods.printParameter(constructor, null, null);
+      var node = constructor.computeNode();
+      var parameters = Methods.printParameters(constructor, null, null);
       // normal constructors do not have any special key chars
-      if (constructorName == '')
-        code.writeln('public ${className}($parameters)');
+      if (constructorName == '') {
+        if (isFactory) {
+          code.writeln('public static ${className} CreateNew($parameters)');
+        } else {
+          code.writeln('public ${className}($parameters)');
+        }
+      }
       // internal classes start with an underscore in dart
-      else if (constructorName == '_')
+      else if (constructorName == '_') if (isFactory) {
+        code.writeln('internal static ${className} CreateNew($parameters)');
+      } else {
         code.writeln('internal ${className}($parameters)');
-      else // I'm named, hence we are turing into static methods that return an instance
+      }
+      else // I'm named, hence we are turning into static methods that call private constructors
       {
         var accessibility =
             constructorName.startsWith('_') ? 'internal' : 'public';
-        isFactory = true;
+        var parameterNames = Methods.printParameterNames(constructor);
+        var parametersWithoutDefaultValueForOptionals = Methods.printParameters(
+            constructor, null, null,
+            printDefaultValueForOptionalParameters: false);
+
         code.writeln(
             '$accessibility static ${className}$generics ${Naming.upperCamelCase(constructorName)}($parameters)');
+
+        if (!isFactory) {
+          //NOTE: In Dart one can create any number of constructors with a different name
+          //In C# constructors are only 'unnamed' and must all have different signature
+          //for example this is valid in Dart:
+          // class Point {
+          //   double x, y;
+          //   Point(this.x, this.y);
+          //   Point.origin() {
+          //     x = 0;
+          //     y = 0;
+          //   }
+          //   Point.other() {
+          //     x = 12;
+          //     y = 22;
+          //   }
+          // }
+          //
+          //but not in c#
+          // class Point {
+          //   double x, y;
+          //   Point(this.x, this.y) { .... }
+          //   public Origin() => new Point();
+          //   Point() {
+          //     x = 0;
+          //     y = 0;
+          //   }
+          //   public Other() => new Point();
+          //   Point() {
+          //     x = 12;
+          //     y = 22;
+          //   }
+          // }
+          //the following solution I've found is to create private constructors
+          //with dummy parameters
+          // class Point {
+          //   double x, y;
+          //   Point(this.x, this.y) { .... }
+          //   public Point Origin() => new Point();
+          //   Point() {
+          //     x = 0;
+          //     y = 0;
+          //   }
+          //   public Point Other() => new Point(null);
+          //   Point(object dummyPar1) {
+          //     x = 12;
+          //     y = 22;
+          //   }
+          // }
+          var constructorKey =
+              '${className}($parametersWithoutDefaultValueForOptionals)';
+          int dummyParametersCount = 0;
+          String dummyParameters = parametersWithoutDefaultValueForOptionals;
+          String customParameterNulls = parameterNames;
+          while (code.containsKey(constructorKey)) {
+            //we have another constructor with the same signature
+            //let's create a dummy signature
+            dummyParametersCount++;
+            customParameterNulls +=
+                (customParameterNulls.isNotEmpty ? ', ' : '') + 'null';
+            dummyParameters += (dummyParameters.isNotEmpty ? ', ' : '') +
+                'object ___dummy_param___$dummyParametersCount';
+            constructorKey = '${className}($dummyParameters)';
+          }
+
+          code.writeln(
+              '=> new ${className}$generics(${customParameterNulls});');
+          code.writeln('');
+          code.writeCodeLn(
+              constructorKey, 'private ${className}($dummyParameters)');
+        }
       }
 
       // Base class call
@@ -43,27 +130,21 @@ class Constructors {
         code.writeln(': base(${getBaseParameters(constructor)})');
       }
 
-      var instanceName = isFactory ? "instance" : "this";
-
       // Fill out Constructor body
-      var node = constructor.computeNode();
       if (node != null) {
-        var body = '{\n';
-
-        if (isFactory) {
-          // Insert initialization if this is a factory method
-          body += 'var instance =';
-          if (callsBaseCtor) {
-            var parameters = getBaseParameters(constructor);
-            //TODO Get the correct constructor name in case this class does not call its own constructor!
-            body += 'new ${className}$generics(${parameters});';
-          } else
-            body += 'new ${className}$generics();';
+        if (node.body is ExpressionFunctionBody) {
+          //handle the case when the body of the constructor is an expression
+          //i.e.
+          //factory ThemeData.light() => ThemeData(brightness: Brightness.light);
+          code.writeln(Implementation.processExpressionFunction(node.body));
+          return;
         }
 
+        var body = '{\n';
+
         // Add auto assignments if any
-        var autoAssignment = Methods.printAutoParameters(constructor, className,
-            instanceName: instanceName);
+        var autoAssignment =
+            Methods.printAutoParameters(constructor, className);
         if (autoAssignment.isNotEmpty) body += autoAssignment;
 
         // add logic and closing curly brace

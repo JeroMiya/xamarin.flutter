@@ -9,7 +9,7 @@ class Delegates {
   static String printDelegate(FunctionTypeAliasElement element) {
     var returnType = Naming.getReturnType(element);
     var methodName = Naming.nameWithTypeParameters(element, false);
-    var parameter = Methods.printParameter(element, element, null);
+    var parameter = Methods.printParameters(element, element, null);
 
     var code = new StringBuffer();
     Comments.appendComment(code, element);

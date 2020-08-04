@@ -1,59 +1,59 @@
-using System;
-using FlutterSDK;
-using FlutterSDK.Widgets.Framework;
-using System.Net.Http;
-using FlutterBinding.UI;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Diagnostics;
-using SkiaSharp;
+using System.Linq;
+using System.Net.Http;
 using FlutterBinding.Engine.Painting;
-using static FlutterSDK.Global;
 using FlutterBinding.Mapping;
-using FlutterSDK.Foundation.Binding;
-using FlutterSDK.Foundation.Consolidateresponse;
-using FlutterSDK.Foundation.Synchronousfuture;
-using FlutterSDK.Foundation.Node;
-using FlutterSDK.Foundation.Diagnostics;
-using FlutterSDK.Foundation.Profile;
-using FlutterSDK.Foundation.@object;
-using FlutterSDK.Foundation.Bitfield;
-using FlutterSDK.Foundation.Isolates;
-using FlutterSDK.Foundation.Platform;
-using FlutterSDK.Foundation.Assertions;
-using FlutterSDK.Foundation.Debug;
-using FlutterSDK.Foundation.Unicode;
-using FlutterSDK.Foundation.Observerlist;
-using FlutterSDK.Foundation.Key;
-using FlutterSDK.Foundation.Stackframe;
-using FlutterSDK.Foundation.Print;
-using FlutterSDK.Foundation.Changenotifier;
-using FlutterSDK.Foundation.Serialization;
-using FlutterSDK.Foundation.Annotations;
-using FlutterSDK.Foundation.Constants;
-using FlutterSDK.Foundation.Licenses;
-using FlutterSDK.Foundation.Collections;
-using FlutterSDK.Foundation.Basictypes;
-using FlutterSDK.Animation.Tween;
+using FlutterBinding.UI;
+using FlutterSDK;
 using FlutterSDK.Animation.Animation;
 using FlutterSDK.Animation.Curves;
 using FlutterSDK.Animation.Listenerhelpers;
+using FlutterSDK.Animation.Tween;
+using FlutterSDK.Foundation.Annotations;
+using FlutterSDK.Foundation.Assertions;
+using FlutterSDK.Foundation.Basictypes;
+using FlutterSDK.Foundation.Binding;
+using FlutterSDK.Foundation.Bitfield;
+using FlutterSDK.Foundation.Changenotifier;
+using FlutterSDK.Foundation.Collections;
+using FlutterSDK.Foundation.Consolidateresponse;
+using FlutterSDK.Foundation.Constants;
+using FlutterSDK.Foundation.Debug;
+using FlutterSDK.Foundation.Diagnostics;
+using FlutterSDK.Foundation.Isolates;
+using FlutterSDK.Foundation.Key;
+using FlutterSDK.Foundation.Licenses;
+using FlutterSDK.Foundation.Node;
+using FlutterSDK.Foundation.@object;
+using FlutterSDK.Foundation.Observerlist;
+using FlutterSDK.Foundation.Platform;
+using FlutterSDK.Foundation.Print;
+using FlutterSDK.Foundation.Profile;
+using FlutterSDK.Foundation.Serialization;
+using FlutterSDK.Foundation.Stackframe;
+using FlutterSDK.Foundation.Synchronousfuture;
+using FlutterSDK.Foundation.Unicode;
 using FlutterSDK.Physics.Clampedsimulation;
 using FlutterSDK.Physics.Frictionsimulation;
 using FlutterSDK.Physics.Gravitysimulation;
-using FlutterSDK.Physics.Tolerance;
 using FlutterSDK.Physics.Simulation;
 using FlutterSDK.Physics.Springsimulation;
+using FlutterSDK.Physics.Tolerance;
 using FlutterSDK.Physics.Utils;
 using FlutterSDK.Scheduler.Binding;
-using FlutterSDK.Scheduler.Ticker;
-using FlutterSDK.Scheduler.Priority;
 using FlutterSDK.Scheduler.Debug;
+using FlutterSDK.Scheduler.Priority;
+using FlutterSDK.Scheduler.Ticker;
 using FlutterSDK.Semantics.Binding;
 using FlutterSDK.Semantics.Debug;
-using FlutterSDK.Semantics.Semanticsservice;
-using FlutterSDK.Semantics.Semanticsevent;
 using FlutterSDK.Semantics.Semantics;
+using FlutterSDK.Semantics.Semanticsevent;
+using FlutterSDK.Semantics.Semanticsservice;
+using FlutterSDK.Widgets.Framework;
+using SkiaSharp;
+using static FlutterSDK.Global;
 namespace FlutterSDK.Animation.Curves
 {
     internal static class CurvesDefaultClass
@@ -965,8 +965,12 @@ namespace FlutterSDK.Animation.Curves
         /// structures are precomputed instead of being computed lazily.
         /// </Summary>
         public static CatmullRomSpline Precompute(List<FlutterBinding.UI.Offset> controlPoints, double tension = 0.0, FlutterBinding.UI.Offset startHandle = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Offset endHandle = default(FlutterBinding.UI.Offset))
+        => new CatmullRomSpline(controlPoints, tension, startHandle, endHandle);
+
+        private CatmullRomSpline(List<FlutterBinding.UI.Offset> controlPoints, double tension, FlutterBinding.UI.Offset startHandle, FlutterBinding.UI.Offset endHandle)
+        : base()
         {
-            var instance = new CatmullRomSpline();
+
         }
         internal virtual List<List<Offset>> _CubicSegments { get; set; }
         internal virtual List<Offset> _ControlPoints { get; set; }
@@ -1111,9 +1115,13 @@ namespace FlutterSDK.Animation.Curves
         /// structures for a more predictable computation load.
         /// </Summary>
         public static CatmullRomCurve Precompute(List<FlutterBinding.UI.Offset> controlPoints, double tension = 0.0)
+        => new CatmullRomCurve(controlPoints, tension);
+
+        private CatmullRomCurve(List<FlutterBinding.UI.Offset> controlPoints, double tension)
+        : base()
         {
-            var instance = new CatmullRomCurve(); instance.ControlPoints = controlPoints;
-            instance.Tension = tension;
+            this.ControlPoints = controlPoints;
+            this.Tension = tension;
         }
         /// <Summary>
         /// A static accumulator for assertion failures. Not used in release mode.

@@ -1,297 +1,297 @@
-using System;
-using FlutterSDK;
-using FlutterSDK.Widgets.Framework;
-using System.Net.Http;
-using FlutterBinding.UI;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Diagnostics;
-using SkiaSharp;
+using System.Linq;
+using System.Net.Http;
 using FlutterBinding.Engine.Painting;
-using static FlutterSDK.Global;
 using FlutterBinding.Mapping;
-using FlutterSDK.Foundation.Binding;
-using FlutterSDK.Foundation.Consolidateresponse;
-using FlutterSDK.Foundation.Synchronousfuture;
-using FlutterSDK.Foundation.Node;
-using FlutterSDK.Foundation.Diagnostics;
-using FlutterSDK.Foundation.Profile;
-using FlutterSDK.Foundation.@object;
-using FlutterSDK.Foundation.Bitfield;
-using FlutterSDK.Foundation.Isolates;
-using FlutterSDK.Foundation.Platform;
-using FlutterSDK.Foundation.Assertions;
-using FlutterSDK.Foundation.Debug;
-using FlutterSDK.Foundation.Unicode;
-using FlutterSDK.Foundation.Observerlist;
-using FlutterSDK.Foundation.Key;
-using FlutterSDK.Foundation.Stackframe;
-using FlutterSDK.Foundation.Print;
-using FlutterSDK.Foundation.Changenotifier;
-using FlutterSDK.Foundation.Serialization;
-using FlutterSDK.Foundation.Annotations;
-using FlutterSDK.Foundation.Constants;
-using FlutterSDK.Foundation.Licenses;
-using FlutterSDK.Foundation.Collections;
-using FlutterSDK.Foundation.Basictypes;
-using FlutterSDK.Animation.Tween;
+using FlutterBinding.UI;
+using FlutterSDK;
 using FlutterSDK.Animation.Animation;
+using FlutterSDK.Animation.Animationcontroller;
+using FlutterSDK.Animation.Animations;
 using FlutterSDK.Animation.Curves;
 using FlutterSDK.Animation.Listenerhelpers;
+using FlutterSDK.Animation.Tween;
+using FlutterSDK.Animation.Tweensequence;
+using FlutterSDK.Foundation;
+using FlutterSDK.Foundation._Bitfieldio;
+using FlutterSDK.Foundation.Annotations;
+using FlutterSDK.Foundation.Assertions;
+using FlutterSDK.Foundation.Basictypes;
+using FlutterSDK.Foundation.Binding;
+using FlutterSDK.Foundation.Bitfield;
+using FlutterSDK.Foundation.Changenotifier;
+using FlutterSDK.Foundation.Collections;
+using FlutterSDK.Foundation.Consolidateresponse;
+using FlutterSDK.Foundation.Constants;
+using FlutterSDK.Foundation.Debug;
+using FlutterSDK.Foundation.Diagnostics;
+using FlutterSDK.Foundation.Isolates;
+using FlutterSDK.Foundation.Key;
+using FlutterSDK.Foundation.Licenses;
+using FlutterSDK.Foundation.Node;
+using FlutterSDK.Foundation.@object;
+using FlutterSDK.Foundation.Observerlist;
+using FlutterSDK.Foundation.Platform;
+using FlutterSDK.Foundation.Print;
+using FlutterSDK.Foundation.Profile;
+using FlutterSDK.Foundation.Serialization;
+using FlutterSDK.Foundation.Stackframe;
+using FlutterSDK.Foundation.Synchronousfuture;
+using FlutterSDK.Foundation.Unicode;
+using FlutterSDK.Gestures.Arena;
+using FlutterSDK.Gestures.Binding;
+using FlutterSDK.Gestures.Constants;
+using FlutterSDK.Gestures.Converter;
+using FlutterSDK.Gestures.Debug;
+using FlutterSDK.Gestures.Drag;
+using FlutterSDK.Gestures.Dragdetails;
+using FlutterSDK.Gestures.Eager;
+using FlutterSDK.Gestures.Events;
+using FlutterSDK.Gestures.Forcepress;
+using FlutterSDK.Gestures.Hittest;
+using FlutterSDK.Gestures.Longpress;
+using FlutterSDK.Gestures.Lsqsolver;
+using FlutterSDK.Gestures.Monodrag;
+using FlutterSDK.Gestures.Multidrag;
+using FlutterSDK.Gestures.Multitap;
+using FlutterSDK.Gestures.Pointerrouter;
+using FlutterSDK.Gestures.Pointersignalresolver;
+using FlutterSDK.Gestures.Recognizer;
+using FlutterSDK.Gestures.Scale;
+using FlutterSDK.Gestures.Tap;
+using FlutterSDK.Gestures.Team;
+using FlutterSDK.Gestures.Velocitytracker;
+using FlutterSDK.Painting.Alignment;
+using FlutterSDK.Painting.Basictypes;
+using FlutterSDK.Painting.Beveledrectangleborder;
+using FlutterSDK.Painting.Binding;
+using FlutterSDK.Painting.Borderradius;
+using FlutterSDK.Painting.Borders;
+using FlutterSDK.Painting.Boxborder;
+using FlutterSDK.Painting.Boxdecoration;
+using FlutterSDK.Painting.Boxfit;
+using FlutterSDK.Painting.Boxshadow;
+using FlutterSDK.Painting.Circleborder;
+using FlutterSDK.Painting.Clip;
+using FlutterSDK.Painting.Colors;
+using FlutterSDK.Painting.Continuousrectangleborder;
+using FlutterSDK.Painting.Debug;
+using FlutterSDK.Painting.Decoration;
+using FlutterSDK.Painting.Decorationimage;
+using FlutterSDK.Painting.Edgeinsets;
+using FlutterSDK.Painting.Flutterlogo;
+using FlutterSDK.Painting.Fractionaloffset;
+using FlutterSDK.Painting.Geometry;
+using FlutterSDK.Painting.Gradient;
+using FlutterSDK.Painting.Imagecache;
+using FlutterSDK.Painting.Imagedecoder;
+using FlutterSDK.Painting.Imageprovider;
+using FlutterSDK.Painting.Imageresolution;
+using FlutterSDK.Painting.Imagestream;
+using FlutterSDK.Painting.Inlinespan;
+using FlutterSDK.Painting.Matrixutils;
+using FlutterSDK.Painting.Notchedshapes;
+using FlutterSDK.Painting.Paintutilities;
+using FlutterSDK.Painting.Placeholderspan;
+using FlutterSDK.Painting.Roundedrectangleborder;
+using FlutterSDK.Painting.Shaderwarmup;
+using FlutterSDK.Painting.Shapedecoration;
+using FlutterSDK.Painting.Stadiumborder;
+using FlutterSDK.Painting.Strutstyle;
+using FlutterSDK.Painting.Textpainter;
+using FlutterSDK.Painting.Textspan;
+using FlutterSDK.Painting.Textstyle;
 using FlutterSDK.Physics.Clampedsimulation;
 using FlutterSDK.Physics.Frictionsimulation;
 using FlutterSDK.Physics.Gravitysimulation;
-using FlutterSDK.Physics.Tolerance;
 using FlutterSDK.Physics.Simulation;
 using FlutterSDK.Physics.Springsimulation;
+using FlutterSDK.Physics.Tolerance;
 using FlutterSDK.Physics.Utils;
-using FlutterSDK.Scheduler.Binding;
-using FlutterSDK.Scheduler.Ticker;
-using FlutterSDK.Scheduler.Priority;
-using FlutterSDK.Scheduler.Debug;
-using FlutterSDK.Semantics.Binding;
-using FlutterSDK.Semantics.Debug;
-using FlutterSDK.Semantics.Semanticsservice;
-using FlutterSDK.Semantics.Semanticsevent;
-using FlutterSDK.Semantics.Semantics;
-using FlutterSDK.Animation.Animations;
-using FlutterSDK.Rendering.Texture;
-using FlutterSDK.Gestures.Eager;
-using FlutterSDK.Gestures.Debug;
-using FlutterSDK.Gestures.Pointerrouter;
-using FlutterSDK.Gestures.Recognizer;
-using FlutterSDK.Gestures.Dragdetails;
-using FlutterSDK.Gestures.Lsqsolver;
-using FlutterSDK.Gestures.Scale;
-using FlutterSDK.Gestures.Drag;
-using FlutterSDK.Gestures.Forcepress;
-using FlutterSDK.Gestures.Events;
-using FlutterSDK.Gestures.Monodrag;
-using FlutterSDK.Gestures.Arena;
-using FlutterSDK.Gestures.Multidrag;
-using FlutterSDK.Gestures.Constants;
-using FlutterSDK.Gestures.Converter;
-using FlutterSDK.Gestures.Tap;
-using FlutterSDK.Gestures.Binding;
-using FlutterSDK.Gestures.Pointersignalresolver;
-using FlutterSDK.Gestures.Team;
-using FlutterSDK.Gestures.Hittest;
-using FlutterSDK.Gestures.Velocitytracker;
-using FlutterSDK.Gestures.Multitap;
-using FlutterSDK.Gestures.Longpress;
-using FlutterSDK.Rendering.Proxybox;
-using FlutterSDK.Rendering.Viewportoffset;
-using FlutterSDK.Rendering.Flex;
-using FlutterSDK.Rendering.Sliverfill;
-using FlutterSDK.Rendering.Sliverfixedextentlist;
-using FlutterSDK.Rendering.View;
-using FlutterSDK.Rendering.Editable;
 using FlutterSDK.Rendering.Animatedsize;
+using FlutterSDK.Rendering.Binding;
+using FlutterSDK.Rendering.Box;
+using FlutterSDK.Rendering.Customlayout;
 using FlutterSDK.Rendering.Custompaint;
-using FlutterSDK.Rendering.Performanceoverlay;
-using FlutterSDK.Rendering.Sliverpadding;
-using FlutterSDK.Rendering.Shiftedbox;
 using FlutterSDK.Rendering.Debug;
 using FlutterSDK.Rendering.Debugoverflowindicator;
-using FlutterSDK.Rendering.Tweens;
-using FlutterSDK.Painting.Borders;
-using FlutterSDK.Painting.Textstyle;
-using FlutterSDK.Painting.Colors;
-using FlutterSDK.Painting.Circleborder;
-using FlutterSDK.Painting.Edgeinsets;
-using FlutterSDK.Painting.Decoration;
-using FlutterSDK.Painting.Textspan;
-using FlutterSDK.Painting.Strutstyle;
-using FlutterSDK.Painting.Beveledrectangleborder;
-using FlutterSDK.Painting.Placeholderspan;
-using FlutterSDK.Painting.Imagecache;
-using FlutterSDK.Painting.Shapedecoration;
-using FlutterSDK.Services.Platformviews;
-using FlutterSDK.Services.Systemchannels;
-using FlutterSDK.Services.Assetbundle;
-using FlutterSDK.Services.Binding;
-using FlutterSDK.Services.Keyboardkey;
-using FlutterSDK.Services.Textformatter;
-using FlutterSDK.Services.Rawkeyboardmacos;
-using FlutterSDK.Services.Binarymessenger;
-using FlutterSDK.Services.Messagecodecs;
-using FlutterSDK.Services.Rawkeyboardfuchsia;
-using FlutterSDK.Services.Hapticfeedback;
-using FlutterSDK.Services.Platformmessages;
-using FlutterSDK.Services.Clipboard;
-using FlutterSDK.Services.Textediting;
-using FlutterSDK.Services.Rawkeyboardlinux;
-using FlutterSDK.Services.Textinput;
-using FlutterSDK.Services.Rawkeyboardweb;
-using FlutterSDK.Services.Rawkeyboard;
-using FlutterSDK.Services.Systemchrome;
-using FlutterSDK.Services.Systemsound;
-using FlutterSDK.Services.Keyboardmaps;
-using FlutterSDK.Services.Fontloader;
-using FlutterSDK.Services.Systemnavigator;
-using FlutterSDK.Services.Rawkeyboardandroid;
-using FlutterSDK.Services.Platformchannel;
-using FlutterSDK.Services.Messagecodec;
-using FlutterSDK.Painting.Textpainter;
-using FlutterSDK.Painting.Boxdecoration;
-using FlutterSDK.Painting.Paintutilities;
-using FlutterSDK.Painting.Stadiumborder;
-using FlutterSDK.Painting.Basictypes;
-using FlutterSDK.Painting.Alignment;
-using FlutterSDK.Painting.Imageprovider;
-using FlutterSDK.Painting.Boxfit;
-using FlutterSDK.Painting.Continuousrectangleborder;
-using FlutterSDK.Painting.Roundedrectangleborder;
-using FlutterSDK.Painting.Matrixutils;
-using FlutterSDK.Painting.Gradient;
-using FlutterSDK.Painting.Notchedshapes;
-using FlutterSDK.Painting.Fractionaloffset;
-using FlutterSDK.Painting.Borderradius;
-using FlutterSDK.Painting.Imageresolution;
-using FlutterSDK.Painting.Flutterlogo;
-using FlutterSDK.Painting.Imagedecoder;
-using FlutterSDK.Painting.Boxshadow;
-using FlutterSDK.Painting.Binding;
-using FlutterSDK.Painting.Imagestream;
-using FlutterSDK.Painting.Boxborder;
-using FlutterSDK.Painting.Decorationimage;
-using FlutterSDK.Painting.Clip;
-using FlutterSDK.Painting.Debug;
-using FlutterSDK.Painting.Shaderwarmup;
-using FlutterSDK.Painting.Inlinespan;
-using FlutterSDK.Painting.Geometry;
-using FlutterSDK.Rendering.Image;
-using FlutterSDK.Rendering.Box;
-using FlutterSDK.Rendering.Slivermultiboxadaptor;
+using FlutterSDK.Rendering.Editable;
 using FlutterSDK.Rendering.Error;
+using FlutterSDK.Rendering.Flex;
+using FlutterSDK.Rendering.Flow;
+using FlutterSDK.Rendering.Image;
+using FlutterSDK.Rendering.Layer;
+using FlutterSDK.Rendering.Listbody;
+using FlutterSDK.Rendering.Listwheelviewport;
+using FlutterSDK.Rendering.Mousetracking;
+using FlutterSDK.Rendering.@object;
+using FlutterSDK.Rendering.Paragraph;
+using FlutterSDK.Rendering.Performanceoverlay;
+using FlutterSDK.Rendering.Platformview;
+using FlutterSDK.Rendering.Proxybox;
+using FlutterSDK.Rendering.Proxysliver;
+using FlutterSDK.Rendering.Rotatedbox;
+using FlutterSDK.Rendering.Shiftedbox;
+using FlutterSDK.Rendering.Sliver;
+using FlutterSDK.Rendering.Sliverfill;
+using FlutterSDK.Rendering.Sliverfixedextentlist;
+using FlutterSDK.Rendering.Slivergrid;
+using FlutterSDK.Rendering.Sliverlist;
+using FlutterSDK.Rendering.Slivermultiboxadaptor;
+using FlutterSDK.Rendering.Sliverpadding;
+using FlutterSDK.Rendering.Sliverpersistentheader;
+using FlutterSDK.Rendering.Stack;
 using FlutterSDK.Rendering.Table;
 using FlutterSDK.Rendering.Tableborder;
-using FlutterSDK.Rendering.Platformview;
-using FlutterSDK.Rendering.Binding;
-using FlutterSDK.Rendering.Sliverpersistentheader;
-using FlutterSDK.Rendering.Listbody;
-using FlutterSDK.Rendering.Paragraph;
-using FlutterSDK.Rendering.Proxysliver;
-using FlutterSDK.Rendering.@object;
-using FlutterSDK.Rendering.Rotatedbox;
+using FlutterSDK.Rendering.Texture;
+using FlutterSDK.Rendering.Tweens;
+using FlutterSDK.Rendering.View;
 using FlutterSDK.Rendering.Viewport;
-using FlutterSDK.Rendering.Customlayout;
-using FlutterSDK.Rendering.Layer;
-using FlutterSDK.Rendering.Listwheelviewport;
-using FlutterSDK.Rendering.Sliverlist;
-using FlutterSDK.Rendering.Flow;
+using FlutterSDK.Rendering.Viewportoffset;
 using FlutterSDK.Rendering.Wrap;
-using FlutterSDK.Rendering.Sliver;
-using FlutterSDK.Rendering.Slivergrid;
-using FlutterSDK.Rendering.Stack;
-using FlutterSDK.Rendering.Mousetracking;
-using FlutterSDK.Widgets.Pages;
-using FlutterSDK.Widgets.Performanceoverlay;
-using FlutterSDK.Widgets.Automatickeepalive;
-using FlutterSDK.Widgets.Scrollcontroller;
-using FlutterSDK.Widgets.Widgetinspector;
-using FlutterSDK.Widgets.Icon;
-using FlutterSDK.Widgets.Scrollcontext;
-using FlutterSDK.Widgets.Inheritedmodel;
-using FlutterSDK.Widgets.Annotatedregion;
-using FlutterSDK.Widgets.Scrollnotification;
-using FlutterSDK.Widgets.Scrollpositionwithsinglecontext;
-using FlutterSDK.Widgets.Mediaquery;
+using FlutterSDK.Scheduler.Binding;
+using FlutterSDK.Scheduler.Debug;
+using FlutterSDK.Scheduler.Priority;
+using FlutterSDK.Scheduler.Ticker;
+using FlutterSDK.Semantics.Binding;
+using FlutterSDK.Semantics.Debug;
+using FlutterSDK.Semantics.Semantics;
+using FlutterSDK.Semantics.Semanticsevent;
+using FlutterSDK.Semantics.Semanticsservice;
+using FlutterSDK.Services.Assetbundle;
+using FlutterSDK.Services.Binarymessenger;
+using FlutterSDK.Services.Binding;
+using FlutterSDK.Services.Clipboard;
+using FlutterSDK.Services.Fontloader;
+using FlutterSDK.Services.Hapticfeedback;
+using FlutterSDK.Services.Keyboardkey;
+using FlutterSDK.Services.Keyboardmaps;
+using FlutterSDK.Services.Messagecodec;
+using FlutterSDK.Services.Messagecodecs;
+using FlutterSDK.Services.Platformchannel;
+using FlutterSDK.Services.Platformmessages;
+using FlutterSDK.Services.Platformviews;
+using FlutterSDK.Services.Rawkeyboard;
+using FlutterSDK.Services.Rawkeyboardandroid;
+using FlutterSDK.Services.Rawkeyboardfuchsia;
+using FlutterSDK.Services.Rawkeyboardlinux;
+using FlutterSDK.Services.Rawkeyboardmacos;
+using FlutterSDK.Services.Rawkeyboardweb;
+using FlutterSDK.Services.Systemchannels;
+using FlutterSDK.Services.Systemchrome;
+using FlutterSDK.Services.Systemnavigator;
+using FlutterSDK.Services.Systemsound;
+using FlutterSDK.Services.Textediting;
+using FlutterSDK.Services.Textformatter;
+using FlutterSDK.Services.Textinput;
 using FlutterSDK.Widgets.Actions;
-using FlutterSDK.Widgets.App;
-using FlutterSDK.Widgets.Focusmanager;
-using FlutterSDK.Widgets.Visibility;
-using FlutterSDK.Widgets.Icondata;
-using FlutterSDK.Widgets.Valuelistenablebuilder;
-using FlutterSDK.Widgets.Placeholder;
-using FlutterSDK.Widgets.Overlay;
-using FlutterSDK.Widgets.Focustraversal;
-using FlutterSDK.Widgets.Animatedlist;
-using FlutterSDK.Widgets.Scrollbar;
-using FlutterSDK.Widgets.Iconthemedata;
-using FlutterSDK.Widgets.Sliver;
-using FlutterSDK.Widgets.Animatedswitcher;
-using FlutterSDK.Widgets.Orientationbuilder;
-using FlutterSDK.Widgets.Dismissible;
-using FlutterSDK.Widgets.Binding;
-using FlutterSDK.Widgets.Scrollactivity;
-using FlutterSDK.Widgets.Dragtarget;
-using FlutterSDK.Widgets.Draggablescrollablesheet;
-using FlutterSDK.Widgets.Tweenanimationbuilder;
-using FlutterSDK.Widgets.Widgetspan;
-using FlutterSDK.Widgets.Image;
-using FlutterSDK.Widgets.Title;
-using FlutterSDK.Widgets.Willpopscope;
-using FlutterSDK.Widgets.Banner;
-using FlutterSDK.Widgets.Debug;
-using FlutterSDK.Widgets.Imagefilter;
-using FlutterSDK.Widgets.Fadeinimage;
-using FlutterSDK.Widgets.Sliverlayoutbuilder;
-using FlutterSDK.Widgets.Pageview;
-using FlutterSDK.Widgets.Heroes;
-using FlutterSDK.Widgets.Nestedscrollview;
-using FlutterSDK.Widgets.Tickerprovider;
-using FlutterSDK.Widgets.Overscrollindicator;
-using FlutterSDK.Widgets.Scrollconfiguration;
-using FlutterSDK.Widgets.Uniquewidget;
-using FlutterSDK.Widgets.Table;
-using FlutterSDK.Widgets.Pagestorage;
-using FlutterSDK.Widgets.Singlechildscrollview;
-using FlutterSDK.Widgets.Gridpaper;
-using FlutterSDK.Widgets.Sizechangedlayoutnotifier;
-using FlutterSDK.Widgets.Sliverfill;
-using FlutterSDK.Widgets.Scrollawareimageprovider;
-using FlutterSDK.Widgets.Routes;
-using FlutterSDK.Widgets.Texture;
-using FlutterSDK.Widgets.Safearea;
-using FlutterSDK.Widgets.Navigator;
-using FlutterSDK.Widgets.Gesturedetector;
-using FlutterSDK.Widgets.Localizations;
 using FlutterSDK.Widgets.Animatedcrossfade;
-using FlutterSDK.Widgets.Imageicon;
-using FlutterSDK.Widgets.Async;
-using FlutterSDK.Widgets.Scrollable;
-using FlutterSDK.Widgets.Statustransitions;
-using FlutterSDK.Widgets.Inheritedtheme;
-using FlutterSDK.Widgets.Viewport;
-using FlutterSDK.Widgets.Inheritednotifier;
-using FlutterSDK.Widgets.Sliverpersistentheader;
-using FlutterSDK.Widgets.Colorfilter;
-using FlutterSDK.Widgets.Form;
-using FlutterSDK.Widgets.Scrollsimulation;
-using FlutterSDK.Widgets.Sliverprototypeextentlist;
-using FlutterSDK.Widgets.Rawkeyboardlistener;
-using FlutterSDK.Widgets.Shortcuts;
-using FlutterSDK.Widgets.Bottomnavigationbaritem;
-using FlutterSDK.Widgets.Disposablebuildcontext;
-using FlutterSDK.Widgets.Scrollmetrics;
-using FlutterSDK.Widgets.Modalbarrier;
-using FlutterSDK.Widgets.Text;
-using FlutterSDK.Widgets.Editabletext;
-using FlutterSDK.Widgets.Listwheelscrollview;
-using FlutterSDK.Widgets.Notificationlistener;
-using FlutterSDK.Widgets.Layoutbuilder;
-using FlutterSDK.Widgets.Focusscope;
-using FlutterSDK.Widgets.Textselection;
-using FlutterSDK.Widgets.Implicitanimations;
-using FlutterSDK.Widgets.Icontheme;
-using FlutterSDK.Widgets.Container;
-using FlutterSDK.Widgets.Primaryscrollcontroller;
-using FlutterSDK.Animation.Animationcontroller;
-using FlutterSDK.Animation.Tweensequence;
-using FlutterSDK.Widgets.Basic;
-using FlutterSDK.Widgets.Semanticsdebugger;
-using FlutterSDK.Widgets.Navigationtoolbar;
-using FlutterSDK.Widgets.Platformview;
-using FlutterSDK.Widgets.Transitions;
-using FlutterSDK.Widgets.Preferredsize;
-using FlutterSDK.Widgets.Scrollphysics;
+using FlutterSDK.Widgets.Animatedlist;
 using FlutterSDK.Widgets.Animatedsize;
+using FlutterSDK.Widgets.Animatedswitcher;
+using FlutterSDK.Widgets.Annotatedregion;
+using FlutterSDK.Widgets.App;
+using FlutterSDK.Widgets.Async;
+using FlutterSDK.Widgets.Automatickeepalive;
+using FlutterSDK.Widgets.Banner;
+using FlutterSDK.Widgets.Basic;
+using FlutterSDK.Widgets.Binding;
+using FlutterSDK.Widgets.Bottomnavigationbaritem;
+using FlutterSDK.Widgets.Colorfilter;
+using FlutterSDK.Widgets.Container;
+using FlutterSDK.Widgets.Debug;
+using FlutterSDK.Widgets.Dismissible;
+using FlutterSDK.Widgets.Disposablebuildcontext;
+using FlutterSDK.Widgets.Draggablescrollablesheet;
+using FlutterSDK.Widgets.Dragtarget;
+using FlutterSDK.Widgets.Editabletext;
+using FlutterSDK.Widgets.Fadeinimage;
+using FlutterSDK.Widgets.Focusmanager;
+using FlutterSDK.Widgets.Focusscope;
+using FlutterSDK.Widgets.Focustraversal;
+using FlutterSDK.Widgets.Form;
+using FlutterSDK.Widgets.Framework;
+using FlutterSDK.Widgets.Gesturedetector;
+using FlutterSDK.Widgets.Gridpaper;
+using FlutterSDK.Widgets.Heroes;
+using FlutterSDK.Widgets.Icon;
+using FlutterSDK.Widgets.Icondata;
+using FlutterSDK.Widgets.Icontheme;
+using FlutterSDK.Widgets.Iconthemedata;
+using FlutterSDK.Widgets.Image;
+using FlutterSDK.Widgets.Imagefilter;
+using FlutterSDK.Widgets.Imageicon;
+using FlutterSDK.Widgets.Implicitanimations;
+using FlutterSDK.Widgets.Inheritedmodel;
+using FlutterSDK.Widgets.Inheritednotifier;
+using FlutterSDK.Widgets.Inheritedtheme;
+using FlutterSDK.Widgets.Layoutbuilder;
+using FlutterSDK.Widgets.Listwheelscrollview;
+using FlutterSDK.Widgets.Localizations;
+using FlutterSDK.Widgets.Mediaquery;
+using FlutterSDK.Widgets.Modalbarrier;
+using FlutterSDK.Widgets.Navigationtoolbar;
+using FlutterSDK.Widgets.Navigator;
+using FlutterSDK.Widgets.Nestedscrollview;
+using FlutterSDK.Widgets.Notificationlistener;
+using FlutterSDK.Widgets.Orientationbuilder;
+using FlutterSDK.Widgets.Overlay;
+using FlutterSDK.Widgets.Overscrollindicator;
+using FlutterSDK.Widgets.Pages;
+using FlutterSDK.Widgets.Pagestorage;
+using FlutterSDK.Widgets.Pageview;
+using FlutterSDK.Widgets.Performanceoverlay;
+using FlutterSDK.Widgets.Placeholder;
+using FlutterSDK.Widgets.Platformview;
+using FlutterSDK.Widgets.Preferredsize;
+using FlutterSDK.Widgets.Primaryscrollcontroller;
+using FlutterSDK.Widgets.Rawkeyboardlistener;
+using FlutterSDK.Widgets.Routes;
+using FlutterSDK.Widgets.Safearea;
+using FlutterSDK.Widgets.Scrollable;
+using FlutterSDK.Widgets.Scrollactivity;
+using FlutterSDK.Widgets.Scrollawareimageprovider;
+using FlutterSDK.Widgets.Scrollbar;
+using FlutterSDK.Widgets.Scrollconfiguration;
+using FlutterSDK.Widgets.Scrollcontext;
+using FlutterSDK.Widgets.Scrollcontroller;
+using FlutterSDK.Widgets.Scrollmetrics;
+using FlutterSDK.Widgets.Scrollnotification;
+using FlutterSDK.Widgets.Scrollphysics;
 using FlutterSDK.Widgets.Scrollposition;
-using FlutterSDK.Widgets.Spacer;
+using FlutterSDK.Widgets.Scrollpositionwithsinglecontext;
+using FlutterSDK.Widgets.Scrollsimulation;
 using FlutterSDK.Widgets.Scrollview;
-using FlutterSDK.Foundation;
-using FlutterSDK.Foundation._Bitfieldio;
+using FlutterSDK.Widgets.Semanticsdebugger;
+using FlutterSDK.Widgets.Shortcuts;
+using FlutterSDK.Widgets.Singlechildscrollview;
+using FlutterSDK.Widgets.Sizechangedlayoutnotifier;
+using FlutterSDK.Widgets.Sliver;
+using FlutterSDK.Widgets.Sliverfill;
+using FlutterSDK.Widgets.Sliverlayoutbuilder;
+using FlutterSDK.Widgets.Sliverpersistentheader;
+using FlutterSDK.Widgets.Sliverprototypeextentlist;
+using FlutterSDK.Widgets.Spacer;
+using FlutterSDK.Widgets.Statustransitions;
+using FlutterSDK.Widgets.Table;
+using FlutterSDK.Widgets.Text;
+using FlutterSDK.Widgets.Textselection;
+using FlutterSDK.Widgets.Texture;
+using FlutterSDK.Widgets.Tickerprovider;
+using FlutterSDK.Widgets.Title;
+using FlutterSDK.Widgets.Transitions;
+using FlutterSDK.Widgets.Tweenanimationbuilder;
+using FlutterSDK.Widgets.Uniquewidget;
+using FlutterSDK.Widgets.Valuelistenablebuilder;
+using FlutterSDK.Widgets.Viewport;
+using FlutterSDK.Widgets.Visibility;
+using FlutterSDK.Widgets.Widgetinspector;
+using FlutterSDK.Widgets.Widgetspan;
+using FlutterSDK.Widgets.Willpopscope;
+using SkiaSharp;
+using static FlutterSDK.Global;
 namespace FlutterSDK.Foundation.Diagnostics
 {
     /// <Summary>
@@ -1868,7 +1868,7 @@ namespace FlutterSDK.Foundation.Diagnostics
         /// </Summary>
         public static DiagnosticsNode Message(string message, FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle style = default(FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle), FlutterSDK.Foundation.Diagnostics.DiagnosticLevel level = default(FlutterSDK.Foundation.Diagnostics.DiagnosticLevel), bool allowWrap = true)
         {
-            var instance = new DiagnosticsNode();
+
 
 
             return new DiagnosticsProperty<void>("", null, description: message, style: style, showName: false, allowWrap: allowWrap, level: level);
@@ -2165,8 +2165,12 @@ namespace FlutterSDK.Foundation.Diagnostics
             this.Unit = unit;
         }
         public static _NumProperty<T> Lazy(string name, FlutterSDK.Foundation.Diagnostics.ComputePropertyValueCallback<T> computeValue, string ifNull = default(string), string unit = default(string), bool showName = true, @Object defaultValue = default(@Object), string tooltip = default(string), FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle style = default(FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle), FlutterSDK.Foundation.Diagnostics.DiagnosticLevel level = default(FlutterSDK.Foundation.Diagnostics.DiagnosticLevel))
+        => new _NumProperty<T>(name, computeValue, ifNull, unit, showName, defaultValue, tooltip, style, level);
+
+        private _NumProperty(string name, FlutterSDK.Foundation.Diagnostics.ComputePropertyValueCallback<T> computeValue, string ifNull, string unit, bool showName, @Object defaultValue, string tooltip, FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle style, FlutterSDK.Foundation.Diagnostics.DiagnosticLevel level)
+        : base(name, computeValue, ifNull: ifNull, showName: showName, defaultValue: defaultValue, tooltip: tooltip, style: style, level: level)
         {
-            var instance = new _NumProperty<T>(name, computeValue, ifNull: ifNull, showName: showName, defaultValue: defaultValue, tooltip: tooltip, style: style, level: level); instance.Unit = unit;
+            this.Unit = unit;
         }
         /// <Summary>
         /// Optional unit the [value] is measured in.
@@ -2234,8 +2238,12 @@ namespace FlutterSDK.Foundation.Diagnostics
         /// The [showName] and [level] arguments must not be null.
         /// </Summary>
         public static DoubleProperty Lazy(string name, FlutterSDK.Foundation.Diagnostics.ComputePropertyValueCallback<double> computeValue, string ifNull = default(string), bool showName = true, string unit = default(string), string tooltip = default(string), @Object defaultValue = default(@Object), FlutterSDK.Foundation.Diagnostics.DiagnosticLevel level = default(FlutterSDK.Foundation.Diagnostics.DiagnosticLevel))
+        => new DoubleProperty(name, computeValue, ifNull, showName, unit, tooltip, defaultValue, level);
+
+        private DoubleProperty(string name, FlutterSDK.Foundation.Diagnostics.ComputePropertyValueCallback<double> computeValue, string ifNull, bool showName, string unit, string tooltip, @Object defaultValue, FlutterSDK.Foundation.Diagnostics.DiagnosticLevel level)
+        : base(name, computeValue, showName: showName, ifNull: ifNull, unit: unit, tooltip: tooltip, defaultValue: defaultValue, level: level)
         {
-            var instance = new DoubleProperty(name, computeValue, showName: showName, ifNull: ifNull, unit: unit, tooltip: tooltip, defaultValue: defaultValue, level: level);
+
         }
 
         public new string NumberToString() => DebugDefaultClass.DebugFormatDouble(Value);
@@ -2569,8 +2577,12 @@ namespace FlutterSDK.Foundation.Diagnostics
         /// The [name] and [level] arguments must not be null.
         /// </Summary>
         public static ObjectFlagProperty<T> Has(string name, T value, FlutterSDK.Foundation.Diagnostics.DiagnosticLevel level = default(FlutterSDK.Foundation.Diagnostics.DiagnosticLevel))
+        => new ObjectFlagProperty<T>(name, value, level);
+
+        private ObjectFlagProperty(string name, T value, FlutterSDK.Foundation.Diagnostics.DiagnosticLevel level)
+        : base(name, value, showName: false, level: level)
         {
-            var instance = new ObjectFlagProperty<T>(name, value, showName: false, level: level);
+
         }
         /// <Summary>
         /// Description to use if the property [value] is not null.
@@ -2747,14 +2759,18 @@ namespace FlutterSDK.Foundation.Diagnostics
         /// will always return [DiagnosticLevel.error].
         /// </Summary>
         public static DiagnosticsProperty<T> Lazy(string name, FlutterSDK.Foundation.Diagnostics.ComputePropertyValueCallback<T> computeValue, string description = default(string), string ifNull = default(string), string ifEmpty = default(string), bool showName = true, bool showSeparator = true, @Object defaultValue = default(@Object), string tooltip = default(string), bool missingIfNull = false, bool expandableValue = false, bool allowWrap = true, bool allowNameWrap = true, FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle style = default(FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle), FlutterSDK.Foundation.Diagnostics.DiagnosticLevel level = default(FlutterSDK.Foundation.Diagnostics.DiagnosticLevel))
+        => new DiagnosticsProperty<T>(name, computeValue, description, ifNull, ifEmpty, showName, showSeparator, defaultValue, tooltip, missingIfNull, expandableValue, allowWrap, allowNameWrap, style, level);
+
+        private DiagnosticsProperty(string name, FlutterSDK.Foundation.Diagnostics.ComputePropertyValueCallback<T> computeValue, string description, string ifNull, string ifEmpty, bool showName, bool showSeparator, @Object defaultValue, string tooltip, bool missingIfNull, bool expandableValue, bool allowWrap, bool allowNameWrap, FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle style, FlutterSDK.Foundation.Diagnostics.DiagnosticLevel level)
+        : base(name: name, showName: showName, showSeparator: showSeparator, style: style)
         {
-            var instance = new DiagnosticsProperty<T>(name: name, showName: showName, showSeparator: showSeparator, style: style); instance.IfEmpty = ifEmpty;
-            instance.DefaultValue = defaultValue;
-            instance.Tooltip = tooltip;
-            instance.MissingIfNull = missingIfNull;
-            instance.ExpandableValue = expandableValue;
-            instance.AllowWrap = allowWrap;
-            instance.AllowNameWrap = allowNameWrap;
+            this.IfEmpty = ifEmpty;
+            this.DefaultValue = defaultValue;
+            this.Tooltip = tooltip;
+            this.MissingIfNull = missingIfNull;
+            this.ExpandableValue = expandableValue;
+            this.AllowWrap = allowWrap;
+            this.AllowNameWrap = allowNameWrap;
         }
         internal virtual string _Description { get; set; }
         /// <Summary>
@@ -3048,8 +3064,11 @@ namespace FlutterSDK.Foundation.Diagnostics
         /// Creates a [DiagnosticPropertiesBuilder] with a given [properties].
         /// </Summary>
         public static DiagnosticPropertiesBuilder FromProperties(List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> properties)
+        => new DiagnosticPropertiesBuilder(properties);
+
+        private DiagnosticPropertiesBuilder(List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> properties)
         {
-            var instance = new DiagnosticPropertiesBuilder(); instance.Properties = properties;
+            this.Properties = properties;
         }
         /// <Summary>
         /// List of properties accumulated so far.
