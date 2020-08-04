@@ -859,7 +859,7 @@ namespace FlutterSDK.Widgets.Localizations
         /// </Summary>
         public static Localizations Override(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.BuildContext context = default(FlutterSDK.Widgets.Framework.BuildContext), Locale locale = default(Locale), List<FlutterSDK.Widgets.Localizations.LocalizationsDelegate<object>> delegates = default(List<FlutterSDK.Widgets.Localizations.LocalizationsDelegate<object>>), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         {
-            var instance = new Localizations();
+
             List<LocalizationsDelegate<object>> mergedDelegates = LocalizationsDefaultClass.Localizations._DelegatesOf(context);
             if (delegates != null) mergedDelegates.InsertAll(0, delegates);
             return new Localizations(key: key, locale: locale ?? LocalizationsDefaultClass.Localizations.LocaleOf(context), delegates: mergedDelegates, child: child);

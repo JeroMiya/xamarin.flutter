@@ -317,8 +317,11 @@ namespace FlutterSDK.Foundation._Bitfieldweb
         /// The dart:html implementation of [bitfield.Bitfield.filled].
         /// </Summary>
         public static BitField<T> Filled(int length, bool value)
+        => new BitField<T>(length, value);
+
+        private BitField(int length, bool value)
         {
-            var instance = new BitField<T>();
+
         }
 
         public new bool IndexOfOperator(T index)

@@ -526,8 +526,12 @@ namespace FlutterSDK.Widgets.Mediaquery
         /// [WidgetsBindingObserver.didChangeMetrics] or [Window.onMetricsChanged].
         /// </Summary>
         public static MediaQueryData FromWindow(Window window)
+        => new MediaQueryData(window);
+
+        private MediaQueryData(Window window)
+        : base()
         {
-            var instance = new MediaQueryData();
+
         }
         /// <Summary>
         /// The size of the media in logical pixels (e.g, the size of the screen).
@@ -925,7 +929,7 @@ namespace FlutterSDK.Widgets.Mediaquery
         /// </Summary>
         public static MediaQuery RemovePadding(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.BuildContext context = default(FlutterSDK.Widgets.Framework.BuildContext), bool removeLeft = false, bool removeTop = false, bool removeRight = false, bool removeBottom = false, FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         {
-            var instance = new MediaQuery();
+
             return new MediaQuery(key: key, data: MediaqueryDefaultClass.MediaQuery.Of(context).RemovePadding(removeLeft: removeLeft, removeTop: removeTop, removeRight: removeRight, removeBottom: removeBottom), child: child);
         }
 
@@ -958,7 +962,7 @@ namespace FlutterSDK.Widgets.Mediaquery
         /// </Summary>
         public static MediaQuery RemoveViewInsets(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.BuildContext context = default(FlutterSDK.Widgets.Framework.BuildContext), bool removeLeft = false, bool removeTop = false, bool removeRight = false, bool removeBottom = false, FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         {
-            var instance = new MediaQuery();
+
             return new MediaQuery(key: key, data: MediaqueryDefaultClass.MediaQuery.Of(context).RemoveViewInsets(removeLeft: removeLeft, removeTop: removeTop, removeRight: removeRight, removeBottom: removeBottom), child: child);
         }
 
@@ -990,7 +994,7 @@ namespace FlutterSDK.Widgets.Mediaquery
         /// </Summary>
         public static MediaQuery RemoveViewPadding(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.BuildContext context = default(FlutterSDK.Widgets.Framework.BuildContext), bool removeLeft = false, bool removeTop = false, bool removeRight = false, bool removeBottom = false, FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         {
-            var instance = new MediaQuery();
+
             return new MediaQuery(key: key, data: MediaqueryDefaultClass.MediaQuery.Of(context).RemoveViewPadding(removeLeft: removeLeft, removeTop: removeTop, removeRight: removeRight, removeBottom: removeBottom), child: child);
         }
 

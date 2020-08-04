@@ -630,7 +630,7 @@ namespace FlutterSDK.Rendering.Paragraph
         private void _ComputeChildrenWidthWithMaxIntrinsics(double height)
         {
             RenderBox child = FirstChild;
-            List<PlaceholderDimensions> placeholderDimensions = new List<PlaceholderDimensions>(ChildCount);
+            List<PlaceholderDimensions> placeholderDimensions = List.CreateNew<PlaceholderDimensions>(ChildCount);
             int childIndex = 0;
             while (child != null)
             {
@@ -648,7 +648,7 @@ namespace FlutterSDK.Rendering.Paragraph
         private void _ComputeChildrenWidthWithMinIntrinsics(double height)
         {
             RenderBox child = FirstChild;
-            List<PlaceholderDimensions> placeholderDimensions = new List<PlaceholderDimensions>(ChildCount);
+            List<PlaceholderDimensions> placeholderDimensions = List.CreateNew<PlaceholderDimensions>(ChildCount);
             int childIndex = 0;
             while (child != null)
             {
@@ -668,7 +668,7 @@ namespace FlutterSDK.Rendering.Paragraph
         private void _ComputeChildrenHeightWithMinIntrinsics(double width)
         {
             RenderBox child = FirstChild;
-            List<PlaceholderDimensions> placeholderDimensions = new List<PlaceholderDimensions>(ChildCount);
+            List<PlaceholderDimensions> placeholderDimensions = List.CreateNew<PlaceholderDimensions>(ChildCount);
             int childIndex = 0;
             while (child != null)
             {
@@ -776,7 +776,7 @@ namespace FlutterSDK.Rendering.Paragraph
             }
 
             RenderBox child = FirstChild;
-            _PlaceholderDimensions = new List<PlaceholderDimensions>(ChildCount);
+            _PlaceholderDimensions = List.CreateNew<PlaceholderDimensions>(ChildCount);
             int childIndex = 0;
             while (child != null)
             {
@@ -1082,7 +1082,7 @@ namespace FlutterSDK.Rendering.Paragraph
             int start = 0;
             int placeholderIndex = 0;
             RenderBox child = FirstChild;
-            Queue<SemanticsNode> newChildCache = new Queue<SemanticsNode>();
+            Queue<SemanticsNode> newChildCache = Queue.CreateNew<SemanticsNode>();
             foreach (InlineSpanSemanticsInformation info in _CombineSemanticsInfo())
             {
                 TextDirection initialDirection = currentDirection;

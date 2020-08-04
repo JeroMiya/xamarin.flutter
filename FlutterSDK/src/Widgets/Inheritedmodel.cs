@@ -737,13 +737,13 @@ namespace FlutterSDK.Widgets.Inheritedmodel
             if (dependencies != null && dependencies.IsEmpty()) return;
             if (aspect == null)
             {
-                SetDependencies(dependent, new HashSet<T>());
+                SetDependencies(dependent, HashSet.CreateNew<T>());
             }
             else
             {
 
-                SetDependencies(dependent, (dependencies ?? new HashSet<T>());
-                (dependencies ?? new HashSet<T>()).Add(aspect as T));
+                SetDependencies(dependent, (dependencies ?? HashSet.CreateNew<T>());
+                (dependencies ?? HashSet.CreateNew<T>()).Add(aspect as T));
             }
 
         }

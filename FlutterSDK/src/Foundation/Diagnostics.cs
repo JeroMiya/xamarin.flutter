@@ -1868,7 +1868,7 @@ namespace FlutterSDK.Foundation.Diagnostics
         /// </Summary>
         public static DiagnosticsNode Message(string message, FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle style = default(FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle), FlutterSDK.Foundation.Diagnostics.DiagnosticLevel level = default(FlutterSDK.Foundation.Diagnostics.DiagnosticLevel), bool allowWrap = true)
         {
-            var instance = new DiagnosticsNode();
+
 
 
             return new DiagnosticsProperty<void>("", null, description: message, style: style, showName: false, allowWrap: allowWrap, level: level);
@@ -2165,8 +2165,12 @@ namespace FlutterSDK.Foundation.Diagnostics
             this.Unit = unit;
         }
         public static _NumProperty<T> Lazy(string name, FlutterSDK.Foundation.Diagnostics.ComputePropertyValueCallback<T> computeValue, string ifNull = default(string), string unit = default(string), bool showName = true, @Object defaultValue = default(@Object), string tooltip = default(string), FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle style = default(FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle), FlutterSDK.Foundation.Diagnostics.DiagnosticLevel level = default(FlutterSDK.Foundation.Diagnostics.DiagnosticLevel))
+        => new _NumProperty<T>(name, computeValue, ifNull, unit, showName, defaultValue, tooltip, style, level);
+
+        private _NumProperty(string name, FlutterSDK.Foundation.Diagnostics.ComputePropertyValueCallback<T> computeValue, string ifNull, string unit, bool showName, @Object defaultValue, string tooltip, FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle style, FlutterSDK.Foundation.Diagnostics.DiagnosticLevel level)
+        : base(name, computeValue, ifNull: ifNull, showName: showName, defaultValue: defaultValue, tooltip: tooltip, style: style, level: level)
         {
-            var instance = new _NumProperty<T>(name, computeValue, ifNull: ifNull, showName: showName, defaultValue: defaultValue, tooltip: tooltip, style: style, level: level); instance.Unit = unit;
+            this.Unit = unit;
         }
         /// <Summary>
         /// Optional unit the [value] is measured in.
@@ -2234,8 +2238,12 @@ namespace FlutterSDK.Foundation.Diagnostics
         /// The [showName] and [level] arguments must not be null.
         /// </Summary>
         public static DoubleProperty Lazy(string name, FlutterSDK.Foundation.Diagnostics.ComputePropertyValueCallback<double> computeValue, string ifNull = default(string), bool showName = true, string unit = default(string), string tooltip = default(string), @Object defaultValue = default(@Object), FlutterSDK.Foundation.Diagnostics.DiagnosticLevel level = default(FlutterSDK.Foundation.Diagnostics.DiagnosticLevel))
+        => new DoubleProperty(name, computeValue, ifNull, showName, unit, tooltip, defaultValue, level);
+
+        private DoubleProperty(string name, FlutterSDK.Foundation.Diagnostics.ComputePropertyValueCallback<double> computeValue, string ifNull, bool showName, string unit, string tooltip, @Object defaultValue, FlutterSDK.Foundation.Diagnostics.DiagnosticLevel level)
+        : base(name, computeValue, showName: showName, ifNull: ifNull, unit: unit, tooltip: tooltip, defaultValue: defaultValue, level: level)
         {
-            var instance = new DoubleProperty(name, computeValue, showName: showName, ifNull: ifNull, unit: unit, tooltip: tooltip, defaultValue: defaultValue, level: level);
+
         }
 
         public new string NumberToString() => DebugDefaultClass.DebugFormatDouble(Value);
@@ -2569,8 +2577,12 @@ namespace FlutterSDK.Foundation.Diagnostics
         /// The [name] and [level] arguments must not be null.
         /// </Summary>
         public static ObjectFlagProperty<T> Has(string name, T value, FlutterSDK.Foundation.Diagnostics.DiagnosticLevel level = default(FlutterSDK.Foundation.Diagnostics.DiagnosticLevel))
+        => new ObjectFlagProperty<T>(name, value, level);
+
+        private ObjectFlagProperty(string name, T value, FlutterSDK.Foundation.Diagnostics.DiagnosticLevel level)
+        : base(name, value, showName: false, level: level)
         {
-            var instance = new ObjectFlagProperty<T>(name, value, showName: false, level: level);
+
         }
         /// <Summary>
         /// Description to use if the property [value] is not null.
@@ -2747,14 +2759,18 @@ namespace FlutterSDK.Foundation.Diagnostics
         /// will always return [DiagnosticLevel.error].
         /// </Summary>
         public static DiagnosticsProperty<T> Lazy(string name, FlutterSDK.Foundation.Diagnostics.ComputePropertyValueCallback<T> computeValue, string description = default(string), string ifNull = default(string), string ifEmpty = default(string), bool showName = true, bool showSeparator = true, @Object defaultValue = default(@Object), string tooltip = default(string), bool missingIfNull = false, bool expandableValue = false, bool allowWrap = true, bool allowNameWrap = true, FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle style = default(FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle), FlutterSDK.Foundation.Diagnostics.DiagnosticLevel level = default(FlutterSDK.Foundation.Diagnostics.DiagnosticLevel))
+        => new DiagnosticsProperty<T>(name, computeValue, description, ifNull, ifEmpty, showName, showSeparator, defaultValue, tooltip, missingIfNull, expandableValue, allowWrap, allowNameWrap, style, level);
+
+        private DiagnosticsProperty(string name, FlutterSDK.Foundation.Diagnostics.ComputePropertyValueCallback<T> computeValue, string description, string ifNull, string ifEmpty, bool showName, bool showSeparator, @Object defaultValue, string tooltip, bool missingIfNull, bool expandableValue, bool allowWrap, bool allowNameWrap, FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle style, FlutterSDK.Foundation.Diagnostics.DiagnosticLevel level)
+        : base(name: name, showName: showName, showSeparator: showSeparator, style: style)
         {
-            var instance = new DiagnosticsProperty<T>(name: name, showName: showName, showSeparator: showSeparator, style: style); instance.IfEmpty = ifEmpty;
-            instance.DefaultValue = defaultValue;
-            instance.Tooltip = tooltip;
-            instance.MissingIfNull = missingIfNull;
-            instance.ExpandableValue = expandableValue;
-            instance.AllowWrap = allowWrap;
-            instance.AllowNameWrap = allowNameWrap;
+            this.IfEmpty = ifEmpty;
+            this.DefaultValue = defaultValue;
+            this.Tooltip = tooltip;
+            this.MissingIfNull = missingIfNull;
+            this.ExpandableValue = expandableValue;
+            this.AllowWrap = allowWrap;
+            this.AllowNameWrap = allowNameWrap;
         }
         internal virtual string _Description { get; set; }
         /// <Summary>
@@ -3048,8 +3064,11 @@ namespace FlutterSDK.Foundation.Diagnostics
         /// Creates a [DiagnosticPropertiesBuilder] with a given [properties].
         /// </Summary>
         public static DiagnosticPropertiesBuilder FromProperties(List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> properties)
+        => new DiagnosticPropertiesBuilder(properties);
+
+        private DiagnosticPropertiesBuilder(List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> properties)
         {
-            var instance = new DiagnosticPropertiesBuilder(); instance.Properties = properties;
+            this.Properties = properties;
         }
         /// <Summary>
         /// List of properties accumulated so far.

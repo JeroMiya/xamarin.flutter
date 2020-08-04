@@ -461,7 +461,7 @@ namespace FlutterSDK.Painting._Networkimageweb
 
         public new FlutterSDK.Painting.Imagestream.ImageStreamCompleter Load(FlutterSDK.Painting.Imageprovider.NetworkImage key, FlutterSDK.Painting.Imageprovider.DecoderCallback decode)
         {
-            StreamController<ImageChunkEvent> chunkEvents = new StreamController<ImageChunkEvent>();
+            StreamController<ImageChunkEvent> chunkEvents = StreamController.CreateNew<ImageChunkEvent>();
             return new MultiFrameImageStreamCompleter(chunkEvents: chunkEvents.Stream, codec: _LoadAsync(key as NetworkImage, decode, chunkEvents), scale: key.Scale, informationCollector: _ImageStreamInformationCollector(key));
         }
 

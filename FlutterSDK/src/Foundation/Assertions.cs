@@ -548,8 +548,12 @@ namespace FlutterSDK.Foundation.Assertions
         /// this constructor.
         /// </Summary>
         internal static _ErrorDiagnostic _FromParts(List<@Object> messageParts, FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle style = default(FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle), FlutterSDK.Foundation.Diagnostics.DiagnosticLevel level = default(FlutterSDK.Foundation.Diagnostics.DiagnosticLevel))
+        => new _ErrorDiagnostic(messageParts, style, level);
+
+        private _ErrorDiagnostic(List<@Object> messageParts, FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle style, FlutterSDK.Foundation.Diagnostics.DiagnosticLevel level)
+        : base(null, messageParts, showName: false, showSeparator: false, defaultValue: null, style: style, level: level)
         {
-            var instance = new _ErrorDiagnostic(null, messageParts, showName: false, showSeparator: false, defaultValue: null, style: style, level: level);
+
         }
 
         public new string ValueToString(FlutterSDK.Foundation.Diagnostics.TextTreeConfiguration parentConfiguration = default(FlutterSDK.Foundation.Diagnostics.TextTreeConfiguration))
@@ -601,8 +605,12 @@ namespace FlutterSDK.Foundation.Assertions
         /// in debug mode using a kernel transformer.
         /// </Summary>
         internal static ErrorDescription _FromParts(List<@Object> messageParts)
+        => new ErrorDescription(messageParts);
+
+        private ErrorDescription(List<@Object> messageParts)
+        : base(messageParts, level: DiagnosticLevel.Info)
         {
-            var instance = new ErrorDescription(messageParts, level: DiagnosticLevel.Info);
+
         }
     }
 
@@ -649,8 +657,12 @@ namespace FlutterSDK.Foundation.Assertions
         /// in debug mode using a kernel transformer.
         /// </Summary>
         internal static ErrorSummary _FromParts(List<@Object> messageParts)
+        => new ErrorSummary(messageParts);
+
+        private ErrorSummary(List<@Object> messageParts)
+        : base(messageParts, level: DiagnosticLevel.Summary)
         {
-            var instance = new ErrorSummary(messageParts, level: DiagnosticLevel.Summary);
+
         }
     }
 
@@ -693,8 +705,12 @@ namespace FlutterSDK.Foundation.Assertions
         /// in debug mode using a kernel transformer.
         /// </Summary>
         internal static ErrorHint _FromParts(List<@Object> messageParts)
+        => new ErrorHint(messageParts);
+
+        private ErrorHint(List<@Object> messageParts)
+        : base(messageParts, level: DiagnosticLevel.Hint)
         {
-            var instance = new ErrorHint(messageParts, level: DiagnosticLevel.Hint);
+
         }
     }
 
@@ -1047,7 +1063,7 @@ namespace FlutterSDK.Foundation.Assertions
         /// [new FlutterError.fromParts] constructor to provide more detail, e.g.
         /// using [ErrorHint]s or other [DiagnosticsNode]s.
         /// </Summary>
-        public FlutterError(string message)
+        public static FlutterError CreateNew(string message)
         {
 
             List<string> lines = message.Split('\n').ToList();
@@ -1068,8 +1084,12 @@ namespace FlutterSDK.Foundation.Assertions
         /// also be used.
         /// </Summary>
         public static FlutterError FromParts(List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> diagnostics)
+        => new FlutterError(diagnostics);
+
+        private FlutterError(List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> diagnostics)
+        : base()
         {
-            var instance = new FlutterError(); instance.Diagnostics = diagnostics;
+            this.Diagnostics = diagnostics;
 
 
         }
@@ -1221,7 +1241,7 @@ namespace FlutterSDK.Foundation.Assertions
 
             }
 
-            List<string> reasons = new List<string>(parsedFrames.Count);
+            List<string> reasons = List.CreateNew<string>(parsedFrames.Count);
             foreach (StackFilter filter in _StackFilters)
             {
                 filter.Filter(parsedFrames, reasons);
@@ -1333,8 +1353,12 @@ namespace FlutterSDK.Foundation.Assertions
         /// Creates a diagnostic describing a single frame from a StackTrace.
         /// </Summary>
         public static DiagnosticsStackTrace SingleFrame(string name, string frame = default(string), bool showSeparator = true)
+        => new DiagnosticsStackTrace(name, frame, showSeparator);
+
+        private DiagnosticsStackTrace(string name, string frame, bool showSeparator)
+        : base(name: name, properties: new List<DiagnosticsNode>() { _CreateStackFrame(frame) }, style: DiagnosticsTreeStyle.Whitespace, showSeparator: showSeparator)
         {
-            var instance = new DiagnosticsStackTrace(name: name, properties: new List<DiagnosticsNode>() { _CreateStackFrame(frame) }, style: DiagnosticsTreeStyle.Whitespace, showSeparator: showSeparator);
+
         }
 
         private FlutterSDK.Foundation.Diagnostics.DiagnosticsNode _CreateStackFrame(string frame)

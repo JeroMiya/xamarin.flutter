@@ -608,26 +608,30 @@ namespace FlutterSDK.Material.Selectabletext
         /// The [autofocus] and [dragStartBehavior] arguments must not be null.
         /// </Summary>
         public static SelectableText Rich(FlutterSDK.Painting.Textspan.TextSpan textSpan, FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Focusmanager.FocusNode focusNode = default(FlutterSDK.Widgets.Focusmanager.FocusNode), FlutterSDK.Painting.Textstyle.TextStyle style = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Strutstyle.StrutStyle strutStyle = default(FlutterSDK.Painting.Strutstyle.StrutStyle), TextAlign textAlign = default(TextAlign), TextDirection textDirection = default(TextDirection), double textScaleFactor = default(double), bool showCursor = false, bool autofocus = false, FlutterSDK.Widgets.Editabletext.ToolbarOptions toolbarOptions = default(FlutterSDK.Widgets.Editabletext.ToolbarOptions), int minLines = default(int), int maxLines = default(int), double cursorWidth = 2.0, Radius cursorRadius = default(Radius), FlutterBinding.UI.Color cursorColor = default(FlutterBinding.UI.Color), FlutterSDK.Gestures.Recognizer.DragStartBehavior dragStartBehavior = default(FlutterSDK.Gestures.Recognizer.DragStartBehavior), bool enableInteractiveSelection = true, FlutterSDK.Gestures.Tap.GestureTapCallback onTap = default(FlutterSDK.Gestures.Tap.GestureTapCallback), FlutterSDK.Widgets.Scrollphysics.ScrollPhysics scrollPhysics = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics), FlutterSDK.Painting.Textpainter.TextWidthBasis textWidthBasis = default(FlutterSDK.Painting.Textpainter.TextWidthBasis))
+        => new SelectableText(textSpan, key, focusNode, style, strutStyle, textAlign, textDirection, textScaleFactor, showCursor, autofocus, toolbarOptions, minLines, maxLines, cursorWidth, cursorRadius, cursorColor, dragStartBehavior, enableInteractiveSelection, onTap, scrollPhysics, textWidthBasis);
+
+        private SelectableText(FlutterSDK.Painting.Textspan.TextSpan textSpan, FlutterSDK.Foundation.Key.Key key, FlutterSDK.Widgets.Focusmanager.FocusNode focusNode, FlutterSDK.Painting.Textstyle.TextStyle style, FlutterSDK.Painting.Strutstyle.StrutStyle strutStyle, TextAlign textAlign, TextDirection textDirection, double textScaleFactor, bool showCursor, bool autofocus, FlutterSDK.Widgets.Editabletext.ToolbarOptions toolbarOptions, int minLines, int maxLines, double cursorWidth, Radius cursorRadius, FlutterBinding.UI.Color cursorColor, FlutterSDK.Gestures.Recognizer.DragStartBehavior dragStartBehavior, bool enableInteractiveSelection, FlutterSDK.Gestures.Tap.GestureTapCallback onTap, FlutterSDK.Widgets.Scrollphysics.ScrollPhysics scrollPhysics, FlutterSDK.Painting.Textpainter.TextWidthBasis textWidthBasis)
+        : base(key: key)
         {
-            var instance = new SelectableText(key: key); instance.TextSpan = textSpan;
-            instance.FocusNode = focusNode;
-            instance.Style = style;
-            instance.StrutStyle = strutStyle;
-            instance.TextAlign = textAlign;
-            instance.TextDirection = textDirection;
-            instance.TextScaleFactor = textScaleFactor;
-            instance.ShowCursor = showCursor;
-            instance.Autofocus = autofocus;
-            instance.MinLines = minLines;
-            instance.MaxLines = maxLines;
-            instance.CursorWidth = cursorWidth;
-            instance.CursorRadius = cursorRadius;
-            instance.CursorColor = cursorColor;
-            instance.DragStartBehavior = dragStartBehavior;
-            instance.EnableInteractiveSelection = enableInteractiveSelection;
-            instance.OnTap = onTap;
-            instance.ScrollPhysics = scrollPhysics;
-            instance.TextWidthBasis = textWidthBasis;
+            this.TextSpan = textSpan;
+            this.FocusNode = focusNode;
+            this.Style = style;
+            this.StrutStyle = strutStyle;
+            this.TextAlign = textAlign;
+            this.TextDirection = textDirection;
+            this.TextScaleFactor = textScaleFactor;
+            this.ShowCursor = showCursor;
+            this.Autofocus = autofocus;
+            this.MinLines = minLines;
+            this.MaxLines = maxLines;
+            this.CursorWidth = cursorWidth;
+            this.CursorRadius = cursorRadius;
+            this.CursorColor = cursorColor;
+            this.DragStartBehavior = dragStartBehavior;
+            this.EnableInteractiveSelection = enableInteractiveSelection;
+            this.OnTap = onTap;
+            this.ScrollPhysics = scrollPhysics;
+            this.TextWidthBasis = textWidthBasis;
         }
         /// <Summary>
         /// The text to display.

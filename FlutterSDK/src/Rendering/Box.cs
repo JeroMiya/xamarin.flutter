@@ -1530,8 +1530,12 @@ namespace FlutterSDK.Rendering.Box
         /// Creates box constraints that is respected only by the given size.
         /// </Summary>
         public static BoxConstraints Tight(Size size)
+        => new BoxConstraints(size);
+
+        private BoxConstraints(Size size)
+        : base()
         {
-            var instance = new BoxConstraints();
+
         }
         /// <Summary>
         /// Creates box constraints that require the given width or height.
@@ -1543,8 +1547,12 @@ namespace FlutterSDK.Rendering.Box
         ///    infinite.
         /// </Summary>
         public static BoxConstraints TightFor(double width = default(double), double height = default(double))
+        => new BoxConstraints(width, height);
+
+        private BoxConstraints(double width, double height)
+        : base()
         {
-            var instance = new BoxConstraints();
+
         }
         /// <Summary>
         /// Creates box constraints that require the given width or height, except if
@@ -1556,15 +1564,23 @@ namespace FlutterSDK.Rendering.Box
         ///    tight if the value is not infinite, is tight if the value is non-null.
         /// </Summary>
         public static BoxConstraints TightForFinite(double width = default(double), double height = default(double))
+        => new BoxConstraints(width, height, null);
+
+        private BoxConstraints(double width, double height, object ___dummy_param___1)
+        : base()
         {
-            var instance = new BoxConstraints();
+
         }
         /// <Summary>
         /// Creates box constraints that forbid sizes larger than the given size.
         /// </Summary>
         public static BoxConstraints Loose(Size size)
+        => new BoxConstraints(size, null);
+
+        private BoxConstraints(Size size, object ___dummy_param___1)
+        : base()
         {
-            var instance = new BoxConstraints();
+
         }
         /// <Summary>
         /// Creates box constraints that expand to fill another box constraints.
@@ -1573,8 +1589,12 @@ namespace FlutterSDK.Rendering.Box
         /// given value in the given dimension.
         /// </Summary>
         public static BoxConstraints Expand(double width = default(double), double height = default(double))
+        => new BoxConstraints(width, height, null, null);
+
+        private BoxConstraints(double width, double height, object ___dummy_param___1, object ___dummy_param___2)
+        : base()
         {
-            var instance = new BoxConstraints();
+
         }
         /// <Summary>
         /// The minimum width that satisfies the constraints.
@@ -1973,8 +1993,12 @@ namespace FlutterSDK.Rendering.Box
         ///    [SliverHitTestResult] for hit testing on [RenderSliver] children.
         /// </Summary>
         public static BoxHitTestResult Wrap(FlutterSDK.Gestures.Hittest.HitTestResult result)
+        => new BoxHitTestResult(result);
+
+        private BoxHitTestResult(FlutterSDK.Gestures.Hittest.HitTestResult result)
+        : base(result)
         {
-            var instance = new BoxHitTestResult(result);
+
         }
 
         /// <Summary>

@@ -413,7 +413,7 @@ public class _OutputBuffer : ByteConversionSinkBase
             return;
         }
 
-        _Bytes = new Uint8List(_ContentLength);
+        _Bytes = Uint8List.CreateNew(_ContentLength);
         int offset = 0;
         foreach (List<int> chunk in _Chunks)
         {

@@ -542,21 +542,25 @@ namespace FlutterSDK.Widgets.Fadeinimage
         ///    the network.
         /// </Summary>
         public static FadeInImage MemoryNetwork(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), Uint8List placeholder = default(Uint8List), FlutterSDK.Widgets.Image.ImageErrorWidgetBuilder placeholderErrorBuilder = default(FlutterSDK.Widgets.Image.ImageErrorWidgetBuilder), string image = default(string), FlutterSDK.Widgets.Image.ImageErrorWidgetBuilder imageErrorBuilder = default(FlutterSDK.Widgets.Image.ImageErrorWidgetBuilder), double placeholderScale = 1.0, double imageScale = 1.0, bool excludeFromSemantics = false, string imageSemanticLabel = default(string), TimeSpan fadeOutDuration = default(TimeSpan), FlutterSDK.Animation.Curves.Curve fadeOutCurve = default(FlutterSDK.Animation.Curves.Curve), TimeSpan fadeInDuration = default(TimeSpan), FlutterSDK.Animation.Curves.Curve fadeInCurve = default(FlutterSDK.Animation.Curves.Curve), double width = default(double), double height = default(double), FlutterSDK.Painting.Boxfit.BoxFit fit = default(FlutterSDK.Painting.Boxfit.BoxFit), FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), FlutterSDK.Painting.Decorationimage.ImageRepeat repeat = default(FlutterSDK.Painting.Decorationimage.ImageRepeat), bool matchTextDirection = false, int placeholderCacheWidth = default(int), int placeholderCacheHeight = default(int), int imageCacheWidth = default(int), int imageCacheHeight = default(int))
+        => new FadeInImage(key, placeholder, placeholderErrorBuilder, image, imageErrorBuilder, placeholderScale, imageScale, excludeFromSemantics, imageSemanticLabel, fadeOutDuration, fadeOutCurve, fadeInDuration, fadeInCurve, width, height, fit, alignment, repeat, matchTextDirection, placeholderCacheWidth, placeholderCacheHeight, imageCacheWidth, imageCacheHeight);
+
+        private FadeInImage(FlutterSDK.Foundation.Key.Key key, Uint8List placeholder, FlutterSDK.Widgets.Image.ImageErrorWidgetBuilder placeholderErrorBuilder, string image, FlutterSDK.Widgets.Image.ImageErrorWidgetBuilder imageErrorBuilder, double placeholderScale, double imageScale, bool excludeFromSemantics, string imageSemanticLabel, TimeSpan fadeOutDuration, FlutterSDK.Animation.Curves.Curve fadeOutCurve, TimeSpan fadeInDuration, FlutterSDK.Animation.Curves.Curve fadeInCurve, double width, double height, FlutterSDK.Painting.Boxfit.BoxFit fit, FlutterSDK.Painting.Alignment.AlignmentGeometry alignment, FlutterSDK.Painting.Decorationimage.ImageRepeat repeat, bool matchTextDirection, int placeholderCacheWidth, int placeholderCacheHeight, int imageCacheWidth, int imageCacheHeight)
+        : base(key: key)
         {
-            var instance = new FadeInImage(key: key); instance.PlaceholderErrorBuilder = placeholderErrorBuilder;
-            instance.ImageErrorBuilder = imageErrorBuilder;
-            instance.ExcludeFromSemantics = excludeFromSemantics;
-            instance.ImageSemanticLabel = imageSemanticLabel;
-            instance.FadeOutDuration = fadeOutDuration;
-            instance.FadeOutCurve = fadeOutCurve;
-            instance.FadeInDuration = fadeInDuration;
-            instance.FadeInCurve = fadeInCurve;
-            instance.Width = width;
-            instance.Height = height;
-            instance.Fit = fit;
-            instance.Alignment = alignment;
-            instance.Repeat = repeat;
-            instance.MatchTextDirection = matchTextDirection;
+            this.PlaceholderErrorBuilder = placeholderErrorBuilder;
+            this.ImageErrorBuilder = imageErrorBuilder;
+            this.ExcludeFromSemantics = excludeFromSemantics;
+            this.ImageSemanticLabel = imageSemanticLabel;
+            this.FadeOutDuration = fadeOutDuration;
+            this.FadeOutCurve = fadeOutCurve;
+            this.FadeInDuration = fadeInDuration;
+            this.FadeInCurve = fadeInCurve;
+            this.Width = width;
+            this.Height = height;
+            this.Fit = fit;
+            this.Alignment = alignment;
+            this.Repeat = repeat;
+            this.MatchTextDirection = matchTextDirection;
         }
         /// <Summary>
         /// Creates a widget that uses a placeholder image stored in an asset bundle
@@ -592,21 +596,25 @@ namespace FlutterSDK.Widgets.Fadeinimage
         ///    the network.
         /// </Summary>
         public static FadeInImage AssetNetwork(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), string placeholder = default(string), FlutterSDK.Widgets.Image.ImageErrorWidgetBuilder placeholderErrorBuilder = default(FlutterSDK.Widgets.Image.ImageErrorWidgetBuilder), string image = default(string), FlutterSDK.Widgets.Image.ImageErrorWidgetBuilder imageErrorBuilder = default(FlutterSDK.Widgets.Image.ImageErrorWidgetBuilder), FlutterSDK.Services.Assetbundle.AssetBundle bundle = default(FlutterSDK.Services.Assetbundle.AssetBundle), double placeholderScale = default(double), double imageScale = 1.0, bool excludeFromSemantics = false, string imageSemanticLabel = default(string), TimeSpan fadeOutDuration = default(TimeSpan), FlutterSDK.Animation.Curves.Curve fadeOutCurve = default(FlutterSDK.Animation.Curves.Curve), TimeSpan fadeInDuration = default(TimeSpan), FlutterSDK.Animation.Curves.Curve fadeInCurve = default(FlutterSDK.Animation.Curves.Curve), double width = default(double), double height = default(double), FlutterSDK.Painting.Boxfit.BoxFit fit = default(FlutterSDK.Painting.Boxfit.BoxFit), FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), FlutterSDK.Painting.Decorationimage.ImageRepeat repeat = default(FlutterSDK.Painting.Decorationimage.ImageRepeat), bool matchTextDirection = false, int placeholderCacheWidth = default(int), int placeholderCacheHeight = default(int), int imageCacheWidth = default(int), int imageCacheHeight = default(int))
+        => new FadeInImage(key, placeholder, placeholderErrorBuilder, image, imageErrorBuilder, bundle, placeholderScale, imageScale, excludeFromSemantics, imageSemanticLabel, fadeOutDuration, fadeOutCurve, fadeInDuration, fadeInCurve, width, height, fit, alignment, repeat, matchTextDirection, placeholderCacheWidth, placeholderCacheHeight, imageCacheWidth, imageCacheHeight);
+
+        private FadeInImage(FlutterSDK.Foundation.Key.Key key, string placeholder, FlutterSDK.Widgets.Image.ImageErrorWidgetBuilder placeholderErrorBuilder, string image, FlutterSDK.Widgets.Image.ImageErrorWidgetBuilder imageErrorBuilder, FlutterSDK.Services.Assetbundle.AssetBundle bundle, double placeholderScale, double imageScale, bool excludeFromSemantics, string imageSemanticLabel, TimeSpan fadeOutDuration, FlutterSDK.Animation.Curves.Curve fadeOutCurve, TimeSpan fadeInDuration, FlutterSDK.Animation.Curves.Curve fadeInCurve, double width, double height, FlutterSDK.Painting.Boxfit.BoxFit fit, FlutterSDK.Painting.Alignment.AlignmentGeometry alignment, FlutterSDK.Painting.Decorationimage.ImageRepeat repeat, bool matchTextDirection, int placeholderCacheWidth, int placeholderCacheHeight, int imageCacheWidth, int imageCacheHeight)
+        : base(key: key)
         {
-            var instance = new FadeInImage(key: key); instance.PlaceholderErrorBuilder = placeholderErrorBuilder;
-            instance.ImageErrorBuilder = imageErrorBuilder;
-            instance.ExcludeFromSemantics = excludeFromSemantics;
-            instance.ImageSemanticLabel = imageSemanticLabel;
-            instance.FadeOutDuration = fadeOutDuration;
-            instance.FadeOutCurve = fadeOutCurve;
-            instance.FadeInDuration = fadeInDuration;
-            instance.FadeInCurve = fadeInCurve;
-            instance.Width = width;
-            instance.Height = height;
-            instance.Fit = fit;
-            instance.Alignment = alignment;
-            instance.Repeat = repeat;
-            instance.MatchTextDirection = matchTextDirection;
+            this.PlaceholderErrorBuilder = placeholderErrorBuilder;
+            this.ImageErrorBuilder = imageErrorBuilder;
+            this.ExcludeFromSemantics = excludeFromSemantics;
+            this.ImageSemanticLabel = imageSemanticLabel;
+            this.FadeOutDuration = fadeOutDuration;
+            this.FadeOutCurve = fadeOutCurve;
+            this.FadeInDuration = fadeInDuration;
+            this.FadeInCurve = fadeInCurve;
+            this.Width = width;
+            this.Height = height;
+            this.Fit = fit;
+            this.Alignment = alignment;
+            this.Repeat = repeat;
+            this.MatchTextDirection = matchTextDirection;
         }
         /// <Summary>
         /// Image displayed while the target [image] is loading.

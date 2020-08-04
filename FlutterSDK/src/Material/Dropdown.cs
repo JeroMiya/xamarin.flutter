@@ -1513,7 +1513,7 @@ namespace FlutterSDK.Material.Dropdown
             Rect itemRect = itemBox.LocalToGlobal(Dart.UI.UiDefaultClass.Offset.Zero) & itemBox.Size;
             TextDirection textDirection = BasicDefaultClass.Directionality.Of(Context);
             EdgeInsetsGeometry menuMargin = ButtonthemeDefaultClass.ButtonTheme.Of(Context).AlignedDropdown ? DropdownDefaultClass._KAlignedMenuMargin : DropdownDefaultClass._KUnalignedMenuMargin;
-            List<_MenuItem<T>> menuItems = new List<_MenuItem<T>>(Widget.Items.Count);
+            List<_MenuItem<T>> menuItems = List.CreateNew<_MenuItem<T>>(Widget.Items.Count);
             for (int index = 0; index < Widget.Items.Count; index += 1)
             {
                 menuItems[index] = new _MenuItem<T>(item: Widget.Items[index], onLayout: (Size size) =>

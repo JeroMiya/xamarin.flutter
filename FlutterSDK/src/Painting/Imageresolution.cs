@@ -611,7 +611,7 @@ namespace FlutterSDK.Painting.Imageresolution
                 return result;
             }
 
-            completer = new Completer<AssetBundleImageKey>();
+            completer = Completer.CreateNew<AssetBundleImageKey>();
             return completer.Future;
         }
 

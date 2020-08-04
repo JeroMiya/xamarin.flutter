@@ -511,7 +511,7 @@ namespace FlutterSDK.Rendering.Debugoverflowindicator
             string overflowText = "";
 
             switch (overflows.Count) { case 1: overflowText = overflows.First; break; case 2: overflowText = $"'{overflows.First} and {overflows.Last()}'"; break; default: overflows[overflows.Count - 1] = $"'and {overflows[overflows.Count - 1]}'"; overflowText = overflows.Join(", "); }
-            AssertionsDefaultClass.FlutterError.ReportError(new FlutterErrorDetailsForRendering(exception: new FlutterError($"'A {GetType()} overflowed by {overflowText}.'"), library: "rendering library", context: new ErrorDescription("during layout"), renderObject: this, informationCollector: () =>
+            AssertionsDefaultClass.FlutterError.ReportError(new FlutterErrorDetailsForRendering(exception: FlutterError.CreateNew($"'A {GetType()} overflowed by {overflowText}.'"), library: "rendering library", context: new ErrorDescription("during layout"), renderObject: this, informationCollector: () =>
             {
             if (DebugCreator != null) yield return new DiagnosticsDebugCreator(DebugCreator);
             foreach (var enumItem in (overflowHints)) { yield return enumItem; }

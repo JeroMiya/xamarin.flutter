@@ -489,8 +489,12 @@ namespace FlutterSDK.Widgets.Shortcuts
         /// The `keys` set must not be null, contain nulls, or be empty.
         /// </Summary>
         public static KeySet<T> FromSet(HashSet<T> keys)
+        => new KeySet<T>(keys);
+
+        private KeySet(HashSet<T> keys)
+        : base()
         {
-            var instance = new KeySet<T>();
+
         }
         internal virtual HashSet<T> _Keys { get; set; }
         internal virtual List<int> _TempHashStore3 { get; set; }
@@ -550,8 +554,12 @@ namespace FlutterSDK.Widgets.Shortcuts
         /// The `keys` must not be null.
         /// </Summary>
         public static LogicalKeySet FromSet(HashSet<FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey> keys)
+        => new LogicalKeySet(keys);
+
+        private LogicalKeySet(HashSet<FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey> keys)
+        : base(keys)
         {
-            var instance = new LogicalKeySet(keys);
+
         }
         internal virtual HashSet<FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey> _Modifiers { get; set; }
 

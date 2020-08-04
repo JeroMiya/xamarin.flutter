@@ -818,7 +818,7 @@ namespace FlutterSDK.Material.Pickers.Datepickerdeprecated
             TimeSpan timeUntilTomorrow = tomorrow.Difference(_TodayDate);
             timeUntilTomorrow += new TimeSpan(seconds: 1);
             _Timer?.Cancel();
-            _Timer = new Timer(timeUntilTomorrow, () =>
+            _Timer = Timer.CreateNew(timeUntilTomorrow, () =>
             {
                 SetState(() =>
                 {

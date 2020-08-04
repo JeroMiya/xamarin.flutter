@@ -772,8 +772,12 @@ namespace FlutterSDK.Cupertino.Colors
         /// All the colors must not be null.
         /// </Summary>
         public static CupertinoDynamicColor WithBrightnessAndContrast(string debugLabel = default(string), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color darkColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color highContrastColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color darkHighContrastColor = default(FlutterBinding.UI.Color))
+        => new CupertinoDynamicColor(debugLabel, color, darkColor, highContrastColor, darkHighContrastColor);
+
+        private CupertinoDynamicColor(string debugLabel, FlutterBinding.UI.Color color, FlutterBinding.UI.Color darkColor, FlutterBinding.UI.Color highContrastColor, FlutterBinding.UI.Color darkHighContrastColor)
+        : base()
         {
-            var instance = new CupertinoDynamicColor();
+
         }
         /// <Summary>
         /// Creates an adaptive [Color] that changes its effective color based on the given
@@ -783,8 +787,12 @@ namespace FlutterSDK.Cupertino.Colors
         /// All the colors must not be null.
         /// </Summary>
         public static CupertinoDynamicColor WithBrightness(string debugLabel = default(string), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color darkColor = default(FlutterBinding.UI.Color))
+        => new CupertinoDynamicColor(debugLabel, color, darkColor);
+
+        private CupertinoDynamicColor(string debugLabel, FlutterBinding.UI.Color color, FlutterBinding.UI.Color darkColor)
+        : base()
         {
-            var instance = new CupertinoDynamicColor();
+
         }
         internal CupertinoDynamicColor(FlutterBinding.UI.Color _effectiveColor, FlutterBinding.UI.Color color, FlutterBinding.UI.Color darkColor, FlutterBinding.UI.Color highContrastColor, FlutterBinding.UI.Color darkHighContrastColor, FlutterBinding.UI.Color elevatedColor, FlutterBinding.UI.Color darkElevatedColor, FlutterBinding.UI.Color highContrastElevatedColor, FlutterBinding.UI.Color darkHighContrastElevatedColor, FlutterSDK.Widgets.Framework.Element _debugResolveContext, string _debugLabel)
         : base(0)

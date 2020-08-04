@@ -1937,7 +1937,7 @@ namespace FlutterSDK.Material.Scaffold
             }
 
             ScaffoldFeatureController<SnackBar, SnackBarClosedReason> controller = default(ScaffoldFeatureController<SnackBar, SnackBarClosedReason>);
-            controller = ScaffoldFeatureController<SnackBar, SnackBarClosedReason>._(snackbar.WithAnimation(_SnackBarController, fallbackKey: new UniqueKey()), new Completer<SnackBarClosedReason>(), () =>
+            controller = ScaffoldFeatureController<SnackBar, SnackBarClosedReason>._(snackbar.WithAnimation(_SnackBarController, fallbackKey: new UniqueKey()), Completer.CreateNew<SnackBarClosedReason>(), () =>
             {
 
                 HideCurrentSnackBar(reason: SnackBarClosedReason.Hide);
@@ -2098,8 +2098,8 @@ namespace FlutterSDK.Material.Scaffold
         private PersistentBottomSheetController<T> _BuildBottomSheet<T>(FlutterSDK.Widgets.Framework.WidgetBuilder builder, bool isPersistent, FlutterSDK.Animation.Animationcontroller.AnimationController animationController = default(FlutterSDK.Animation.Animationcontroller.AnimationController), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), double elevation = default(double), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip))
         {
 
-            Completer<T> completer = new Completer<T>();
-            GlobalKey<_StandardBottomSheetState> bottomSheetKey = new GlobalKey<_StandardBottomSheetState>();
+            Completer<T> completer = Completer.CreateNew<T>();
+            GlobalKey<_StandardBottomSheetState> bottomSheetKey = GlobalKey.CreateNew<_StandardBottomSheetState>();
             _StandardBottomSheet bottomSheet = default(_StandardBottomSheet);
             bool removedEntry = false;
             void _RemoveCurrentBottomSheet()
@@ -2493,7 +2493,7 @@ namespace FlutterSDK.Material.Scaffold
                     if (_SnackBarController.IsCompleted && _SnackBarTimer == null)
                     {
                         SnackBar snackBar = _SnackBars.First._Widget;
-                        _SnackBarTimer = new Timer(snackBar.Duration, () =>
+                        _SnackBarTimer = Timer.CreateNew(snackBar.Duration, () =>
                         {
 
                             MediaQueryData mediaQuery = MediaqueryDefaultClass.MediaQuery.Of(context);

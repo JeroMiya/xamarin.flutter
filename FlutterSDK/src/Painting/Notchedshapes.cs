@@ -531,7 +531,7 @@ namespace FlutterSDK.Painting.Notchedshapes
             double p2xB = ((a * r * r) + n2) / (a * a + b * b);
             double p2yA = Dart.Math.MathDefaultClass.Sqrt(r * r - p2xA * p2xA);
             double p2yB = Dart.Math.MathDefaultClass.Sqrt(r * r - p2xB * p2xB);
-            List<Offset> p = new List<Offset>(6);
+            List<Offset> p = List.CreateNew<Offset>(6);
             p[0] = new Offset(a - s1, b);
             p[1] = new Offset(a, b);
             double cmp = b < 0 ? -1.0 : 1.0;

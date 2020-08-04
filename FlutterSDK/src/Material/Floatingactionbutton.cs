@@ -529,26 +529,30 @@ namespace FlutterSDK.Material.Floatingactionbutton
         /// (if specified) must be non-negative.
         /// </Summary>
         public static FloatingActionButton Extended(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), string tooltip = default(string), FlutterBinding.UI.Color foregroundColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color focusColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color hoverColor = default(FlutterBinding.UI.Color), @Object heroTag = default(@Object), double elevation = default(double), double focusElevation = default(double), double hoverElevation = default(double), FlutterBinding.UI.Color splashColor = default(FlutterBinding.UI.Color), double highlightElevation = default(double), double disabledElevation = default(double), VoidCallback onPressed = default(VoidCallback), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), bool isExtended = true, FlutterSDK.Material.Themedata.MaterialTapTargetSize materialTapTargetSize = default(FlutterSDK.Material.Themedata.MaterialTapTargetSize), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip), FlutterSDK.Widgets.Focusmanager.FocusNode focusNode = default(FlutterSDK.Widgets.Focusmanager.FocusNode), bool autofocus = false, FlutterSDK.Widgets.Framework.Widget icon = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget label = default(FlutterSDK.Widgets.Framework.Widget))
+        => new FloatingActionButton(key, tooltip, foregroundColor, backgroundColor, focusColor, hoverColor, heroTag, elevation, focusElevation, hoverElevation, splashColor, highlightElevation, disabledElevation, onPressed, shape, isExtended, materialTapTargetSize, clipBehavior, focusNode, autofocus, icon, label);
+
+        private FloatingActionButton(FlutterSDK.Foundation.Key.Key key, string tooltip, FlutterBinding.UI.Color foregroundColor, FlutterBinding.UI.Color backgroundColor, FlutterBinding.UI.Color focusColor, FlutterBinding.UI.Color hoverColor, @Object heroTag, double elevation, double focusElevation, double hoverElevation, FlutterBinding.UI.Color splashColor, double highlightElevation, double disabledElevation, VoidCallback onPressed, FlutterSDK.Painting.Borders.ShapeBorder shape, bool isExtended, FlutterSDK.Material.Themedata.MaterialTapTargetSize materialTapTargetSize, FlutterBinding.UI.Clip clipBehavior, FlutterSDK.Widgets.Focusmanager.FocusNode focusNode, bool autofocus, FlutterSDK.Widgets.Framework.Widget icon, FlutterSDK.Widgets.Framework.Widget label)
+        : base(key: key)
         {
-            var instance = new FloatingActionButton(key: key); instance.Tooltip = tooltip;
-            instance.ForegroundColor = foregroundColor;
-            instance.BackgroundColor = backgroundColor;
-            instance.FocusColor = focusColor;
-            instance.HoverColor = hoverColor;
-            instance.HeroTag = heroTag;
-            instance.Elevation = elevation;
-            instance.FocusElevation = focusElevation;
-            instance.HoverElevation = hoverElevation;
-            instance.SplashColor = splashColor;
-            instance.HighlightElevation = highlightElevation;
-            instance.DisabledElevation = disabledElevation;
-            instance.OnPressed = onPressed;
-            instance.Shape = shape;
-            instance.IsExtended = isExtended;
-            instance.MaterialTapTargetSize = materialTapTargetSize;
-            instance.ClipBehavior = clipBehavior;
-            instance.FocusNode = focusNode;
-            instance.Autofocus = autofocus;
+            this.Tooltip = tooltip;
+            this.ForegroundColor = foregroundColor;
+            this.BackgroundColor = backgroundColor;
+            this.FocusColor = focusColor;
+            this.HoverColor = hoverColor;
+            this.HeroTag = heroTag;
+            this.Elevation = elevation;
+            this.FocusElevation = focusElevation;
+            this.HoverElevation = hoverElevation;
+            this.SplashColor = splashColor;
+            this.HighlightElevation = highlightElevation;
+            this.DisabledElevation = disabledElevation;
+            this.OnPressed = onPressed;
+            this.Shape = shape;
+            this.IsExtended = isExtended;
+            this.MaterialTapTargetSize = materialTapTargetSize;
+            this.ClipBehavior = clipBehavior;
+            this.FocusNode = focusNode;
+            this.Autofocus = autofocus;
         }
         /// <Summary>
         /// The widget below this widget in the tree.

@@ -693,22 +693,26 @@ namespace FlutterSDK.Material.Switchlisttile
         /// [activeThumbImage], [inactiveThumbImage], [materialTapTargetSize].
         /// </Summary>
         public static SwitchListTile Adaptive(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), bool value = default(bool), FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>), FlutterBinding.UI.Color activeColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color activeTrackColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color inactiveThumbColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color inactiveTrackColor = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Imageprovider.ImageProvider<object> activeThumbImage = default(FlutterSDK.Painting.Imageprovider.ImageProvider<object>), FlutterSDK.Painting.Imageprovider.ImageProvider<object> inactiveThumbImage = default(FlutterSDK.Painting.Imageprovider.ImageProvider<object>), FlutterSDK.Widgets.Framework.Widget title = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget subtitle = default(FlutterSDK.Widgets.Framework.Widget), bool isThreeLine = false, bool dense = default(bool), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry contentPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Widgets.Framework.Widget secondary = default(FlutterSDK.Widgets.Framework.Widget), bool selected = false)
+        => new SwitchListTile(key, value, onChanged, activeColor, activeTrackColor, inactiveThumbColor, inactiveTrackColor, activeThumbImage, inactiveThumbImage, title, subtitle, isThreeLine, dense, contentPadding, secondary, selected);
+
+        private SwitchListTile(FlutterSDK.Foundation.Key.Key key, bool value, FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onChanged, FlutterBinding.UI.Color activeColor, FlutterBinding.UI.Color activeTrackColor, FlutterBinding.UI.Color inactiveThumbColor, FlutterBinding.UI.Color inactiveTrackColor, FlutterSDK.Painting.Imageprovider.ImageProvider<object> activeThumbImage, FlutterSDK.Painting.Imageprovider.ImageProvider<object> inactiveThumbImage, FlutterSDK.Widgets.Framework.Widget title, FlutterSDK.Widgets.Framework.Widget subtitle, bool isThreeLine, bool dense, FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry contentPadding, FlutterSDK.Widgets.Framework.Widget secondary, bool selected)
+        : base(key: key)
         {
-            var instance = new SwitchListTile(key: key); instance.Value = value;
-            instance.OnChanged = onChanged;
-            instance.ActiveColor = activeColor;
-            instance.ActiveTrackColor = activeTrackColor;
-            instance.InactiveThumbColor = inactiveThumbColor;
-            instance.InactiveTrackColor = inactiveTrackColor;
-            instance.ActiveThumbImage = activeThumbImage;
-            instance.InactiveThumbImage = inactiveThumbImage;
-            instance.Title = title;
-            instance.Subtitle = subtitle;
-            instance.IsThreeLine = isThreeLine;
-            instance.Dense = dense;
-            instance.ContentPadding = contentPadding;
-            instance.Secondary = secondary;
-            instance.Selected = selected;
+            this.Value = value;
+            this.OnChanged = onChanged;
+            this.ActiveColor = activeColor;
+            this.ActiveTrackColor = activeTrackColor;
+            this.InactiveThumbColor = inactiveThumbColor;
+            this.InactiveTrackColor = inactiveTrackColor;
+            this.ActiveThumbImage = activeThumbImage;
+            this.InactiveThumbImage = inactiveThumbImage;
+            this.Title = title;
+            this.Subtitle = subtitle;
+            this.IsThreeLine = isThreeLine;
+            this.Dense = dense;
+            this.ContentPadding = contentPadding;
+            this.Secondary = secondary;
+            this.Selected = selected;
         }
         /// <Summary>
         /// Whether this switch is checked.

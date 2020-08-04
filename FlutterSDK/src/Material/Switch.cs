@@ -497,23 +497,27 @@ namespace FlutterSDK.Material.Switch
         /// The target platform is based on the current [Theme]: [ThemeData.platform].
         /// </Summary>
         public static Switch Adaptive(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), bool value = default(bool), FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>), FlutterBinding.UI.Color activeColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color activeTrackColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color inactiveThumbColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color inactiveTrackColor = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Imageprovider.ImageProvider<object> activeThumbImage = default(FlutterSDK.Painting.Imageprovider.ImageProvider<object>), FlutterSDK.Painting.Imagestream.ImageErrorListener onActiveThumbImageError = default(FlutterSDK.Painting.Imagestream.ImageErrorListener), FlutterSDK.Painting.Imageprovider.ImageProvider<object> inactiveThumbImage = default(FlutterSDK.Painting.Imageprovider.ImageProvider<object>), FlutterSDK.Painting.Imagestream.ImageErrorListener onInactiveThumbImageError = default(FlutterSDK.Painting.Imagestream.ImageErrorListener), FlutterSDK.Material.Themedata.MaterialTapTargetSize materialTapTargetSize = default(FlutterSDK.Material.Themedata.MaterialTapTargetSize), FlutterSDK.Gestures.Recognizer.DragStartBehavior dragStartBehavior = default(FlutterSDK.Gestures.Recognizer.DragStartBehavior), FlutterBinding.UI.Color focusColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color hoverColor = default(FlutterBinding.UI.Color), FlutterSDK.Widgets.Focusmanager.FocusNode focusNode = default(FlutterSDK.Widgets.Focusmanager.FocusNode), bool autofocus = false)
+        => new Switch(key, value, onChanged, activeColor, activeTrackColor, inactiveThumbColor, inactiveTrackColor, activeThumbImage, onActiveThumbImageError, inactiveThumbImage, onInactiveThumbImageError, materialTapTargetSize, dragStartBehavior, focusColor, hoverColor, focusNode, autofocus);
+
+        private Switch(FlutterSDK.Foundation.Key.Key key, bool value, FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onChanged, FlutterBinding.UI.Color activeColor, FlutterBinding.UI.Color activeTrackColor, FlutterBinding.UI.Color inactiveThumbColor, FlutterBinding.UI.Color inactiveTrackColor, FlutterSDK.Painting.Imageprovider.ImageProvider<object> activeThumbImage, FlutterSDK.Painting.Imagestream.ImageErrorListener onActiveThumbImageError, FlutterSDK.Painting.Imageprovider.ImageProvider<object> inactiveThumbImage, FlutterSDK.Painting.Imagestream.ImageErrorListener onInactiveThumbImageError, FlutterSDK.Material.Themedata.MaterialTapTargetSize materialTapTargetSize, FlutterSDK.Gestures.Recognizer.DragStartBehavior dragStartBehavior, FlutterBinding.UI.Color focusColor, FlutterBinding.UI.Color hoverColor, FlutterSDK.Widgets.Focusmanager.FocusNode focusNode, bool autofocus)
+        : base(key: key)
         {
-            var instance = new Switch(key: key); instance.Value = value;
-            instance.OnChanged = onChanged;
-            instance.ActiveColor = activeColor;
-            instance.ActiveTrackColor = activeTrackColor;
-            instance.InactiveThumbColor = inactiveThumbColor;
-            instance.InactiveTrackColor = inactiveTrackColor;
-            instance.ActiveThumbImage = activeThumbImage;
-            instance.OnActiveThumbImageError = onActiveThumbImageError;
-            instance.InactiveThumbImage = inactiveThumbImage;
-            instance.OnInactiveThumbImageError = onInactiveThumbImageError;
-            instance.MaterialTapTargetSize = materialTapTargetSize;
-            instance.DragStartBehavior = dragStartBehavior;
-            instance.FocusColor = focusColor;
-            instance.HoverColor = hoverColor;
-            instance.FocusNode = focusNode;
-            instance.Autofocus = autofocus;
+            this.Value = value;
+            this.OnChanged = onChanged;
+            this.ActiveColor = activeColor;
+            this.ActiveTrackColor = activeTrackColor;
+            this.InactiveThumbColor = inactiveThumbColor;
+            this.InactiveTrackColor = inactiveTrackColor;
+            this.ActiveThumbImage = activeThumbImage;
+            this.OnActiveThumbImageError = onActiveThumbImageError;
+            this.InactiveThumbImage = inactiveThumbImage;
+            this.OnInactiveThumbImageError = onInactiveThumbImageError;
+            this.MaterialTapTargetSize = materialTapTargetSize;
+            this.DragStartBehavior = dragStartBehavior;
+            this.FocusColor = focusColor;
+            this.HoverColor = hoverColor;
+            this.FocusNode = focusNode;
+            this.Autofocus = autofocus;
         }
         /// <Summary>
         /// Whether this switch is on or off.

@@ -530,11 +530,15 @@ namespace FlutterSDK.Painting.Colors
         /// the fields for each parameter for a description of their ranges.
         /// </Summary>
         public static HSVColor FromAHSV(double alpha, double hue, double saturation, double value)
+        => new HSVColor(alpha, hue, saturation, value);
+
+        private HSVColor(double alpha, double hue, double saturation, double value)
+        : base()
         {
-            var instance = new HSVColor(); instance.Alpha = alpha;
-            instance.Hue = hue;
-            instance.Saturation = saturation;
-            instance.Value = value;
+            this.Alpha = alpha;
+            this.Hue = hue;
+            this.Saturation = saturation;
+            this.Value = value;
         }
         /// <Summary>
         /// Creates an [HSVColor] from an RGB [Color].
@@ -544,7 +548,7 @@ namespace FlutterSDK.Painting.Colors
         /// </Summary>
         public static HSVColor FromColor(FlutterBinding.UI.Color color)
         {
-            var instance = new HSVColor();
+
             double red = color.Red / 0xFF;
             double green = color.Green / 0xFF;
             double blue = color.Blue / 0xFF;
@@ -729,11 +733,15 @@ namespace FlutterSDK.Painting.Colors
         /// the fields for each parameter for a description of their ranges.
         /// </Summary>
         public static HSLColor FromAHSL(double alpha, double hue, double saturation, double lightness)
+        => new HSLColor(alpha, hue, saturation, lightness);
+
+        private HSLColor(double alpha, double hue, double saturation, double lightness)
+        : base()
         {
-            var instance = new HSLColor(); instance.Alpha = alpha;
-            instance.Hue = hue;
-            instance.Saturation = saturation;
-            instance.Lightness = lightness;
+            this.Alpha = alpha;
+            this.Hue = hue;
+            this.Saturation = saturation;
+            this.Lightness = lightness;
         }
         /// <Summary>
         /// Creates an [HSLColor] from an RGB [Color].
@@ -743,7 +751,7 @@ namespace FlutterSDK.Painting.Colors
         /// </Summary>
         public static HSLColor FromColor(FlutterBinding.UI.Color color)
         {
-            var instance = new HSLColor();
+
             double red = color.Red / 0xFF;
             double green = color.Green / 0xFF;
             double blue = color.Blue / 0xFF;

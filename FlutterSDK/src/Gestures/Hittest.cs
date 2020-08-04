@@ -437,8 +437,12 @@ namespace FlutterSDK.Gestures.Hittest
         /// structure to store [HitTestEntry]s).
         /// </Summary>
         public static HitTestResult Wrap(FlutterSDK.Gestures.Hittest.HitTestResult result)
+        => new HitTestResult(result);
+
+        private HitTestResult(FlutterSDK.Gestures.Hittest.HitTestResult result)
+        : base()
         {
-            var instance = new HitTestResult();
+
         }
         internal virtual List<FlutterSDK.Gestures.Hittest.HitTestEntry> _Path { get; set; }
         internal virtual Queue<object> _Transforms { get; set; }

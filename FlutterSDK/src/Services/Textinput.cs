@@ -552,9 +552,13 @@ namespace FlutterSDK.Services.Textinput
         /// The [signed] and [decimal] parameters are optional.
         /// </Summary>
         public static TextInputType NumberWithOptions(bool signed = false, bool @decimal = false)
+        => new TextInputType(signed, @decimal);
+
+        private TextInputType(bool signed, bool @decimal)
+        : base()
         {
-            var instance = new TextInputType(); instance.Signed = signed;
-            instance.@decimal = @decimal;
+            this.Signed = signed;
+            this.@decimal = @decimal;
         }
         /// <Summary>
         /// Enum value index, corresponds to one of the [values].
@@ -876,7 +880,7 @@ namespace FlutterSDK.Services.Textinput
         /// </Summary>
         public static TextEditingValue FromJSON(Dictionary<string, object> encoded)
         {
-            var instance = new TextEditingValue();
+
             return new TextEditingValue(text: encoded["text"] as string, selection: new TextSelection(baseOffset: encoded["selectionBase"] as int ?? -1, extentOffset: encoded["selectionExtent"] as int ?? -1, affinity: TextinputDefaultClass._ToTextAffinity(encoded["selectionAffinity"] as string) ?? TextAffinity.Downstream, isDirectional: encoded["selectionIsDirectional"] as bool ?? false), composing: new TextRange(start: encoded["composingBase"] as int ?? -1, end: encoded["composingExtent"] as int ?? -1));
         }
 

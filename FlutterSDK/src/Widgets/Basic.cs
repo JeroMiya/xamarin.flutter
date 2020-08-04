@@ -1733,10 +1733,14 @@ namespace FlutterSDK.Widgets.Basic
         ///    over a given duration.
         /// </Summary>
         public static Transform Rotate(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), double angle = default(double), FlutterBinding.UI.Offset origin = default(FlutterBinding.UI.Offset), FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), bool transformHitTests = true, FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
+        => new Transform(key, angle, origin, alignment, transformHitTests, child);
+
+        private Transform(FlutterSDK.Foundation.Key.Key key, double angle, FlutterBinding.UI.Offset origin, FlutterSDK.Painting.Alignment.AlignmentGeometry alignment, bool transformHitTests, FlutterSDK.Widgets.Framework.Widget child)
+        : base(key: key, child: child)
         {
-            var instance = new Transform(key: key, child: child); instance.Origin = origin;
-            instance.Alignment = alignment;
-            instance.TransformHitTests = transformHitTests;
+            this.Origin = origin;
+            this.Alignment = alignment;
+            this.TransformHitTests = transformHitTests;
         }
         /// <Summary>
         /// Creates a widget that transforms its child using a translation.
@@ -1760,8 +1764,12 @@ namespace FlutterSDK.Widgets.Basic
         /// {@end-tool}
         /// </Summary>
         public static Transform Translate(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterBinding.UI.Offset offset = default(FlutterBinding.UI.Offset), bool transformHitTests = true, FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
+        => new Transform(key, offset, transformHitTests, child);
+
+        private Transform(FlutterSDK.Foundation.Key.Key key, FlutterBinding.UI.Offset offset, bool transformHitTests, FlutterSDK.Widgets.Framework.Widget child)
+        : base(key: key, child: child)
         {
-            var instance = new Transform(key: key, child: child); instance.TransformHitTests = transformHitTests;
+            this.TransformHitTests = transformHitTests;
         }
         /// <Summary>
         /// Creates a widget that scales its child uniformly.
@@ -1795,10 +1803,14 @@ namespace FlutterSDK.Widgets.Basic
         ///    over a given duration.
         /// </Summary>
         public static Transform Scale(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), double scale = default(double), FlutterBinding.UI.Offset origin = default(FlutterBinding.UI.Offset), FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), bool transformHitTests = true, FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
+        => new Transform(key, scale, origin, alignment, transformHitTests, child);
+
+        private Transform(FlutterSDK.Foundation.Key.Key key, double scale, FlutterBinding.UI.Offset origin, FlutterSDK.Painting.Alignment.AlignmentGeometry alignment, bool transformHitTests, FlutterSDK.Widgets.Framework.Widget child)
+        : base(key: key, child: child)
         {
-            var instance = new Transform(key: key, child: child); instance.Origin = origin;
-            instance.Alignment = alignment;
-            instance.TransformHitTests = transformHitTests;
+            this.Origin = origin;
+            this.Alignment = alignment;
+            this.TransformHitTests = transformHitTests;
         }
         /// <Summary>
         /// The matrix to transform the child by during painting.
@@ -2822,22 +2834,34 @@ namespace FlutterSDK.Widgets.Basic
         /// Creates a box that will become as large as its parent allows.
         /// </Summary>
         public static SizedBox Expand(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
+        => new SizedBox(key, child);
+
+        private SizedBox(FlutterSDK.Foundation.Key.Key key, FlutterSDK.Widgets.Framework.Widget child)
+        : base(key: key, child: child)
         {
-            var instance = new SizedBox(key: key, child: child);
+
         }
         /// <Summary>
         /// Creates a box that will become as small as its parent allows.
         /// </Summary>
         public static SizedBox Shrink(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
+        => new SizedBox(key, child, null);
+
+        private SizedBox(FlutterSDK.Foundation.Key.Key key, FlutterSDK.Widgets.Framework.Widget child, object ___dummy_param___1)
+        : base(key: key, child: child)
         {
-            var instance = new SizedBox(key: key, child: child);
+
         }
         /// <Summary>
         /// Creates a box with the specified size.
         /// </Summary>
         public static SizedBox FromSize(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), Size size = default(Size))
+        => new SizedBox(key, child, size);
+
+        private SizedBox(FlutterSDK.Foundation.Key.Key key, FlutterSDK.Widgets.Framework.Widget child, Size size)
+        : base(key: key, child: child)
         {
-            var instance = new SizedBox(key: key, child: child);
+
         }
         /// <Summary>
         /// If non-null, requires the child to have exactly this width.
@@ -4403,8 +4427,12 @@ namespace FlutterSDK.Widgets.Basic
         /// set to null.
         /// </Summary>
         public static Positioned FromRect(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterBinding.UI.Rect rect = default(FlutterBinding.UI.Rect), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
+        => new Positioned(key, rect, child);
+
+        private Positioned(FlutterSDK.Foundation.Key.Key key, FlutterBinding.UI.Rect rect, FlutterSDK.Widgets.Framework.Widget child)
+        : base(key: key, child: child)
         {
-            var instance = new Positioned(key: key, child: child);
+
         }
         /// <Summary>
         /// Creates a Positioned object with the values from the given [RelativeRect].
@@ -4413,19 +4441,27 @@ namespace FlutterSDK.Widgets.Basic
         /// given [RelativeRect]. The [height] and [width] properties are set to null.
         /// </Summary>
         public static Positioned FromRelativeRect(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Rendering.Stack.RelativeRect rect = default(FlutterSDK.Rendering.Stack.RelativeRect), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
+        => new Positioned(key, rect, child);
+
+        private Positioned(FlutterSDK.Foundation.Key.Key key, FlutterSDK.Rendering.Stack.RelativeRect rect, FlutterSDK.Widgets.Framework.Widget child)
+        : base(key: key, child: child)
         {
-            var instance = new Positioned(key: key, child: child);
+
         }
         /// <Summary>
         /// Creates a Positioned object with [left], [top], [right], and [bottom] set
         /// to 0.0 unless a value for them is passed.
         /// </Summary>
         public static Positioned Fill(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), double left = 0.0, double top = 0.0, double right = 0.0, double bottom = 0.0, FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
+        => new Positioned(key, left, top, right, bottom, child);
+
+        private Positioned(FlutterSDK.Foundation.Key.Key key, double left, double top, double right, double bottom, FlutterSDK.Widgets.Framework.Widget child)
+        : base(key: key, child: child)
         {
-            var instance = new Positioned(key: key, child: child); instance.Left = left;
-            instance.Top = top;
-            instance.Right = right;
-            instance.Bottom = bottom;
+            this.Left = left;
+            this.Top = top;
+            this.Right = right;
+            this.Bottom = bottom;
         }
         /// <Summary>
         /// Creates a widget that controls where a child of a [Stack] is positioned.
@@ -4449,7 +4485,7 @@ namespace FlutterSDK.Widgets.Basic
         /// </Summary>
         public static Positioned Directional(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), TextDirection textDirection = default(TextDirection), double start = default(double), double top = default(double), double end = default(double), double bottom = default(double), double width = default(double), double height = default(double), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         {
-            var instance = new Positioned();
+
 
             double left = default(double);
             double right = default(double);
@@ -5987,8 +6023,12 @@ namespace FlutterSDK.Widgets.Basic
         /// The [delegate] argument must not be null.
         /// </Summary>
         public static Flow Unwrapped(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Rendering.Flow.FlowDelegate @delegate = default(FlutterSDK.Rendering.Flow.FlowDelegate), List<FlutterSDK.Widgets.Framework.Widget> children = default(List<FlutterSDK.Widgets.Framework.Widget>))
+        => new Flow(key, @delegate, children);
+
+        private Flow(FlutterSDK.Foundation.Key.Key key, FlutterSDK.Rendering.Flow.FlowDelegate @delegate, List<FlutterSDK.Widgets.Framework.Widget> children)
+        : base(key: key, children: children)
         {
-            var instance = new Flow(key: key, children: children); instance.@delegate = @delegate;
+            this.@delegate = @delegate;
         }
         /// <Summary>
         /// The delegate that controls the transformation matrices of the children.
@@ -7306,7 +7346,7 @@ namespace FlutterSDK.Widgets.Basic
         /// </Summary>
         public static RepaintBoundary Wrap(FlutterSDK.Widgets.Framework.Widget child, int childIndex)
         {
-            var instance = new RepaintBoundary();
+
 
             Key key = child.Key != null ? new ValueKey<Key>(child.Key) : new ValueKey<int>(childIndex);
             return new RepaintBoundary(key: key, child: child);
@@ -7323,7 +7363,7 @@ namespace FlutterSDK.Widgets.Basic
         /// </Summary>
         public virtual List<FlutterSDK.Widgets.Basic.RepaintBoundary> WrapAll(List<FlutterSDK.Widgets.Framework.Widget> widgets)
         {
-            List<RepaintBoundary> result = new List<RepaintBoundary>(widgets.Count);
+            List<RepaintBoundary> result = List.CreateNew<RepaintBoundary>(widgets.Count);
             for (int i = 0; i < result.Count; ++i) result[i] = RepaintBoundary.Wrap(widgets[i], i);
             return result;
         }
@@ -7611,11 +7651,15 @@ namespace FlutterSDK.Widgets.Basic
         /// The [container] and [properties] arguments must not be null.
         /// </Summary>
         public static Semantics FromProperties(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), bool container = false, bool explicitChildNodes = false, bool excludeSemantics = false, FlutterSDK.Semantics.Semantics.SemanticsProperties properties = default(FlutterSDK.Semantics.Semantics.SemanticsProperties))
+        => new Semantics(key, child, container, explicitChildNodes, excludeSemantics, properties);
+
+        private Semantics(FlutterSDK.Foundation.Key.Key key, FlutterSDK.Widgets.Framework.Widget child, bool container, bool explicitChildNodes, bool excludeSemantics, FlutterSDK.Semantics.Semantics.SemanticsProperties properties)
+        : base(key: key, child: child)
         {
-            var instance = new Semantics(key: key, child: child); instance.Container = container;
-            instance.ExplicitChildNodes = explicitChildNodes;
-            instance.ExcludeSemantics = excludeSemantics;
-            instance.Properties = properties;
+            this.Container = container;
+            this.ExplicitChildNodes = explicitChildNodes;
+            this.ExcludeSemantics = excludeSemantics;
+            this.Properties = properties;
         }
         /// <Summary>
         /// Contains properties used by assistive technologies to make the application
@@ -7965,7 +8009,7 @@ namespace FlutterSDK.Widgets.Basic
         /// </Summary>
         public static KeyedSubtree Wrap(FlutterSDK.Widgets.Framework.Widget child, int childIndex)
         {
-            var instance = new KeyedSubtree();
+
             Key key = child.Key != null ? new ValueKey<Key>(child.Key) : new ValueKey<int>(childIndex);
             return new KeyedSubtree(key: key, child: child);
         }

@@ -1401,7 +1401,7 @@ public new void InitServiceExtensions()
                 this.DebugLabel = debugLabel;
                 this.Flow = flow;
 
-                Completer = new Completer<T>();
+                Completer = Completer.CreateNew<T>();
             }
 
 

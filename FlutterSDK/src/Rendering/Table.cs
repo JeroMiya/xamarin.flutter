@@ -887,7 +887,7 @@ namespace FlutterSDK.Rendering.Table
             _Columns = columns ?? (children != null && children.IsNotEmpty ? children.First.Count : 0);
             _Rows = rows ?? 0;
             _Children = new List<RenderBox>() { }..Count = _Columns * _Rows;
-            _ColumnWidths = columnWidths ?? new HashMap<int, TableColumnWidth>();
+            _ColumnWidths = columnWidths ?? HashMap.CreateNew<int, TableColumnWidth>();
             _DefaultColumnWidth = defaultColumnWidth;
             _Border = border;
             this.RowDecorations = rowDecorations;
@@ -982,7 +982,7 @@ namespace FlutterSDK.Rendering.Table
 
 
 
-            HashSet<RenderBox> lostChildren = new HashSet<RenderBox>();
+            HashSet<RenderBox> lostChildren = HashSet.CreateNew<RenderBox>();
             for (int y = 0; y < _Rows; y += 1)
             {
                 for (int x = 0; x < _Columns; x += 1)
@@ -1116,7 +1116,7 @@ namespace FlutterSDK.Rendering.Table
             if (_RowDecorationPainters != null)
             {
                 foreach (BoxPainter painter in _RowDecorationPainters) painter?.Dispose();
-                _RowDecorationPainters = new List<BoxPainter>(_RowDecorations.Count);
+                _RowDecorationPainters = List.CreateNew<BoxPainter>(_RowDecorations.Count);
             }
 
             foreach (RenderBox child in _Children) child?.Detach();
@@ -1258,9 +1258,9 @@ namespace FlutterSDK.Rendering.Table
         {
 
 
-            List<double> widths = new List<double>(Columns);
-            List<double> minWidths = new List<double>(Columns);
-            List<double> flexes = new List<double>(Columns);
+            List<double> widths = List.CreateNew<double>(Columns);
+            List<double> minWidths = List.CreateNew<double>(Columns);
+            List<double> flexes = List.CreateNew<double>(Columns);
             double tableWidth = 0.0;
             double unflexedTableWidth = 0.0;
             double totalFlex = 0.0;
@@ -1448,7 +1448,7 @@ namespace FlutterSDK.Rendering.Table
             }
 
             List<double> widths = _ComputeColumnWidths(constraints);
-            List<double> positions = new List<double>(columns);
+            List<double> positions = List.CreateNew<double>(columns);
             double tableWidth = default(double);
             switch (TextDirection) { case TextDirection.Rtl: positions[columns - 1] = 0.0; for (int x = columns - 2; x >= 0; x -= 1) positions[x] = positions[x + 1] + widths[x + 1]; _ColumnLefts = positions.Reversed; tableWidth = positions.First + widths.First; break; case TextDirection.Ltr: positions[0] = 0.0; for (int x = 1; x < columns; x += 1) positions[x] = positions[x - 1] + widths[x - 1]; _ColumnLefts = positions; tableWidth = positions.Last() + widths.Last(); break; }
 
@@ -1462,7 +1462,7 @@ namespace FlutterSDK.Rendering.Table
                 bool haveBaseline = false;
                 double beforeBaselineDistance = 0.0;
                 double afterBaselineDistance = 0.0;
-                List<double> baselines = new List<double>(columns);
+                List<double> baselines = List.CreateNew<double>(columns);
                 for (int x = 0; x < columns; x += 1)
                 {
                     int xy = x + y * columns;

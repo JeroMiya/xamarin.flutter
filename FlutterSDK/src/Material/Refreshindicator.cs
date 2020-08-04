@@ -742,7 +742,7 @@ namespace FlutterSDK.Material.Refreshindicator
         {
 
 
-            Completer<void> completer = new Completer<void>();
+            Completer<void> completer = Completer.CreateNew<void>();
             _PendingRefreshFuture = completer.Future;
             _Mode = _RefreshIndicatorMode.Snap;
             _PositionController.AnimateTo(1.0 / RefreshindicatorDefaultClass._KDragSizeFactorLimit, duration: RefreshindicatorDefaultClass._KIndicatorSnapDuration).Then((void value) =>

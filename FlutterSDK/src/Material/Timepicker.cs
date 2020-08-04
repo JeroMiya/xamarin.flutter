@@ -1767,7 +1767,7 @@ namespace FlutterSDK.Material.Timepicker
                 case TargetPlatform.Fuchsia:
                 case TargetPlatform.Linux:
                 case TargetPlatform.Windows:
-                    _VibrateTimer?.Cancel(); _VibrateTimer = new Timer(TimepickerDefaultClass._KVibrateCommitDelay, () =>
+                    _VibrateTimer?.Cancel(); _VibrateTimer = Timer.CreateNew(TimepickerDefaultClass._KVibrateCommitDelay, () =>
                     {
                         HapticfeedbackDefaultClass.HapticFeedback.Vibrate();
                         _VibrateTimer = null;

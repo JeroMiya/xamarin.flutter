@@ -532,11 +532,15 @@ namespace FlutterSDK.Material.Inkdecoration
         /// See [paintImage] for a description of the meaning of these arguments.
         /// </Summary>
         public static Ink Image(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Painting.Imageprovider.ImageProvider<object> image = default(FlutterSDK.Painting.Imageprovider.ImageProvider<object>), FlutterSDK.Painting.Imagestream.ImageErrorListener onImageError = default(FlutterSDK.Painting.Imagestream.ImageErrorListener), ColorFilter colorFilter = default(ColorFilter), FlutterSDK.Painting.Boxfit.BoxFit fit = default(FlutterSDK.Painting.Boxfit.BoxFit), FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), FlutterBinding.UI.Rect centerSlice = default(FlutterBinding.UI.Rect), FlutterSDK.Painting.Decorationimage.ImageRepeat repeat = default(FlutterSDK.Painting.Decorationimage.ImageRepeat), bool matchTextDirection = false, double width = default(double), double height = default(double), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
+        => new Ink(key, padding, image, onImageError, colorFilter, fit, alignment, centerSlice, repeat, matchTextDirection, width, height, child);
+
+        private Ink(FlutterSDK.Foundation.Key.Key key, FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding, FlutterSDK.Painting.Imageprovider.ImageProvider<object> image, FlutterSDK.Painting.Imagestream.ImageErrorListener onImageError, ColorFilter colorFilter, FlutterSDK.Painting.Boxfit.BoxFit fit, FlutterSDK.Painting.Alignment.AlignmentGeometry alignment, FlutterBinding.UI.Rect centerSlice, FlutterSDK.Painting.Decorationimage.ImageRepeat repeat, bool matchTextDirection, double width, double height, FlutterSDK.Widgets.Framework.Widget child)
+        : base(key: key)
         {
-            var instance = new Ink(key: key); instance.Padding = padding;
-            instance.Width = width;
-            instance.Height = height;
-            instance.Child = child;
+            this.Padding = padding;
+            this.Width = width;
+            this.Height = height;
+            this.Child = child;
         }
         /// <Summary>
         /// The [child] contained by the container.

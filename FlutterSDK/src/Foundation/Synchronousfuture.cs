@@ -330,7 +330,7 @@ namespace FlutterSDK.Foundation.Synchronousfuture
 
         public new Stream<T> AsStream()
         {
-            StreamController<T> controller = new StreamController<T>();
+            StreamController<T> controller = StreamController.CreateNew<T>();
             controller.Add(_Value);
             controller.Close();
             return controller.Stream;
@@ -339,7 +339,7 @@ namespace FlutterSDK.Foundation.Synchronousfuture
 
 
 
-        public new Future<T> CatchError(Function onError, Func<bool, object> test = default(Func<bool, object>)) => new Completer<T>().Future;
+        public new Future<T> CatchError(Function onError, Func<bool, object> test = default(Func<bool, object>)) => Completer.CreateNew<T>().Future;
 
 
 

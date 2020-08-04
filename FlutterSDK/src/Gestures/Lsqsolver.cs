@@ -308,8 +308,12 @@ namespace FlutterSDK.Gestures.Lsqsolver
 
         }
         public static _Vector FromVOL(List<double> values, int offset, int length)
+        => new _Vector(values, offset, length);
+
+        private _Vector(List<double> values, int offset, int length)
+        : base()
         {
-            var instance = new _Vector();
+
         }
         internal virtual int _Offset { get; set; }
         internal virtual int _Length { get; set; }

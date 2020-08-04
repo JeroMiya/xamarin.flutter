@@ -1177,7 +1177,7 @@ namespace FlutterSDK.Rendering.Custompaint
             int oldChildrenTop = 0;
             int newChildrenBottom = newChildSemantics.Count - 1;
             int oldChildrenBottom = oldSemantics.Count - 1;
-            List<SemanticsNode> newChildren = new List<SemanticsNode>(newChildSemantics.Count);
+            List<SemanticsNode> newChildren = List.CreateNew<SemanticsNode>(newChildSemantics.Count);
             while ((oldChildrenTop <= oldChildrenBottom) && (newChildrenTop <= newChildrenBottom))
             {
                 SemanticsNode oldChild = oldSemantics[oldChildrenTop];

@@ -438,7 +438,7 @@ namespace FlutterSDK.Widgets.Debug
         public static bool DebugHighlightDeprecatedWidgets = default(bool);
         internal static FlutterSDK.Foundation.Key.Key _FirstNonUniqueKey(Iterable<FlutterSDK.Widgets.Framework.Widget> widgets)
         {
-            HashSet<Key> keySet = new HashSet<Key>();
+            HashSet<Key> keySet = HashSet.CreateNew<Key>();
             foreach (Widget widget in widgets)
             {
 

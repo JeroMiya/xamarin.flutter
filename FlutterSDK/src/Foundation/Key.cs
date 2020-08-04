@@ -380,8 +380,7 @@ namespace FlutterSDK.Foundation.Key
         ///
         /// This is the simplest way to create keys.
         /// </Summary>
-        public Key(string value)
-        : base()
+        public static Key CreateNew(string value)
         {
 
         }
@@ -392,8 +391,11 @@ namespace FlutterSDK.Foundation.Key
         /// constructor shadows the implicit constructor.
         /// </Summary>
         public static Key Empty()
+        => new Key();
+
+        private Key()
         {
-            var instance = new Key();
+
         }
     }
 

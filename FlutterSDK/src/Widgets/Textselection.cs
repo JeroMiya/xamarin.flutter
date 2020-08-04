@@ -1671,7 +1671,7 @@ namespace FlutterSDK.Widgets.Textselection
                 }
 
                 _LastTapOffset = details.GlobalPosition;
-                _DoubleTapTimer = new Timer(ConstantsDefaultClass.KDoubleTapTimeout, _DoubleTapTimeout);
+                _DoubleTapTimer = Timer.CreateNew(ConstantsDefaultClass.KDoubleTapTimeout, _DoubleTapTimeout);
             }
 
             _IsDoubleTap = false;
@@ -1709,7 +1709,7 @@ namespace FlutterSDK.Widgets.Textselection
         private void _HandleDragUpdate(FlutterSDK.Gestures.Dragdetails.DragUpdateDetails details)
         {
             _LastDragUpdateDetails = details;
-            _DragUpdateThrottleTimer = (_DragUpdateThrottleTimer == null ? new Timer(TextselectionDefaultClass._KDragSelectionUpdateThrottle, _HandleDragUpdateThrottled) : _DragUpdateThrottleTimer);
+            _DragUpdateThrottleTimer = (_DragUpdateThrottleTimer == null ? Timer.CreateNew(TextselectionDefaultClass._KDragSelectionUpdateThrottle, _HandleDragUpdateThrottled) : _DragUpdateThrottleTimer);
         }
 
 

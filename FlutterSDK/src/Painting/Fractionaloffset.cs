@@ -489,7 +489,7 @@ namespace FlutterSDK.Painting.Fractionaloffset
         /// </Summary>
         public static FractionalOffset FromOffsetAndSize(FlutterBinding.UI.Offset offset, Size size)
         {
-            var instance = new FractionalOffset();
+
 
 
             return new FractionalOffset(offset.Dx / size.Width, offset.Dy / size.Height);
@@ -509,7 +509,7 @@ namespace FlutterSDK.Painting.Fractionaloffset
         /// </Summary>
         public static FractionalOffset FromOffsetAndRect(FlutterBinding.UI.Offset offset, FlutterBinding.UI.Rect rect)
         {
-            var instance = new FractionalOffset();
+
             return FractionalOffset.FromOffsetAndSize(offset - rect.TopLeft, rect.Size);
         }
 

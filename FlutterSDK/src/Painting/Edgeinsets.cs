@@ -797,11 +797,14 @@ namespace FlutterSDK.Painting.Edgeinsets
         /// Creates insets from offsets from the left, top, right, and bottom.
         /// </Summary>
         public static EdgeInsets FromLTRB(double left, double top, double right, double bottom)
+        => new EdgeInsets(left, top, right, bottom);
+
+        private EdgeInsets(double left, double top, double right, double bottom)
         {
-            var instance = new EdgeInsets(); instance.Left = left;
-            instance.Top = top;
-            instance.Right = right;
-            instance.Bottom = bottom;
+            this.Left = left;
+            this.Top = top;
+            this.Right = right;
+            this.Bottom = bottom;
         }
         /// <Summary>
         /// Creates insets where all the offsets are `value`.
@@ -816,8 +819,12 @@ namespace FlutterSDK.Painting.Edgeinsets
         /// {@end-tool}
         /// </Summary>
         public static EdgeInsets All(double value)
+        => new EdgeInsets(value);
+
+        private EdgeInsets(double value)
+        : base()
         {
-            var instance = new EdgeInsets();
+
         }
         /// <Summary>
         /// Creates insets with only the given values non-zero.
@@ -832,11 +839,14 @@ namespace FlutterSDK.Painting.Edgeinsets
         /// {@end-tool}
         /// </Summary>
         public static EdgeInsets Only(double left = 0.0, double top = 0.0, double right = 0.0, double bottom = 0.0)
+        => new EdgeInsets(left, top, right, bottom, null);
+
+        private EdgeInsets(double left, double top, double right, double bottom, object ___dummy_param___1)
         {
-            var instance = new EdgeInsets(); instance.Left = left;
-            instance.Top = top;
-            instance.Right = right;
-            instance.Bottom = bottom;
+            this.Left = left;
+            this.Top = top;
+            this.Right = right;
+            this.Bottom = bottom;
         }
         /// <Summary>
         /// Creates insets with symmetrical vertical and horizontal offsets.
@@ -851,8 +861,12 @@ namespace FlutterSDK.Painting.Edgeinsets
         /// {@end-tool}
         /// </Summary>
         public static EdgeInsets Symmetric(double vertical = 0.0, double horizontal = 0.0)
+        => new EdgeInsets(vertical, horizontal);
+
+        private EdgeInsets(double vertical, double horizontal)
+        : base()
         {
-            var instance = new EdgeInsets();
+
         }
         /// <Summary>
         /// Creates insets that match the given window padding.
@@ -863,8 +877,12 @@ namespace FlutterSDK.Painting.Edgeinsets
         /// changes.
         /// </Summary>
         public static EdgeInsets FromWindowPadding(WindowPadding padding, double devicePixelRatio)
+        => new EdgeInsets(padding, devicePixelRatio);
+
+        private EdgeInsets(WindowPadding padding, double devicePixelRatio)
+        : base()
         {
-            var instance = new EdgeInsets();
+
         }
         /// <Summary>
         /// An [EdgeInsets] with zero offsets in each direction.
@@ -1102,11 +1120,14 @@ namespace FlutterSDK.Painting.Edgeinsets
         /// Creates insets from offsets from the start, top, end, and bottom.
         /// </Summary>
         public static EdgeInsetsDirectional FromSTEB(double start, double top, double end, double bottom)
+        => new EdgeInsetsDirectional(start, top, end, bottom);
+
+        private EdgeInsetsDirectional(double start, double top, double end, double bottom)
         {
-            var instance = new EdgeInsetsDirectional(); instance.Start = start;
-            instance.Top = top;
-            instance.End = end;
-            instance.Bottom = bottom;
+            this.Start = start;
+            this.Top = top;
+            this.End = end;
+            this.Bottom = bottom;
         }
         /// <Summary>
         /// Creates insets with only the given values non-zero.
@@ -1121,11 +1142,14 @@ namespace FlutterSDK.Painting.Edgeinsets
         /// {@end-tool}
         /// </Summary>
         public static EdgeInsetsDirectional Only(double start = 0.0, double top = 0.0, double end = 0.0, double bottom = 0.0)
+        => new EdgeInsetsDirectional(start, top, end, bottom, null);
+
+        private EdgeInsetsDirectional(double start, double top, double end, double bottom, object ___dummy_param___1)
         {
-            var instance = new EdgeInsetsDirectional(); instance.Start = start;
-            instance.Top = top;
-            instance.End = end;
-            instance.Bottom = bottom;
+            this.Start = start;
+            this.Top = top;
+            this.End = end;
+            this.Bottom = bottom;
         }
         /// <Summary>
         /// An [EdgeInsetsDirectional] with zero offsets in each direction.
@@ -1308,13 +1332,16 @@ namespace FlutterSDK.Painting.Edgeinsets
     public class _MixedEdgeInsets : FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry
     {
         public static _MixedEdgeInsets FromLRSETB(double _left, double _right, double _start, double _end, double _top, double _bottom)
+        => new _MixedEdgeInsets(_left, _right, _start, _end, _top, _bottom);
+
+        private _MixedEdgeInsets(double _left, double _right, double _start, double _end, double _top, double _bottom)
         {
-            var instance = new _MixedEdgeInsets(); instance._Left = _left;
-            instance._Right = _right;
-            instance._Start = _start;
-            instance._End = _end;
-            instance._Top = _top;
-            instance._Bottom = _bottom;
+            this._Left = _left;
+            this._Right = _right;
+            this._Start = _start;
+            this._End = _end;
+            this._Top = _top;
+            this._Bottom = _bottom;
         }
         internal new double _Left { get; set; }
         internal new double _Right { get; set; }

@@ -1179,7 +1179,7 @@ namespace FlutterSDK.Painting.Imagestream
             }
 
             TimeSpan delay = _FrameDuration - (timestamp - _ShownTimestamp);
-            _Timer = new Timer(delay * BindingDefaultClass.TimeDilation, () =>
+            _Timer = Timer.CreateNew(delay * BindingDefaultClass.TimeDilation, () =>
             {
                 _ScheduleAppFrame();
             }

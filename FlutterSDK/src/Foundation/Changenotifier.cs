@@ -569,7 +569,7 @@ namespace FlutterSDK.Foundation.Changenotifier
             /// </Summary>
             public static Listenable Merge(List<FlutterSDK.Foundation.Changenotifier.Listenable> listenables)
             {
-                var instance = new Listenable();
+
             }
 
             /// <Summary>

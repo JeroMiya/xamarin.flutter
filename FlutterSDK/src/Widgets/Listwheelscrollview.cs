@@ -1009,21 +1009,25 @@ namespace FlutterSDK.Widgets.Listwheelscrollview
         /// are managed by a delegate and are lazily built during layout.
         /// </Summary>
         public static ListWheelScrollView UseDelegate(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Scrollcontroller.ScrollController controller = default(FlutterSDK.Widgets.Scrollcontroller.ScrollController), FlutterSDK.Widgets.Scrollphysics.ScrollPhysics physics = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics), double diameterRatio = default(double), double perspective = default(double), double offAxisFraction = 0.0, bool useMagnifier = false, double magnification = 1.0, double overAndUnderCenterOpacity = 1.0, double itemExtent = default(double), double squeeze = 1.0, FlutterSDK.Foundation.Basictypes.ValueChanged<int> onSelectedItemChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<int>), bool clipToSize = true, bool renderChildrenOutsideViewport = false, FlutterSDK.Widgets.Listwheelscrollview.ListWheelChildDelegate childDelegate = default(FlutterSDK.Widgets.Listwheelscrollview.ListWheelChildDelegate))
+        => new ListWheelScrollView(key, controller, physics, diameterRatio, perspective, offAxisFraction, useMagnifier, magnification, overAndUnderCenterOpacity, itemExtent, squeeze, onSelectedItemChanged, clipToSize, renderChildrenOutsideViewport, childDelegate);
+
+        private ListWheelScrollView(FlutterSDK.Foundation.Key.Key key, FlutterSDK.Widgets.Scrollcontroller.ScrollController controller, FlutterSDK.Widgets.Scrollphysics.ScrollPhysics physics, double diameterRatio, double perspective, double offAxisFraction, bool useMagnifier, double magnification, double overAndUnderCenterOpacity, double itemExtent, double squeeze, FlutterSDK.Foundation.Basictypes.ValueChanged<int> onSelectedItemChanged, bool clipToSize, bool renderChildrenOutsideViewport, FlutterSDK.Widgets.Listwheelscrollview.ListWheelChildDelegate childDelegate)
+        : base(key: key)
         {
-            var instance = new ListWheelScrollView(key: key); instance.Controller = controller;
-            instance.Physics = physics;
-            instance.DiameterRatio = diameterRatio;
-            instance.Perspective = perspective;
-            instance.OffAxisFraction = offAxisFraction;
-            instance.UseMagnifier = useMagnifier;
-            instance.Magnification = magnification;
-            instance.OverAndUnderCenterOpacity = overAndUnderCenterOpacity;
-            instance.ItemExtent = itemExtent;
-            instance.Squeeze = squeeze;
-            instance.OnSelectedItemChanged = onSelectedItemChanged;
-            instance.ClipToSize = clipToSize;
-            instance.RenderChildrenOutsideViewport = renderChildrenOutsideViewport;
-            instance.ChildDelegate = childDelegate;
+            this.Controller = controller;
+            this.Physics = physics;
+            this.DiameterRatio = diameterRatio;
+            this.Perspective = perspective;
+            this.OffAxisFraction = offAxisFraction;
+            this.UseMagnifier = useMagnifier;
+            this.Magnification = magnification;
+            this.OverAndUnderCenterOpacity = overAndUnderCenterOpacity;
+            this.ItemExtent = itemExtent;
+            this.Squeeze = squeeze;
+            this.OnSelectedItemChanged = onSelectedItemChanged;
+            this.ClipToSize = clipToSize;
+            this.RenderChildrenOutsideViewport = renderChildrenOutsideViewport;
+            this.ChildDelegate = childDelegate;
         }
         /// <Summary>
         /// Typically a [FixedExtentScrollController] used to control the current item.

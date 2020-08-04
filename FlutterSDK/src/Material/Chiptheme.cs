@@ -606,7 +606,7 @@ namespace FlutterSDK.Material.Chiptheme
         /// </Summary>
         public static ChipThemeData FromDefaults(Brightness brightness = default(Brightness), FlutterBinding.UI.Color primaryColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color secondaryColor = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Textstyle.TextStyle labelStyle = default(FlutterSDK.Painting.Textstyle.TextStyle))
         {
-            var instance = new ChipThemeData();
+
 
 
 

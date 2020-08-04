@@ -965,8 +965,12 @@ namespace FlutterSDK.Animation.Curves
         /// structures are precomputed instead of being computed lazily.
         /// </Summary>
         public static CatmullRomSpline Precompute(List<FlutterBinding.UI.Offset> controlPoints, double tension = 0.0, FlutterBinding.UI.Offset startHandle = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Offset endHandle = default(FlutterBinding.UI.Offset))
+        => new CatmullRomSpline(controlPoints, tension, startHandle, endHandle);
+
+        private CatmullRomSpline(List<FlutterBinding.UI.Offset> controlPoints, double tension, FlutterBinding.UI.Offset startHandle, FlutterBinding.UI.Offset endHandle)
+        : base()
         {
-            var instance = new CatmullRomSpline();
+
         }
         internal virtual List<List<Offset>> _CubicSegments { get; set; }
         internal virtual List<Offset> _ControlPoints { get; set; }
@@ -1111,9 +1115,13 @@ namespace FlutterSDK.Animation.Curves
         /// structures for a more predictable computation load.
         /// </Summary>
         public static CatmullRomCurve Precompute(List<FlutterBinding.UI.Offset> controlPoints, double tension = 0.0)
+        => new CatmullRomCurve(controlPoints, tension);
+
+        private CatmullRomCurve(List<FlutterBinding.UI.Offset> controlPoints, double tension)
+        : base()
         {
-            var instance = new CatmullRomCurve(); instance.ControlPoints = controlPoints;
-            instance.Tension = tension;
+            this.ControlPoints = controlPoints;
+            this.Tension = tension;
         }
         /// <Summary>
         /// A static accumulator for assertion failures. Not used in release mode.

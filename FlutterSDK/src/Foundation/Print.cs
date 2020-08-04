@@ -373,8 +373,8 @@ namespace FlutterSDK.Foundation.Print
             {
                 PrintDefaultClass._DebugPrintScheduled = true;
                 PrintDefaultClass._DebugPrintedCharacters = 0;
-                new Timer(PrintDefaultClass._KDebugPrintPauseTime, PrintDefaultClass._DebugPrintTask);
-                PrintDefaultClass._DebugPrintCompleter = (PrintDefaultClass._DebugPrintCompleter == null ? new Completer<void>() : PrintDefaultClass._DebugPrintCompleter);
+                Timer.CreateNew(PrintDefaultClass._KDebugPrintPauseTime, PrintDefaultClass._DebugPrintTask);
+                PrintDefaultClass._DebugPrintCompleter = (PrintDefaultClass._DebugPrintCompleter == null ? Completer.CreateNew<void>() : PrintDefaultClass._DebugPrintCompleter);
             }
             else
             {

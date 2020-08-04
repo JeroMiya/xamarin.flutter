@@ -333,17 +333,21 @@ namespace FlutterSDK.Cupertino.Texttheme
 
         }
         internal static CupertinoTextThemeData _Raw(FlutterSDK.Cupertino.Texttheme._TextThemeDefaultsBuilder _defaults, FlutterBinding.UI.Color _primaryColor, FlutterSDK.Painting.Textstyle.TextStyle _textStyle, FlutterSDK.Painting.Textstyle.TextStyle _actionTextStyle, FlutterSDK.Painting.Textstyle.TextStyle _tabLabelTextStyle, FlutterSDK.Painting.Textstyle.TextStyle _navTitleTextStyle, FlutterSDK.Painting.Textstyle.TextStyle _navLargeTitleTextStyle, FlutterSDK.Painting.Textstyle.TextStyle _navActionTextStyle, FlutterSDK.Painting.Textstyle.TextStyle _pickerTextStyle, FlutterSDK.Painting.Textstyle.TextStyle _dateTimePickerTextStyle)
+        => new CupertinoTextThemeData(_defaults, _primaryColor, _textStyle, _actionTextStyle, _tabLabelTextStyle, _navTitleTextStyle, _navLargeTitleTextStyle, _navActionTextStyle, _pickerTextStyle, _dateTimePickerTextStyle);
+
+        private CupertinoTextThemeData(FlutterSDK.Cupertino.Texttheme._TextThemeDefaultsBuilder _defaults, FlutterBinding.UI.Color _primaryColor, FlutterSDK.Painting.Textstyle.TextStyle _textStyle, FlutterSDK.Painting.Textstyle.TextStyle _actionTextStyle, FlutterSDK.Painting.Textstyle.TextStyle _tabLabelTextStyle, FlutterSDK.Painting.Textstyle.TextStyle _navTitleTextStyle, FlutterSDK.Painting.Textstyle.TextStyle _navLargeTitleTextStyle, FlutterSDK.Painting.Textstyle.TextStyle _navActionTextStyle, FlutterSDK.Painting.Textstyle.TextStyle _pickerTextStyle, FlutterSDK.Painting.Textstyle.TextStyle _dateTimePickerTextStyle)
+        : base()
         {
-            var instance = new CupertinoTextThemeData(); instance._Defaults = _defaults;
-            instance._PrimaryColor = _primaryColor;
-            instance._TextStyle = _textStyle;
-            instance._ActionTextStyle = _actionTextStyle;
-            instance._TabLabelTextStyle = _tabLabelTextStyle;
-            instance._NavTitleTextStyle = _navTitleTextStyle;
-            instance._NavLargeTitleTextStyle = _navLargeTitleTextStyle;
-            instance._NavActionTextStyle = _navActionTextStyle;
-            instance._PickerTextStyle = _pickerTextStyle;
-            instance._DateTimePickerTextStyle = _dateTimePickerTextStyle;
+            this._Defaults = _defaults;
+            this._PrimaryColor = _primaryColor;
+            this._TextStyle = _textStyle;
+            this._ActionTextStyle = _actionTextStyle;
+            this._TabLabelTextStyle = _tabLabelTextStyle;
+            this._NavTitleTextStyle = _navTitleTextStyle;
+            this._NavLargeTitleTextStyle = _navLargeTitleTextStyle;
+            this._NavActionTextStyle = _navActionTextStyle;
+            this._PickerTextStyle = _pickerTextStyle;
+            this._DateTimePickerTextStyle = _dateTimePickerTextStyle;
         }
         internal virtual FlutterSDK.Cupertino.Texttheme._TextThemeDefaultsBuilder _Defaults { get; set; }
         internal virtual FlutterBinding.UI.Color _PrimaryColor { get; set; }

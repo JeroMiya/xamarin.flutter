@@ -476,8 +476,12 @@ namespace FlutterSDK.Widgets.Text
         /// means the constructed value cannot be incorporated into the tree.
         /// </Summary>
         public static DefaultTextStyle Fallback(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key))
+        => new DefaultTextStyle(key);
+
+        private DefaultTextStyle(FlutterSDK.Foundation.Key.Key key)
+        : base(key: key, child: null)
         {
-            var instance = new DefaultTextStyle(key: key, child: null);
+
         }
         /// <Summary>
         /// The text style to apply.
@@ -725,20 +729,24 @@ namespace FlutterSDK.Widgets.Text
         /// See [RichText] which provides a lower-level way to draw text.
         /// </Summary>
         public static Text Rich(FlutterSDK.Painting.Inlinespan.InlineSpan textSpan, FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Textstyle.TextStyle style = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Strutstyle.StrutStyle strutStyle = default(FlutterSDK.Painting.Strutstyle.StrutStyle), TextAlign textAlign = default(TextAlign), TextDirection textDirection = default(TextDirection), Locale locale = default(Locale), bool softWrap = default(bool), FlutterSDK.Rendering.Paragraph.TextOverflow overflow = default(FlutterSDK.Rendering.Paragraph.TextOverflow), double textScaleFactor = default(double), int maxLines = default(int), string semanticsLabel = default(string), FlutterSDK.Painting.Textpainter.TextWidthBasis textWidthBasis = default(FlutterSDK.Painting.Textpainter.TextWidthBasis), TextHeightBehavior textHeightBehavior = default(TextHeightBehavior))
+        => new Text(textSpan, key, style, strutStyle, textAlign, textDirection, locale, softWrap, overflow, textScaleFactor, maxLines, semanticsLabel, textWidthBasis, textHeightBehavior);
+
+        private Text(FlutterSDK.Painting.Inlinespan.InlineSpan textSpan, FlutterSDK.Foundation.Key.Key key, FlutterSDK.Painting.Textstyle.TextStyle style, FlutterSDK.Painting.Strutstyle.StrutStyle strutStyle, TextAlign textAlign, TextDirection textDirection, Locale locale, bool softWrap, FlutterSDK.Rendering.Paragraph.TextOverflow overflow, double textScaleFactor, int maxLines, string semanticsLabel, FlutterSDK.Painting.Textpainter.TextWidthBasis textWidthBasis, TextHeightBehavior textHeightBehavior)
+        : base(key: key)
         {
-            var instance = new Text(key: key); instance.TextSpan = textSpan;
-            instance.Style = style;
-            instance.StrutStyle = strutStyle;
-            instance.TextAlign = textAlign;
-            instance.TextDirection = textDirection;
-            instance.Locale = locale;
-            instance.SoftWrap = softWrap;
-            instance.Overflow = overflow;
-            instance.TextScaleFactor = textScaleFactor;
-            instance.MaxLines = maxLines;
-            instance.SemanticsLabel = semanticsLabel;
-            instance.TextWidthBasis = textWidthBasis;
-            instance.TextHeightBehavior = textHeightBehavior;
+            this.TextSpan = textSpan;
+            this.Style = style;
+            this.StrutStyle = strutStyle;
+            this.TextAlign = textAlign;
+            this.TextDirection = textDirection;
+            this.Locale = locale;
+            this.SoftWrap = softWrap;
+            this.Overflow = overflow;
+            this.TextScaleFactor = textScaleFactor;
+            this.MaxLines = maxLines;
+            this.SemanticsLabel = semanticsLabel;
+            this.TextWidthBasis = textWidthBasis;
+            this.TextHeightBehavior = textHeightBehavior;
         }
         /// <Summary>
         /// The text to display.

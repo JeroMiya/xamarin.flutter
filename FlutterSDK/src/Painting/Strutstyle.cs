@@ -742,9 +742,13 @@ namespace FlutterSDK.Painting.Strutstyle
         /// from being prepended twice.
         /// </Summary>
         public static StrutStyle FromTextStyle(FlutterSDK.Painting.Textstyle.TextStyle textStyle, string fontFamily = default(string), List<string> fontFamilyFallback = default(List<string>), double fontSize = default(double), double height = default(double), double leading = default(double), FontWeight fontWeight = default(FontWeight), FontStyle fontStyle = default(FontStyle), bool forceStrutHeight = default(bool), string debugLabel = default(string), string package = default(string))
+        => new StrutStyle(textStyle, fontFamily, fontFamilyFallback, fontSize, height, leading, fontWeight, fontStyle, forceStrutHeight, debugLabel, package);
+
+        private StrutStyle(FlutterSDK.Painting.Textstyle.TextStyle textStyle, string fontFamily, List<string> fontFamilyFallback, double fontSize, double height, double leading, FontWeight fontWeight, FontStyle fontStyle, bool forceStrutHeight, string debugLabel, string package)
+        : base()
         {
-            var instance = new StrutStyle(); instance.Leading = leading;
-            instance.ForceStrutHeight = forceStrutHeight;
+            this.Leading = leading;
+            this.ForceStrutHeight = forceStrutHeight;
         }
         /// <Summary>
         /// A [StrutStyle] that will have no impact on the text layout.

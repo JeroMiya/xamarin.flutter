@@ -458,8 +458,12 @@ namespace FlutterSDK.Widgets.Iconthemedata
         /// The [color] is black, the [opacity] is 1.0, and the [size] is 24.0.
         /// </Summary>
         public static IconThemeData Fallback()
+        => new IconThemeData();
+
+        private IconThemeData()
+        : base()
         {
-            var instance = new IconThemeData();
+
         }
         /// <Summary>
         /// The default color for icons.

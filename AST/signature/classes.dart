@@ -7,6 +7,7 @@ import 'constructors.dart';
 import 'fields.dart';
 import 'methods.dart';
 import '../config.dart';
+import '../codeBuilder.dart';
 
 class Classes {
   static String printClass(ClassElement element) {
@@ -17,7 +18,7 @@ class Classes {
     if (["PageMetrics", "FixedExtentMetrics", "GestureArenaEntry"]
         .contains(name)) implementWithInterface = true;
 
-    var code = new StringBuffer();
+    var code = new CodeBuilder();
     code.writeln("");
     Comments.appendComment(code, element);
     code.write("public ");

@@ -464,10 +464,14 @@ namespace FlutterSDK.Widgets.Performanceoverlay
         /// Create a performance overlay that displays all available statistics
         /// </Summary>
         public static PerformanceOverlay AllEnabled(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), int rasterizerThreshold = 0, bool checkerboardRasterCacheImages = false, bool checkerboardOffscreenLayers = false)
+        => new PerformanceOverlay(key, rasterizerThreshold, checkerboardRasterCacheImages, checkerboardOffscreenLayers);
+
+        private PerformanceOverlay(FlutterSDK.Foundation.Key.Key key, int rasterizerThreshold, bool checkerboardRasterCacheImages, bool checkerboardOffscreenLayers)
+        : base(key: key)
         {
-            var instance = new PerformanceOverlay(key: key); instance.RasterizerThreshold = rasterizerThreshold;
-            instance.CheckerboardRasterCacheImages = checkerboardRasterCacheImages;
-            instance.CheckerboardOffscreenLayers = checkerboardOffscreenLayers;
+            this.RasterizerThreshold = rasterizerThreshold;
+            this.CheckerboardRasterCacheImages = checkerboardRasterCacheImages;
+            this.CheckerboardOffscreenLayers = checkerboardOffscreenLayers;
         }
         /// <Summary>
         /// The mask is created by shifting 1 by the index of the specific

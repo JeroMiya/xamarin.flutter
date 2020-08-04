@@ -491,9 +491,13 @@ namespace FlutterSDK.Physics.Springsimulation
         /// ratio is unitless.
         /// </Summary>
         public static SpringDescription WithDampingRatio(double mass = default(double), double stiffness = default(double), double ratio = 1.0)
+        => new SpringDescription(mass, stiffness, ratio);
+
+        private SpringDescription(double mass, double stiffness, double ratio)
+        : base()
         {
-            var instance = new SpringDescription(); instance.Mass = mass;
-            instance.Stiffness = stiffness;
+            this.Mass = mass;
+            this.Stiffness = stiffness;
         }
         /// <Summary>
         /// The mass of the spring (m). The units are arbitrary, but all springs
@@ -595,7 +599,7 @@ namespace FlutterSDK.Physics.Springsimulation
 
     public class _CriticalSolution : I_SpringSolution
     {
-        public _CriticalSolution(FlutterSDK.Physics.Springsimulation.SpringDescription spring, double distance, double velocity)
+        public static _CriticalSolution CreateNew(FlutterSDK.Physics.Springsimulation.SpringDescription spring, double distance, double velocity)
         {
 
             double r = -spring.Damping / (2.0 * spring.Mass);
@@ -606,8 +610,12 @@ namespace FlutterSDK.Physics.Springsimulation
 
 
         public static _CriticalSolution WithArgs(double r, double c1, double c2)
+        => new _CriticalSolution(r, c1, c2);
+
+        private _CriticalSolution(double r, double c1, double c2)
+        : base()
         {
-            var instance = new _CriticalSolution();
+
         }
         internal virtual double _R { get; set; }
         internal virtual double _C1 { get; set; }
@@ -635,7 +643,7 @@ namespace FlutterSDK.Physics.Springsimulation
 
     public class _OverdampedSolution : I_SpringSolution
     {
-        public _OverdampedSolution(FlutterSDK.Physics.Springsimulation.SpringDescription spring, double distance, double velocity)
+        public static _OverdampedSolution CreateNew(FlutterSDK.Physics.Springsimulation.SpringDescription spring, double distance, double velocity)
         {
 
             double cmk = spring.Damping * spring.Damping - 4 * spring.Mass * spring.Stiffness;
@@ -648,8 +656,12 @@ namespace FlutterSDK.Physics.Springsimulation
 
 
         public static _OverdampedSolution WithArgs(double r1, double r2, double c1, double c2)
+        => new _OverdampedSolution(r1, r2, c1, c2);
+
+        private _OverdampedSolution(double r1, double r2, double c1, double c2)
+        : base()
         {
-            var instance = new _OverdampedSolution();
+
         }
         internal virtual double _R1 { get; set; }
         internal virtual double _R2 { get; set; }
@@ -677,7 +689,7 @@ namespace FlutterSDK.Physics.Springsimulation
 
     public class _UnderdampedSolution : I_SpringSolution
     {
-        public _UnderdampedSolution(FlutterSDK.Physics.Springsimulation.SpringDescription spring, double distance, double velocity)
+        public static _UnderdampedSolution CreateNew(FlutterSDK.Physics.Springsimulation.SpringDescription spring, double distance, double velocity)
         {
 
             double w = Dart.Math.MathDefaultClass.Sqrt(4.0 * spring.Mass * spring.Stiffness - spring.Damping * spring.Damping) / (2.0 * spring.Mass);
@@ -689,8 +701,12 @@ namespace FlutterSDK.Physics.Springsimulation
 
 
         public static _UnderdampedSolution WithArgs(double w, double r, double c1, double c2)
+        => new _UnderdampedSolution(w, r, c1, c2);
+
+        private _UnderdampedSolution(double w, double r, double c1, double c2)
+        : base()
         {
-            var instance = new _UnderdampedSolution();
+
         }
         internal virtual double _W { get; set; }
         internal virtual double _R { get; set; }

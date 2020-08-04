@@ -479,8 +479,7 @@ namespace FlutterSDK.Material.Typography
         /// constructor are obsolete. The current material design specification
         /// recommendations are those reflected by [Typography.material2018].
         /// </Summary>
-        public Typography(FlutterSDK.Foundation.Platform.TargetPlatform platform = default(FlutterSDK.Foundation.Platform.TargetPlatform), FlutterSDK.Material.Texttheme.TextTheme black = default(FlutterSDK.Material.Texttheme.TextTheme), FlutterSDK.Material.Texttheme.TextTheme white = default(FlutterSDK.Material.Texttheme.TextTheme), FlutterSDK.Material.Texttheme.TextTheme englishLike = default(FlutterSDK.Material.Texttheme.TextTheme), FlutterSDK.Material.Texttheme.TextTheme dense = default(FlutterSDK.Material.Texttheme.TextTheme), FlutterSDK.Material.Texttheme.TextTheme tall = default(FlutterSDK.Material.Texttheme.TextTheme))
-        : base()
+        public static Typography CreateNew(FlutterSDK.Foundation.Platform.TargetPlatform platform = default(FlutterSDK.Foundation.Platform.TargetPlatform), FlutterSDK.Material.Texttheme.TextTheme black = default(FlutterSDK.Material.Texttheme.TextTheme), FlutterSDK.Material.Texttheme.TextTheme white = default(FlutterSDK.Material.Texttheme.TextTheme), FlutterSDK.Material.Texttheme.TextTheme englishLike = default(FlutterSDK.Material.Texttheme.TextTheme), FlutterSDK.Material.Texttheme.TextTheme dense = default(FlutterSDK.Material.Texttheme.TextTheme), FlutterSDK.Material.Texttheme.TextTheme tall = default(FlutterSDK.Material.Texttheme.TextTheme))
         {
 
         }
@@ -498,7 +497,7 @@ namespace FlutterSDK.Material.Typography
         /// </Summary>
         public static Typography Material2014(FlutterSDK.Foundation.Platform.TargetPlatform platform = default(FlutterSDK.Foundation.Platform.TargetPlatform), FlutterSDK.Material.Texttheme.TextTheme black = default(FlutterSDK.Material.Texttheme.TextTheme), FlutterSDK.Material.Texttheme.TextTheme white = default(FlutterSDK.Material.Texttheme.TextTheme), FlutterSDK.Material.Texttheme.TextTheme englishLike = default(FlutterSDK.Material.Texttheme.TextTheme), FlutterSDK.Material.Texttheme.TextTheme dense = default(FlutterSDK.Material.Texttheme.TextTheme), FlutterSDK.Material.Texttheme.TextTheme tall = default(FlutterSDK.Material.Texttheme.TextTheme))
         {
-            var instance = new Typography();
+
 
             return Typography._WithPlatform(platform, black, white, englishLike ?? EnglishLike2014, dense ?? Dense2014, tall ?? Tall2014);
         }
@@ -518,7 +517,7 @@ namespace FlutterSDK.Material.Typography
         /// </Summary>
         public static Typography Material2018(FlutterSDK.Foundation.Platform.TargetPlatform platform = default(FlutterSDK.Foundation.Platform.TargetPlatform), FlutterSDK.Material.Texttheme.TextTheme black = default(FlutterSDK.Material.Texttheme.TextTheme), FlutterSDK.Material.Texttheme.TextTheme white = default(FlutterSDK.Material.Texttheme.TextTheme), FlutterSDK.Material.Texttheme.TextTheme englishLike = default(FlutterSDK.Material.Texttheme.TextTheme), FlutterSDK.Material.Texttheme.TextTheme dense = default(FlutterSDK.Material.Texttheme.TextTheme), FlutterSDK.Material.Texttheme.TextTheme tall = default(FlutterSDK.Material.Texttheme.TextTheme))
         {
-            var instance = new Typography();
+
 
             return Typography._WithPlatform(platform, black, white, englishLike ?? EnglishLike2018, dense ?? Dense2018, tall ?? Tall2018);
         }
@@ -526,7 +525,7 @@ namespace FlutterSDK.Material.Typography
 
         internal static Typography _WithPlatform(FlutterSDK.Foundation.Platform.TargetPlatform platform, FlutterSDK.Material.Texttheme.TextTheme black, FlutterSDK.Material.Texttheme.TextTheme white, FlutterSDK.Material.Texttheme.TextTheme englishLike, FlutterSDK.Material.Texttheme.TextTheme dense, FlutterSDK.Material.Texttheme.TextTheme tall)
         {
-            var instance = new Typography();
+
 
 
 

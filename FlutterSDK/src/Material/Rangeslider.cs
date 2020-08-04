@@ -1178,7 +1178,7 @@ namespace FlutterSDK.Material.Rangeslider
                 {
                     _State.ValueIndicatorController.Forward();
                     _State.InteractionTimer?.Cancel();
-                    _State.InteractionTimer = new Timer(_MinimumInteractionTime * BindingDefaultClass.TimeDilation, () =>
+                    _State.InteractionTimer = Timer.CreateNew(_MinimumInteractionTime * BindingDefaultClass.TimeDilation, () =>
                     {
                         _State.InteractionTimer = null;
                         if (!_Active && _State.ValueIndicatorController.Status == AnimationStatus.Completed)

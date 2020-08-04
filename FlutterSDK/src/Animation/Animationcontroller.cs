@@ -265,11 +265,15 @@ namespace FlutterSDK.Animation.Animationcontroller
         /// pre-determined bounds.
         /// </Summary>
         public static AnimationController Unbounded(double value = 0.0, TimeSpan duration = default(TimeSpan), TimeSpan reverseDuration = default(TimeSpan), string debugLabel = default(string), FlutterSDK.Scheduler.Ticker.TickerProvider vsync = default(FlutterSDK.Scheduler.Ticker.TickerProvider), FlutterSDK.Animation.Animationcontroller.AnimationBehavior animationBehavior = default(FlutterSDK.Animation.Animationcontroller.AnimationBehavior))
+        => new AnimationController(value, duration, reverseDuration, debugLabel, vsync, animationBehavior);
+
+        private AnimationController(double value, TimeSpan duration, TimeSpan reverseDuration, string debugLabel, FlutterSDK.Scheduler.Ticker.TickerProvider vsync, FlutterSDK.Animation.Animationcontroller.AnimationBehavior animationBehavior)
+        : base()
         {
-            var instance = new AnimationController(); instance.Duration = duration;
-            instance.ReverseDuration = reverseDuration;
-            instance.DebugLabel = debugLabel;
-            instance.AnimationBehavior = animationBehavior;
+            this.Duration = duration;
+            this.ReverseDuration = reverseDuration;
+            this.DebugLabel = debugLabel;
+            this.AnimationBehavior = animationBehavior;
             _Ticker = vsync.CreateTicker(_Tick);
             _InternalSetValue(value);
         }

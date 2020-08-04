@@ -479,10 +479,14 @@ namespace FlutterSDK.Material.Datatable
         /// The [cells] argument must not be null.
         /// </Summary>
         public static DataRow ByIndex(int index = default(int), bool selected = false, FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onSelectChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>), List<FlutterSDK.Material.Datatable.DataCell> cells = default(List<FlutterSDK.Material.Datatable.DataCell>))
+        => new DataRow(index, selected, onSelectChanged, cells);
+
+        private DataRow(int index, bool selected, FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onSelectChanged, List<FlutterSDK.Material.Datatable.DataCell> cells)
+        : base()
         {
-            var instance = new DataRow(); instance.Selected = selected;
-            instance.OnSelectChanged = onSelectChanged;
-            instance.Cells = cells;
+            this.Selected = selected;
+            this.OnSelectChanged = onSelectChanged;
+            this.Cells = cells;
         }
         /// <Summary>
         /// A [Key] that uniquely identifies this row. This is used to
@@ -950,10 +954,10 @@ namespace FlutterSDK.Material.Datatable
             BoxDecoration _kUnselectedDecoration = new BoxDecoration(border: new Border(bottom: DividerDefaultClass.Divider.CreateBorderSide(context, width: DividerThickness)));
             bool displayCheckboxColumn = ShowCheckboxColumn && Rows.Any((DataRow row) => =>row.OnSelectChanged != null);
             bool allChecked = displayCheckboxColumn && !Rows.Any((DataRow row) => =>row.OnSelectChanged != null && !row.Selected);
-            List<TableColumnWidth> tableColumns = new List<TableColumnWidth>(Columns.Count + (displayCheckboxColumn ? 1 : 0));
+            List<TableColumnWidth> tableColumns = List.CreateNew<TableColumnWidth>(Columns.Count + (displayCheckboxColumn ? 1 : 0));
             List<TableRow> tableRows = List<TableRow>.Generate(Rows.Count + 1, (int index) =>
             {
-                return new TableRow(key: index == 0 ? _HeadingRowKey : Rows[index - 1].Key, decoration: index > 0 && Rows[index - 1].Selected ? _kSelectedDecoration : _kUnselectedDecoration, children: new List<Widget>(tableColumns.Count));
+                return new TableRow(key: index == 0 ? _HeadingRowKey : Rows[index - 1].Key, decoration: index > 0 && Rows[index - 1].Selected ? _kSelectedDecoration : _kUnselectedDecoration, children: List.CreateNew<Widget>(tableColumns.Count));
             }
             );
             int rowIndex = default(int);

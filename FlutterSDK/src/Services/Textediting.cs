@@ -455,8 +455,12 @@ namespace FlutterSDK.Services.Textediting
         /// The [offset] argument must not be null.
         /// </Summary>
         public static TextSelection Collapsed(int offset = default(int), TextAffinity affinity = default(TextAffinity))
+        => new TextSelection(offset, affinity);
+
+        private TextSelection(int offset, TextAffinity affinity)
+        : base(offset)
         {
-            var instance = new TextSelection(offset); instance.Affinity = affinity;
+            this.Affinity = affinity;
         }
         /// <Summary>
         /// Creates a collapsed selection at the given text position.
@@ -466,8 +470,12 @@ namespace FlutterSDK.Services.Textediting
         /// text.
         /// </Summary>
         public static TextSelection FromPosition(TextPosition position)
+        => new TextSelection(position);
+
+        private TextSelection(TextPosition position)
+        : base(position.Offset)
         {
-            var instance = new TextSelection(position.Offset);
+
         }
         /// <Summary>
         /// The offset at which the selection originates.

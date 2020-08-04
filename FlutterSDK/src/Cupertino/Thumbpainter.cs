@@ -320,8 +320,12 @@ namespace FlutterSDK.Cupertino.Thumbpainter
         /// Creates an object that paints an iOS-style switch thumb.
         /// </Summary>
         public static CupertinoThumbPainter SwitchThumb(FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), List<FlutterSDK.Painting.Boxshadow.BoxShadow> shadows = default(List<FlutterSDK.Painting.Boxshadow.BoxShadow>))
+        => new CupertinoThumbPainter(color, shadows);
+
+        private CupertinoThumbPainter(FlutterBinding.UI.Color color, List<FlutterSDK.Painting.Boxshadow.BoxShadow> shadows)
+        : base()
         {
-            var instance = new CupertinoThumbPainter();
+
         }
         /// <Summary>
         /// The color of the interior of the thumb.

@@ -526,8 +526,12 @@ namespace FlutterSDK.Widgets.Editabletext
         /// [TextEditingValue.empty].
         /// </Summary>
         public static TextEditingController FromValue(FlutterSDK.Services.Textinput.TextEditingValue value)
+        => new TextEditingController(value);
+
+        private TextEditingController(FlutterSDK.Services.Textinput.TextEditingValue value)
+        : base(value ?? TextinputDefaultClass.TextEditingValue.Empty)
         {
-            var instance = new TextEditingController(value ?? TextinputDefaultClass.TextEditingValue.Empty);
+
         }
         public virtual string Text { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterSDK.Services.Textediting.TextSelection Selection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }

@@ -1102,9 +1102,13 @@ namespace FlutterSDK.Semantics.Semantics
         /// The [hint] must not be null or the empty string.
         /// </Summary>
         public static CustomSemanticsAction OverridingAction(string hint = default(string), SemanticsAction action = default(SemanticsAction))
+        => new CustomSemanticsAction(hint, action);
+
+        private CustomSemanticsAction(string hint, SemanticsAction action)
+        : base()
         {
-            var instance = new CustomSemanticsAction(); instance.Hint = hint;
-            instance.Action = action;
+            this.Hint = hint;
+            this.Action = action;
         }
         /// <Summary>
         /// The user readable name of this custom semantics action.
@@ -2215,8 +2219,12 @@ namespace FlutterSDK.Semantics.Semantics
         /// The root node is assigned an identifier of zero.
         /// </Summary>
         public static SemanticsNode Root(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), VoidCallback showOnScreen = default(VoidCallback), FlutterSDK.Semantics.Semantics.SemanticsOwner owner = default(FlutterSDK.Semantics.Semantics.SemanticsOwner))
+        => new SemanticsNode(key, showOnScreen, owner);
+
+        private SemanticsNode(FlutterSDK.Foundation.Key.Key key, VoidCallback showOnScreen, FlutterSDK.Semantics.Semantics.SemanticsOwner owner)
+        : base()
         {
-            var instance = new SemanticsNode(); instance.Key = key;
+            this.Key = key;
             Attach(owner);
         }
 

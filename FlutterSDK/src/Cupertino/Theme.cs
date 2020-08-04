@@ -457,18 +457,25 @@ namespace FlutterSDK.Cupertino.Theme
         /// Used by subclasses to get the superclass's defaulting behaviors.
         /// </Summary>
         public static CupertinoThemeData Raw(Brightness brightness, FlutterBinding.UI.Color primaryColor, FlutterBinding.UI.Color primaryContrastingColor, FlutterSDK.Cupertino.Texttheme.CupertinoTextThemeData textTheme, FlutterBinding.UI.Color barBackgroundColor, FlutterBinding.UI.Color scaffoldBackgroundColor)
+        => new CupertinoThemeData(brightness, primaryColor, primaryContrastingColor, textTheme, barBackgroundColor, scaffoldBackgroundColor);
+
+        private CupertinoThemeData(Brightness brightness, FlutterBinding.UI.Color primaryColor, FlutterBinding.UI.Color primaryContrastingColor, FlutterSDK.Cupertino.Texttheme.CupertinoTextThemeData textTheme, FlutterBinding.UI.Color barBackgroundColor, FlutterBinding.UI.Color scaffoldBackgroundColor)
+        : base()
         {
-            var instance = new CupertinoThemeData();
+
         }
         internal static CupertinoThemeData _RawWithDefaults(Brightness brightness, FlutterBinding.UI.Color _primaryColor, FlutterBinding.UI.Color _primaryContrastingColor, FlutterSDK.Cupertino.Texttheme.CupertinoTextThemeData _textTheme, FlutterBinding.UI.Color _barBackgroundColor, FlutterBinding.UI.Color _scaffoldBackgroundColor, FlutterSDK.Cupertino.Theme._CupertinoThemeDefaults _defaults)
+        => new CupertinoThemeData(brightness, _primaryColor, _primaryContrastingColor, _textTheme, _barBackgroundColor, _scaffoldBackgroundColor, _defaults);
+
+        private CupertinoThemeData(Brightness brightness, FlutterBinding.UI.Color _primaryColor, FlutterBinding.UI.Color _primaryContrastingColor, FlutterSDK.Cupertino.Texttheme.CupertinoTextThemeData _textTheme, FlutterBinding.UI.Color _barBackgroundColor, FlutterBinding.UI.Color _scaffoldBackgroundColor, FlutterSDK.Cupertino.Theme._CupertinoThemeDefaults _defaults)
         {
-            var instance = new CupertinoThemeData(); instance.Brightness = brightness;
-            instance._PrimaryColor = _primaryColor;
-            instance._PrimaryContrastingColor = _primaryContrastingColor;
-            instance._TextTheme = _textTheme;
-            instance._BarBackgroundColor = _barBackgroundColor;
-            instance._ScaffoldBackgroundColor = _scaffoldBackgroundColor;
-            instance._Defaults = _defaults;
+            this.Brightness = brightness;
+            this._PrimaryColor = _primaryColor;
+            this._PrimaryContrastingColor = _primaryContrastingColor;
+            this._TextTheme = _textTheme;
+            this._BarBackgroundColor = _barBackgroundColor;
+            this._ScaffoldBackgroundColor = _scaffoldBackgroundColor;
+            this._Defaults = _defaults;
         }
         internal virtual FlutterSDK.Cupertino.Theme._CupertinoThemeDefaults _Defaults { get; set; }
         /// <Summary>

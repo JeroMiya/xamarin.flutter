@@ -1179,7 +1179,7 @@ namespace FlutterSDK.Widgets.Scrollactivity
         : base(@delegate)
         {
 
-            _Completer = new Completer<void>();
+            _Completer = Completer.CreateNew<void>();
             _Controller = AnimationController.Unbounded(value: from, debugLabel: ObjectDefaultClass.ObjectRuntimeType(this, "DrivenScrollActivity"), vsync: vsync);
             AnimationController.Unbounded(value: from, debugLabel: ObjectDefaultClass.ObjectRuntimeType(this, "DrivenScrollActivity"), vsync: vsync).AddListener(_Tick);
             AnimationController.Unbounded(value: from, debugLabel: ObjectDefaultClass.ObjectRuntimeType(this, "DrivenScrollActivity"), vsync: vsync).AnimateTo(to, duration: duration, curve: curve).WhenComplete(_End);

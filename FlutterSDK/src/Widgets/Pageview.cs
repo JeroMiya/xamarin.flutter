@@ -965,14 +965,18 @@ namespace FlutterSDK.Widgets.Pageview
         /// {@macro flutter.widgets.pageView.allowImplicitScrolling}
         /// </Summary>
         public static PageView Builder(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Basictypes.Axis scrollDirection = default(FlutterSDK.Painting.Basictypes.Axis), bool reverse = false, FlutterSDK.Widgets.Pageview.PageController controller = default(FlutterSDK.Widgets.Pageview.PageController), FlutterSDK.Widgets.Scrollphysics.ScrollPhysics physics = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics), bool pageSnapping = true, FlutterSDK.Foundation.Basictypes.ValueChanged<int> onPageChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<int>), FlutterSDK.Widgets.Framework.IndexedWidgetBuilder itemBuilder = default(FlutterSDK.Widgets.Framework.IndexedWidgetBuilder), int itemCount = default(int), FlutterSDK.Gestures.Recognizer.DragStartBehavior dragStartBehavior = default(FlutterSDK.Gestures.Recognizer.DragStartBehavior), bool allowImplicitScrolling = false)
+        => new PageView(key, scrollDirection, reverse, controller, physics, pageSnapping, onPageChanged, itemBuilder, itemCount, dragStartBehavior, allowImplicitScrolling);
+
+        private PageView(FlutterSDK.Foundation.Key.Key key, FlutterSDK.Painting.Basictypes.Axis scrollDirection, bool reverse, FlutterSDK.Widgets.Pageview.PageController controller, FlutterSDK.Widgets.Scrollphysics.ScrollPhysics physics, bool pageSnapping, FlutterSDK.Foundation.Basictypes.ValueChanged<int> onPageChanged, FlutterSDK.Widgets.Framework.IndexedWidgetBuilder itemBuilder, int itemCount, FlutterSDK.Gestures.Recognizer.DragStartBehavior dragStartBehavior, bool allowImplicitScrolling)
+        : base(key: key)
         {
-            var instance = new PageView(key: key); instance.ScrollDirection = scrollDirection;
-            instance.Reverse = reverse;
-            instance.Physics = physics;
-            instance.PageSnapping = pageSnapping;
-            instance.OnPageChanged = onPageChanged;
-            instance.DragStartBehavior = dragStartBehavior;
-            instance.AllowImplicitScrolling = allowImplicitScrolling;
+            this.ScrollDirection = scrollDirection;
+            this.Reverse = reverse;
+            this.Physics = physics;
+            this.PageSnapping = pageSnapping;
+            this.OnPageChanged = onPageChanged;
+            this.DragStartBehavior = dragStartBehavior;
+            this.AllowImplicitScrolling = allowImplicitScrolling;
         }
         /// <Summary>
         /// Creates a scrollable list that works page by page with a custom child
@@ -1059,15 +1063,19 @@ namespace FlutterSDK.Widgets.Pageview
         /// {@macro flutter.widgets.pageView.allowImplicitScrolling}
         /// </Summary>
         public static PageView Custom(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Basictypes.Axis scrollDirection = default(FlutterSDK.Painting.Basictypes.Axis), bool reverse = false, FlutterSDK.Widgets.Pageview.PageController controller = default(FlutterSDK.Widgets.Pageview.PageController), FlutterSDK.Widgets.Scrollphysics.ScrollPhysics physics = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics), bool pageSnapping = true, FlutterSDK.Foundation.Basictypes.ValueChanged<int> onPageChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<int>), FlutterSDK.Widgets.Sliver.SliverChildDelegate childrenDelegate = default(FlutterSDK.Widgets.Sliver.SliverChildDelegate), FlutterSDK.Gestures.Recognizer.DragStartBehavior dragStartBehavior = default(FlutterSDK.Gestures.Recognizer.DragStartBehavior), bool allowImplicitScrolling = false)
+        => new PageView(key, scrollDirection, reverse, controller, physics, pageSnapping, onPageChanged, childrenDelegate, dragStartBehavior, allowImplicitScrolling);
+
+        private PageView(FlutterSDK.Foundation.Key.Key key, FlutterSDK.Painting.Basictypes.Axis scrollDirection, bool reverse, FlutterSDK.Widgets.Pageview.PageController controller, FlutterSDK.Widgets.Scrollphysics.ScrollPhysics physics, bool pageSnapping, FlutterSDK.Foundation.Basictypes.ValueChanged<int> onPageChanged, FlutterSDK.Widgets.Sliver.SliverChildDelegate childrenDelegate, FlutterSDK.Gestures.Recognizer.DragStartBehavior dragStartBehavior, bool allowImplicitScrolling)
+        : base(key: key)
         {
-            var instance = new PageView(key: key); instance.ScrollDirection = scrollDirection;
-            instance.Reverse = reverse;
-            instance.Physics = physics;
-            instance.PageSnapping = pageSnapping;
-            instance.OnPageChanged = onPageChanged;
-            instance.ChildrenDelegate = childrenDelegate;
-            instance.DragStartBehavior = dragStartBehavior;
-            instance.AllowImplicitScrolling = allowImplicitScrolling;
+            this.ScrollDirection = scrollDirection;
+            this.Reverse = reverse;
+            this.Physics = physics;
+            this.PageSnapping = pageSnapping;
+            this.OnPageChanged = onPageChanged;
+            this.ChildrenDelegate = childrenDelegate;
+            this.DragStartBehavior = dragStartBehavior;
+            this.AllowImplicitScrolling = allowImplicitScrolling;
         }
         /// <Summary>
         /// Controls whether the widget's pages will respond to

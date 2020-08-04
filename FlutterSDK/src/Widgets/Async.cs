@@ -746,22 +746,34 @@ namespace FlutterSDK.Widgets.Async
         /// Creates an [AsyncSnapshot] in [ConnectionState.none] with null data and error.
         /// </Summary>
         public static AsyncSnapshot<T> Nothing()
+        => new AsyncSnapshot<T>();
+
+        private AsyncSnapshot()
+        : base()
         {
-            var instance = new AsyncSnapshot<T>();
+
         }
         /// <Summary>
         /// Creates an [AsyncSnapshot] in the specified [state] and with the specified [data].
         /// </Summary>
         public static AsyncSnapshot<T> WithData(FlutterSDK.Widgets.Async.ConnectionState state, T data)
+        => new AsyncSnapshot<T>(state, data);
+
+        private AsyncSnapshot(FlutterSDK.Widgets.Async.ConnectionState state, T data)
+        : base()
         {
-            var instance = new AsyncSnapshot<T>();
+
         }
         /// <Summary>
         /// Creates an [AsyncSnapshot] in the specified [state] and with the specified [error].
         /// </Summary>
         public static AsyncSnapshot<T> WithError(FlutterSDK.Widgets.Async.ConnectionState state, @Object error)
+        => new AsyncSnapshot<T>(state, error);
+
+        private AsyncSnapshot(FlutterSDK.Widgets.Async.ConnectionState state, @Object error)
+        : base()
         {
-            var instance = new AsyncSnapshot<T>();
+
         }
         /// <Summary>
         /// Current state of connection to the asynchronous computation.

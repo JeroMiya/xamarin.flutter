@@ -317,7 +317,7 @@ namespace FlutterSDK.Foundation.Serialization
         {
 
             _Buffer = Uint8Buffer();
-            _EightBytes = new ByteData(8);
+            _EightBytes = ByteData.CreateNew(8);
             _EightBytesAsList = _EightBytes.Buffer.AsUint8List();
         }
 

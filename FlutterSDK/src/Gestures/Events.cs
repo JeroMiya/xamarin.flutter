@@ -1040,8 +1040,12 @@ namespace FlutterSDK.Gestures.Events
         /// Deprecated. Please use [PointerEnterEvent.fromMouseEvent] instead.
         /// </Summary>
         public static PointerEnterEvent FromHoverEvent(FlutterSDK.Gestures.Events.PointerHoverEvent @event)
+        => new PointerEnterEvent(@event);
+
+        private PointerEnterEvent(FlutterSDK.Gestures.Events.PointerHoverEvent @event)
+        : base()
         {
-            var instance = new PointerEnterEvent();
+
         }
         /// <Summary>
         /// Creates an enter event from a [PointerEvent].
@@ -1049,8 +1053,12 @@ namespace FlutterSDK.Gestures.Events
         /// This is used by the [MouseTracker] to synthesize enter events.
         /// </Summary>
         public static PointerEnterEvent FromMouseEvent(FlutterSDK.Gestures.Events.PointerEvent @event)
+        => new PointerEnterEvent(@event);
+
+        private PointerEnterEvent(FlutterSDK.Gestures.Events.PointerEvent @event)
+        : base()
         {
-            var instance = new PointerEnterEvent();
+
         }
 
         public new FlutterSDK.Gestures.Events.PointerEnterEvent Transformed(Matrix4 transform)
@@ -1099,8 +1107,12 @@ namespace FlutterSDK.Gestures.Events
         /// Deprecated. Please use [PointerExitEvent.fromMouseEvent] instead.
         /// </Summary>
         public static PointerExitEvent FromHoverEvent(FlutterSDK.Gestures.Events.PointerHoverEvent @event)
+        => new PointerExitEvent(@event);
+
+        private PointerExitEvent(FlutterSDK.Gestures.Events.PointerHoverEvent @event)
+        : base()
         {
-            var instance = new PointerExitEvent();
+
         }
         /// <Summary>
         /// Creates an exit event from a [PointerEvent].
@@ -1108,8 +1120,12 @@ namespace FlutterSDK.Gestures.Events
         /// This is used by the [MouseTracker] to synthesize exit events.
         /// </Summary>
         public static PointerExitEvent FromMouseEvent(FlutterSDK.Gestures.Events.PointerEvent @event)
+        => new PointerExitEvent(@event);
+
+        private PointerExitEvent(FlutterSDK.Gestures.Events.PointerEvent @event)
+        : base()
         {
-            var instance = new PointerExitEvent();
+
         }
 
         public new FlutterSDK.Gestures.Events.PointerExitEvent Transformed(Matrix4 transform)

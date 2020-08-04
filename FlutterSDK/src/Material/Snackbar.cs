@@ -731,7 +731,7 @@ namespace FlutterSDK.Material.Snackbar
             bool isThemeDark = theme.Brightness == Brightness.Dark;
             Brightness brightness = isThemeDark ? Brightness.Light : Brightness.Dark;
             Color themeBackgroundColor = isThemeDark ? colorScheme.OnSurface : Dart.UI.UiDefaultClass.Color.AlphaBlend(colorScheme.OnSurface.WithOpacity(0.80), colorScheme.Surface);
-            ThemeData inverseTheme = new ThemeData(brightness: brightness, backgroundColor: themeBackgroundColor, colorScheme: new ColorScheme(primary: colorScheme.OnPrimary, primaryVariant: colorScheme.OnPrimary, secondary: isThemeDark ? colorScheme.PrimaryVariant : colorScheme.Secondary, secondaryVariant: colorScheme.OnSecondary, surface: colorScheme.OnSurface, background: themeBackgroundColor, error: colorScheme.OnError, onPrimary: colorScheme.Primary, onSecondary: colorScheme.Secondary, onSurface: colorScheme.Surface, onBackground: colorScheme.Background, onError: colorScheme.Error, brightness: brightness), snackBarTheme: snackBarTheme);
+            ThemeData inverseTheme = ThemeData.CreateNew(brightness: brightness, backgroundColor: themeBackgroundColor, colorScheme: new ColorScheme(primary: colorScheme.OnPrimary, primaryVariant: colorScheme.OnPrimary, secondary: isThemeDark ? colorScheme.PrimaryVariant : colorScheme.Secondary, secondaryVariant: colorScheme.OnSecondary, surface: colorScheme.OnSurface, background: themeBackgroundColor, error: colorScheme.OnError, onPrimary: colorScheme.Primary, onSecondary: colorScheme.Secondary, onSurface: colorScheme.Surface, onBackground: colorScheme.Background, onError: colorScheme.Error, brightness: brightness), snackBarTheme: snackBarTheme);
             TextStyle contentTextStyle = snackBarTheme.ContentTextStyle ?? inverseTheme.TextTheme.Subtitle1;
             SnackBarBehavior snackBarBehavior = Widget.Behavior ?? snackBarTheme.Behavior ?? SnackBarBehavior.Fixed;
             bool isFloatingSnackBar = snackBarBehavior == SnackBarBehavior.Floating;
@@ -753,7 +753,7 @@ namespace FlutterSDK.Material.Snackbar
             {
                 ScaffoldDefaultClass.Scaffold.Of(context).RemoveCurrentSnackBar(reason: SnackBarClosedReason.Dismiss);
             }
-            , child: new Dismissible(key: new Key("dismissible"), direction: DismissDirection.Down, resizeDuration: null, onDismissed: (DismissDirection direction) =>
+            , child: new Dismissible(key: Key.CreateNew("dismissible"), direction: DismissDirection.Down, resizeDuration: null, onDismissed: (DismissDirection direction) =>
             {
                 ScaffoldDefaultClass.Scaffold.Of(context).RemoveCurrentSnackBar(reason: SnackBarClosedReason.Swipe);
             }

@@ -2373,17 +2373,21 @@ namespace FlutterSDK.Material.Inputdecorator
         /// Sets the [isCollapsed] property to true.
         /// </Summary>
         public static InputDecoration Collapsed(string hintText = default(string), bool hasFloatingPlaceholder = true, FlutterSDK.Material.Inputdecorator.FloatingLabelBehavior floatingLabelBehavior = default(FlutterSDK.Material.Inputdecorator.FloatingLabelBehavior), FlutterSDK.Painting.Textstyle.TextStyle hintStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), bool filled = false, FlutterBinding.UI.Color fillColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color focusColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color hoverColor = default(FlutterBinding.UI.Color), FlutterSDK.Material.Inputborder.InputBorder border = default(FlutterSDK.Material.Inputborder.InputBorder), bool enabled = true)
+        => new InputDecoration(hintText, hasFloatingPlaceholder, floatingLabelBehavior, hintStyle, filled, fillColor, focusColor, hoverColor, border, enabled);
+
+        private InputDecoration(string hintText, bool hasFloatingPlaceholder, FlutterSDK.Material.Inputdecorator.FloatingLabelBehavior floatingLabelBehavior, FlutterSDK.Painting.Textstyle.TextStyle hintStyle, bool filled, FlutterBinding.UI.Color fillColor, FlutterBinding.UI.Color focusColor, FlutterBinding.UI.Color hoverColor, FlutterSDK.Material.Inputborder.InputBorder border, bool enabled)
+        : base()
         {
-            var instance = new InputDecoration(); instance.HintText = hintText;
-            instance.HasFloatingPlaceholder = hasFloatingPlaceholder;
-            instance.FloatingLabelBehavior = floatingLabelBehavior;
-            instance.HintStyle = hintStyle;
-            instance.Filled = filled;
-            instance.FillColor = fillColor;
-            instance.FocusColor = focusColor;
-            instance.HoverColor = hoverColor;
-            instance.Border = border;
-            instance.Enabled = enabled;
+            this.HintText = hintText;
+            this.HasFloatingPlaceholder = hasFloatingPlaceholder;
+            this.FloatingLabelBehavior = floatingLabelBehavior;
+            this.HintStyle = hintStyle;
+            this.Filled = filled;
+            this.FillColor = fillColor;
+            this.FocusColor = focusColor;
+            this.HoverColor = hoverColor;
+            this.Border = border;
+            this.Enabled = enabled;
         }
         /// <Summary>
         /// An icon to show before the input field and outside of the decoration's

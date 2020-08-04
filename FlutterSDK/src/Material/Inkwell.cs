@@ -1225,7 +1225,7 @@ namespace FlutterSDK.Material.Inkwell
             }
 
             InteractiveInkFeature splash = _CreateInkFeature(globalPosition);
-            _Splashes = (_Splashes == null ? new HashSet<InteractiveInkFeature>() : _Splashes);
+            _Splashes = (_Splashes == null ? HashSet.CreateNew<InteractiveInkFeature>() : _Splashes);
             _Splashes.Add(splash);
             _CurrentSplash = splash;
             UpdateKeepAlive();

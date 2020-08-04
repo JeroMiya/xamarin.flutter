@@ -445,11 +445,15 @@ namespace FlutterSDK.Rendering.Stack
         /// The arguments must not be null.
         /// </Summary>
         public static RelativeRect FromLTRB(double left, double top, double right, double bottom)
+        => new RelativeRect(left, top, right, bottom);
+
+        private RelativeRect(double left, double top, double right, double bottom)
+        : base()
         {
-            var instance = new RelativeRect(); instance.Left = left;
-            instance.Top = top;
-            instance.Right = right;
-            instance.Bottom = bottom;
+            this.Left = left;
+            this.Top = top;
+            this.Right = right;
+            this.Bottom = bottom;
         }
         /// <Summary>
         /// Creates a RelativeRect from a Rect and a Size. The Rect (first argument)
@@ -458,7 +462,7 @@ namespace FlutterSDK.Rendering.Stack
         /// </Summary>
         public static RelativeRect FromSize(FlutterBinding.UI.Rect rect, Size container)
         {
-            var instance = new RelativeRect();
+
             return RelativeRect.FromLTRB(rect.Left, rect.Top, container.Width - rect.Right, container.Height - rect.Bottom);
         }
 
@@ -479,7 +483,7 @@ namespace FlutterSDK.Rendering.Stack
         /// </Summary>
         public static RelativeRect FromRect(FlutterBinding.UI.Rect rect, FlutterBinding.UI.Rect container)
         {
-            var instance = new RelativeRect();
+
             return RelativeRect.FromLTRB(rect.Left - container.Left, rect.Top - container.Top, container.Right - rect.Right, container.Bottom - rect.Bottom);
         }
 

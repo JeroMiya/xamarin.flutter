@@ -1284,7 +1284,7 @@ public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.Diagnostic
 
         private List<FlutterSDK.Rendering.Layer.PictureLayer> _ProcessConflictingPhysicalLayers(FlutterSDK.Rendering.Layer.PhysicalModelLayer predecessor, FlutterSDK.Rendering.Layer.PhysicalModelLayer child)
         {
-            AssertionsDefaultClass.FlutterError.ReportError(new FlutterErrorDetails(exception: new FlutterError("Painting order is out of order with respect to elevation.\n" + "See https://api.flutter.dev/flutter/rendering/debugCheckElevationsEnabled.html " + "for more details."), library: "rendering library", context: new ErrorDescription("during compositing"), informationCollector: () =>
+            AssertionsDefaultClass.FlutterError.ReportError(new FlutterErrorDetails(exception: FlutterError.CreateNew("Painting order is out of order with respect to elevation.\n" + "See https://api.flutter.dev/flutter/rendering/debugCheckElevationsEnabled.html " + "for more details."), library: "rendering library", context: new ErrorDescription("during compositing"), informationCollector: () =>
             {
                 return new List<DiagnosticsNode>() { child.ToDiagnosticsNode(name: "Attempted to composite layer", style: DiagnosticsTreeStyle.ErrorProperty), predecessor.ToDiagnosticsNode(name: "after layer", style: DiagnosticsTreeStyle.ErrorProperty), new ErrorDescription("which occupies the same area at a higher elevation.") };
             }
@@ -2661,7 +2661,7 @@ public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.Diagnostic
             if (Link.Leader == null) return;
 
 
-            HashSet<Layer> ancestors = new HashSet<Layer>();
+            HashSet<Layer> ancestors = HashSet.CreateNew<Layer>();
             Layer ancestor = Parent;
             while (ancestor != null)
             {

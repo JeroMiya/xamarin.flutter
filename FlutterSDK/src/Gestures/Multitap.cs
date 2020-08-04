@@ -338,7 +338,7 @@ namespace FlutterSDK.Gestures.Multitap
         : base()
         {
 
-            new Timer(duration, _OnTimeout);
+            Timer.CreateNew(duration, _OnTimeout);
         }
 
 
@@ -630,7 +630,7 @@ namespace FlutterSDK.Gestures.Multitap
 
         private void _StartDoubleTapTimer()
         {
-            _DoubleTapTimer = (_DoubleTapTimer == null ? new Timer(ConstantsDefaultClass.KDoubleTapTimeout, _Reset) : _DoubleTapTimer);
+            _DoubleTapTimer = (_DoubleTapTimer == null ? Timer.CreateNew(ConstantsDefaultClass.KDoubleTapTimeout, _Reset) : _DoubleTapTimer);
         }
 
 
@@ -674,7 +674,7 @@ namespace FlutterSDK.Gestures.Multitap
             StartTrackingPointer(HandleEvent, @event.Transform);
             if (longTapDelay > Dart.CoreDefaultClass.Duration.Zero)
             {
-                _Timer = new Timer(longTapDelay, () =>
+                _Timer = Timer.CreateNew(longTapDelay, () =>
                 {
                     _Timer = null;
                     GestureRecognizer._DispatchLongTap(@event.Pointer, _LastPosition);

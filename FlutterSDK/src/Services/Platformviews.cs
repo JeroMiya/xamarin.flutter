@@ -494,8 +494,11 @@ namespace FlutterSDK.Services.Platformviews
     public class PlatformViewsRegistry
     {
         internal static PlatformViewsRegistry _Instance()
+        => new PlatformViewsRegistry();
+
+        private PlatformViewsRegistry()
         {
-            var instance = new PlatformViewsRegistry();
+
         }
         internal virtual int _NextPlatformViewId { get; set; }
 

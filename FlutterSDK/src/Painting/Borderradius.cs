@@ -667,42 +667,61 @@ namespace FlutterSDK.Painting.Borderradius
         /// Creates a border radius where all radii are [radius].
         /// </Summary>
         public static BorderRadius All(Radius radius)
+        => new BorderRadius(radius);
+
+        private BorderRadius(Radius radius)
+        : base()
         {
-            var instance = new BorderRadius();
+
         }
         /// <Summary>
         /// Creates a border radius where all radii are [Radius.circular(radius)].
         /// </Summary>
         public static BorderRadius Circular(double radius)
+        => new BorderRadius(radius);
+
+        private BorderRadius(double radius)
+        : base()
         {
-            var instance = new BorderRadius();
+
         }
         /// <Summary>
         /// Creates a vertically symmetric border radius where the top and bottom
         /// sides of the rectangle have the same radii.
         /// </Summary>
         public static BorderRadius Vertical(Radius top = default(Radius), Radius bottom = default(Radius))
+        => new BorderRadius(top, bottom);
+
+        private BorderRadius(Radius top, Radius bottom)
+        : base()
         {
-            var instance = new BorderRadius();
+
         }
         /// <Summary>
         /// Creates a horizontally symmetrical border radius where the left and right
         /// sides of the rectangle have the same radii.
         /// </Summary>
         public static BorderRadius Horizontal(Radius left = default(Radius), Radius right = default(Radius))
+        => new BorderRadius(left, right);
+
+        private BorderRadius(Radius left, Radius right)
+        : base()
         {
-            var instance = new BorderRadius();
+
         }
         /// <Summary>
         /// Creates a border radius with only the given non-zero values. The other
         /// corners will be right angles.
         /// </Summary>
         public static BorderRadius Only(Radius topLeft = default(Radius), Radius topRight = default(Radius), Radius bottomLeft = default(Radius), Radius bottomRight = default(Radius))
+        => new BorderRadius(topLeft, topRight, bottomLeft, bottomRight);
+
+        private BorderRadius(Radius topLeft, Radius topRight, Radius bottomLeft, Radius bottomRight)
         {
-            var instance = new BorderRadius(); instance.TopLeft = topLeft;
-            instance.TopRight = topRight;
-            instance.BottomLeft = bottomLeft;
-            instance.BottomRight = bottomRight;
+            this.TopLeft = topLeft;
+            this.TopRight = topRight;
+            this.BottomLeft = bottomLeft;
+            this.BottomRight = bottomRight;
         }
         /// <Summary>
         /// A border radius with all zero radii.
@@ -886,42 +905,61 @@ namespace FlutterSDK.Painting.Borderradius
         /// Creates a border radius where all radii are [radius].
         /// </Summary>
         public static BorderRadiusDirectional All(Radius radius)
+        => new BorderRadiusDirectional(radius);
+
+        private BorderRadiusDirectional(Radius radius)
+        : base()
         {
-            var instance = new BorderRadiusDirectional();
+
         }
         /// <Summary>
         /// Creates a border radius where all radii are [Radius.circular(radius)].
         /// </Summary>
         public static BorderRadiusDirectional Circular(double radius)
+        => new BorderRadiusDirectional(radius);
+
+        private BorderRadiusDirectional(double radius)
+        : base()
         {
-            var instance = new BorderRadiusDirectional();
+
         }
         /// <Summary>
         /// Creates a vertically symmetric border radius where the top and bottom
         /// sides of the rectangle have the same radii.
         /// </Summary>
         public static BorderRadiusDirectional Vertical(Radius top = default(Radius), Radius bottom = default(Radius))
+        => new BorderRadiusDirectional(top, bottom);
+
+        private BorderRadiusDirectional(Radius top, Radius bottom)
+        : base()
         {
-            var instance = new BorderRadiusDirectional();
+
         }
         /// <Summary>
         /// Creates a horizontally symmetrical border radius where the start and end
         /// sides of the rectangle have the same radii.
         /// </Summary>
         public static BorderRadiusDirectional Horizontal(Radius start = default(Radius), Radius end = default(Radius))
+        => new BorderRadiusDirectional(start, end);
+
+        private BorderRadiusDirectional(Radius start, Radius end)
+        : base()
         {
-            var instance = new BorderRadiusDirectional();
+
         }
         /// <Summary>
         /// Creates a border radius with only the given non-zero values. The other
         /// corners will be right angles.
         /// </Summary>
         public static BorderRadiusDirectional Only(Radius topStart = default(Radius), Radius topEnd = default(Radius), Radius bottomStart = default(Radius), Radius bottomEnd = default(Radius))
+        => new BorderRadiusDirectional(topStart, topEnd, bottomStart, bottomEnd);
+
+        private BorderRadiusDirectional(Radius topStart, Radius topEnd, Radius bottomStart, Radius bottomEnd)
         {
-            var instance = new BorderRadiusDirectional(); instance.TopStart = topStart;
-            instance.TopEnd = topEnd;
-            instance.BottomStart = bottomStart;
-            instance.BottomEnd = bottomEnd;
+            this.TopStart = topStart;
+            this.TopEnd = topEnd;
+            this.BottomStart = bottomStart;
+            this.BottomEnd = bottomEnd;
         }
         /// <Summary>
         /// A border radius with all zero radii.

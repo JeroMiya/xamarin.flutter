@@ -759,8 +759,12 @@ namespace FlutterSDK.Rendering.Shiftedbox
         /// A constructor to be used only when the extending class also has a mixin.
         /// </Summary>
         public static RenderAligningShiftedBox Mixin(FlutterSDK.Painting.Alignment.AlignmentGeometry alignment, TextDirection textDirection, FlutterSDK.Rendering.Box.RenderBox child)
+        => new RenderAligningShiftedBox(alignment, textDirection, child);
+
+        private RenderAligningShiftedBox(FlutterSDK.Painting.Alignment.AlignmentGeometry alignment, TextDirection textDirection, FlutterSDK.Rendering.Box.RenderBox child)
+        : base()
         {
-            var instance = new RenderAligningShiftedBox();
+
         }
         internal virtual FlutterSDK.Painting.Alignment.Alignment _ResolvedAlignment { get; set; }
         internal virtual FlutterSDK.Painting.Alignment.AlignmentGeometry _Alignment { get; set; }

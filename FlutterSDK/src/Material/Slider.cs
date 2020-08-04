@@ -533,18 +533,22 @@ namespace FlutterSDK.Material.Slider
         /// The target platform is based on the current [Theme]: [ThemeData.platform].
         /// </Summary>
         public static Slider Adaptive(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), double value = default(double), FlutterSDK.Foundation.Basictypes.ValueChanged<double> onChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<double>), FlutterSDK.Foundation.Basictypes.ValueChanged<double> onChangeStart = default(FlutterSDK.Foundation.Basictypes.ValueChanged<double>), FlutterSDK.Foundation.Basictypes.ValueChanged<double> onChangeEnd = default(FlutterSDK.Foundation.Basictypes.ValueChanged<double>), double min = 0.0, double max = 1.0, int divisions = default(int), string label = default(string), FlutterBinding.UI.Color activeColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color inactiveColor = default(FlutterBinding.UI.Color), FlutterSDK.Material.Slider.SemanticFormatterCallback semanticFormatterCallback = default(FlutterSDK.Material.Slider.SemanticFormatterCallback))
+        => new Slider(key, value, onChanged, onChangeStart, onChangeEnd, min, max, divisions, label, activeColor, inactiveColor, semanticFormatterCallback);
+
+        private Slider(FlutterSDK.Foundation.Key.Key key, double value, FlutterSDK.Foundation.Basictypes.ValueChanged<double> onChanged, FlutterSDK.Foundation.Basictypes.ValueChanged<double> onChangeStart, FlutterSDK.Foundation.Basictypes.ValueChanged<double> onChangeEnd, double min, double max, int divisions, string label, FlutterBinding.UI.Color activeColor, FlutterBinding.UI.Color inactiveColor, FlutterSDK.Material.Slider.SemanticFormatterCallback semanticFormatterCallback)
+        : base(key: key)
         {
-            var instance = new Slider(key: key); instance.Value = value;
-            instance.OnChanged = onChanged;
-            instance.OnChangeStart = onChangeStart;
-            instance.OnChangeEnd = onChangeEnd;
-            instance.Min = min;
-            instance.Max = max;
-            instance.Divisions = divisions;
-            instance.Label = label;
-            instance.ActiveColor = activeColor;
-            instance.InactiveColor = inactiveColor;
-            instance.SemanticFormatterCallback = semanticFormatterCallback;
+            this.Value = value;
+            this.OnChanged = onChanged;
+            this.OnChangeStart = onChangeStart;
+            this.OnChangeEnd = onChangeEnd;
+            this.Min = min;
+            this.Max = max;
+            this.Divisions = divisions;
+            this.Label = label;
+            this.ActiveColor = activeColor;
+            this.InactiveColor = inactiveColor;
+            this.SemanticFormatterCallback = semanticFormatterCallback;
         }
         /// <Summary>
         /// The currently selected value for this slider.
@@ -1161,7 +1165,7 @@ namespace FlutterSDK.Material.Slider
                 {
                     _State.ValueIndicatorController.Forward();
                     _State.InteractionTimer?.Cancel();
-                    _State.InteractionTimer = new Timer(_MinimumInteractionTime * BindingDefaultClass.TimeDilation, () =>
+                    _State.InteractionTimer = Timer.CreateNew(_MinimumInteractionTime * BindingDefaultClass.TimeDilation, () =>
                     {
                         _State.InteractionTimer = null;
                         if (!_Active && _State.ValueIndicatorController.Status == AnimationStatus.Completed)

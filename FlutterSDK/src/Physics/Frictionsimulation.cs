@@ -463,7 +463,7 @@ namespace FlutterSDK.Physics.Frictionsimulation
         /// </Summary>
         public static FrictionSimulation Through(double startPosition, double endPosition, double startVelocity, double endVelocity)
         {
-            var instance = new FrictionSimulation();
+
 
 
 

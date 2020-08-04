@@ -932,7 +932,7 @@ namespace FlutterSDK.Painting.Imageprovider
         public virtual Future<FlutterSDK.Painting.Imagecache.ImageCacheStatus> ObtainCacheStatus(FlutterSDK.Painting.Imageprovider.ImageConfiguration configuration = default(FlutterSDK.Painting.Imageprovider.ImageConfiguration), FlutterSDK.Painting.Imagestream.ImageErrorListener handleError = default(FlutterSDK.Painting.Imagestream.ImageErrorListener))
         {
 
-            Completer<ImageCacheStatus> completer = new Completer<ImageCacheStatus>();
+            Completer<ImageCacheStatus> completer = Completer.CreateNew<ImageCacheStatus>();
             _CreateErrorHandlerAndKey(configuration, (T key, ImageErrorListener innerHandleError) =>
             {
                 completer.Complete(BindingDefaultClass.PaintingBinding.Instance.ImageCache.StatusForKey(key));
@@ -983,7 +983,7 @@ namespace FlutterSDK.Painting.Imageprovider
                 didError = true;
             }
 
-            Zone dangerZone = Dart.AsyncDefaultClass.Zone.Current.Fork(specification: new ZoneSpecification(handleUncaughtError: (Zone zone, ZoneDelegate delegate, Zone parent, object error, StackTrace stackTrace) => {
+            Zone dangerZone = Dart.AsyncDefaultClass.Zone.Current.Fork(specification: ZoneSpecification.CreateNew(handleUncaughtError: (Zone zone, ZoneDelegate delegate, Zone parent, object error, StackTrace stackTrace) => {
                 HandleError(error, stackTrace);
             }
 ));
@@ -1376,7 +1376,7 @@ public new Future<FlutterSDK.Painting.Imageprovider._SizeAwareCacheKey> ObtainKe
             return result;
         }
 
-        completer = new Completer<_SizeAwareCacheKey>();
+        completer = Completer.CreateNew<_SizeAwareCacheKey>();
         return completer.Future;
     }
 
@@ -1406,8 +1406,7 @@ public class NetworkImage : FlutterSDK.Painting.Imageprovider.ImageProvider<Flut
     ///
     /// The arguments [url] and [scale] must not be null.
     /// </Summary>
-    public NetworkImage(string url, double scale = default(double), Dictionary<string, string> headers = default(Dictionary<string, string>))
-    : base()
+    public static NetworkImage CreateNew(string url, double scale = default(double), Dictionary<string, string> headers = default(Dictionary<string, string>))
     {
 
     }

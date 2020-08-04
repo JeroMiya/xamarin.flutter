@@ -447,7 +447,7 @@ namespace FlutterSDK.Foundation.Stackframe
         private FlutterSDK.Foundation.Stackframe.StackFrame _ParseWebDebugFrame(string line)
         {
             bool hasPackage = line.StartsWith("package");
-            RegExp parser = hasPackage ? new RegExp("'^(package.+) (\d+):(\d+)\s+(.+)$") : new RegExp("'^(.+) (\d+):(\d+)\s+(.+)$");
+            RegExp parser = hasPackage ? RegExp.CreateNew("'^(package.+) (\d+):(\d+)\s+(.+)$") : RegExp.CreateNew("'^(.+) (\d+):(\d+)\s+(.+)$");
             Match match = parser.FirstMatch(line);
 
             string package = "<unknown>";
@@ -504,7 +504,7 @@ namespace FlutterSDK.Foundation.Stackframe
                 return _ParseWebFrame(line);
             }
 
-            RegExp parser = new RegExp("'^#(\d+) +(.+) \((.+?):?(\d+){0,1}:?(\d+){0,1}\)$");
+            RegExp parser = RegExp.CreateNew("'^#(\d+) +(.+) \((.+?):?(\d+){0,1}:?(\d+){0,1}\)$");
             Match match = parser.FirstMatch(line);
 
             bool isConstructor = false;

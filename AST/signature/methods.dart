@@ -196,7 +196,7 @@ class Methods {
 
     var methodName = getMethodName(element);
 
-    var parameter = printParameter(element, overridenElement, originalMixin);
+    var parameter = printParameters(element, overridenElement, originalMixin);
     var returnTypeName = Naming.getReturnType(highestMethod);
     var returnType = highestMethod.returnType;
     var typeParameter = "";
@@ -262,8 +262,9 @@ class Methods {
     }).join(', ');
   }
 
-  static String printParameter(FunctionTypedElement method,
-      FunctionTypedElement overridenMethod, InterfaceType originalMixin) {
+  static String printParameters(FunctionTypedElement method,
+      FunctionTypedElement overridenMethod, InterfaceType originalMixin,
+      {bool printDefaultValueForOptionalParameters = true}) {
     // Parameter
 
     var highestMethod = overridenMethod;
@@ -303,7 +304,7 @@ class Methods {
       }
 
       // Optional
-      if (p.isOptional) {
+      if (p.isOptional && printDefaultValueForOptionalParameters) {
         var defaultValue = "default(${parameterType})";
 
         var unmodifiedDefaultValue = p.defaultValueCode;

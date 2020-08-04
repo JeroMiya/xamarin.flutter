@@ -840,7 +840,7 @@ namespace FlutterSDK.Material.Reorderablelist
 
             return new LayoutBuilder(builder: (BuildContext context, BoxConstraints constraints) =>
             {
-                Key endWidgetKey = new Key("DraggableList - End Widget");
+                Key endWidgetKey = Key.CreateNew("DraggableList - End Widget");
                 Widget finalDropArea = default(Widget);
                 switch (Widget.ScrollDirection) { case Axis.Horizontal: finalDropArea = new SizedBox(key: endWidgetKey, width: _DefaultDropAreaExtent, height: constraints.MaxHeight); break; case Axis.Vertical: default: finalDropArea = new SizedBox(key: endWidgetKey, height: _DefaultDropAreaExtent, width: constraints.MaxWidth); break; }
                 return new SingleChildScrollView(scrollDirection: Widget.ScrollDirection, padding: Widget.Padding, controller: _ScrollController, reverse: Widget.Reverse, child: _BuildContainerForScrollDirection(children: new List<Widget>() { }));

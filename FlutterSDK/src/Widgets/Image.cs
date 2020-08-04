@@ -571,7 +571,7 @@ namespace FlutterSDK.Widgets.Image
         internal static Future<object> PrecacheImage(FlutterSDK.Painting.Imageprovider.ImageProvider<object> provider, FlutterSDK.Widgets.Framework.BuildContext context, Size size = default(Size), FlutterSDK.Painting.Imagestream.ImageErrorListener onError = default(FlutterSDK.Painting.Imagestream.ImageErrorListener))
         {
             ImageConfiguration config = ImageDefaultClass.CreateLocalImageConfiguration(context, size: size);
-            Completer<void> completer = new Completer<void>();
+            Completer<void> completer = Completer.CreateNew<void>();
             ImageStream stream = provider.Resolve(config);
             ImageStreamListener listener = default(ImageStreamListener);
             listener = new ImageStreamListener((ImageInfo image, bool sync) =>
@@ -758,23 +758,27 @@ namespace FlutterSDK.Widgets.Image
         /// image decoding to the web which does not support custom decode sizes.
         /// </Summary>
         public static Image Network(string src, FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), double scale = 1.0, FlutterSDK.Widgets.Image.ImageFrameBuilder frameBuilder = default(FlutterSDK.Widgets.Image.ImageFrameBuilder), FlutterSDK.Widgets.Image.ImageLoadingBuilder loadingBuilder = default(FlutterSDK.Widgets.Image.ImageLoadingBuilder), FlutterSDK.Widgets.Image.ImageErrorWidgetBuilder errorBuilder = default(FlutterSDK.Widgets.Image.ImageErrorWidgetBuilder), string semanticLabel = default(string), bool excludeFromSemantics = false, double width = default(double), double height = default(double), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterBinding.UI.BlendMode colorBlendMode = default(FlutterBinding.UI.BlendMode), FlutterSDK.Painting.Boxfit.BoxFit fit = default(FlutterSDK.Painting.Boxfit.BoxFit), FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), FlutterSDK.Painting.Decorationimage.ImageRepeat repeat = default(FlutterSDK.Painting.Decorationimage.ImageRepeat), FlutterBinding.UI.Rect centerSlice = default(FlutterBinding.UI.Rect), bool matchTextDirection = false, bool gaplessPlayback = false, FilterQuality filterQuality = default(FilterQuality), Dictionary<string, string> headers = default(Dictionary<string, string>), int cacheWidth = default(int), int cacheHeight = default(int))
+        => new Image(src, key, scale, frameBuilder, loadingBuilder, errorBuilder, semanticLabel, excludeFromSemantics, width, height, color, colorBlendMode, fit, alignment, repeat, centerSlice, matchTextDirection, gaplessPlayback, filterQuality, headers, cacheWidth, cacheHeight);
+
+        private Image(string src, FlutterSDK.Foundation.Key.Key key, double scale, FlutterSDK.Widgets.Image.ImageFrameBuilder frameBuilder, FlutterSDK.Widgets.Image.ImageLoadingBuilder loadingBuilder, FlutterSDK.Widgets.Image.ImageErrorWidgetBuilder errorBuilder, string semanticLabel, bool excludeFromSemantics, double width, double height, FlutterBinding.UI.Color color, FlutterBinding.UI.BlendMode colorBlendMode, FlutterSDK.Painting.Boxfit.BoxFit fit, FlutterSDK.Painting.Alignment.AlignmentGeometry alignment, FlutterSDK.Painting.Decorationimage.ImageRepeat repeat, FlutterBinding.UI.Rect centerSlice, bool matchTextDirection, bool gaplessPlayback, FilterQuality filterQuality, Dictionary<string, string> headers, int cacheWidth, int cacheHeight)
+        : base(key: key)
         {
-            var instance = new Image(key: key); instance.FrameBuilder = frameBuilder;
-            instance.LoadingBuilder = loadingBuilder;
-            instance.ErrorBuilder = errorBuilder;
-            instance.SemanticLabel = semanticLabel;
-            instance.ExcludeFromSemantics = excludeFromSemantics;
-            instance.Width = width;
-            instance.Height = height;
-            instance.Color = color;
-            instance.ColorBlendMode = colorBlendMode;
-            instance.Fit = fit;
-            instance.Alignment = alignment;
-            instance.Repeat = repeat;
-            instance.CenterSlice = centerSlice;
-            instance.MatchTextDirection = matchTextDirection;
-            instance.GaplessPlayback = gaplessPlayback;
-            instance.FilterQuality = filterQuality;
+            this.FrameBuilder = frameBuilder;
+            this.LoadingBuilder = loadingBuilder;
+            this.ErrorBuilder = errorBuilder;
+            this.SemanticLabel = semanticLabel;
+            this.ExcludeFromSemantics = excludeFromSemantics;
+            this.Width = width;
+            this.Height = height;
+            this.Color = color;
+            this.ColorBlendMode = colorBlendMode;
+            this.Fit = fit;
+            this.Alignment = alignment;
+            this.Repeat = repeat;
+            this.CenterSlice = centerSlice;
+            this.MatchTextDirection = matchTextDirection;
+            this.GaplessPlayback = gaplessPlayback;
+            this.FilterQuality = filterQuality;
         }
         /// <Summary>
         /// Creates a widget that displays an [ImageStream] obtained from a [File].
@@ -803,22 +807,26 @@ namespace FlutterSDK.Widgets.Image
         /// to reduce the memory usage of [ImageCache].
         /// </Summary>
         public static Image File(File file, FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), double scale = 1.0, FlutterSDK.Widgets.Image.ImageFrameBuilder frameBuilder = default(FlutterSDK.Widgets.Image.ImageFrameBuilder), FlutterSDK.Widgets.Image.ImageErrorWidgetBuilder errorBuilder = default(FlutterSDK.Widgets.Image.ImageErrorWidgetBuilder), string semanticLabel = default(string), bool excludeFromSemantics = false, double width = default(double), double height = default(double), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterBinding.UI.BlendMode colorBlendMode = default(FlutterBinding.UI.BlendMode), FlutterSDK.Painting.Boxfit.BoxFit fit = default(FlutterSDK.Painting.Boxfit.BoxFit), FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), FlutterSDK.Painting.Decorationimage.ImageRepeat repeat = default(FlutterSDK.Painting.Decorationimage.ImageRepeat), FlutterBinding.UI.Rect centerSlice = default(FlutterBinding.UI.Rect), bool matchTextDirection = false, bool gaplessPlayback = false, FilterQuality filterQuality = default(FilterQuality), int cacheWidth = default(int), int cacheHeight = default(int))
+        => new Image(file, key, scale, frameBuilder, errorBuilder, semanticLabel, excludeFromSemantics, width, height, color, colorBlendMode, fit, alignment, repeat, centerSlice, matchTextDirection, gaplessPlayback, filterQuality, cacheWidth, cacheHeight);
+
+        private Image(File file, FlutterSDK.Foundation.Key.Key key, double scale, FlutterSDK.Widgets.Image.ImageFrameBuilder frameBuilder, FlutterSDK.Widgets.Image.ImageErrorWidgetBuilder errorBuilder, string semanticLabel, bool excludeFromSemantics, double width, double height, FlutterBinding.UI.Color color, FlutterBinding.UI.BlendMode colorBlendMode, FlutterSDK.Painting.Boxfit.BoxFit fit, FlutterSDK.Painting.Alignment.AlignmentGeometry alignment, FlutterSDK.Painting.Decorationimage.ImageRepeat repeat, FlutterBinding.UI.Rect centerSlice, bool matchTextDirection, bool gaplessPlayback, FilterQuality filterQuality, int cacheWidth, int cacheHeight)
+        : base(key: key)
         {
-            var instance = new Image(key: key); instance.FrameBuilder = frameBuilder;
-            instance.ErrorBuilder = errorBuilder;
-            instance.SemanticLabel = semanticLabel;
-            instance.ExcludeFromSemantics = excludeFromSemantics;
-            instance.Width = width;
-            instance.Height = height;
-            instance.Color = color;
-            instance.ColorBlendMode = colorBlendMode;
-            instance.Fit = fit;
-            instance.Alignment = alignment;
-            instance.Repeat = repeat;
-            instance.CenterSlice = centerSlice;
-            instance.MatchTextDirection = matchTextDirection;
-            instance.GaplessPlayback = gaplessPlayback;
-            instance.FilterQuality = filterQuality;
+            this.FrameBuilder = frameBuilder;
+            this.ErrorBuilder = errorBuilder;
+            this.SemanticLabel = semanticLabel;
+            this.ExcludeFromSemantics = excludeFromSemantics;
+            this.Width = width;
+            this.Height = height;
+            this.Color = color;
+            this.ColorBlendMode = colorBlendMode;
+            this.Fit = fit;
+            this.Alignment = alignment;
+            this.Repeat = repeat;
+            this.CenterSlice = centerSlice;
+            this.MatchTextDirection = matchTextDirection;
+            this.GaplessPlayback = gaplessPlayback;
+            this.FilterQuality = filterQuality;
         }
         /// <Summary>
         /// Creates a widget that displays an [ImageStream] obtained from an asset
@@ -944,22 +952,26 @@ namespace FlutterSDK.Widgets.Image
         ///    Flutter.
         /// </Summary>
         public static Image Asset(string name, FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Services.Assetbundle.AssetBundle bundle = default(FlutterSDK.Services.Assetbundle.AssetBundle), FlutterSDK.Widgets.Image.ImageFrameBuilder frameBuilder = default(FlutterSDK.Widgets.Image.ImageFrameBuilder), FlutterSDK.Widgets.Image.ImageErrorWidgetBuilder errorBuilder = default(FlutterSDK.Widgets.Image.ImageErrorWidgetBuilder), string semanticLabel = default(string), bool excludeFromSemantics = false, double scale = default(double), double width = default(double), double height = default(double), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterBinding.UI.BlendMode colorBlendMode = default(FlutterBinding.UI.BlendMode), FlutterSDK.Painting.Boxfit.BoxFit fit = default(FlutterSDK.Painting.Boxfit.BoxFit), FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), FlutterSDK.Painting.Decorationimage.ImageRepeat repeat = default(FlutterSDK.Painting.Decorationimage.ImageRepeat), FlutterBinding.UI.Rect centerSlice = default(FlutterBinding.UI.Rect), bool matchTextDirection = false, bool gaplessPlayback = false, string package = default(string), FilterQuality filterQuality = default(FilterQuality), int cacheWidth = default(int), int cacheHeight = default(int))
+        => new Image(name, key, bundle, frameBuilder, errorBuilder, semanticLabel, excludeFromSemantics, scale, width, height, color, colorBlendMode, fit, alignment, repeat, centerSlice, matchTextDirection, gaplessPlayback, package, filterQuality, cacheWidth, cacheHeight);
+
+        private Image(string name, FlutterSDK.Foundation.Key.Key key, FlutterSDK.Services.Assetbundle.AssetBundle bundle, FlutterSDK.Widgets.Image.ImageFrameBuilder frameBuilder, FlutterSDK.Widgets.Image.ImageErrorWidgetBuilder errorBuilder, string semanticLabel, bool excludeFromSemantics, double scale, double width, double height, FlutterBinding.UI.Color color, FlutterBinding.UI.BlendMode colorBlendMode, FlutterSDK.Painting.Boxfit.BoxFit fit, FlutterSDK.Painting.Alignment.AlignmentGeometry alignment, FlutterSDK.Painting.Decorationimage.ImageRepeat repeat, FlutterBinding.UI.Rect centerSlice, bool matchTextDirection, bool gaplessPlayback, string package, FilterQuality filterQuality, int cacheWidth, int cacheHeight)
+        : base(key: key)
         {
-            var instance = new Image(key: key); instance.FrameBuilder = frameBuilder;
-            instance.ErrorBuilder = errorBuilder;
-            instance.SemanticLabel = semanticLabel;
-            instance.ExcludeFromSemantics = excludeFromSemantics;
-            instance.Width = width;
-            instance.Height = height;
-            instance.Color = color;
-            instance.ColorBlendMode = colorBlendMode;
-            instance.Fit = fit;
-            instance.Alignment = alignment;
-            instance.Repeat = repeat;
-            instance.CenterSlice = centerSlice;
-            instance.MatchTextDirection = matchTextDirection;
-            instance.GaplessPlayback = gaplessPlayback;
-            instance.FilterQuality = filterQuality;
+            this.FrameBuilder = frameBuilder;
+            this.ErrorBuilder = errorBuilder;
+            this.SemanticLabel = semanticLabel;
+            this.ExcludeFromSemantics = excludeFromSemantics;
+            this.Width = width;
+            this.Height = height;
+            this.Color = color;
+            this.ColorBlendMode = colorBlendMode;
+            this.Fit = fit;
+            this.Alignment = alignment;
+            this.Repeat = repeat;
+            this.CenterSlice = centerSlice;
+            this.MatchTextDirection = matchTextDirection;
+            this.GaplessPlayback = gaplessPlayback;
+            this.FilterQuality = filterQuality;
         }
         /// <Summary>
         /// Creates a widget that displays an [ImageStream] obtained from a [Uint8List].
@@ -989,22 +1001,26 @@ namespace FlutterSDK.Widgets.Image
         /// to reduce the memory usage of [ImageCache].
         /// </Summary>
         public static Image Memory(Uint8List bytes, FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), double scale = 1.0, FlutterSDK.Widgets.Image.ImageFrameBuilder frameBuilder = default(FlutterSDK.Widgets.Image.ImageFrameBuilder), FlutterSDK.Widgets.Image.ImageErrorWidgetBuilder errorBuilder = default(FlutterSDK.Widgets.Image.ImageErrorWidgetBuilder), string semanticLabel = default(string), bool excludeFromSemantics = false, double width = default(double), double height = default(double), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterBinding.UI.BlendMode colorBlendMode = default(FlutterBinding.UI.BlendMode), FlutterSDK.Painting.Boxfit.BoxFit fit = default(FlutterSDK.Painting.Boxfit.BoxFit), FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), FlutterSDK.Painting.Decorationimage.ImageRepeat repeat = default(FlutterSDK.Painting.Decorationimage.ImageRepeat), FlutterBinding.UI.Rect centerSlice = default(FlutterBinding.UI.Rect), bool matchTextDirection = false, bool gaplessPlayback = false, FilterQuality filterQuality = default(FilterQuality), int cacheWidth = default(int), int cacheHeight = default(int))
+        => new Image(bytes, key, scale, frameBuilder, errorBuilder, semanticLabel, excludeFromSemantics, width, height, color, colorBlendMode, fit, alignment, repeat, centerSlice, matchTextDirection, gaplessPlayback, filterQuality, cacheWidth, cacheHeight);
+
+        private Image(Uint8List bytes, FlutterSDK.Foundation.Key.Key key, double scale, FlutterSDK.Widgets.Image.ImageFrameBuilder frameBuilder, FlutterSDK.Widgets.Image.ImageErrorWidgetBuilder errorBuilder, string semanticLabel, bool excludeFromSemantics, double width, double height, FlutterBinding.UI.Color color, FlutterBinding.UI.BlendMode colorBlendMode, FlutterSDK.Painting.Boxfit.BoxFit fit, FlutterSDK.Painting.Alignment.AlignmentGeometry alignment, FlutterSDK.Painting.Decorationimage.ImageRepeat repeat, FlutterBinding.UI.Rect centerSlice, bool matchTextDirection, bool gaplessPlayback, FilterQuality filterQuality, int cacheWidth, int cacheHeight)
+        : base(key: key)
         {
-            var instance = new Image(key: key); instance.FrameBuilder = frameBuilder;
-            instance.ErrorBuilder = errorBuilder;
-            instance.SemanticLabel = semanticLabel;
-            instance.ExcludeFromSemantics = excludeFromSemantics;
-            instance.Width = width;
-            instance.Height = height;
-            instance.Color = color;
-            instance.ColorBlendMode = colorBlendMode;
-            instance.Fit = fit;
-            instance.Alignment = alignment;
-            instance.Repeat = repeat;
-            instance.CenterSlice = centerSlice;
-            instance.MatchTextDirection = matchTextDirection;
-            instance.GaplessPlayback = gaplessPlayback;
-            instance.FilterQuality = filterQuality;
+            this.FrameBuilder = frameBuilder;
+            this.ErrorBuilder = errorBuilder;
+            this.SemanticLabel = semanticLabel;
+            this.ExcludeFromSemantics = excludeFromSemantics;
+            this.Width = width;
+            this.Height = height;
+            this.Color = color;
+            this.ColorBlendMode = colorBlendMode;
+            this.Fit = fit;
+            this.Alignment = alignment;
+            this.Repeat = repeat;
+            this.CenterSlice = centerSlice;
+            this.MatchTextDirection = matchTextDirection;
+            this.GaplessPlayback = gaplessPlayback;
+            this.FilterQuality = filterQuality;
         }
         /// <Summary>
         /// The image to display.

@@ -771,8 +771,11 @@ namespace FlutterSDK.Scheduler.Ticker
         /// form of a [TickerFuture].
         /// </Summary>
         public static TickerFuture Complete()
+        => new TickerFuture();
+
+        private TickerFuture()
         {
-            var instance = new TickerFuture();
+
             _Complete();
         }
 

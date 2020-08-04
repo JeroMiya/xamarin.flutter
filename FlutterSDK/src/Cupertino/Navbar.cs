@@ -1206,9 +1206,13 @@ namespace FlutterSDK.Cupertino.Navbar
             this.OnPressed = onPressed;
         }
         internal static CupertinoNavigationBarBackButton _Assemble(FlutterSDK.Widgets.Framework.Widget _backChevron, FlutterSDK.Widgets.Framework.Widget _backLabel)
+        => new CupertinoNavigationBarBackButton(_backChevron, _backLabel);
+
+        private CupertinoNavigationBarBackButton(FlutterSDK.Widgets.Framework.Widget _backChevron, FlutterSDK.Widgets.Framework.Widget _backLabel)
+        : base()
         {
-            var instance = new CupertinoNavigationBarBackButton(); instance._BackChevron = _backChevron;
-            instance._BackLabel = _backLabel;
+            this._BackChevron = _backChevron;
+            this._BackLabel = _backLabel;
         }
         /// <Summary>
         /// The [Color] of the back button.

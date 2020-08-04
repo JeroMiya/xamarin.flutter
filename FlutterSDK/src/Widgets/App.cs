@@ -1406,11 +1406,11 @@ namespace FlutterSDK.Widgets.App
                 return supportedLocales.First;
             }
 
-            Dictionary<string, Locale> allSupportedLocales = new HashMap<string, Locale>();
-            Dictionary<string, Locale> languageAndCountryLocales = new HashMap<string, Locale>();
-            Dictionary<string, Locale> languageAndScriptLocales = new HashMap<string, Locale>();
-            Dictionary<string, Locale> languageLocales = new HashMap<string, Locale>();
-            Dictionary<string, Locale> countryLocales = new HashMap<string, Locale>();
+            Dictionary<string, Locale> allSupportedLocales = HashMap.CreateNew<string, Locale>();
+            Dictionary<string, Locale> languageAndCountryLocales = HashMap.CreateNew<string, Locale>();
+            Dictionary<string, Locale> languageAndScriptLocales = HashMap.CreateNew<string, Locale>();
+            Dictionary<string, Locale> languageLocales = HashMap.CreateNew<string, Locale>();
+            Dictionary<string, Locale> countryLocales = HashMap.CreateNew<string, Locale>();
             foreach (Locale locale in supportedLocales)
             {
                 allSupportedLocales[$"'{locale.LanguageCode}_{locale.ScriptCode}_{locale.CountryCode}'"] = (allSupportedLocales[$"'{locale.LanguageCode}_{locale.ScriptCode}_{locale.CountryCode}'"] == null ? locale : allSupportedLocales[$"'{locale.LanguageCode}_{locale.ScriptCode}_{locale.CountryCode}'"]);

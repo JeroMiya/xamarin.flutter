@@ -461,7 +461,7 @@ namespace FlutterSDK.Painting._Networkimageio
 
         public new FlutterSDK.Painting.Imagestream.ImageStreamCompleter Load(FlutterSDK.Painting.Imageprovider.NetworkImage key, FlutterSDK.Painting.Imageprovider.DecoderCallback decode)
         {
-            StreamController<ImageChunkEvent> chunkEvents = new StreamController<ImageChunkEvent>();
+            StreamController<ImageChunkEvent> chunkEvents = StreamController.CreateNew<ImageChunkEvent>();
             return new MultiFrameImageStreamCompleter(codec: _LoadAsync(key as NetworkImage, chunkEvents, decode), chunkEvents: chunkEvents.Stream, scale: key.Scale, informationCollector: () =>
             {
                 return new List<DiagnosticsNode>() { new DiagnosticsProperty<Image_provider.ImageproviderDefaultClass.ImageProvider>("Image provider", this), new DiagnosticsProperty<Image_provider.ImageproviderDefaultClass.NetworkImage>("Image key", key) };
@@ -496,7 +496,7 @@ namespace FlutterSDK.Painting._Networkimageio
                     chunkEvents.Add(new ImageChunkEvent(cumulativeBytesLoaded: cumulative, expectedTotalBytes: total));
                 }
                 );
-                if (bytes.LengthInBytes == 0) throw new Exception($"'NetworkImage is an empty file: {resolved}'");
+                if (bytes.LengthInBytes == 0) throw Exception.CreateNew($"'NetworkImage is an empty file: {resolved}'");
                 return decode(bytes);
             }
             finally

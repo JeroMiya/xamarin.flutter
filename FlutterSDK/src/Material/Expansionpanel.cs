@@ -693,12 +693,16 @@ namespace FlutterSDK.Material.Expansionpanel
         /// {@end-tool}
         /// </Summary>
         public static ExpansionPanelList Radio(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), List<FlutterSDK.Material.Expansionpanel.ExpansionPanel> children = default(List<FlutterSDK.Material.Expansionpanel.ExpansionPanel>), FlutterSDK.Material.Expansionpanel.ExpansionPanelCallback expansionCallback = default(FlutterSDK.Material.Expansionpanel.ExpansionPanelCallback), TimeSpan animationDuration = default(TimeSpan), @Object initialOpenPanelValue = default(@Object), FlutterSDK.Painting.Edgeinsets.EdgeInsets expandedHeaderPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets))
+        => new ExpansionPanelList(key, children, expansionCallback, animationDuration, initialOpenPanelValue, expandedHeaderPadding);
+
+        private ExpansionPanelList(FlutterSDK.Foundation.Key.Key key, List<FlutterSDK.Material.Expansionpanel.ExpansionPanel> children, FlutterSDK.Material.Expansionpanel.ExpansionPanelCallback expansionCallback, TimeSpan animationDuration, @Object initialOpenPanelValue, FlutterSDK.Painting.Edgeinsets.EdgeInsets expandedHeaderPadding)
+        : base(key: key)
         {
-            var instance = new ExpansionPanelList(key: key); instance.Children = children;
-            instance.ExpansionCallback = expansionCallback;
-            instance.AnimationDuration = animationDuration;
-            instance.InitialOpenPanelValue = initialOpenPanelValue;
-            instance.ExpandedHeaderPadding = expandedHeaderPadding;
+            this.Children = children;
+            this.ExpansionCallback = expansionCallback;
+            this.AnimationDuration = animationDuration;
+            this.InitialOpenPanelValue = initialOpenPanelValue;
+            this.ExpandedHeaderPadding = expandedHeaderPadding;
         }
         /// <Summary>
         /// The children of the expansion panel list. They are laid out in a similar

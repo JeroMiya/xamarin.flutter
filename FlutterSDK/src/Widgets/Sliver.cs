@@ -1148,13 +1148,17 @@ public new bool ShouldRebuild(FlutterSDK.Widgets.Sliver.SliverChildBuilderDelega
         /// null.
         /// </Summary>
         public static SliverChildListDelegate Fixed(List<FlutterSDK.Widgets.Framework.Widget> children, bool addAutomaticKeepAlives = true, bool addRepaintBoundaries = true, bool addSemanticIndexes = true, FlutterSDK.Widgets.Sliver.SemanticIndexCallback semanticIndexCallback = default(FlutterSDK.Widgets.Sliver.SemanticIndexCallback), int semanticIndexOffset = 0)
+        => new SliverChildListDelegate(children, addAutomaticKeepAlives, addRepaintBoundaries, addSemanticIndexes, semanticIndexCallback, semanticIndexOffset);
+
+        private SliverChildListDelegate(List<FlutterSDK.Widgets.Framework.Widget> children, bool addAutomaticKeepAlives, bool addRepaintBoundaries, bool addSemanticIndexes, FlutterSDK.Widgets.Sliver.SemanticIndexCallback semanticIndexCallback, int semanticIndexOffset)
+        : base()
         {
-            var instance = new SliverChildListDelegate(); instance.Children = children;
-            instance.AddAutomaticKeepAlives = addAutomaticKeepAlives;
-            instance.AddRepaintBoundaries = addRepaintBoundaries;
-            instance.AddSemanticIndexes = addSemanticIndexes;
-            instance.SemanticIndexCallback = semanticIndexCallback;
-            instance.SemanticIndexOffset = semanticIndexOffset;
+            this.Children = children;
+            this.AddAutomaticKeepAlives = addAutomaticKeepAlives;
+            this.AddRepaintBoundaries = addRepaintBoundaries;
+            this.AddSemanticIndexes = addSemanticIndexes;
+            this.SemanticIndexCallback = semanticIndexCallback;
+            this.SemanticIndexOffset = semanticIndexOffset;
         }
         /// <Summary>
         /// Whether to wrap each child in an [AutomaticKeepAlive].
@@ -1633,8 +1637,12 @@ public new bool ShouldRebuild(FlutterSDK.Widgets.Sliver.SliverChildBuilderDelega
         ///  * [new GridView.count], the equivalent constructor for [GridView] widgets.
         /// </Summary>
         public static SliverGrid Count(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), int crossAxisCount = default(int), double mainAxisSpacing = 0.0, double crossAxisSpacing = 0.0, double childAspectRatio = 1.0, List<FlutterSDK.Widgets.Framework.Widget> children = default(List<FlutterSDK.Widgets.Framework.Widget>))
+        => new SliverGrid(key, crossAxisCount, mainAxisSpacing, crossAxisSpacing, childAspectRatio, children);
+
+        private SliverGrid(FlutterSDK.Foundation.Key.Key key, int crossAxisCount, double mainAxisSpacing, double crossAxisSpacing, double childAspectRatio, List<FlutterSDK.Widgets.Framework.Widget> children)
+        : base(key: key, @delegate: new SliverChildListDelegate(children))
         {
-            var instance = new SliverGrid(key: key, @delegate: new SliverChildListDelegate(children));
+
         }
         /// <Summary>
         /// Creates a sliver that places multiple box children in a two dimensional
@@ -1648,8 +1656,12 @@ public new bool ShouldRebuild(FlutterSDK.Widgets.Sliver.SliverChildBuilderDelega
         ///  * [new GridView.extent], the equivalent constructor for [GridView] widgets.
         /// </Summary>
         public static SliverGrid Extent(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), double maxCrossAxisExtent = default(double), double mainAxisSpacing = 0.0, double crossAxisSpacing = 0.0, double childAspectRatio = 1.0, List<FlutterSDK.Widgets.Framework.Widget> children = default(List<FlutterSDK.Widgets.Framework.Widget>))
+        => new SliverGrid(key, maxCrossAxisExtent, mainAxisSpacing, crossAxisSpacing, childAspectRatio, children);
+
+        private SliverGrid(FlutterSDK.Foundation.Key.Key key, double maxCrossAxisExtent, double mainAxisSpacing, double crossAxisSpacing, double childAspectRatio, List<FlutterSDK.Widgets.Framework.Widget> children)
+        : base(key: key, @delegate: new SliverChildListDelegate(children))
         {
-            var instance = new SliverGrid(key: key, @delegate: new SliverChildListDelegate(children));
+
         }
         /// <Summary>
         /// The delegate that controls the size and position of the children.
@@ -1745,7 +1757,7 @@ public new bool ShouldRebuild(FlutterSDK.Widgets.Sliver.SliverChildBuilderDelega
             try
             {
                 SplayTreeMap<int, Element> newChildren = new SplayTreeMap<int, Element>();
-                Dictionary<int, double> indexToLayoutOffset = new HashMap<int, double>();
+                Dictionary<int, double> indexToLayoutOffset = HashMap.CreateNew<int, double>();
                 void ProcessElement(int index)
                 {
                     _CurrentlyUpdatingChildIndex = index;

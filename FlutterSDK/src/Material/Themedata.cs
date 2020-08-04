@@ -541,7 +541,7 @@ namespace FlutterSDK.Material.Themedata
         /// See <https://material.io/design/color/> for
         /// more discussion on how to pick the right colors.
         /// </Summary>
-        public ThemeData(Brightness brightness = default(Brightness), FlutterSDK.Material.Themedata.VisualDensity visualDensity = default(FlutterSDK.Material.Themedata.VisualDensity), FlutterSDK.Material.Colors.MaterialColor primarySwatch = default(FlutterSDK.Material.Colors.MaterialColor), FlutterBinding.UI.Color primaryColor = default(FlutterBinding.UI.Color), Brightness primaryColorBrightness = default(Brightness), FlutterBinding.UI.Color primaryColorLight = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color primaryColorDark = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color accentColor = default(FlutterBinding.UI.Color), Brightness accentColorBrightness = default(Brightness), FlutterBinding.UI.Color canvasColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color scaffoldBackgroundColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color bottomAppBarColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color cardColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color dividerColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color focusColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color hoverColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color highlightColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color splashColor = default(FlutterBinding.UI.Color), FlutterSDK.Material.Inkwell.InteractiveInkFeatureFactory splashFactory = default(FlutterSDK.Material.Inkwell.InteractiveInkFeatureFactory), FlutterBinding.UI.Color selectedRowColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color unselectedWidgetColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color disabledColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color buttonColor = default(FlutterBinding.UI.Color), FlutterSDK.Material.Buttontheme.ButtonThemeData buttonTheme = default(FlutterSDK.Material.Buttontheme.ButtonThemeData), FlutterSDK.Material.Togglebuttonstheme.ToggleButtonsThemeData toggleButtonsTheme = default(FlutterSDK.Material.Togglebuttonstheme.ToggleButtonsThemeData), FlutterBinding.UI.Color secondaryHeaderColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color textSelectionColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color cursorColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color textSelectionHandleColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color dialogBackgroundColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color indicatorColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color hintColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color errorColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color toggleableActiveColor = default(FlutterBinding.UI.Color), string fontFamily = default(string), FlutterSDK.Material.Texttheme.TextTheme textTheme = default(FlutterSDK.Material.Texttheme.TextTheme), FlutterSDK.Material.Texttheme.TextTheme primaryTextTheme = default(FlutterSDK.Material.Texttheme.TextTheme), FlutterSDK.Material.Texttheme.TextTheme accentTextTheme = default(FlutterSDK.Material.Texttheme.TextTheme), FlutterSDK.Material.Inputdecorator.InputDecorationTheme inputDecorationTheme = default(FlutterSDK.Material.Inputdecorator.InputDecorationTheme), FlutterSDK.Widgets.Iconthemedata.IconThemeData iconTheme = default(FlutterSDK.Widgets.Iconthemedata.IconThemeData), FlutterSDK.Widgets.Iconthemedata.IconThemeData primaryIconTheme = default(FlutterSDK.Widgets.Iconthemedata.IconThemeData), FlutterSDK.Widgets.Iconthemedata.IconThemeData accentIconTheme = default(FlutterSDK.Widgets.Iconthemedata.IconThemeData), FlutterSDK.Material.Slidertheme.SliderThemeData sliderTheme = default(FlutterSDK.Material.Slidertheme.SliderThemeData), FlutterSDK.Material.Tabbartheme.TabBarTheme tabBarTheme = default(FlutterSDK.Material.Tabbartheme.TabBarTheme), FlutterSDK.Material.Tooltiptheme.TooltipThemeData tooltipTheme = default(FlutterSDK.Material.Tooltiptheme.TooltipThemeData), FlutterSDK.Material.Cardtheme.CardTheme cardTheme = default(FlutterSDK.Material.Cardtheme.CardTheme), FlutterSDK.Material.Chiptheme.ChipThemeData chipTheme = default(FlutterSDK.Material.Chiptheme.ChipThemeData), FlutterSDK.Foundation.Platform.TargetPlatform platform = default(FlutterSDK.Foundation.Platform.TargetPlatform), FlutterSDK.Material.Themedata.MaterialTapTargetSize materialTapTargetSize = default(FlutterSDK.Material.Themedata.MaterialTapTargetSize), bool applyElevationOverlayColor = default(bool), FlutterSDK.Material.Pagetransitionstheme.PageTransitionsTheme pageTransitionsTheme = default(FlutterSDK.Material.Pagetransitionstheme.PageTransitionsTheme), FlutterSDK.Material.Appbartheme.AppBarTheme appBarTheme = default(FlutterSDK.Material.Appbartheme.AppBarTheme), FlutterSDK.Material.Bottomappbartheme.BottomAppBarTheme bottomAppBarTheme = default(FlutterSDK.Material.Bottomappbartheme.BottomAppBarTheme), FlutterSDK.Material.Colorscheme.ColorScheme colorScheme = default(FlutterSDK.Material.Colorscheme.ColorScheme), FlutterSDK.Material.Dialogtheme.DialogTheme dialogTheme = default(FlutterSDK.Material.Dialogtheme.DialogTheme), FlutterSDK.Material.Floatingactionbuttontheme.FloatingActionButtonThemeData floatingActionButtonTheme = default(FlutterSDK.Material.Floatingactionbuttontheme.FloatingActionButtonThemeData), FlutterSDK.Material.Navigationrailtheme.NavigationRailThemeData navigationRailTheme = default(FlutterSDK.Material.Navigationrailtheme.NavigationRailThemeData), FlutterSDK.Material.Typography.Typography typography = default(FlutterSDK.Material.Typography.Typography), FlutterSDK.Cupertino.Theme.CupertinoThemeData cupertinoOverrideTheme = default(FlutterSDK.Cupertino.Theme.CupertinoThemeData), FlutterSDK.Material.Snackbartheme.SnackBarThemeData snackBarTheme = default(FlutterSDK.Material.Snackbartheme.SnackBarThemeData), FlutterSDK.Material.Bottomsheettheme.BottomSheetThemeData bottomSheetTheme = default(FlutterSDK.Material.Bottomsheettheme.BottomSheetThemeData), FlutterSDK.Material.Popupmenutheme.PopupMenuThemeData popupMenuTheme = default(FlutterSDK.Material.Popupmenutheme.PopupMenuThemeData), FlutterSDK.Material.Bannertheme.MaterialBannerThemeData bannerTheme = default(FlutterSDK.Material.Bannertheme.MaterialBannerThemeData), FlutterSDK.Material.Dividertheme.DividerThemeData dividerTheme = default(FlutterSDK.Material.Dividertheme.DividerThemeData), FlutterSDK.Material.Buttonbartheme.ButtonBarThemeData buttonBarTheme = default(FlutterSDK.Material.Buttonbartheme.ButtonBarThemeData))
+        public static ThemeData CreateNew(Brightness brightness = default(Brightness), FlutterSDK.Material.Themedata.VisualDensity visualDensity = default(FlutterSDK.Material.Themedata.VisualDensity), FlutterSDK.Material.Colors.MaterialColor primarySwatch = default(FlutterSDK.Material.Colors.MaterialColor), FlutterBinding.UI.Color primaryColor = default(FlutterBinding.UI.Color), Brightness primaryColorBrightness = default(Brightness), FlutterBinding.UI.Color primaryColorLight = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color primaryColorDark = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color accentColor = default(FlutterBinding.UI.Color), Brightness accentColorBrightness = default(Brightness), FlutterBinding.UI.Color canvasColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color scaffoldBackgroundColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color bottomAppBarColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color cardColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color dividerColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color focusColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color hoverColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color highlightColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color splashColor = default(FlutterBinding.UI.Color), FlutterSDK.Material.Inkwell.InteractiveInkFeatureFactory splashFactory = default(FlutterSDK.Material.Inkwell.InteractiveInkFeatureFactory), FlutterBinding.UI.Color selectedRowColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color unselectedWidgetColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color disabledColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color buttonColor = default(FlutterBinding.UI.Color), FlutterSDK.Material.Buttontheme.ButtonThemeData buttonTheme = default(FlutterSDK.Material.Buttontheme.ButtonThemeData), FlutterSDK.Material.Togglebuttonstheme.ToggleButtonsThemeData toggleButtonsTheme = default(FlutterSDK.Material.Togglebuttonstheme.ToggleButtonsThemeData), FlutterBinding.UI.Color secondaryHeaderColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color textSelectionColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color cursorColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color textSelectionHandleColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color dialogBackgroundColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color indicatorColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color hintColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color errorColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color toggleableActiveColor = default(FlutterBinding.UI.Color), string fontFamily = default(string), FlutterSDK.Material.Texttheme.TextTheme textTheme = default(FlutterSDK.Material.Texttheme.TextTheme), FlutterSDK.Material.Texttheme.TextTheme primaryTextTheme = default(FlutterSDK.Material.Texttheme.TextTheme), FlutterSDK.Material.Texttheme.TextTheme accentTextTheme = default(FlutterSDK.Material.Texttheme.TextTheme), FlutterSDK.Material.Inputdecorator.InputDecorationTheme inputDecorationTheme = default(FlutterSDK.Material.Inputdecorator.InputDecorationTheme), FlutterSDK.Widgets.Iconthemedata.IconThemeData iconTheme = default(FlutterSDK.Widgets.Iconthemedata.IconThemeData), FlutterSDK.Widgets.Iconthemedata.IconThemeData primaryIconTheme = default(FlutterSDK.Widgets.Iconthemedata.IconThemeData), FlutterSDK.Widgets.Iconthemedata.IconThemeData accentIconTheme = default(FlutterSDK.Widgets.Iconthemedata.IconThemeData), FlutterSDK.Material.Slidertheme.SliderThemeData sliderTheme = default(FlutterSDK.Material.Slidertheme.SliderThemeData), FlutterSDK.Material.Tabbartheme.TabBarTheme tabBarTheme = default(FlutterSDK.Material.Tabbartheme.TabBarTheme), FlutterSDK.Material.Tooltiptheme.TooltipThemeData tooltipTheme = default(FlutterSDK.Material.Tooltiptheme.TooltipThemeData), FlutterSDK.Material.Cardtheme.CardTheme cardTheme = default(FlutterSDK.Material.Cardtheme.CardTheme), FlutterSDK.Material.Chiptheme.ChipThemeData chipTheme = default(FlutterSDK.Material.Chiptheme.ChipThemeData), FlutterSDK.Foundation.Platform.TargetPlatform platform = default(FlutterSDK.Foundation.Platform.TargetPlatform), FlutterSDK.Material.Themedata.MaterialTapTargetSize materialTapTargetSize = default(FlutterSDK.Material.Themedata.MaterialTapTargetSize), bool applyElevationOverlayColor = default(bool), FlutterSDK.Material.Pagetransitionstheme.PageTransitionsTheme pageTransitionsTheme = default(FlutterSDK.Material.Pagetransitionstheme.PageTransitionsTheme), FlutterSDK.Material.Appbartheme.AppBarTheme appBarTheme = default(FlutterSDK.Material.Appbartheme.AppBarTheme), FlutterSDK.Material.Bottomappbartheme.BottomAppBarTheme bottomAppBarTheme = default(FlutterSDK.Material.Bottomappbartheme.BottomAppBarTheme), FlutterSDK.Material.Colorscheme.ColorScheme colorScheme = default(FlutterSDK.Material.Colorscheme.ColorScheme), FlutterSDK.Material.Dialogtheme.DialogTheme dialogTheme = default(FlutterSDK.Material.Dialogtheme.DialogTheme), FlutterSDK.Material.Floatingactionbuttontheme.FloatingActionButtonThemeData floatingActionButtonTheme = default(FlutterSDK.Material.Floatingactionbuttontheme.FloatingActionButtonThemeData), FlutterSDK.Material.Navigationrailtheme.NavigationRailThemeData navigationRailTheme = default(FlutterSDK.Material.Navigationrailtheme.NavigationRailThemeData), FlutterSDK.Material.Typography.Typography typography = default(FlutterSDK.Material.Typography.Typography), FlutterSDK.Cupertino.Theme.CupertinoThemeData cupertinoOverrideTheme = default(FlutterSDK.Cupertino.Theme.CupertinoThemeData), FlutterSDK.Material.Snackbartheme.SnackBarThemeData snackBarTheme = default(FlutterSDK.Material.Snackbartheme.SnackBarThemeData), FlutterSDK.Material.Bottomsheettheme.BottomSheetThemeData bottomSheetTheme = default(FlutterSDK.Material.Bottomsheettheme.BottomSheetThemeData), FlutterSDK.Material.Popupmenutheme.PopupMenuThemeData popupMenuTheme = default(FlutterSDK.Material.Popupmenutheme.PopupMenuThemeData), FlutterSDK.Material.Bannertheme.MaterialBannerThemeData bannerTheme = default(FlutterSDK.Material.Bannertheme.MaterialBannerThemeData), FlutterSDK.Material.Dividertheme.DividerThemeData dividerTheme = default(FlutterSDK.Material.Dividertheme.DividerThemeData), FlutterSDK.Material.Buttonbartheme.ButtonBarThemeData buttonBarTheme = default(FlutterSDK.Material.Buttonbartheme.ButtonBarThemeData))
         {
 
             brightness = (brightness == null ? Brightness.Light : brightness);
@@ -636,71 +636,75 @@ namespace FlutterSDK.Material.Themedata
         /// [new ThemeData] constructor.
         /// </Summary>
         public static ThemeData Raw(Brightness brightness = default(Brightness), FlutterSDK.Material.Themedata.VisualDensity visualDensity = default(FlutterSDK.Material.Themedata.VisualDensity), FlutterBinding.UI.Color primaryColor = default(FlutterBinding.UI.Color), Brightness primaryColorBrightness = default(Brightness), FlutterBinding.UI.Color primaryColorLight = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color primaryColorDark = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color canvasColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color accentColor = default(FlutterBinding.UI.Color), Brightness accentColorBrightness = default(Brightness), FlutterBinding.UI.Color scaffoldBackgroundColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color bottomAppBarColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color cardColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color dividerColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color focusColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color hoverColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color highlightColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color splashColor = default(FlutterBinding.UI.Color), FlutterSDK.Material.Inkwell.InteractiveInkFeatureFactory splashFactory = default(FlutterSDK.Material.Inkwell.InteractiveInkFeatureFactory), FlutterBinding.UI.Color selectedRowColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color unselectedWidgetColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color disabledColor = default(FlutterBinding.UI.Color), FlutterSDK.Material.Buttontheme.ButtonThemeData buttonTheme = default(FlutterSDK.Material.Buttontheme.ButtonThemeData), FlutterBinding.UI.Color buttonColor = default(FlutterBinding.UI.Color), FlutterSDK.Material.Togglebuttonstheme.ToggleButtonsThemeData toggleButtonsTheme = default(FlutterSDK.Material.Togglebuttonstheme.ToggleButtonsThemeData), FlutterBinding.UI.Color secondaryHeaderColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color textSelectionColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color cursorColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color textSelectionHandleColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color dialogBackgroundColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color indicatorColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color hintColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color errorColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color toggleableActiveColor = default(FlutterBinding.UI.Color), FlutterSDK.Material.Texttheme.TextTheme textTheme = default(FlutterSDK.Material.Texttheme.TextTheme), FlutterSDK.Material.Texttheme.TextTheme primaryTextTheme = default(FlutterSDK.Material.Texttheme.TextTheme), FlutterSDK.Material.Texttheme.TextTheme accentTextTheme = default(FlutterSDK.Material.Texttheme.TextTheme), FlutterSDK.Material.Inputdecorator.InputDecorationTheme inputDecorationTheme = default(FlutterSDK.Material.Inputdecorator.InputDecorationTheme), FlutterSDK.Widgets.Iconthemedata.IconThemeData iconTheme = default(FlutterSDK.Widgets.Iconthemedata.IconThemeData), FlutterSDK.Widgets.Iconthemedata.IconThemeData primaryIconTheme = default(FlutterSDK.Widgets.Iconthemedata.IconThemeData), FlutterSDK.Widgets.Iconthemedata.IconThemeData accentIconTheme = default(FlutterSDK.Widgets.Iconthemedata.IconThemeData), FlutterSDK.Material.Slidertheme.SliderThemeData sliderTheme = default(FlutterSDK.Material.Slidertheme.SliderThemeData), FlutterSDK.Material.Tabbartheme.TabBarTheme tabBarTheme = default(FlutterSDK.Material.Tabbartheme.TabBarTheme), FlutterSDK.Material.Tooltiptheme.TooltipThemeData tooltipTheme = default(FlutterSDK.Material.Tooltiptheme.TooltipThemeData), FlutterSDK.Material.Cardtheme.CardTheme cardTheme = default(FlutterSDK.Material.Cardtheme.CardTheme), FlutterSDK.Material.Chiptheme.ChipThemeData chipTheme = default(FlutterSDK.Material.Chiptheme.ChipThemeData), FlutterSDK.Foundation.Platform.TargetPlatform platform = default(FlutterSDK.Foundation.Platform.TargetPlatform), FlutterSDK.Material.Themedata.MaterialTapTargetSize materialTapTargetSize = default(FlutterSDK.Material.Themedata.MaterialTapTargetSize), bool applyElevationOverlayColor = default(bool), FlutterSDK.Material.Pagetransitionstheme.PageTransitionsTheme pageTransitionsTheme = default(FlutterSDK.Material.Pagetransitionstheme.PageTransitionsTheme), FlutterSDK.Material.Appbartheme.AppBarTheme appBarTheme = default(FlutterSDK.Material.Appbartheme.AppBarTheme), FlutterSDK.Material.Bottomappbartheme.BottomAppBarTheme bottomAppBarTheme = default(FlutterSDK.Material.Bottomappbartheme.BottomAppBarTheme), FlutterSDK.Material.Colorscheme.ColorScheme colorScheme = default(FlutterSDK.Material.Colorscheme.ColorScheme), FlutterSDK.Material.Dialogtheme.DialogTheme dialogTheme = default(FlutterSDK.Material.Dialogtheme.DialogTheme), FlutterSDK.Material.Floatingactionbuttontheme.FloatingActionButtonThemeData floatingActionButtonTheme = default(FlutterSDK.Material.Floatingactionbuttontheme.FloatingActionButtonThemeData), FlutterSDK.Material.Navigationrailtheme.NavigationRailThemeData navigationRailTheme = default(FlutterSDK.Material.Navigationrailtheme.NavigationRailThemeData), FlutterSDK.Material.Typography.Typography typography = default(FlutterSDK.Material.Typography.Typography), FlutterSDK.Cupertino.Theme.CupertinoThemeData cupertinoOverrideTheme = default(FlutterSDK.Cupertino.Theme.CupertinoThemeData), FlutterSDK.Material.Snackbartheme.SnackBarThemeData snackBarTheme = default(FlutterSDK.Material.Snackbartheme.SnackBarThemeData), FlutterSDK.Material.Bottomsheettheme.BottomSheetThemeData bottomSheetTheme = default(FlutterSDK.Material.Bottomsheettheme.BottomSheetThemeData), FlutterSDK.Material.Popupmenutheme.PopupMenuThemeData popupMenuTheme = default(FlutterSDK.Material.Popupmenutheme.PopupMenuThemeData), FlutterSDK.Material.Bannertheme.MaterialBannerThemeData bannerTheme = default(FlutterSDK.Material.Bannertheme.MaterialBannerThemeData), FlutterSDK.Material.Dividertheme.DividerThemeData dividerTheme = default(FlutterSDK.Material.Dividertheme.DividerThemeData), FlutterSDK.Material.Buttonbartheme.ButtonBarThemeData buttonBarTheme = default(FlutterSDK.Material.Buttonbartheme.ButtonBarThemeData))
+        => new ThemeData(brightness, visualDensity, primaryColor, primaryColorBrightness, primaryColorLight, primaryColorDark, canvasColor, accentColor, accentColorBrightness, scaffoldBackgroundColor, bottomAppBarColor, cardColor, dividerColor, focusColor, hoverColor, highlightColor, splashColor, splashFactory, selectedRowColor, unselectedWidgetColor, disabledColor, buttonTheme, buttonColor, toggleButtonsTheme, secondaryHeaderColor, textSelectionColor, cursorColor, textSelectionHandleColor, backgroundColor, dialogBackgroundColor, indicatorColor, hintColor, errorColor, toggleableActiveColor, textTheme, primaryTextTheme, accentTextTheme, inputDecorationTheme, iconTheme, primaryIconTheme, accentIconTheme, sliderTheme, tabBarTheme, tooltipTheme, cardTheme, chipTheme, platform, materialTapTargetSize, applyElevationOverlayColor, pageTransitionsTheme, appBarTheme, bottomAppBarTheme, colorScheme, dialogTheme, floatingActionButtonTheme, navigationRailTheme, typography, cupertinoOverrideTheme, snackBarTheme, bottomSheetTheme, popupMenuTheme, bannerTheme, dividerTheme, buttonBarTheme);
+
+        private ThemeData(Brightness brightness, FlutterSDK.Material.Themedata.VisualDensity visualDensity, FlutterBinding.UI.Color primaryColor, Brightness primaryColorBrightness, FlutterBinding.UI.Color primaryColorLight, FlutterBinding.UI.Color primaryColorDark, FlutterBinding.UI.Color canvasColor, FlutterBinding.UI.Color accentColor, Brightness accentColorBrightness, FlutterBinding.UI.Color scaffoldBackgroundColor, FlutterBinding.UI.Color bottomAppBarColor, FlutterBinding.UI.Color cardColor, FlutterBinding.UI.Color dividerColor, FlutterBinding.UI.Color focusColor, FlutterBinding.UI.Color hoverColor, FlutterBinding.UI.Color highlightColor, FlutterBinding.UI.Color splashColor, FlutterSDK.Material.Inkwell.InteractiveInkFeatureFactory splashFactory, FlutterBinding.UI.Color selectedRowColor, FlutterBinding.UI.Color unselectedWidgetColor, FlutterBinding.UI.Color disabledColor, FlutterSDK.Material.Buttontheme.ButtonThemeData buttonTheme, FlutterBinding.UI.Color buttonColor, FlutterSDK.Material.Togglebuttonstheme.ToggleButtonsThemeData toggleButtonsTheme, FlutterBinding.UI.Color secondaryHeaderColor, FlutterBinding.UI.Color textSelectionColor, FlutterBinding.UI.Color cursorColor, FlutterBinding.UI.Color textSelectionHandleColor, FlutterBinding.UI.Color backgroundColor, FlutterBinding.UI.Color dialogBackgroundColor, FlutterBinding.UI.Color indicatorColor, FlutterBinding.UI.Color hintColor, FlutterBinding.UI.Color errorColor, FlutterBinding.UI.Color toggleableActiveColor, FlutterSDK.Material.Texttheme.TextTheme textTheme, FlutterSDK.Material.Texttheme.TextTheme primaryTextTheme, FlutterSDK.Material.Texttheme.TextTheme accentTextTheme, FlutterSDK.Material.Inputdecorator.InputDecorationTheme inputDecorationTheme, FlutterSDK.Widgets.Iconthemedata.IconThemeData iconTheme, FlutterSDK.Widgets.Iconthemedata.IconThemeData primaryIconTheme, FlutterSDK.Widgets.Iconthemedata.IconThemeData accentIconTheme, FlutterSDK.Material.Slidertheme.SliderThemeData sliderTheme, FlutterSDK.Material.Tabbartheme.TabBarTheme tabBarTheme, FlutterSDK.Material.Tooltiptheme.TooltipThemeData tooltipTheme, FlutterSDK.Material.Cardtheme.CardTheme cardTheme, FlutterSDK.Material.Chiptheme.ChipThemeData chipTheme, FlutterSDK.Foundation.Platform.TargetPlatform platform, FlutterSDK.Material.Themedata.MaterialTapTargetSize materialTapTargetSize, bool applyElevationOverlayColor, FlutterSDK.Material.Pagetransitionstheme.PageTransitionsTheme pageTransitionsTheme, FlutterSDK.Material.Appbartheme.AppBarTheme appBarTheme, FlutterSDK.Material.Bottomappbartheme.BottomAppBarTheme bottomAppBarTheme, FlutterSDK.Material.Colorscheme.ColorScheme colorScheme, FlutterSDK.Material.Dialogtheme.DialogTheme dialogTheme, FlutterSDK.Material.Floatingactionbuttontheme.FloatingActionButtonThemeData floatingActionButtonTheme, FlutterSDK.Material.Navigationrailtheme.NavigationRailThemeData navigationRailTheme, FlutterSDK.Material.Typography.Typography typography, FlutterSDK.Cupertino.Theme.CupertinoThemeData cupertinoOverrideTheme, FlutterSDK.Material.Snackbartheme.SnackBarThemeData snackBarTheme, FlutterSDK.Material.Bottomsheettheme.BottomSheetThemeData bottomSheetTheme, FlutterSDK.Material.Popupmenutheme.PopupMenuThemeData popupMenuTheme, FlutterSDK.Material.Bannertheme.MaterialBannerThemeData bannerTheme, FlutterSDK.Material.Dividertheme.DividerThemeData dividerTheme, FlutterSDK.Material.Buttonbartheme.ButtonBarThemeData buttonBarTheme)
+        : base()
         {
-            var instance = new ThemeData(); instance.Brightness = brightness;
-            instance.VisualDensity = visualDensity;
-            instance.PrimaryColor = primaryColor;
-            instance.PrimaryColorBrightness = primaryColorBrightness;
-            instance.PrimaryColorLight = primaryColorLight;
-            instance.PrimaryColorDark = primaryColorDark;
-            instance.CanvasColor = canvasColor;
-            instance.AccentColor = accentColor;
-            instance.AccentColorBrightness = accentColorBrightness;
-            instance.ScaffoldBackgroundColor = scaffoldBackgroundColor;
-            instance.BottomAppBarColor = bottomAppBarColor;
-            instance.CardColor = cardColor;
-            instance.DividerColor = dividerColor;
-            instance.FocusColor = focusColor;
-            instance.HoverColor = hoverColor;
-            instance.HighlightColor = highlightColor;
-            instance.SplashColor = splashColor;
-            instance.SplashFactory = splashFactory;
-            instance.SelectedRowColor = selectedRowColor;
-            instance.UnselectedWidgetColor = unselectedWidgetColor;
-            instance.DisabledColor = disabledColor;
-            instance.ButtonTheme = buttonTheme;
-            instance.ButtonColor = buttonColor;
-            instance.ToggleButtonsTheme = toggleButtonsTheme;
-            instance.SecondaryHeaderColor = secondaryHeaderColor;
-            instance.TextSelectionColor = textSelectionColor;
-            instance.CursorColor = cursorColor;
-            instance.TextSelectionHandleColor = textSelectionHandleColor;
-            instance.BackgroundColor = backgroundColor;
-            instance.DialogBackgroundColor = dialogBackgroundColor;
-            instance.IndicatorColor = indicatorColor;
-            instance.HintColor = hintColor;
-            instance.ErrorColor = errorColor;
-            instance.ToggleableActiveColor = toggleableActiveColor;
-            instance.TextTheme = textTheme;
-            instance.PrimaryTextTheme = primaryTextTheme;
-            instance.AccentTextTheme = accentTextTheme;
-            instance.InputDecorationTheme = inputDecorationTheme;
-            instance.IconTheme = iconTheme;
-            instance.PrimaryIconTheme = primaryIconTheme;
-            instance.AccentIconTheme = accentIconTheme;
-            instance.SliderTheme = sliderTheme;
-            instance.TabBarTheme = tabBarTheme;
-            instance.TooltipTheme = tooltipTheme;
-            instance.CardTheme = cardTheme;
-            instance.ChipTheme = chipTheme;
-            instance.Platform = platform;
-            instance.MaterialTapTargetSize = materialTapTargetSize;
-            instance.ApplyElevationOverlayColor = applyElevationOverlayColor;
-            instance.PageTransitionsTheme = pageTransitionsTheme;
-            instance.AppBarTheme = appBarTheme;
-            instance.BottomAppBarTheme = bottomAppBarTheme;
-            instance.ColorScheme = colorScheme;
-            instance.DialogTheme = dialogTheme;
-            instance.FloatingActionButtonTheme = floatingActionButtonTheme;
-            instance.NavigationRailTheme = navigationRailTheme;
-            instance.Typography = typography;
-            instance.CupertinoOverrideTheme = cupertinoOverrideTheme;
-            instance.SnackBarTheme = snackBarTheme;
-            instance.BottomSheetTheme = bottomSheetTheme;
-            instance.PopupMenuTheme = popupMenuTheme;
-            instance.BannerTheme = bannerTheme;
-            instance.DividerTheme = dividerTheme;
-            instance.ButtonBarTheme = buttonBarTheme;
+            this.Brightness = brightness;
+            this.VisualDensity = visualDensity;
+            this.PrimaryColor = primaryColor;
+            this.PrimaryColorBrightness = primaryColorBrightness;
+            this.PrimaryColorLight = primaryColorLight;
+            this.PrimaryColorDark = primaryColorDark;
+            this.CanvasColor = canvasColor;
+            this.AccentColor = accentColor;
+            this.AccentColorBrightness = accentColorBrightness;
+            this.ScaffoldBackgroundColor = scaffoldBackgroundColor;
+            this.BottomAppBarColor = bottomAppBarColor;
+            this.CardColor = cardColor;
+            this.DividerColor = dividerColor;
+            this.FocusColor = focusColor;
+            this.HoverColor = hoverColor;
+            this.HighlightColor = highlightColor;
+            this.SplashColor = splashColor;
+            this.SplashFactory = splashFactory;
+            this.SelectedRowColor = selectedRowColor;
+            this.UnselectedWidgetColor = unselectedWidgetColor;
+            this.DisabledColor = disabledColor;
+            this.ButtonTheme = buttonTheme;
+            this.ButtonColor = buttonColor;
+            this.ToggleButtonsTheme = toggleButtonsTheme;
+            this.SecondaryHeaderColor = secondaryHeaderColor;
+            this.TextSelectionColor = textSelectionColor;
+            this.CursorColor = cursorColor;
+            this.TextSelectionHandleColor = textSelectionHandleColor;
+            this.BackgroundColor = backgroundColor;
+            this.DialogBackgroundColor = dialogBackgroundColor;
+            this.IndicatorColor = indicatorColor;
+            this.HintColor = hintColor;
+            this.ErrorColor = errorColor;
+            this.ToggleableActiveColor = toggleableActiveColor;
+            this.TextTheme = textTheme;
+            this.PrimaryTextTheme = primaryTextTheme;
+            this.AccentTextTheme = accentTextTheme;
+            this.InputDecorationTheme = inputDecorationTheme;
+            this.IconTheme = iconTheme;
+            this.PrimaryIconTheme = primaryIconTheme;
+            this.AccentIconTheme = accentIconTheme;
+            this.SliderTheme = sliderTheme;
+            this.TabBarTheme = tabBarTheme;
+            this.TooltipTheme = tooltipTheme;
+            this.CardTheme = cardTheme;
+            this.ChipTheme = chipTheme;
+            this.Platform = platform;
+            this.MaterialTapTargetSize = materialTapTargetSize;
+            this.ApplyElevationOverlayColor = applyElevationOverlayColor;
+            this.PageTransitionsTheme = pageTransitionsTheme;
+            this.AppBarTheme = appBarTheme;
+            this.BottomAppBarTheme = bottomAppBarTheme;
+            this.ColorScheme = colorScheme;
+            this.DialogTheme = dialogTheme;
+            this.FloatingActionButtonTheme = floatingActionButtonTheme;
+            this.NavigationRailTheme = navigationRailTheme;
+            this.Typography = typography;
+            this.CupertinoOverrideTheme = cupertinoOverrideTheme;
+            this.SnackBarTheme = snackBarTheme;
+            this.BottomSheetTheme = bottomSheetTheme;
+            this.PopupMenuTheme = popupMenuTheme;
+            this.BannerTheme = bannerTheme;
+            this.DividerTheme = dividerTheme;
+            this.ButtonBarTheme = buttonBarTheme;
         }
         /// <Summary>
         /// Create a [ThemeData] based on the colors in the given [colorScheme] and
@@ -734,12 +738,12 @@ namespace FlutterSDK.Material.Themedata
         /// </Summary>
         public static ThemeData From(FlutterSDK.Material.Colorscheme.ColorScheme colorScheme = default(FlutterSDK.Material.Colorscheme.ColorScheme), FlutterSDK.Material.Texttheme.TextTheme textTheme = default(FlutterSDK.Material.Texttheme.TextTheme))
         {
-            var instance = new ThemeData();
+
 
             bool isDark = colorScheme.Brightness == Brightness.Dark;
             Color primarySurfaceColor = isDark ? colorScheme.Surface : colorScheme.Primary;
             Color onPrimarySurfaceColor = isDark ? colorScheme.OnSurface : colorScheme.OnPrimary;
-            return new ThemeData(brightness: colorScheme.Brightness, primaryColor: primarySurfaceColor, primaryColorBrightness: ThemedataDefaultClass.ThemeData.EstimateBrightnessForColor(primarySurfaceColor), canvasColor: colorScheme.Background, accentColor: colorScheme.Secondary, accentColorBrightness: ThemedataDefaultClass.ThemeData.EstimateBrightnessForColor(colorScheme.Secondary), scaffoldBackgroundColor: colorScheme.Background, bottomAppBarColor: colorScheme.Surface, cardColor: colorScheme.Surface, dividerColor: colorScheme.OnSurface.WithOpacity(0.12), backgroundColor: colorScheme.Background, dialogBackgroundColor: colorScheme.Background, errorColor: colorScheme.Error, textTheme: textTheme, indicatorColor: onPrimarySurfaceColor, applyElevationOverlayColor: isDark, colorScheme: colorScheme);
+            return ThemeData.CreateNew(brightness: colorScheme.Brightness, primaryColor: primarySurfaceColor, primaryColorBrightness: ThemedataDefaultClass.ThemeData.EstimateBrightnessForColor(primarySurfaceColor), canvasColor: colorScheme.Background, accentColor: colorScheme.Secondary, accentColorBrightness: ThemedataDefaultClass.ThemeData.EstimateBrightnessForColor(colorScheme.Secondary), scaffoldBackgroundColor: colorScheme.Background, bottomAppBarColor: colorScheme.Surface, cardColor: colorScheme.Surface, dividerColor: colorScheme.OnSurface.WithOpacity(0.12), backgroundColor: colorScheme.Background, dialogBackgroundColor: colorScheme.Background, errorColor: colorScheme.Error, textTheme: textTheme, indicatorColor: onPrimarySurfaceColor, applyElevationOverlayColor: isDark, colorScheme: colorScheme);
         }
 
 
@@ -750,46 +754,43 @@ namespace FlutterSDK.Material.Themedata
         /// this theme is localized using text geometry using [ThemeData.localize].
         /// </Summary>
         public static ThemeData Light()
-        {
-            var instance = new ThemeData(); new ThemeData(brightness: Brightness.Light);
+        => ThemeData.CreateNew(brightness: Brightness.Light);
 
-            /// <Summary>
-            /// A default dark theme with a teal accent color.
-            ///
-            /// This theme does not contain text geometry. Instead, it is expected that
-            /// this theme is localized using text geometry using [ThemeData.localize].
-            /// </Summary>
-            public static ThemeData Dark()
-            {
-                var instance = new ThemeData(); new ThemeData(brightness: Brightness.Dark);
+        /// <Summary>
+        /// A default dark theme with a teal accent color.
+        ///
+        /// This theme does not contain text geometry. Instead, it is expected that
+        /// this theme is localized using text geometry using [ThemeData.localize].
+        /// </Summary>
+        public static ThemeData Dark()
+        => ThemeData.CreateNew(brightness: Brightness.Dark);
 
-                /// <Summary>
-                /// The default color theme. Same as [new ThemeData.light].
-                ///
-                /// This is used by [Theme.of] when no theme has been specified.
-                ///
-                /// This theme does not contain text geometry. Instead, it is expected that
-                /// this theme is localized using text geometry using [ThemeData.localize].
-                ///
-                /// Most applications would use [Theme.of], which provides correct localized
-                /// text geometry.
-                /// </Summary>
-                public static ThemeData Fallback()
-                {
-                    var instance = new ThemeData(); ThemeData.Light();
+        /// <Summary>
+        /// The default color theme. Same as [new ThemeData.light].
+        ///
+        /// This is used by [Theme.of] when no theme has been specified.
+        ///
+        /// This theme does not contain text geometry. Instead, it is expected that
+        /// this theme is localized using text geometry using [ThemeData.localize].
+        ///
+        /// Most applications would use [Theme.of], which provides correct localized
+        /// text geometry.
+        /// </Summary>
+        public static ThemeData Fallback()
+        => ThemeData.Light();
 
-/// <Summary>
-/// The brightness of the overall theme of the application. Used by widgets
-/// like buttons to determine what color to pick when not using the primary or
-/// accent color.
-///
-/// When the [Brightness] is dark, the canvas, card, and primary colors are
-/// all dark. When the [Brightness] is light, the canvas and card colors
-/// are bright, and the primary color's darkness varies as described by
-/// primaryColorBrightness. The primaryColor does not contrast well with the
-/// card and canvas colors when the brightness is dark; when the brightness is
-/// dark, use Colors.white or the accentColor for a contrasting color.
-/// </Summary>
+        /// <Summary>
+        /// The brightness of the overall theme of the application. Used by widgets
+        /// like buttons to determine what color to pick when not using the primary or
+        /// accent color.
+        ///
+        /// When the [Brightness] is dark, the canvas, card, and primary colors are
+        /// all dark. When the [Brightness] is light, the canvas and card colors
+        /// are bright, and the primary color's darkness varies as described by
+        /// primaryColorBrightness. The primaryColor does not contrast well with the
+        /// card and canvas colors when the brightness is dark; when the brightness is
+        /// dark, use Colors.white or the accentColor for a contrasting color.
+        /// </Summary>
         public virtual Brightness Brightness { get; set; }
         /// <Summary>
         /// The density value for specifying the compactness of various UI components.

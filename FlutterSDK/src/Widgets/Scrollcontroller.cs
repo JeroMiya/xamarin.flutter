@@ -540,7 +540,7 @@ namespace FlutterSDK.Widgets.Scrollcontroller
         public virtual Future<object> AnimateTo(double offset, TimeSpan duration = default(TimeSpan), FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve))
         {
 
-            List<Future<void>> animations = new List<Future<void>>(_Positions.Count);
+            List<Future<void>> animations = List.CreateNew<Future<void>>(_Positions.Count);
             for (int i = 0; i < _Positions.Count; i += 1) animations[i] = _Positions[i].AnimateTo(offset, duration: duration, curve: curve);
             return Dart.AsyncDefaultClass.Future.Wait(animations).Then((List<void> _) => =>null);
         }

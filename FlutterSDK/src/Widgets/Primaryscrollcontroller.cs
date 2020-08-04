@@ -454,8 +454,12 @@ namespace FlutterSDK.Widgets.Primaryscrollcontroller
         /// Creates a subtree without an associated [ScrollController].
         /// </Summary>
         public static PrimaryScrollController None(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
+        => new PrimaryScrollController(key, child);
+
+        private PrimaryScrollController(FlutterSDK.Foundation.Key.Key key, FlutterSDK.Widgets.Framework.Widget child)
+        : base(key: key, child: child)
         {
-            var instance = new PrimaryScrollController(key: key, child: child);
+
         }
         /// <Summary>
         /// The [ScrollController] associated with the subtree.

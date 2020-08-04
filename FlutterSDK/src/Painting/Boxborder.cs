@@ -730,8 +730,12 @@ namespace FlutterSDK.Painting.Boxborder
         /// The `side` argument must not be null.
         /// </Summary>
         public static Border FromBorderSide(FlutterSDK.Painting.Borders.BorderSide side)
+        => new Border(side);
+
+        private Border(FlutterSDK.Painting.Borders.BorderSide side)
+        : base()
         {
-            var instance = new Border();
+
         }
         /// <Summary>
         /// Creates a border with symmetrical vertical and horizontal sides.
@@ -739,8 +743,12 @@ namespace FlutterSDK.Painting.Boxborder
         /// All arguments default to [BorderSide.none] and must not be null.
         /// </Summary>
         public static Border Symmetric(FlutterSDK.Painting.Borders.BorderSide vertical = default(FlutterSDK.Painting.Borders.BorderSide), FlutterSDK.Painting.Borders.BorderSide horizontal = default(FlutterSDK.Painting.Borders.BorderSide))
+        => new Border(vertical, horizontal);
+
+        private Border(FlutterSDK.Painting.Borders.BorderSide vertical, FlutterSDK.Painting.Borders.BorderSide horizontal)
+        : base()
         {
-            var instance = new Border();
+
         }
         /// <Summary>
         /// A uniform border with all sides the same color and width.
@@ -749,7 +757,7 @@ namespace FlutterSDK.Painting.Boxborder
         /// </Summary>
         public static Border All(FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), double width = 1.0, FlutterSDK.Painting.Borders.BorderStyle style = default(FlutterSDK.Painting.Borders.BorderStyle))
         {
-            var instance = new Border();
+
             BorderSide side = new BorderSide(color: color, width: width, style: style);
             return Border.FromBorderSide(side);
         }

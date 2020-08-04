@@ -1712,8 +1712,12 @@ namespace FlutterSDK.Widgets.Implicitanimations
         /// The [curve] and [duration] arguments must not be null.
         /// </Summary>
         public static AnimatedPositioned FromRect(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterBinding.UI.Rect rect = default(FlutterBinding.UI.Rect), FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve), TimeSpan duration = default(TimeSpan), VoidCallback onEnd = default(VoidCallback))
+        => new AnimatedPositioned(key, child, rect, curve, duration, onEnd);
+
+        private AnimatedPositioned(FlutterSDK.Foundation.Key.Key key, FlutterSDK.Widgets.Framework.Widget child, FlutterBinding.UI.Rect rect, FlutterSDK.Animation.Curves.Curve curve, TimeSpan duration, VoidCallback onEnd)
+        : base(key: key, curve: curve, duration: duration, onEnd: onEnd)
         {
-            var instance = new AnimatedPositioned(key: key, curve: curve, duration: duration, onEnd: onEnd); instance.Child = child;
+            this.Child = child;
         }
         /// <Summary>
         /// The widget below this widget in the tree.

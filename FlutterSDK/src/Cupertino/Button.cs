@@ -334,14 +334,18 @@ namespace FlutterSDK.Cupertino.Button
         /// default constructor.
         /// </Summary>
         public static CupertinoButton Filled(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterBinding.UI.Color disabledColor = default(FlutterBinding.UI.Color), double minSize = default(double), double pressedOpacity = 0.4, FlutterSDK.Painting.Borderradius.BorderRadius borderRadius = default(FlutterSDK.Painting.Borderradius.BorderRadius), VoidCallback onPressed = default(VoidCallback))
+        => new CupertinoButton(key, child, padding, disabledColor, minSize, pressedOpacity, borderRadius, onPressed);
+
+        private CupertinoButton(FlutterSDK.Foundation.Key.Key key, FlutterSDK.Widgets.Framework.Widget child, FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding, FlutterBinding.UI.Color disabledColor, double minSize, double pressedOpacity, FlutterSDK.Painting.Borderradius.BorderRadius borderRadius, VoidCallback onPressed)
+        : base(key: key)
         {
-            var instance = new CupertinoButton(key: key); instance.Child = child;
-            instance.Padding = padding;
-            instance.DisabledColor = disabledColor;
-            instance.MinSize = minSize;
-            instance.PressedOpacity = pressedOpacity;
-            instance.BorderRadius = borderRadius;
-            instance.OnPressed = onPressed;
+            this.Child = child;
+            this.Padding = padding;
+            this.DisabledColor = disabledColor;
+            this.MinSize = minSize;
+            this.PressedOpacity = pressedOpacity;
+            this.BorderRadius = borderRadius;
+            this.OnPressed = onPressed;
         }
         /// <Summary>
         /// The widget below this widget in the tree.

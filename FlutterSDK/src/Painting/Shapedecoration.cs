@@ -507,7 +507,7 @@ namespace FlutterSDK.Painting.Shapedecoration
         /// </Summary>
         public static ShapeDecoration FromBoxDecoration(FlutterSDK.Painting.Boxdecoration.BoxDecoration source)
         {
-            var instance = new ShapeDecoration();
+
             ShapeBorder shape = default(ShapeBorder);
 
             switch (source.Shape)
@@ -758,8 +758,8 @@ namespace FlutterSDK.Painting.Shapedecoration
                 if (_ShadowCount == null)
                 {
                     _ShadowCount = _Decoration.Shadows.Count;
-                    _ShadowPaths = new List<Path>(_ShadowCount);
-                    _ShadowPaints = new List<Paint>(_ShadowCount);
+                    _ShadowPaths = List.CreateNew<Path>(_ShadowCount);
+                    _ShadowPaints = List.CreateNew<Paint>(_ShadowCount);
                     for (int index = 0; index < _ShadowCount; index += 1) _ShadowPaints[index] = _Decoration.Shadows[index].ToPaint();
                 }
 

@@ -458,7 +458,7 @@ namespace FlutterSDK.Rendering.Tableborder
         /// </Summary>
         public static TableBorder All(FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), double width = 1.0, FlutterSDK.Painting.Borders.BorderStyle style = default(FlutterSDK.Painting.Borders.BorderStyle))
         {
-            var instance = new TableBorder();
+
             BorderSide side = new BorderSide(color: color, width: width, style: style);
             return new TableBorder(top: side, right: side, bottom: side, left: side, horizontalInside: side, verticalInside: side);
         }
@@ -470,7 +470,7 @@ namespace FlutterSDK.Rendering.Tableborder
         /// </Summary>
         public static TableBorder Symmetric(FlutterSDK.Painting.Borders.BorderSide inside = default(FlutterSDK.Painting.Borders.BorderSide), FlutterSDK.Painting.Borders.BorderSide outside = default(FlutterSDK.Painting.Borders.BorderSide))
         {
-            var instance = new TableBorder();
+
             return new TableBorder(top: outside, right: outside, bottom: outside, left: outside, horizontalInside: inside, verticalInside: inside);
         }
 

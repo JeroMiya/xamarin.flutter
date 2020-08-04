@@ -484,8 +484,12 @@ namespace FlutterSDK.Material.Time
         /// minute in the timezone of the given [DateTime].
         /// </Summary>
         public static TimeOfDay FromDateTime(DateTime time)
+        => new TimeOfDay(time);
+
+        private TimeOfDay(DateTime time)
+        : base()
         {
-            var instance = new TimeOfDay();
+
         }
         /// <Summary>
         /// Creates a time of day based on the current time.
@@ -495,7 +499,7 @@ namespace FlutterSDK.Material.Time
         /// </Summary>
         public static TimeOfDay Now()
         {
-            var instance = new TimeOfDay();
+
             return TimeOfDay.FromDateTime(DateTime.Now());
         }
 

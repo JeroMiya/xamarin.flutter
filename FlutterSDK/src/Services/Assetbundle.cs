@@ -483,7 +483,7 @@ namespace FlutterSDK.Services.Assetbundle
         public virtual async Future<string> LoadString(string key, bool cache = true)
         {
             ByteData data = await Load(key);
-            if (data == null) throw new FlutterError($"'Unable to load asset: {key}'");
+            if (data == null) throw FlutterError.CreateNew($"'Unable to load asset: {key}'");
             if (data.LengthInBytes < 10 * 1024)
             {
                 return Dart.ConvertDefaultClass.Utf8.Decode(data.Buffer.AsUint8List());
@@ -667,7 +667,7 @@ namespace FlutterSDK.Services.Assetbundle
                 return result;
             }
 
-            completer = new Completer<T>();
+            completer = Completer.CreateNew<T>();
             _StructuredDataCache[key] = completer.Future;
             return completer.Future;
         }
@@ -696,9 +696,9 @@ namespace FlutterSDK.Services.Assetbundle
 
         public new async Future<ByteData> Load(string key)
         {
-            Uint8List encoded = Dart.ConvertDefaultClass.Utf8.Encoder.Convert(new Uri(path: Dart.CoreDefaultClass.Uri.EncodeFull(key)).Path);
+            Uint8List encoded = Dart.ConvertDefaultClass.Utf8.Encoder.Convert(Uri.CreateNew(path: Dart.CoreDefaultClass.Uri.EncodeFull(key)).Path);
             ByteData asset = await BinarymessengerDefaultClass.DefaultBinaryMessenger.Send("flutter/assets", encoded.Buffer.AsByteData());
-            if (asset == null) throw new FlutterError($"'Unable to load asset: {key}'");
+            if (asset == null) throw FlutterError.CreateNew($"'Unable to load asset: {key}'");
             return asset;
         }
 

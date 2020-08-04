@@ -1677,8 +1677,12 @@ namespace FlutterSDK.Rendering.Sliver
         ///    [BoxHitTestResult] for hit testing on [RenderBox] children.
         /// </Summary>
         public static SliverHitTestResult Wrap(FlutterSDK.Gestures.Hittest.HitTestResult result)
+        => new SliverHitTestResult(result);
+
+        private SliverHitTestResult(FlutterSDK.Gestures.Hittest.HitTestResult result)
+        : base(result)
         {
-            var instance = new SliverHitTestResult(result);
+
         }
 
         /// <Summary>

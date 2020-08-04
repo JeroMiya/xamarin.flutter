@@ -631,7 +631,7 @@ namespace FlutterSDK.Material.Stepper
         public new void InitState()
         {
             base.InitState();
-            _Keys = List<GlobalKey>.Generate(Widget.Steps.Count, (int i) => =>new GlobalKey());
+            _Keys = List<GlobalKey>.Generate(Widget.Steps.Count, (int i) => =>GlobalKey.CreateNew());
             for (int i = 0; i < Widget.Steps.Count; i += 1) _OldStates[i] = Widget.Steps[i].State;
         }
 

@@ -490,14 +490,14 @@ namespace FlutterSDK.Services.Binding
 
         private async Stream<FlutterSDK.Foundation.Licenses.LicenseEntry> _AddLicenses()
         {
-            Completer<string> rawLicenses = new Completer<string>();
+            Completer<string> rawLicenses = Completer.CreateNew<string>();
             Dart.AsyncDefaultClass.Timer.Run(async () =>
             {
                 rawLicenses.Complete(AssetbundleDefaultClass.RootBundle.LoadString("LICENSE", cache: false));
             }
             );
             await rawLicenses.Future;
-            Completer<List<LicenseEntry>> parsedLicenses = new Completer<List<LicenseEntry>>();
+            Completer<List<LicenseEntry>> parsedLicenses = Completer.CreateNew<List<LicenseEntry>>();
             Dart.AsyncDefaultClass.Timer.Run(async () =>
             {
                 parsedLicenses.Complete(IsolatesDefaultClass.Compute(_ParseLicenses, await rawLicenses.Future, debugLabel: "parseLicenses"));
@@ -599,7 +599,7 @@ namespace FlutterSDK.Services.Binding
 
         private Future<ByteData> _SendPlatformMessage(string channel, ByteData message)
         {
-            Completer<ByteData> completer = new Completer<ByteData>();
+            Completer<ByteData> completer = Completer.CreateNew<ByteData>();
             Dart.UI.UiDefaultClass.Window.SendPlatformMessage(channel, message, (ByteData reply) =>
             {
             try

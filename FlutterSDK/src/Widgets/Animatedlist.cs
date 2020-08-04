@@ -439,19 +439,30 @@ namespace FlutterSDK.Widgets.Animatedlist
     public class _ActiveItem : IComparable<FlutterSDK.Widgets.Animatedlist._ActiveItem>
     {
         public static _ActiveItem Incoming(FlutterSDK.Animation.Animationcontroller.AnimationController controller, int itemIndex)
+        => new _ActiveItem(controller, itemIndex);
+
+        private _ActiveItem(FlutterSDK.Animation.Animationcontroller.AnimationController controller, int itemIndex)
+        : base()
         {
-            var instance = new _ActiveItem(); instance.Controller = controller;
-            instance.ItemIndex = itemIndex;
+            this.Controller = controller;
+            this.ItemIndex = itemIndex;
         }
         public static _ActiveItem Outgoing(FlutterSDK.Animation.Animationcontroller.AnimationController controller, int itemIndex, FlutterSDK.Widgets.Animatedlist.AnimatedListRemovedItemBuilder removedItemBuilder)
+        => new _ActiveItem(controller, itemIndex, removedItemBuilder);
+
+        private _ActiveItem(FlutterSDK.Animation.Animationcontroller.AnimationController controller, int itemIndex, FlutterSDK.Widgets.Animatedlist.AnimatedListRemovedItemBuilder removedItemBuilder)
         {
-            var instance = new _ActiveItem(); instance.Controller = controller;
-            instance.ItemIndex = itemIndex;
-            instance.RemovedItemBuilder = removedItemBuilder;
+            this.Controller = controller;
+            this.ItemIndex = itemIndex;
+            this.RemovedItemBuilder = removedItemBuilder;
         }
         public static _ActiveItem Index(int itemIndex)
+        => new _ActiveItem(itemIndex);
+
+        private _ActiveItem(int itemIndex)
+        : base()
         {
-            var instance = new _ActiveItem(); instance.ItemIndex = itemIndex;
+            this.ItemIndex = itemIndex;
         }
         public virtual FlutterSDK.Animation.Animationcontroller.AnimationController Controller { get; set; }
         public virtual FlutterSDK.Widgets.Animatedlist.AnimatedListRemovedItemBuilder RemovedItemBuilder { get; set; }
@@ -1225,7 +1236,7 @@ namespace FlutterSDK.Widgets.Animatedlist
 
             SliverAnimatedListState result = context.FindAncestorStateOfType();
             if (nullOk || result != null) return result;
-            throw new FlutterError("SliverAnimatedList.of() called with a context that does not contain a SliverAnimatedList.\n" + "No SliverAnimatedListState ancestor could be found starting from the " + "context that was passed to SliverAnimatedListState.of(). This can " + "happen when the context provided is from the same StatefulWidget that " + "built the AnimatedList. Please see the SliverAnimatedList documentation " + "for examples of how to refer to an AnimatedListState object: " + "https://docs.flutter.io/flutter/widgets/SliverAnimatedListState-class.html \n" + "The context used was:\n" + $"'  {context}'");
+            throw FlutterError.CreateNew("SliverAnimatedList.of() called with a context that does not contain a SliverAnimatedList.\n" + "No SliverAnimatedListState ancestor could be found starting from the " + "context that was passed to SliverAnimatedListState.of(). This can " + "happen when the context provided is from the same StatefulWidget that " + "built the AnimatedList. Please see the SliverAnimatedList documentation " + "for examples of how to refer to an AnimatedListState object: " + "https://docs.flutter.io/flutter/widgets/SliverAnimatedListState-class.html \n" + "The context used was:\n" + $"'  {context}'");
         }
 
 

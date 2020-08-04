@@ -306,16 +306,16 @@ namespace FlutterSDK.Foundation._Isolatesio
             debugLabel = (debugLabel == null ? ConstantsDefaultClass.KReleaseMode ? "compute" : callback.ToString() : debugLabel);
             Flow flow = Dart.DeveloperDefaultClass.Flow.Begin();
             Dart.DeveloperDefaultClass.Timeline.StartSync($"'{debugLabel}: start'", flow: flow);
-            ReceivePort resultPort = new ReceivePort();
-            ReceivePort errorPort = new ReceivePort();
+            ReceivePort resultPort = ReceivePort.CreateNew();
+            ReceivePort errorPort = ReceivePort.CreateNew();
             Dart.DeveloperDefaultClass.Timeline.FinishSync();
             Isolate isolate = await Dart.IsolateDefaultClass.Isolate.Spawn(_IsolatesioDefaultClass._Spawn, new _IsolateConfiguration<Q, FutureOr<R>>(callback, message, resultPort.SendPort, debugLabel, flow.Id), errorsAreFatal: true, onExit: resultPort.SendPort, onError: errorPort.SendPort);
-            Completer<R> result = new Completer<R>();
+            Completer<R> result = Completer.CreateNew<R>();
             errorPort.Listen((object errorData) =>
             {
 
 
-                Exception exception = new Exception(errorData[0]);
+                Exception exception = Exception.CreateNew(errorData[0]);
                 StackTrace stack = StackTrace.FromString(errorData[1] as string);
                 if (result.IsCompleted)
                 {

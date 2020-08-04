@@ -1116,7 +1116,7 @@ namespace FlutterSDK.Material.Tabs
         public new void InitState()
         {
             base.InitState();
-            _TabKeys = Widget.Tabs.Map((Widget tab) => =>new GlobalKey()).ToList();
+            _TabKeys = Widget.Tabs.Map((Widget tab) => =>GlobalKey.CreateNew()).ToList();
         }
 
 
@@ -1181,7 +1181,7 @@ namespace FlutterSDK.Material.Tabs
             if (Widget.Tabs.Count > oldWidget.Tabs.Count)
             {
                 int delta = Widget.Tabs.Count - oldWidget.Tabs.Count;
-                _TabKeys.AddAll(List<GlobalKey>.Generate(delta, (int n) => =>new GlobalKey()));
+                _TabKeys.AddAll(List<GlobalKey>.Generate(delta, (int n) => =>GlobalKey.CreateNew()));
             }
             else if (Widget.Tabs.Count < oldWidget.Tabs.Count)
             {
@@ -1334,7 +1334,7 @@ namespace FlutterSDK.Material.Tabs
             }
 
             TabBarTheme tabBarTheme = TabbarthemeDefaultClass.TabBarTheme.Of(context);
-            List<Widget> wrappedTabs = new List<Widget>(Widget.Tabs.Count);
+            List<Widget> wrappedTabs = List.CreateNew<Widget>(Widget.Tabs.Count);
             for (int i = 0; i < Widget.Tabs.Count; i += 1)
             {
                 wrappedTabs[i] = new Center(heightFactor: 1.0, child: new Padding(padding: Widget.LabelPadding ?? tabBarTheme.LabelPadding ?? ConstantsDefaultClass.KTabLabelPadding, child: new KeyedSubtree(key: _TabKeys[i], child: Widget.Tabs[i])));

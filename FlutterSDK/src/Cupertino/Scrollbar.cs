@@ -608,7 +608,7 @@ namespace FlutterSDK.Cupertino.Scrollbar
             if (!Widget.IsAlwaysShown)
             {
                 _FadeoutTimer?.Cancel();
-                _FadeoutTimer = new Timer(ScrollbarDefaultClass._KScrollbarTimeToFade, () =>
+                _FadeoutTimer = Timer.CreateNew(ScrollbarDefaultClass._KScrollbarTimeToFade, () =>
                 {
                     _FadeoutAnimationController.Reverse();
                     _FadeoutTimer = null;

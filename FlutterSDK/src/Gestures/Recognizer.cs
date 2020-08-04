@@ -850,7 +850,7 @@ public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.Diagnostic
                 State = GestureRecognizerState.Possible;
                 PrimaryPointer = ((PointerUpEvent)@event).Pointer;
                 InitialPosition = new OffsetPair(local: ((PointerUpEvent)@event).LocalPosition, global: ((PointerUpEvent)@event).Position);
-                if (Deadline != null) _Timer = new Timer(Deadline, () => =>DidExceedDeadlineWithEvent(((PointerUpEvent)@event)));
+                if (Deadline != null) _Timer = Timer.CreateNew(Deadline, () => =>DidExceedDeadlineWithEvent(((PointerUpEvent)@event)));
             }
 
         }
@@ -1021,7 +1021,7 @@ public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.Diagnostic
         /// </Summary>
         public static OffsetPair FromEventPosition(FlutterSDK.Gestures.Events.PointerEvent @event)
         {
-            var instance = new OffsetPair();
+
             return new OffsetPair(local: @event.LocalPosition, global: @event.Position);
         }
 
@@ -1032,7 +1032,7 @@ public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.Diagnostic
         /// </Summary>
         public static OffsetPair FromEventDelta(FlutterSDK.Gestures.Events.PointerEvent @event)
         {
-            var instance = new OffsetPair();
+
             return new OffsetPair(local: @event.LocalDelta, global: @event.Delta);
         }
 

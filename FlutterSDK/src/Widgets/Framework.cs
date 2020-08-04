@@ -2263,21 +2263,24 @@ namespace FlutterSDK.Widgets.Framework
         /// The label is purely for debugging and not used for comparing the identity
         /// of the key.
         /// </Summary>
-        public GlobalKey(string debugLabel = default(string))
-        {
-            new LabeledGlobalKey<T>(debugLabel);
+        public static GlobalKey CreateNew(string debugLabel = default(string))
+        => new LabeledGlobalKey<T>(debugLabel);
 
-            /// <Summary>
-            /// Creates a global key without a label.
-            ///
-            /// Used by subclasses because the factory constructor shadows the implicit
-            /// constructor.
-            /// </Summary>
-            public static GlobalKey<T> Constructor()
-            {
-                var instance = new GlobalKey<T>();
-            }
-internal virtual Dictionary<FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>>, FlutterSDK.Widgets.Framework.Element> _Registry { get; set; }
+        /// <Summary>
+        /// Creates a global key without a label.
+        ///
+        /// Used by subclasses because the factory constructor shadows the implicit
+        /// constructor.
+        /// </Summary>
+        public static GlobalKey<T> Constructor()
+        => new GlobalKey<T>();
+
+        private GlobalKey()
+        : base()
+        {
+
+        }
+        internal virtual Dictionary<FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>>, FlutterSDK.Widgets.Framework.Element> _Registry { get; set; }
         internal virtual HashSet<FlutterSDK.Widgets.Framework.Element> _DebugIllFatedElements { get; set; }
         internal virtual Dictionary<FlutterSDK.Widgets.Framework.Element, Dictionary<FlutterSDK.Widgets.Framework.Element, FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>>>> _DebugReservations { get; set; }
         internal virtual FlutterSDK.Widgets.Framework.Element _CurrentElement { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
@@ -4238,8 +4241,8 @@ finally
 
         private void _DebugTrackElementThatWillNeedToBeRebuiltDueToGlobalKeyShenanigans(FlutterSDK.Widgets.Framework.Element node, FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> key)
         {
-            _DebugElementsThatWillNeedToBeRebuiltDueToGlobalKeyShenanigans = (_DebugElementsThatWillNeedToBeRebuiltDueToGlobalKeyShenanigans == null ? new HashMap<Element, HashSet<GlobalKey>>() : _DebugElementsThatWillNeedToBeRebuiltDueToGlobalKeyShenanigans);
-            HashSet<GlobalKey> keys = _DebugElementsThatWillNeedToBeRebuiltDueToGlobalKeyShenanigans.PutIfAbsent(node, () => =>new HashSet<GlobalKey>());
+            _DebugElementsThatWillNeedToBeRebuiltDueToGlobalKeyShenanigans = (_DebugElementsThatWillNeedToBeRebuiltDueToGlobalKeyShenanigans == null ? HashMap.CreateNew<Element, HashSet<GlobalKey>>() : _DebugElementsThatWillNeedToBeRebuiltDueToGlobalKeyShenanigans);
+            HashSet<GlobalKey> keys = _DebugElementsThatWillNeedToBeRebuiltDueToGlobalKeyShenanigans.PutIfAbsent(node, () => =>HashSet.CreateNew<GlobalKey>());
             keys.Add(key);
         }
 
@@ -5134,7 +5137,7 @@ finally
         public new FlutterSDK.Widgets.Framework.InheritedWidget DependOnInheritedElement(FlutterSDK.Widgets.Framework.InheritedElement ancestor, @Object aspect = default(@Object))
         {
 
-            _Dependencies = (_Dependencies == null ? new HashSet<InheritedElement>() : _Dependencies);
+            _Dependencies = (_Dependencies == null ? HashSet.CreateNew<InheritedElement>() : _Dependencies);
             _Dependencies.Add(ancestor);
             ancestor.UpdateDependencies(this, aspect);
             return ancestor.Widget;
@@ -5640,8 +5643,12 @@ finally
         /// tools. It need not match the message.
         /// </Summary>
         public static ErrorWidget WithDetails(string message = default(string), FlutterSDK.Foundation.Assertions.FlutterError error = default(FlutterSDK.Foundation.Assertions.FlutterError))
+        => new ErrorWidget(message, error);
+
+        private ErrorWidget(string message, FlutterSDK.Foundation.Assertions.FlutterError error)
+        : base(key: new UniqueKey())
         {
-            var instance = new ErrorWidget(key: new UniqueKey()); instance.Message = message;
+            this.Message = message;
         }
         /// <Summary>
         /// The configurable factory for [ErrorWidget].
@@ -6288,7 +6295,7 @@ finally
         {
 
             Dictionary<Type, InheritedElement> incomingWidgets = _Parent?._InheritedWidgets;
-            if (incomingWidgets != null) _InheritedWidgets = HashMap<Type, InheritedElement>.From(incomingWidgets); else _InheritedWidgets = new HashMap<Type, InheritedElement>();
+            if (incomingWidgets != null) _InheritedWidgets = HashMap<Type, InheritedElement>.From(incomingWidgets); else _InheritedWidgets = HashMap.CreateNew<Type, InheritedElement>();
             _InheritedWidgets[Widget.GetType()] = this;
         }
 
@@ -6829,7 +6836,7 @@ finally
             int oldChildrenTop = 0;
             int newChildrenBottom = newWidgets.Count - 1;
             int oldChildrenBottom = oldChildren.Count - 1;
-            List<Element> newChildren = oldChildren.Count == newWidgets.Count ? oldChildren : new List<Element>(newWidgets.Count);
+            List<Element> newChildren = oldChildren.Count == newWidgets.Count ? oldChildren : List.CreateNew<Element>(newWidgets.Count);
             Element previousChild = default(Element);
             while ((oldChildrenTop <= oldChildrenBottom) && (newChildrenTop <= newChildrenBottom))
             {
@@ -7383,7 +7390,7 @@ finally
         public new void Mount(FlutterSDK.Widgets.Framework.Element parent, object newSlot)
         {
             base.Mount(parent, newSlot);
-            _Children = new List<Element>(Widget.Children.Count);
+            _Children = List.CreateNew<Element>(Widget.Children.Count);
             Element previousChild = default(Element);
             for (int i = 0; i < _Children.Count; i += 1)
             {

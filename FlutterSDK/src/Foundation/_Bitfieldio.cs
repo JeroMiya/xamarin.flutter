@@ -318,8 +318,12 @@ namespace FlutterSDK.Foundation._Bitfieldio
         /// The dart:io implementation of [bitfield.Bitfield.filled].
         /// </Summary>
         public static BitField<T> Filled(int _length, bool value)
+        => new BitField<T>(_length, value);
+
+        private BitField(int _length, bool value)
+        : base()
         {
-            var instance = new BitField<T>(); instance._Length = _length;
+            this._Length = _length;
         }
         internal virtual int _Length { get; set; }
         internal virtual int _Bits { get; set; }

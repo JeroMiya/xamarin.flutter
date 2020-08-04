@@ -691,7 +691,7 @@ namespace FlutterSDK.Material.Tooltip
 
             if (_LongPressActivated)
             {
-                _HideTimer = (_HideTimer == null ? new Timer(ShowDuration, _Controller.Reverse) : _HideTimer);
+                _HideTimer = (_HideTimer == null ? Timer.CreateNew(ShowDuration, _Controller.Reverse) : _HideTimer);
             }
             else
             {
@@ -714,7 +714,7 @@ namespace FlutterSDK.Material.Tooltip
                 return;
             }
 
-            _ShowTimer = (_ShowTimer == null ? new Timer(WaitDuration, EnsureTooltipVisible) : _ShowTimer);
+            _ShowTimer = (_ShowTimer == null ? Timer.CreateNew(WaitDuration, EnsureTooltipVisible) : _ShowTimer);
         }
 
 

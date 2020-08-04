@@ -1897,7 +1897,7 @@ namespace FlutterSDK.Widgets.Focustraversal
             FocusOrder order = marker?.Order;
             if (order == null && !nullOk)
             {
-                throw new FlutterError("FocusTraversalOrder.of() was called with a context that " + "does not contain a TraversalOrder widget. No TraversalOrder widget " + "ancestor could be found starting from the context that was passed to " + "FocusTraversalOrder.of().\n" + "The context used was:\n" + $"'  {context}'");
+                throw FlutterError.CreateNew("FocusTraversalOrder.of() was called with a context that " + "does not contain a TraversalOrder widget. No TraversalOrder widget " + "ancestor could be found starting from the context that was passed to " + "FocusTraversalOrder.of().\n" + "The context used was:\n" + $"'  {context}'");
             }
 
             return order;

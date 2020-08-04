@@ -518,17 +518,16 @@ namespace FlutterSDK.Rendering.Viewport
     /// </Summary>
     public class RenderAbstractViewport : FlutterSDK.Rendering.@object.RenderObject
     {
-        internal RenderAbstractViewport()
-        {
-            null;
+        internal static RenderAbstractViewport CreateNew()
+        => null;
 
-/// <Summary>
-/// The default value for the cache extent of the viewport.
-///
-/// See also:
-///
-///  * [RenderViewportBase.cacheExtent] for a definition of the cache extent.
-/// </Summary>
+        /// <Summary>
+        /// The default value for the cache extent of the viewport.
+        ///
+        /// See also:
+        ///
+        ///  * [RenderViewportBase.cacheExtent] for a definition of the cache extent.
+        /// </Summary>
         public virtual double DefaultCacheExtent { get; set; }
 
         /// <Summary>

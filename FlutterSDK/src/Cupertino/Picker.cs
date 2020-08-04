@@ -382,16 +382,20 @@ namespace FlutterSDK.Cupertino.Picker
         /// the native UIPicker and UIDatePicker.
         /// </Summary>
         public static CupertinoPicker Builder(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), double diameterRatio = default(double), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), double offAxisFraction = 0.0, bool useMagnifier = false, double magnification = 1.0, FlutterSDK.Widgets.Listwheelscrollview.FixedExtentScrollController scrollController = default(FlutterSDK.Widgets.Listwheelscrollview.FixedExtentScrollController), double squeeze = default(double), double itemExtent = default(double), FlutterSDK.Foundation.Basictypes.ValueChanged<int> onSelectedItemChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<int>), FlutterSDK.Widgets.Framework.IndexedWidgetBuilder itemBuilder = default(FlutterSDK.Widgets.Framework.IndexedWidgetBuilder), int childCount = default(int))
+        => new CupertinoPicker(key, diameterRatio, backgroundColor, offAxisFraction, useMagnifier, magnification, scrollController, squeeze, itemExtent, onSelectedItemChanged, itemBuilder, childCount);
+
+        private CupertinoPicker(FlutterSDK.Foundation.Key.Key key, double diameterRatio, FlutterBinding.UI.Color backgroundColor, double offAxisFraction, bool useMagnifier, double magnification, FlutterSDK.Widgets.Listwheelscrollview.FixedExtentScrollController scrollController, double squeeze, double itemExtent, FlutterSDK.Foundation.Basictypes.ValueChanged<int> onSelectedItemChanged, FlutterSDK.Widgets.Framework.IndexedWidgetBuilder itemBuilder, int childCount)
+        : base(key: key)
         {
-            var instance = new CupertinoPicker(key: key); instance.DiameterRatio = diameterRatio;
-            instance.BackgroundColor = backgroundColor;
-            instance.OffAxisFraction = offAxisFraction;
-            instance.UseMagnifier = useMagnifier;
-            instance.Magnification = magnification;
-            instance.ScrollController = scrollController;
-            instance.Squeeze = squeeze;
-            instance.ItemExtent = itemExtent;
-            instance.OnSelectedItemChanged = onSelectedItemChanged;
+            this.DiameterRatio = diameterRatio;
+            this.BackgroundColor = backgroundColor;
+            this.OffAxisFraction = offAxisFraction;
+            this.UseMagnifier = useMagnifier;
+            this.Magnification = magnification;
+            this.ScrollController = scrollController;
+            this.Squeeze = squeeze;
+            this.ItemExtent = itemExtent;
+            this.OnSelectedItemChanged = onSelectedItemChanged;
         }
         /// <Summary>
         /// Relative ratio between this picker's height and the simulated cylinder's diameter.

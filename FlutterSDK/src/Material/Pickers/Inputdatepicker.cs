@@ -679,7 +679,7 @@ namespace FlutterSDK.Material.Pickers.Inputdatepicker
         public new FlutterSDK.Services.Textinput.TextEditingValue FormatEditUpdate(FlutterSDK.Services.Textinput.TextEditingValue oldValue, FlutterSDK.Services.Textinput.TextEditingValue newValue)
         {
             TextEditingValue filteredValue = _FilterFormatter.FormatEditUpdate(oldValue, newValue);
-            return filteredValue.CopyWith(text: filteredValue.Text.ReplaceAll(new RegExp("'[\D]"), Separator));
+            return filteredValue.CopyWith(text: filteredValue.Text.ReplaceAll(RegExp.CreateNew("'[\D]"), Separator));
         }
 
 

@@ -455,7 +455,7 @@ namespace FlutterSDK.Material.Gridtilebar
             if (BackgroundColor != null) decoration = new BoxDecoration(color: BackgroundColor);
             EdgeInsetsDirectional padding = EdgeInsetsDirectional.Only(start: Leading != null ? 8.0 : 16.0, end: Trailing != null ? 8.0 : 16.0);
             ThemeData theme = ThemeDefaultClass.Theme.Of(context);
-            ThemeData darkTheme = new ThemeData(brightness: Brightness.Dark, accentColor: theme.AccentColor, accentColorBrightness: theme.AccentColorBrightness);
+            ThemeData darkTheme = ThemeData.CreateNew(brightness: Brightness.Dark, accentColor: theme.AccentColor, accentColorBrightness: theme.AccentColorBrightness);
             return new Container(padding: padding, decoration: decoration, height: (Title != null && Subtitle != null) ? 68.0 : 48.0, child: new Theme(data: darkTheme, child: IconthemeDefaultClass.IconTheme.Merge(data: new IconThemeData(color: ColorsDefaultClass.Colors.White), child: new Row(crossAxisAlignment: CrossAxisAlignment.Center, children: new List<Widget>() { }))));
         }
 

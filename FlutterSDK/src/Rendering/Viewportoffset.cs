@@ -509,7 +509,7 @@ namespace FlutterSDK.Rendering.Viewportoffset
         /// </Summary>
         public static ViewportOffset Fixed(double value)
         {
-            var instance = new ViewportOffset();
+
         }
         /// <Summary>
         /// Creates a viewport offset with a [pixels] value of 0.0.
@@ -519,7 +519,7 @@ namespace FlutterSDK.Rendering.Viewportoffset
         /// </Summary>
         public static ViewportOffset Zero()
         {
-            var instance = new ViewportOffset();
+
         }
         public virtual double Pixels { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterSDK.Rendering.Viewportoffset.ScrollDirection UserScrollDirection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
@@ -693,8 +693,12 @@ namespace FlutterSDK.Rendering.Viewportoffset
             this._Pixels = _pixels;
         }
         public static _FixedViewportOffset Zero()
+        => new _FixedViewportOffset();
+
+        private _FixedViewportOffset()
+        : base()
         {
-            var instance = new _FixedViewportOffset();
+
         }
         internal virtual double _Pixels { get; set; }
         public virtual double Pixels { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }

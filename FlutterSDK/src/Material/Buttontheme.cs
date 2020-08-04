@@ -409,8 +409,12 @@ namespace FlutterSDK.Material.Buttontheme
         /// The [data] argument must not be null.
         /// </Summary>
         public static ButtonTheme FromButtonThemeData(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Material.Buttontheme.ButtonThemeData data = default(FlutterSDK.Material.Buttontheme.ButtonThemeData), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
+        => new ButtonTheme(key, data, child);
+
+        private ButtonTheme(FlutterSDK.Foundation.Key.Key key, FlutterSDK.Material.Buttontheme.ButtonThemeData data, FlutterSDK.Widgets.Framework.Widget child)
+        : base(key: key, child: child)
         {
-            var instance = new ButtonTheme(key: key, child: child); instance.Data = data;
+            this.Data = data;
         }
         /// <Summary>
         /// Creates a button theme that is appropriate for button bars, as used in
@@ -455,8 +459,12 @@ namespace FlutterSDK.Material.Buttontheme
         /// [ThemeData.buttonBarTheme] for your app.
         /// </Summary>
         public static ButtonTheme Bar(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Material.Buttontheme.ButtonTextTheme textTheme = default(FlutterSDK.Material.Buttontheme.ButtonTextTheme), double minWidth = 64.0, double height = 36.0, FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), bool alignedDropdown = false, FlutterBinding.UI.Color buttonColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color disabledColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color focusColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color hoverColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color highlightColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color splashColor = default(FlutterBinding.UI.Color), FlutterSDK.Material.Colorscheme.ColorScheme colorScheme = default(FlutterSDK.Material.Colorscheme.ColorScheme), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Material.Buttontheme.ButtonBarLayoutBehavior layoutBehavior = default(FlutterSDK.Material.Buttontheme.ButtonBarLayoutBehavior))
+        => new ButtonTheme(key, textTheme, minWidth, height, padding, shape, alignedDropdown, buttonColor, disabledColor, focusColor, hoverColor, highlightColor, splashColor, colorScheme, child, layoutBehavior);
+
+        private ButtonTheme(FlutterSDK.Foundation.Key.Key key, FlutterSDK.Material.Buttontheme.ButtonTextTheme textTheme, double minWidth, double height, FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding, FlutterSDK.Painting.Borders.ShapeBorder shape, bool alignedDropdown, FlutterBinding.UI.Color buttonColor, FlutterBinding.UI.Color disabledColor, FlutterBinding.UI.Color focusColor, FlutterBinding.UI.Color hoverColor, FlutterBinding.UI.Color highlightColor, FlutterBinding.UI.Color splashColor, FlutterSDK.Material.Colorscheme.ColorScheme colorScheme, FlutterSDK.Widgets.Framework.Widget child, FlutterSDK.Material.Buttontheme.ButtonBarLayoutBehavior layoutBehavior)
+        : base(key: key, child: child)
         {
-            var instance = new ButtonTheme(key: key, child: child);
+
         }
         /// <Summary>
         /// Specifies the color and geometry of buttons.

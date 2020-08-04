@@ -861,7 +861,7 @@ namespace FlutterSDK.Widgets.Overscrollindicator
 
             }
 
-            _PullRecedeTimer = new Timer(_PullHoldTime, () => =>_Recede(_PullDecayTime));
+            _PullRecedeTimer = Timer.CreateNew(_PullHoldTime, () => =>_Recede(_PullDecayTime));
         }
 
 

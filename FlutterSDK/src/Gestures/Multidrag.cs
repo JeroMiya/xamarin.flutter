@@ -930,7 +930,7 @@ namespace FlutterSDK.Gestures.Multidrag
         : base(initialPosition)
         {
 
-            _Timer = new Timer(delay, _DelayPassed);
+            _Timer = Timer.CreateNew(delay, _DelayPassed);
         }
 
 

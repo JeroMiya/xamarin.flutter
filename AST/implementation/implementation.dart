@@ -658,14 +658,30 @@ class Implementation {
       InstanceCreationExpression expression) {
     var csharp = "";
     var isNamedConstructor = expression.staticElement.name != "";
+    var isFactoryConstructor = expression.staticElement.isFactory;
     for (var entity in expression.childEntities) {
       csharp += processEntity(entity);
     }
 
-    // TODO: No such thing as named constructors in C#
-    // Will need to look at Static Method calls without the new.
-    if (!csharp.startsWith('new ') && !isNamedConstructor)
-      csharp = 'new ' + csharp;
+    if (isFactoryConstructor &&
+        !isNamedConstructor &&
+        csharp.startsWith(expression.staticElement.enclosingElement.name)) {
+      //for unnamed factory constructors Constructors.printConstructor
+      //create a special static method called CreateNew
+      csharp = '${expression.staticElement.enclosingElement.name}.CreateNew' +
+          csharp
+              .substring(expression.staticElement.enclosingElement.name.length);
+      return csharp;
+    }
+
+    if (isNamedConstructor) {
+      //this should work for the factory constructors too
+      if (csharp.startsWith('new')) csharp = csharp.substring(3);
+      return csharp;
+    }
+
+    if (!csharp.startsWith('new ')) csharp = 'new ' + csharp;
+
     return csharp;
   }
 
